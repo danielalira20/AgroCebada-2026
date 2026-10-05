@@ -10,29 +10,35 @@ T01 está en curso. El repositorio contiene sólo el arranque común, un contrat
 
 ## Preparar el entorno
 
-Se usará Python 3.12 para el proyecto. En Mac o Windows, con Python 3.12 instalado:
+Se usará Python 3.12 para el proyecto. Comprobar que `python3.12 --version` funciona en Mac o que `py -3.12 --version` funciona en Windows; si falta, instalar Python 3.12 antes de continuar. En Mac con Homebrew puede usarse `brew install python@3.12`. Crear el entorno:
 
-```sh
-python -m venv .venv
+```text
+Mac:     python3.12 -m venv .venv
+Windows: py -3.12 -m venv .venv
 ```
 
-Activar el entorno con `source .venv/bin/activate` en Mac o `.venv\Scripts\Activate.ps1` en PowerShell de Windows. Después:
+Activar el entorno con `source .venv/bin/activate` en Mac o `.\.venv\Scripts\Activate.ps1` en PowerShell de Windows. Después:
 
 ```sh
-python -m pip install -r requirements.txt
-python scripts/verificar_entorno.py
+python -m pip install --only-binary=:all: -r requirements.txt
+python -m pip check
+python scripts/verificar_entorno.py --salida reports/entorno_dani.json
 ```
 
-La lista de dependencias contiene rangos provisionales. Antes de cerrar T01 se fijarán versiones exactas a partir de una instalación comprobada en Mac y Windows. No usar el resultado del proyecto si ambos equipos instalan versiones distintas sin registrarlas.
+Sustituir `dani` en el nombre del archivo por quien ejecuta la prueba. Las dependencias están fijadas para el entorno mínimo. Mac Intel usa Rasterio 1.4.3; Apple Silicon, Windows y Docker usan 1.4.4, según los paquetes binarios disponibles. Los paquetes fijados para Apple Silicon requieren macOS 14 o posterior. La salida identifica Python, sistema, arquitectura y versiones. `reports/` se crea localmente y Git lo excluye. Cada integrante debe comprobar su equipo; Diego repite la instalación desde una copia nueva y revisa la evidencia. Una instalación correcta en Mac no demuestra que Windows funcione.
 
-Con Docker instalado:
+Con Docker instalado y en ejecución:
 
 ```sh
 docker build -t agrocebada-entorno .
 docker run --rm agrocebada-entorno
 ```
 
-La imagen ejecuta una lectura de ráster en memoria y una intersección de polígonos sintéticos. No usa datos del concurso. Esta prueba sólo verifica el entorno geoespacial; no valida la extracción real, la evaluación ni los modelos.
+En Mac, si se usa Docker CLI con Colima, iniciar primero el motor con `colima start --vm-type vz`. Al terminar puede liberarse memoria con `colima stop`. Si se usa Docker Desktop, abrir la aplicación antes de ejecutar los comandos anteriores.
+
+La imagen ejecuta seis comprobaciones sintéticas: ponderación entre celdas, `NoData`, borde, ausencia de cobertura y CRS incompatible. No usa datos del concurso. Esta prueba sólo verifica el entorno geoespacial; no valida la extracción real, la evaluación ni los modelos.
+
+Para cerrar T01 se necesitan las salidas aprobadas en los cinco equipos, una ejecución Docker en Mac y otra en Windows, acceso comprobado al repositorio para los cinco, capitán registrado y la revisión independiente de Diego. Registrar fallos y soluciones en la tarea T01 antes de marcarla completa.
 
 ## Datos y trabajo en equipo
 

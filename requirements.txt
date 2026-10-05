@@ -1,8 +1,14 @@
-# Rangos provisionales: fijar versiones exactas tras comprobar Mac, Windows y Docker.
-numpy>=2.0,<3.0
-pandas>=2.2,<3.0
-shapely>=2.0,<3.0
-rasterio>=1.4,<2.0
-pyogrio>=0.10,<1.0
-geopandas>=1.0,<2.0
-scikit-learn>=1.6,<2.0
+# Entorno mínimo T01 para Python 3.12.
+# En Mac Intel se usa el último wheel compatible con macOS anterior a 15.
+# Windows real sigue pendiente; Docker ARM/x86 se comprobó en Mac.
+affine==3.0.1
+attrs==26.1.0
+certifi==2026.7.22
+click==8.5.0
+click-plugins==1.1.1.2
+cligj==0.7.2
+numpy==2.2.6
+pyparsing==3.3.3
+rasterio==1.4.3; sys_platform == "darwin" and platform_machine == "x86_64"
+rasterio==1.4.4; sys_platform != "darwin" or platform_machine != "x86_64"
+shapely==2.1.2
