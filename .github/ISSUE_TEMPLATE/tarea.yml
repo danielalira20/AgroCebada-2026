@@ -1,0 +1,37 @@
+name: Tarea del plan
+description: Registrar una tarea T01–T22 con responsable, revisión y evidencia.
+title: "TXX: "
+labels: ["tarea"]
+body:
+  - type: input
+    id: responsable
+    attributes:
+      label: Responsable
+    validations:
+      required: true
+  - type: input
+    id: revisor
+    attributes:
+      label: Revisor
+    validations:
+      required: true
+  - type: input
+    id: fecha
+    attributes:
+      label: Fecha objetivo
+    validations:
+      required: true
+  - type: textarea
+    id: entrega
+    attributes:
+      label: Entrega verificable
+    validations:
+      required: true
+  - type: textarea
+    id: dependencias
+    attributes:
+      label: Dependencias
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: Evidencia y comprobación del revisor

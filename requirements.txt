@@ -1,0 +1,8 @@
+# Rangos provisionales: fijar versiones exactas tras comprobar Mac, Windows y Docker.
+numpy>=2.0,<3.0
+pandas>=2.2,<3.0
+shapely>=2.0,<3.0
+rasterio>=1.4,<2.0
+pyogrio>=0.10,<1.0
+geopandas>=1.0,<2.0
+scikit-learn>=1.6,<2.0

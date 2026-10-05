@@ -1,0 +1,28 @@
+# Datos originales, tablas generadas y resultados locales
+data/
+reports/
+*.zip
+*.tif
+*.tiff
+*.shp
+*.shx
+*.dbf
+*.prj
+*.parquet
+*.joblib
+*.pkl
+
+# Entornos, secretos y archivos temporales
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*credentials*.json
+*token*.json
+*.pem
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
