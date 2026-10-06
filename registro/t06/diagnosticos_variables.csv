@@ -1,0 +1,265 @@
+columna,comparacion,parcelas_con_ambos,spearman,dif_abs_mediana,parcelas_que_cambian
+pl_ndvi_max_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,1
+pl_ndvi_integral_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.879,8.9537,197
+pl_lai2_max_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+pl_ndvi_dias_sobre_mitad_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.904,6.0,128
+pl_ndvi_dia_inicio_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+pl_ndvi_std_en_maximo_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,1
+pl_capturas_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.963,29.0,197
+pl_hueco_max_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+pl_nubosidad_media_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.955,2.2638,197
+pl_ndvi_al_corte,campaña hasta 31-dic frente a corte 31-oct,197,0.319,0.2435,197
+pl_ndvi_max_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,1
+pl_ndvi_integral_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.907,4.917,196
+pl_lai2_max_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+pl_ndvi_dias_sobre_mitad_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.915,1.0,99
+pl_ndvi_dia_inicio_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+pl_ndvi_std_en_maximo_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,1
+pl_capturas_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.956,29.0,197
+pl_hueco_max_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+pl_nubosidad_media_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.95,5.5678,197
+s2_ndvi_max_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,1
+s2_ndvi_integral_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.92,8.0858,197
+s2_ndvi_dias_sobre_mitad_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.916,4.0,142
+s2_ndwi_en_maximo_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+s2_ndvi_std_en_maximo_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+s2_capturas_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.875,12.0,197
+s2_hueco_max_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+s2_nubosidad_media_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.909,3.7562,197
+s2_ndvi_al_corte,campaña hasta 31-dic frente a corte 31-oct,195,0.296,0.2598,195
+s2_ndvi_max_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,1
+s2_ndvi_integral_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.939,3.6567,191
+s2_ndvi_dias_sobre_mitad_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.922,2.0,119
+s2_ndwi_en_maximo_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+s2_ndvi_std_en_maximo_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+s2_capturas_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.79,12.0,197
+s2_hueco_max_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,1.0,0.0,0
+s2_nubosidad_media_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.88,6.2671,197
+ls_vi6t_mediana_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.926,0.0035,183
+ls_capturas_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.967,6.0,197
+ls_hueco_max_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.994,0.0,5
+ls_nubosidad_media_abr_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.925,3.7444,197
+ls_vi6t_mediana_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.486,0.008,192
+ls_capturas_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.934,6.0,197
+ls_hueco_max_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.988,0.0,5
+ls_nubosidad_media_jun_oct,campaña hasta 31-dic frente a corte 31-oct,197,0.836,7.6923,197
+pl_ndvi_max_abr_oct,"fechas barajadas, semilla 0",197,0.936,0.022,181
+pl_ndvi_integral_abr_oct,"fechas barajadas, semilla 0",197,0.399,17.5695,197
+pl_lai2_max_abr_oct,"fechas barajadas, semilla 0",197,0.952,0.087,181
+pl_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 0",194,0.622,31.0,192
+pl_ndvi_dia_inicio_abr_oct,"fechas barajadas, semilla 0",194,-0.025,65.0,194
+pl_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 0",197,0.579,0.011,191
+pl_capturas_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+pl_hueco_max_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+pl_nubosidad_media_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+pl_ndvi_al_corte,"fechas barajadas, semilla 0",197,-0.023,0.1785,195
+pl_ndvi_max_jun_oct,"fechas barajadas, semilla 0",197,0.945,0.012,166
+pl_ndvi_integral_jun_oct,"fechas barajadas, semilla 0",197,0.261,14.4652,197
+pl_lai2_max_jun_oct,"fechas barajadas, semilla 0",197,0.956,0.076,179
+pl_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 0",185,0.298,16.0,181
+pl_ndvi_dia_inicio_jun_oct,"fechas barajadas, semilla 0",185,0.056,21.0,180
+pl_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 0",197,0.81,0.006,190
+pl_capturas_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+pl_hueco_max_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+pl_nubosidad_media_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+s2_ndvi_max_abr_oct,"fechas barajadas, semilla 0",197,0.913,0.015,171
+s2_ndvi_integral_abr_oct,"fechas barajadas, semilla 0",197,0.445,10.0255,197
+s2_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 0",187,0.636,18.0,184
+s2_ndwi_en_maximo_abr_oct,"fechas barajadas, semilla 0",197,0.221,0.105,191
+s2_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 0",197,0.698,0.008,181
+s2_capturas_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+s2_hueco_max_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+s2_nubosidad_media_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+s2_ndvi_al_corte,"fechas barajadas, semilla 0",197,-0.092,0.157,196
+s2_ndvi_max_jun_oct,"fechas barajadas, semilla 0",197,0.95,0.009,153
+s2_ndvi_integral_jun_oct,"fechas barajadas, semilla 0",197,0.104,18.3713,197
+s2_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 0",172,0.255,19.0,170
+s2_ndwi_en_maximo_jun_oct,"fechas barajadas, semilla 0",197,0.504,0.043,188
+s2_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 0",197,0.801,0.0065,189
+s2_capturas_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+s2_hueco_max_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+s2_nubosidad_media_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_vi6t_mediana_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_capturas_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_hueco_max_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_nubosidad_media_abr_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_vi6t_mediana_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_capturas_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_hueco_max_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+ls_nubosidad_media_jun_oct,"fechas barajadas, semilla 0",197,1.0,0.0,0
+pl_ndvi_max_abr_oct,"fechas barajadas, semilla 1",197,0.906,0.02,181
+pl_ndvi_integral_abr_oct,"fechas barajadas, semilla 1",197,0.518,16.142,197
+pl_lai2_max_abr_oct,"fechas barajadas, semilla 1",197,0.928,0.098,185
+pl_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 1",194,0.631,29.0,193
+pl_ndvi_dia_inicio_abr_oct,"fechas barajadas, semilla 1",194,-0.05,64.0,194
+pl_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 1",197,0.544,0.011,191
+pl_capturas_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+pl_hueco_max_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+pl_nubosidad_media_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+pl_ndvi_al_corte,"fechas barajadas, semilla 1",197,-0.005,0.1777,195
+pl_ndvi_max_jun_oct,"fechas barajadas, semilla 1",197,0.948,0.013,164
+pl_ndvi_integral_jun_oct,"fechas barajadas, semilla 1",197,0.25,15.4722,197
+pl_lai2_max_jun_oct,"fechas barajadas, semilla 1",197,0.966,0.059,174
+pl_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 1",185,0.304,16.0,181
+pl_ndvi_dia_inicio_jun_oct,"fechas barajadas, semilla 1",185,0.144,19.0,184
+pl_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 1",197,0.79,0.0065,187
+pl_capturas_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+pl_hueco_max_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+pl_nubosidad_media_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+s2_ndvi_max_abr_oct,"fechas barajadas, semilla 1",197,0.877,0.019,177
+s2_ndvi_integral_abr_oct,"fechas barajadas, semilla 1",197,0.588,9.576,197
+s2_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 1",190,0.607,19.0,187
+s2_ndwi_en_maximo_abr_oct,"fechas barajadas, semilla 1",197,0.274,0.111,191
+s2_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 1",197,0.538,0.009,192
+s2_capturas_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+s2_hueco_max_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+s2_nubosidad_media_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+s2_ndvi_al_corte,"fechas barajadas, semilla 1",197,0.054,0.1675,197
+s2_ndvi_max_jun_oct,"fechas barajadas, semilla 1",197,0.952,0.01,154
+s2_ndvi_integral_jun_oct,"fechas barajadas, semilla 1",197,0.167,17.923,197
+s2_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 1",155,0.469,16.0,154
+s2_ndwi_en_maximo_jun_oct,"fechas barajadas, semilla 1",197,0.479,0.049,187
+s2_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 1",197,0.692,0.0065,185
+s2_capturas_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+s2_hueco_max_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+s2_nubosidad_media_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_vi6t_mediana_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_capturas_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_hueco_max_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_nubosidad_media_abr_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_vi6t_mediana_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_capturas_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_hueco_max_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+ls_nubosidad_media_jun_oct,"fechas barajadas, semilla 1",197,1.0,0.0,0
+pl_ndvi_max_abr_oct,"fechas barajadas, semilla 2",197,0.92,0.023,178
+pl_ndvi_integral_abr_oct,"fechas barajadas, semilla 2",197,0.482,16.1295,197
+pl_lai2_max_abr_oct,"fechas barajadas, semilla 2",197,0.949,0.098,187
+pl_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 2",195,0.585,28.0,195
+pl_ndvi_dia_inicio_abr_oct,"fechas barajadas, semilla 2",195,0.156,64.0,195
+pl_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 2",197,0.521,0.009,192
+pl_capturas_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+pl_hueco_max_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+pl_nubosidad_media_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+pl_ndvi_al_corte,"fechas barajadas, semilla 2",197,0.059,0.187,196
+pl_ndvi_max_jun_oct,"fechas barajadas, semilla 2",197,0.951,0.013,163
+pl_ndvi_integral_jun_oct,"fechas barajadas, semilla 2",197,0.207,15.7765,197
+pl_lai2_max_jun_oct,"fechas barajadas, semilla 2",197,0.972,0.068,172
+pl_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 2",174,0.383,15.0,172
+pl_ndvi_dia_inicio_jun_oct,"fechas barajadas, semilla 2",174,-0.173,23.0,171
+pl_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 2",197,0.793,0.0065,188
+pl_capturas_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+pl_hueco_max_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+pl_nubosidad_media_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+s2_ndvi_max_abr_oct,"fechas barajadas, semilla 2",197,0.876,0.016,170
+s2_ndvi_integral_abr_oct,"fechas barajadas, semilla 2",197,0.36,10.6,197
+s2_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 2",180,0.563,19.0,178
+s2_ndwi_en_maximo_abr_oct,"fechas barajadas, semilla 2",197,0.282,0.135,193
+s2_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 2",197,0.524,0.01,186
+s2_capturas_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+s2_hueco_max_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+s2_nubosidad_media_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+s2_ndvi_al_corte,"fechas barajadas, semilla 2",197,0.022,0.1415,196
+s2_ndvi_max_jun_oct,"fechas barajadas, semilla 2",197,0.945,0.011,157
+s2_ndvi_integral_jun_oct,"fechas barajadas, semilla 2",197,0.125,17.5213,197
+s2_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 2",168,0.335,17.0,166
+s2_ndwi_en_maximo_jun_oct,"fechas barajadas, semilla 2",197,0.554,0.048,188
+s2_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 2",197,0.768,0.0065,187
+s2_capturas_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+s2_hueco_max_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+s2_nubosidad_media_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_vi6t_mediana_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_capturas_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_hueco_max_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_nubosidad_media_abr_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_vi6t_mediana_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_capturas_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_hueco_max_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+ls_nubosidad_media_jun_oct,"fechas barajadas, semilla 2",197,1.0,0.0,0
+pl_ndvi_max_abr_oct,"fechas barajadas, semilla 3",197,0.925,0.02,182
+pl_ndvi_integral_abr_oct,"fechas barajadas, semilla 3",197,0.467,17.5928,197
+pl_lai2_max_abr_oct,"fechas barajadas, semilla 3",197,0.954,0.095,186
+pl_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 3",191,0.628,32.0,191
+pl_ndvi_dia_inicio_abr_oct,"fechas barajadas, semilla 3",191,0.164,65.0,191
+pl_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 3",197,0.592,0.01,193
+pl_capturas_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+pl_hueco_max_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+pl_nubosidad_media_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+pl_ndvi_al_corte,"fechas barajadas, semilla 3",197,-0.006,0.181,195
+pl_ndvi_max_jun_oct,"fechas barajadas, semilla 3",197,0.95,0.012,165
+pl_ndvi_integral_jun_oct,"fechas barajadas, semilla 3",197,0.211,17.099,197
+pl_lai2_max_jun_oct,"fechas barajadas, semilla 3",197,0.977,0.0635,180
+pl_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 3",181,0.312,17.0,178
+pl_ndvi_dia_inicio_jun_oct,"fechas barajadas, semilla 3",181,-0.099,22.0,181
+pl_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 3",197,0.772,0.007,187
+pl_capturas_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+pl_hueco_max_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+pl_nubosidad_media_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+s2_ndvi_max_abr_oct,"fechas barajadas, semilla 3",197,0.881,0.015,164
+s2_ndvi_integral_abr_oct,"fechas barajadas, semilla 3",197,0.452,11.5175,197
+s2_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 3",186,0.562,20.0,181
+s2_ndwi_en_maximo_abr_oct,"fechas barajadas, semilla 3",197,0.241,0.104,192
+s2_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 3",197,0.612,0.009,185
+s2_capturas_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+s2_hueco_max_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+s2_nubosidad_media_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+s2_ndvi_al_corte,"fechas barajadas, semilla 3",197,0.038,0.1602,197
+s2_ndvi_max_jun_oct,"fechas barajadas, semilla 3",197,0.952,0.009,144
+s2_ndvi_integral_jun_oct,"fechas barajadas, semilla 3",197,0.103,18.8075,197
+s2_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 3",158,0.503,19.0,154
+s2_ndwi_en_maximo_jun_oct,"fechas barajadas, semilla 3",197,0.591,0.046,186
+s2_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 3",197,0.788,0.007,186
+s2_capturas_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+s2_hueco_max_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+s2_nubosidad_media_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_vi6t_mediana_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_capturas_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_hueco_max_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_nubosidad_media_abr_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_vi6t_mediana_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_capturas_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_hueco_max_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+ls_nubosidad_media_jun_oct,"fechas barajadas, semilla 3",197,1.0,0.0,0
+pl_ndvi_max_abr_oct,"fechas barajadas, semilla 4",197,0.938,0.02,181
+pl_ndvi_integral_abr_oct,"fechas barajadas, semilla 4",197,0.44,16.893,197
+pl_lai2_max_abr_oct,"fechas barajadas, semilla 4",197,0.946,0.104,180
+pl_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 4",191,0.563,31.0,190
+pl_ndvi_dia_inicio_abr_oct,"fechas barajadas, semilla 4",191,-0.027,63.0,191
+pl_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 4",197,0.531,0.0105,189
+pl_capturas_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+pl_hueco_max_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+pl_nubosidad_media_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+pl_ndvi_al_corte,"fechas barajadas, semilla 4",197,0.068,0.173,195
+pl_ndvi_max_jun_oct,"fechas barajadas, semilla 4",197,0.952,0.011,162
+pl_ndvi_integral_jun_oct,"fechas barajadas, semilla 4",197,0.24,15.2253,197
+pl_lai2_max_jun_oct,"fechas barajadas, semilla 4",197,0.973,0.063,171
+pl_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 4",182,0.308,15.0,178
+pl_ndvi_dia_inicio_jun_oct,"fechas barajadas, semilla 4",182,0.06,21.0,180
+pl_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 4",197,0.817,0.0065,186
+pl_capturas_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+pl_hueco_max_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+pl_nubosidad_media_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+s2_ndvi_max_abr_oct,"fechas barajadas, semilla 4",197,0.877,0.016,172
+s2_ndvi_integral_abr_oct,"fechas barajadas, semilla 4",197,0.445,12.321,197
+s2_ndvi_dias_sobre_mitad_abr_oct,"fechas barajadas, semilla 4",189,0.622,20.0,188
+s2_ndwi_en_maximo_abr_oct,"fechas barajadas, semilla 4",197,0.291,0.1055,190
+s2_ndvi_std_en_maximo_abr_oct,"fechas barajadas, semilla 4",197,0.591,0.008,180
+s2_capturas_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+s2_hueco_max_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+s2_nubosidad_media_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+s2_ndvi_al_corte,"fechas barajadas, semilla 4",197,0.084,0.1433,197
+s2_ndvi_max_jun_oct,"fechas barajadas, semilla 4",197,0.947,0.008,152
+s2_ndvi_integral_jun_oct,"fechas barajadas, semilla 4",197,0.161,18.816,197
+s2_ndvi_dias_sobre_mitad_jun_oct,"fechas barajadas, semilla 4",173,0.337,19.0,170
+s2_ndwi_en_maximo_jun_oct,"fechas barajadas, semilla 4",197,0.417,0.051,189
+s2_ndvi_std_en_maximo_jun_oct,"fechas barajadas, semilla 4",197,0.747,0.007,184
+s2_capturas_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+s2_hueco_max_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+s2_nubosidad_media_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_vi6t_mediana_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_capturas_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_hueco_max_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_nubosidad_media_abr_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_vi6t_mediana_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_capturas_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_hueco_max_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
+ls_nubosidad_media_jun_oct,"fechas barajadas, semilla 4",197,1.0,0.0,0
