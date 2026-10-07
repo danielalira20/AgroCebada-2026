@@ -170,3 +170,7 @@ python scripts/extraer_clima.py --paquete data/raw/DataSet.zip --salida data/pro
 Sustituir `<nombre_nuevo>` por un nombre de ejecución sin los signos `< >`. Las carpetas existentes se rechazan para conservar resultados. El modo `--piloto` fija la selección mediante las reglas documentadas; `--completa` utiliza las 197 parcelas y los 48 meses. No combinarlos con selección manual de IDs/periodos. Los CSV usan UTF-8, punto decimal, precisión de float completa y campo vacío para valor ausente.
 
 El nombre histórico `filas_muestra` del breve mensaje de consola cuenta las filas de cualquier ejecución. En producción el alcance autoritativo está explícito en `manifest.json` y `controles.json:exportacion.filas_clima`; no significa que los 28,368 registros sean sintéticos.
+
+## Continuidad · revisión de entrega del 7 de octubre
+
+Este informe conserva las ejecuciones y pendientes de la revisión anterior. El PR 6 se abrió después con destino dev. Jass informó validación independiente del cálculo; la [entrega al equipo](t04_entrega_equipo.md) añade resultado compacto, procedencia, conciliación calculada con la revisión T02 identificada y diccionario. Los siete archivos de resultados/control reproducibles de las nuevas ejecuciones son idénticos a los del 6 de octubre. La investigación temporal documenta incertidumbres; las ventanas del punto 5 siguen sin implementar. Esta actualización incorpora las correcciones de entrega al PR 6 con destino dev, con publicación autorizada por Dani el 7 de octubre y nueva revisión de Jass pendiente.

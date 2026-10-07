@@ -50,3 +50,9 @@ La fase 2 ya tiene comprobación técnica aprobada y copia QGIS preparada. Consu
 Las notas anteriores describen etapas previas. El [informe completo de T04](t04_fase3_completa.md) registra centroide, piloto, 28,368 filas reales, controles y reproducción en dos ejecuciones. Pasaron 48 pruebas; originales y T03 se conservaron. El borrador del PR queda local hasta que Dani revise y autorice los archivos concretos.
 
 Siguiente revisión de Dani/Jass: conciliar con T02 aceptada; inspeccionar AGC_078, AGC_152 y AGC_182 por centroide exterior y AGC_145 por diferencia de lluvia. Coordinar con Migue/Jass las celdas compartidas entre particiones espaciales de T03 antes del modelado. Una extracción disponible no acredita la disponibilidad histórica del producto: las ventanas admisibles siguen sujetas al protocolo. T07 integra por ID los bloques aceptados; T09 todavía requiere su experimento acordado. Docker sigue siendo bajo demanda.
+
+## Correcciones de entrega · 7 de octubre
+
+Jass informó validación independiente del cálculo T04. El PR 6 existe con destino dev; las notas del 6 de octubre conservan estados históricos. La [entrega mensual al equipo](t04_entrega_equipo.md) incorpora tabla compacta, conciliación calculada con T02 identificada y diccionario. Las medias originales permanecen idénticas. Dani autorizó publicar estas correcciones en el PR 6 hacia dev el 7 de octubre; la nueva revisión de Jass y el cierre de T04 siguen pendientes.
+
+La [revisión temporal](t04_version_disponibilidad.md) diferencia observación, publicación y edición del producto. No fija ventanas ni cambia T03. Siguiente conversación: punto 5, responsable y reglas de agregación por ventana/documento para T07. T09 no empieza por disponer del CSV: requiere protocolo y experimento acordados.

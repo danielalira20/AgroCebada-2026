@@ -6,7 +6,7 @@ La [pestaña «Plan unificado corregido»](https://docs.google.com/document/d/1G
 
 ## Estado de trabajo
 
-T01 sigue en curso: el entorno local se comprobó en Mac Apple Silicon, pero falta cerrar la verificación del equipo completo. T03 está integrado y en revisión. T04 tiene la extracción histórica y la revisión técnica local terminadas: 28,368 registros (197 parcelas × 48 meses × tres variables), centroide, piloto, controles y dos ejecuciones reproducidas; 48 pruebas aprobadas. El [informe de extracción completa](docs/t04_fase3_completa.md) reúne resultados, sensibilidad y pendientes. La copia QGIS y sus ejemplos se conservan en [fase 2 de T04](docs/t04_fase2.md). T04 sigue pendiente de conciliación con T02 aceptada y revisión independiente de Jass. El PR está preparado localmente; todavía no se publicó. Falta completar los frentes de modelado y aplicación. El [inicio de T04](docs/t04_inicio.md) conserva la evidencia de fase 1.
+T01 sigue en curso: falta cerrar la verificación del equipo completo. T03 está integrado y en revisión. T04 tiene 28,368 registros históricos; Jass informó una validación independiente del cálculo. El PR 6 está abierto hacia `dev`. Esta actualización incorpora las correcciones de entrega autorizadas por Dani para el PR y pendientes de nueva revisión de Jass: [tabla mensual compartida y conciliación T02](docs/t04_entrega_equipo.md), [diccionario de columnas](docs/t04_diccionario_columnas.md) y [versión/disponibilidad temporal](docs/t04_version_disponibilidad.md). La tabla compacta conserva todos los valores y puede verificarse sin el ZIP ni Docker. T04 sigue en revisión; disponibilidad histórica y ventanas de integración siguen pendientes de acuerdo. El [informe de extracción completa](docs/t04_fase3_completa.md) y la [fase 2 con QGIS](docs/t04_fase2.md) conservan la evidencia anterior.
 
 ## Preparar el entorno
 
@@ -44,7 +44,7 @@ Para cerrar T01 se necesitan las salidas aprobadas en los cinco equipos, una eje
 
 El orden inmediato y las responsabilidades de Dani están en [tareas de Dani](docs/tareas_dani.md). T04 empieza con el inventario reproducible del ZIP original mediante `scripts/inventariar_clima.py`; el comando y su alcance están documentados allí. Sus pruebas se ejecutan con `python -m unittest discover -s tests -v` en el entorno local.
 
-Guardar el paquete original de FIRA fuera del repositorio o bajo `data/raw/` local, sin modificarlo. `data/` y `reports/` se excluyen de Git. Nadie une tablas por posición de fila: se conserva el identificador de parcela y se comprueban los conteos. El [contrato inicial](docs/contrato_datos.md) fija los campos comunes sin inventar valores ausentes.
+Guardar el paquete original de FIRA fuera del repositorio o bajo `data/raw/` local, sin modificarlo. `data/` y `reports/` se excluyen de Git. La tabla derivada mensual compacta de T04 y su procedencia se comparten en `registro/t04/`, según el acuerdo del equipo; los originales y el detalle por celda siguen locales. Nadie une tablas por posición de fila: se conserva el identificador de parcela y se comprueban los conteos. El [contrato inicial](docs/contrato_datos.md) fija los campos comunes sin inventar valores ausentes.
 
 Cada experimento deberá registrar entradas, versión, corte temporal, particiones, variables, parámetros, predicciones fuera de entrenamiento y resultados, incluso si no mejora. Los acuerdos y el uso de IA se anotan en `registro/`. Las tareas del documento se trasladarán a GitHub Issues con su ID, responsable, revisor, dependencia y evidencia.
 

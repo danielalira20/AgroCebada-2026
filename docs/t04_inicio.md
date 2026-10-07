@@ -1,7 +1,7 @@
 # T04 · Clima: estado al terminar la fase 1
 
 Responsable: Dani. Revisora: Jass. Fecha: 6 de octubre de 2026.
-Estado: en revisión técnica local. Este documento conserva la evidencia histórica de fase 1. La copia QGIS y fase 2 están en [fase 2](t04_fase2.md); el extractor completo, 48 pruebas y dos ejecuciones históricas reproducidas están en [extracción completa](t04_fase3_completa.md). T04 pendiente de conciliación con T02 aceptada y revisión de Jass.
+Estado: en revisión técnica local. Este documento conserva la evidencia histórica de fase 1. La copia QGIS y fase 2 están en [fase 2](t04_fase2.md); el extractor completo, 48 pruebas y dos ejecuciones históricas reproducidas están en [extracción completa](t04_fase3_completa.md). Ese era el estado de fase 1; la [entrega revisada del 7 de octubre](t04_entrega_equipo.md) registra la conciliación calculada con T02 identificada y los pendientes actuales.
 
 ## Alcance verificado
 

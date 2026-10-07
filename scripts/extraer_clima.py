@@ -51,6 +51,11 @@ except ImportError:
     from t04_control import (METODO_CENTROIDE, preparar_centroides, comparar_centroide,
                             seleccionar_piloto, controlar_medias, validar_exportacion)
 
+try:
+    from .t04_t02 import conciliar
+except ImportError:
+    from t04_t02 import conciliar
+
 PREFIJO = "DATASET_RETO_AGRO_2026/"
 GEOMETRIAS = PREFIJO + "Parcelas_Reto_AGC_CONJUNTO_70_30.zip"
 CATALOGO = PREFIJO + "ID_area_rendimiento_70_30_Reto_AgroCebada.csv"
@@ -220,7 +225,7 @@ def cargar_entradas(paquete):
                 "avisos_cuadricula": avisos_cuadricula,
                 "memoria_matrices_bytes": sum(m.datos.data.nbytes+np.ma.getmaskarray(m.datos).nbytes for m in mapas.values()),
                 "version_producto": "no documentada", "disponibilidad_historica": "no documentada",
-                "conciliacion_t02_aceptada": "pendiente; geometrías originales verificadas"}
+                "conciliacion_t02_aceptada": {"estado": "no_evaluada"}}
     return parcelas, mapas, manifest
 
 
@@ -353,7 +358,7 @@ def publicar_local(salida, manifest, soportes, controles, filas=None, valores=No
             shutil.rmtree(temporal)
 
 
-def ejecutar(paquete, salida, ids=None, periodos=None, modo=None):
+def ejecutar(paquete, salida, ids=None, periodos=None, modo=None, referencia_t02=None):
     inicio = time.perf_counter()
     repo = Path(__file__).resolve().parents[1]
     base = (repo/"data/processed/t04").resolve()
@@ -372,6 +377,9 @@ def ejecutar(paquete, salida, ids=None, periodos=None, modo=None):
     parcelas, mapas, manifest = cargar_entradas(paquete)
     soportes, controles = preparar_soportes(parcelas, mapas)
     centroides = preparar_centroides(parcelas, mapas)
+    referencia_t02 = referencia_t02 or repo/"registro/referencia_t02_t04.json"
+    conciliacion = conciliar(parcelas, mapas, soportes, centroides, manifest, referencia_t02, repo)
+    manifest["conciliacion_t02_aceptada"] = conciliacion
     seleccion_piloto = None
     if modo == "piloto":
         ids, periodos, seleccion_piloto = seleccionar_piloto(parcelas, mapas, soportes, centroides)
@@ -383,14 +391,14 @@ def ejecutar(paquete, salida, ids=None, periodos=None, modo=None):
                     bibliotecas_nativas={"PROJ": pyproj.proj_version_str, "GDAL": rasterio.__gdal_version__},
                     requirements_sha256=sha((repo/"requirements.txt").read_bytes()),
                     python=platform.python_version(), sistema=platform.system(), arquitectura=platform.machine(),
-                    codigo={p.name: sha(p.read_bytes()) for p in (Path(__file__), Path(__file__).with_name("t04_espacio.py"), Path(__file__).with_name("t04_control.py"))},
+                    codigo={p.name: sha(p.read_bytes()) for p in (Path(__file__), Path(__file__).with_name("t04_espacio.py"), Path(__file__).with_name("t04_control.py"), Path(__file__).with_name("t04_t02.py"))},
                     commit_base=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip(),
                     cuadriculas=len({m.meta["cuadricula_id"] for m in mapas.values()}), soportes=len(soportes),
                     parametros={"tolerancia_area_rel": TOLERANCIA_AREA_REL, "tolerancia_suma_pesos_abs": 1e-12,
                                 "tolerancia_media_refinamiento_abs": 1e-6, "paso_laea_grados": PASO_LAEA},
                     alcance={"preparacion": "entradas y soporte; sin extracción mensual", "muestra": "muestra técnica explícita", "piloto": "piloto seleccionado por geometría y máscaras", "completa": "197 parcelas × 48 meses × 3 variables; extracción histórica descriptiva"}[modo],
                     seleccion={"ids": sorted(ids or []), "periodos": sorted(periodos or [])},
-                    pendientes=["reproducción entre ejecuciones", "conciliación T02 aceptada", "revisión Dani/Jass"])
+                    pendientes=["reproducción entre ejecuciones", "revisión Dani/Jass de esta entrega"] + ([] if conciliacion["estado"] == "conciliada_con_referencia_identificada" else ["conciliación T02 no disponible"]))
     filas, valores = extraer(parcelas, mapas, soportes, ids, periodos, centroides) if ids else (None, None)
     control_medias = controlar_medias(parcelas, mapas, soportes, controles, filas) if filas is not None else None
     manifest["tiempo_calculo_segundos"] = time.perf_counter()-inicio
@@ -411,13 +419,14 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--paquete", required=True, type=Path)
     p.add_argument("--salida", required=True, type=Path)
+    p.add_argument("--referencia-t02", type=Path, help="Referencia espacial identificada; por defecto registro/referencia_t02_t04.json")
     p.add_argument("--ids", nargs="+")
     p.add_argument("--periodos", nargs="+")
     opciones = p.add_mutually_exclusive_group()
     opciones.add_argument("--piloto", action="store_true")
     opciones.add_argument("--completa", action="store_true")
     args = p.parse_args()
-    print(json.dumps(ejecutar(args.paquete, args.salida, args.ids, args.periodos, "piloto" if args.piloto else "completa" if args.completa else None), ensure_ascii=False, indent=2))
+    print(json.dumps(ejecutar(args.paquete, args.salida, args.ids, args.periodos, "piloto" if args.piloto else "completa" if args.completa else None, args.referencia_t02), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
