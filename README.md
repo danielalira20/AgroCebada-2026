@@ -47,3 +47,12 @@ Guardar el paquete original de FIRA fuera del repositorio o bajo `data/raw/` loc
 Cada experimento deberá registrar entradas, versión, corte temporal, particiones, variables, parámetros, predicciones fuera de entrenamiento y resultados, incluso si no mejora. Los acuerdos y el uso de IA se anotan en `registro/`. Las tareas del documento se trasladarán a GitHub Issues con su ID, responsable, revisor, dependencia y evidencia.
 
 La primera referencia global y municipal puede construirse tras T02–T03 sin esperar todos los bloques de clima y satélite. Las 59 etiquetas reservadas permanecen vacías en entrenamiento y validación.
+
+## T07: catálogo y ventanas climáticas
+
+Las fases 0–2 preparan las 197 parcelas y dos ventanas climáticas candidatas,
+conservando las 138 etiquetas originales y las 59 ausentes. Los derivados
+compactos están en `registro/t07/`. Consultar el [contrato](docs/t07_contrato.md)
+y los [pasos de reproducción y evidencia](docs/t07_fases_0_2.md). T04 se lee
+desde una revisión identificada pendiente de integración; T05 y la unión de
+T06 quedan para las siguientes fases. T07 permanece en revisión.

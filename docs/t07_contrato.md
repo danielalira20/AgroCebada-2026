@@ -47,7 +47,9 @@ Los metadatos T04 dicen «Suma de precipitación diaria» y «Promedio mensual»
 La temperatura resultante es una media de los resúmenes mensuales suministrados;
 no es un extremo absoluto ni una reconstrucción de temperaturas diarias.
 
-Un mes ausente o NoData deja valor de ventana ausente, con motivo y conteo.
+El agregador conserva ausente el valor de una ventana con mes ausente o NoData,
+con motivo y conteo. La entrada compacta T04 v1 exige historia íntegra: una fila
+mensual ausente/duplicada es un fallo de contrato y detiene la preparación.
 No se sustituye por cero ni se publica una suma parcial como acumulado completo.
 Si todos los meses tienen media pero alguno tiene cobertura parcial, se conserva
 el diagnóstico y se deja el resumen principal ausente: extrapolar o combinar
