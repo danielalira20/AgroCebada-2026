@@ -1,0 +1,8 @@
+﻿tipo,grupo,referencia,medida,parcelas_grupo,parcelas_referencia,rendimiento_medio_grupo,rendimiento_medio_referencia,parcelas_grupo_comparables,parcelas_referencia_comparables,media_grupo,media_referencia,diferencia,azar_minimo,azar_maximo,casualidad_de_cada_100,lectura
+principal,B o C,A,desviacion_municipal,13,125,4.465,3.902,13,122,0.322,-0.034,0.356,-0.282,0.242,0.9,se ve una diferencia
+secundaria,B,A,desviacion_municipal,8,125,4.141,3.902,8,122,0.21,-0.034,0.245,-0.355,0.275,11.8,no se detecta diferencia
+secundaria,C,A,desviacion_municipal,5,125,4.982,3.902,5,122,0.501,-0.034,0.535,-0.509,0.365,2.3,no se detecta diferencia
+secundaria,con divisiones internas,sin divisiones internas,desviacion_municipal,78,60,3.903,4.023,75,60,-0.043,0.053,-0.096,-0.168,0.168,27.0,no se detecta diferencia
+secundaria,con árboles dentro,sin árboles dentro,desviacion_municipal,50,88,3.947,3.96,50,85,0.032,-0.019,0.051,-0.173,0.163,56.1,no se detecta diferencia
+secundaria,angosta o muy pequeña,las demás,desviacion_municipal,13,125,4.635,3.885,13,122,0.207,-0.022,0.229,-0.306,0.258,11.0,no se detecta diferencia
+secundaria,B o C,A,desviacion_municipal_absoluta,13,125,4.465,3.902,13,122,0.322,0.315,0.007,-0.208,0.183,95.3,no se detecta diferencia
