@@ -22,6 +22,12 @@ Genera:
         variables_satelitales_diccionario.csv  definición, sensor, ventana y umbral de cada columna.
         diagnosticos_variables.csv             campaña completa frente al corte y fechas barajadas.
 
+Reglas de orden y empates: las salidas no dependen del orden de las filas de entrada
+(scripts/t06_prueba_orden.py lo comprueba). Ordenamientos estables sobre claves únicas
+(ID_POLIGONO, fecha); tablas por parcela en orden de ID; máximos repetidos de una curva:
+el más temprano; cruces de umbral: el primero en el tiempo; despejadas a la misma
+distancia mínima en calidad_nubosidad: se promedian.
+
 Reglas: un faltante no es cero; la nubosidad se usa sólo como umbral de calidad
 (no se interpreta como fracción de píxeles válidos); todo cálculo derivado se
 recorta al 31-oct-2025 antes de cualquier suavizado o interpolación. No se leen
@@ -83,8 +89,9 @@ def series(datos: Path) -> dict:
         s["porcentaje_nubosidad"] = x.porcentaje_nubosidad
         s["tiene_dato"] = x[f"{ref}_promedio"].notna()
         s["posterior_al_corte"] = pd.to_datetime(s.fecha_observada) > CORTE
-        s = s.sort_values(["ID_POLIGONO", "fecha_observada"]).reset_index(drop=True)
+        # Claves únicas (assert): el resultado no depende del orden de las filas de entrada.
         assert not s.duplicated(["ID_POLIGONO", "fecha_observada"]).any()
+        s = s.sort_values(["ID_POLIGONO", "fecha_observada"], kind="mergesort").reset_index(drop=True)
         out[sensor] = s
     return out
 
@@ -100,8 +107,13 @@ def calidad_nubosidad(ser: dict) -> pd.DataFrame:
         x = x[(x.f >= VENTANAS["abr_oct"]) & (x.f <= CORTE)]
         desp = x[(x.porcentaje_nubosidad == 0) & x.tiene_dato][["ID_POLIGONO", "f", "v"]]
         par = x.merge(desp.rename(columns={"f": "fd", "v": "vd"}), on="ID_POLIGONO")
-        par = par[((par.f - par.fd).dt.days.abs()).between(1, 3)]
-        par = par.assign(dd=(par.f - par.fd).dt.days.abs()).sort_values("dd").drop_duplicates(["ID_POLIGONO", "f"])
+        par = par.assign(dd=(par.f - par.fd).dt.days.abs())
+        par = par[par.dd.between(1, 3)]
+        # Regla de empate (revisión de Jass): si hay dos despejadas a la misma distancia mínima, se promedian.
+        par = par[par.dd == par.groupby(["ID_POLIGONO", "f"]).dd.transform("min")]
+        par = par.groupby(["ID_POLIGONO", "f"], as_index=False).agg(
+            v=("v", "first"), porcentaje_nubosidad=("porcentaje_nubosidad", "first"),
+            vd=("vd", "mean"), despejadas=("vd", "size"))
         par["dif"] = par.v - par.vd
         for a, b in tramos:
             sel = x.porcentaje_nubosidad.gt(a) & x.porcentaje_nubosidad.le(b)
@@ -111,6 +123,7 @@ def calidad_nubosidad(ser: dict) -> pd.DataFrame:
                 tramo_nubosidad="0" if b == 0 else ("100" if a == 99.999 else f"({a:g}, {b:g}]"),
                 capturas=int(sel.sum()), capturas_sin_indice=int((sel & ~x.tiene_dato).sum()),
                 pares_con_despejada_1a3_dias=int(selp.sum()),
+                pares_con_empate_promediado=int((selp & par.despejadas.gt(1)).sum()),
                 dif_mediana_vs_despejada=round(par.dif[selp].median(), 4) if selp.any() else np.nan,
             ))
         filas.append(dict(sensor=sensor, indice_referencia=ref, tramo_nubosidad="NaN",
@@ -185,7 +198,7 @@ def validas(s: pd.DataFrame, sensor: str, ini: pd.Timestamp, fin: pd.Timestamp =
     """Capturas con dato y nubosidad ≤ umbral, recortadas a [ini, fin]. El corte va primero."""
     f = pd.to_datetime(s.fecha_observada)
     x = s.assign(f=f)[(f >= ini) & (f <= fin) & s.tiene_dato]
-    return x[x.porcentaje_nubosidad <= UMBRAL[sensor]].sort_values(["ID_POLIGONO", "f"])
+    return x[x.porcentaje_nubosidad <= UMBRAL[sensor]].sort_values(["ID_POLIGONO", "f"], kind="mergesort")
 
 
 # Rasgos del ciclo sobre NDVI suavizado con mediana móvil de 3 capturas (después del corte).
@@ -202,7 +215,7 @@ FENOLOGIA = ["Sentinel-2", "Planet"]  # Landsat no se usa para rasgos del ciclo 
 def curva(v: np.ndarray):
     """Curva suavizada, posición del máximo, base previa al máximo y amplitud."""
     sv = pd.Series(v).rolling(3, center=True, min_periods=1).median().values
-    k = int(np.argmax(sv))
+    k = int(np.flatnonzero(sv == sv.max())[0])  # máximos repetidos: se toma el más temprano
     base = sv[: k + 1].min()
     return sv, k, base, sv[k] - base
 
@@ -323,7 +336,8 @@ def elegir_parcelas(ras: pd.DataFrame) -> list:
         for conj in ["ENTRENAMIENTO", "PREDICCION"]:
             c = x[(x.categoria == cat) & (x.CONJUNTO == conj)]
             if len(c):
-                c = c.assign(d=(c.capturas - c.capturas.median()).abs()).sort_values(["d", "ID_POLIGONO"])
+                c = c.assign(d=(c.capturas - c.capturas.median()).abs()).sort_values(["d", "ID_POLIGONO"],
+                                                                                     kind="mergesort")
                 elegidas.append((c.ID_POLIGONO.iloc[0], conj, cat))
     return elegidas
 
@@ -467,7 +481,7 @@ def variables(ser: dict, ids: pd.DataFrame, fin: pd.Timestamp = CORTE, semilla=N
             x = validas(s, sensor, ini, fin)
             if semilla is not None:
                 x = x.assign(f=x.groupby("ID_POLIGONO").f.transform(lambda z: rng.permutation(z.values)))
-                x = x.sort_values(["ID_POLIGONO", "f"])
+                x = x.sort_values(["ID_POLIGONO", "f"], kind="mergesort")
             todas = s.assign(f=f_all)[(f_all >= ini) & (f_all <= fin) & s.porcentaje_nubosidad.notna()]
             por_id, todas_id = dict(tuple(x.groupby("ID_POLIGONO"))), dict(tuple(todas.groupby("ID_POLIGONO")))
             filas = {pid: resumen_parcela(sensor, por_id.get(pid, x.iloc[:0]), todas_id.get(pid, todas.iloc[:0]),
@@ -521,6 +535,8 @@ def main():
     cat = pd.read_csv(a.datos / "ID_area_rendimiento_70_30_Reto_AgroCebada.csv", encoding="utf-8-sig",
                       usecols=["ID_POLIGONO", "CONJUNTO"], dtype=str)
     assert cat.ID_POLIGONO.is_unique and len(cat) == 197
+    # Todas las tablas por parcela salen en orden de ID, no en el orden de filas del catálogo.
+    cat = cat.sort_values("ID_POLIGONO", kind="mergesort").reset_index(drop=True)
 
     ser = series(a.datos)
     for sensor, s in ser.items():

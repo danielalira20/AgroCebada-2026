@@ -3,7 +3,7 @@
 - **Responsable:** Daf. **Revisora:** Jass.
 - **Estado:** En revisión. Borrador del 6 de octubre de 2026.
 - **Artefactos:** `scripts/t06_satelite.py`; en `registro/t06/`, las tablas de cobertura, calidad, rasgos, comparación de ventanas y variables, y la figura.
-- **Reproducir:** desde la raíz del repositorio, `python scripts/t06_satelite.py --datos RUTA/DATASET_RETO_AGRO_2026` (unos 40 s). Escribe las series en `data/interim/t06/` (no versionadas) y el resto en `registro/t06/`. Dos ejecuciones dan archivos idénticos.
+- **Reproducir:** desde la raíz del repositorio, `python scripts/t06_satelite.py --datos RUTA/DATASET_RETO_AGRO_2026` (unos 40 s). Escribe las series en `data/interim/t06/` (no versionadas) y el resto en `registro/t06/`. Dos ejecuciones dan archivos idénticos. `python scripts/t06_prueba_orden.py --datos RUTA/...` desordena las filas de entrada con semilla fija (20261006) y comprueba por md5 que todas las salidas y series salen idénticas.
 - **Decisiones:** D002–D007 en `registro/decisiones.csv`. Ninguna se tomó mirando rendimientos: el script sólo lee `ID_POLIGONO` y `CONJUNTO` del catálogo.
 
 ## 1. Series por sensor
@@ -18,7 +18,7 @@ Una tabla larga por sensor (`serie_sentinel2.csv`, `serie_landsat.csv`, `serie_p
 
 El diccionario sólo dice que «el porcentaje de nubosidad se conserva como variable de calidad». La descripción general deja el filtrado a cada equipo. No se documenta si es por escena o por parcela, ni si los índices excluyen píxeles nublados. Por eso no se interpreta 100 − nubosidad como fracción de píxeles válidos.
 
-En los datos, la nubosidad cambia entre parcelas en la misma fecha. Además, con nubosidad parcial el NDVI cae respecto a la captura despejada más cercana: en Sentinel-2, −0.033 entre 1 y 5 % y −0.054 entre 10 y 20 %, frente a un ruido de ~0.011 entre capturas despejadas (`calidad_nubosidad.csv`). Umbrales fijados por cobertura y calidad: Sentinel-2 ≤ 5 %, Planet ≤ 20 % y Landsat ≤ 5 % (D002, D006).
+En los datos, la nubosidad cambia entre parcelas en la misma fecha. Además, con nubosidad parcial el NDVI cae respecto a la captura despejada más cercana: en Sentinel-2, −0.033 entre 1 y 5 % y −0.054 entre 10 y 20 %, frente a un ruido de ~0.011 entre capturas despejadas (`calidad_nubosidad.csv`). Si hay dos capturas despejadas a la misma distancia mínima, se promedian; esto sólo ocurre en Planet. Umbrales fijados por cobertura y calidad: Sentinel-2 ≤ 5 %, Planet ≤ 20 % y Landsat ≤ 5 % (D002, D006).
 
 ## 3. Cobertura, corte y ventanas
 
@@ -84,7 +84,18 @@ Ocho configuraciones fijadas antes de ver resultados (D004); la referencia terri
 - **Ventana de 1 y 6–8, fijada por estabilidad de la base de la curva** (`comparacion_ventanas.csv`, corrección tras la revisión de Jass). Al recortar a `jun_oct`, la base del NDVI de Planet sube +0.066 de mediana y nunca baja. El día de inicio se corre +5 días de mediana, hasta +36. En 59 de 197 parcelas la curva de `jun_oct` ya empieza por encima del umbral de inicio de `abr_oct`, porque el verdor empezó antes del 1-jun. En `abr_oct` la base es el suelo antes de la siembra, así que la integral, los días sobre la mitad y el día de inicio no dependen de dónde empieza la ventana.
 - Las dos elecciones se hicieron antes de cualquier resultado de T11 y sin rendimientos. Las configuraciones 2–5 siguen comparando ambas ventanas.
 
-## 8. Pendientes
+## 8. Orden y empates
+
+Las salidas no dependen del orden de las filas de entrada. Reglas explícitas:
+- ordenamientos estables sobre claves únicas (`ID_POLIGONO`, fecha);
+- tablas por parcela en orden de ID;
+- ante máximos repetidos de una curva, el más temprano;
+- en cruces de umbral, el primero en el tiempo;
+- capturas despejadas a la misma distancia mínima, promediadas.
+
+`scripts/t06_prueba_orden.py` lo comprueba. La versión anterior del script fallaba en 4 archivos, porque las tablas seguían el orden del catálogo.
+
+## 9. Pendientes
 
 - FIRA: cómo se calcula `porcentaje_nubosidad`, fecha de disponibilidad de las imágenes y si se admiten observaciones posteriores al 31-oct.
 - Repetir la ejecución en Mac y en Docker. `matplotlib` se añadió a `requirements.txt`; la imagen Docker se construye con él.
