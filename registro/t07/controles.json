@@ -1,0 +1,31 @@
+{
+  "parcelas": 197,
+  "etiquetas_originales": 138,
+  "etiquetas_ausentes": 59,
+  "filas_mensuales_verificadas": 28368,
+  "filas_por_tabla": {
+    "catalogo_base.csv": 197,
+    "clima_ventanas.csv": 394,
+    "clima_variables.csv": 197,
+    "calidad_ventanas.csv": 1182
+  },
+  "ventanas": {
+    "abr_oct": {
+      "meses": 7,
+      "dias": 214
+    },
+    "jun_oct": {
+      "meses": 5,
+      "dias": 153
+    }
+  },
+  "estados_ventanas": {
+    "completa": 1182
+  },
+  "resumenes_completos": 1182,
+  "diccionario_columnas": 36,
+  "etiquetas_sin_transformar": true,
+  "usa_meses_posteriores_al_corte": false,
+  "aprende_del_rendimiento": false,
+  "cobertura_minima": 0.9999999999978246
+}

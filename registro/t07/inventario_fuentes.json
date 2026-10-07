@@ -1,0 +1,63 @@
+{
+  "schema": "t07_inventario_v1",
+  "base_dev": "540193d6cdc48c90b4b361e6044ae52f9d6f9b0a",
+  "bloques": {
+    "T02": {
+      "estado": "base_dev_identificada_con_correcciones_pendientes",
+      "referencia_t04": "eef8d95ae47d45d877d5a32f769ad01dec2c92fc",
+      "archivos_sha256": {
+        "analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py": "e21c423015a1554bd1debcf78e29b1ae59b8e6388d5dcf7bbbb8f87e500549aa",
+        "analisis/auditoria_catalogo_y_etiquetas/scripts/diagnosticar_soporte.py": "0cbe2b49fdd766bc637f2217f108b78b3e8807f17a46bf2aec5e923b888728eb",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/huellas_archivos_leidos.csv": "4c91d2c89b8cb784653078f919ba292ac5e710b00e150fdb54704f178ebc9726",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+      }
+    },
+    "T03": {
+      "estado": "protocolo_base_identificado_corte_provisional",
+      "archivos_sha256": {
+        "docs/T03_protocolo_evaluacion.md": "7052cd61dbf286bff899561cf9ffe196bf27ee625693046249ef55c2c9c425cd"
+      }
+    },
+    "T04": {
+      "estado": "en_revision",
+      "revision_git": "bfd818467c69878829c7e61c175ec574ed9d4dd2",
+      "archivos_sha256": {
+        "manifest.json": "386ceed5b24ac2738618a3fd85528ce37856a16b0bae44306a77a47a6a8f3d8a",
+        "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
+        "procedencia.json": "29978dac0966f4f2f96b31ccb7618da7b334a39875ea81d7507e5d062ef712ad",
+        "conciliacion_t02.json": "755d72adfba975115f646e13d9b5cab4ecde07c4e13582d6b04a6bc6cb57feff",
+        "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce"
+      },
+      "conciliacion": "compatible_con_referencia_identificada",
+      "cierre_declarado": false,
+      "sha256_paquete_original": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+      "disponibilidad_historica": "no documentada",
+      "version_producto": "sin número documentado; CHIRPS y CHIRTS-ERA5 según metadatos"
+    },
+    "T05": {
+      "estado": "sin_entrega_identificada_en_esta_base",
+      "integrado": false
+    },
+    "T06": {
+      "estado": "integrado_en_base_dev_aceptacion_no_inferida",
+      "integrado_en_t07": false,
+      "archivos_sha256": {
+        "registro/t06/variables_satelitales.csv": "8e38ad80e7befb7b82261353914862e17d98be0425dd755a12c001191dfe17eb",
+        "registro/t06/variables_satelitales_diccionario.csv": "7eb336bdb87ae6e8dfe96f5b03c27691c47d846108635fb476ae467e3e356528",
+        "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a"
+      },
+      "ids": 197,
+      "columnas": 45,
+      "entradas_diccionario": 44
+    }
+  },
+  "corte_observacional": "2025-10-31",
+  "alcance": "Reconstrucción retrospectiva; corte observado no prueba publicación histórica",
+  "cierre_t07": false,
+  "fases_implementadas": [
+    0,
+    1,
+    2
+  ]
+}
