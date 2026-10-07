@@ -312,7 +312,7 @@ Apan (3), Nanacamilpa (2.5) y Tepeapulco (4.45) tienen una sola parcela conocida
 
 - Como referencia, entre dos parcelas cualesquiera de un mismo municipio de escalón 0.5, el rendimiento coincide en 150 de 438 pares (34 %); entre vecinas pegadas, en 7 de 8.
 - Por distancia entre centros dentro del mismo municipio: en los de escalón 0.5, 4 de 5 pares a menos de 250 m coinciden; en Singuilucan, 6 de 12 a menos de 500 m, frente a 15 de 120 a cualquier distancia; en los de escalón 0.01, 0 de 64 a menos de 500 m. Esto último confirma lo anotado en una auditoría previa.
-- Los nueve pares vecinos con rendimiento idéntico: AGC_019 y 103; AGC_020 y 044; AGC_023 y 164; AGC_023 y 170; AGC_164 y 170; AGC_053 y 117; AGC_157 y 163 (escritura `Cebada`); AGC_041 y 166; AGC_089 y 148 (Singuilucan). Las 16 parcelas están en A.
+- Los nueve pares vecinos con rendimiento idéntico: AGC_019 y 103; AGC_020 y 044; AGC_023 y 164; AGC_023 y 170; AGC_164 y 170; AGC_053 y 117; AGC_157 y 163 (escritura `Cebada`); AGC_041 y 166; AGC_089 y 148 (Singuilucan). Las 15 parcelas están en A. (Corregido el 6 de octubre: decía 16; AGC_023, 164 y 170 forman un trío y se habían contado de más.)
 - AGC_023, 164 y 170 son las tres parcelas juntas sobre el límite entre Hidalgo y Tlaxcala: las tres tienen 3 t/ha, aunque una es de Apan y dos de Calpulalpan.
 - AGC_089 y 148, y AGC_157 y 163, son justo los dos pares en los que el piloto de la exploración en QGIS dudó si había una orilla clara entre ambas.
 

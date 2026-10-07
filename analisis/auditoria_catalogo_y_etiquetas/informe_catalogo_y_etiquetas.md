@@ -9,10 +9,10 @@ No se entrenó ningún modelo, no se modificó ningún archivo original del data
 ## 1. Respuesta breve
 
 1. **El catálogo es confiable.** Las 197 parcelas están identificadas sin repetir y unidas una a una con su contorno; 138 tienen rendimiento y 59 no. Ningún contorno está repetido ni encimado con otro.
-2. **El rendimiento está anotado con tres niveles de finura,** según el municipio: en escalones de 0.5, de 0.1 y de 0.01 t/ha. Donde está anotado grueso, las parcelas vecinas suelen compartir el mismo valor.
+2. **El rendimiento está escrito en tres tamaños de escalón,** según el municipio: 0.5, 0.1 y 0.01 t/ha. Donde el escalón es grande, las parcelas vecinas suelen compartir el mismo valor. Esto describe cómo están escritos los valores; no prueba con qué precisión se midieron.
 3. **Tres de los rendimientos más altos del conjunto vienen de las parcelas menos confiables:** muy pequeñas y con contorno dudoso.
 4. **Hay 7 parcelas extremas.** Las altas y las bajas no se parecen: las altas son diminutas y dan menos confianza; dos de las bajas son vecinas pegadas y parecen un hecho real de campo.
-5. **Las 59 parcelas reservadas están tan respaldadas como las 138 conocidas.** 32 no tienen ningún aviso y 5 son claramente más frágiles.
+5. **Las 59 reservadas se parecen a las 138 conocidas en la mayoría de los indicadores de soporte, pero no en todos.** Son parecidas en distancia entre centros a la conocida más cercana, en observaciones satelitales y en la proporción sin avisos (54 % en los dos grupos). Quedan peor en dos: tienen más contornos en B o C (15 % frente a 9 %) y, de orilla a orilla, su conocida más cercana está más lejos (mediana de 51.9 m frente a 17.8 m). Cinco son claramente más frágiles. Esto compara indicadores; no dice que las predicciones vayan a salir igual de bien.
 6. **El diagnóstico de soporte coincide con el de T03** en todo lo que ambos miden igual; las diferencias se deben a la definición usada.
 
 ---
@@ -22,13 +22,13 @@ No se entrenó ningún modelo, no se modificó ningún archivo original del data
 | Lo que pide el plan para T02 | Dónde está | Resultado |
 |---|---|---|
 | 197 ID únicos unidos 1:1 a las geometrías; 138 etiquetas y 59 ausentes | `tablas/catalogo_parcelas.csv`, `tablas/comprobaciones_catalogo.csv` | Cumplido; 60 de 60 comprobaciones |
-| Unidades y áreas | Catálogo, columnas de área | El área está en hectáreas y es el área del contorno redondeada (sección 3.2) |
+| Unidades y áreas | Catálogo, columnas de área | El área está en hectáreas y coincide con el área del contorno redondeada (sección 3.2) |
 | Municipio | Catálogo | Copiado tal cual; no se verificó contra límites oficiales |
 | Duplicados y solapamientos | Comprobaciones | Ninguno en los 19 306 pares |
-| Precisión y procedencia de la etiqueta | `tablas/precision_etiqueta_por_municipio.csv` | Tres niveles de finura (sección 3.3) |
+| Precisión y procedencia de la etiqueta | `tablas/precision_etiqueta_por_municipio.csv` | Tres tamaños de escalón en la escritura (sección 3.3) |
 | Conservar `Cebada`/`CEBADA` como metadato original | Catálogo, columna `cultivo_origen` | Conservado sin atribuirle efecto ni protocolo |
 | Diagnóstico de soporte de las 59 frente a las 138 | `tablas/soporte_por_parcela.csv`, `tablas/soporte_resumen_por_municipio.csv` | Sección 3.6 |
-| Artefacto mínimo auditable | Cinco scripts, quince tablas y las huellas de los archivos leídos | Sección 6 |
+| Artefacto mínimo auditable | Cinco scripts de análisis, dieciséis tablas y las huellas de los archivos leídos; además, un script que prepara los datos, uno que compara tablas y dos de pruebas | Sección 6 |
 
 Además de lo pedido: el cruce entre calidad de contorno y rendimiento (3.4), las parcelas extremas con su contexto (3.5) y la comparación con el diagnóstico de T03 (3.7).
 
@@ -47,20 +47,20 @@ Cada hallazgo indica qué está comprobado y qué es sospecha.
 **Comprobado.**
 
 - Los 197 contornos son válidos, de una sola pieza, sin huecos y cerrados. Ningún par se encima ni se toca.
-- **El área registrada es el área del contorno, redondeada a dos decimales, en las 197 parcelas.** La mayor diferencia es de 0.005 ha.
+- **El área registrada coincide con el área del contorno, redondeada a dos decimales, en las 197 parcelas.** El área del contorno se calculó aquí sobre el elipsoide WGS84; la mayor diferencia es de 0.005 ha.
 - **Hay parcelas prácticamente pegadas:** 9 pares con orillas a menos de 1 m y 37 a menos de 5 m. Los 9 pares más cercanos se revisaron sobre la imagen satelital: en todos se trata de dos terrenos distintos.
 - Las dos escrituras del campo `Cultivo` se dibujan distinto: `Cebada` tiene una mediana de 5 puntos por contorno y coordenadas de 6 decimales; `CEBADA`, 34 puntos y coordenadas más largas.
 
-**Sospecha.** Que el área se calculó a partir del mismo contorno y no se midió aparte en campo. Ningún documento de FIRA lo dice.
+**Sospecha.** Que el área se calculó a partir del mismo contorno y no se midió aparte en campo. La coincidencia es compatible con eso, pero no lo demuestra: ningún documento de FIRA dice cómo se obtuvo la superficie.
 
-**Consecuencia.** El área no es un dato independiente del contorno: en las 22 parcelas con contorno B o C (13 conocidas y 9 reservadas), el área hereda el defecto. Sigue sin saberse qué superficie se usó como denominador del rendimiento.
+**Consecuencia.** En estos datos el área no aporta información distinta de la del contorno, porque una se puede obtener de la otra. Si además se calculó a partir del contorno, en las 22 parcelas con contorno B o C (13 conocidas y 9 reservadas) heredaría su defecto; eso no está confirmado. Sigue sin saberse qué superficie se usó como denominador del rendimiento.
 
 ### 3.3 Precisión y procedencia de la etiqueta
 
 **Comprobado.**
 
 - El rendimiento va de 2.0 a 5.59 t/ha, con media 3.955 y mediana 4.34. Hay 67 valores distintos.
-- **Tres niveles de finura:**
+- **Tres tamaños de escalón en la escritura del rendimiento:**
 
 | Escalón | Municipios | Escritura | Parcelas conocidas |
 |---|---|---|---:|
@@ -68,9 +68,11 @@ Cada hallazgo indica qué está comprobado y qué es sospecha.
 | 0.1 t/ha | Singuilucan | `CEBADA` | 16 |
 | 0.01 t/ha | Chignahuapan, Almoloya, Cuautepec de Hinojosa | `CEBADA` | 86 |
 
-- Apan, Nanacamilpa y Tepeapulco tienen una sola parcela conocida; su finura no se puede determinar.
-- La escritura no equivale a la finura: Singuilucan es `CEBADA` y está anotado más grueso que el resto de esa escritura.
-- **Donde el rendimiento está anotado grueso, las vecinas comparten valor.** Entre pares de parcelas conocidas con orillas a menos de 20 m: 7 de 8 pares de la escritura `Cebada` y 2 de 5 de Singuilucan tienen exactamente el mismo rendimiento; en los municipios de escalón 0.01, 0 de 32.
+- Apan, Nanacamilpa y Tepeapulco tienen una sola parcela conocida; su escalón no se puede determinar.
+- La escritura del campo `Cultivo` no equivale al escalón: Singuilucan es `CEBADA` y su escalón es más grande que el del resto de esa escritura.
+- **Donde el escalón es grande, las vecinas comparten valor.** Entre pares de parcelas conocidas con orillas a menos de 20 m: 7 de 8 pares de la escritura `Cebada` y 2 de 5 de Singuilucan tienen exactamente el mismo rendimiento; en los municipios de escalón 0.01, 0 de 32.
+
+**Lo que no se afirma.** El escalón describe cómo están escritos los valores, no con qué precisión se midieron. Un valor escrito con dos decimales puede venir de una medición poco precisa, y uno escrito en medios puede venir de una medición fina que después se redondeó. Lo único comprobado es que, en los municipios de escalón 0.5, la etiqueta no distingue diferencias menores a ese escalón.
 
 **Sospecha.** Que en esos municipios se anotó un mismo valor para varias parcelas contiguas, por ejemplo las de un mismo productor. No hay identificador de productor ni documento que lo confirme, y los pares son pocos. No se afirma un protocolo de medición distinto ni se atribuye efecto agronómico a la escritura.
 
@@ -114,15 +116,20 @@ Se llama extrema a la parcela conocida que queda a más de 1 t/ha del promedio d
 |---|---|---|
 | En municipio con parcelas conocidas | 59 de 59 | — |
 | Distancia entre centros a la conocida más cercana (mediana; máxima) | 350.5 m; 1 915.6 m | 399.8 m; 4 777.8 m |
-| Sin ninguna conocida a menos de 1 km | 7 | 21 |
+| Distancia entre orillas a la conocida más cercana (mediana) | 51.9 m | 17.8 m |
+| Sin ninguna conocida a menos de 1 km | 7 (12 %) | 21 (15 %) |
 | Observaciones con dato, Sentinel-2 / Planet / Landsat (mediana) | 37 / 94 / 18 | 37.5 / 94 / 19 |
 | Relieve incompleto | 0 | 5 |
 | Contorno en B o C | 9 (15 %) | 13 (9 %) |
+| Sin ningún aviso | 32 (54 %) | 75 (54 %) |
+| Sin ningún aviso, sin contar el de etiqueta gruesa | 43 (73 %) | 92 (67 %) |
 
 - 14 reservadas tienen una conocida con la orilla a menos de 5 m, y 35 a menos de 100 m.
-- 32 reservadas no tienen ningún aviso, 22 tienen uno y 5 tienen dos o tres.
+- 32 reservadas no tienen ningún aviso, 22 tienen uno y 5 tienen dos o tres. Uno de los siete avisos, `etiqueta_gruesa_en_municipio`, sale del rendimiento de las conocidas de su municipio: por eso la tabla da el conteo con y sin él.
 - **Las cinco más frágiles:** AGC_120 (Nanacamilpa: una sola conocida en su municipio, la más cercana a 1.3 km y de otro municipio), AGC_173 y AGC_183 (Calpulalpan: lejos de toda conocida, etiqueta gruesa y contorno B), AGC_147 (Calpulalpan) y AGC_174 (Cuautepec de Hinojosa: ninguna conocida comparte su celda de lluvia).
 - Las cinco parcelas con relieve incompleto (AGC_020, 023, 044, 164 y 170) son todas conocidas.
+
+**Cómo leerlo.** Las reservadas se parecen a las conocidas en la mayoría de estos indicadores y quedan peor en dos: más contornos en B o C y mayor distancia entre orillas. No se afirma que los dos grupos estén igual de respaldados en general: solo se compararon estos indicadores, y para una parcela conocida «la conocida más cercana» excluye a ella misma.
 
 **Límite.** El soporte dice si hay ejemplos cercanos y datos disponibles; no dice si la estimación de una parcela saldrá bien.
 
@@ -142,10 +149,14 @@ Son recomendaciones; ninguna se aplicó aquí.
 
 1. **No excluir parcelas.** Ninguna tiene un error comprobado.
 2. **Llevar la calidad de contorno y el área junto a cada parcela,** como datos de calidad.
-3. **Reportar los resultados de cualquier modelo con y sin las parcelas frágiles** (contorno B o C, o muy pequeñas). Si un modelo solo mejora gracias a ellas, no es una mejora real.
-4. **Leer el error por separado según la finura de la etiqueta.** En los municipios de escalón 0.5, un error menor a 0.25 t/ha está por debajo de lo que la etiqueta distingue.
-5. **No tratar a las parcelas vecinas como independientes** al evaluar ni al calcular incertidumbre, sobre todo en los municipios de etiqueta gruesa.
-6. **Mostrar cautela en la aplicación** para las reservadas con avisos, en especial las cinco más frágiles.
+3. **Evaluar a todos los modelos sobre la misma población principal y desglosar el resultado por calidad de observación.**
+   - *Población principal:* las 138 parcelas conocidas, sin quitar ninguna. Es la que decide qué modelo es mejor, igual para todos.
+   - *Desglose:* reportar el error también por categoría de contorno (A frente a B o C) y por tamaño (marca `contorno_angosta_o_muy_pequena`). Las parcelas con contorno B o C o con esa marca son 24 de las 138.
+   - *Sensibilidad secundaria:* repetir el cálculo sin esas 24 y ver si el orden de los modelos se mantiene. Sirve para medir estabilidad, no para decidir.
+   - *Cómo leerlo:* si la ventaja de un modelo se concentra en esas 24, es una señal para revisarlo con más cuidado. No demuestra que la mejora sea irreal: esas parcelas también son datos válidos y ninguna tiene un error comprobado.
+4. **Leer el error por separado según el escalón de la etiqueta.** En los municipios de escalón 0.5, un error menor a 0.25 t/ha está por debajo de lo que la etiqueta distingue.
+5. **No tratar a las parcelas vecinas como independientes** al evaluar ni al calcular incertidumbre, sobre todo en los municipios de escalón grande. La tabla `tablas/pares_de_parcelas_cercanas.csv` lista los 87 pares con orillas a menos de 20 m para poder mantenerlas juntas; agrupar solo por municipio no basta, porque AGC_164 (Apan) es vecina de dos parcelas de Calpulalpan con su mismo rendimiento.
+6. **Mostrar cautela en la aplicación** para las reservadas con avisos, en especial las cinco de soporte más frágil (sección 3.6). Son otro grupo, distinto de las 24 de la recomendación 3: aquellas son conocidas con observación dudosa; estas son reservadas con pocos ejemplos cercanos.
 7. **Añadir al contrato de datos** los campos `estado` y `cultivo_origen`, y decidir un solo nombre para el identificador y para la escritura del cultivo (T03 usa `ID_POLIGONO` y `grupo_registro`).
 
 **Preguntas para FIRA:** cómo se midió el rendimiento y con qué humedad; qué superficie se usó como denominador; si el área del dataset se calculó a partir del contorno; si en algunos municipios se anotó un mismo valor para varias parcelas; qué significan las dos escrituras del campo `Cultivo`.
@@ -174,7 +185,8 @@ Son recomendaciones; ninguna se aplicó aquí.
 | Definición de cada columna | `diccionario_columnas.md` |
 | Catálogo de las 197 parcelas (22 columnas) | `tablas/catalogo_parcelas.csv` |
 | Las 60 comprobaciones y 46 conteos del catálogo | `tablas/comprobaciones_catalogo.csv` |
-| Finura de la etiqueta por municipio | `tablas/precision_etiqueta_por_municipio.csv` |
+| Escalón de la etiqueta por municipio | `tablas/precision_etiqueta_por_municipio.csv` |
+| Pares de parcelas con orillas a menos de 20 m | `tablas/pares_de_parcelas_cercanas.csv` |
 | Cruce de contorno y rendimiento | `tablas/cruce_contorno_rendimiento.csv`, `cruce_contorno_por_municipio.csv`, `cruce_contorno_parcelas_b_c.csv` |
 | Desviación de cada parcela conocida y extremas | `tablas/desviacion_municipal_por_parcela.csv`, `desviacion_por_tamano.csv` |
 | Soporte por parcela y resumen | `tablas/soporte_por_parcela.csv`, `soporte_resumen_por_municipio.csv` |
@@ -193,6 +205,12 @@ python analisis/auditoria_catalogo_y_etiquetas/scripts/comparar_con_soporte_t03.
 
 El dataset debe estar descomprimido. El primer script y el último buscan por omisión la tabla de revisión de contornos y la tabla de T03 en su lugar dentro del repositorio; si están en otro sitio, se indican con `--contornos` y `--t03`.
 
-**Comprobación de cierre (6 de octubre).** Se repitió todo desde cero en una carpeta vacía con la misma estructura del repositorio y los cinco scripts con sus opciones por omisión: las 15 tablas salieron idénticas byte a byte. Después de copiar la carpeta al repositorio se repitió desde su raíz, con el mismo resultado. Los 168 archivos originales del dataset siguen idénticos a como estaban el 3 de octubre.
+**Comprobación de cierre (6 de octubre).** Se repitió todo desde cero en una carpeta vacía con la misma estructura del repositorio y los cinco scripts con sus opciones por omisión: las 15 tablas salieron iguales. Después de copiar la carpeta al repositorio se repitió desde su raíz, con el mismo resultado. Esa comprobación se hizo en una sola computadora, con Linux. Los 168 archivos originales del dataset siguen idénticos a como estaban el 3 de octubre.
 
-**Si una tabla no sale igual:** comparar primero las huellas de los archivos leídos. Si no coinciden, la diferencia está en la copia del dataset y no en los scripts.
+**Revisión independiente (6 de octubre).** Dani repitió todo en otra computadora: los scripts corrieron, las 60 comprobaciones se cumplieron y 12 de las 15 tablas salieron idénticas. Las diferencias fueron de tres tipos: cinco áreas distintas en 0.000001 ha por redondeo, una huella que cambiaba con el fin de línea del archivo y tres nombres de archivo que incluían la carpeta donde se descomprimió el dataset. Ningún hallazgo cambió. Las huellas ya no dependen del fin de línea ni de la carpeta.
+
+**Comprobación después de la revisión (6 de octubre).** Con las correcciones aplicadas se preparó la copia del dataset con `scripts/preparar_copia_del_dataset.py` y se repitió todo desde la raíz del repositorio, en Linux: los cinco scripts terminaron sin errores, se cumplieron 60 de 60 comprobaciones y las 14 pruebas de los scripts. Frente a la versión anterior, 13 tablas salieron iguales, 2 cambiaron solo en lo previsto (las dos de huellas: el tamaño y la huella de `revision_contornos.csv`, y el nombre de tres mapas) y se añadió `pares_de_parcelas_cercanas.csv`. Ningún resultado cambió.
+
+**Cómo comparar las tablas.** `scripts/comparar_tablas_con_referencia.py` compara las tablas recién generadas con las guardadas en Git. No toma en cuenta el fin de línea; exige coincidencia exacta en texto, enteros y huellas; y en las columnas con decimales acepta hasta una unidad del último decimal escrito. No se afirma que las tablas salgan idénticas byte a byte en cualquier computadora.
+
+**Si una tabla no sale igual:** el comparador indica la tabla, la línea y la columna. Conviene revisar primero las huellas de los archivos leídos: una huella distinta dice que ese archivo no es igual al que se usó aquí. Si las huellas coinciden, la diferencia viene del entorno o de los scripts y debe anotarse, no descartarse.
