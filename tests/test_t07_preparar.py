@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 from scripts.t07_fuentes import BASE, CLIMA, guardar_csv, guardar_json, sha
-from scripts.t07_preparar import preparar, comprobar_fuente, T02, T02_ARCHIVOS, T04_ARCHIVOS
+from scripts.t07_preparar import preparar, preparar_sin_clima, comprobar_fuente, T02, T02_ARCHIVOS, T04_ARCHIVOS
 from scripts.t07_diccionario import diccionario
 from tests.test_t07_fuentes import parcela, mes
 
@@ -57,7 +57,7 @@ class Preparacion(unittest.TestCase):
         g('add', '.'); g('commit', '-qm', 'fuentes identificadas')
         cls.rev = g('rev-parse', 'HEAD').decode().strip()
         guardar_json(cls.clima / 'origen_git.json', dict(schema='t07_copia_t04_v1', revision_git=cls.rev, prefijo_git='registro/t04',
-                     estado_revision_declarado='en_revision', archivos_sha256={n: sha(cls.clima / n) for n in T04_ARCHIVOS}))
+                     estado_revision_declarado='aceptada', archivos_sha256={n: sha(cls.clima / n) for n in T04_ARCHIVOS}))
 
     @classmethod
     def tearDownClass(cls): cls.tmp.cleanup()
@@ -95,6 +95,28 @@ class Preparacion(unittest.TestCase):
     def test_salida_en_raw_rechazada(self):
         with self.assertRaisesRegex(ValueError, 'Salida protegida'):
             preparar(self.clima, self.rev, self.rev, self.root / 'data/raw/error', self.root)
+
+    def test_catalogo_sin_clima_no_lee_t04_ni_genera_valores(self):
+        origen = self.clima / 'origen_git.json'; respaldo = origen.read_bytes()
+        try:
+            origen.unlink()
+            out = self.root / 'catalogo_sin_clima'
+            c = preparar_sin_clima(self.rev, out, self.root)
+            self.assertEqual(c['parcelas'], 197)
+            self.assertFalse(c['valores_climaticos_generados'])
+            self.assertEqual({p.name for p in out.iterdir()}, {'catalogo_base.csv','diccionario_columnas.csv','inventario_fuentes.json','controles.json','manifest.json'})
+        finally: origen.write_bytes(respaldo)
+
+    def test_t04_provisional_rechazada(self):
+        import json
+        origen = self.clima / 'origen_git.json'; respaldo = origen.read_bytes()
+        try:
+            d = json.loads(respaldo); d['estado_revision_declarado'] = 'en_revision'; guardar_json(origen, d)
+            out = self.root / 'provisional_rechazada'
+            with self.assertRaisesRegex(ValueError, 'T04 pendiente de aceptación'):
+                preparar(self.clima, self.rev, self.rev, out, self.root)
+            self.assertFalse(out.exists())
+        finally: origen.write_bytes(respaldo)
 
     def test_diccionario_roles_y_ausencias(self):
         d = diccionario(); pares = [(r['archivo'], r['columna']) for r in d]

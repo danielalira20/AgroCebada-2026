@@ -1,6 +1,6 @@
 # T07 · Contrato común y fases 0–2
 
-Responsable: Dani. Revisora: Jass. Estado: implementación local en revisión.
+Responsable: Dani. Revisora: Jass. Estado: catálogo preparado; clima pendiente de entrega revisada.
 Acuerdo de Dani del 7 de octubre de 2026. T07 avanza por bloques según el plan
 unificado corregido; el cálculo técnico no cierra tareas de otros integrantes.
 
@@ -61,7 +61,7 @@ ventanas. Un indicador temporal contradictorio o mes duplicado produce error.
 Corte observado no equivale a disponibilidad histórica. La entrega se describe
 como reconstrucción retrospectiva mientras no exista evidencia de disponibilidad.
 
-## Entregables de fases 0–2
+## Entregables previstos de fases 0–2
 
 - inventario_fuentes.json: identidad y estado de entradas y dependencias.
 - catalogo_base.csv: 197 parcelas, atributos originales seleccionados.
@@ -71,17 +71,22 @@ como reconstrucción retrospectiva mientras no exista evidencia de disponibilida
 - diccionario_columnas.csv: definición, unidad, función, agregación y vacío.
 - controles.json y manifest.json: comprobaciones y huellas para reproducir.
 
-Salidas compartidas compactas en registro/t07/. Ejecuciones de contraste y
-evidencia en reports/t07_20261007/, ignoradas. Originales inmutables.
+Ahora sólo se comparten catálogo, su diccionario, inventario, controles y
+manifiesto en registro/t07/. Las tablas climáticas se generarán después de
+recibir la entrega revisada. No se crean filas de relleno ni valores simulados.
+La evidencia provisional anterior permanece sólo en reports/, ignorado.
+Originales inmutables.
 
 ## Dependencias y estado
 
-La base dev identificada incluye T02 original y T06. PR 7 corrige T02 y PR 6
-entrega T04: mientras sigan en revisión, identificar la copia usada y no declarar
-integración final. Cuando cambie T02, actualizar su referencia en T04 y revalidar;
-no saltarse el control de huellas del extractor.
+La base dev identificada incluye T02 original y T06. T04 permanece pendiente
+hasta recibir la entrega revisada que Dani indicó esperar. El modo --sin-clima
+prepara sólo el catálogo y los estados de bloques. El modo climático rechaza
+una fuente marcada en_revision; no modificar esa marca para evitar la espera.
+Cuando cambie T02, actualizar su referencia en T04 y revalidar antes de agregar.
 T05 no entregada se registra como pendiente, sin inventar relieve.
 Archivo faltante, NoData y bloque pendiente son situaciones distintas.
+La fase 2 tiene código y contrato preparados, pero no está terminada.
 
 ## Guías y datos externos
 

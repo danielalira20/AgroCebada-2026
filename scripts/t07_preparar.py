@@ -2,7 +2,6 @@
 import argparse
 from collections import Counter
 import hashlib
-import importlib.metadata
 from pathlib import Path
 import shutil
 import subprocess
@@ -64,6 +63,8 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
         raise ValueError("La salida ya existe; reproducir en una carpeta nueva")
     base, rt04 = revision(base_dev, raiz), revision(ref_t04, raiz)
     origen, ht04 = comprobar_copia(clima, rt04, raiz)
+    if origen["estado_revision_declarado"] != "aceptada":
+        raise ValueError("T04 pendiente de aceptación; preparar sólo catálogo con --sin-clima")
     ruta_cat = f"{T02}/tablas/catalogo_parcelas.csv"
     comprobar_fuente(ruta_cat, base, raiz=raiz)
     _, filas = leer_csv(raiz / ruta_cat)
@@ -136,17 +137,79 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
     return controles
 
 
+def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
+    """Catálogo real y estado pendiente; no genera tablas o valores climáticos."""
+    raiz, salida = Path(raiz).resolve(), Path(salida).resolve()
+    if salida == raiz or salida.is_relative_to(raiz / "data" / "raw"):
+        raise ValueError("Salida protegida: no escribir en originales")
+    if salida.exists():
+        raise ValueError("La salida ya existe; reproducir en una carpeta nueva")
+    base = revision(base_dev, raiz)
+    ht02 = {f"{T02}/{n}": comprobar_fuente(f"{T02}/{n}", base, raiz=raiz) for n in sorted(T02_ARCHIVOS)}
+    _, filas = leer_csv(raiz / T02 / "tablas/catalogo_parcelas.csv")
+    catalogo = validar_catalogo(filas)
+    ids = {r["id_parcela"] for r in catalogo}
+    protocolo = "docs/T03_protocolo_evaluacion.md"
+    ht03 = comprobar_fuente(protocolo, base, raiz=raiz)
+    t06 = ("registro/t06/variables_satelitales.csv", "registro/t06/variables_satelitales_diccionario.csv", "docs/T06_satelite.md")
+    ht06 = {n: comprobar_fuente(n, base, raiz=raiz) for n in t06}
+    cab, sat = leer_csv(raiz / t06[0])
+    _, dsat = leer_csv(raiz / t06[1])
+    sat_ids = [r["ID_POLIGONO"] for r in sat]
+    if len(sat_ids) != len(ids) or len(set(sat_ids)) != len(ids) or set(sat_ids) != ids:
+        raise ValueError("IDs T06 incompatibles")
+    inventario = dict(schema="t07_inventario_v1", base_dev=base, bloques={
+        "T02": dict(estado="base_dev_identificada_con_correcciones_pendientes", archivos_sha256=ht02),
+        "T03": dict(estado="protocolo_base_identificado_corte_provisional", archivos_sha256={protocolo: ht03}),
+        "T04": dict(estado="pendiente_entrega_revisada", integrado_en_t07=False,
+                    valores_generados=False, accion="Esperar entrega revisada y referencias compatibles; no usar copia provisional"),
+        "T05": dict(estado="sin_entrega_identificada_en_esta_base", integrado=False),
+        "T06": dict(estado="integrado_en_base_dev_aceptacion_no_inferida", integrado_en_t07=False,
+                    archivos_sha256=ht06, ids=len(ids), columnas=len(cab), entradas_diccionario=len(dsat))},
+        fases_con_datos=[0, 1], fase_2="codigo_preparado_pendiente_fuente_T04", cierre_t07=False)
+    definiciones = [r for r in diccionario() if r["archivo"] == "catalogo_base.csv"]
+    controles = dict(parcelas=len(catalogo), etiquetas_originales=sum(r["rendimiento_t_ha"] != "" for r in catalogo),
+                     etiquetas_ausentes=sum(r["rendimiento_t_ha"] == "" for r in catalogo),
+                     filas_por_tabla={"catalogo_base.csv": len(catalogo)}, diccionario_columnas=len(definiciones),
+                     clima="pendiente_entrega_revisada", valores_climaticos_generados=False)
+    salida.parent.mkdir(parents=True, exist_ok=True)
+    temp = Path(tempfile.mkdtemp(prefix=".t07-", dir=salida.parent))
+    try:
+        guardar_csv(temp / "catalogo_base.csv", BASE, catalogo)
+        guardar_csv(temp / "diccionario_columnas.csv", CAMPOS, definiciones)
+        guardar_json(temp / "inventario_fuentes.json", inventario)
+        guardar_json(temp / "controles.json", controles)
+        codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py"]
+        guardar_json(temp / "manifest.json", dict(schema="t07_catalogo_sin_clima_v1",
+                     codigo_sha256={f"scripts/{n}": sha(raiz / "scripts" / n) for n in codigo},
+                     entradas=dict(base_dev=base), archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},
+                     clima="pendiente_entrega_revisada", cierre_t07=False))
+        temp.rename(salida)
+    except BaseException:
+        shutil.rmtree(temp)
+        raise
+    return controles
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--clima", type=Path, required=True, help="Copia generada por t07_preparar_insumos.py")
-    p.add_argument("--revision-t04", required=True)
+    p.add_argument("--sin-clima", action="store_true", help="Sólo catálogo e inventario: T04 pendiente")
+    p.add_argument("--clima", type=Path, help="Copia generada por t07_preparar_insumos.py")
+    p.add_argument("--revision-t04")
     p.add_argument("--base-dev", required=True, help="Commit de dev que identifica catálogo, protocolo y T06")
     p.add_argument("--salida", type=Path, required=True, help="Carpeta nueva; no sobrescribe")
     a = p.parse_args()
+    if a.sin_clima and (a.clima or a.revision_t04):
+        p.error("--sin-clima no admite una entrada T04")
+    if not a.sin_clima and not (a.clima and a.revision_t04):
+        p.error("Indicar --sin-clima o una entrega T04 aceptada con --clima y --revision-t04")
     try:
-        c = preparar(a.clima, a.revision_t04, a.base_dev, a.salida)
+        c = preparar_sin_clima(a.base_dev, a.salida) if a.sin_clima else preparar(a.clima, a.revision_t04, a.base_dev, a.salida)
     except (ValueError, KeyError, OSError, subprocess.CalledProcessError) as e:
         p.exit(1, f"T07 detenida: {e}\n")
+    if a.sin_clima:
+        print(f"T07: {c['parcelas']} parcelas reales; clima pendiente, sin valores generados.")
+        return
     print(f"T07 fases 0–2: {c['parcelas']} parcelas, {c['resumenes_completos']} resúmenes completos; cierre pendiente de revisión.")
 
 
