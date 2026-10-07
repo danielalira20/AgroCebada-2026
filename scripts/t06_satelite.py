@@ -16,6 +16,7 @@ Genera:
         rasgos_observables.csv   parcela × sensor (abr_oct, referencia): si se observan inicio,
                                  pico y final antes del corte; banderas de calidad de ciclo
                                  doble y meseta en el pico.
+        comparacion_ventanas.csv  base, amplitud y día de inicio del NDVI en abr_oct frente a jun_oct.
         figura_curvas_6_parcelas.png
         variables_satelitales.csv              197 filas × variables compactas, sin rendimiento.
         variables_satelitales_diccionario.csv  definición, sensor, ventana y umbral de cada columna.
@@ -283,6 +284,34 @@ def rasgos(ser: dict, ids: pd.DataFrame) -> pd.DataFrame:
     return r
 
 
+def comparar_ventanas(ser: dict, ids: pd.DataFrame) -> pd.DataFrame:
+    """Forma de la curva de NDVI en abr_oct frente a jun_oct, por parcela y sensor (sin rendimientos)."""
+    filas = []
+    for sensor in FENOLOGIA:
+        r = {}
+        for v, ini in VENTANAS.items():
+            x = validas(ser[sensor], sensor, ini)
+            r[v] = {pid: (rasgos_parcela(p.f.values, p.ndvi_promedio.values),
+                          curva(p.ndvi_promedio.values)[0][0] if len(p) else np.nan)
+                    for pid, p in x.groupby("ID_POLIGONO")}
+        for pid in ids.ID_POLIGONO:
+            (a, _), (j, primero_j) = r["abr_oct"][pid], r["jun_oct"][pid]
+            umbral_inicio_abr = a["base"] + FRAC_INICIO * a["amplitud"]
+            doy = {k: pd.Timestamp(d["fecha_inicio"]).dayofyear if pd.notna(d["fecha_inicio"]) else np.nan
+                   for k, d in [("abr_oct", a), ("jun_oct", j)]}
+            filas.append(dict(
+                ID_POLIGONO=pid, sensor=sensor,
+                base_abr_oct=a["base"], base_jun_oct=j["base"], dif_base=round(j["base"] - a["base"], 4),
+                amplitud_abr_oct=a["amplitud"], amplitud_jun_oct=j["amplitud"],
+                dif_amplitud=round(j["amplitud"] - a["amplitud"], 4),
+                ndvi_primera_captura_jun_oct=round(primero_j, 4),
+                jun_oct_empieza_sobre_umbral_inicio_abr_oct=bool(primero_j >= umbral_inicio_abr),
+                dia_inicio_abr_oct=doy["abr_oct"], dia_inicio_jun_oct=doy["jun_oct"],
+                dif_dia_inicio=doy["jun_oct"] - doy["abr_oct"],
+                final_observado_abr_oct=a["final_observado"], final_observado_jun_oct=j["final_observado"]))
+    return pd.DataFrame(filas).merge(ids, on="ID_POLIGONO")
+
+
 def elegir_parcelas(ras: pd.DataFrame) -> list:
     """6 parcelas para la figura, sin mirar rendimientos: Planet abr_oct, tres categorías de rasgos
     × CONJUNTO; en cada una, la de capturas más cercanas a la mediana de la categoría (empate: ID)."""
@@ -517,6 +546,10 @@ def main():
     flags = ["hay_ciclo", "inicio_observado", "pico_observado", "final_observado",
              "posible_ciclo_doble", "meseta_en_pico"]
     print(ras.groupby(["sensor", "ventana", "CONJUNTO"])[flags].sum().to_string())
+    cv = comparar_ventanas(ser, cat)
+    cv.to_csv(a.salida / "comparacion_ventanas.csv", index=False)
+    print(cv.groupby("sensor")[["dif_base", "dif_amplitud", "dif_dia_inicio"]]
+          .describe(percentiles=[.1, .5, .9]).round(3).T.to_string())
     print("figura:", figura(ser, ras, a.salida / "figura_curvas_6_parcelas.png"))
 
     var = variables(ser, cat)
