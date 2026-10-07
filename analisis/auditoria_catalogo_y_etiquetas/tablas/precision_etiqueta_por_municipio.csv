@@ -1,0 +1,13 @@
+﻿agrupacion,grupo,estado,cultivo_origen,parcelas_conocidas,rendimiento_minimo,rendimiento_maximo,valores_distintos,con_0_decimales,con_1_decimal,con_2_decimales,multiplos_de_medio,paso_comun,valor_mas_repetido,veces_valor_mas_repetido,parcelas_con_valor_compartido
+municipio,Chignahuapan,Puebla,CEBADA,71,2.15,5.59,54,0,6,65,1,0.01,4.55,5,26
+municipio,Calpulalpan,Tlaxcala,Cebada,30,2.5,3.5,3,14,16,0,30,0.5,3.0,14,30
+municipio,Singuilucan,Hidalgo,CEBADA,16,2.0,3.7,7,5,11,0,9,0.1,3.0,4,14
+municipio,Almoloya,Hidalgo,CEBADA,10,4.14,4.87,9,0,0,10,0,0.01,4.54,2,2
+municipio,Cuautepec de Hinojosa,Hidalgo,CEBADA,5,4.4,4.79,5,0,1,4,0,0.01,4.4,1,0
+municipio,Emiliano Zapata,Hidalgo,Cebada,3,3.5,3.5,1,0,3,0,3,0.5,3.5,3,3
+municipio,Apan,Hidalgo,Cebada,1,3.0,3.0,1,1,0,0,1,,3.0,1,0
+municipio,Nanacamilpa de Mariano Arista,Tlaxcala,Cebada,1,2.5,2.5,1,0,1,0,1,,2.5,1,0
+municipio,Tepeapulco,Hidalgo,CEBADA,1,4.45,4.45,1,0,0,1,0,,4.45,1,0
+cultivo_origen,Cebada,,,35,2.5,3.5,3,15,20,0,35,0.5,3.0,15,35
+cultivo_origen,CEBADA,,,103,2.0,5.59,67,5,18,80,10,0.01,4.52,5,55
+total,todas,,,138,2.0,5.59,67,20,38,80,45,0.01,3.0,19,90
