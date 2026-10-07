@@ -31,3 +31,12 @@ scipy==1.18.1
 six==1.17.0
 threadpoolctl==3.7.0
 tzdata==2026.5; sys_platform == "win32"
+
+# T06 (scripts/t06_satelite.py): figura de curvas por parcela.
+# Comprobado sólo en Windows 11 x86_64 con Python 3.12; falta repetir en Mac y Docker.
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.66.1
+kiwisolver==1.5.1
+matplotlib==3.11.2
+pillow==12.3.0

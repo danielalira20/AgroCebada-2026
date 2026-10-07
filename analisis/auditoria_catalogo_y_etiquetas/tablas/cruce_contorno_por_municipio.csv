@@ -1,0 +1,9 @@
+﻿municipio,grupo,parcelas,desviacion_media,desviacion_mediana,parcelas_por_encima,parcelas_por_debajo,area_mediana_ha
+Almoloya,A,6,-0.071,-0.068,2,4,10.43
+Almoloya,B o C,4,0.107,0.021,3,1,7.52
+Calpulalpan,A,27,0.0,0.0,8,8,7.15
+Calpulalpan,B o C,3,0.0,0.0,0,0,7.96
+Chignahuapan,A,65,-0.058,0.043,40,25,3.84
+Chignahuapan,B o C,6,0.627,0.728,6,0,1.92
+todos,A,122,-0.034,0.013,62,46,5.2
+todos,B o C,13,0.322,0.064,9,1,2.86

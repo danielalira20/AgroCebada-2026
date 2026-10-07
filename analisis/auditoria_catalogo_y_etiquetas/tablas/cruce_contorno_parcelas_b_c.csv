@@ -1,0 +1,14 @@
+﻿id_parcela,municipio,contorno_categoria,contorno_angosta_o_muy_pequena,area_ha_origen,rendimiento_t_ha,desviacion_municipal
+AGC_084,Almoloya,B,no,12.42,4.54,0.021
+AGC_137,Almoloya,B,no,24.81,4.54,0.021
+AGC_134,Almoloya,C,no,2.25,4.52,-0.001
+AGC_152,Almoloya,C,no,2.63,4.87,0.388
+AGC_004,Calpulalpan,B,no,8,3,0.0
+AGC_098,Calpulalpan,B,no,4.9,3,0.0
+AGC_112,Calpulalpan,B,no,7.96,3,0.0
+AGC_021,Chignahuapan,B,no,2.86,4.94,0.469
+AGC_109,Chignahuapan,B,no,3.14,4.54,0.064
+AGC_127,Chignahuapan,B,si,0.91,5.57,1.108
+AGC_049,Chignahuapan,C,si,0.87,5.53,1.068
+AGC_055,Chignahuapan,C,no,1.37,5.45,0.987
+AGC_167,Chignahuapan,C,no,2.46,4.54,0.064

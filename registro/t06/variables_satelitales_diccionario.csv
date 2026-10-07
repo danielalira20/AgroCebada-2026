@@ -1,0 +1,45 @@
+columna,sensor,ventana,umbral_nubosidad,tipo,definicion
+pl_ndvi_max_abr_oct,Planet,abr_oct,20,compacta,Máximo de la curva de NDVI (mediana móvil de 3 capturas válidas).
+pl_ndvi_integral_abr_oct,Planet,abr_oct,20,compacta,"Área de la curva de NDVI por encima de la base previa al máximo, en NDVI·días; interpolación lineal sólo entre la primera y la última captura válida."
+pl_lai2_max_abr_oct,Planet,abr_oct,20,compacta,Máximo de la curva de LAI2 (mediana móvil de 3 capturas válidas).
+pl_ndvi_dias_sobre_mitad_abr_oct,Planet,abr_oct,20,compacta,"Días, hasta el corte, con la curva de NDVI interpolada por encima de base + 50 % de la amplitud."
+pl_ndvi_dia_inicio_abr_oct,Planet,abr_oct,20,compacta,"Día del año del cruce ascendente de base + 20 % de la amplitud, interpolado entre dos capturas; vacío si no se observa."
+pl_ndvi_std_en_maximo_abr_oct,Planet,abr_oct,20,heterogeneidad,Heterogeneidad: mediana de ndvi_std de las capturas válidas a ±15 días del máximo de la curva de NDVI.
+pl_capturas_abr_oct,Planet,abr_oct,20,calidad,Calidad: número de capturas válidas (con índice y nubosidad ≤ umbral).
+pl_hueco_max_abr_oct,Planet,abr_oct,20,calidad,"Calidad: hueco máximo en días entre capturas válidas, incluidos inicio de ventana→1.ª y última→corte."
+pl_nubosidad_media_abr_oct,Planet,abr_oct,20,calidad,"Calidad: media de porcentaje_nubosidad de todas las capturas con nubosidad informada, incluidas las de 100. Puede actuar como indicador de zona."
+pl_ndvi_al_corte,Planet,31-oct (sin ventana),20,compacta,Mediana de la curva de NDVI en las capturas válidas de los últimos 15 días antes del 31-oct-2025 (17 al 31 de octubre); vacío si no hay capturas.
+pl_ndvi_max_jun_oct,Planet,jun_oct,20,compacta,Máximo de la curva de NDVI (mediana móvil de 3 capturas válidas).
+pl_ndvi_integral_jun_oct,Planet,jun_oct,20,compacta,"Área de la curva de NDVI por encima de la base previa al máximo, en NDVI·días; interpolación lineal sólo entre la primera y la última captura válida."
+pl_lai2_max_jun_oct,Planet,jun_oct,20,compacta,Máximo de la curva de LAI2 (mediana móvil de 3 capturas válidas).
+pl_ndvi_dias_sobre_mitad_jun_oct,Planet,jun_oct,20,compacta,"Días, hasta el corte, con la curva de NDVI interpolada por encima de base + 50 % de la amplitud."
+pl_ndvi_dia_inicio_jun_oct,Planet,jun_oct,20,compacta,"Día del año del cruce ascendente de base + 20 % de la amplitud, interpolado entre dos capturas; vacío si no se observa."
+pl_ndvi_std_en_maximo_jun_oct,Planet,jun_oct,20,heterogeneidad,Heterogeneidad: mediana de ndvi_std de las capturas válidas a ±15 días del máximo de la curva de NDVI.
+pl_capturas_jun_oct,Planet,jun_oct,20,calidad,Calidad: número de capturas válidas (con índice y nubosidad ≤ umbral).
+pl_hueco_max_jun_oct,Planet,jun_oct,20,calidad,"Calidad: hueco máximo en días entre capturas válidas, incluidos inicio de ventana→1.ª y última→corte."
+pl_nubosidad_media_jun_oct,Planet,jun_oct,20,calidad,"Calidad: media de porcentaje_nubosidad de todas las capturas con nubosidad informada, incluidas las de 100. Puede actuar como indicador de zona."
+s2_ndvi_max_abr_oct,Sentinel-2,abr_oct,5,compacta,Máximo de la curva de NDVI (mediana móvil de 3 capturas válidas).
+s2_ndvi_integral_abr_oct,Sentinel-2,abr_oct,5,compacta,"Área de la curva de NDVI por encima de la base previa al máximo, en NDVI·días; interpolación lineal sólo entre la primera y la última captura válida."
+s2_ndvi_dias_sobre_mitad_abr_oct,Sentinel-2,abr_oct,5,compacta,"Días, hasta el corte, con la curva de NDVI interpolada por encima de base + 50 % de la amplitud."
+s2_ndwi_en_maximo_abr_oct,Sentinel-2,abr_oct,5,compacta,Mediana del NDWI de las capturas válidas a ±15 días del máximo de la curva de NDVI.
+s2_ndvi_std_en_maximo_abr_oct,Sentinel-2,abr_oct,5,heterogeneidad,Heterogeneidad: mediana de ndvi_std de las capturas válidas a ±15 días del máximo de la curva de NDVI.
+s2_capturas_abr_oct,Sentinel-2,abr_oct,5,calidad,Calidad: número de capturas válidas (con índice y nubosidad ≤ umbral).
+s2_hueco_max_abr_oct,Sentinel-2,abr_oct,5,calidad,"Calidad: hueco máximo en días entre capturas válidas, incluidos inicio de ventana→1.ª y última→corte."
+s2_nubosidad_media_abr_oct,Sentinel-2,abr_oct,5,calidad,"Calidad: media de porcentaje_nubosidad de todas las capturas con nubosidad informada, incluidas las de 100. Puede actuar como indicador de zona."
+s2_ndvi_al_corte,Sentinel-2,31-oct (sin ventana),5,compacta,Mediana de la curva de NDVI en las capturas válidas de los últimos 15 días antes del 31-oct-2025 (17 al 31 de octubre); vacío si no hay capturas.
+s2_ndvi_max_jun_oct,Sentinel-2,jun_oct,5,compacta,Máximo de la curva de NDVI (mediana móvil de 3 capturas válidas).
+s2_ndvi_integral_jun_oct,Sentinel-2,jun_oct,5,compacta,"Área de la curva de NDVI por encima de la base previa al máximo, en NDVI·días; interpolación lineal sólo entre la primera y la última captura válida."
+s2_ndvi_dias_sobre_mitad_jun_oct,Sentinel-2,jun_oct,5,compacta,"Días, hasta el corte, con la curva de NDVI interpolada por encima de base + 50 % de la amplitud."
+s2_ndwi_en_maximo_jun_oct,Sentinel-2,jun_oct,5,compacta,Mediana del NDWI de las capturas válidas a ±15 días del máximo de la curva de NDVI.
+s2_ndvi_std_en_maximo_jun_oct,Sentinel-2,jun_oct,5,heterogeneidad,Heterogeneidad: mediana de ndvi_std de las capturas válidas a ±15 días del máximo de la curva de NDVI.
+s2_capturas_jun_oct,Sentinel-2,jun_oct,5,calidad,Calidad: número de capturas válidas (con índice y nubosidad ≤ umbral).
+s2_hueco_max_jun_oct,Sentinel-2,jun_oct,5,calidad,"Calidad: hueco máximo en días entre capturas válidas, incluidos inicio de ventana→1.ª y última→corte."
+s2_nubosidad_media_jun_oct,Sentinel-2,jun_oct,5,calidad,"Calidad: media de porcentaje_nubosidad de todas las capturas con nubosidad informada, incluidas las de 100. Puede actuar como indicador de zona."
+ls_vi6t_mediana_abr_oct,Landsat,abr_oct,5,compacta,Mediana del VI6T de las capturas válidas.
+ls_capturas_abr_oct,Landsat,abr_oct,5,calidad,Calidad: número de capturas válidas (con índice y nubosidad ≤ umbral).
+ls_hueco_max_abr_oct,Landsat,abr_oct,5,calidad,"Calidad: hueco máximo en días entre capturas válidas, incluidos inicio de ventana→1.ª y última→corte."
+ls_nubosidad_media_abr_oct,Landsat,abr_oct,5,calidad,"Calidad: media de porcentaje_nubosidad de todas las capturas con nubosidad informada, incluidas las de 100. Puede actuar como indicador de zona."
+ls_vi6t_mediana_jun_oct,Landsat,jun_oct,5,compacta,Mediana del VI6T de las capturas válidas.
+ls_capturas_jun_oct,Landsat,jun_oct,5,calidad,Calidad: número de capturas válidas (con índice y nubosidad ≤ umbral).
+ls_hueco_max_jun_oct,Landsat,jun_oct,5,calidad,"Calidad: hueco máximo en días entre capturas válidas, incluidos inicio de ventana→1.ª y última→corte."
+ls_nubosidad_media_jun_oct,Landsat,jun_oct,5,calidad,"Calidad: media de porcentaje_nubosidad de todas las capturas con nubosidad informada, incluidas las de 100. Puede actuar como indicador de zona."

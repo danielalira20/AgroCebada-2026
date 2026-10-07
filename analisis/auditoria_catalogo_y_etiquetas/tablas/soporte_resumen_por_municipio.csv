@@ -1,0 +1,18 @@
+﻿municipio,conjunto_origen,parcelas,distancia_centros_mediana_m,distancia_centros_maxima_m,distancia_orillas_mediana_m,sin_conocida_a_menos_de_1_km,celda_clima_sin_conocidas,s2_observaciones_mediana,planet_observaciones_mediana,landsat_observaciones_mediana,relieve_incompleto,contorno_b_o_c,contorno_mezcla_senal,con_algun_aviso
+Chignahuapan,PREDICCION,29,289.0,836.0,34.4,0,0,36.0,93.0,21.0,0,5,10,6
+Chignahuapan,ENTRENAMIENTO,71,339.3,1840.5,10.9,3,0,36.0,92.0,22.0,0,6,32,15
+Calpulalpan,PREDICCION,14,549.6,1699.3,201.2,3,0,39.5,103.5,16.0,0,2,11,14
+Calpulalpan,ENTRENAMIENTO,30,520.0,2736.8,218.6,9,0,40.0,102.0,17.0,2,3,17,30
+Singuilucan,PREDICCION,7,504.8,1074.0,14.5,1,0,36.0,79.0,14.0,0,1,3,2
+Singuilucan,ENTRENAMIENTO,16,412.2,2796.1,17.9,3,0,37.0,79.0,14.0,0,0,5,3
+Almoloya,PREDICCION,4,371.6,1915.6,70.8,1,0,38.5,95.0,22.0,0,0,2,2
+Almoloya,ENTRENAMIENTO,10,559.8,2214.9,25.3,2,0,38.5,96.5,21.0,0,4,7,4
+Cuautepec de Hinojosa,PREDICCION,4,349.6,1643.3,9.7,1,1,37.5,84.0,20.5,0,1,2,2
+Cuautepec de Hinojosa,ENTRENAMIENTO,5,240.9,4777.8,14.2,2,1,37.0,81.0,18.0,0,0,3,5
+Emiliano Zapata,ENTRENAMIENTO,3,179.4,3052.2,3.8,1,1,40.0,97.0,20.0,2,0,2,3
+Nanacamilpa de Mariano Arista,PREDICCION,1,1259.1,1259.1,828.2,1,0,38.0,106.0,17.0,0,0,1,1
+Nanacamilpa de Mariano Arista,ENTRENAMIENTO,1,964.7,964.7,679.4,0,0,42.0,97.0,19.0,0,0,0,1
+Apan,ENTRENAMIENTO,1,351.4,351.4,7.3,0,0,41.0,107.0,20.0,1,0,0,1
+Tepeapulco,ENTRENAMIENTO,1,4777.8,4777.8,3828.9,1,1,39.0,95.0,22.0,0,0,1,1
+todos,PREDICCION,59,350.5,1915.6,51.9,7,1,37.0,94.0,18.0,0,9,29,27
+todos,ENTRENAMIENTO,138,399.8,4777.8,17.8,21,3,37.5,94.0,19.0,5,13,67,63
