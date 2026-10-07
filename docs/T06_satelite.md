@@ -4,27 +4,27 @@
 - **Estado:** En revisión. Borrador del 6 de octubre de 2026.
 - **Artefactos:** `scripts/t06_satelite.py`; en `registro/t06/`, las tablas de cobertura, calidad, rasgos, comparación de ventanas y variables, y la figura.
 - **Reproducir:** desde la raíz del repositorio, `python scripts/t06_satelite.py --datos RUTA/DATASET_RETO_AGRO_2026` (unos 40 s). Escribe las series en `data/interim/t06/` (no versionadas) y el resto en `registro/t06/`. Dos ejecuciones dan archivos idénticos. `python scripts/t06_prueba_orden.py --datos RUTA/...` desordena las filas de entrada con semilla fija (20261006) y comprueba por md5 que todas las salidas y series salen idénticas.
-- **Decisiones:** D002–D007 en `registro/decisiones.csv`. Ninguna se tomó mirando rendimientos: el script sólo lee `ID_POLIGONO` y `CONJUNTO` del catálogo.
+- **Decisiones:** D004–D009 en `registro/decisiones.csv`. Ninguna se tomó mirando rendimientos: el script sólo lee `ID_POLIGONO` y `CONJUNTO` del catálogo.
 
 ## 1. Series por sensor
 
 Una tabla larga por sensor (`serie_sentinel2.csv`, `serie_landsat.csv`, `serie_planet.csv`), con `ID_POLIGONO`, `fecha_observada`, `fecha_disponible`, `sensor`, `fuente`, los índices del sensor (promedio, std, mínimo y máximo), `porcentaje_nubosidad`, `tiene_dato` y `posterior_al_corte`. Básico y PRO no se unen por ID.
 
 - `fecha_disponible` = «no documentada»: ni el diccionario ni la descripción general la informan.
-- El LAI del PRO se llama `lai2` (documento de ecuaciones de FIRA, pág. 2). No se fusiona con el LAI de Sentinel-2. Ese LAI reproduce −ln((0.69 − SAVI)/0.59)/0.91, así que se conserva en la serie pero no se usa (D005).
+- El LAI del PRO se llama `lai2` (documento de ecuaciones de FIRA, pág. 2). No se fusiona con el LAI de Sentinel-2. Ese LAI reproduce −ln((0.69 − SAVI)/0.59)/0.91, así que se conserva en la serie pero no se usa (D007).
 - Un faltante queda vacío, nunca en cero. Nubosidad 100 o vacía = sin dato: en esos casos los índices vienen vacíos sin excepción.
 
 ## 2. Nubosidad
 
 El diccionario sólo dice que «el porcentaje de nubosidad se conserva como variable de calidad». La descripción general deja el filtrado a cada equipo. No se documenta si es por escena o por parcela, ni si los índices excluyen píxeles nublados. Por eso no se interpreta 100 − nubosidad como fracción de píxeles válidos.
 
-En los datos, la nubosidad cambia entre parcelas en la misma fecha. Además, con nubosidad parcial el NDVI cae respecto a la captura despejada más cercana: en Sentinel-2, −0.033 entre 1 y 5 % y −0.054 entre 10 y 20 %, frente a un ruido de ~0.011 entre capturas despejadas (`calidad_nubosidad.csv`). Si hay dos capturas despejadas a la misma distancia mínima, se promedian; esto sólo ocurre en Planet. Umbrales fijados por cobertura y calidad: Sentinel-2 ≤ 5 %, Planet ≤ 20 % y Landsat ≤ 5 % (D002, D006).
+En los datos, la nubosidad cambia entre parcelas en la misma fecha. Además, con nubosidad parcial el NDVI cae respecto a la captura despejada más cercana: en Sentinel-2, −0.033 entre 1 y 5 % y −0.054 entre 10 y 20 %, frente a un ruido de ~0.011 entre capturas despejadas (`calidad_nubosidad.csv`). Si hay dos capturas despejadas a la misma distancia mínima, se promedian; esto sólo ocurre en Planet. Umbrales fijados por cobertura y calidad: Sentinel-2 ≤ 5 %, Planet ≤ 20 % y Landsat ≤ 5 % (D004, D008).
 
 ## 3. Cobertura, corte y ventanas
 
 `cobertura_mensual.csv` y `cobertura_ventana.csv` cuentan, por sensor, parcela, mes y ventana, las capturas válidas y el hueco máximo con tres umbrales candidatos (0, 5 y 20 %). El hueco incluye los bordes: del inicio de la ventana a la primera captura y de la última captura al corte.
 
-Todo cálculo recorta primero al 31-oct-2025 y después suaviza o interpola. Las variables se calculan en las dos ventanas del protocolo, `abr_oct` y `jun_oct`, con la ventana en el nombre (D003). Landsat sólo aporta calidad y nivel de VI6T: su hueco máximo mediano es de 40 días y en septiembre a muchas parcelas les falta captura.
+Todo cálculo recorta primero al 31-oct-2025 y después suaviza o interpola. Las variables se calculan en las dos ventanas del protocolo, `abr_oct` y `jun_oct`, con la ventana en el nombre (D005). Landsat sólo aporta calidad y nivel de VI6T: su hueco máximo mediano es de 40 días y en septiembre a muchas parcelas les falta captura.
 
 ## 4. Rasgos observables (`rasgos_observables.csv`)
 
@@ -44,7 +44,7 @@ La figura `figura_curvas_6_parcelas.png` muestra 6 parcelas elegidas sin rendimi
 
 ## 5. Variables compactas (`variables_satelitales.csv`)
 
-Una fila por parcela, 197 filas, sin rendimiento ni faltantes. Las definiciones están en `variables_satelitales_diccionario.csv` (D007).
+Una fila por parcela, 197 filas, sin rendimiento ni faltantes. Las definiciones están en `variables_satelitales_diccionario.csv` (D009).
 
 | Grupo | Planet (`pl_`) | Sentinel-2 (`s2_`) | Landsat (`ls_`) |
 |---|---|---|---|
@@ -67,7 +67,7 @@ Se calcula la correlación de Spearman entre parcelas de cada variable con la ve
 
 ## 7. Presupuesto de T11
 
-Ocho configuraciones fijadas antes de ver resultados (D004); la referencia territorial no cuenta.
+Ocho configuraciones fijadas antes de ver resultados (D006); la referencia territorial no cuenta.
 
 | # | Configuración |
 |---|---|

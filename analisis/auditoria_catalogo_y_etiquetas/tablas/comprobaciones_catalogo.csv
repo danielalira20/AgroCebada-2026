@@ -1,0 +1,107 @@
+﻿etapa,comprobacion,esperado,obtenido,resultado
+1,CSV: las columnas sin nombre (coma de sobra) están vacías,True,True,cumple
+1,CSV: columnas,"ID_POLIGONO, AREA_HA, RENDIMIENTO_T_HA, CONJUNTO","ID_POLIGONO, AREA_HA, RENDIMIENTO_T_HA, CONJUNTO",cumple
+1,Shapefile: columnas de atributos,"Cultivo, ID_POLIGON, área_ha, Municipio, Estado, CONJUNTO","Cultivo, ID_POLIGON, área_ha, Municipio, Estado, CONJUNTO",cumple
+1,CSV: número de filas,197,197,cumple
+1,CSV: identificadores distintos,197,197,cumple
+1,CSV: los identificadores son AGC_001 a AGC_197,True,True,cumple
+1,Shapefile: número de contornos,197,197,cumple
+1,Shapefile: identificadores distintos,197,197,cumple
+1,Shapefile: los identificadores son AGC_001 a AGC_197,True,True,cumple
+1,Identificadores que están en un archivo y no en el otro,0,0,cumple
+1,Shapefile: celdas de atributos vacías,0,0,cumple
+1,Unión CSV–shapefile: filas emparejadas una a una,197,197,cumple
+1,Unión CSV–shapefile: filas sin pareja,0,0,cumple
+1,CONJUNTO distinto entre CSV y shapefile (parcelas),0,0,cumple
+1,Área distinta entre CSV y shapefile (parcelas),0,0,cumple
+1,CONJUNTO solo toma ENTRENAMIENTO o PREDICCION,True,True,cumple
+1,Cultivo solo toma Cebada o CEBADA,True,True,cumple
+1,"Estado solo toma Hidalgo, Puebla o Tlaxcala",True,True,cumple
+1,Áreas mayores que cero y finitas (parcelas),197,197,cumple
+1,Parcelas con rendimiento,138,138,cumple
+1,Parcelas sin rendimiento,59,59,cumple
+1,Parcelas de ENTRENAMIENTO,138,138,cumple
+1,Parcelas de PREDICCION,59,59,cumple
+1,Parcelas donde tener rendimiento no coincide con ser de ENTRENAMIENTO,0,0,cumple
+1,Rendimientos que son números finitos mayores que cero,138,138,cumple
+1,Parcelas por estado,,Puebla: 100; Hidalgo: 51; Tlaxcala: 46,informativo
+1,Parcelas por municipio,,Chignahuapan: 100; Calpulalpan: 44; Singuilucan: 23; Almoloya: 14; Cuautepec de Hinojosa: 9; Emiliano Zapata: 3; Nanacamilpa de Mariano Arista: 2; Apan: 1; Tepeapulco: 1,informativo
+1,Parcelas por escritura del campo Cultivo,,CEBADA: 147; Cebada: 50,informativo
+1,Parcelas por estado y conjunto,,Puebla / ENTRENAMIENTO: 71; Hidalgo / ENTRENAMIENTO: 36; Tlaxcala / ENTRENAMIENTO: 31; Puebla / PREDICCION: 29; Hidalgo / PREDICCION: 15; Tlaxcala / PREDICCION: 15,informativo
+2,Sistema de coordenadas del shapefile,EPSG:4326,EPSG:4326,cumple
+2,Contornos vacíos,0,0,cumple
+2,Contornos geométricamente válidos,197,197,cumple
+2,Contornos de una sola pieza (tipo Polygon),197,197,cumple
+2,Contornos con huecos por dentro,0,0,cumple
+2,Contornos declarados con altura (PolygonZ) / altura máxima encontrada,,197 / 0.0,informativo
+2,Contornos cuyo último punto repite al primero (cerrados),197,197,cumple
+2,Mayor diferencia entre área calculada y registrada,,-1.261 % en AGC_069 (0.375209 ha calculadas frente a 0.38 ha registradas),informativo
+2,Parcelas con diferencia de área mayor al 2 %,0,0,cumple
+2,Parcelas cuya diferencia de área cabe en el redondeo a dos decimales (hasta 0.005 ha),,197 de 197,informativo
+2,"Parcelas cuya área calculada, redondeada a dos decimales, es igual a la registrada",,197 de 197,informativo
+2,Mayor diferencia de área en hectáreas,,0.0050 ha,informativo
+2,Puntos por contorno en CEBADA (mínimo / mediana / máximo),,5 / 34 / 145,informativo
+2,Contornos de 5 puntos o menos en CEBADA,,3,informativo
+2,Puntos por contorno en Cebada (mínimo / mediana / máximo),,4 / 5 / 50,informativo
+2,Contornos de 5 puntos o menos en Cebada,,26,informativo
+2,Contornos de CEBADA con todas sus coordenadas a 6 decimales o menos,,0 de 147,informativo
+2,Contornos de Cebada con todas sus coordenadas a 6 decimales o menos,,50 de 50,informativo
+2,Pares de parcelas revisados,19306,19306,cumple
+2,Pares con contornos idénticos,0,0,cumple
+2,Pares con contornos encimados (comparten superficie),0,0,cumple
+2,Pares con contornos que se tocan sin encimarse,0,0,cumple
+2,"Par de parcelas más cercano, de orilla a orilla",,AGC_085 y AGC_177: 0.01 m,informativo
+2,Pares con orillas a menos de 1 m / 5 m / 20 m,,9 / 37 / 87,informativo
+3,Revisión de contornos: columnas,"ID_POLIGON, categoria, divisiones_internas, arboles_dentro, construccion_dentro, angosta_o_muy_pequena, imagen_poco_clara, nota, etapa, confirmar_en_qgis, fecha_revision","ID_POLIGON, categoria, divisiones_internas, arboles_dentro, construccion_dentro, angosta_o_muy_pequena, imagen_poco_clara, nota, etapa, confirmar_en_qgis, fecha_revision",cumple
+3,Revisión de contornos: no trae ninguna columna de rendimiento,True,True,cumple
+3,Revisión de contornos: número de filas,197,197,cumple
+3,Revisión de contornos: identificadores distintos,197,197,cumple
+3,"Identificadores que están en la revisión y no en el catálogo, o al revés",0,0,cumple
+3,"Categoría solo toma A, B o C",True,True,cumple
+3,Las cinco marcas solo toman si o no,True,True,cumple
+3,La firmeza solo toma los cuatro valores previstos,True,True,cumple
+3,Parcelas del catálogo que quedaron sin calificación de contorno,0,0,cumple
+3,Parcelas en A / B / C,175 / 12 / 10,175 / 12 / 10,cumple
+3,Marcas: divisiones / árboles / construcción / angosta / imagen poco clara,107 / 70 / 8 / 16 / 6,107 / 70 / 8 / 16 / 6,cumple
+3,Confirmadas en QGIS / revisadas sin poder confirmar / primera pasada,35 / 2 / 160,35 / 2 / 160,cumple
+3,Parcelas en B o C que no están confirmadas en QGIS,0,0,cumple
+3,Parcelas de primera pasada que no están en A,0,0,cumple
+3,"Parcelas con algo dentro que mezcla la señal (B, C, árboles, construcción o angosta)",96,96,cumple
+3,A / B / C en la escritura CEBADA,,130 / 7 / 10,informativo
+3,A / B / C en la escritura Cebada,,45 / 5 / 0,informativo
+3,A / B / C en ENTRENAMIENTO,,125 / 8 / 5,informativo
+3,A / B / C en PREDICCION,,50 / 4 / 5,informativo
+3,A / B / C en contornos de 5 puntos o menos,,26 / 3 / 0,informativo
+3,A / B / C en Almoloya,,10 / 2 / 2,informativo
+3,A / B / C en Calpulalpan,,39 / 5 / 0,informativo
+3,A / B / C en Chignahuapan,,89 / 4 / 7,informativo
+3,A / B / C en Cuautepec de Hinojosa,,8 / 0 / 1,informativo
+3,A / B / C en Singuilucan,,22 / 1 / 0,informativo
+4,Rendimiento mínimo y máximo (t/ha),2.0 a 5.59,2.0 a 5.59,cumple
+4,Rendimiento medio y mediano (t/ha),3.955 y 4.34,3.955 y 4.34,cumple
+4,Rendimientos distintos entre los 138,67,67,cumple
+4,Los tres rendimientos más repetidos,3.0 (19); 3.5 (13); 2.5 (11),3.0 (19); 3.5 (13); 2.5 (11),cumple
+4,Rendimientos escritos con dos decimales,80,80,cumple
+4,Rendimientos escritos con uno o ningún decimal,58,58,cumple
+4,Rendimientos escritos con 0 / 1 / 2 decimales,,20 / 38 / 80,informativo
+4,Múltiplos de 0.5 t/ha en la escritura Cebada,35 de 35,35 de 35,cumple
+4,Múltiplos de 0.5 t/ha en la escritura CEBADA,10 de 103,10 de 103,cumple
+4,Municipios con más de una escritura del campo Cultivo,0,0,cumple
+4,Municipios anotados en escalones de 0.5 t/ha (parcelas conocidas),,"Calpulalpan, Emiliano Zapata (33)",informativo
+4,Municipios anotados en escalones de 0.1 t/ha (parcelas conocidas),,Singuilucan (16),informativo
+4,Municipios anotados en escalones de 0.01 t/ha (parcelas conocidas),,"Almoloya, Chignahuapan, Cuautepec de Hinojosa (86)",informativo
+4,Municipios con menos de 3 parcelas conocidas (finura no determinable),,Apan: 3; Nanacamilpa de Mariano Arista: 2.5; Tepeapulco: 4.45,informativo
+4,Último dígito de los rendimientos con dos decimales (dígito: veces),,1: 10; 2: 7; 3: 8; 4: 8; 5: 11; 6: 6; 7: 10; 8: 7; 9: 13,informativo
+4,Distancia media de (rendimiento x área) a la tonelada entera más cercana; al azar sería 0.25,,0.220,informativo
+4,"Pares del mismo municipio con rendimiento idéntico, municipios en escalones de 0.5",,a menos de 250 m: 4 de 5; a menos de 500 m: 5 de 10; a menos de 1000 m: 8 de 18; cualquier distancia: 150 de 438,informativo
+4,"Par con rendimiento idéntico más cercano, municipios en escalones de 0.5",,AGC_157 y AGC_163: 115 m entre centros,informativo
+4,"Pares del mismo municipio con rendimiento idéntico, municipios en escalones de 0.1",,a menos de 250 m: 1 de 1; a menos de 500 m: 6 de 12; a menos de 1000 m: 9 de 26; cualquier distancia: 15 de 120,informativo
+4,"Par con rendimiento idéntico más cercano, municipios en escalones de 0.1",,AGC_089 y AGC_148: 165 m entre centros,informativo
+4,"Pares del mismo municipio con rendimiento idéntico, municipios en escalones de 0.01",,a menos de 250 m: 0 de 17; a menos de 500 m: 0 de 64; a menos de 1000 m: 1 de 177; cualquier distancia: 31 de 2540,informativo
+4,"Par con rendimiento idéntico más cercano, municipios en escalones de 0.01",,AGC_101 y AGC_193: 940 m entre centros,informativo
+4,Pares con orillas a menos de 1 m: ambas conocidas / con rendimiento idéntico,,4 / 0,informativo
+4,Pares con orillas a menos de 5 m: ambas conocidas / con rendimiento idéntico,,19 / 3 (AGC_020 y AGC_044; AGC_053 y AGC_117; AGC_089 y AGC_148),informativo
+4,Pares con orillas a menos de 20 m: ambas conocidas / con rendimiento idéntico,,45 / 9 (AGC_019 y AGC_103; AGC_020 y AGC_044; AGC_023 y AGC_164; AGC_023 y AGC_170; AGC_041 y AGC_166; AGC_053 y AGC_117; AGC_089 y AGC_148; AGC_157 y AGC_163; AGC_164 y AGC_170),informativo
+4,"Pares con orillas a menos de 20 m, ambas conocidas y de la escritura Cebada: con rendimiento idéntico",,7 de 8,informativo
+4,"Pares con orillas a menos de 20 m, ambas conocidas y de la escritura CEBADA: con rendimiento idéntico",,2 de 37,informativo
+4,"Pares con orillas a menos de 20 m, ambas conocidas y de Singuilucan: con rendimiento idéntico",,2 de 5,informativo

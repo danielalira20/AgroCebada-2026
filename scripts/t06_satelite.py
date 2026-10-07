@@ -44,7 +44,7 @@ RAIZ = Path(__file__).resolve().parents[1]
 CORTE = pd.Timestamp("2025-10-31")
 VENTANAS = {"abr_oct": pd.Timestamp("2025-04-01"), "jun_oct": pd.Timestamp("2025-06-01")}
 UMBRALES = [0, 5, 20]  # candidatos de nubosidad máxima (%) evaluados en la cobertura
-UMBRAL = {"Sentinel-2": 5, "Planet": 20, "Landsat": 5}  # D002 y D006; Landsat sólo calidad y nivel de VI6T
+UMBRAL = {"Sentinel-2": 5, "Planet": 20, "Landsat": 5}  # D004 y D008; Landsat sólo calidad y nivel de VI6T
 FECHA_DISPONIBLE = "no documentada"  # ni el diccionario ni la descripción la informan
 
 ARCHIVOS = {"BASICO": "Conjunto_datos_BASICO_AgroCebada2026.csv", "PRO": "Conjunto_datos_PRO_AgroCebada.csv"}
@@ -56,7 +56,7 @@ SENSORES = {  # sensor: (fuente, abreviatura, índices que trae ese sensor, índ
     "Planet": ("PRO", "pl", ["ndvi", "evi", "lai", "msavi"], "ndvi"),
 }
 ESTADISTICOS = ["promedio", "std", "min", "max"]
-# LAI del PRO = LAI2 del documento de ecuaciones de FIRA (D005); no equivale al LAI de Sentinel-2.
+# LAI del PRO = LAI2 del documento de ecuaciones de FIRA (D007); no equivale al LAI de Sentinel-2.
 RENOMBRAR = {"Planet": {"lai": "lai2"}}
 
 
@@ -209,7 +209,7 @@ CAIDA_PICO = 0.20     # el máximo cuenta como pico si antes y después baja al 
 FRAC_DOBLE = 0.30     # ciclo doble: tras el inicio cae ≥ 30 % de la amplitud y vuelve a subir ≥ 30 %
 FRAC_MESETA = 0.05    # meseta: capturas a ≤ 5 % de la amplitud del máximo...
 DIAS_MESETA = 45      # ...separadas por al menos 45 días (a ≤ 10 % la mediana normal es ~40 días)
-FENOLOGIA = ["Sentinel-2", "Planet"]  # Landsat no se usa para rasgos del ciclo (D002)
+FENOLOGIA = ["Sentinel-2", "Planet"]  # Landsat no se usa para rasgos del ciclo (D004)
 
 
 def curva(v: np.ndarray):
@@ -281,7 +281,7 @@ def rasgos_parcela(f: np.ndarray, v: np.ndarray) -> dict:
 
 
 def rasgos(ser: dict, ids: pd.DataFrame) -> pd.DataFrame:
-    """Rasgos de referencia: ventana abr_oct (D007). Las banderas de ciclo doble y meseta son de calidad."""
+    """Rasgos de referencia: ventana abr_oct (D009). Las banderas de ciclo doble y meseta son de calidad."""
     filas = []
     for sensor in FENOLOGIA:
         x = validas(ser[sensor], sensor, VENTANAS["abr_oct"])
@@ -400,7 +400,7 @@ def figura(ser: dict, ras: pd.DataFrame, ruta: Path):
     return elegidas
 
 
-# Variables compactas aprobadas (D007). {v} = ventana; las «al_corte» no llevan ventana.
+# Variables compactas aprobadas (D009). {v} = ventana; las «al_corte» no llevan ventana.
 ALREDEDOR_MAXIMO = pd.Timedelta(days=15)
 DIAS_AL_CORTE = pd.Timedelta(days=15)
 DEFINICIONES = {

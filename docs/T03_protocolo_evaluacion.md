@@ -33,7 +33,7 @@ Los datos completos están en `registro/t03/soporte_resumen.csv`. Ninguna cifra 
 | Escenario | Cómo se separa | Uso previsto | Limitación |
 |---|---|---|---|
 | **A. Municipio conocido** | 5 particiones estratificadas por municipio × 5 repeticiones (columna `particion_principal`). | Parcelas nuevas en municipios con ejemplos, que es el caso de las 59. | Entrenamiento y evaluación pueden compartir vecindad y celda climática. |
-| **B. Separación espacial** | Celdas CHIRPS completas asignadas a 5 particiones (columna `particion_espacial`). | Medir cuánto depende el modelo de ejemplos cercanos o de la misma celda. | Las dos celdas grandes de Chignahuapan (34 parcelas cada una) fijan las particiones, así que las 5 repeticiones dan la misma asignación. Las celdas vecinas siguen relacionadas. |
+| **B. Separación espacial** | Celdas CHIRPS completas asignadas a 5 particiones (columna `particion_espacial`). | Medir cuánto depende el modelo de ejemplos cercanos o de la misma celda. | Las 5 repeticiones dan 5 agrupaciones distintas, pero las dos celdas grandes de Chignahuapan (34 parcelas cada una) quedan siempre como dos particiones completas; sólo cambian las otras tres (23/23/24 parcelas). La variación entre repeticiones es, por tanto, menor que en A. Las celdas vecinas siguen relacionadas. |
 | **C. Municipio excluido** | Dejar fuera un municipio a la vez (columna `municipio`). | Transferencia a territorio no visto. | No representa a las 59. Excluir Chignahuapan quita 71 etiquetas. |
 
 ## 3. Regla para elegir la evaluación principal (escrita antes de comparar)
@@ -50,10 +50,17 @@ Los datos completos están en `registro/t03/soporte_resumen.csv`. Ninguna cifra 
 - **Métrica primaria (provisional mientras FIRA no confirme):** MAE.
 - **Secundarias:** RMSE, sesgo, R² global y error por municipio y por grupo de registro. Los municipios con n < 5 se marcan como poco informativos.
 - **Cómo se calcula:** las métricas salen de las 138 predicciones fuera del entrenamiento de cada repetición y después se promedian las 5 repeticiones. No se promedian las 25 particiones como si fueran independientes.
-- **Comparación emparejada:** para cada parcela, la diferencia de error absoluto entre el candidato y la referencia, promediada en las 5 repeticiones. Se calcula un IC95 por bootstrap sobre las 138 parcelas.
+- **Comparación emparejada:** para cada parcela, la diferencia de error absoluto entre el candidato y la referencia, promediada en las 5 repeticiones (ΔMAE por parcela).
+- **Incertidumbre que respeta la cercanía espacial (O4):** bootstrap por bloques.
+  - **Unidad que se remuestrea:** la celda CHIRPS (0.05°) del centroide de la parcela. Hay 23 celdas con parcelas etiquetadas. Todas las parcelas de una celda entran o salen juntas.
+  - **Estadístico:** el ΔMAE medio de todas las parcelas de las celdas elegidas (cada celda pesa según su número de parcelas).
+  - **Remuestreo:** 5000 réplicas con reemplazo, semilla 20261006. Intervalo por percentiles 2.5 y 97.5 (`IC95_celdas`).
+  - **Referencia:** también se reporta el bootstrap de parcelas independientes (`IC95_parcelas`), pero **la regla de decisión usa `IC95_celdas`**.
+  - **Limitaciones:** (1) sólo 23 bloques, y dos de ellos tienen 34 parcelas cada uno, así que el intervalo es ancho e inestable en las colas; (2) captura la dependencia dentro de cada celda, no la que hay entre celdas vecinas; (3) las 5 repeticiones reutilizan las mismas parcelas, por lo que el ΔMAE por parcela no es una observación nueva; (4) es un intervalo de la diferencia de desempeño en estas 138 parcelas, no una garantía para las 59 ni para otra campaña.
+  - **Respaldo de T02 (Jass):** la auditoría de catálogo y etiquetas encontró que, en los municipios de etiqueta gruesa, las parcelas vecinas suelen compartir el mismo valor de rendimiento (7 de 8 pares vecinos en Calpulalpan/Emiliano Zapata); por eso no deben tratarse como observaciones independientes al calcular esta incertidumbre.
 - **Regla para promover un candidato sobre otro más simple.** Deben cumplirse las tres condiciones:
   1. ΔMAE ≤ −0.01 t/ha (umbral de diferencia práctica);
-  2. el límite superior del IC95 de ΔMAE es < 0;
+  2. el límite superior del IC95 por bloques espaciales (`IC95_celdas`) es < 0;
   3. el signo de ΔMAE es el mismo en al menos 4 de las 5 repeticiones.
 
   Además, el RMSE no puede empeorar más de 0.01 t/ha.
@@ -64,7 +71,15 @@ Los datos completos están en `registro/t03/soporte_resumen.csv`. Ninguna cifra 
 ## 5. Selección interna y presupuesto de búsqueda
 
 - Todo lo que se aprende de los datos se ajusta **dentro** de cada entrenamiento externo: imputación, escalado, referencias municipales, selección de variables, filtros, ventanas e hiperparámetros.
-- **Selección interna:** 4 particiones estratificadas por municipio dentro de cada entrenamiento externo, con semilla fija igual a 0.
+- **Selección interna:** 4 particiones estratificadas dentro de cada entrenamiento externo, con semilla fija igual a 0.
+  - **Estrato** = municipio, si tiene al menos 4 etiquetas en ese entrenamiento; los municipios con menos de 4 (Apan, Tepeapulco, Nanacamilpa y, según la partición, Emiliano Zapata) se agrupan en un estrato común `otros`. Así ninguna partición interna queda vacía de un estrato y no se descarta ninguna parcela.
+- **Municipios con muy pocas etiquetas (regla para todos los candidatos):** ninguna parcela se elimina. Cuando una parcela que se evalúa no tiene ejemplos de su municipio en el entrenamiento (por ejemplo, en la repetición 1 del escenario A: AGC_047 de Tepeapulco, AGC_048 de Nanacamilpa y AGC_164 de Apan), el candidato usa este respaldo, en orden:
+  1. la referencia de su **grupo de registro** (`Cebada`/`CEBADA`), calculada con el entrenamiento;
+  2. si el grupo tampoco tiene ejemplos, la referencia **global** del entrenamiento.
+  - Los candidatos con respaldo "global" declarado (como el del piloto) saltan el paso 1.
+  - Los modelos con variables (T09–T15) aplican el mismo respaldo a su término municipal; sus variables propias se usan igual.
+  - Cada predicción registra qué respaldo usó (columna `fuente`), y T08 reporta cuántas veces se activa (`activacion_respaldos.csv`): 15 de 690 predicciones en el escenario A y ninguna en las 59 reservadas.
+  - **Coincide con T02 (Jass):** el catálogo confirma que Apan, Nanacamilpa y Tepeapulco tienen una sola parcela conocida cada uno, por lo que su finura de etiqueta no se puede determinar; es el mismo motivo por el que se agrupan en `otros`.
 - **Presupuesto por frente:** una familia de modelo y como máximo 8 configuraciones (por ejemplo, 6–8 valores de α en Ridge o Huber). Cualquier búsqueda mayor cuenta como otro experimento y se registra.
 - **Candidatos admitidos en T08–T16:**
   - Mediana global.
@@ -95,4 +110,5 @@ Archivo `predicciones_oof_<frente>_<candidato>.csv` con las columnas `ID_POLIGON
 ## 9. Pendientes que no bloquean T08
 
 - Respuesta de FIRA sobre la métrica y el corte. Si llega, se actualizan las secciones 4 y 6, con fecha.
+- **Correcciones del 6 de octubre** (observaciones de Dani, corroboradas por la auditoría de T02 de Jass): descripción del escenario B ajustada a los CSV; regla escrita para municipios con pocas etiquetas y estratos internos; especificación del intervalo por bloques espaciales, ya aplicado en T08.
 - Conciliar con T04 la celda climática cuando un polígono toca 2 o 3 celdas. El escenario B usa la celda del centroide.
