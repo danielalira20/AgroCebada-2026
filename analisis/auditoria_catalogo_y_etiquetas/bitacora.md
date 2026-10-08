@@ -814,7 +814,7 @@ Una integrante del equipo señaló tres observaciones sobre el protocolo de T03.
 
 **Comprobado después de ajustar,** desde la raíz del repositorio y con el entorno del `requirements.txt`: los cinco scripts corren con sus opciones por omisión y las 15 tablas salen idénticas a las copiadas.
 
-**El original de esta auditoría se mantiene en la carpeta local de Jass.** Si algo cambia, se cambia ahí primero y se vuelve a copiar aquí.
+**El original de esta auditoría se mantiene en la carpeta local de Jass.** Si algo cambia, se cambia ahí primero y se vuelve a copiar aquí. *(Esta regla dejó de valer el 8 de octubre: ver la última entrada de esta bitácora.)*
 
 ### 7 de octubre de 2026 — Revisión del PR y segunda ronda de correcciones
 
@@ -858,3 +858,13 @@ Una integrante del equipo señaló tres observaciones sobre el protocolo de T03.
 **Decisión de diseño que queda escrita:** en las columnas copiadas del dataset (tolerancia 0) se compara el texto, así que `3.5` y `3.50` cuentan como distintos. Es deliberado: un cambio de formato en un valor copiado debe verse.
 
 **No comprobado:** la repetición en Mac, Windows y Docker sigue pendiente.
+
+### 8 de octubre de 2026 — El repositorio pasa a ser el original
+
+**Cambio de regla.** El 6 de octubre se escribió que el original de esta auditoría estaba en la carpeta local de Jass y que los cambios se hacían ahí primero. Desde hoy es al revés: **el original es esta carpeta del repositorio** (`analisis/auditoria_catalogo_y_etiquetas/`). Los cambios se hacen aquí, en una rama y con PR. La copia local de Jass queda como respaldo, puede estar desactualizada y no se edita.
+
+**Motivo.** La auditoría tuvo una segunda ronda de correcciones (comparador con esquema, registro, protocolo T03) que se hizo y se revisó directamente en la rama del repositorio. La copia local quedó anterior a ella: su bitácora (allí llamada `README.md`) no incluye las correcciones, no tiene `esquema_de_tablas.csv`, el comparador ni sus pruebas, y sus scripts y dos tablas de huellas son de antes de las correcciones.
+
+**Qué se hizo con el material de contexto.** Jass incorporó su carpeta de contexto al repositorio en `context/`, que Git ignora y que no forma parte de este PR. Se limpió: se quitaron las copias viejas de esta auditoría y de la exploración de parcelas (no tenían ningún archivo que el repositorio no tuviera), una segunda copia del dataset (idéntica a `data/raw`, comprobado archivo por archivo con SHA-256), archivos temporales y los `__pycache__`. La carpeta pasó de 402 MB a 17 MB.
+
+**Lo que no cambia.** Los scripts, las tablas y los resultados de la auditoría son los mismos. El dataset original no se tocó.

@@ -29,3 +29,7 @@ __pycache__/
 
 # Instrucciones locales del asistente
 AGENTS.md
+CLAUDE.local.md
+
+# Archivos de contexto locales 
+context/*
