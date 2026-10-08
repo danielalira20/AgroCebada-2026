@@ -71,7 +71,7 @@ La contracción (`mediana_mun_contraida_grupo`) coincide con la mediana en A (el
 4. **Para comparar los frentes T09–T16 se reportan los dos subconjuntos, y la decisión se toma en `sin_respaldo`**, porque es el que representa a las 59 (T03 §3).
 5. **La contracción no aporta.** La selección interna eligió k = 0 (sin contracción) en 48 de 51 ajustes; en A coincide con la mediana municipal y en B empeora. No se promueve.
 6. **Respaldos.** En la validación, el respaldo se activa en 15 de 690 predicciones en A (31 en B). **En las 59 reservadas no se activa nunca:** todas tienen municipio con etiquetas (`activacion_respaldos.csv`).
-7. **Efecto del cambio a `IC95_celdas` (D010).** En A no cambia ningún veredicto. En B sí: con el IC por parcelas, `mediana_mun__resp_grupo` (todas) cumpliría la regla; con el IC por celdas, no.
+7. **Efecto del cambio a `IC95_celdas` (D018).** En A no cambia ningún veredicto. En B sí: con el IC por parcelas, `mediana_mun__resp_grupo` (todas) cumpliría la regla; con el IC por celdas, no.
 
 ## Para otros frentes
 
