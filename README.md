@@ -52,10 +52,12 @@ La primera referencia global y municipal puede construirse tras T02–T03 sin es
 
 ## T07: catálogo y ventanas climáticas
 
-El catálogo de T07 conserva las 197 parcelas, las 138 etiquetas y las 59
-ausentes. `registro/t07/` comparte sólo catálogo, diccionario e identidad/estado
-de bloques; T04 está pendiente de entrega revisada, sin valores de relleno.
-Consultar el [contrato](docs/t07_contrato.md) y los
-[pasos de reproducción](docs/t07_fases_0_2.md). La fase 2 tiene código preparado,
-pero requiere la entrega definitiva para calcular e integrar clima. T05 y la
-unión de T06 quedan para las siguientes fases. T07 permanece en revisión.
+T07 conserva 197 parcelas, 138 etiquetas originales y 59 ausentes.
+`registro/t07/` contiene catálogo + satélite T06 (52 columnas), diccionario,
+calidad, roles y trazabilidad. El borrador completo con ventanas climáticas
+reales (58 columnas) queda sólo en `reports/`, pendiente de revisión T04.
+T05 sigue sin integrar. Consultar el [contrato](docs/t07_contrato.md), los
+[antecedentes de fases 0–2](docs/t07_fases_0_2.md) y la
+[integración por ventanas y su reproducción](docs/t07_fase_3.md).
+T07 permanece en revisión; las columnas candidatas no son entradas automáticas
+de un modelo.

@@ -1,0 +1,98 @@
+{
+  "schema": "t07_columnas_por_funcion_v1",
+  "tabla": "tabla_comun.csv",
+  "columnas_por_funcion": {
+    "metadato": [
+      "id_parcela",
+      "campania",
+      "area_ha_origen",
+      "estado",
+      "conjunto_origen"
+    ],
+    "objetivo": [
+      "rendimiento_t_ha"
+    ],
+    "predictor_candidato": [
+      "municipio",
+      "pl_ndvi_max_abr_oct",
+      "pl_ndvi_integral_abr_oct",
+      "pl_lai2_max_abr_oct",
+      "pl_ndvi_dias_sobre_mitad_abr_oct",
+      "pl_ndvi_dia_inicio_abr_oct",
+      "pl_ndvi_std_en_maximo_abr_oct",
+      "pl_ndvi_al_corte",
+      "pl_ndvi_max_jun_oct",
+      "pl_ndvi_integral_jun_oct",
+      "pl_lai2_max_jun_oct",
+      "pl_ndvi_dias_sobre_mitad_jun_oct",
+      "pl_ndvi_dia_inicio_jun_oct",
+      "pl_ndvi_std_en_maximo_jun_oct",
+      "s2_ndvi_max_abr_oct",
+      "s2_ndvi_integral_abr_oct",
+      "s2_ndvi_dias_sobre_mitad_abr_oct",
+      "s2_ndwi_en_maximo_abr_oct",
+      "s2_ndvi_std_en_maximo_abr_oct",
+      "s2_ndvi_al_corte",
+      "s2_ndvi_max_jun_oct",
+      "s2_ndvi_integral_jun_oct",
+      "s2_ndvi_dias_sobre_mitad_jun_oct",
+      "s2_ndwi_en_maximo_jun_oct",
+      "s2_ndvi_std_en_maximo_jun_oct",
+      "ls_vi6t_mediana_abr_oct",
+      "ls_vi6t_mediana_jun_oct"
+    ],
+    "solo_auditoria": [
+      "cultivo_origen"
+    ],
+    "calidad": [
+      "pl_capturas_abr_oct",
+      "pl_hueco_max_abr_oct",
+      "pl_nubosidad_media_abr_oct",
+      "pl_capturas_jun_oct",
+      "pl_hueco_max_jun_oct",
+      "pl_nubosidad_media_jun_oct",
+      "s2_capturas_abr_oct",
+      "s2_hueco_max_abr_oct",
+      "s2_nubosidad_media_abr_oct",
+      "s2_capturas_jun_oct",
+      "s2_hueco_max_jun_oct",
+      "s2_nubosidad_media_jun_oct",
+      "ls_capturas_abr_oct",
+      "ls_hueco_max_abr_oct",
+      "ls_nubosidad_media_abr_oct",
+      "ls_capturas_jun_oct",
+      "ls_hueco_max_jun_oct",
+      "ls_nubosidad_media_jun_oct"
+    ]
+  },
+  "experimentos_definidos": false,
+  "todas_las_columnas_no_equivalen_a_entradas_del_modelo": true,
+  "unidades_fisicas_pendientes": [
+    "pl_lai2_max_abr_oct",
+    "pl_lai2_max_jun_oct",
+    "ls_vi6t_mediana_abr_oct",
+    "ls_vi6t_mediana_jun_oct"
+  ],
+  "ventanas": {
+    "abr_oct": {
+      "inicio": "2025-04-01",
+      "fin": "2025-10-31",
+      "meses": 7,
+      "dias": 214
+    },
+    "jun_oct": {
+      "inicio": "2025-06-01",
+      "fin": "2025-10-31",
+      "meses": 5,
+      "dias": 153
+    }
+  },
+  "al_corte": {
+    "inicio": "2025-10-17",
+    "fin": "2025-10-31",
+    "columnas": [
+      "pl_ndvi_al_corte",
+      "s2_ndvi_al_corte"
+    ]
+  }
+}

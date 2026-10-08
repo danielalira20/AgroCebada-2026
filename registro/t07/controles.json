@@ -2,10 +2,126 @@
   "parcelas": 197,
   "etiquetas_originales": 138,
   "etiquetas_ausentes": 59,
+  "columnas_tabla_comun": 52,
   "filas_por_tabla": {
-    "catalogo_base.csv": 197
+    "catalogo_base.csv": 197,
+    "calidad_satelite.csv": 1182,
+    "tabla_comun.csv": 197
   },
-  "diccionario_columnas": 8,
-  "clima": "pendiente_integracion_revisada",
-  "valores_climaticos_generados": false
+  "valores_satelitales_verificados": 8668,
+  "conciliaciones_cobertura": 1182,
+  "ausencias_satelitales": 0,
+  "ausencias_por_columna_satelite": {
+    "pl_ndvi_max_abr_oct": 0,
+    "pl_ndvi_integral_abr_oct": 0,
+    "pl_lai2_max_abr_oct": 0,
+    "pl_ndvi_dias_sobre_mitad_abr_oct": 0,
+    "pl_ndvi_dia_inicio_abr_oct": 0,
+    "pl_ndvi_std_en_maximo_abr_oct": 0,
+    "pl_capturas_abr_oct": 0,
+    "pl_hueco_max_abr_oct": 0,
+    "pl_nubosidad_media_abr_oct": 0,
+    "pl_ndvi_al_corte": 0,
+    "pl_ndvi_max_jun_oct": 0,
+    "pl_ndvi_integral_jun_oct": 0,
+    "pl_lai2_max_jun_oct": 0,
+    "pl_ndvi_dias_sobre_mitad_jun_oct": 0,
+    "pl_ndvi_dia_inicio_jun_oct": 0,
+    "pl_ndvi_std_en_maximo_jun_oct": 0,
+    "pl_capturas_jun_oct": 0,
+    "pl_hueco_max_jun_oct": 0,
+    "pl_nubosidad_media_jun_oct": 0,
+    "s2_ndvi_max_abr_oct": 0,
+    "s2_ndvi_integral_abr_oct": 0,
+    "s2_ndvi_dias_sobre_mitad_abr_oct": 0,
+    "s2_ndwi_en_maximo_abr_oct": 0,
+    "s2_ndvi_std_en_maximo_abr_oct": 0,
+    "s2_capturas_abr_oct": 0,
+    "s2_hueco_max_abr_oct": 0,
+    "s2_nubosidad_media_abr_oct": 0,
+    "s2_ndvi_al_corte": 0,
+    "s2_ndvi_max_jun_oct": 0,
+    "s2_ndvi_integral_jun_oct": 0,
+    "s2_ndvi_dias_sobre_mitad_jun_oct": 0,
+    "s2_ndwi_en_maximo_jun_oct": 0,
+    "s2_ndvi_std_en_maximo_jun_oct": 0,
+    "s2_capturas_jun_oct": 0,
+    "s2_hueco_max_jun_oct": 0,
+    "s2_nubosidad_media_jun_oct": 0,
+    "ls_vi6t_mediana_abr_oct": 0,
+    "ls_capturas_abr_oct": 0,
+    "ls_hueco_max_abr_oct": 0,
+    "ls_nubosidad_media_abr_oct": 0,
+    "ls_vi6t_mediana_jun_oct": 0,
+    "ls_capturas_jun_oct": 0,
+    "ls_hueco_max_jun_oct": 0,
+    "ls_nubosidad_media_jun_oct": 0
+  },
+  "estados_calidad_satelite": {
+    "valores_presentes": 1182
+  },
+  "equivalencias_observadas_entre_ventanas": [
+    {
+      "columna_a": "pl_ndvi_max_abr_oct",
+      "columna_b": "pl_ndvi_max_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    },
+    {
+      "columna_a": "pl_lai2_max_abr_oct",
+      "columna_b": "pl_lai2_max_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    },
+    {
+      "columna_a": "pl_ndvi_std_en_maximo_abr_oct",
+      "columna_b": "pl_ndvi_std_en_maximo_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    },
+    {
+      "columna_a": "s2_ndvi_max_abr_oct",
+      "columna_b": "s2_ndvi_max_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    },
+    {
+      "columna_a": "s2_ndwi_en_maximo_abr_oct",
+      "columna_b": "s2_ndwi_en_maximo_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    },
+    {
+      "columna_a": "s2_ndvi_std_en_maximo_abr_oct",
+      "columna_b": "s2_ndvi_std_en_maximo_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    },
+    {
+      "columna_a": "s2_hueco_max_abr_oct",
+      "columna_b": "s2_hueco_max_jun_oct",
+      "parcelas": 197,
+      "tipo": "igualdad_numerica_observada",
+      "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
+    }
+  ],
+  "diccionario_columnas": 75,
+  "roles_tabla_comun": {
+    "metadato": 5,
+    "objetivo": 1,
+    "predictor_candidato": 27,
+    "solo_auditoria": 1,
+    "calidad": 18
+  },
+  "etiquetas_sin_transformar": true,
+  "aprende_del_rendimiento": false,
+  "usa_meses_posteriores_al_corte": false,
+  "cierre_t07": false,
+  "estado_entrega": "integracion_por_bloques_para_revision"
 }

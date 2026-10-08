@@ -1,6 +1,7 @@
 # T07 · Contrato común y fases 0–2
 
-Responsable: Dani. Revisora: Jass. Estado al 8 de octubre: catálogo y base sincronizados; bloques aún sin integrar.
+Responsable: Dani. Revisora: Jass. Estado al 8 de octubre: catálogo + T06 integrados; clima real preparado sólo para revisión local.
+Ver [fase 3](t07_fase_3.md) para entrega, controles y pendientes actuales.
 Acuerdo de Dani del 7 de octubre de 2026. T07 avanza por bloques según el plan
 unificado corregido; el cálculo técnico no cierra tareas de otros integrantes.
 
@@ -71,9 +72,11 @@ como reconstrucción retrospectiva mientras no exista evidencia de disponibilida
 - diccionario_columnas.csv: definición, unidad, función, agregación y vacío.
 - controles.json y manifest.json: comprobaciones y huellas para reproducir.
 
-Ahora sólo se comparten catálogo, su diccionario, inventario, controles y
-manifiesto en registro/t07/. Las tablas climáticas se generarán después de
-incorporar y revisar la actualización de referencia T02 de T04. No se crean filas de relleno ni valores simulados.
+Ahora registro/t07/ contiene catálogo + T06, con diccionario, calidad, roles,
+inventario, controles y manifiesto. Las ventanas climáticas reales se calcularon
+sólo como borrador local en reports/ por autorización expresa de Dani el
+8 de octubre. Se incorporarán al registro tras revisar la actualización de
+referencia T02 de T04. No se crean filas de relleno ni valores simulados.
 La evidencia provisional anterior permanece sólo en reports/, ignorado.
 Originales inmutables.
 
@@ -85,13 +88,19 @@ La actualización de referencia T02 de T04 fue revalidada localmente en la rama
 `t04-actualizar-referencia-t02` (`7b2b4b4`); su publicación/revisión y posterior
 incorporación a dev siguen pendientes. T07 no incorpora esa rama sin revisión.
 El [registro de sincronización](t07_sincronizacion.md) conserva la evidencia.
-El modo --sin-clima prepara sólo catálogo y estados de bloques; registra T04
-como pendiente_integracion_revisada, sin generar valores. El modo climático
-rechaza una fuente marcada en_revision y referencias T02 incompatibles.
-El PR #10 de T03 sigue abierto y separado de estos cambios.
+t07_preparar.py --sin-clima conserva el modo inicial de catálogo y estados de
+bloques. t07_integrar.py --sin-clima añade T06 al catálogo. Ambos registran
+T04 pendiente, sin generar clima. El modo climático normal rechaza una fuente
+marcada en_revision y referencias T02 incompatibles.
+El PR #10 de T03 está cerrado sin merge en la consulta del 8 de octubre.
+La discrepancia de población para decidir entre T03 y D019/T08 sigue pendiente
+del acuerdo del equipo; no afecta a esta unión descriptiva.
 T05 no entregada se registra como pendiente, sin inventar relieve.
 Archivo faltante, NoData y bloque pendiente son situaciones distintas.
-La fase 2 tiene código y contrato preparados, pero no está terminada.
+La fase 2 está calculada y verificada en borrador real local; su aceptación e
+integración compartida siguen pendientes. t07_integrar.py --para-revision
+permite esa revisión sólo en reports/; el modo normal conserva el bloqueo de
+fuentes en_revision. Véase la fase 3.
 
 ## Guías y datos externos
 

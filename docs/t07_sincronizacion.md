@@ -1,5 +1,9 @@
 # T07 · Sincronización con dev y preparación del catálogo
 
+Actualización posterior del 8 de octubre: ver [fase 3](t07_fase_3.md).
+Catálogo + T06 ya integrados; ventanas reales sólo en borrador local para
+revisión. Este documento conserva la evidencia de la etapa anterior.
+
 8 de octubre de 2026. Rama: `t07-tabla-comun`. Responsable: Dani. Revisora: Jass.
 Base compartida incorporada: `11d947098d8d6e56902a7f09a2c75953f09fdb21`.
 Merge local: `b615810a93727a990a71dbda36938b7a0c1d003b`.
@@ -57,5 +61,4 @@ publicación, revisión de Jass e incorporación a dev; luego se actualizará T0
 
 T07 conserva catálogo y código de ventanas preparado. Aún no integra valores
 climáticos, variables satelitales o relieve. Las siguientes fases trabajarán con
-las entregas reales; T05 no aparece en la base identificada. El PR #10 de T03
-sigue abierto y separado. No se entrenan modelos ni cambian reglas de selección.
+las entregas reales; T05 no aparece en la base identificada. El PR #10 de T03 está cerrado sin merge en la consulta posterior del 8 de octubre. No se entrenan modelos ni cambian reglas de selección.

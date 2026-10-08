@@ -1,6 +1,9 @@
 {
-  "schema": "t07_inventario_v1",
+  "schema": "t07_inventario_v2",
   "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+  "corte_observacional": "2025-10-31",
+  "alcance": "Reconstrucción retrospectiva; fecha observada no acredita disponibilidad histórica",
+  "cierre_t07": false,
   "bloques": {
     "T02": {
       "estado": "base_dev_identificada",
@@ -16,35 +19,31 @@
       "estado": "protocolo_base_identificado_corte_provisional",
       "archivos_sha256": {
         "docs/T03_protocolo_evaluacion.md": "4a477a3fc28383070057e2a568cbd08d30d4a61eddf54fe90496d47bf0aaf423"
-      }
+      },
+      "reglas_evaluacion_no_modificadas": true
     },
     "T04": {
       "estado": "pendiente_integracion_revisada",
       "integrado_en_t07": false,
-      "valores_generados": false,
-      "accion": "Verificar referencia T02 y revalidación T04 antes de integrar; no generar valores provisionales"
+      "valores_generados": false
     },
     "T05": {
       "estado": "sin_entrega_identificada_en_esta_base",
-      "integrado": false
+      "integrado": false,
+      "valores_generados": false
     },
     "T06": {
       "estado": "integrado_en_base_dev_aceptacion_no_inferida",
-      "integrado_en_t07": false,
+      "integrado_en_t07": true,
       "archivos_sha256": {
         "registro/t06/variables_satelitales.csv": "8e38ad80e7befb7b82261353914862e17d98be0425dd755a12c001191dfe17eb",
         "registro/t06/variables_satelitales_diccionario.csv": "7eb336bdb87ae6e8dfe96f5b03c27691c47d846108635fb476ae467e3e356528",
-        "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a"
+        "registro/t06/cobertura_ventana.csv": "8223ab0ce13f080926d651dd23017d3fbab2cb84407a1c252cc41a0be53a0bb1",
+        "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a",
+        "scripts/t06_satelite.py": "01b2b46a27df19a8cc93ca7f6f76789c61aeabe508707224c0e4425c14e73c28"
       },
-      "ids": 197,
-      "columnas": 45,
-      "entradas_diccionario": 44
+      "columnas": 44,
+      "conciliaciones_cobertura": 1182
     }
-  },
-  "fases_con_datos": [
-    0,
-    1
-  ],
-  "fase_2": "codigo_preparado_pendiente_fuente_T04",
-  "cierre_t07": false
+  }
 }

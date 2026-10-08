@@ -1,21 +1,32 @@
 {
-  "schema": "t07_catalogo_sin_clima_v1",
+  "schema": "t07_integracion_bloques_v1",
   "codigo_sha256": {
+    "scripts/t07_integrar.py": "83f18f573cc2e53914f1debc3f4d28e97291943212296d86b93031a988dfbac6",
+    "scripts/t07_satelite.py": "c6835712d9956a25cd3950afd5ed00bc8c620fe2d9090651e32ccb9cd107805c",
     "scripts/t07_preparar.py": "35751326766ab64c956dea6f982c5cccde981edfe07e5abc17a424efa3794d3f",
     "scripts/t07_fuentes.py": "65823be11b72a0e0ebf024e7197e6e512b6c86b8f62b95f023e747e295874e2c",
     "scripts/t07_ventanas.py": "5a9ecce92746b27ff847ec18d609975d4708b273b1137567f2773a67c49b1017",
     "scripts/t07_diccionario.py": "fb71c4855ba3c65c04eafc07077b98a21c97cacf132575fa77707554367260e4",
-    "scripts/t07_preparar_insumos.py": "c2099ba4ebb12dd7830039bbbaba22381abbb871f14a8ad3421f1d0e626dbe44"
+    "scripts/t07_preparar_insumos.py": "c2099ba4ebb12dd7830039bbbaba22381abbb871f14a8ad3421f1d0e626dbe44",
+    "scripts/t07_verificar.py": "ffb58446fa995f55e37be93dcc4205d37346b355da96000ebcdfb3eda99a31d1"
   },
   "entradas": {
-    "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21"
+    "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+    "revision_t04": null
   },
   "archivos_sha256": {
+    "calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
     "catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
-    "controles.json": "f15681f08ce68e5850d34cb571488b92dc32251c6bd701860187c1c4270193df",
-    "diccionario_columnas.csv": "b04dc72fd7337d6a27a171dd7d4375e674c5a52cc004c001351805260a3622c0",
-    "inventario_fuentes.json": "25221953b4067397d54b6759457996c3f7351a74ad3eabc3046f23c5ed7aaba6"
+    "contrato_columnas.json": "f1c66cc7bfb0faac73ce7f1db7cb19da19708e523a89756451d67df77aabd329",
+    "controles.json": "80000bee79ec98150581c1b89e6ec4e76a65ab0bfe3fdfbd5116dfecfc1d2db5",
+    "diccionario_columnas.csv": "03be7050d56b611c8ae88ac45979d21950041e70663fd9c91c166bb2f087d09a",
+    "inventario_fuentes.json": "59b19560921daa10adff1eb41cab82515c6289533a3494468820de40b7040e29",
+    "tabla_comun.csv": "5295279b6ecbc12e778d7c6b7d31b54805c68342953b0db231ab4804e76c4ed6"
   },
-  "clima": "pendiente_integracion_revisada",
+  "estado_entrega": "integracion_por_bloques_para_revision",
+  "clima_integrado": false,
+  "clima_aceptado": false,
+  "metodo_temperatura": "ponderado_por_dias_naturales",
+  "metodo_lluvia": "suma_de_medias_espaciales_mensuales",
   "cierre_t07": false
 }
