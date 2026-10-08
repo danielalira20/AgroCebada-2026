@@ -270,14 +270,14 @@
   "fuente_archivos_sha256": {
     "clima_parcela_mes.csv": "5618a69b4f109923b049f0c52c8278726ee72068970a2bba91705f63ac227bdf",
     "soportes.json": "e38f958b80a58432a84c54a41240cc404dd2ed0ade8600157d1481e12efa957b",
-    "manifest.json": "cb15b3b4eaf50fae62b124cc75e50a168a794a6fcf1a80e3658346104e2c7a08",
+    "manifest.json": "8033eb53d6cce0e754ad49198d257c3ea4167a25b4855181aaaca51cf662a2ca",
     "controles.json": "5e6b59c7c4ca492b36dda6be8c3591a4c01d7afc6ce5092c52ea5da56a5104b3"
   },
   "codigo_entrega_sha256": "df1679bd39b023b5fd123d2bf000eee95086c4d48b2952a91ceaa69bb16c4c92",
   "archivos_sha256": {
     "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
-    "procedencia.json": "29978dac0966f4f2f96b31ccb7618da7b334a39875ea81d7507e5d062ef712ad",
-    "conciliacion_t02.json": "755d72adfba975115f646e13d9b5cab4ecde07c4e13582d6b04a6bc6cb57feff",
+    "procedencia.json": "7e3e0c59d61f16946e99a52e547bc84f343e4929f60f5aac22e6571144ccdae9",
+    "conciliacion_t02.json": "1c69bd71d8d9c7a79b49fc4b0ade16157ac84807ce84acd4554f0596c15d0aa2",
     "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce"
   },
   "cierre_t04": false

@@ -1,15 +1,15 @@
 {
   "estado": "conciliada_con_referencia_identificada",
-  "revision_t02": "eef8d95ae47d45d877d5a32f769ad01dec2c92fc",
-  "referencia_sha256": "28075454e3d8f767141dd81bfc34948f54911f110c4756fba7e104f057e4ad33",
+  "revision_t02": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+  "referencia_sha256": "8b84ad9f7dc93ac77a9693574f7251878bf70c41d1957a4514cdc260dfb8790f",
   "archivos_t02_sha256": {
     "tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
     "tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
-    "tablas/huellas_archivos_leidos.csv": "4c91d2c89b8cb784653078f919ba292ac5e710b00e150fdb54704f178ebc9726",
-    "scripts/construir_catalogo.py": "e21c423015a1554bd1debcf78e29b1ae59b8e6388d5dcf7bbbb8f87e500549aa",
-    "scripts/diagnosticar_soporte.py": "0cbe2b49fdd766bc637f2217f108b78b3e8807f17a46bf2aec5e923b888728eb"
+    "tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86",
+    "scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
+    "scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d"
   },
-  "origen": "referencia espacial filtrada de tablas identificadas",
+  "origen": "tablas locales verificadas",
   "ids_verificados": 197,
   "areas_origen_iguales": 197,
   "celdas_principales_iguales": 197,

@@ -1,5 +1,7 @@
 # T04 · Entrega mensual al equipo y correcciones de revisión
 
+**Actualización del 8 de octubre:** la referencia T02 y los metadatos de conciliación fueron revalidados sobre la T02 corregida integrada en dev. Véase [actualización de referencia y evidencia](t04_referencia_t02.md). El CSV climático permanece idéntico; la nueva publicación/revisión sigue pendiente. El apartado del 7 de octubre que sigue conserva la historia de la entrega inicial.
+
 7 de octubre de 2026. Rama de Dani: `daniela-dev`. Esta actualización incorpora las correcciones de los puntos 1–4 al PR 6 con destino `dev`, con publicación autorizada por Dani el 7 de octubre. Permanece pendiente la nueva revisión de Jass. No se integró `dev` en esta rama. Jass informó una validación independiente del cálculo; esta revisión resuelve entrega, trazabilidad y conciliación, y requiere su revisión de los cambios nuevos. No marca T04 cerrada.
 
 ## Archivos compartidos

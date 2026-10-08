@@ -5392,7 +5392,7 @@
     "PROJ": "9.8.1",
     "GDAL": "3.10.3"
   },
-  "requirements_sha256": "09c6d169fce6985995a19dde4ad05a77af9d01154a89ea8eefbf325233e66389",
+  "requirements_sha256": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
   "python": "3.12.15",
   "soportes": [
     {
