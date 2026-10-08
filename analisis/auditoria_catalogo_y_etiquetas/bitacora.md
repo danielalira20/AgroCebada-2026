@@ -815,3 +815,22 @@ Una integrante del equipo señaló tres observaciones sobre el protocolo de T03.
 **Comprobado después de ajustar,** desde la raíz del repositorio y con el entorno del `requirements.txt`: los cinco scripts corren con sus opciones por omisión y las 15 tablas salen idénticas a las copiadas.
 
 **El original de esta auditoría se mantiene en la carpeta local de Jass.** Si algo cambia, se cambia ahí primero y se vuelve a copiar aquí.
+
+### 7 de octubre de 2026 — Revisión del PR y segunda ronda de correcciones
+
+**Contexto.** Después del PR de la rama `fix/observaciones-revision-t02-t03`, Migue y Dani comentaron. Se auditaron sus comentarios sin editar nada y Jass aprobó un plan de seis pasos. Se trabajó en la rama, sin entrenar modelos y sin tocar el dataset original.
+
+**Ronda anterior (6 commits ya hechos):** acotar conclusiones, documentar la preparación de los datos y las columnas «solo auditoría», regenerar las huellas, añadir `pares_de_parcelas_cercanas.csv`, corregir el protocolo T03 y los supuestos del registro.
+
+**Esta ronda:**
+
+- **Registro.** Se corrigió el supuesto de D003 (el protocolo fija el bootstrap por bloques espaciales y el estrato `otros` como especificación; todavía no están implementados en `scripts/t03_evaluacion.py`) y la revisión de IA003 (misma corrección). Se verificó que `decisiones.csv` (17 filas) y `uso_ia.csv` (12 filas) tienen columnas uniformes y ningún identificador repetido.
+- **Comparador de tablas.** Se rehízo para que lea `esquema_de_tablas.csv` (tipo, decimales y tolerancia por columna) y compare además con la tabla de referencia. Antes aceptaba un entero convertido en decimal (`5` a `5.1`) porque deducía el tipo de los propios valores. Se aplicaron las dos propuestas: el esquema declarado (alternativa de Dani) y la referencia.
+- **Error cuando no hay nada que comparar.** Antes, con carpetas vacías o mal escritas, el comparador terminaba con «0 distintas» y código 0. Ahora termina con error. Fue una omisión mía: solo se habían probado los casos esperados.
+- **Defecto encontrado al repetir todo:** el comparador buscaba Git desde la carpeta de las tablas nuevas, por lo que fallaba si estaban fuera del repositorio. Ahora busca Git desde la carpeta de esta auditoría. Se añadió una prueba.
+- **Pruebas.** `probar_comparar_tablas.py` pasó de 7 a 20 pruebas (decimales, enteros, valores copiados, esquema mal escrito, referencia fuera del esquema, carpetas vacías o inexistentes, tabla que falta o sobra, referencia de Git con tablas fuera del repositorio). Con la versión anterior, los casos `5` a `5.1` y `5` a `5.01` se aceptaban como «tolerancia».
+- **Protocolo T03 (texto).** Se anotó la aceptación de la sección 4 bis, el dato de que 24 de las 59 reservadas tienen una etiquetada a menos de 20 m (y 70 de las 138 etiquetadas tienen otra), que A sigue como principal y que B es obligatorio para todos los modelos, y el cambio de la regla `IC95_celdas` declarado por Migue como posterior a ver los resultados de T08. Esto último es declaración de Migue y no está verificado, porque el código y los resultados de T08 no están en el repositorio.
+
+**Repetición completa** (desde la raíz del repositorio, en Linux, con Python 3.12 y las dependencias de `dev`; salida en una carpeta temporal para no tocar `tablas/`): los cinco scripts terminaron sin errores, 60 de 60 comprobaciones, y el comparador dio 16 iguales, 0 dentro de la tolerancia, 0 distintas, 0 sin esquema. Pasaron 7 y 20 pruebas de la auditoría y 68 de `tests/`. **Ningún resultado ni ninguna tabla cambió.**
+
+**No comprobado:** la repetición en Mac, Windows y Docker sigue pendiente.

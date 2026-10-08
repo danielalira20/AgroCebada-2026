@@ -129,19 +129,27 @@ Si el dataset está en otro lugar, cambia la ruta de `--datos`. Todo junto tarda
 python analisis/auditoria_catalogo_y_etiquetas/scripts/comparar_tablas_con_referencia.py
 ```
 
-Debe terminar con «0 distintas». El comparador usa estas reglas:
+Debe terminar con «0 distintas» y con «0 sin esquema». La última línea también dice cuántas tablas son iguales y cuántas lo son solo dentro de la tolerancia.
 
-| Tipo de dato | Qué se acepta |
+**El comparador no adivina qué es cada columna: lo lee de `esquema_de_tablas.csv`,** que declara para cada columna de cada tabla su tipo (texto, entero o decimal), cuántos decimales lleva y qué diferencia se acepta. Reglas:
+
+| Tipo declarado | Qué se acepta |
 |---|---|
-| Fin de línea (Windows o Mac/Linux) | No se toma en cuenta |
-| Texto, enteros, marcas `si`/`no` y huellas | Deben coincidir exactamente |
-| Columnas con decimales | Hasta una unidad del último decimal escrito: por ejemplo 0.000001 ha en `area_ha_geodesica` o 0.1 m en una distancia |
+| Fin de línea (Windows o Mac/Linux) y marca BOM | No se toman en cuenta |
+| Texto y enteros (incluidas las marcas `si`/`no` y las huellas) | Deben coincidir exactamente. Un entero que pasa a decimal (`5` a `5.1`) es una diferencia, aunque sea pequeña |
+| Decimal copiado del dataset original (por ejemplo `rendimiento_t_ha`) | Debe coincidir exactamente: la tolerancia es 0 |
+| Decimal calculado | Hasta una unidad del último decimal declarado: por ejemplo 0.000001 ha en `area_ha_geodesica` o 1 m en `distancia_conocida_mas_cercana_m` |
+| Celda vacía | Significa «no hay dato» y se acepta en cualquier tipo; que un valor aparezca o desaparezca es una diferencia |
+
+El comparador **termina con error** (no con «0 distintas») si: una carpeta no existe o no tiene tablas; falta o sobra una tabla; una tabla no está en el esquema; o las tablas de referencia no cumplen el propio esquema. Esto evita que una comparación vacía parezca un éxito.
 
 Esa tolerancia existe porque el redondeo del último decimal puede cambiar con otro sistema operativo o con otra versión de las librerías. No se afirma que las tablas salgan idénticas byte a byte en cualquier computadora.
 
+**Costo de mantener el esquema:** cada vez que se agregue, quite o cambie una columna de una tabla hay que editar también `esquema_de_tablas.csv` (una fila por columna). Si se olvida, el comparador marca la columna como «sin esquema» y la prueba `test_el_esquema_del_repositorio_describe_las_tablas_guardadas` falla. A cambio, un cambio de tipo en una columna no pasa inadvertido.
+
 **Si una tabla sale distinta:** el comparador dice en qué tabla, línea y columna. Revisa primero las dos tablas de huellas: si la huella de un archivo cambió, ese archivo no es igual al que se usó aquí. Si las huellas coinciden y aun así hay diferencias mayores a la tolerancia, la causa está en el entorno (versiones de las librerías) o en los scripts; anota el caso en el registro en lugar de descartarlo.
 
-**Pruebas de los scripts:** `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_area_geodesica.py` y `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_comparar_tablas.py`. No leen el dataset; cada una debe terminar con «7 de 7 pruebas cumplen».
+**Pruebas de los scripts:** `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_area_geodesica.py` (debe terminar con «7 de 7 pruebas cumplen») y `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_comparar_tablas.py` (debe terminar con «20 de 20 pruebas cumplen»). No leen el dataset; la segunda usa carpetas temporales y solo lee `tablas/` y el esquema del repositorio.
 
 Los scripts solo leen el dataset. Además leen dos archivos del repositorio: `analisis/exploracion_parcelas_qgis/revision_contornos/revision_contornos.csv` y `registro/t03/soporte_parcelas.csv`.
 
