@@ -1,7 +1,7 @@
 # T03 · Protocolo de evaluación común
 
 - **Responsable:** Migue. **Revisora:** Jass.
-- **Estado:** En revisión. Borrador del 5 de octubre de 2026.
+- **Estado:** En revisión. Borrador del 5 de octubre de 2026, con correcciones del 6 de octubre (sección 9).
 - **Artefactos:** `scripts/t03_evaluacion.py` y, en `registro/t03/`, `particiones.csv`, `soporte_parcelas.csv` y `soporte_resumen.csv`.
 - **Reproducir:** desde la raíz del repositorio, `python scripts/t03_evaluacion.py --datos RUTA/DATASET_RETO_AGRO_2026` (escribe en `registro/t03/`). El dataset no se versiona.
 
@@ -57,7 +57,7 @@ Los datos completos están en `registro/t03/soporte_resumen.csv`. Ninguna cifra 
   - **Remuestreo:** 5000 réplicas con reemplazo, semilla 20261006. Intervalo por percentiles 2.5 y 97.5 (`IC95_celdas`).
   - **Referencia:** también se reporta el bootstrap de parcelas independientes (`IC95_parcelas`), pero **la regla de decisión usa `IC95_celdas`**.
   - **Limitaciones:** (1) sólo 23 bloques, y dos de ellos tienen 34 parcelas cada uno, así que el intervalo es ancho e inestable en las colas; (2) captura la dependencia dentro de cada celda, no la que hay entre celdas vecinas; (3) las 5 repeticiones reutilizan las mismas parcelas, por lo que el ΔMAE por parcela no es una observación nueva; (4) es un intervalo de la diferencia de desempeño en estas 138 parcelas, no una garantía para las 59 ni para otra campaña.
-  - **Respaldo de T02 (Jass):** la auditoría de catálogo y etiquetas encontró que, en los municipios de etiqueta gruesa, las parcelas vecinas suelen compartir el mismo valor de rendimiento (7 de 8 pares vecinos en Calpulalpan/Emiliano Zapata); por eso no deben tratarse como observaciones independientes al calcular esta incertidumbre.
+  - **Respaldo de T02 (Jass):** la auditoría de catálogo y etiquetas encontró que, en los municipios de etiqueta gruesa, las parcelas vecinas suelen compartir el mismo valor de rendimiento (7 de 8 pares de parcelas etiquetadas con orillas a menos de 20 m en la escritura `Cebada`: Calpulalpan, Emiliano Zapata y Apan); por eso no deben tratarse como observaciones independientes al calcular esta incertidumbre.
 - **Regla para promover un candidato sobre otro más simple.** Deben cumplirse las tres condiciones:
   1. ΔMAE ≤ −0.01 t/ha (umbral de diferencia práctica);
   2. el límite superior del IC95 por bloques espaciales (`IC95_celdas`) es < 0;
@@ -68,18 +68,41 @@ Los datos completos están en `registro/t03/soporte_resumen.csv`. Ninguna cifra 
 - **Disponibilidad:** un candidato sólo es elegible si puede producir una predicción finita para las 59 reservadas con un respaldo declarado.
 - **Si FIRA confirma RMSE como métrica oficial,** se intercambian los papeles de MAE y RMSE en la regla, con los mismos umbrales.
 
+## 4 bis. Reportes por calidad de observación y parcelas vecinas (integración con T02)
+
+Añadido el 6 de octubre a partir de la auditoría de T02 y de la revisión de Dani. **No cambia la regla de decisión de la sección 4:** son reportes adicionales y límites declarados.
+
+- **Fuente única de las parcelas.** El catálogo es `analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv`. Equivalencias de nombres mientras no se unifiquen: `ID_POLIGONO` de este protocolo = `id_parcela` del catálogo y del contrato de datos; `grupo_registro` = `cultivo_origen`.
+- **Población principal.** Las 138 parcelas etiquetadas, sin quitar ninguna. Es la misma para todos los candidatos y es la que usa la regla de decisión.
+- **Desglose obligatorio del error,** además de por municipio y por grupo de registro:
+  - por categoría de contorno (`contorno_categoria`: A frente a B o C);
+  - por la marca `contorno_angosta_o_muy_pequena`;
+  - por escalón de la etiqueta del municipio (0.5, 0.1 y 0.01 t/ha; tabla `precision_etiqueta_por_municipio.csv`). En los municipios de escalón 0.5, un error menor a 0.25 t/ha está por debajo de lo que la etiqueta distingue.
+- **Sensibilidad secundaria.** Repetir las métricas sin las 24 parcelas etiquetadas con contorno B o C o con la marca de angosta o muy pequeña, y reportar si el orden de los candidatos se mantiene. Mide estabilidad; no decide. Que la ventaja de un candidato se concentre en esas 24 es motivo para revisarlo, no prueba de que la mejora sea irreal.
+- **Parcelas vecinas: límite declarado del escenario A.** `analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv` lista los pares con orillas a menos de 20 m. Con las particiones actuales:
+
+  | Pares de parcelas etiquetadas (× 5 repeticiones) | Separados en A | Separados en B |
+  |---|---|---|
+  | Los 9 pares vecinos con el mismo rendimiento (45) | 37 | 0 |
+  | Los 45 pares con orillas a menos de 20 m (225) | 190 | 23 |
+
+  En A, una parcela suele evaluarse con su vecina en el entrenamiento; cuando además comparten rendimiento, el error de A queda favorecido. B mantiene juntos todos los pares de igual rendimiento, y por eso se conserva como sensibilidad obligatoria. Agrupar por municipio no basta: AGC_164 (Apan) es vecina de AGC_023 y AGC_170 (Calpulalpan) y las tres tienen el mismo rendimiento.
+- **Qué tan cerca están las reservadas de una etiquetada.** 24 de las 59 reservadas tienen una parcela etiquetada con orillas a menos de 20 m (y 70 de las 138 etiquetadas tienen otra etiquetada a esa distancia), según `pares_de_parcelas_cercanas.csv`. Por eso el error se reporta aparte para las parcelas con vecina etiquetada a menos de 20 m y para las que no la tienen.
+- **Escenarios A y B: qué decide cada uno.** **A sigue siendo la evaluación principal** (sección 3). **B es obligatorio para todos los candidatos**, no sólo para los que usan ubicación o vecinos, para que la comparación entre modelos sea la misma. B no cambia la regla de decisión: sirve para ver si la ventaja de un candidato se sostiene cuando las vecinas con el mismo rendimiento quedan juntas.
+- **Columnas que no pueden ser variables de un modelo.** Las que salen del rendimiento, listadas en `analisis/auditoria_catalogo_y_etiquetas/diccionario_columnas.md` (sección «Columnas que salen del rendimiento: solo auditoría»).
+
 ## 5. Selección interna y presupuesto de búsqueda
 
 - Todo lo que se aprende de los datos se ajusta **dentro** de cada entrenamiento externo: imputación, escalado, referencias municipales, selección de variables, filtros, ventanas e hiperparámetros.
 - **Selección interna:** 4 particiones estratificadas dentro de cada entrenamiento externo, con semilla fija igual a 0.
-  - **Estrato** = municipio, si tiene al menos 4 etiquetas en ese entrenamiento; los municipios con menos de 4 (Apan, Tepeapulco, Nanacamilpa y, según la partición, Emiliano Zapata) se agrupan en un estrato común `otros`. Así ninguna partición interna queda vacía de un estrato y no se descarta ninguna parcela.
+  - **Estrato** = municipio, si tiene al menos 4 etiquetas en ese entrenamiento; los municipios con menos de 4 (Apan, Tepeapulco, Nanacamilpa y Emiliano Zapata, que tienen 1, 1, 1 y 3 etiquetas en total y por eso quedan por debajo de 4 en los 25 entrenamientos del escenario A) se agrupan en un estrato común `otros`. Así ninguna partición interna queda vacía de un estrato y no se descarta ninguna parcela.
 - **Municipios con muy pocas etiquetas (regla para todos los candidatos):** ninguna parcela se elimina. Cuando una parcela que se evalúa no tiene ejemplos de su municipio en el entrenamiento (por ejemplo, en la repetición 1 del escenario A: AGC_047 de Tepeapulco, AGC_048 de Nanacamilpa y AGC_164 de Apan), el candidato usa este respaldo, en orden:
   1. la referencia de su **grupo de registro** (`Cebada`/`CEBADA`), calculada con el entrenamiento;
   2. si el grupo tampoco tiene ejemplos, la referencia **global** del entrenamiento.
   - Los candidatos con respaldo "global" declarado (como el del piloto) saltan el paso 1.
   - Los modelos con variables (T09–T15) aplican el mismo respaldo a su término municipal; sus variables propias se usan igual.
-  - Cada predicción registra qué respaldo usó (columna `fuente`), y T08 reporta cuántas veces se activa (`activacion_respaldos.csv`): 15 de 690 predicciones en el escenario A y ninguna en las 59 reservadas.
-  - **Coincide con T02 (Jass):** el catálogo confirma que Apan, Nanacamilpa y Tepeapulco tienen una sola parcela conocida cada uno, por lo que su finura de etiqueta no se puede determinar; es el mismo motivo por el que se agrupan en `otros`.
+  - Cada predicción registra qué respaldo usó (columna `fuente`), y T08 reportará cuántas veces se activa (`activacion_respaldos.csv`; ese archivo todavía no está en el repositorio). Con las particiones de `registro/t03/particiones.csv` se activa en 15 de 690 predicciones del escenario A (las tres parcelas únicas de su municipio, en las 5 repeticiones) y en ninguna de las 59 reservadas.
+  - **Coincide con T02 (Jass):** el catálogo confirma que Apan, Nanacamilpa y Tepeapulco tienen una sola parcela conocida cada uno, por lo que el escalón de su etiqueta no se puede determinar; es el mismo motivo por el que se agrupan en `otros`.
 - **Presupuesto por frente:** una familia de modelo y como máximo 8 configuraciones (por ejemplo, 6–8 valores de α en Ridge o Huber). Cualquier búsqueda mayor cuenta como otro experimento y se registra.
 - **Candidatos admitidos en T08–T16:**
   - Mediana global.
@@ -110,5 +133,8 @@ Archivo `predicciones_oof_<frente>_<candidato>.csv` con las columnas `ID_POLIGON
 ## 9. Pendientes que no bloquean T08
 
 - Respuesta de FIRA sobre la métrica y el corte. Si llega, se actualizan las secciones 4 y 6, con fecha.
-- **Correcciones del 6 de octubre** (observaciones de Dani, corroboradas por la auditoría de T02 de Jass): descripción del escenario B ajustada a los CSV; regla escrita para municipios con pocas etiquetas y estratos internos; especificación del intervalo por bloques espaciales, ya aplicado en T08.
+- **Correcciones del 6 de octubre** (observaciones de Dani, corroboradas por la auditoría de T02 de Jass): descripción del escenario B ajustada a los CSV; regla escrita para municipios con pocas etiquetas y estratos internos; especificación del intervalo por bloques espaciales.
+- **Qué falta implementar.** `scripts/t03_evaluacion.py` genera las particiones y el diagnóstico de soporte; todavía no implementa el intervalo por bloques (`IC95_celdas`), el estrato `otros` ni el respaldo. El código y los resultados de T08 no están en el repositorio. Hasta que lo estén, esas tres reglas valen como especificación escrita, no como algo ya comprobado.
+- **Añadido de la revisora (Jass) el 6 de octubre:** sección 4 bis, con los reportes por calidad de observación y el tratamiento de las parcelas vecinas. No cambia la regla de decisión. Migue lo revisó en el PR, recalculó las cifras y lo deja como está (declaración de Migue; esta línea la anota la revisora).
+- **Cambio de regla declarado después de ver resultados.** La regla de decisión con `IC95_celdas` (bootstrap por bloques de celda CHIRPS) se escribió después de que Migue ya había visto los resultados de T08 calculados con el intervalo por parcelas. Lo motivó la observación de Dani sobre parcelas vecinas con el mismo rendimiento. Según Migue, la regla es más estricta que la anterior, no cambia el ganador en el escenario A y en B la mejora queda inconclusa. Es declaración de Migue; la revisora no la ha verificado porque el código y los resultados de T08 no están en el repositorio. Migue la registrará cuando suba T08.
 - Conciliar con T04 la celda climática cuando un polígono toca 2 o 3 celdas. El escenario B usa la celda del centroide.

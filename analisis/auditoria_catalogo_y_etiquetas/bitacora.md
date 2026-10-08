@@ -312,7 +312,7 @@ Apan (3), Nanacamilpa (2.5) y Tepeapulco (4.45) tienen una sola parcela conocida
 
 - Como referencia, entre dos parcelas cualesquiera de un mismo municipio de escalón 0.5, el rendimiento coincide en 150 de 438 pares (34 %); entre vecinas pegadas, en 7 de 8.
 - Por distancia entre centros dentro del mismo municipio: en los de escalón 0.5, 4 de 5 pares a menos de 250 m coinciden; en Singuilucan, 6 de 12 a menos de 500 m, frente a 15 de 120 a cualquier distancia; en los de escalón 0.01, 0 de 64 a menos de 500 m. Esto último confirma lo anotado en una auditoría previa.
-- Los nueve pares vecinos con rendimiento idéntico: AGC_019 y 103; AGC_020 y 044; AGC_023 y 164; AGC_023 y 170; AGC_164 y 170; AGC_053 y 117; AGC_157 y 163 (escritura `Cebada`); AGC_041 y 166; AGC_089 y 148 (Singuilucan). Las 16 parcelas están en A.
+- Los nueve pares vecinos con rendimiento idéntico: AGC_019 y 103; AGC_020 y 044; AGC_023 y 164; AGC_023 y 170; AGC_164 y 170; AGC_053 y 117; AGC_157 y 163 (escritura `Cebada`); AGC_041 y 166; AGC_089 y 148 (Singuilucan). Las 15 parcelas están en A. (Corregido el 6 de octubre: decía 16; AGC_023, 164 y 170 forman un trío y se habían contado de más.)
 - AGC_023, 164 y 170 son las tres parcelas juntas sobre el límite entre Hidalgo y Tlaxcala: las tres tienen 3 t/ha, aunque una es de Apan y dos de Calpulalpan.
 - AGC_089 y 148, y AGC_157 y 163, son justo los dos pares en los que el piloto de la exploración en QGIS dudó si había una orilla clara entre ambas.
 
@@ -815,3 +815,46 @@ Una integrante del equipo señaló tres observaciones sobre el protocolo de T03.
 **Comprobado después de ajustar,** desde la raíz del repositorio y con el entorno del `requirements.txt`: los cinco scripts corren con sus opciones por omisión y las 15 tablas salen idénticas a las copiadas.
 
 **El original de esta auditoría se mantiene en la carpeta local de Jass.** Si algo cambia, se cambia ahí primero y se vuelve a copiar aquí.
+
+### 7 de octubre de 2026 — Revisión del PR y segunda ronda de correcciones
+
+**Contexto.** Después del PR de la rama `fix/observaciones-revision-t02-t03`, Migue y Dani comentaron. Se auditaron sus comentarios sin editar nada y Jass aprobó un plan de seis pasos. Se trabajó en la rama, sin entrenar modelos y sin tocar el dataset original.
+
+**Ronda anterior (6 commits ya hechos):** acotar conclusiones, documentar la preparación de los datos y las columnas «solo auditoría», regenerar las huellas, añadir `pares_de_parcelas_cercanas.csv`, corregir el protocolo T03 y los supuestos del registro.
+
+**Esta ronda:**
+
+- **Registro.** Se corrigió el supuesto de D003 (el protocolo fija el bootstrap por bloques espaciales y el estrato `otros` como especificación; todavía no están implementados en `scripts/t03_evaluacion.py`) y la revisión de IA003 (misma corrección). Se verificó que `decisiones.csv` (17 filas) y `uso_ia.csv` (12 filas) tienen columnas uniformes y ningún identificador repetido.
+- **Comparador de tablas.** Se rehízo para que lea `esquema_de_tablas.csv` (tipo, decimales y tolerancia por columna) y compare además con la tabla de referencia. Antes aceptaba un entero convertido en decimal (`5` a `5.1`) porque deducía el tipo de los propios valores. Se aplicaron las dos propuestas: el esquema declarado (alternativa de Dani) y la referencia.
+- **Error cuando no hay nada que comparar.** Antes, con carpetas vacías o mal escritas, el comparador terminaba con «0 distintas» y código 0. Ahora termina con error. Fue una omisión mía: solo se habían probado los casos esperados.
+- **Defecto encontrado al repetir todo:** el comparador buscaba Git desde la carpeta de las tablas nuevas, por lo que fallaba si estaban fuera del repositorio. Ahora busca Git desde la carpeta de esta auditoría. Se añadió una prueba.
+- **Pruebas.** `probar_comparar_tablas.py` pasó de 7 a 20 pruebas (decimales, enteros, valores copiados, esquema mal escrito, referencia fuera del esquema, carpetas vacías o inexistentes, tabla que falta o sobra, referencia de Git con tablas fuera del repositorio). Con la versión anterior, los casos `5` a `5.1` y `5` a `5.01` se aceptaban como «tolerancia».
+- **Protocolo T03 (texto).** Se anotó la aceptación de la sección 4 bis, el dato de que 24 de las 59 reservadas tienen una etiquetada a menos de 20 m (y 70 de las 138 etiquetadas tienen otra), que A sigue como principal y que B es obligatorio para todos los modelos, y el cambio de la regla `IC95_celdas` declarado por Migue como posterior a ver los resultados de T08. Esto último es declaración de Migue y no está verificado, porque el código y los resultados de T08 no están en el repositorio.
+
+**Repetición completa** (desde la raíz del repositorio, en Linux, con Python 3.12 y las dependencias de `dev`; salida en una carpeta temporal para no tocar `tablas/`): los cinco scripts terminaron sin errores, 60 de 60 comprobaciones, y el comparador dio 16 iguales, 0 dentro de la tolerancia, 0 distintas, 0 sin esquema. Pasaron 7 y 20 pruebas de la auditoría y 68 de `tests/`. **Ningún resultado ni ninguna tabla cambió.**
+
+**No comprobado:** la repetición en Mac, Windows y Docker sigue pendiente.
+
+### 8 de octubre de 2026 — Detalles finales del comparador
+
+**Contexto.** En la segunda revisión del PR, Migue comprobó que las cifras de parcelas vecinas (87 pares, 45 entre etiquetadas, 70 de 138 y 24 de 59) le salen iguales, que su T08 corre igual con la copia que crea `preparar_copia_del_dataset.py` y que el comparador se comporta bien con vacíos, BOM, filas reordenadas, repetidas o faltantes y `0.0` frente a `-0.0`. Señaló dos detalles que no bloqueaban.
+
+**Los dos detalles de Migue, comprobados antes de corregir:**
+
+- El mensaje «Ninguna tabla resultó igual: revisa las rutas» salía también cuando solo una tabla era distinta. Se quitó: con carpetas vacías o mal escritas el comparador ya termina con error, así que el mensaje sobraba.
+- El comparador rechazaba `1e-3`, `1E-3` y `1e-05`, que es como pandas escribe los números muy chicos. Ninguna de las 16 tablas actuales los tiene, pero podría pasar en tablas futuras. Ahora se aceptan en los decimales y se comparan por su valor.
+
+**Huecos que se encontraron al revisar el comparador y se cerraron** (cada uno con una prueba que falla con la versión anterior):
+
+- Aceptaba dígitos de otros alfabetos como números (por ejemplo `١٢٣`). Ahora solo valen los dígitos 0 a 9.
+- Si la carpeta de referencia era la misma que la de las tablas nuevas, decía «igual» sin comparar nada. Ahora termina con error.
+- Un archivo que no era UTF-8, un campo de más de 131 072 caracteres o un subdirectorio llamado `algo.csv` producían un error de Python con mucho texto. Ahora dan un mensaje claro (o se ignoran, en el caso del subdirectorio).
+- Una tolerancia escrita como `NaN` en el esquema producía un error de Python, y `Infinity` habría aceptado cualquier diferencia. Ahora el esquema las rechaza.
+
+**Pruebas.** `probar_comparar_tablas.py` pasó de 20 a 33 pruebas. Dos son de otro tipo: una con 2 000 valores al azar (semilla fija) que comprueba la regla de la tolerancia, y otra que cambia una celda de cada columna de las 16 tablas reales y comprueba que el comparador la detecta. Con la versión anterior del comparador fallan 8 de las 33, con los errores esperados.
+
+**Repetición completa** (desde la raíz del repositorio, en Linux): los cinco scripts, 60 de 60 comprobaciones, comparador con 16 iguales y 0 distintas, 7 y 33 pruebas de la auditoría y 68 de `tests/`. **Ninguna tabla ni ningún resultado cambió.**
+
+**Decisión de diseño que queda escrita:** en las columnas copiadas del dataset (tolerancia 0) se compara el texto, así que `3.5` y `3.50` cuentan como distintos. Es deliberado: un cambio de formato en un valor copiado debe verse.
+
+**No comprobado:** la repetición en Mac, Windows y Docker sigue pendiente.

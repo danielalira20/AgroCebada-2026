@@ -13,6 +13,7 @@ Genera en --salida:
     precision_etiqueta_por_municipio.csv   Finura con que está anotado el rendimiento, por grupo.
     comprobaciones_catalogo.csv   Cada comprobación, lo esperado, lo obtenido y si se cumple.
     huellas_archivos_leidos.csv   Huella SHA-256 de cada archivo que se leyó.
+    pares_de_parcelas_cercanas.csv   Pares de parcelas con orillas a menos de 20 m.
 
 Las columnas están definidas en diccionario_columnas.md. No entrena ningún modelo.
 
@@ -69,11 +70,22 @@ def anotar(etapa, nombre, valor):
 
 
 def huella(ruta: Path) -> str:
+    """Huella de un archivo del dataset original, tal cual está en el disco."""
     h = hashlib.sha256()
     with ruta.open("rb") as f:
         for bloque in iter(lambda: f.read(1 << 20), b""):
             h.update(bloque)
     return h.hexdigest()
+
+
+def huella_de_texto(ruta: Path):
+    """Tamaño y huella de una tabla de texto que está en Git, sin los retornos de carro.
+
+    Git puede entregar el mismo archivo con fin de línea de Windows o de Mac/Linux. Al quitar
+    los retornos de carro, el tamaño y la huella dan lo mismo en cualquier computadora.
+    """
+    contenido = ruta.read_bytes().replace(b"\r", b"")
+    return len(contenido), hashlib.sha256(contenido).hexdigest()
 
 
 def conteos(serie) -> str:
@@ -487,6 +499,39 @@ def etapa_precision(catalogo: pd.DataFrame, orillas_cercanas: dict):
     return catalogo, precision
 
 
+def tabla_de_pares_cercanos(catalogo: pd.DataFrame, orillas_cercanas: dict) -> pd.DataFrame:
+    """Una fila por cada par de parcelas con orillas a menos de 20 m.
+
+    Sirve para que la evaluación pueda mantener juntas a las parcelas vecinas. Las columnas de
+    rendimiento son solo para auditoría: no deben usarse como variables de un modelo.
+    """
+    c = catalogo.set_index("id_parcela")
+    conocidas = set(c.index[c.rendimiento_t_ha != ""])
+    iguales = [(a, b) for a, b in orillas_cercanas
+               if a in conocidas and b in conocidas and float(c.rendimiento_t_ha[a]) == float(c.rendimiento_t_ha[b])]
+    # Grupos de vecinas con el mismo rendimiento: si A=B y B=C, las tres quedan en un mismo grupo.
+    grupo = {}
+    for a, b in iguales:
+        juntas = grupo.get(a, {a}) | grupo.get(b, {b})
+        for parcela in juntas:
+            grupo[parcela] = juntas
+    filas = []
+    for (a, b), d in sorted(orillas_cercanas.items()):
+        ambas = a in conocidas and b in conocidas
+        filas.append(dict(
+            id_parcela_a=a, id_parcela_b=b, distancia_orillas_m=f"{d:.2f}",
+            municipio_a=c.municipio[a], municipio_b=c.municipio[b],
+            cultivo_origen_a=c.cultivo_origen[a], cultivo_origen_b=c.cultivo_origen[b],
+            conjunto_origen_a=c.conjunto_origen[a], conjunto_origen_b=c.conjunto_origen[b],
+            ambas_conocidas="si" if ambas else "no",
+            rendimiento_t_ha_a=c.rendimiento_t_ha[a], rendimiento_t_ha_b=c.rendimiento_t_ha[b],
+            mismo_rendimiento=("si" if (a, b) in iguales else "no") if ambas else "",
+            grupo_mismo_rendimiento=min(grupo[a]) if (a, b) in iguales else ""))
+    pares = pd.DataFrame(filas)
+    assert len(pares) == len(orillas_cercanas) and not pares.duplicated(["id_parcela_a", "id_parcela_b"]).any()
+    return pares
+
+
 def guardar(tabla: pd.DataFrame, ruta: Path):
     tabla.to_csv(ruta, index=False, encoding="utf-8-sig", lineterminator="\n")
 
@@ -505,13 +550,15 @@ def main():
     catalogo = etapa_contorno(catalogo, a.contornos)
     catalogo, precision = etapa_precision(catalogo, orillas_cercanas)
 
+    bytes_contornos, huella_contornos = huella_de_texto(a.contornos)
     huellas = pd.DataFrame([dict(archivo=r.relative_to(a.datos).as_posix(), bytes=r.stat().st_size,
                                  sha256=huella(r)) for r in leidos]
                            + [dict(archivo="exploracion_parcelas_qgis/revision_contornos/revision_contornos.csv",
-                                   bytes=a.contornos.stat().st_size, sha256=huella(a.contornos))])
+                                   bytes=bytes_contornos, sha256=huella_contornos)])
     comp = pd.DataFrame(comprobaciones)
     guardar(catalogo, a.salida / "catalogo_parcelas.csv")
     guardar(precision, a.salida / "precision_etiqueta_por_municipio.csv")
+    guardar(tabla_de_pares_cercanos(catalogo, orillas_cercanas), a.salida / "pares_de_parcelas_cercanas.csv")
     guardar(comp, a.salida / "comprobaciones_catalogo.csv")
     guardar(huellas, a.salida / "huellas_archivos_leidos.csv")
 
