@@ -87,7 +87,7 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
     # La fase 0 inventaría T06; interpretar/unir su diccionario corresponde a fase 3.
     inventario = dict(schema="t07_inventario_v1", base_dev=base,
         bloques={
-            "T02": dict(estado="base_dev_identificada_con_correcciones_pendientes", referencia_t04=con["revision_t02"], archivos_sha256=ht02),
+            "T02": dict(estado="base_dev_identificada", referencia_t04=con["revision_t02"], archivos_sha256=ht02),
             "T03": dict(estado="protocolo_base_identificado_corte_provisional", archivos_sha256={protocolo: ht03}),
             "T04": dict(estado=origen["estado_revision_declarado"], revision_git=rt04, archivos_sha256=ht04,
                         conciliacion="compatible_con_referencia_identificada", cierre_declarado=m["cierre_t04"],
@@ -138,7 +138,7 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
 
 
 def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
-    """Catálogo real y estado pendiente; no genera tablas o valores climáticos."""
+    """Catálogo real y bloques por integrar; no genera tablas o valores climáticos."""
     raiz, salida = Path(raiz).resolve(), Path(salida).resolve()
     if salida == raiz or salida.is_relative_to(raiz / "data" / "raw"):
         raise ValueError("Salida protegida: no escribir en originales")
@@ -159,10 +159,10 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
     if len(sat_ids) != len(ids) or len(set(sat_ids)) != len(ids) or set(sat_ids) != ids:
         raise ValueError("IDs T06 incompatibles")
     inventario = dict(schema="t07_inventario_v1", base_dev=base, bloques={
-        "T02": dict(estado="base_dev_identificada_con_correcciones_pendientes", archivos_sha256=ht02),
+        "T02": dict(estado="base_dev_identificada", archivos_sha256=ht02),
         "T03": dict(estado="protocolo_base_identificado_corte_provisional", archivos_sha256={protocolo: ht03}),
-        "T04": dict(estado="pendiente_entrega_revisada", integrado_en_t07=False,
-                    valores_generados=False, accion="Esperar entrega revisada y referencias compatibles; no usar copia provisional"),
+        "T04": dict(estado="pendiente_integracion_revisada", integrado_en_t07=False,
+                    valores_generados=False, accion="Verificar referencia T02 y revalidación T04 antes de integrar; no generar valores provisionales"),
         "T05": dict(estado="sin_entrega_identificada_en_esta_base", integrado=False),
         "T06": dict(estado="integrado_en_base_dev_aceptacion_no_inferida", integrado_en_t07=False,
                     archivos_sha256=ht06, ids=len(ids), columnas=len(cab), entradas_diccionario=len(dsat))},
@@ -171,7 +171,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
     controles = dict(parcelas=len(catalogo), etiquetas_originales=sum(r["rendimiento_t_ha"] != "" for r in catalogo),
                      etiquetas_ausentes=sum(r["rendimiento_t_ha"] == "" for r in catalogo),
                      filas_por_tabla={"catalogo_base.csv": len(catalogo)}, diccionario_columnas=len(definiciones),
-                     clima="pendiente_entrega_revisada", valores_climaticos_generados=False)
+                     clima="pendiente_integracion_revisada", valores_climaticos_generados=False)
     salida.parent.mkdir(parents=True, exist_ok=True)
     temp = Path(tempfile.mkdtemp(prefix=".t07-", dir=salida.parent))
     try:
@@ -183,7 +183,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
         guardar_json(temp / "manifest.json", dict(schema="t07_catalogo_sin_clima_v1",
                      codigo_sha256={f"scripts/{n}": sha(raiz / "scripts" / n) for n in codigo},
                      entradas=dict(base_dev=base), archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},
-                     clima="pendiente_entrega_revisada", cierre_t07=False))
+                     clima="pendiente_integracion_revisada", cierre_t07=False))
         temp.rename(salida)
     except BaseException:
         shutil.rmtree(temp)
@@ -193,7 +193,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--sin-clima", action="store_true", help="Sólo catálogo e inventario: T04 pendiente")
+    p.add_argument("--sin-clima", action="store_true", help="Sólo catálogo e inventario; no integra valores T04")
     p.add_argument("--clima", type=Path, help="Copia generada por t07_preparar_insumos.py")
     p.add_argument("--revision-t04")
     p.add_argument("--base-dev", required=True, help="Commit de dev que identifica catálogo, protocolo y T06")

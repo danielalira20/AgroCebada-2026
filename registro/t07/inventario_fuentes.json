@@ -1,28 +1,28 @@
 {
   "schema": "t07_inventario_v1",
-  "base_dev": "540193d6cdc48c90b4b361e6044ae52f9d6f9b0a",
+  "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
   "bloques": {
     "T02": {
-      "estado": "base_dev_identificada_con_correcciones_pendientes",
+      "estado": "base_dev_identificada",
       "archivos_sha256": {
-        "analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py": "e21c423015a1554bd1debcf78e29b1ae59b8e6388d5dcf7bbbb8f87e500549aa",
-        "analisis/auditoria_catalogo_y_etiquetas/scripts/diagnosticar_soporte.py": "0cbe2b49fdd766bc637f2217f108b78b3e8807f17a46bf2aec5e923b888728eb",
+        "analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
+        "analisis/auditoria_catalogo_y_etiquetas/scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d",
         "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
-        "analisis/auditoria_catalogo_y_etiquetas/tablas/huellas_archivos_leidos.csv": "4c91d2c89b8cb784653078f919ba292ac5e710b00e150fdb54704f178ebc9726",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86",
         "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
       }
     },
     "T03": {
       "estado": "protocolo_base_identificado_corte_provisional",
       "archivos_sha256": {
-        "docs/T03_protocolo_evaluacion.md": "7052cd61dbf286bff899561cf9ffe196bf27ee625693046249ef55c2c9c425cd"
+        "docs/T03_protocolo_evaluacion.md": "4a477a3fc28383070057e2a568cbd08d30d4a61eddf54fe90496d47bf0aaf423"
       }
     },
     "T04": {
-      "estado": "pendiente_entrega_revisada",
+      "estado": "pendiente_integracion_revisada",
       "integrado_en_t07": false,
       "valores_generados": false,
-      "accion": "Esperar entrega revisada y referencias compatibles; no usar copia provisional"
+      "accion": "Verificar referencia T02 y revalidación T04 antes de integrar; no generar valores provisionales"
     },
     "T05": {
       "estado": "sin_entrega_identificada_en_esta_base",

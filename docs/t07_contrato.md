@@ -1,6 +1,6 @@
 # T07 · Contrato común y fases 0–2
 
-Responsable: Dani. Revisora: Jass. Estado: catálogo preparado; clima pendiente de entrega revisada.
+Responsable: Dani. Revisora: Jass. Estado al 8 de octubre: catálogo y base sincronizados; bloques aún sin integrar.
 Acuerdo de Dani del 7 de octubre de 2026. T07 avanza por bloques según el plan
 unificado corregido; el cálculo técnico no cierra tareas de otros integrantes.
 
@@ -73,17 +73,22 @@ como reconstrucción retrospectiva mientras no exista evidencia de disponibilida
 
 Ahora sólo se comparten catálogo, su diccionario, inventario, controles y
 manifiesto en registro/t07/. Las tablas climáticas se generarán después de
-recibir la entrega revisada. No se crean filas de relleno ni valores simulados.
+incorporar y revisar la actualización de referencia T02 de T04. No se crean filas de relleno ni valores simulados.
 La evidencia provisional anterior permanece sólo en reports/, ignorado.
 Originales inmutables.
 
 ## Dependencias y estado
 
-La base dev identificada incluye T02 original y T06. T04 permanece pendiente
-hasta recibir la entrega revisada que Dani indicó esperar. El modo --sin-clima
-prepara sólo el catálogo y los estados de bloques. El modo climático rechaza
-una fuente marcada en_revision; no modificar esa marca para evitar la espera.
-Cuando cambie T02, actualizar su referencia en T04 y revalidar antes de agregar.
+La base dev `11d947098d8d6e56902a7f09a2c75953f09fdb21` incluye T02 corregida
+(PR #9), T04 mensual (PR #6), T06 (PR #4) y las referencias T08 (PR #8).
+La actualización de referencia T02 de T04 fue revalidada localmente en la rama
+`t04-actualizar-referencia-t02` (`7b2b4b4`); su publicación/revisión y posterior
+incorporación a dev siguen pendientes. T07 no incorpora esa rama sin revisión.
+El [registro de sincronización](t07_sincronizacion.md) conserva la evidencia.
+El modo --sin-clima prepara sólo catálogo y estados de bloques; registra T04
+como pendiente_integracion_revisada, sin generar valores. El modo climático
+rechaza una fuente marcada en_revision y referencias T02 incompatibles.
+El PR #10 de T03 sigue abierto y separado de estos cambios.
 T05 no entregada se registra como pendiente, sin inventar relieve.
 Archivo faltante, NoData y bloque pendiente son situaciones distintas.
 La fase 2 tiene código y contrato preparados, pero no está terminada.

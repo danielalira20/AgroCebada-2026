@@ -1,21 +1,21 @@
 {
   "schema": "t07_catalogo_sin_clima_v1",
   "codigo_sha256": {
-    "scripts/t07_preparar.py": "54f4b91921eb4a0d37f451142fa10bb161c343f595f05452eeba066d30119132",
+    "scripts/t07_preparar.py": "35751326766ab64c956dea6f982c5cccde981edfe07e5abc17a424efa3794d3f",
     "scripts/t07_fuentes.py": "65823be11b72a0e0ebf024e7197e6e512b6c86b8f62b95f023e747e295874e2c",
     "scripts/t07_ventanas.py": "5a9ecce92746b27ff847ec18d609975d4708b273b1137567f2773a67c49b1017",
     "scripts/t07_diccionario.py": "fb71c4855ba3c65c04eafc07077b98a21c97cacf132575fa77707554367260e4",
     "scripts/t07_preparar_insumos.py": "c2099ba4ebb12dd7830039bbbaba22381abbb871f14a8ad3421f1d0e626dbe44"
   },
   "entradas": {
-    "base_dev": "540193d6cdc48c90b4b361e6044ae52f9d6f9b0a"
+    "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21"
   },
   "archivos_sha256": {
     "catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
-    "controles.json": "3161a793f5b701a5fdc40013131daf3aa8b7a9d7ef5e44e39f81a5b1a99866c1",
+    "controles.json": "f15681f08ce68e5850d34cb571488b92dc32251c6bd701860187c1c4270193df",
     "diccionario_columnas.csv": "b04dc72fd7337d6a27a171dd7d4375e674c5a52cc004c001351805260a3622c0",
-    "inventario_fuentes.json": "3e187d47e0049c2025b9f1dba1c823c0796d57f7a7068ab4112eccc5b04123eb"
+    "inventario_fuentes.json": "25221953b4067397d54b6759457996c3f7351a74ad3eabc3046f23c5ed7aaba6"
   },
-  "clima": "pendiente_entrega_revisada",
+  "clima": "pendiente_integracion_revisada",
   "cierre_t07": false
 }
