@@ -1,14 +1,16 @@
 """T08 · Referencias territoriales evaluadas con el protocolo T03.
 
-Uso:
-    python t08_referencias.py --datos RUTA/DATASET_RETO_AGRO_2026 \
+Uso (desde la raíz del repo):
+    python scripts/t08_referencias.py --datos RUTA/DATASET_RETO_AGRO_2026 \
         --particiones RUTA/particiones.csv --salida RUTA/SALIDA
 
 Genera en --salida:
     predicciones_oof_referencias_<candidato>.csv   formato T03 §7, escenarios A y B
     metricas_referencias.csv                        MAE, RMSE, sesgo, R² por candidato y escenario
     metricas_por_municipio.csv                      MAE y n por candidato y municipio (escenario A)
-    comparacion_emparejada.csv                      ΔMAE frente a la referencia base, IC95 y regla T03
+    comparacion_emparejada.csv                      ΔMAE frente a la referencia base, IC95 y regla T03, en dos
+                                                    subconjuntos: todas las predicciones y sólo las que no usan
+                                                    respaldo (el caso de las 59 reservadas)
     activacion_respaldos.csv                        cuándo se usa un respaldo (OOF y en las 59)
     predicciones_59_referencias.csv                 ajuste con las 138 etiquetas para las 59 reservadas
 
@@ -168,38 +170,45 @@ def emparejada(oof, celda):
       las celdas CHIRPS que contienen parcelas etiquetadas; el estadístico es el ΔMAE medio de todas las
       parcelas de las celdas elegidas.
     - IC95_parcelas: bootstrap de parcelas independientes (sólo como referencia; ignora la cercanía).
+    Se calcula en dos subconjuntos:
+    - todas: las 690 predicciones fuera del entrenamiento.
+    - sin_respaldo: sólo las predicciones cuyo municipio tiene etiquetas en el entrenamiento. Es el caso de
+      las 59 reservadas, donde el respaldo no se activa nunca (revisión de Daf).
     """
     filas = []
     for esc, x in oof.groupby("escenario"):
         x = x.assign(ae=(x.prediccion - x.real).abs(), se=(x.prediccion - x.real) ** 2)
-        base = x[x.candidato == BASE].set_index(["ID_POLIGONO", "repeticion"])
-        for c, y in x.groupby("candidato"):
-            if c == BASE:
-                continue
-            y = y.set_index(["ID_POLIGONO", "repeticion"]).loc[base.index]
-            d_rep = (y.ae - base.ae).groupby(level="repeticion").mean()
-            d_parc = (y.ae - base.ae).groupby(level="ID_POLIGONO").mean()
-            # bootstrap de parcelas
-            rng = np.random.RandomState(SEMILLA_BOOT)
-            v = d_parc.values
-            bs_p = v[rng.randint(0, len(v), (N_BOOT, len(v)))].mean(axis=1)
-            # bootstrap por bloques (celdas CHIRPS)
-            g = pd.DataFrame({"d": d_parc, "celda": celda.reindex(d_parc.index).values}).groupby("celda").d
-            suma, n = g.sum().values, g.size().values
-            rng = np.random.RandomState(SEMILLA_BOOT)
-            k = rng.randint(0, len(suma), (N_BOOT, len(suma)))
-            bs_c = suma[k].sum(axis=1) / n[k].sum(axis=1)
-            lo_p, hi_p = np.percentile(bs_p, [2.5, 97.5])
-            lo_c, hi_c = np.percentile(bs_c, [2.5, 97.5])
-            drmse = (np.sqrt(y.se.groupby(level="repeticion").mean()) - np.sqrt(base.se.groupby(level="repeticion").mean())).mean()
-            signo = int((d_rep < 0).sum())
-            cumple = (d_parc.mean() <= -0.01) and (hi_c < 0) and (signo >= 4) and (drmse <= 0.01)
-            filas.append(dict(escenario=esc, candidato=c, frente_a=BASE, dMAE=d_parc.mean(),
-                              IC95_celdas_inf=lo_c, IC95_celdas_sup=hi_c, IC95_parcelas_inf=lo_p, IC95_parcelas_sup=hi_p,
-                              n_celdas=len(suma), reps_que_mejoran=signo, dRMSE=drmse,
-                              parcelas_mejoran=int((d_parc < 0).sum()), parcelas_empeoran=int((d_parc > 0).sum()),
-                              cumple_regla_T03=cumple))
-    return pd.DataFrame(filas).sort_values(["escenario", "dMAE"]).round(4)
+        base_todas = x[x.candidato == BASE].set_index(["ID_POLIGONO", "repeticion"])
+        for sub, mask in [("todas", base_todas.fuente.notna()), ("sin_respaldo", base_todas.fuente == "municipio")]:
+            base = base_todas[mask]
+            for c, y in x.groupby("candidato"):
+                if c == BASE:
+                    continue
+                y = y.set_index(["ID_POLIGONO", "repeticion"]).loc[base.index]
+                d_rep = (y.ae - base.ae).groupby(level="repeticion").mean()
+                d_parc = (y.ae - base.ae).groupby(level="ID_POLIGONO").mean()
+                # bootstrap de parcelas
+                rng = np.random.RandomState(SEMILLA_BOOT)
+                v = d_parc.values
+                bs_p = v[rng.randint(0, len(v), (N_BOOT, len(v)))].mean(axis=1)
+                # bootstrap por bloques (celdas CHIRPS)
+                g = pd.DataFrame({"d": d_parc, "celda": celda.reindex(d_parc.index).values}).groupby("celda").d
+                suma, n = g.sum().values, g.size().values
+                rng = np.random.RandomState(SEMILLA_BOOT)
+                k = rng.randint(0, len(suma), (N_BOOT, len(suma)))
+                bs_c = suma[k].sum(axis=1) / n[k].sum(axis=1)
+                lo_p, hi_p = np.percentile(bs_p, [2.5, 97.5])
+                lo_c, hi_c = np.percentile(bs_c, [2.5, 97.5])
+                drmse = (np.sqrt(y.se.groupby(level="repeticion").mean()) - np.sqrt(base.se.groupby(level="repeticion").mean())).mean()
+                signo = int((d_rep < 0).sum())
+                cumple = (d_parc.mean() <= -0.01) and (hi_c < 0) and (signo >= 4) and (drmse <= 0.01)
+                filas.append(dict(escenario=esc, subconjunto=sub, n_predicciones=len(base), candidato=c, frente_a=BASE,
+                                  dMAE=d_parc.mean(),
+                                  IC95_celdas_inf=lo_c, IC95_celdas_sup=hi_c, IC95_parcelas_inf=lo_p, IC95_parcelas_sup=hi_p,
+                                  n_celdas=len(suma), reps_que_mejoran=signo, dRMSE=drmse,
+                                  parcelas_mejoran=int((d_parc < 0).sum()), parcelas_empeoran=int((d_parc > 0).sum()),
+                                  cumple_regla_T03=cumple))
+    return pd.DataFrame(filas).sort_values(["escenario", "subconjunto", "dMAE"]).round(4)
 
 
 def activaciones(oof, d, cands):
