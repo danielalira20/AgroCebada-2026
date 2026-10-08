@@ -1,0 +1,198 @@
+﻿ID_POLIGON,categoria,divisiones_internas,arboles_dentro,construccion_dentro,angosta_o_muy_pequena,imagen_poco_clara,nota,etapa,confirmar_en_qgis,fecha_revision
+AGC_001,A,si,si,no,no,no,Borde sigue caminos y orillas. Unas seis hileras paralelas de árboles o arbustos dentro.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_002,A,no,no,no,no,no,Borde sigue el canal o camino al norte y las orillas visibles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_003,A,si,no,no,no,no,Sigue la orilla del bosque. Dentro se ven dos tonos (café y verde).,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_004,B,si,no,si,no,no,Franja de cultivo con muchas líneas internas. En la parte sur incluye un patio con casas. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-04
+AGC_005,A,no,no,no,no,no,Ajustado entre dos hileras de árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_006,A,no,no,no,no,no,Sigue la hilera de árboles y las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_007,A,no,no,no,no,no,El lado oeste sigue la orilla del monte.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_008,A,si,no,no,no,no,Forma irregular que rodea y deja fuera manchones de vegetación; tiene un brazo delgado al noroeste.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_009,A,no,no,no,si,no,0.38 ha. Ajustado entre arbolado; la punta norte entra entre dos hileras de árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_010,A,si,no,no,no,no,Una zanja o camino lo cruza y lo parte en dos: una parte café y otra verde.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_011,A,si,no,no,no,si,"Sigue la orilla. En la parte sur parece cruzarlo una cárcava o arroyo; revisado en QGIS, la imagen no permite confirmarlo.",revisado_en_qgis_sin_poder_confirmar,no,2026-10-05
+AGC_012,A,si,no,no,no,no,"Forma irregular con dedos delgados al sur, sobre terrazas.",primera_pasada_sobre_imagen,si,2026-10-04
+AGC_013,A,si,si,no,no,no,Una línea de arbustos lo cruza en diagonal.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_014,A,no,no,no,no,no,Rectángulo que sigue las orillas; se ve verde en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_015,A,si,no,no,no,no,Entre un camino y una barranca; dos tonos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_016,A,no,no,si,no,no,Junto a un poblado; sigue caminos y orillas. Una estructura pequeña en el centro. Observación confirmada en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_017,A,si,no,no,no,no,Dos lóbulos separados por una franja delgada que queda fuera; unidos por el oeste.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_018,A,no,no,no,no,no,Sigue las orillas; la muesca del sureste deja fuera vegetación.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_019,A,si,si,no,no,no,Líneas de árboles y árboles dispersos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_020,A,no,no,no,no,no,Sigue caminos y orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_021,B,si,no,no,no,no,Franja larga. Un camino la cruza a la mitad y queda dentro del contorno. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_022,A,si,si,no,no,no,Una línea de árboles separa una esquina al noroeste.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_023,A,si,no,no,no,no,Sigue el camino; franjas de dos tonos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_024,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_025,A,no,no,no,no,no,Cuña alargada; hilera de árboles sobre el borde oeste.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_026,A,si,si,no,no,no,Una línea diagonal de árboles separa dos partes de tono distinto.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_027,A,si,no,no,no,no,Rodea un estanque que queda fuera; una línea lo cruza y hay algo pequeño junto al estanque.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_028,A,si,no,no,no,no,Alargado junto al monte; varias franjas dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_029,A,si,si,no,no,no,Hileras de arbustos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_030,A,no,no,no,no,no,Muy irregular: el contorno rodea y deja fuera manchones de árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_031,A,no,no,no,no,no,Cuña alargada entre un canal y un camino; franja oscura a lo largo del borde sur.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_032,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_033,A,si,si,no,no,no,Grande e irregular; varias divisiones y cárcavas con árboles dentro; un saliente pequeño al sur entra al bosque.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_034,A,no,si,si,no,no,Hay un grupo de árboles con una construcción en la parte norte. Observación confirmada en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_035,A,no,no,no,no,no,Rectángulo que sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_036,A,no,no,no,no,no,Sigue las orillas; manchas verdes en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_037,A,no,si,no,no,no,Dos torres eléctricas y algunos árboles dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_038,A,si,no,no,no,no,Irregular: deja fuera una ranchería y grupos de árboles; caminos lo cruzan.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_039,A,si,si,no,no,no,Varias líneas de árboles lo dividen en tramos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_040,A,no,no,no,no,no,"Sigue las orillas, junto a una barranca.",primera_pasada_sobre_imagen,no,2026-10-04
+AGC_041,A,si,no,no,no,no,"Grande, junto a un poblado; varias divisiones dentro.",primera_pasada_sobre_imagen,no,2026-10-04
+AGC_042,A,si,si,no,no,no,Franjas con arbustos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_043,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_044,A,no,no,no,si,no,0.68 ha. Triángulo entre un camino y campos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_045,A,no,si,no,no,no,Sigue las orillas; un manchón de arbustos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_046,A,si,si,no,no,no,Cuadrilátero que sigue camino y orillas. Dos líneas de arbustos lo dividen en tres tramos.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_047,A,si,no,si,no,no,Contorno muy ajustado; deja fuera unas construcciones al oeste. Dentro: una línea diagonal y una construcción pequeña.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_048,A,si,no,no,no,no,"Dos lóbulos unidos por un cuello estrecho, junto a una barranca.",primera_pasada_sobre_imagen,si,2026-10-04
+AGC_049,C,no,no,no,si,no,Menos de 1 ha. Tres lóbulos separados por vegetación y unidos por una franja al norte. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_050,A,no,si,no,no,no,Árboles dispersos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_051,A,si,si,no,no,no,Franja larga con varias divisiones y árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_052,A,si,si,no,no,no,"Dos campos unidos por un cuello, con una línea de árboles entre ellos.",primera_pasada_sobre_imagen,si,2026-10-04
+AGC_053,A,si,si,no,no,no,Líneas de arbustos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_054,A,si,si,no,no,no,Una línea de árboles lo cruza por el centro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_055,C,no,si,no,no,no,Varios lóbulos separados por cárcavas con árboles. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_056,A,si,si,no,no,no,Una línea curva de árboles lo cruza por dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_057,A,si,no,no,si,no,0.63 ha. Junto a un camino; líneas internas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_058,A,si,no,no,no,no,Torres eléctricas dentro; dos tonos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_059,A,si,si,no,no,no,Grande; una línea de árboles dentro; la muesca del sur deja fuera un invernadero.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_060,A,si,si,no,no,no,Terrazas curvas con hileras de árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_061,A,si,si,no,no,no,Franja en ladera con muchas hileras de árboles y terrazas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_062,A,no,no,no,si,no,"Franja angosta paralela a AGC_139, 115 y 073; manchas verdes en la imagen.",primera_pasada_sobre_imagen,no,2026-10-04
+AGC_063,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_064,A,si,si,no,si,no,Franja angosta y curva que rodea un manchón de monte; líneas de árboles.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_065,A,si,si,no,no,no,60.88 ha. Muchas divisiones y árboles dispersos; el borde oeste sigue el arbolado.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_066,A,si,no,no,no,no,Junto a una carretera; una línea interna a lo largo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_067,A,no,no,no,no,si,"Cuadrilátero; imagen borrosa, orillas poco definidas.",primera_pasada_sobre_imagen,si,2026-10-04
+AGC_068,A,no,no,no,no,no,Cuña junto a una barranca y cerca de una autopista.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_069,A,no,si,no,si,no,0.38 ha. Junto a construcciones; puntos oscuros en hileras dentro (posibles árboles jóvenes o pacas).,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_070,A,si,si,no,no,no,Varios manchones de árboles dentro del contorno.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_071,A,si,si,no,no,no,Tres tramos de tono distinto; líneas de arbustos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_072,A,si,si,no,no,no,Hileras regulares de puntos oscuros en todo el campo (posible plantación joven o magueyes).,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_073,A,no,no,no,si,no,Franja angosta; zonas encharcadas en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_074,A,si,si,no,no,no,Varias líneas de árboles lo dividen en franjas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_075,A,si,si,no,no,no,Líneas de árboles dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_076,A,si,no,no,no,no,Forma de L: dos tramos unidos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_077,A,si,si,no,no,no,Dos partes: una lisa y otra con hileras de puntos oscuros (posible plantación).,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_078,A,no,si,no,no,no,Irregular: rodea y deja fuera manchones de monte; un árbol dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_079,A,si,no,no,no,no,Dos cultivos distintos dentro: una parte café y una franja verde.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_080,A,no,no,si,no,no,Grande e irregular; deja fuera una construcción al norte; una estructura circular dentro. Observación confirmada en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_081,A,no,no,no,no,no,Cuadrilátero; se ve verde en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_082,A,no,no,no,si,no,Franja angosta entre monte e invernaderos; un apéndice al sur.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_083,A,si,no,no,no,no,Varias franjas internas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_084,B,si,si,no,no,no,Terreno muy irregular en ladera: terrazas con matorral dentro y una cola delgada al sur. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-04
+AGC_085,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_086,A,no,no,no,no,no,Cuadrilátero; cambio de tono vertical que parece unión de dos tomas de la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_087,A,si,si,no,no,no,Árboles dispersos y una línea dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_088,A,si,si,no,no,no,Dos partes: una con hileras de puntos oscuros y otra lisa.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_089,A,no,no,no,no,si,Cuadrilátero; imagen borrosa. Separado de AGC_148 por un pasillo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_090,A,si,no,no,no,si,"Varios campos de distinto tono dentro. Parece cruzarlo un canal o arroyo; revisado en QGIS, la imagen no permite confirmarlo.",revisado_en_qgis_sin_poder_confirmar,no,2026-10-05
+AGC_091,A,no,no,no,si,no,0.35 ha. Contorno ajustado entre hileras de árboles; un pico pequeño arriba cae sobre árboles.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_092,A,no,no,no,si,no,0.5 ha. Contorno ajustado.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_093,A,si,si,no,no,no,Líneas de árboles dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_094,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_095,A,no,no,no,no,no,Sigue las hileras de árboles de sus orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_096,A,si,no,no,no,no,Forma de L junto a un estanque; un camino lo cruza.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_097,A,si,no,no,no,no,Franja larga; un camino la cruza.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_098,B,si,si,no,no,no,"Junto a una barranca. El contorno hace un corte que deja fuera un brazo de árboles, pero otro brazo delgado de arbolado queda dentro, en la parte suroeste. Confirmado en QGIS, con imagen.",confirmado_en_qgis,no,2026-10-04
+AGC_099,A,no,no,no,no,no,Triángulo entre dos caminos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_100,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_101,A,si,no,no,no,no,Canales o zanjas lo cruzan por dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_102,A,si,si,no,no,no,Una línea de árboles y una zanja dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_103,A,no,no,no,no,no,"Sigue las orillas, junto a una barranca.",primera_pasada_sobre_imagen,no,2026-10-04
+AGC_104,A,si,si,no,no,no,Una línea de arbustos lo parte en dos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_105,A,no,no,no,no,no,Franja rectangular.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_106,A,si,no,no,no,no,Sigue las orillas; líneas internas. La línea amarilla gruesa de su esquina sureste no es suya: es un brazo delgado de AGC_110 que corre pegado a su borde (a cerca de 1 m).,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_107,A,no,no,no,no,no,Franja junto a un arroyo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_108,A,si,no,no,no,no,Varias partes de tono distinto.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_109,B,si,no,no,no,no,"Un camino lo cruza, lo parte y queda dentro del contorno. Confirmado en QGIS.",confirmado_en_qgis,no,2026-10-05
+AGC_110,A,no,no,no,no,no,"Su contorno tiene un brazo muy delgado, de dos líneas casi encimadas, que corre pegado al borde de AGC_106. Comprobado en las coordenadas; en QGIS también se ve como defecto del trazo. No afecta la letra.",confirmado_en_qgis,no,2026-10-04
+AGC_111,A,no,si,no,no,no,"Árboles dentro, en la parte oeste.",primera_pasada_sobre_imagen,no,2026-10-04
+AGC_112,B,si,no,si,no,no,El contorno excluye correctamente un recuadro pequeño mediante un corte delgado. En la parte derecha queda dentro algo que parece un patio; no se distingue qué es. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-04
+AGC_113,A,si,no,no,no,no,Franja larga; manchas oscuras dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_114,A,si,si,no,no,no,Líneas de árboles curvas dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_115,A,no,no,no,si,no,"Franja de unos 30 m de ancho, paralela a las franjas visibles. La imagen muestra manchas verdes y encharcadas.",piloto_confirmado_en_qgis,no,2026-10-04
+AGC_116,A,no,no,no,no,no,Zona encharcada dentro en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_117,A,si,si,no,no,no,Líneas de arbustos y una torre eléctrica dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_118,A,no,no,no,no,no,"Dos partes unidas, junto a monte.",primera_pasada_sobre_imagen,si,2026-10-04
+AGC_119,A,si,si,no,si,no,0.64 ha. Una línea de árboles lo parte en dos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_120,A,no,no,no,si,no,Franja angosta al borde de una barranca arbolada.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_121,A,no,no,no,no,no,Irregular: rodea y deja fuera manchones de monte.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_122,A,si,si,no,no,no,Muchas hileras de árboles en diagonal.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_123,A,si,si,no,no,no,Líneas de arbustos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_124,A,no,no,no,no,no,Forma irregular que sigue la orilla del monte.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_125,A,no,no,no,no,no,Franja rectangular.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_126,A,no,no,no,no,no,Sigue las hileras de árboles de sus orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_127,B,no,si,no,si,no,"Menos de 1 ha. Claro dentro del bosque. En QGIS sí se distingue cultivo, pero el área trazada incluye árboles del bosque. Jass decidió dejarla en B.",confirmado_en_qgis,no,2026-10-05
+AGC_128,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_129,A,si,si,no,no,no,"Forma muy irregular, pero el contorno cae justo donde empieza el bosque y no entra en él (corrección de Jass en QGIS a la primera pasada, que lo había puesto en B). Lo cruzan un camino y una brecha; eso no se confirmó.",confirmado_en_qgis,no,2026-10-04
+AGC_130,A,si,no,no,no,no,Grande; varias líneas internas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_131,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_132,A,si,si,no,no,no,Parte con hileras de puntos oscuros; el borde este incluye algo de arbolado.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_133,A,si,si,no,no,no,Hileras de puntos oscuros en todo el campo y una cárcava en la parte oeste.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_134,C,no,no,no,no,no,"Tres claros de cultivo dentro del monte, unidos por pasos estrechos. Confirmado en QGIS.",confirmado_en_qgis,no,2026-10-05
+AGC_135,A,no,no,no,no,no,Sigue la orilla del arroyo arbolado.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_136,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_137,B,si,si,no,no,no,Terrazas al pie de un cerro. Oeste coincide; el lado este es un trazo recto que atraviesa una terraza y deja dentro algunos árboles. Desajuste pequeño frente a 24.81 ha.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_138,A,si,si,no,no,no,Rombo con líneas de arbustos dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_139,A,no,no,no,si,no,Franja angosta; manchas verdes en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_140,A,no,no,no,no,no,Junto a un camino; el borde norte sigue la orilla del matorral.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_141,A,no,no,no,no,no,Sigue caminos y orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_142,C,no,no,no,no,no,Dos campos separados por una franja de pasto que el contorno deja fuera; unidos por un extremo. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_143,A,si,si,no,no,no,Una línea curva de vegetación lo cruza; dos tonos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_144,A,si,si,no,no,no,Terrazas curvas con líneas de arbustos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_145,A,si,si,no,no,no,Líneas de arbustos en la parte oeste; el borde sur sigue un arroyo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_146,A,no,no,no,no,no,Sigue la orilla del arroyo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_147,A,si,si,no,no,no,Muchas líneas de árboles dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_148,A,no,no,no,no,si,Cuadrilátero que sigue el camino y dos líneas de árboles. Separada de AGC_089 por algo como un caminito.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_149,C,si,no,no,no,no,"Contorno muy complejo: varias piezas de cultivo unidas por pasos delgados, con un camino y arbolado entre ellas. Confirmado en QGIS.",confirmado_en_qgis,no,2026-10-05
+AGC_150,A,no,no,no,no,no,Cuña junto a un camino.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_151,A,si,no,no,no,no,Franja al pie de un cerro; dos tonos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_152,C,no,si,no,no,no,"Tres claros de cultivo junto al monte, unidos; incluye una franja de árboles entre dos de ellos. Confirmado en QGIS.",confirmado_en_qgis,no,2026-10-05
+AGC_153,A,no,no,no,no,no,Franja; zona encharcada o blanquecina dentro en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_154,A,si,no,no,no,no,Una línea interna a lo largo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_155,A,no,no,no,no,no,Contorno ajustado; la muesca del este deja fuera una cárcava.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_156,B,si,no,no,no,no,Una línea (carretera o camino ancho) lo cruza por completo en diagonal y queda dentro del contorno. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-04
+AGC_157,A,no,no,no,no,si,Triángulo real: cuña entre un camino diagonal y campos rectos. Línea divisoria con AGC_163 confirmada en QGIS.,piloto_confirmado_en_qgis,no,2026-10-04
+AGC_158,A,si,no,no,no,no,Una línea interna; dos tonos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_159,A,si,si,no,no,no,El contorno encierra tres o cuatro tramos separados por líneas de árboles; el borde este no sigue una orilla clara.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_160,A,no,no,no,no,no,Sigue la orilla del arbolado.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_161,A,si,no,no,no,no,Franja larga con un brazo al norte; varias divisiones.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_162,A,si,si,no,no,no,Campo grande más una franja delgada al norte unida por una esquina; líneas de árboles.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_163,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_164,A,si,no,no,no,no,"Sigue el camino al oeste y un cambio de tono al este. Una división interna en la parte alta, confirmada en QGIS. Tono desigual.",piloto_confirmado_en_qgis,no,2026-10-04
+AGC_165,A,si,si,no,no,no,Dos tramos separados por una línea de árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_166,A,si,no,no,no,no,Terrazas curvas; junto a un camino y un poblado.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_167,C,no,no,no,no,no,Dos campos (uno grande y una franja curva) unidos por un paso estrecho. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_168,A,no,no,no,no,no,Franja; sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_169,A,no,no,no,no,no,Cuadrilátero que sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_170,A,si,no,no,no,no,Tres franjas internas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_171,A,si,no,no,no,no,Varias líneas internas y un manchón de vegetación en la esquina este.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_172,A,si,no,no,no,no,Forma irregular que sigue el arbolado; dos partes.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_173,B,no,si,si,no,no,El cuadrilátero incluye en su esquina noreste un recuadro con casas o bodegas. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-04
+AGC_174,A,si,no,no,no,no,Triángulo; se ve verde y con una división en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_175,A,no,no,no,no,no,Contorno ajustado junto a un arroyo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_176,A,si,si,no,no,no,Tres tramos separados por líneas de árboles.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_177,A,no,no,no,no,no,Franja rectangular; sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_178,A,no,no,no,no,no,Sigue caminos y orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_179,A,si,no,no,no,no,Irregular: el borde oeste sigue cárcavas; una cola delgada al sur.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_180,A,si,si,no,no,no,Grande e irregular entre monte; varias líneas de árboles lo dividen; rodea una ranchería que queda fuera.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_181,A,si,no,no,no,no,Una línea diagonal lo cruza; borde este junto a una cárcava.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_182,C,no,si,no,no,no,"Un solo contorno une tres campos separados por arbolado, mediante pasillos delgados que cruzan los árboles.",piloto_confirmado_en_qgis,no,2026-10-04
+AGC_183,B,si,si,si,no,no,El cuadrilátero incluye un estanque y una estructura pequeña en la esquina sureste; muchos árboles dispersos y un recuadro de tono distinto. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-04
+AGC_184,A,no,no,no,no,no,Campo grande junto a un poblado; la muesca del sureste deja fuera una casa.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_185,A,si,no,no,no,no,Varias franjas internas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_186,B,si,no,no,no,no,"Incluye a lo largo una franja oscura; no se distingue si es agua, podría ser terreno encharcado. La forma es irregular y el contorno parece cortar el terreno. Confirmado en QGIS.",confirmado_en_qgis,no,2026-10-04
+AGC_187,A,no,no,no,no,no,Junto a un parque de paneles solares; algunos puntos oscuros dentro.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_188,C,no,no,no,no,no,"Contorno muy complejo: varias piezas de cultivo a ambos lados de un arroyo arbolado, unidas por pasos delgados. Confirmado en QGIS.",confirmado_en_qgis,no,2026-10-05
+AGC_189,A,si,si,no,no,no,Una línea de arbustos a lo largo.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_190,A,no,no,no,no,no,Sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_191,C,no,si,no,no,no,Tres piezas separadas por arbolado y unidas por pasos delgados. Confirmado en QGIS.,confirmado_en_qgis,no,2026-10-05
+AGC_192,A,si,si,no,no,no,Una línea de árboles lo parte en dos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_193,A,si,no,no,no,no,Terrazas curvas; sigue las orillas.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_194,A,si,si,no,no,no,Terrazas con líneas de arbustos.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_195,A,no,no,no,no,no,Franja; se ve verde en la imagen.,primera_pasada_sobre_imagen,no,2026-10-04
+AGC_196,A,si,si,no,no,no,Rodeado por un parque de paneles solares; árboles y manchones dentro.,primera_pasada_sobre_imagen,si,2026-10-04
+AGC_197,A,si,no,no,no,no,Junto a un poblado; una línea interna y dos tonos.,primera_pasada_sobre_imagen,no,2026-10-04

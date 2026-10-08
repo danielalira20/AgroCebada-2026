@@ -1,0 +1,395 @@
+ID_POLIGONO,sensor,ventana,umbral_nubosidad,indice,capturas,hay_ciclo,inicio_observado,pico_observado,final_observado,fecha_inicio,fecha_pico,fecha_final,posible_ciclo_doble,meseta_en_pico,base,valor_maximo,amplitud,fecha_maximo_observado,dias_entre_capturas_inicio,dias_entre_capturas_final,motivo,CONJUNTO
+AGC_001,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-07-09,2025-09-14,,False,True,0.118,0.678,0.56,2025-09-14,10,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_002,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-05-28,2025-07-04,2025-10-21,False,False,0.128,0.678,0.55,2025-07-04,17,10.0,,ENTRENAMIENTO
+AGC_003,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-07-02,2025-08-23,,False,True,0.157,0.698,0.541,2025-08-23,20,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_004,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-17,2025-09-14,,False,False,0.133,0.568,0.435,2025-09-14,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_005,Sentinel-2,abr_oct,5,ndvi_promedio,26,True,True,False,False,2025-06-14,,,False,True,0.161,0.748,0.587,2025-09-02,28,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_006,Sentinel-2,abr_oct,5,ndvi_promedio,26,True,True,True,False,2025-06-15,2025-08-28,,False,False,0.113,0.678,0.565,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_007,Sentinel-2,abr_oct,5,ndvi_promedio,27,True,True,True,True,2025-06-17,2025-08-25,2025-09-26,False,False,0.132,0.808,0.676,2025-08-25,28,5.0,,ENTRENAMIENTO
+AGC_008,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-05,2025-09-02,,False,False,0.134,0.603,0.469,2025-09-02,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_009,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-14,2025-07-29,2025-10-14,False,False,0.189,0.592,0.403,2025-07-29,25,3.0,,ENTRENAMIENTO
+AGC_010,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-01,2025-07-04,,False,True,0.117,0.623,0.506,2025-07-04,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_011,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-06,2025-08-28,,False,False,0.151,0.614,0.463,2025-08-28,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_012,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,False,False,2025-06-17,,,False,False,0.171,0.687,0.516,2025-08-28,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_013,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,False,False,2025-06-13,,,False,True,0.123,0.732,0.609,2025-09-22,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_014,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-06-05,2025-07-04,2025-10-26,False,True,0.14,0.696,0.556,2025-07-04,17,10.0,,ENTRENAMIENTO
+AGC_015,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-10,2025-09-22,,False,False,0.161,0.625,0.464,2025-09-22,5,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_016,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-09,2025-07-29,2025-10-15,False,False,0.132,0.669,0.537,2025-07-29,8,3.0,,PREDICCION
+AGC_017,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,False,False,2025-06-10,,,False,True,0.142,0.575,0.433,2025-09-02,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_018,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-05-30,2025-08-03,,False,False,0.161,0.701,0.54,2025-08-03,12,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_019,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-19,2025-08-03,2025-09-12,False,False,0.125,0.758,0.633,2025-08-03,25,7.0,,ENTRENAMIENTO
+AGC_020,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,True,2025-06-17,2025-08-03,2025-09-17,False,False,0.12,0.791,0.671,2025-08-03,25,5.0,,ENTRENAMIENTO
+AGC_021,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,False,False,2025-06-14,,,True,False,0.128,0.663,0.535,2025-10-07,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_022,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-07,2025-08-05,,False,False,0.129,0.562,0.433,2025-08-05,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_023,Sentinel-2,abr_oct,5,ndvi_promedio,37,True,True,True,True,2025-06-10,2025-07-29,2025-10-09,False,False,0.116,0.645,0.529,2025-07-29,5,10.0,,ENTRENAMIENTO
+AGC_024,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,False,False,2025-06-18,,,False,False,0.127,0.666,0.539,2025-08-28,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_025,Sentinel-2,abr_oct,5,ndvi_promedio,37,True,True,True,False,2025-06-06,2025-09-14,,True,False,0.128,0.605,0.477,2025-09-14,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_026,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,False,False,2025-06-09,,,False,False,0.125,0.559,0.434,2025-09-22,5,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_027,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-15,2025-08-13,2025-10-02,False,False,0.119,0.722,0.603,2025-08-13,25,15.0,,PREDICCION
+AGC_028,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,False,False,2025-06-07,,,False,False,0.162,0.514,0.352,2025-09-22,3,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_029,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-29,2025-09-14,,False,False,0.107,0.604,0.497,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_030,Sentinel-2,abr_oct,5,ndvi_promedio,27,True,True,True,False,2025-07-06,2025-08-28,,False,False,0.159,0.625,0.466,2025-08-28,10,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_031,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-07,2025-08-25,,False,False,0.153,0.605,0.452,2025-08-25,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_032,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-10,2025-08-08,2025-10-16,False,False,0.072,0.694,0.622,2025-08-08,28,3.0,,ENTRENAMIENTO
+AGC_033,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,False,False,2025-06-10,,,False,False,0.135,0.597,0.462,2025-09-14,28,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_034,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-11,2025-08-08,,False,False,0.098,0.589,0.491,2025-08-08,28,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_035,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-20,2025-09-02,,False,False,0.121,0.715,0.594,2025-09-02,28,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_036,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-05-26,2025-08-13,,False,False,0.124,0.606,0.482,2025-08-13,17,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_037,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-05-26,2025-09-07,,False,False,0.038,0.638,0.6,2025-09-07,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_038,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-16,2025-08-08,2025-10-07,False,False,0.155,0.676,0.521,2025-08-08,28,17.0,,ENTRENAMIENTO
+AGC_039,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,True,2025-06-19,2025-08-03,2025-09-20,False,False,0.113,0.652,0.539,2025-08-03,28,8.0,,PREDICCION
+AGC_040,Sentinel-2,abr_oct,5,ndvi_promedio,38,True,True,True,False,2025-06-10,2025-09-14,,True,False,0.124,0.676,0.552,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_041,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-09,2025-07-24,,False,False,0.0915,0.66,0.5685,2025-07-24,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_042,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-12,2025-08-08,,False,False,0.1255,0.668,0.5425,2025-08-08,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_043,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,False,False,2025-06-06,,,True,False,0.13,0.717,0.587,2025-10-12,3,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_044,Sentinel-2,abr_oct,5,ndvi_promedio,36,True,True,True,True,2025-06-14,2025-07-24,2025-09-22,False,False,0.112,0.682,0.57,2025-07-24,28,5.0,,ENTRENAMIENTO
+AGC_045,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-04,2025-08-25,,False,False,0.16,0.7,0.54,2025-08-25,12,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_046,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,True,2025-06-21,2025-08-23,2025-10-04,False,False,0.107,0.686,0.579,2025-08-23,25,10.0,,ENTRENAMIENTO
+AGC_047,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-11,2025-08-28,,False,False,0.121,0.706,0.585,2025-08-28,28,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_048,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-18,2025-08-28,,False,False,0.136,0.666,0.53,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_049,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,False,False,2025-06-08,,,False,False,0.171,0.632,0.461,2025-09-22,3,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_050,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-20,2025-08-03,2025-09-21,False,False,0.139,0.753,0.614,2025-08-03,25,8.0,,PREDICCION
+AGC_051,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-04,2025-07-04,,False,False,0.144,0.644,0.5,2025-07-04,2,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_052,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-13,2025-07-29,2025-09-26,False,False,0.152,0.709,0.557,2025-07-29,25,5.0,,PREDICCION
+AGC_053,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-06-16,2025-09-14,,False,False,0.118,0.57,0.452,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_054,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-12,2025-08-13,,False,False,0.116,0.575,0.459,2025-08-13,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_055,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-05,2025-09-02,,False,False,0.171,0.58,0.409,2025-09-02,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_056,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-08,2025-09-02,,False,False,0.127,0.583,0.456,2025-09-02,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_057,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-17,2025-09-02,,False,False,0.183,0.56,0.377,2025-09-02,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_058,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-07-02,2025-09-14,,False,False,0.121,0.644,0.523,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_059,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-06,2025-08-23,,False,False,0.155,0.728,0.573,2025-08-23,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_060,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,False,False,2025-04-29,,,False,True,0.096,0.511,0.415,2025-09-27,3,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_061,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-30,2025-08-08,,False,False,0.139,0.665,0.526,2025-08-08,28,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_062,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-06,2025-08-28,,False,False,0.124,0.464,0.34,2025-08-28,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_063,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,False,False,2025-06-10,,,True,False,0.138,0.635,0.497,2025-10-14,25,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_064,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-13,2025-07-29,,False,False,0.173,0.612,0.439,2025-07-29,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_065,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,True,2025-05-31,2025-07-04,2025-10-14,False,False,0.173,0.75,0.577,2025-07-04,12,3.0,,PREDICCION
+AGC_066,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,False,2025-06-09,2025-08-28,,True,False,0.117,0.516,0.399,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_067,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-06-24,2025-08-08,2025-10-08,False,False,0.162,0.722,0.56,2025-08-08,20,15.0,,ENTRENAMIENTO
+AGC_068,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,False,2025-06-19,2025-09-14,,False,False,0.122,0.688,0.566,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_069,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-06-11,2025-09-02,,False,False,0.158,0.66,0.502,2025-09-02,28,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_070,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-24,2025-09-14,,False,False,0.165,0.698,0.533,2025-09-14,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_071,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-11,2025-09-14,,False,False,0.123,0.635,0.512,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_072,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,False,False,2025-06-13,,,False,True,0.115,0.711,0.596,2025-09-27,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_073,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-08,2025-08-13,,False,False,0.121,0.493,0.372,2025-08-13,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_074,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-07-11,2025-08-28,2025-10-13,False,True,0.14,0.749,0.609,2025-08-28,12,2.0,,ENTRENAMIENTO
+AGC_075,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,True,2025-06-12,2025-08-23,2025-10-16,False,False,0.13,0.555,0.425,2025-08-23,25,3.0,,PREDICCION
+AGC_076,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-06,2025-09-22,,True,False,0.149,0.653,0.504,2025-09-22,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_077,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,False,False,2025-06-20,,,False,True,0.126,0.617,0.491,2025-09-27,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_078,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-07-10,2025-08-25,2025-10-13,False,False,0.134,0.706,0.572,2025-08-25,10,2.0,,ENTRENAMIENTO
+AGC_079,Sentinel-2,abr_oct,5,ndvi_promedio,26,True,True,True,False,2025-06-24,2025-08-23,,False,False,0.115,0.668,0.553,2025-08-23,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_080,Sentinel-2,abr_oct,5,ndvi_promedio,25,True,True,True,True,2025-06-27,2025-08-23,2025-10-14,False,True,0.127,0.761,0.634,2025-08-23,28,3.0,,ENTRENAMIENTO
+AGC_081,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-07-04,2025-08-23,2025-10-15,False,False,0.139,0.732,0.593,2025-08-23,12,5.0,,ENTRENAMIENTO
+AGC_082,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-06,2025-07-29,2025-10-26,False,False,0.153,0.621,0.468,2025-07-29,28,10.0,,PREDICCION
+AGC_083,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,True,2025-06-25,2025-08-05,2025-10-16,False,False,0.129,0.671,0.542,2025-08-05,20,3.0,,ENTRENAMIENTO
+AGC_084,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,False,False,2025-06-09,,,True,False,0.189,0.664,0.475,2025-09-22,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_085,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-06,2025-08-25,2025-10-25,False,False,0.114,0.558,0.444,2025-08-25,8,10.0,,PREDICCION
+AGC_086,Sentinel-2,abr_oct,5,ndvi_promedio,36,True,True,True,False,2025-06-14,2025-09-14,,False,False,0.121,0.637,0.516,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_087,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,True,2025-06-16,2025-08-03,2025-10-07,False,False,0.116,0.611,0.495,2025-08-03,25,10.0,,PREDICCION
+AGC_088,Sentinel-2,abr_oct,5,ndvi_promedio,27,True,True,True,False,2025-06-13,2025-08-28,,False,False,0.113,0.704,0.591,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_089,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-06-22,2025-08-08,2025-09-24,False,False,0.131,0.741,0.61,2025-08-08,20,5.0,,ENTRENAMIENTO
+AGC_090,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-01,2025-08-25,,False,False,0.135,0.665,0.53,2025-08-25,12,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_091,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-10,2025-10-07,,False,False,0.169,0.698,0.529,2025-10-07,5,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_092,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,False,False,2025-06-18,,,False,False,0.13,0.653,0.523,2025-10-12,28,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_093,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,True,2025-06-12,2025-08-23,2025-10-12,False,False,0.132,0.573,0.441,2025-08-23,25,2.0,,PREDICCION
+AGC_094,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-12,2025-10-07,,True,False,0.128,0.648,0.52,2025-10-07,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_095,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-16,2025-08-03,2025-10-15,False,False,0.138,0.568,0.43,2025-08-03,20,3.0,,PREDICCION
+AGC_096,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-10,2025-08-28,,False,False,0.117,0.527,0.41,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_097,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,False,False,2025-06-14,,,True,False,0.133,0.654,0.521,2025-10-07,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_098,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-16,2025-09-22,,True,False,0.153,0.66,0.507,2025-09-22,28,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_099,Sentinel-2,abr_oct,5,ndvi_promedio,36,True,True,True,False,2025-06-13,2025-09-17,,False,False,0.128,0.664,0.536,2025-09-17,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_100,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-02,2025-08-28,,False,False,0.139,0.691,0.552,2025-08-28,12,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_101,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-13,2025-08-28,,False,False,0.127,0.56,0.433,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_102,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-15,2025-08-25,,False,False,0.127,0.604,0.477,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_103,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-17,2025-07-29,2025-09-22,False,False,0.122,0.728,0.606,2025-07-29,25,8.0,,ENTRENAMIENTO
+AGC_104,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-09,2025-08-25,,False,False,0.122,0.622,0.5,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_105,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-05-28,2025-08-28,,False,False,0.127,0.614,0.487,2025-08-28,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_106,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-07,2025-07-04,,False,True,0.119,0.597,0.478,2025-07-04,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_107,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-01,2025-07-29,,False,False,0.154,0.686,0.532,2025-07-29,12,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_108,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,False,False,2025-06-08,,,False,True,0.144,0.5,0.356,2025-10-12,3,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_109,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,False,False,2025-06-10,,,False,False,0.132,0.535,0.403,2025-10-07,5,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_110,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,False,False,2025-06-06,,,True,True,0.123,0.527,0.404,2025-08-28,3,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_111,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-25,2025-09-02,,False,False,0.141,0.678,0.537,2025-09-02,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_112,Sentinel-2,abr_oct,5,ndvi_promedio,36,True,True,True,False,2025-06-17,2025-08-28,,False,False,0.118,0.647,0.529,2025-08-28,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_113,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-06-28,2025-08-08,2025-10-05,False,False,0.079,0.669,0.59,2025-08-08,28,17.0,,PREDICCION
+AGC_114,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-22,2025-08-25,,False,False,0.121,0.641,0.52,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_115,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-07,2025-08-13,,False,False,0.121,0.548,0.427,2025-08-13,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_116,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-04,2025-08-28,,False,False,0.124,0.657,0.533,2025-08-28,17,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_117,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-11,2025-09-14,,False,False,0.139,0.597,0.458,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_118,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-07-04,2025-08-28,2025-10-12,False,False,0.148,0.615,0.467,2025-08-28,10,2.0,,PREDICCION
+AGC_119,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,True,2025-06-15,2025-08-28,2025-10-16,False,False,0.211,0.661,0.45,2025-08-28,25,3.0,,ENTRENAMIENTO
+AGC_120,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-19,2025-08-25,2025-10-01,False,False,0.205,0.786,0.581,2025-08-25,25,10.0,,PREDICCION
+AGC_121,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-07-15,2025-08-28,2025-10-26,False,False,0.128,0.722,0.594,2025-08-28,2,10.0,,ENTRENAMIENTO
+AGC_122,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-14,2025-08-05,2025-10-05,False,False,0.133,0.665,0.532,2025-08-05,28,10.0,,ENTRENAMIENTO
+AGC_123,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-13,2025-08-08,2025-10-14,False,False,0.115,0.594,0.479,2025-08-08,28,3.0,,ENTRENAMIENTO
+AGC_124,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,False,False,2025-06-17,,,True,False,0.164,0.669,0.505,2025-09-14,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_125,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-06,2025-07-29,2025-10-13,False,True,0.126,0.692,0.566,2025-07-29,3,2.0,,ENTRENAMIENTO
+AGC_126,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-27,2025-09-02,,False,False,0.107,0.679,0.572,2025-09-02,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_127,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,False,False,2025-06-04,,,False,True,0.249,0.561,0.312,2025-10-12,17,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_128,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-02,2025-07-29,,False,False,0.133,0.675,0.542,2025-07-29,17,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_129,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-19,2025-08-23,,False,False,0.156,0.73,0.574,2025-08-23,20,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_130,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-12,2025-07-29,2025-10-09,False,False,0.131,0.629,0.498,2025-07-29,25,15.0,,PREDICCION
+AGC_131,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-13,2025-08-25,,False,False,0.153,0.689,0.536,2025-08-25,5,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_132,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,False,False,2025-06-13,,,False,False,0.137,0.668,0.531,2025-09-22,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_133,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,False,False,2025-06-12,,,False,True,0.137,0.708,0.571,2025-08-13,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_134,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,True,2025-06-04,2025-07-04,2025-10-19,False,False,0.177,0.717,0.54,2025-07-04,2,10.0,,ENTRENAMIENTO
+AGC_135,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-24,2025-09-02,,False,False,0.137,0.657,0.52,2025-09-02,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_136,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-05-28,2025-08-25,,False,False,0.125,0.624,0.499,2025-08-25,17,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_137,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-05-29,2025-08-23,,False,False,0.165,0.702,0.537,2025-08-23,15,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_138,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-22,2025-08-28,,False,False,0.131,0.637,0.506,2025-08-28,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_139,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-06,2025-08-25,,False,False,0.124,0.577,0.453,2025-08-25,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_140,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-06-20,2025-08-13,2025-10-06,False,False,0.125,0.792,0.667,2025-08-13,20,15.0,,ENTRENAMIENTO
+AGC_141,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-07-05,2025-09-22,,False,False,0.121,0.648,0.527,2025-09-22,12,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_142,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-03,2025-09-22,,False,False,0.149,0.439,0.29,2025-09-22,17,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_143,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-05-27,2025-08-28,,False,False,0.138,0.611,0.473,2025-08-28,12,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_144,Sentinel-2,abr_oct,5,ndvi_promedio,36,True,True,True,True,2025-06-13,2025-07-16,2025-09-26,False,False,0.111,0.668,0.557,2025-07-16,28,5.0,,ENTRENAMIENTO
+AGC_145,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-12,2025-07-24,2025-10-06,False,False,0.113,0.681,0.568,2025-07-24,28,20.0,,ENTRENAMIENTO
+AGC_146,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-03,2025-08-05,,False,False,0.146,0.662,0.516,2025-08-05,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_147,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-13,2025-07-24,2025-10-02,False,False,0.132,0.715,0.583,2025-07-24,28,17.0,,PREDICCION
+AGC_148,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-07-14,2025-08-25,2025-10-14,False,False,0.124,0.738,0.614,2025-08-25,2,3.0,,ENTRENAMIENTO
+AGC_149,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-13,2025-07-29,,False,False,0.146,0.652,0.506,2025-07-29,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_150,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-09,2025-08-13,2025-10-12,False,False,0.129,0.609,0.48,2025-08-13,25,17.0,,ENTRENAMIENTO
+AGC_151,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-04,2025-07-16,,False,True,0.198,0.726,0.528,2025-07-16,2,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_152,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-05-30,2025-08-25,,False,True,0.19,0.655,0.465,2025-08-25,15,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_153,Sentinel-2,abr_oct,5,ndvi_promedio,27,True,True,False,False,2025-06-13,,,False,False,0.118,0.53,0.412,2025-10-07,35,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_154,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,True,2025-06-14,2025-08-08,2025-10-14,False,False,0.158,0.736,0.578,2025-08-08,20,3.0,,PREDICCION
+AGC_155,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,False,False,2025-06-30,,,False,False,0.175,0.692,0.517,2025-08-28,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_156,Sentinel-2,abr_oct,5,ndvi_promedio,25,True,True,True,False,2025-06-26,2025-08-28,,False,False,0.122,0.792,0.67,2025-08-28,28,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_157,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,False,2025-06-20,2025-09-14,,True,False,0.121,0.669,0.548,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_158,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-13,2025-08-28,,False,False,0.128,0.6,0.472,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_159,Sentinel-2,abr_oct,5,ndvi_promedio,27,True,True,False,False,2025-06-07,,,True,False,0.151,0.6875,0.5365,2025-10-27,28,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_160,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,False,False,2025-06-09,,,True,False,0.148,0.706,0.558,2025-10-12,5,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_161,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,False,False,2025-06-10,,,False,False,0.154,0.724,0.57,2025-10-07,5,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_162,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,False,False,2025-06-29,,,False,False,0.129,0.483,0.354,2025-10-12,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_163,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-06-19,2025-09-14,,False,False,0.122,0.628,0.506,2025-09-14,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_164,Sentinel-2,abr_oct,5,ndvi_promedio,37,True,True,True,True,2025-06-13,2025-08-25,2025-10-20,False,False,0.108,0.584,0.476,2025-08-25,25,10.0,,ENTRENAMIENTO
+AGC_165,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-18,2025-08-25,,False,True,0.121,0.667,0.546,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_166,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,True,2025-06-09,2025-07-29,2025-09-26,False,False,0.1105,0.662,0.5515,2025-07-29,8,5.0,,ENTRENAMIENTO
+AGC_167,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-05-31,2025-09-02,,False,False,0.149,0.689,0.54,2025-09-02,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_168,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-06-08,2025-09-27,,True,True,0.138,0.661,0.523,2025-09-27,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_169,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-23,2025-09-14,,False,False,0.121,0.7,0.579,2025-09-14,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_170,Sentinel-2,abr_oct,5,ndvi_promedio,38,True,True,True,False,2025-06-16,2025-08-28,,False,False,0.113,0.523,0.41,2025-08-28,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_171,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-07,2025-08-28,,False,False,0.131,0.565,0.434,2025-08-28,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_172,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,False,2025-06-26,2025-08-28,,False,False,0.147,0.629,0.482,2025-08-28,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_173,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-05-29,2025-09-14,,False,False,0.124,0.685,0.561,2025-09-14,10,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_174,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,True,2025-06-07,2025-07-04,2025-10-09,False,True,0.135,0.555,0.42,2025-07-04,3,17.0,,PREDICCION
+AGC_175,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,False,False,2025-06-04,,,True,False,0.126,0.681,0.555,2025-10-12,17,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_176,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,False,False,2025-06-14,,,False,False,0.139,0.586,0.447,2025-08-28,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_177,Sentinel-2,abr_oct,5,ndvi_promedio,29,True,True,True,True,2025-06-07,2025-08-25,2025-10-23,False,False,0.119,0.647,0.528,2025-08-25,28,10.0,,PREDICCION
+AGC_178,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-26,2025-08-13,,False,False,0.126,0.574,0.448,2025-08-13,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_179,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,False,False,2025-06-11,,,True,False,0.137,0.69,0.553,2025-10-07,28,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_180,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,True,2025-06-04,2025-07-04,2025-10-17,False,False,0.153,0.727,0.574,2025-07-04,2,10.0,,ENTRENAMIENTO
+AGC_181,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,True,False,2025-06-13,2025-08-28,,False,False,0.134,0.666,0.532,2025-08-28,5,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_182,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,False,False,2025-06-09,,,False,True,0.148,0.546,0.398,2025-08-05,28,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_183,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-19,2025-08-25,,False,False,0.134,0.562,0.428,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_184,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-05,2025-08-23,,False,True,0.131,0.638,0.507,2025-08-23,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_185,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-07,2025-07-04,,False,True,0.137,0.559,0.422,2025-07-04,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_186,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,False,2025-06-04,2025-09-22,,True,False,0.145,0.626,0.481,2025-09-22,12,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_187,Sentinel-2,abr_oct,5,ndvi_promedio,34,True,True,True,True,2025-06-16,2025-08-03,2025-09-22,False,False,0.127,0.68,0.553,2025-08-03,25,10.0,,ENTRENAMIENTO
+AGC_188,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,False,False,2025-06-03,,,False,False,0.139,0.566,0.427,2025-09-14,17,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_189,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-05-31,2025-08-13,,False,False,0.125,0.588,0.463,2025-08-13,17,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_190,Sentinel-2,abr_oct,5,ndvi_promedio,28,True,True,True,False,2025-06-21,2025-08-25,,False,True,0.109,0.633,0.524,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_191,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,False,False,2025-06-10,,,False,False,0.212,0.594,0.382,2025-09-27,5,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_192,Sentinel-2,abr_oct,5,ndvi_promedio,35,True,True,True,False,2025-06-02,2025-09-07,,False,False,0.175,0.649,0.474,2025-09-07,17,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_193,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,False,2025-06-17,2025-09-02,,False,False,0.127,0.616,0.489,2025-09-02,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_194,Sentinel-2,abr_oct,5,ndvi_promedio,33,True,True,False,False,2025-05-31,,,False,False,0.1015,0.552,0.4505,2025-09-14,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_195,Sentinel-2,abr_oct,5,ndvi_promedio,31,True,True,True,False,2025-06-11,2025-08-25,,False,False,0.118,0.596,0.478,2025-08-25,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_196,Sentinel-2,abr_oct,5,ndvi_promedio,32,True,True,True,True,2025-06-15,2025-08-05,2025-09-17,False,False,0.129,0.765,0.636,2025-08-05,28,8.0,,ENTRENAMIENTO
+AGC_197,Sentinel-2,abr_oct,5,ndvi_promedio,30,True,True,True,True,2025-06-15,2025-08-28,2025-10-16,False,False,0.121,0.551,0.43,2025-08-28,25,3.0,,ENTRENAMIENTO
+AGC_001,Planet,abr_oct,20,ndvi_promedio,91,True,True,True,False,2025-06-11,2025-09-02,,False,False,0.155,0.824,0.669,2025-09-02,1,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_002,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,True,2025-06-02,2025-07-03,2025-10-19,False,False,0.185,0.827,0.642,2025-07-03,8,2.0,,ENTRENAMIENTO
+AGC_003,Planet,abr_oct,20,ndvi_promedio,62,True,True,True,False,2025-07-01,2025-08-26,,False,False,0.195,0.818,0.623,2025-08-26,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_004,Planet,abr_oct,20,ndvi_promedio,96,True,True,True,True,2025-06-09,2025-09-02,2025-10-28,False,False,0.192,0.699,0.507,2025-09-02,1,1.0,,ENTRENAMIENTO
+AGC_005,Planet,abr_oct,20,ndvi_promedio,88,True,True,False,False,2025-06-10,,,True,False,0.234,0.867,0.633,2025-09-18,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_006,Planet,abr_oct,20,ndvi_promedio,76,True,True,True,False,2025-06-20,2025-09-05,,False,False,0.152,0.805,0.653,2025-09-05,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_007,Planet,abr_oct,20,ndvi_promedio,63,True,True,True,True,2025-06-19,2025-08-26,2025-09-26,False,False,0.165,0.889,0.724,2025-08-26,22,6.0,,ENTRENAMIENTO
+AGC_008,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-04,2025-09-05,,False,False,0.203,0.73,0.527,2025-09-05,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_009,Planet,abr_oct,20,ndvi_promedio,73,True,True,True,True,2025-06-13,2025-08-26,2025-09-30,False,False,0.229,0.682,0.453,2025-08-26,22,1.0,,ENTRENAMIENTO
+AGC_010,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,False,2025-06-02,2025-07-03,,False,False,0.175,0.77,0.595,2025-07-03,13,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_011,Planet,abr_oct,20,ndvi_promedio,65,True,True,True,False,2025-06-01,2025-08-26,,False,False,0.219,0.714,0.495,2025-08-26,15,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_012,Planet,abr_oct,20,ndvi_promedio,78,True,True,True,False,2025-06-12,2025-08-27,,False,False,0.208,0.779,0.571,2025-08-27,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_013,Planet,abr_oct,20,ndvi_promedio,75,True,True,False,False,2025-06-09,,,False,True,0.162,0.803,0.641,2025-09-18,21,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_014,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,False,2025-05-31,2025-08-09,,False,True,0.195,0.803,0.608,2025-08-09,13,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_015,Planet,abr_oct,20,ndvi_promedio,88,True,True,False,False,2025-06-10,,,False,False,0.213,0.73,0.517,2025-09-05,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_016,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,True,2025-06-11,2025-08-26,2025-10-18,False,False,0.187,0.775,0.588,2025-08-26,20,2.0,,PREDICCION
+AGC_017,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-11,,,False,False,0.197,0.711,0.514,2025-09-03,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_018,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-05-29,2025-08-04,,False,False,0.233,0.777,0.544,2025-08-04,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_019,Planet,abr_oct,20,ndvi_promedio,93,True,True,True,True,2025-06-16,2025-08-03,2025-09-13,False,False,0.188,0.827,0.639,2025-08-03,15,1.0,,ENTRENAMIENTO
+AGC_020,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,True,2025-06-20,2025-08-09,2025-09-16,False,False,0.177,0.877,0.7,2025-08-09,16,1.0,,ENTRENAMIENTO
+AGC_021,Planet,abr_oct,20,ndvi_promedio,74,True,True,False,False,2025-06-12,,,True,False,0.188,0.735,0.547,2025-09-18,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_022,Planet,abr_oct,20,ndvi_promedio,76,True,True,True,True,2025-06-08,2025-08-13,2025-10-28,False,False,0.202,0.675,0.473,2025-08-13,2,3.0,,ENTRENAMIENTO
+AGC_023,Planet,abr_oct,20,ndvi_promedio,96,True,True,True,True,2025-06-08,2025-09-02,2025-10-12,False,False,0.188,0.77,0.582,2025-09-02,1,1.0,,ENTRENAMIENTO
+AGC_024,Planet,abr_oct,20,ndvi_promedio,81,True,True,True,False,2025-06-24,2025-09-05,,False,False,0.193,0.8,0.607,2025-09-05,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_025,Planet,abr_oct,20,ndvi_promedio,94,True,True,True,False,2025-06-03,2025-09-02,,True,False,0.184,0.754,0.57,2025-09-02,7,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_026,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-08,,,False,False,0.166,0.659,0.493,2025-09-05,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_027,Planet,abr_oct,20,ndvi_promedio,91,True,True,True,True,2025-06-16,2025-08-10,2025-10-12,False,False,0.173,0.824,0.651,2025-08-10,14,1.0,,PREDICCION
+AGC_028,Planet,abr_oct,20,ndvi_promedio,81,True,True,True,False,2025-06-07,2025-09-03,,False,False,0.203,0.607,0.404,2025-09-03,2,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_029,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,False,2025-06-11,2025-09-13,,False,False,0.152,0.771,0.619,2025-09-13,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_030,Planet,abr_oct,20,ndvi_promedio,56,True,True,True,False,2025-06-14,2025-09-03,,False,False,0.21,0.714,0.504,2025-09-03,20,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_031,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,False,2025-06-04,2025-09-03,,False,False,0.2,0.721,0.521,2025-09-03,8,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_032,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,True,2025-06-26,2025-08-09,2025-10-12,False,False,0.196,0.778,0.582,2025-08-09,17,1.0,,ENTRENAMIENTO
+AGC_033,Planet,abr_oct,20,ndvi_promedio,70,True,True,False,False,2025-06-11,,,False,False,0.172,0.685,0.513,2025-09-18,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_034,Planet,abr_oct,20,ndvi_promedio,67,True,True,True,False,2025-06-09,2025-08-29,,False,False,0.189,0.667,0.478,2025-08-29,18,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_035,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,True,2025-06-20,2025-08-26,2025-10-25,False,False,0.177,0.813,0.636,2025-08-26,23,1.0,,ENTRENAMIENTO
+AGC_036,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,True,2025-06-05,2025-07-03,2025-09-27,False,False,0.184,0.761,0.577,2025-07-03,1,8.0,,PREDICCION
+AGC_037,Planet,abr_oct,20,ndvi_promedio,91,True,True,True,True,2025-06-06,2025-09-02,2025-10-24,False,False,0.172,0.783,0.611,2025-09-02,1,1.0,,ENTRENAMIENTO
+AGC_038,Planet,abr_oct,20,ndvi_promedio,70,True,True,True,True,2025-06-17,2025-08-12,2025-10-04,False,False,0.19,0.747,0.557,2025-08-12,20,1.0,,ENTRENAMIENTO
+AGC_039,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,True,2025-06-12,2025-08-24,2025-09-21,False,False,0.17,0.742,0.572,2025-08-24,16,2.0,,PREDICCION
+AGC_040,Planet,abr_oct,20,ndvi_promedio,95,True,True,True,False,2025-06-09,2025-09-02,,True,False,0.188,0.807,0.619,2025-09-02,1,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_041,Planet,abr_oct,20,ndvi_promedio,69,True,True,True,False,2025-06-12,2025-07-29,,False,False,0.183,0.721,0.538,2025-07-29,15,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_042,Planet,abr_oct,20,ndvi_promedio,71,True,True,True,False,2025-06-14,2025-08-26,,False,False,0.209,0.752,0.543,2025-08-26,19,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_043,Planet,abr_oct,20,ndvi_promedio,80,True,True,False,False,2025-05-30,,,True,False,0.201,0.818,0.617,2025-10-12,13,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_044,Planet,abr_oct,20,ndvi_promedio,89,True,True,True,True,2025-06-14,2025-07-19,2025-09-23,False,False,0.161,0.761,0.6,2025-07-19,16,2.0,,ENTRENAMIENTO
+AGC_045,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,False,2025-06-03,2025-08-26,,False,False,0.217,0.8,0.583,2025-08-26,4,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_046,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,True,2025-06-19,2025-08-26,2025-10-12,False,False,0.152,0.809,0.657,2025-08-26,18,1.0,,ENTRENAMIENTO
+AGC_047,Planet,abr_oct,20,ndvi_promedio,74,True,True,True,False,2025-06-28,2025-08-26,,False,False,0.197,0.818,0.621,2025-08-26,6,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_048,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,True,2025-06-10,2025-09-02,2025-10-28,False,False,0.174,0.8,0.626,2025-09-02,3,1.0,,ENTRENAMIENTO
+AGC_049,Planet,abr_oct,20,ndvi_promedio,79,True,True,False,False,2025-06-10,,,True,False,0.211,0.728,0.517,2025-09-05,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_050,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,True,2025-06-11,2025-08-03,2025-09-22,False,False,0.182,0.819,0.637,2025-08-03,2,2.0,,PREDICCION
+AGC_051,Planet,abr_oct,20,ndvi_promedio,79,True,True,True,True,2025-06-02,2025-07-04,2025-10-28,False,True,0.197,0.757,0.56,2025-07-04,5,1.0,,ENTRENAMIENTO
+AGC_052,Planet,abr_oct,20,ndvi_promedio,71,True,True,True,True,2025-06-13,2025-08-02,2025-09-30,False,True,0.195,0.773,0.578,2025-08-02,22,1.0,,PREDICCION
+AGC_053,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,False,2025-06-10,2025-10-07,,True,False,0.18,0.685,0.505,2025-10-07,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_054,Planet,abr_oct,20,ndvi_promedio,95,True,True,True,True,2025-06-12,2025-09-02,2025-10-24,False,False,0.167,0.684,0.517,2025-09-02,1,1.0,,ENTRENAMIENTO
+AGC_055,Planet,abr_oct,20,ndvi_promedio,70,True,True,False,False,2025-06-08,,,False,False,0.235,0.68,0.445,2025-08-24,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_056,Planet,abr_oct,20,ndvi_promedio,70,True,True,True,False,2025-06-11,2025-09-05,,True,False,0.173,0.695,0.522,2025-09-05,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_057,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,False,2025-06-14,2025-09-13,,False,False,0.204,0.651,0.447,2025-09-13,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_058,Planet,abr_oct,20,ndvi_promedio,90,True,True,True,False,2025-06-14,2025-09-02,,False,False,0.171,0.794,0.623,2025-09-02,14,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_059,Planet,abr_oct,20,ndvi_promedio,78,True,True,True,False,2025-06-02,2025-08-26,,False,False,0.206,0.825,0.619,2025-08-26,13,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_060,Planet,abr_oct,20,ndvi_promedio,81,True,True,True,False,2025-06-09,2025-08-12,,False,False,0.222,0.623,0.401,2025-08-12,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_061,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,True,2025-06-11,2025-08-29,2025-10-27,False,False,0.17,0.742,0.572,2025-08-29,1,1.0,,PREDICCION
+AGC_062,Planet,abr_oct,20,ndvi_promedio,84,True,True,False,False,2025-06-03,,,False,True,0.18,0.55,0.37,2025-09-04,13,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_063,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-10,,,True,False,0.202,0.748,0.546,2025-10-13,20,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_064,Planet,abr_oct,20,ndvi_promedio,70,True,True,True,False,2025-06-12,2025-08-26,,False,False,0.215,0.694,0.479,2025-08-26,22,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_065,Planet,abr_oct,20,ndvi_promedio,73,True,True,True,True,2025-05-28,2025-07-04,2025-10-14,False,True,0.245,0.843,0.598,2025-07-04,13,3.0,,PREDICCION
+AGC_066,Planet,abr_oct,20,ndvi_promedio,89,True,True,True,True,2025-06-09,2025-09-02,2025-10-23,True,True,0.161,0.703,0.542,2025-09-02,1,2.0,,ENTRENAMIENTO
+AGC_067,Planet,abr_oct,20,ndvi_promedio,63,True,True,True,True,2025-06-19,2025-08-29,2025-10-10,False,False,0.218,0.82,0.602,2025-08-29,16,8.0,,ENTRENAMIENTO
+AGC_068,Planet,abr_oct,20,ndvi_promedio,94,True,True,True,True,2025-06-09,2025-09-02,2025-10-28,True,False,0.183,0.814,0.631,2025-09-02,1,1.0,,ENTRENAMIENTO
+AGC_069,Planet,abr_oct,20,ndvi_promedio,95,True,True,True,False,2025-06-14,2025-09-05,,False,False,0.21,0.738,0.528,2025-09-05,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_070,Planet,abr_oct,20,ndvi_promedio,65,True,True,True,False,2025-06-21,2025-09-05,,False,False,0.221,0.77,0.549,2025-09-05,19,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_071,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,True,2025-06-09,2025-09-02,2025-10-28,False,False,0.177,0.768,0.591,2025-09-02,3,1.0,,PREDICCION
+AGC_072,Planet,abr_oct,20,ndvi_promedio,79,True,True,True,False,2025-06-12,2025-09-18,,False,False,0.156,0.827,0.671,2025-09-18,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_073,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-08,,,False,True,0.179,0.557,0.378,2025-09-10,1,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_074,Planet,abr_oct,20,ndvi_promedio,75,True,True,True,True,2025-07-11,2025-08-26,2025-10-13,False,False,0.18,0.893,0.713,2025-08-26,9,4.0,,ENTRENAMIENTO
+AGC_075,Planet,abr_oct,20,ndvi_promedio,91,True,True,True,True,2025-06-10,2025-09-02,2025-10-22,False,False,0.199,0.678,0.479,2025-09-02,3,3.0,,PREDICCION
+AGC_076,Planet,abr_oct,20,ndvi_promedio,76,True,True,False,False,2025-06-04,,,True,False,0.208,0.762,0.554,2025-10-13,14,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_077,Planet,abr_oct,20,ndvi_promedio,75,True,True,False,False,2025-06-16,,,False,True,0.177,0.7,0.523,2025-09-08,21,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_078,Planet,abr_oct,20,ndvi_promedio,61,True,True,True,True,2025-07-04,2025-08-26,2025-10-13,False,False,0.173,0.828,0.655,2025-08-26,1,1.0,,ENTRENAMIENTO
+AGC_079,Planet,abr_oct,20,ndvi_promedio,63,True,True,True,False,2025-06-20,2025-08-29,,False,False,0.157,0.786,0.629,2025-08-29,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_080,Planet,abr_oct,20,ndvi_promedio,59,True,True,True,True,2025-06-30,2025-08-26,2025-10-19,False,False,0.19,0.89,0.7,2025-08-26,7,11.0,,ENTRENAMIENTO
+AGC_081,Planet,abr_oct,20,ndvi_promedio,62,True,True,True,True,2025-07-02,2025-08-26,2025-10-16,False,False,0.184,0.846,0.662,2025-08-26,3,4.0,,ENTRENAMIENTO
+AGC_082,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,False,2025-06-09,2025-08-09,,False,False,0.198,0.724,0.526,2025-08-09,3,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_083,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,True,2025-07-01,2025-08-04,2025-10-20,False,False,0.186,0.753,0.567,2025-08-04,3,5.0,,ENTRENAMIENTO
+AGC_084,Planet,abr_oct,20,ndvi_promedio,83,True,True,False,False,2025-06-03,,,True,False,0.241,0.7425,0.5015,2025-10-26,4,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_085,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,True,2025-06-09,2025-09-03,2025-10-23,False,False,0.159,0.679,0.52,2025-09-03,20,5.0,,PREDICCION
+AGC_086,Planet,abr_oct,20,ndvi_promedio,94,True,True,True,False,2025-06-09,2025-09-03,,False,False,0.183,0.725,0.542,2025-09-03,1,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_087,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,True,2025-06-15,2025-08-13,2025-10-12,False,False,0.168,0.703,0.535,2025-08-13,14,7.0,,PREDICCION
+AGC_088,Planet,abr_oct,20,ndvi_promedio,68,True,True,True,False,2025-06-11,2025-08-26,,False,False,0.154,0.79,0.636,2025-08-26,21,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_089,Planet,abr_oct,20,ndvi_promedio,63,True,True,True,True,2025-06-21,2025-08-05,2025-09-25,False,False,0.174,0.798,0.624,2025-08-05,16,6.0,,ENTRENAMIENTO
+AGC_090,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,False,2025-05-30,2025-09-04,,False,False,0.202,0.76,0.558,2025-09-04,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_091,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,False,2025-06-09,2025-09-05,,True,False,0.207,0.795,0.588,2025-09-05,20,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_092,Planet,abr_oct,20,ndvi_promedio,89,True,True,False,False,2025-06-12,,,True,False,0.175,0.755,0.58,2025-10-12,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_093,Planet,abr_oct,20,ndvi_promedio,90,True,True,True,True,2025-06-10,2025-08-29,2025-10-11,False,False,0.19,0.672,0.482,2025-08-29,3,1.0,,PREDICCION
+AGC_094,Planet,abr_oct,20,ndvi_promedio,67,True,True,False,False,2025-06-12,,,True,False,0.2,0.752,0.552,2025-10-06,25,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_095,Planet,abr_oct,20,ndvi_promedio,81,True,True,True,True,2025-06-21,2025-09-05,2025-10-15,False,False,0.197,0.665,0.468,2025-09-05,19,2.0,,PREDICCION
+AGC_096,Planet,abr_oct,20,ndvi_promedio,77,True,True,True,True,2025-06-09,2025-09-05,2025-10-28,False,False,0.184,0.64,0.456,2025-09-05,19,3.0,,ENTRENAMIENTO
+AGC_097,Planet,abr_oct,20,ndvi_promedio,74,True,True,False,False,2025-06-13,,,True,False,0.188,0.713,0.525,2025-10-12,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_098,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,False,2025-06-11,2025-09-13,,True,False,0.192,0.782,0.59,2025-09-13,1,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_099,Planet,abr_oct,20,ndvi_promedio,93,True,True,True,False,2025-06-09,2025-09-20,,False,False,0.19,0.735,0.545,2025-09-20,1,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_100,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-02,2025-09-03,,False,False,0.201,0.803,0.602,2025-09-03,4,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_101,Planet,abr_oct,20,ndvi_promedio,81,True,True,True,False,2025-06-17,2025-09-05,,False,False,0.194,0.666,0.472,2025-09-05,19,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_102,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,False,2025-06-20,2025-09-05,,False,False,0.195,0.711,0.516,2025-09-05,19,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_103,Planet,abr_oct,20,ndvi_promedio,93,True,True,True,True,2025-06-13,2025-08-03,2025-09-18,False,False,0.179,0.816,0.637,2025-08-03,15,5.0,,ENTRENAMIENTO
+AGC_104,Planet,abr_oct,20,ndvi_promedio,89,True,True,True,True,2025-06-08,2025-09-03,2025-10-22,False,False,0.181,0.727,0.546,2025-09-03,20,5.0,,ENTRENAMIENTO
+AGC_105,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,False,2025-05-28,2025-09-03,,False,False,0.194,0.737,0.543,2025-09-03,13,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_106,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,True,2025-06-08,2025-07-03,2025-10-25,False,True,0.173,0.697,0.524,2025-07-03,20,1.0,,ENTRENAMIENTO
+AGC_107,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,False,2025-06-02,2025-08-09,,False,False,0.235,0.772,0.537,2025-08-09,4,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_108,Planet,abr_oct,20,ndvi_promedio,64,True,True,False,False,2025-06-03,,,False,False,0.207,0.605,0.398,2025-09-05,15,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_109,Planet,abr_oct,20,ndvi_promedio,77,True,True,False,False,2025-06-04,,,True,True,0.182,0.6,0.418,2025-09-22,15,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_110,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,False,2025-06-05,2025-09-05,,True,False,0.182,0.713,0.531,2025-09-05,2,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_111,Planet,abr_oct,20,ndvi_promedio,76,True,True,True,False,2025-06-10,2025-08-31,,True,False,0.182,0.719,0.537,2025-08-31,26,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_112,Planet,abr_oct,20,ndvi_promedio,93,True,True,True,False,2025-06-10,2025-09-02,,False,False,0.189,0.8,0.611,2025-09-02,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_113,Planet,abr_oct,20,ndvi_promedio,65,True,True,True,True,2025-07-02,2025-08-26,2025-10-08,False,False,0.159,0.75,0.591,2025-08-26,3,9.0,,PREDICCION
+AGC_114,Planet,abr_oct,20,ndvi_promedio,89,True,True,True,True,2025-06-12,2025-09-02,2025-10-24,False,False,0.166,0.773,0.607,2025-09-02,1,1.0,,ENTRENAMIENTO
+AGC_115,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,False,2025-06-08,2025-09-04,,False,False,0.177,0.643,0.466,2025-09-04,1,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_116,Planet,abr_oct,20,ndvi_promedio,79,True,True,True,False,2025-06-01,2025-09-03,,False,False,0.196,0.802,0.606,2025-09-03,13,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_117,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-09,2025-10-07,,True,False,0.203,0.702,0.499,2025-10-07,4,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_118,Planet,abr_oct,20,ndvi_promedio,70,True,True,True,True,2025-06-21,2025-08-26,2025-10-13,False,False,0.182,0.758,0.576,2025-08-26,22,1.0,,PREDICCION
+AGC_119,Planet,abr_oct,20,ndvi_promedio,72,True,True,True,False,2025-06-15,2025-08-26,,False,False,0.244,0.744,0.5,2025-08-26,22,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_120,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,True,2025-06-11,2025-08-26,2025-10-09,False,False,0.257,0.889,0.632,2025-08-26,2,6.0,,PREDICCION
+AGC_121,Planet,abr_oct,20,ndvi_promedio,61,True,True,True,True,2025-07-05,2025-08-26,2025-10-25,False,False,0.174,0.841,0.667,2025-08-26,17,2.0,,ENTRENAMIENTO
+AGC_122,Planet,abr_oct,20,ndvi_promedio,79,True,True,True,True,2025-06-11,2025-08-31,2025-10-12,False,False,0.184,0.755,0.571,2025-08-31,4,1.0,,ENTRENAMIENTO
+AGC_123,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,True,2025-06-12,2025-08-13,2025-10-14,False,False,0.16,0.686,0.526,2025-08-13,1,2.0,,ENTRENAMIENTO
+AGC_124,Planet,abr_oct,20,ndvi_promedio,86,True,True,False,False,2025-06-14,,,True,False,0.212,0.744,0.532,2025-09-05,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_125,Planet,abr_oct,20,ndvi_promedio,79,True,True,True,True,2025-05-31,2025-08-09,2025-10-15,False,True,0.19,0.787,0.597,2025-08-09,13,3.0,,ENTRENAMIENTO
+AGC_126,Planet,abr_oct,20,ndvi_promedio,69,True,True,True,False,2025-06-11,2025-09-08,,True,False,0.152,0.759,0.607,2025-09-08,21,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_127,Planet,abr_oct,20,ndvi_promedio,81,True,True,False,False,2025-06-09,,,False,True,0.286,0.668,0.382,2025-09-06,21,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_128,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,False,2025-06-03,2025-08-12,,False,True,0.209,0.76,0.551,2025-08-12,8,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_129,Planet,abr_oct,20,ndvi_promedio,58,True,True,True,False,2025-06-18,2025-08-26,,False,False,0.215,0.838,0.623,2025-08-26,23,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_130,Planet,abr_oct,20,ndvi_promedio,69,True,True,True,False,2025-06-12,2025-08-04,,False,True,0.179,0.691,0.512,2025-08-04,25,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_131,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,True,2025-06-23,2025-08-26,2025-10-25,False,False,0.22,0.787,0.567,2025-08-26,19,1.0,,ENTRENAMIENTO
+AGC_132,Planet,abr_oct,20,ndvi_promedio,72,True,True,False,False,2025-06-09,,,False,False,0.184,0.769,0.585,2025-09-05,26,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_133,Planet,abr_oct,20,ndvi_promedio,74,True,True,True,False,2025-06-08,2025-08-26,,False,False,0.19,0.809,0.619,2025-08-26,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_134,Planet,abr_oct,20,ndvi_promedio,81,True,True,True,True,2025-06-01,2025-08-03,2025-10-20,False,True,0.221,0.783,0.562,2025-08-03,5,7.0,,ENTRENAMIENTO
+AGC_135,Planet,abr_oct,20,ndvi_promedio,74,True,True,True,False,2025-06-11,2025-09-18,,True,False,0.179,0.721,0.542,2025-09-18,26,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_136,Planet,abr_oct,20,ndvi_promedio,89,True,True,True,False,2025-05-30,2025-09-03,,False,False,0.181,0.745,0.564,2025-09-03,13,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_137,Planet,abr_oct,20,ndvi_promedio,75,True,True,True,False,2025-05-27,2025-08-26,,False,False,0.252,0.796,0.544,2025-08-26,14,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_138,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,True,2025-06-11,2025-08-26,2025-10-26,False,False,0.173,0.758,0.585,2025-08-26,3,2.0,,ENTRENAMIENTO
+AGC_139,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-01,2025-08-26,,False,False,0.177,0.679,0.502,2025-08-26,13,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_140,Planet,abr_oct,20,ndvi_promedio,66,True,True,True,False,2025-06-17,2025-08-26,,False,False,0.132,0.88,0.748,2025-08-26,22,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_141,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,False,2025-07-05,2025-09-13,,False,False,0.178,0.8,0.622,2025-09-13,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_142,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,False,2025-05-31,2025-09-06,,True,False,0.183,0.545,0.362,2025-09-06,12,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_143,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,False,2025-05-27,2025-09-04,,False,False,0.203,0.74,0.537,2025-09-04,13,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_144,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,True,2025-06-12,2025-07-18,2025-10-07,False,False,0.155,0.731,0.576,2025-07-18,16,7.0,,ENTRENAMIENTO
+AGC_145,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,True,2025-06-12,2025-07-24,2025-10-12,False,False,0.164,0.76,0.596,2025-07-24,1,1.0,,ENTRENAMIENTO
+AGC_146,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,False,2025-06-02,2025-08-12,,False,False,0.237,0.761,0.524,2025-08-12,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_147,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,True,2025-06-11,2025-07-30,2025-10-08,False,False,0.183,0.796,0.613,2025-07-30,1,6.0,,PREDICCION
+AGC_148,Planet,abr_oct,20,ndvi_promedio,68,True,True,True,True,2025-07-10,2025-08-26,2025-10-17,False,False,0.167,0.844,0.677,2025-08-26,13,10.0,,ENTRENAMIENTO
+AGC_149,Planet,abr_oct,20,ndvi_promedio,70,True,True,True,False,2025-06-12,2025-08-26,,False,True,0.178,0.727,0.549,2025-08-26,22,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_150,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,True,2025-06-09,2025-09-03,2025-10-08,False,True,0.195,0.734,0.539,2025-09-03,20,12.0,,ENTRENAMIENTO
+AGC_151,Planet,abr_oct,20,ndvi_promedio,77,True,True,True,True,2025-05-28,2025-07-04,2025-10-02,False,False,0.282,0.839,0.557,2025-07-04,14,8.0,,ENTRENAMIENTO
+AGC_152,Planet,abr_oct,20,ndvi_promedio,77,True,True,True,False,2025-05-31,2025-07-04,,False,True,0.272,0.786,0.514,2025-07-04,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_153,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-08,,,True,False,0.173,0.631,0.458,2025-09-03,1,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_154,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,True,2025-06-14,2025-08-26,2025-10-14,False,False,0.236,0.845,0.609,2025-08-26,19,2.0,,PREDICCION
+AGC_155,Planet,abr_oct,20,ndvi_promedio,68,True,True,True,False,2025-06-14,2025-09-02,,True,False,0.228,0.81,0.582,2025-09-02,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_156,Planet,abr_oct,20,ndvi_promedio,62,True,True,True,False,2025-06-28,2025-08-26,,False,False,0.183,0.871,0.688,2025-08-26,27,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_157,Planet,abr_oct,20,ndvi_promedio,88,True,True,True,False,2025-06-17,2025-09-13,,True,False,0.179,0.802,0.623,2025-09-13,14,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_158,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-23,2025-09-05,,False,False,0.189,0.709,0.52,2025-09-05,19,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_159,Planet,abr_oct,20,ndvi_promedio,88,True,True,False,False,2025-06-08,,,True,False,0.216,0.788,0.572,2025-10-12,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_160,Planet,abr_oct,20,ndvi_promedio,80,True,True,False,False,2025-05-31,,,True,False,0.192,0.783,0.591,2025-10-12,12,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_161,Planet,abr_oct,20,ndvi_promedio,77,True,True,False,False,2025-06-01,,,True,False,0.211,0.79,0.579,2025-09-18,15,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_162,Planet,abr_oct,20,ndvi_promedio,75,True,True,False,False,2025-06-21,,,False,False,0.162,0.582,0.42,2025-09-02,25,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_163,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,False,2025-06-16,2025-09-13,,False,False,0.167,0.759,0.592,2025-09-13,14,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_164,Planet,abr_oct,20,ndvi_promedio,94,True,True,True,True,2025-06-13,2025-09-02,2025-10-14,False,False,0.158,0.761,0.603,2025-09-02,22,1.0,,ENTRENAMIENTO
+AGC_165,Planet,abr_oct,20,ndvi_promedio,72,True,True,True,False,2025-06-26,2025-08-26,,False,False,0.163,0.765,0.602,2025-08-26,21,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_166,Planet,abr_oct,20,ndvi_promedio,70,True,True,True,True,2025-06-11,2025-07-29,2025-10-12,False,False,0.189,0.738,0.549,2025-07-29,2,1.0,,ENTRENAMIENTO
+AGC_167,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,False,2025-06-01,2025-09-05,,True,False,0.204,0.79,0.586,2025-09-05,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_168,Planet,abr_oct,20,ndvi_promedio,78,True,True,True,True,2025-06-08,2025-07-06,2025-07-27,True,True,0.199,0.768,0.569,2025-07-06,2,6.0,,ENTRENAMIENTO
+AGC_169,Planet,abr_oct,20,ndvi_promedio,92,True,True,True,True,2025-06-10,2025-09-03,2025-10-26,True,False,0.172,0.822,0.65,2025-09-03,3,2.0,,ENTRENAMIENTO
+AGC_170,Planet,abr_oct,20,ndvi_promedio,94,True,True,True,True,2025-06-10,2025-09-02,2025-10-21,False,False,0.188,0.726,0.538,2025-09-02,1,3.0,,ENTRENAMIENTO
+AGC_171,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-17,2025-09-05,,False,False,0.188,0.682,0.494,2025-09-05,20,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_172,Planet,abr_oct,20,ndvi_promedio,73,True,True,True,False,2025-06-27,2025-09-05,,False,False,0.186,0.744,0.558,2025-09-05,26,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_173,Planet,abr_oct,20,ndvi_promedio,92,True,True,True,False,2025-05-28,2025-09-02,,False,False,0.231,0.798,0.567,2025-09-02,9,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_174,Planet,abr_oct,20,ndvi_promedio,76,True,True,True,True,2025-06-07,2025-07-04,2025-10-02,False,False,0.198,0.71,0.512,2025-07-04,1,6.0,,PREDICCION
+AGC_175,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-03,,,True,False,0.179,0.788,0.609,2025-10-13,13,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_176,Planet,abr_oct,20,ndvi_promedio,82,True,True,False,False,2025-06-15,,,False,False,0.179,0.703,0.524,2025-09-03,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_177,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,True,2025-06-08,2025-09-03,2025-10-21,False,False,0.177,0.758,0.581,2025-09-03,20,5.0,,PREDICCION
+AGC_178,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,False,2025-06-15,2025-09-04,,False,False,0.189,0.678,0.489,2025-09-04,25,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_179,Planet,abr_oct,20,ndvi_promedio,82,True,True,False,False,2025-06-11,,,True,False,0.186,0.756,0.57,2025-09-18,20,,el NDVI no baja tras el máximo antes del corte,ENTRENAMIENTO
+AGC_180,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,True,2025-06-02,2025-07-18,2025-10-21,False,True,0.196,0.775,0.579,2025-07-18,5,7.0,,ENTRENAMIENTO
+AGC_181,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,True,2025-06-12,2025-09-05,2025-10-22,True,False,0.182,0.776,0.594,2025-09-05,19,5.0,,ENTRENAMIENTO
+AGC_182,Planet,abr_oct,20,ndvi_promedio,78,True,True,True,False,2025-06-12,2025-09-05,,False,False,0.189,0.665,0.476,2025-09-05,20,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_183,Planet,abr_oct,20,ndvi_promedio,91,True,True,True,True,2025-06-11,2025-09-02,2025-10-24,False,False,0.2,0.705,0.505,2025-09-02,3,1.0,,PREDICCION
+AGC_184,Planet,abr_oct,20,ndvi_promedio,86,True,True,True,False,2025-06-03,2025-08-26,,False,False,0.202,0.738,0.536,2025-08-26,4,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_185,Planet,abr_oct,20,ndvi_promedio,84,True,True,True,False,2025-06-08,2025-07-04,,False,True,0.194,0.673,0.479,2025-07-04,1,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_186,Planet,abr_oct,20,ndvi_promedio,87,True,True,True,True,2025-05-27,2025-07-22,2025-08-02,True,True,0.212,0.724,0.512,2025-07-22,4,1.0,,PREDICCION
+AGC_187,Planet,abr_oct,20,ndvi_promedio,90,True,True,True,True,2025-06-15,2025-08-09,2025-09-22,False,False,0.2,0.772,0.572,2025-08-09,15,1.0,,ENTRENAMIENTO
+AGC_188,Planet,abr_oct,20,ndvi_promedio,85,True,True,False,False,2025-06-01,,,True,False,0.193,0.674,0.481,2025-09-05,8,,el NDVI no baja tras el máximo antes del corte,PREDICCION
+AGC_189,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-02,2025-09-03,,False,False,0.186,0.702,0.516,2025-09-03,3,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_190,Planet,abr_oct,20,ndvi_promedio,73,True,True,True,False,2025-06-26,2025-09-05,,False,False,0.146,0.742,0.596,2025-09-05,21,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_191,Planet,abr_oct,20,ndvi_promedio,83,True,True,True,False,2025-06-09,2025-09-05,,False,False,0.235,0.68,0.445,2025-09-05,21,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_192,Planet,abr_oct,20,ndvi_promedio,78,True,True,True,False,2025-05-31,2025-09-05,,True,False,0.226,0.755,0.529,2025-09-05,13,,no cae al 50 % de la amplitud antes del corte,PREDICCION
+AGC_193,Planet,abr_oct,20,ndvi_promedio,82,True,True,True,False,2025-06-04,2025-09-05,,False,False,0.185,0.746,0.561,2025-09-05,8,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_194,Planet,abr_oct,20,ndvi_promedio,69,True,True,True,True,2025-06-07,2025-07-04,2025-07-27,True,False,0.204,0.725,0.521,2025-07-04,1,7.0,,ENTRENAMIENTO
+AGC_195,Planet,abr_oct,20,ndvi_promedio,85,True,True,True,False,2025-06-09,2025-09-03,,False,False,0.174,0.718,0.544,2025-09-03,19,,no cae al 50 % de la amplitud antes del corte,ENTRENAMIENTO
+AGC_196,Planet,abr_oct,20,ndvi_promedio,90,True,True,True,True,2025-06-16,2025-08-10,2025-09-16,False,False,0.195,0.861,0.666,2025-08-10,16,4.0,,ENTRENAMIENTO
+AGC_197,Planet,abr_oct,20,ndvi_promedio,80,True,True,True,True,2025-06-19,2025-09-05,2025-10-26,False,False,0.186,0.655,0.469,2025-09-05,19,3.0,,ENTRENAMIENTO

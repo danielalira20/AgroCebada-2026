@@ -1,0 +1,198 @@
+﻿id_parcela,conjunto_origen,municipio,area_ha_origen,conocidas_en_municipio,escalon_etiqueta_municipio,conocida_mas_cercana,distancia_centros_m,mas_cercana_en_su_municipio,conocida_mas_cercana_por_orilla,distancia_orillas_m,conocidas_a_menos_de_500_m,conocidas_a_menos_de_1_km,celdas_clima_tocadas,celda_clima_principal,fraccion_en_celda_principal,conocidas_que_comparten_celda,s2_observaciones_con_dato,s2_meses_con_dato,s2_hueco_maximo_dias,planet_observaciones_con_dato,planet_meses_con_dato,planet_hueco_maximo_dias,landsat_observaciones_con_dato,landsat_meses_con_dato,landsat_hueco_maximo_dias,cobertura_elevacion,cobertura_pendiente,contorno_categoria,contorno_mezcla_senal,avisos,numero_de_avisos
+AGC_001,ENTRENAMIENTO,Calpulalpan,7.61,29,0.5,AGC_046,1423.3,si,AGC_046,967.12,0,0,1,37_27,1.0,4,40,7,25,97,7,14,14,6,48,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_002,ENTRENAMIENTO,Chignahuapan,2.31,70,0.01,AGC_104,336.9,si,AGC_104,109.29,2,5,1,30_33,1.0,38,36,7,20,97,7,20,22,7,32,1.0,1.0,A,no,,0
+AGC_003,PREDICCION,Singuilucan,18.68,16,0.1,AGC_081,382.8,si,AGC_081,14.46,1,1,1,28_31,1.0,7,35,7,20,71,7,20,14,7,48,1.0,1.0,A,no,,0
+AGC_004,ENTRENAMIENTO,Calpulalpan,8,29,0.5,AGC_099,1200.9,si,AGC_099,920.89,0,0,1,36_28,1.0,15,41,7,20,105,7,14,18,7,32,1.0,1.0,B,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio; contorno_b_o_c,3
+AGC_005,ENTRENAMIENTO,Chignahuapan,2.27,70,0.01,AGC_159,208.1,si,AGC_159,12.8,3,8,1,30_34,1.0,34,35,7,20,92,7,20,26,7,32,1.0,1.0,A,no,,0
+AGC_006,ENTRENAMIENTO,Chignahuapan,3.84,70,0.01,AGC_172,450.0,si,AGC_172,166.97,1,5,1,30_34,1.0,34,33,7,25,84,7,21,24,7,24,1.0,1.0,A,no,,0
+AGC_007,ENTRENAMIENTO,Singuilucan,2.87,15,0.1,AGC_078,428.6,si,AGC_121,224.1,1,4,1,28_30,1.0,6,37,7,20,79,7,16,14,6,48,1.0,1.0,A,no,,0
+AGC_008,ENTRENAMIENTO,Chignahuapan,10.77,70,0.01,AGC_193,401.2,si,AGC_193,1.53,1,8,1,30_33,1.0,38,38,7,20,96,7,20,17,7,32,1.0,1.0,A,no,,0
+AGC_009,ENTRENAMIENTO,Cuautepec de Hinojosa,0.38,4,0.01,AGC_119,83.4,si,AGC_064,8.46,2,2,1,29_33,1.0,2,38,7,20,79,7,22,18,7,32,1.0,1.0,A,si,pocas_conocidas_en_municipio; angosta_o_muy_pequena,2
+AGC_010,ENTRENAMIENTO,Chignahuapan,7.27,70,0.01,AGC_106,452.3,si,AGC_106,1.74,1,9,1,30_33,1.0,38,39,7,20,96,7,19,17,7,40,1.0,1.0,A,no,,0
+AGC_011,PREDICCION,Chignahuapan,7.17,71,0.01,AGC_056,836.0,si,AGC_056,574.45,0,3,1,30_34,1.0,35,40,7,20,82,7,25,32,7,31,1.0,1.0,A,no,,0
+AGC_012,ENTRENAMIENTO,Chignahuapan,4.08,70,0.01,AGC_072,310.2,si,AGC_072,5.62,3,6,1,30_34,1.0,34,35,7,20,89,7,21,27,7,24,1.0,1.0,A,no,,0
+AGC_013,ENTRENAMIENTO,Chignahuapan,5.6,70,0.01,AGC_165,130.3,si,AGC_165,1.42,4,7,1,30_34,1.0,34,33,7,20,93,7,20,26,7,32,1.0,1.0,A,si,,0
+AGC_014,ENTRENAMIENTO,Chignahuapan,7.44,70,0.01,AGC_125,450.5,si,AGC_125,178.98,1,5,2,31_33,0.7231,43,37,7,20,87,7,20,16,7,40,1.0,1.0,A,no,,0
+AGC_015,ENTRENAMIENTO,Chignahuapan,1.97,70,0.01,AGC_092,644.2,si,AGC_092,468.95,0,3,1,30_34,1.0,34,39,7,20,93,7,20,28,7,32,1.0,1.0,A,no,,0
+AGC_016,PREDICCION,Chignahuapan,7.47,71,0.01,AGC_002,170.6,si,AGC_002,7.06,2,5,1,30_33,1.0,39,35,7,20,96,7,20,22,7,32,1.0,1.0,A,si,,0
+AGC_017,ENTRENAMIENTO,Chignahuapan,1.6,70,0.01,AGC_176,685.1,si,AGC_176,409.3,0,3,1,30_34,1.0,34,37,7,20,92,7,20,25,7,32,1.0,1.0,A,no,,0
+AGC_018,ENTRENAMIENTO,Chignahuapan,1.67,70,0.01,AGC_045,194.9,si,AGC_045,3.84,1,3,1,30_33,1.0,38,34,7,20,92,7,25,19,7,32,1.0,1.0,A,no,,0
+AGC_019,ENTRENAMIENTO,Calpulalpan,5.65,29,0.5,AGC_103,223.1,si,AGC_103,16.48,1,1,1,36_27,1.0,9,38,7,20,103,7,15,19,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_020,ENTRENAMIENTO,Emiliano Zapata,8.34,2,0.5,AGC_044,179.4,si,AGC_044,3.81,1,1,1,35_27,1.0,2,40,7,20,97,7,16,21,7,32,0.9783,0.6525,A,no,pocas_conocidas_en_municipio; etiqueta_gruesa_en_municipio; relieve_incompleto,3
+AGC_021,ENTRENAMIENTO,Chignahuapan,2.86,70,0.01,AGC_097,63.1,si,AGC_097,0.3,3,4,1,30_34,1.0,34,39,7,20,87,7,20,33,7,39,1.0,1.0,B,si,contorno_b_o_c,1
+AGC_022,ENTRENAMIENTO,Chignahuapan,11.99,70,0.01,AGC_168,323.6,si,AGC_096,5.97,3,8,1,30_33,1.0,38,39,7,20,95,7,19,18,7,32,1.0,1.0,A,si,,0
+AGC_023,ENTRENAMIENTO,Calpulalpan,7.72,29,0.5,AGC_170,388.3,si,AGC_170,5.75,2,3,1,35_28,1.0,3,41,7,20,102,7,21,19,7,32,0.959,0.2864,A,no,etiqueta_gruesa_en_municipio; relieve_incompleto,2
+AGC_024,ENTRENAMIENTO,Chignahuapan,11.53,70,0.01,AGC_171,299.7,si,AGC_171,0.92,2,8,1,30_33,1.0,38,35,7,20,94,7,20,18,7,32,1.0,1.0,A,no,,0
+AGC_025,PREDICCION,Calpulalpan,2,30,0.5,AGC_040,398.3,si,AGC_040,5.88,1,2,1,36_28,1.0,16,43,7,20,104,7,14,16,7,32,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_026,ENTRENAMIENTO,Chignahuapan,5.49,70,0.01,AGC_150,663.1,si,AGC_150,253.6,0,6,2,30_34,0.5802,70,39,7,20,93,7,20,22,7,32,1.0,1.0,A,si,,0
+AGC_027,PREDICCION,Calpulalpan,8.46,30,0.5,AGC_058,524.0,si,AGC_058,34.43,0,2,1,36_28,1.0,16,43,7,20,108,7,14,16,7,48,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_028,PREDICCION,Chignahuapan,1.86,71,0.01,AGC_181,203.6,si,AGC_181,4.8,2,7,1,30_33,1.0,39,35,7,20,92,7,19,18,7,40,1.0,1.0,A,no,,0
+AGC_029,PREDICCION,Calpulalpan,5.9,30,0.5,AGC_001,782.3,si,AGC_001,447.48,0,2,1,37_27,1.0,5,39,7,10,99,7,14,15,7,48,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_030,PREDICCION,Singuilucan,13.05,16,0.1,AGC_078,504.8,si,AGC_078,7.2,0,5,1,28_30,1.0,7,38,7,20,81,7,15,14,7,48,1.0,1.0,A,no,,0
+AGC_031,PREDICCION,Chignahuapan,1.98,71,0.01,AGC_195,181.4,si,AGC_195,14.53,1,10,1,30_33,1.0,39,36,7,25,97,7,19,16,7,40,1.0,1.0,A,no,,0
+AGC_032,ENTRENAMIENTO,Chignahuapan,1.44,70,0.01,AGC_181,398.5,si,AGC_181,221.83,1,5,1,30_33,1.0,38,37,7,20,92,7,17,18,7,32,1.0,1.0,A,no,,0
+AGC_033,ENTRENAMIENTO,Chignahuapan,21.04,70,0.01,AGC_056,1840.5,si,AGC_056,1475.2,0,0,2,30_34,0.5296,34,37,7,25,84,7,24,35,7,17,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km,1
+AGC_034,ENTRENAMIENTO,Singuilucan,8.09,15,0.1,AGC_038,544.7,si,AGC_079,24.84,0,3,1,28_31,1.0,6,38,7,20,78,7,18,14,6,64,1.0,1.0,A,si,,0
+AGC_035,ENTRENAMIENTO,Cuautepec de Hinojosa,23.8,4,0.01,AGC_047,4777.8,no,AGC_047,3828.92,0,0,1,30_31,1.0,0,37,7,25,93,7,20,23,7,32,1.0,1.0,A,no,pocas_conocidas_en_municipio; sin_conocida_a_menos_de_1_km; celda_clima_sin_conocidas,3
+AGC_036,PREDICCION,Chignahuapan,5,71,0.01,AGC_104,295.5,si,AGC_104,2.56,3,8,1,30_33,1.0,39,36,7,20,97,7,20,24,7,32,1.0,1.0,A,no,,0
+AGC_037,ENTRENAMIENTO,Calpulalpan,2.66,29,0.5,AGC_058,412.3,si,AGC_058,53.23,1,1,1,36_28,1.0,15,38,7,20,102,7,14,16,7,48,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_038,ENTRENAMIENTO,Singuilucan,3.28,15,0.1,AGC_194,396.6,si,AGC_070,109.99,2,5,1,28_31,1.0,6,37,7,20,83,7,15,16,7,48,1.0,1.0,A,no,,0
+AGC_039,PREDICCION,Calpulalpan,7.71,30,0.5,AGC_144,482.9,si,AGC_144,59.85,1,1,1,36_27,1.0,10,41,7,25,103,7,16,16,7,40,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_040,ENTRENAMIENTO,Calpulalpan,5.46,29,0.5,AGC_169,1060.8,si,AGC_169,806.26,0,0,1,36_28,1.0,15,42,7,20,104,7,14,17,7,32,1.0,1.0,A,no,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_041,ENTRENAMIENTO,Singuilucan,25.13,15,0.1,AGC_166,368.8,si,AGC_194,4.55,2,4,2,29_31,0.975,7,37,7,20,84,7,15,16,7,48,1.0,1.0,A,no,,0
+AGC_042,PREDICCION,Singuilucan,3.81,16,0.1,AGC_038,315.6,si,AGC_038,4.26,2,6,2,28_31,0.7782,8,39,7,20,78,7,19,15,7,48,1.0,1.0,A,si,,0
+AGC_043,PREDICCION,Chignahuapan,7.15,71,0.01,AGC_105,350.5,si,AGC_014,3.78,4,6,2,30_33,0.9971,44,34,7,25,91,7,25,16,7,40,1.0,1.0,A,no,,0
+AGC_044,ENTRENAMIENTO,Emiliano Zapata,0.68,2,0.5,AGC_020,179.4,si,AGC_020,3.81,1,1,1,35_27,1.0,2,41,7,20,95,7,16,20,7,32,1.0,0.9803,A,si,pocas_conocidas_en_municipio; etiqueta_gruesa_en_municipio; relieve_incompleto; angosta_o_muy_pequena,4
+AGC_045,ENTRENAMIENTO,Chignahuapan,1.49,70,0.01,AGC_018,194.9,si,AGC_018,3.84,1,3,1,30_33,1.0,38,33,7,20,93,7,25,20,7,24,1.0,1.0,A,si,,0
+AGC_046,ENTRENAMIENTO,Calpulalpan,7.92,29,0.5,AGC_141,1250.5,si,AGC_141,880.96,0,0,1,36_27,1.0,9,37,7,25,101,7,15,15,7,40,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_047,ENTRENAMIENTO,Tepeapulco,64.3,0,,AGC_035,4777.8,no,AGC_035,3828.92,0,0,1,31_31,1.0,0,39,7,25,95,7,15,22,7,32,1.0,1.0,A,si,pocas_conocidas_en_municipio; sin_conocida_a_menos_de_1_km; celda_clima_sin_conocidas,3
+AGC_048,ENTRENAMIENTO,Nanacamilpa de Mariano Arista,8.29,0,,AGC_117,964.7,no,AGC_117,679.41,0,1,2,36_28,0.7692,16,42,7,20,97,7,14,19,7,40,1.0,1.0,A,no,pocas_conocidas_en_municipio,1
+AGC_049,ENTRENAMIENTO,Chignahuapan,0.87,70,0.01,AGC_012,319.3,si,AGC_012,144.26,3,6,1,30_34,1.0,34,32,7,25,90,7,20,27,7,24,1.0,1.0,C,si,contorno_b_o_c; angosta_o_muy_pequena,2
+AGC_050,PREDICCION,Calpulalpan,2.42,30,0.5,AGC_019,599.4,si,AGC_019,356.81,0,3,1,36_27,1.0,10,37,7,25,95,7,14,15,7,40,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_051,ENTRENAMIENTO,Almoloya,11.12,9,0.01,AGC_180,385.9,si,AGC_180,3.61,1,2,2,32_32,0.6827,1,40,7,20,98,7,16,20,7,32,1.0,1.0,A,si,,0
+AGC_052,PREDICCION,Cuautepec de Hinojosa,6.23,5,0.01,AGC_009,245.2,si,AGC_119,12.39,3,3,1,29_33,1.0,3,37,7,20,84,7,20,21,7,32,1.0,1.0,A,si,,0
+AGC_053,ENTRENAMIENTO,Calpulalpan,8.54,29,0.5,AGC_117,204.8,si,AGC_117,1.57,1,2,1,36_28,1.0,15,40,7,20,102,7,14,18,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_054,ENTRENAMIENTO,Calpulalpan,2.01,29,0.5,AGC_058,1060.4,si,AGC_058,836.17,0,0,1,37_28,1.0,1,39,7,25,105,7,14,17,7,48,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_055,ENTRENAMIENTO,Chignahuapan,1.37,70,0.01,AGC_161,1029.5,si,AGC_161,735.6,0,0,1,30_34,1.0,34,37,7,20,80,7,25,32,7,31,1.0,1.0,C,si,sin_conocida_a_menos_de_1_km; contorno_b_o_c,2
+AGC_056,ENTRENAMIENTO,Chignahuapan,3.65,70,0.01,AGC_055,1221.5,si,AGC_055,1018.98,0,0,1,30_34,1.0,34,32,7,25,79,7,25,34,7,31,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km,1
+AGC_057,ENTRENAMIENTO,Chignahuapan,0.63,70,0.01,AGC_060,642.8,si,AGC_060,502.81,0,2,1,30_34,1.0,34,35,7,20,92,7,17,20,7,40,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_058,ENTRENAMIENTO,Calpulalpan,7.7,29,0.5,AGC_037,412.3,si,AGC_037,53.23,1,1,1,36_28,1.0,15,40,7,20,104,7,14,16,7,48,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_059,ENTRENAMIENTO,Almoloya,19.53,9,0.01,AGC_184,796.2,si,AGC_184,317.72,0,2,2,32_33,0.6382,9,39,7,25,95,7,22,23,7,32,1.0,1.0,A,si,,0
+AGC_060,ENTRENAMIENTO,Chignahuapan,2.34,70,0.01,AGC_127,132.8,si,AGC_127,6.75,1,4,1,30_33,1.0,38,34,7,20,90,7,21,20,7,40,1.0,1.0,A,si,,0
+AGC_061,PREDICCION,Calpulalpan,7.23,30,0.5,AGC_074,983.6,si,AGC_074,437.17,0,1,1,37_26,1.0,2,38,7,28,101,7,14,17,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_062,ENTRENAMIENTO,Chignahuapan,2,70,0.01,AGC_139,84.2,si,AGC_139,39.29,3,6,1,30_33,1.0,38,38,7,20,96,7,19,15,7,40,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_063,PREDICCION,Chignahuapan,12.54,71,0.01,AGC_062,619.9,si,AGC_062,202.24,0,7,1,30_33,1.0,39,40,7,20,93,7,19,17,7,32,1.0,1.0,A,no,,0
+AGC_064,ENTRENAMIENTO,Cuautepec de Hinojosa,2.45,4,0.01,AGC_009,240.9,si,AGC_009,8.46,2,2,1,29_33,1.0,2,36,7,20,81,7,22,21,7,32,1.0,1.0,A,si,pocas_conocidas_en_municipio; angosta_o_muy_pequena,2
+AGC_065,PREDICCION,Almoloya,60.88,10,0.01,AGC_051,1915.6,si,AGC_051,984.74,0,0,1,32_32,1.0,1,41,7,20,105,7,16,20,7,32,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km,1
+AGC_066,ENTRENAMIENTO,Calpulalpan,7.15,29,0.5,AGC_068,788.2,si,AGC_068,308.2,0,2,2,36_28,0.8006,18,41,7,20,106,7,21,18,7,32,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_067,ENTRENAMIENTO,Singuilucan,1.53,15,0.1,AGC_089,427.9,si,AGC_089,238.71,1,4,1,29_30,1.0,1,35,7,20,77,7,16,11,6,56,1.0,1.0,A,no,,0
+AGC_068,ENTRENAMIENTO,Calpulalpan,3.1,29,0.5,AGC_169,616.4,si,AGC_066,308.2,0,3,1,36_28,1.0,15,41,7,20,107,7,14,16,7,32,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_069,ENTRENAMIENTO,Chignahuapan,0.38,70,0.01,AGC_032,971.4,si,AGC_032,849.22,0,1,1,30_34,1.0,34,35,7,20,99,7,20,22,7,32,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_070,ENTRENAMIENTO,Singuilucan,20.83,15,0.1,AGC_194,466.4,si,AGC_194,10.99,2,3,1,28_31,1.0,6,39,7,20,79,7,15,16,7,48,1.0,1.0,A,si,,0
+AGC_071,PREDICCION,Calpulalpan,5.21,30,0.5,AGC_037,197.2,si,AGC_037,6.56,2,2,1,36_28,1.0,16,39,7,25,105,7,14,15,7,48,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_072,ENTRENAMIENTO,Chignahuapan,4.38,70,0.01,AGC_013,256.6,si,AGC_012,5.62,4,7,1,30_34,1.0,34,35,7,20,95,7,20,26,7,32,1.0,1.0,A,si,,0
+AGC_073,ENTRENAMIENTO,Chignahuapan,2.05,70,0.01,AGC_115,38.3,si,AGC_115,0.85,3,7,1,30_33,1.0,38,39,7,20,96,7,19,16,7,40,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_074,ENTRENAMIENTO,Calpulalpan,8.54,29,0.5,AGC_122,1995.9,si,AGC_122,1616.79,0,0,1,37_26,1.0,1,36,7,28,89,7,22,17,7,40,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_075,PREDICCION,Calpulalpan,3.9,30,0.5,AGC_157,386.3,si,AGC_163,192.44,3,3,1,36_28,1.0,16,40,7,25,107,7,14,16,7,48,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_076,PREDICCION,Chignahuapan,1.01,71,0.01,AGC_168,308.9,si,AGC_168,62.29,1,6,1,30_33,1.0,39,36,7,20,89,7,19,18,7,32,1.0,1.0,A,no,,0
+AGC_077,ENTRENAMIENTO,Chignahuapan,6.08,70,0.01,AGC_133,346.5,si,AGC_133,9.73,1,3,1,30_33,1.0,38,35,7,20,88,7,21,22,7,24,1.0,1.0,A,si,,0
+AGC_078,ENTRENAMIENTO,Singuilucan,2.3,15,0.1,AGC_148,325.6,si,AGC_121,9.49,4,5,1,28_30,1.0,6,37,7,20,74,7,22,13,6,48,1.0,1.0,A,si,,0
+AGC_079,ENTRENAMIENTO,Singuilucan,18.87,15,0.1,AGC_034,548.7,si,AGC_034,24.84,0,2,1,28_31,1.0,6,38,7,20,83,7,18,16,7,48,1.0,1.0,A,no,,0
+AGC_080,ENTRENAMIENTO,Singuilucan,18.99,15,0.1,AGC_140,1171.3,si,AGC_140,729.44,0,0,1,28_30,1.0,6,33,7,22,79,7,16,16,6,56,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km,1
+AGC_081,ENTRENAMIENTO,Singuilucan,3.28,15,0.1,AGC_079,2796.1,si,AGC_079,2324.97,0,0,1,28_31,1.0,6,38,7,20,69,7,20,14,7,48,1.0,1.0,A,no,sin_conocida_a_menos_de_1_km,1
+AGC_082,PREDICCION,Almoloya,2.77,10,0.01,AGC_059,494.8,si,AGC_059,111.58,1,3,2,31_33,0.8871,10,38,7,25,95,7,17,21,7,32,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_083,ENTRENAMIENTO,Cuautepec de Hinojosa,2.87,4,0.01,AGC_102,2164.8,no,AGC_197,1905.97,0,0,1,30_33,1.0,38,37,7,20,95,7,22,18,7,32,1.0,1.0,A,no,pocas_conocidas_en_municipio; sin_conocida_a_menos_de_1_km,2
+AGC_084,ENTRENAMIENTO,Almoloya,12.42,9,0.01,AGC_146,2214.9,si,AGC_059,1835.37,0,0,2,32_33,0.7557,9,38,7,20,101,7,17,17,7,32,1.0,1.0,B,si,sin_conocida_a_menos_de_1_km; contorno_b_o_c,2
+AGC_085,PREDICCION,Chignahuapan,5.5,71,0.01,AGC_026,226.7,si,AGC_026,45.18,1,8,1,30_33,1.0,39,36,7,20,95,7,20,24,7,32,1.0,1.0,A,no,,0
+AGC_086,PREDICCION,Calpulalpan,4.73,30,0.5,AGC_112,575.3,si,AGC_112,209.36,0,3,1,36_28,1.0,16,40,7,20,107,7,14,17,7,48,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_087,PREDICCION,Calpulalpan,5.66,30,0.5,AGC_054,225.2,si,AGC_054,21.95,1,1,1,37_28,1.0,2,40,7,25,107,7,14,18,7,48,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_088,PREDICCION,Chignahuapan,5.91,71,0.01,AGC_165,135.6,si,AGC_165,2.38,3,10,1,30_34,1.0,35,35,7,25,88,7,21,27,7,24,1.0,1.0,A,si,,0
+AGC_089,ENTRENAMIENTO,Singuilucan,1.72,15,0.1,AGC_148,165.1,si,AGC_148,3.69,4,5,1,28_30,1.0,6,34,7,20,74,7,16,13,7,48,1.0,1.0,A,no,,0
+AGC_090,ENTRENAMIENTO,Chignahuapan,10.98,70,0.01,AGC_100,641.7,si,AGC_100,319.06,0,2,1,30_33,1.0,38,37,7,25,97,7,19,19,7,32,1.0,1.0,A,no,,0
+AGC_091,PREDICCION,Chignahuapan,0.35,71,0.01,AGC_167,93.6,si,AGC_167,1.81,3,5,1,30_34,1.0,35,36,7,20,91,7,20,25,7,32,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_092,ENTRENAMIENTO,Chignahuapan,0.5,70,0.01,AGC_159,215.7,si,AGC_159,31.53,3,5,1,30_34,1.0,34,37,7,20,96,7,20,25,7,32,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_093,PREDICCION,Calpulalpan,3.71,30,0.5,AGC_157,369.8,si,AGC_163,193.07,3,3,1,36_28,1.0,16,39,7,25,98,7,14,19,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_094,PREDICCION,Chignahuapan,3.63,71,0.01,AGC_056,187.4,si,AGC_056,0.81,1,1,1,30_34,1.0,35,35,7,25,79,7,25,34,7,31,1.0,1.0,A,no,,0
+AGC_095,PREDICCION,Chignahuapan,1.33,71,0.01,AGC_181,214.1,si,AGC_181,51.93,3,8,1,30_33,1.0,39,34,7,20,92,7,19,17,7,40,1.0,1.0,A,no,,0
+AGC_096,ENTRENAMIENTO,Chignahuapan,12.87,70,0.01,AGC_022,352.3,si,AGC_022,5.97,3,6,1,30_33,1.0,38,39,7,20,94,7,19,19,7,32,1.0,1.0,A,no,,0
+AGC_097,ENTRENAMIENTO,Chignahuapan,2.35,70,0.01,AGC_021,63.1,si,AGC_021,0.3,3,4,1,30_34,1.0,34,39,7,20,86,7,20,32,7,39,1.0,1.0,A,no,,0
+AGC_098,ENTRENAMIENTO,Calpulalpan,4.9,29,0.5,AGC_114,845.9,si,AGC_114,349.11,0,1,1,37_27,1.0,4,36,7,25,96,7,14,17,7,32,1.0,1.0,B,si,etiqueta_gruesa_en_municipio; contorno_b_o_c,2
+AGC_099,ENTRENAMIENTO,Calpulalpan,1.17,29,0.5,AGC_138,574.8,si,AGC_138,420.49,0,1,1,36_28,1.0,15,39,7,20,102,7,14,15,7,48,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_100,ENTRENAMIENTO,Chignahuapan,11.24,70,0.01,AGC_178,339.3,si,AGC_178,6.1,1,4,1,30_33,1.0,38,36,7,20,94,7,25,19,7,32,1.0,1.0,A,no,,0
+AGC_101,ENTRENAMIENTO,Chignahuapan,12.35,70,0.01,AGC_102,405.2,si,AGC_197,4.95,2,7,1,30_33,1.0,38,36,7,20,94,7,19,20,7,32,1.0,1.0,A,no,,0
+AGC_102,ENTRENAMIENTO,Chignahuapan,12.75,70,0.01,AGC_101,405.2,si,AGC_101,6.05,1,4,1,30_33,1.0,38,35,7,20,94,7,19,17,7,32,1.0,1.0,A,si,,0
+AGC_103,ENTRENAMIENTO,Calpulalpan,2.48,29,0.5,AGC_019,223.1,si,AGC_019,16.48,1,1,1,36_27,1.0,9,40,7,20,99,7,15,16,7,40,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_104,ENTRENAMIENTO,Chignahuapan,3.02,70,0.01,AGC_150,129.9,si,AGC_150,12.37,2,7,1,30_33,1.0,38,36,7,20,99,7,20,22,7,32,1.0,1.0,A,si,,0
+AGC_105,ENTRENAMIENTO,Chignahuapan,2.99,70,0.01,AGC_125,415.3,si,AGC_125,2.66,2,6,1,30_33,1.0,38,35,7,20,88,7,26,16,7,40,1.0,1.0,A,no,,0
+AGC_106,ENTRENAMIENTO,Chignahuapan,6.09,70,0.01,AGC_110,212.6,si,AGC_110,1.16,2,7,1,30_33,1.0,38,35,7,25,92,7,20,18,7,40,1.0,1.0,A,no,,0
+AGC_107,PREDICCION,Almoloya,2.63,10,0.01,AGC_184,200.2,si,AGC_184,29.98,2,3,1,31_33,1.0,7,38,7,20,94,7,17,23,7,32,1.0,1.0,A,no,,0
+AGC_108,ENTRENAMIENTO,Chignahuapan,3.79,70,0.01,AGC_155,906.2,si,AGC_155,660.05,0,1,1,30_34,1.0,34,34,7,25,82,7,25,30,7,32,1.0,1.0,A,no,,0
+AGC_109,ENTRENAMIENTO,Chignahuapan,3.14,70,0.01,AGC_021,267.8,si,AGC_161,0.54,3,4,1,30_34,1.0,34,39,7,20,92,7,20,36,7,31,1.0,1.0,B,si,contorno_b_o_c,1
+AGC_110,ENTRENAMIENTO,Chignahuapan,6.19,70,0.01,AGC_106,212.6,si,AGC_106,1.16,2,9,1,30_33,1.0,38,35,7,25,96,7,20,19,7,40,1.0,1.0,A,no,,0
+AGC_111,ENTRENAMIENTO,Chignahuapan,1.71,70,0.01,AGC_135,86.4,si,AGC_135,3.17,1,4,1,30_34,1.0,34,32,7,20,83,7,21,23,7,24,1.0,1.0,A,si,,0
+AGC_112,ENTRENAMIENTO,Calpulalpan,7.96,29,0.5,AGC_169,428.4,si,AGC_169,129.07,1,2,1,36_28,1.0,15,40,7,20,99,7,14,17,7,32,1.0,1.0,B,si,etiqueta_gruesa_en_municipio; contorno_b_o_c,2
+AGC_113,PREDICCION,Singuilucan,10.58,16,0.1,AGC_038,225.0,si,AGC_070,4.06,2,5,1,28_31,1.0,7,39,7,20,80,7,17,16,7,48,1.0,1.0,A,no,,0
+AGC_114,ENTRENAMIENTO,Calpulalpan,6.95,29,0.5,AGC_098,845.9,si,AGC_098,349.11,0,1,1,36_27,1.0,9,39,7,25,102,7,15,16,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_115,ENTRENAMIENTO,Chignahuapan,1.93,70,0.01,AGC_073,38.3,si,AGC_073,0.85,3,7,1,30_33,1.0,38,39,7,20,96,7,19,16,7,40,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_116,PREDICCION,Chignahuapan,7.43,71,0.01,AGC_014,201.0,si,AGC_014,0.87,2,6,1,31_33,1.0,7,37,7,20,91,7,20,17,7,40,1.0,1.0,A,no,,0
+AGC_117,ENTRENAMIENTO,Calpulalpan,5.68,29,0.5,AGC_053,204.8,si,AGC_053,1.57,1,3,1,36_28,1.0,15,40,7,20,97,7,14,18,7,40,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_118,PREDICCION,Singuilucan,4.42,16,0.1,AGC_121,1074.0,si,AGC_121,724.02,0,0,1,29_30,1.0,2,36,7,20,83,7,22,14,6,56,1.0,1.0,A,no,sin_conocida_a_menos_de_1_km,1
+AGC_119,ENTRENAMIENTO,Cuautepec de Hinojosa,0.64,4,0.01,AGC_009,83.4,si,AGC_009,14.17,2,2,1,29_33,1.0,2,37,7,25,79,7,22,18,7,32,1.0,1.0,A,si,pocas_conocidas_en_municipio; angosta_o_muy_pequena,2
+AGC_120,PREDICCION,Nanacamilpa de Mariano Arista,7.47,1,,AGC_054,1259.1,no,AGC_054,828.23,0,0,1,37_28,1.0,2,38,7,25,106,7,14,17,7,40,1.0,1.0,A,si,pocas_conocidas_en_municipio; sin_conocida_a_menos_de_1_km; angosta_o_muy_pequena,3
+AGC_121,ENTRENAMIENTO,Singuilucan,5.92,15,0.1,AGC_078,364.3,si,AGC_078,9.49,2,5,2,28_30,0.827,7,36,7,20,72,7,16,15,7,48,1.0,1.0,A,no,,0
+AGC_122,ENTRENAMIENTO,Calpulalpan,7.45,29,0.5,AGC_123,1090.9,si,AGC_123,660.97,0,0,2,37_26,0.8741,5,39,7,15,94,7,14,16,7,32,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_123,ENTRENAMIENTO,Calpulalpan,8.01,29,0.5,AGC_145,465.2,si,AGC_145,4.58,1,1,3,36_27,0.7083,12,38,7,28,95,7,14,16,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_124,ENTRENAMIENTO,Chignahuapan,1.96,70,0.01,AGC_179,319.0,si,AGC_179,10.92,1,2,1,30_34,1.0,34,36,7,20,96,7,20,30,7,32,1.0,1.0,A,no,,0
+AGC_125,ENTRENAMIENTO,Chignahuapan,10.14,70,0.01,AGC_105,415.3,si,AGC_105,2.66,2,4,2,31_33,0.9015,43,36,7,20,91,7,20,19,7,40,1.0,1.0,A,no,,0
+AGC_126,PREDICCION,Chignahuapan,5.75,71,0.01,AGC_111,301.7,si,AGC_111,0.06,2,6,1,30_34,1.0,35,33,7,20,88,7,21,22,7,25,1.0,1.0,A,no,,0
+AGC_127,ENTRENAMIENTO,Chignahuapan,0.91,70,0.01,AGC_060,132.8,si,AGC_060,6.75,1,4,1,30_33,1.0,38,33,7,20,86,7,21,19,7,40,1.0,1.0,B,si,contorno_b_o_c; angosta_o_muy_pequena,2
+AGC_128,PREDICCION,Almoloya,6.15,10,0.01,AGC_146,248.5,si,AGC_146,11.38,2,3,1,31_33,1.0,7,39,7,25,95,7,17,24,7,32,1.0,1.0,A,no,,0
+AGC_129,PREDICCION,Singuilucan,8.16,16,0.1,AGC_081,515.9,si,AGC_081,194.04,0,1,1,28_31,1.0,7,35,7,20,74,7,17,14,7,48,1.0,1.0,A,si,,0
+AGC_130,PREDICCION,Cuautepec de Hinojosa,12.1,5,0.01,AGC_064,446.4,si,AGC_064,7.05,1,3,1,29_33,1.0,3,37,7,20,82,7,22,20,7,40,1.0,1.0,A,no,,0
+AGC_131,ENTRENAMIENTO,Chignahuapan,1.46,70,0.01,AGC_022,374.4,si,AGC_022,48.93,3,5,1,30_33,1.0,38,34,7,20,92,7,20,18,7,32,1.0,1.0,A,no,,0
+AGC_132,ENTRENAMIENTO,Chignahuapan,6.1,70,0.01,AGC_013,408.4,si,AGC_013,8.73,2,7,1,30_34,1.0,34,33,7,25,85,7,21,28,7,24,1.0,1.0,A,si,,0
+AGC_133,ENTRENAMIENTO,Chignahuapan,6.08,70,0.01,AGC_077,346.5,si,AGC_077,9.73,2,3,2,30_34,0.659,70,35,7,20,90,7,21,21,7,32,1.0,1.0,A,si,,0
+AGC_134,ENTRENAMIENTO,Almoloya,2.25,9,0.01,AGC_180,401.2,si,AGC_180,19.08,1,2,2,32_31,0.964,1,37,7,20,96,7,16,18,7,40,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_135,ENTRENAMIENTO,Chignahuapan,1.62,70,0.01,AGC_111,86.4,si,AGC_111,3.17,2,4,1,30_34,1.0,34,31,7,20,85,7,21,22,7,24,1.0,1.0,A,no,,0
+AGC_136,PREDICCION,Chignahuapan,1.69,71,0.01,AGC_002,183.8,si,AGC_002,2.02,3,6,1,30_33,1.0,39,35,7,20,94,7,20,20,7,40,1.0,1.0,A,no,,0
+AGC_137,ENTRENAMIENTO,Almoloya,24.81,9,0.01,AGC_151,1025.6,si,AGC_151,31.49,0,0,1,32_33,1.0,4,40,7,20,97,7,20,23,7,32,1.0,1.0,B,si,sin_conocida_a_menos_de_1_km; contorno_b_o_c,2
+AGC_138,ENTRENAMIENTO,Calpulalpan,7.86,29,0.5,AGC_099,574.8,si,AGC_053,406.1,0,3,1,36_28,1.0,15,40,7,20,102,7,14,17,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_139,ENTRENAMIENTO,Chignahuapan,1.92,70,0.01,AGC_115,73.9,si,AGC_115,31.77,3,6,1,30_33,1.0,38,38,7,20,95,7,19,15,7,40,1.0,1.0,A,si,angosta_o_muy_pequena,1
+AGC_140,ENTRENAMIENTO,Singuilucan,4.13,15,0.1,AGC_080,1171.3,si,AGC_080,729.44,0,0,1,28_30,1.0,6,35,7,20,79,7,22,12,6,48,1.0,1.0,A,no,sin_conocida_a_menos_de_1_km,1
+AGC_141,ENTRENAMIENTO,Calpulalpan,3.94,29,0.5,AGC_157,151.8,si,AGC_157,24.13,2,2,2,36_27,0.6342,22,38,7,25,103,7,14,18,7,40,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_142,PREDICCION,Chignahuapan,1.29,71,0.01,AGC_057,66.8,si,AGC_057,6.63,1,3,1,30_34,1.0,35,35,7,20,93,7,17,21,7,32,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_143,PREDICCION,Chignahuapan,11.48,71,0.01,AGC_090,318.6,si,AGC_090,2.15,1,2,2,30_33,0.9989,44,38,7,25,93,7,19,19,7,32,1.0,1.0,A,si,,0
+AGC_144,ENTRENAMIENTO,Calpulalpan,7.48,29,0.5,AGC_019,1285.4,si,AGC_019,884.55,0,0,1,36_27,1.0,9,40,7,25,100,7,16,17,7,40,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_145,ENTRENAMIENTO,Calpulalpan,8.33,29,0.5,AGC_123,465.2,si,AGC_123,4.58,1,1,2,36_27,0.6641,12,38,7,28,94,7,15,16,7,32,1.0,1.0,A,si,etiqueta_gruesa_en_municipio,1
+AGC_146,ENTRENAMIENTO,Almoloya,1.33,9,0.01,AGC_184,257.3,si,AGC_184,3.31,1,2,1,31_33,1.0,6,38,7,25,95,7,17,22,7,32,1.0,1.0,A,no,,0
+AGC_147,PREDICCION,Calpulalpan,6.8,30,0.5,AGC_144,1170.0,si,AGC_144,840.81,0,0,1,36_26,1.0,1,39,7,28,97,7,16,16,7,40,1.0,1.0,A,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_148,ENTRENAMIENTO,Singuilucan,2.46,15,0.1,AGC_089,165.1,si,AGC_089,3.69,2,5,1,28_30,1.0,6,33,7,20,78,7,15,14,7,48,1.0,1.0,A,no,,0
+AGC_149,PREDICCION,Cuautepec de Hinojosa,8.99,5,0.01,AGC_064,252.8,si,AGC_064,1.48,2,3,1,29_33,1.0,3,38,7,20,84,7,22,20,7,40,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_150,ENTRENAMIENTO,Chignahuapan,1.99,70,0.01,AGC_104,129.9,si,AGC_104,12.37,2,6,2,30_34,0.8657,70,37,7,20,94,7,20,22,7,32,1.0,1.0,A,no,,0
+AGC_151,ENTRENAMIENTO,Almoloya,9.32,9,0.01,AGC_152,718.3,si,AGC_137,31.49,0,1,1,32_33,1.0,4,40,7,17,96,7,17,22,7,32,1.0,1.0,A,no,,0
+AGC_152,ENTRENAMIENTO,Almoloya,2.63,9,0.01,AGC_151,718.3,si,AGC_151,42.87,0,1,1,32_33,1.0,4,38,7,20,94,7,17,20,7,32,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_153,PREDICCION,Chignahuapan,1.99,71,0.01,AGC_195,516.0,si,AGC_195,408.05,0,5,1,30_33,1.0,39,37,7,20,97,7,19,17,7,40,1.0,1.0,A,no,,0
+AGC_154,PREDICCION,Chignahuapan,1.49,71,0.01,AGC_168,282.0,si,AGC_131,90.95,4,8,1,30_33,1.0,39,34,7,20,92,7,19,18,7,40,1.0,1.0,A,no,,0
+AGC_155,ENTRENAMIENTO,Chignahuapan,2.24,70,0.01,AGC_108,906.2,si,AGC_108,660.05,0,2,1,30_34,1.0,34,37,7,20,82,7,25,31,7,32,1.0,1.0,A,no,,0
+AGC_156,PREDICCION,Singuilucan,8.2,16,0.1,AGC_140,767.0,si,AGC_080,320.15,0,2,1,28_30,1.0,7,34,7,20,79,7,16,16,7,48,1.0,1.0,B,si,contorno_b_o_c,1
+AGC_157,ENTRENAMIENTO,Calpulalpan,1.18,29,0.5,AGC_163,114.9,si,AGC_163,6.07,2,2,2,36_28,0.9085,22,39,7,25,98,7,14,18,7,40,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_158,PREDICCION,Chignahuapan,11.22,71,0.01,AGC_102,341.9,si,AGC_102,4.86,2,7,1,30_33,1.0,39,38,7,20,94,7,19,17,7,32,1.0,1.0,A,no,,0
+AGC_159,ENTRENAMIENTO,Chignahuapan,2.14,70,0.01,AGC_005,208.1,si,AGC_005,12.8,3,6,1,30_34,1.0,34,38,7,20,95,7,20,25,7,32,1.0,1.0,A,si,,0
+AGC_160,ENTRENAMIENTO,Chignahuapan,7.61,70,0.01,AGC_124,560.8,si,AGC_124,173.23,0,2,1,30_34,1.0,34,36,7,20,93,7,20,32,7,31,1.0,1.0,A,no,,0
+AGC_161,ENTRENAMIENTO,Chignahuapan,3.36,70,0.01,AGC_109,317.5,si,AGC_109,0.54,3,3,1,30_34,1.0,34,38,7,20,90,7,20,36,7,31,1.0,1.0,A,no,,0
+AGC_162,ENTRENAMIENTO,Chignahuapan,4.93,70,0.01,AGC_049,424.9,si,AGC_049,198.69,1,4,1,30_34,1.0,34,35,7,20,89,7,25,28,7,32,1.0,1.0,A,si,,0
+AGC_163,ENTRENAMIENTO,Calpulalpan,2.57,29,0.5,AGC_157,114.9,si,AGC_157,6.07,2,2,2,36_28,0.7927,22,40,7,25,101,7,14,16,7,40,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_164,ENTRENAMIENTO,Apan,11.84,0,,AGC_170,351.4,no,AGC_023,7.27,2,2,1,35_28,1.0,3,41,7,20,107,7,14,20,7,32,0.9506,0.5527,A,no,pocas_conocidas_en_municipio; relieve_incompleto,2
+AGC_165,ENTRENAMIENTO,Chignahuapan,6.21,70,0.01,AGC_013,130.3,si,AGC_013,1.42,3,9,1,30_34,1.0,34,35,7,25,91,7,20,26,7,32,1.0,1.0,A,si,,0
+AGC_166,ENTRENAMIENTO,Singuilucan,6.76,15,0.1,AGC_041,368.8,si,AGC_041,7.4,1,2,1,29_31,1.0,2,38,7,20,82,7,15,14,7,48,1.0,1.0,A,no,,0
+AGC_167,ENTRENAMIENTO,Chignahuapan,2.46,70,0.01,AGC_092,258.6,si,AGC_092,77.57,3,4,1,30_34,1.0,34,38,7,20,99,7,20,27,7,32,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_168,ENTRENAMIENTO,Chignahuapan,1.53,70,0.01,AGC_022,323.6,si,AGC_022,34.09,3,5,1,30_33,1.0,38,36,7,20,89,7,19,19,7,32,1.0,1.0,A,no,,0
+AGC_169,ENTRENAMIENTO,Calpulalpan,2.51,29,0.5,AGC_112,428.4,si,AGC_112,129.07,1,2,1,36_28,1.0,15,41,7,20,100,7,14,16,7,32,1.0,1.0,A,no,etiqueta_gruesa_en_municipio,1
+AGC_170,ENTRENAMIENTO,Calpulalpan,8.13,29,0.5,AGC_164,351.4,no,AGC_023,5.75,2,2,1,35_28,1.0,3,41,7,20,109,7,14,19,7,32,0.7594,0.021,A,no,etiqueta_gruesa_en_municipio; relieve_incompleto,2
+AGC_171,ENTRENAMIENTO,Chignahuapan,11.63,70,0.01,AGC_024,299.7,si,AGC_024,0.92,2,5,1,30_33,1.0,38,36,7,20,92,7,19,16,7,40,1.0,1.0,A,no,,0
+AGC_172,ENTRENAMIENTO,Chignahuapan,2.33,70,0.01,AGC_006,450.0,si,AGC_006,166.97,1,4,2,30_34,0.7327,34,33,7,25,86,7,21,26,7,24,1.0,1.0,A,no,,0
+AGC_173,PREDICCION,Calpulalpan,3.6,30,0.5,AGC_187,1699.3,si,AGC_187,1398.0,0,0,1,36_27,1.0,10,39,7,25,103,7,15,19,7,40,1.0,1.0,B,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio; contorno_b_o_c,3
+AGC_174,PREDICCION,Cuautepec de Hinojosa,6.89,5,0.01,AGC_083,1643.3,si,AGC_083,1358.85,0,0,2,30_32,1.0,0,40,7,20,90,7,25,21,7,24,1.0,1.0,A,no,sin_conocida_a_menos_de_1_km; celda_clima_sin_conocidas,2
+AGC_175,PREDICCION,Chignahuapan,1.41,71,0.01,AGC_017,263.8,si,AGC_017,158.54,1,7,1,30_34,1.0,35,37,7,20,96,7,20,23,7,32,1.0,1.0,A,no,,0
+AGC_176,ENTRENAMIENTO,Chignahuapan,7.15,70,0.01,AGC_017,685.1,si,AGC_017,409.3,0,1,2,31_34,0.983,34,39,7,20,93,7,20,29,7,32,1.0,1.0,A,si,,0
+AGC_177,PREDICCION,Chignahuapan,5.66,71,0.01,AGC_026,365.1,si,AGC_105,124.63,2,8,1,30_33,1.0,39,37,7,20,95,7,20,21,7,32,1.0,1.0,A,no,,0
+AGC_178,ENTRENAMIENTO,Chignahuapan,9.82,70,0.01,AGC_100,339.3,si,AGC_100,6.1,1,4,1,30_33,1.0,38,39,7,20,92,7,25,21,7,24,1.0,1.0,A,no,,0
+AGC_179,ENTRENAMIENTO,Chignahuapan,6.35,70,0.01,AGC_124,319.0,si,AGC_124,10.92,1,5,1,30_34,1.0,34,38,7,20,92,7,20,32,7,32,1.0,1.0,A,no,,0
+AGC_180,ENTRENAMIENTO,Almoloya,10.9,9,0.01,AGC_051,385.9,si,AGC_051,3.61,2,2,3,33_31,0.5573,2,38,7,20,98,7,16,18,7,40,1.0,1.0,A,si,,0
+AGC_181,ENTRENAMIENTO,Chignahuapan,1.49,70,0.01,AGC_032,398.5,si,AGC_032,221.83,2,6,1,30_33,1.0,38,36,7,20,94,7,19,18,7,40,1.0,1.0,A,no,,0
+AGC_182,PREDICCION,Chignahuapan,4.13,71,0.01,AGC_017,400.2,si,AGC_017,168.96,1,3,1,31_34,1.0,1,35,7,25,94,7,16,27,7,32,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_183,PREDICCION,Calpulalpan,7.85,30,0.5,AGC_163,1086.5,si,AGC_163,896.78,0,0,2,36_28,0.5452,23,42,7,20,107,7,14,16,7,32,1.0,1.0,B,si,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio; contorno_b_o_c,3
+AGC_184,ENTRENAMIENTO,Almoloya,9.96,9,0.01,AGC_146,257.3,si,AGC_146,3.31,1,2,1,31_33,1.0,6,39,7,20,98,7,17,26,7,32,1.0,1.0,A,no,,0
+AGC_185,ENTRENAMIENTO,Chignahuapan,11.88,70,0.01,AGC_193,792.3,si,AGC_193,334.64,0,1,1,30_33,1.0,38,36,7,25,95,7,19,17,7,32,1.0,1.0,A,no,,0
+AGC_186,PREDICCION,Chignahuapan,11.7,71,0.01,AGC_062,551.4,si,AGC_062,91.38,0,5,1,30_33,1.0,39,40,7,20,96,7,19,18,7,32,1.0,1.0,B,si,contorno_b_o_c,1
+AGC_187,ENTRENAMIENTO,Calpulalpan,8.04,29,0.5,AGC_103,2736.8,si,AGC_020,2332.03,0,0,1,35_27,1.0,2,42,7,20,106,7,15,21,7,24,1.0,1.0,A,no,sin_conocida_a_menos_de_1_km; etiqueta_gruesa_en_municipio,2
+AGC_188,PREDICCION,Chignahuapan,2.34,71,0.01,AGC_017,335.3,si,AGC_017,117.54,1,6,1,30_34,1.0,35,37,7,20,94,7,20,26,7,32,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_189,ENTRENAMIENTO,Chignahuapan,4.6,70,0.01,AGC_125,936.4,si,AGC_125,576.61,0,1,1,31_33,1.0,6,38,7,20,92,7,20,23,7,32,1.0,1.0,A,si,,0
+AGC_190,PREDICCION,Chignahuapan,5.01,71,0.01,AGC_006,289.0,si,AGC_165,56.54,4,6,1,30_34,1.0,35,34,7,25,85,7,21,26,7,24,1.0,1.0,A,no,,0
+AGC_191,PREDICCION,Chignahuapan,1.75,71,0.01,AGC_057,211.4,si,AGC_057,34.41,2,4,2,30_33,0.9979,71,36,7,20,95,7,17,19,7,40,1.0,1.0,C,si,contorno_b_o_c,1
+AGC_192,PREDICCION,Chignahuapan,2.14,71,0.01,AGC_161,763.3,si,AGC_109,549.82,0,3,1,30_34,1.0,35,38,7,20,87,7,20,31,7,32,1.0,1.0,A,si,,0
+AGC_193,ENTRENAMIENTO,Chignahuapan,12.41,70,0.01,AGC_008,401.2,si,AGC_008,1.53,3,8,1,30_33,1.0,38,35,7,25,92,7,19,17,7,32,1.0,1.0,A,no,,0
+AGC_194,ENTRENAMIENTO,Singuilucan,4.12,15,0.1,AGC_038,396.6,si,AGC_041,4.55,3,5,2,28_31,0.7803,7,36,7,20,83,7,15,14,7,48,1.0,1.0,A,si,,0
+AGC_195,ENTRENAMIENTO,Chignahuapan,1.92,70,0.01,AGC_010,518.5,si,AGC_010,218.1,0,8,1,30_33,1.0,38,37,7,25,98,7,19,16,7,40,1.0,1.0,A,no,,0
+AGC_196,ENTRENAMIENTO,Emiliano Zapata,8.57,2,0.5,AGC_044,3052.2,si,AGC_044,2798.81,0,0,1,34_27,1.0,0,40,7,25,102,7,15,19,7,40,1.0,1.0,A,si,pocas_conocidas_en_municipio; sin_conocida_a_menos_de_1_km; celda_clima_sin_conocidas; etiqueta_gruesa_en_municipio,4
+AGC_197,ENTRENAMIENTO,Chignahuapan,11.52,70,0.01,AGC_101,471.1,si,AGC_101,4.95,2,6,1,30_33,1.0,38,38,7,20,90,7,19,18,7,40,1.0,1.0,A,no,,0

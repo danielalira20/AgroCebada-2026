@@ -1,0 +1,24 @@
+﻿columna_t03,columna_auditoria,misma_definicion,parcelas_comparadas,parcelas_iguales,diferencia_mediana,diferencia_maxima,iguales_al_reproducir_t03,explicacion
+CONJUNTO,conjunto_origen,si,197,197,,,,Mismo dato del dataset.
+municipio,municipio,si,197,197,,,,Mismo dato del shapefile.
+estado,estado,si,197,197,,,,Mismo dato del shapefile.
+grupo_registro,cultivo_origen,si,197,197,,,,"Mismo dato (campo Cultivo del shapefile). Cambia el nombre: T03 lo llama grupo de registro; aquí se guarda como escritura original, sin afirmar cómo se registró."
+area_ha,area_ha_origen,si,197,197,0.0,0.0,,Mismo dato del CSV de rendimiento.
+etiquetas_municipio,conocidas_en_municipio,si,197,197,0.0,0.0,,"Parcelas con rendimiento en el mismo municipio, sin contar a la propia."
+etiquetas_grupo_registro,,sin equivalente,,,,,,Parcelas con rendimiento de la misma escritura. Esta auditoría no lo calcula como medida de soporte.
+dist_etiquetada_mas_cercana_m,distancia_centros_m,no,197,0,-1.3,16.3,197,T03 mide sobre la proyección plana EPSG:6372; esta auditoría mide sobre el elipsoide (geodésica). La proyección encoge las distancias de esta zona cerca de 0.3 %.
+celda_chirps,celda_clima_principal,no,197,197,,,197,"T03 toma la celda donde cae el centro del contorno; esta auditoría, la celda donde cae la mayor parte de su superficie."
+celdas_chirps_tocadas,celdas_clima_tocadas,no,197,197,0.0,0.0,197,T03 cuenta también las celdas que el contorno solo roza; esta auditoría cuenta las celdas con alguna superficie del contorno.
+etiquetadas_en_misma_celda,conocidas_que_comparten_celda,no,197,28,-1.0,39.0,197,"T03 cuenta las parcelas con rendimiento cuyo centro cae en la misma celda; esta auditoría, las que comparten al menos una celda tocada. La segunda nunca es menor."
+s2_capturas_con_dato,s2_observaciones_con_dato,si,197,197,0.0,0.0,,Observaciones con índice no vacío del 1 de abril al 31 de octubre de 2025.
+s2_capturas_despejadas,,sin equivalente,,,,,,"Observaciones con nubosidad de 20 % o menos. Esta auditoría no aplica corte de nubosidad, porque el plan lo deja como candidato."
+s2_meses_sin_despejada,,sin equivalente,,,,,,Meses sin observación con nubosidad de 20 % o menos. Misma razón.
+s2_hueco_max_dias_jun_oct,s2_hueco_maximo_dias,no,197,117,0.0,15.0,197,T03 mide el hueco entre observaciones con nubosidad de 20 % o menos y no cuenta el tramo antes de la primera ni después de la última; esta auditoría usa todas las observaciones con dato y sí cuenta esos tramos.
+pl_capturas_con_dato,planet_observaciones_con_dato,si,197,197,0.0,0.0,,Observaciones con índice no vacío del 1 de abril al 31 de octubre de 2025.
+pl_capturas_despejadas,,sin equivalente,,,,,,"Observaciones con nubosidad de 20 % o menos. Esta auditoría no aplica corte de nubosidad, porque el plan lo deja como candidato."
+pl_meses_sin_despejada,,sin equivalente,,,,,,Meses sin observación con nubosidad de 20 % o menos. Misma razón.
+pl_hueco_max_dias_jun_oct,planet_hueco_maximo_dias,no,197,126,0.0,11.0,197,T03 mide el hueco entre observaciones con nubosidad de 20 % o menos y no cuenta el tramo antes de la primera ni después de la última; esta auditoría usa todas las observaciones con dato y sí cuenta esos tramos.
+ls_capturas_con_dato,landsat_observaciones_con_dato,si,197,197,0.0,0.0,,Observaciones con índice no vacío del 1 de abril al 31 de octubre de 2025.
+ls_capturas_despejadas,,sin equivalente,,,,,,"Observaciones con nubosidad de 20 % o menos. Esta auditoría no aplica corte de nubosidad, porque el plan lo deja como candidato."
+ls_meses_sin_despejada,,sin equivalente,,,,,,Meses sin observación con nubosidad de 20 % o menos. Misma razón.
+ls_hueco_max_dias_jun_oct,landsat_hueco_maximo_dias,no,197,106,0.0,40.0,197,T03 mide el hueco entre observaciones con nubosidad de 20 % o menos y no cuenta el tramo antes de la primera ni después de la última; esta auditoría usa todas las observaciones con dato y sí cuenta esos tramos.
