@@ -1,0 +1,188 @@
+﻿tabla,columna,tipo,decimales,tolerancia,motivo
+catalogo_parcelas.csv,id_parcela,texto,,,texto
+catalogo_parcelas.csv,conjunto_origen,texto,,,texto
+catalogo_parcelas.csv,rendimiento_t_ha,decimal,2,0,copiado del dataset original
+catalogo_parcelas.csv,area_ha_origen,decimal,2,0,copiado del dataset original
+catalogo_parcelas.csv,municipio,texto,,,texto
+catalogo_parcelas.csv,estado,texto,,,texto
+catalogo_parcelas.csv,cultivo_origen,texto,,,texto
+catalogo_parcelas.csv,geometria_valida,texto,,,texto
+catalogo_parcelas.csv,puntos_contorno,entero,,,conteo
+catalogo_parcelas.csv,area_ha_geodesica,decimal,6,0.000001,valor calculado
+catalogo_parcelas.csv,diferencia_area_pct,decimal,3,0.001,valor calculado
+catalogo_parcelas.csv,centroide_lon,decimal,7,0.0000001,valor calculado
+catalogo_parcelas.csv,centroide_lat,decimal,7,0.0000001,valor calculado
+catalogo_parcelas.csv,contorno_categoria,texto,,,texto
+catalogo_parcelas.csv,contorno_divisiones_internas,texto,,,texto
+catalogo_parcelas.csv,contorno_arboles_dentro,texto,,,texto
+catalogo_parcelas.csv,contorno_construccion_dentro,texto,,,texto
+catalogo_parcelas.csv,contorno_angosta_o_muy_pequena,texto,,,texto
+catalogo_parcelas.csv,contorno_imagen_poco_clara,texto,,,texto
+catalogo_parcelas.csv,contorno_firmeza,texto,,,texto
+catalogo_parcelas.csv,rendimiento_decimales,entero,,,conteo
+catalogo_parcelas.csv,rendimiento_multiplo_de_medio,texto,,,texto
+comparacion_con_t03.csv,columna_t03,texto,,,texto
+comparacion_con_t03.csv,columna_auditoria,texto,,,texto
+comparacion_con_t03.csv,misma_definicion,texto,,,texto
+comparacion_con_t03.csv,parcelas_comparadas,entero,,,conteo
+comparacion_con_t03.csv,parcelas_iguales,entero,,,conteo
+comparacion_con_t03.csv,diferencia_mediana,decimal,1,0.1,valor calculado
+comparacion_con_t03.csv,diferencia_maxima,decimal,1,0.1,valor calculado
+comparacion_con_t03.csv,iguales_al_reproducir_t03,entero,,,conteo
+comparacion_con_t03.csv,explicacion,texto,,,texto
+comparacion_con_t03_por_parcela.csv,id_parcela,texto,,,texto
+comparacion_con_t03_por_parcela.csv,conjunto_origen,texto,,,texto
+comparacion_con_t03_por_parcela.csv,municipio,texto,,,texto
+comparacion_con_t03_por_parcela.csv,columna_t03,texto,,,texto
+comparacion_con_t03_por_parcela.csv,valor_t03,decimal,1,0,copiado de la tabla de T03
+comparacion_con_t03_por_parcela.csv,columna_auditoria,texto,,,texto
+comparacion_con_t03_por_parcela.csv,valor_auditoria,entero,,,conteo
+comprobaciones_catalogo.csv,etapa,entero,,,número de etapa
+comprobaciones_catalogo.csv,comprobacion,texto,,,texto
+comprobaciones_catalogo.csv,esperado,texto,,,texto
+comprobaciones_catalogo.csv,obtenido,texto,,,texto
+comprobaciones_catalogo.csv,resultado,texto,,,texto
+cruce_contorno_parcelas_b_c.csv,id_parcela,texto,,,texto
+cruce_contorno_parcelas_b_c.csv,municipio,texto,,,texto
+cruce_contorno_parcelas_b_c.csv,contorno_categoria,texto,,,texto
+cruce_contorno_parcelas_b_c.csv,contorno_angosta_o_muy_pequena,texto,,,texto
+cruce_contorno_parcelas_b_c.csv,area_ha_origen,decimal,2,0,copiado del dataset original
+cruce_contorno_parcelas_b_c.csv,rendimiento_t_ha,decimal,2,0,copiado del dataset original
+cruce_contorno_parcelas_b_c.csv,desviacion_municipal,decimal,3,0.001,valor calculado
+cruce_contorno_por_municipio.csv,municipio,texto,,,texto
+cruce_contorno_por_municipio.csv,grupo,texto,,,texto
+cruce_contorno_por_municipio.csv,parcelas,entero,,,conteo
+cruce_contorno_por_municipio.csv,desviacion_media,decimal,3,0.001,valor calculado
+cruce_contorno_por_municipio.csv,desviacion_mediana,decimal,3,0.001,valor calculado
+cruce_contorno_por_municipio.csv,parcelas_por_encima,entero,,,conteo
+cruce_contorno_por_municipio.csv,parcelas_por_debajo,entero,,,conteo
+cruce_contorno_por_municipio.csv,area_mediana_ha,decimal,2,0.01,valor calculado
+cruce_contorno_rendimiento.csv,tipo,texto,,,texto
+cruce_contorno_rendimiento.csv,grupo,texto,,,texto
+cruce_contorno_rendimiento.csv,referencia,texto,,,texto
+cruce_contorno_rendimiento.csv,medida,texto,,,texto
+cruce_contorno_rendimiento.csv,parcelas_grupo,entero,,,conteo
+cruce_contorno_rendimiento.csv,parcelas_referencia,entero,,,conteo
+cruce_contorno_rendimiento.csv,rendimiento_medio_grupo,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,rendimiento_medio_referencia,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,parcelas_grupo_comparables,entero,,,conteo
+cruce_contorno_rendimiento.csv,parcelas_referencia_comparables,entero,,,conteo
+cruce_contorno_rendimiento.csv,media_grupo,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,media_referencia,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,diferencia,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,azar_minimo,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,azar_maximo,decimal,3,0.001,valor calculado
+cruce_contorno_rendimiento.csv,casualidad_de_cada_100,decimal,1,0.1,valor calculado
+cruce_contorno_rendimiento.csv,lectura,texto,,,texto
+desviacion_municipal_por_parcela.csv,id_parcela,texto,,,texto
+desviacion_municipal_por_parcela.csv,municipio,texto,,,texto
+desviacion_municipal_por_parcela.csv,cultivo_origen,texto,,,texto
+desviacion_municipal_por_parcela.csv,rendimiento_t_ha,decimal,2,0,copiado del dataset original
+desviacion_municipal_por_parcela.csv,conocidas_en_municipio,entero,,,conteo
+desviacion_municipal_por_parcela.csv,promedio_demas_municipio,decimal,3,0.001,valor calculado
+desviacion_municipal_por_parcela.csv,desviacion_municipal,decimal,3,0.001,valor calculado
+desviacion_municipal_por_parcela.csv,extrema,texto,,,texto
+desviacion_municipal_por_parcela.csv,area_ha_origen,decimal,2,0,copiado del dataset original
+desviacion_municipal_por_parcela.csv,contorno_categoria,texto,,,texto
+desviacion_municipal_por_parcela.csv,contorno_angosta_o_muy_pequena,texto,,,texto
+desviacion_municipal_por_parcela.csv,conocida_mas_cercana,texto,,,texto
+desviacion_municipal_por_parcela.csv,distancia_conocida_mas_cercana_m,decimal,0,1,"medida calculada, redondeada al metro"
+desviacion_municipal_por_parcela.csv,rendimiento_conocida_mas_cercana,decimal,2,0,copiado del dataset original
+desviacion_municipal_por_parcela.csv,conocidas_a_menos_de_1_km,entero,,,conteo
+desviacion_municipal_por_parcela.csv,promedio_conocidas_a_menos_de_1_km,decimal,3,0.001,valor calculado
+desviacion_por_tamano.csv,municipio,texto,,,texto
+desviacion_por_tamano.csv,tramo_area,texto,,,texto
+desviacion_por_tamano.csv,parcelas,entero,,,conteo
+desviacion_por_tamano.csv,desviacion_media,decimal,3,0.001,valor calculado
+desviacion_por_tamano.csv,desviacion_mediana,decimal,3,0.001,valor calculado
+desviacion_por_tamano.csv,alejamiento_medio,decimal,3,0.001,valor calculado
+desviacion_por_tamano.csv,extremas_altas,entero,,,conteo
+desviacion_por_tamano.csv,extremas_bajas,entero,,,conteo
+desviacion_por_tamano.csv,parcelas_en_a,entero,,,conteo
+desviacion_por_tamano.csv,desviacion_media_en_a,decimal,3,0.001,valor calculado
+huellas_archivos_leidos.csv,archivo,texto,,,texto
+huellas_archivos_leidos.csv,bytes,entero,,,tamaño del archivo
+huellas_archivos_leidos.csv,sha256,texto,,,texto
+huellas_archivos_leidos_comparacion.csv,archivo,texto,,,texto
+huellas_archivos_leidos_comparacion.csv,bytes,entero,,,tamaño del archivo
+huellas_archivos_leidos_comparacion.csv,sha256,texto,,,texto
+huellas_archivos_leidos_soporte.csv,archivo,texto,,,texto
+huellas_archivos_leidos_soporte.csv,bytes,entero,,,tamaño del archivo
+huellas_archivos_leidos_soporte.csv,sha256,texto,,,texto
+pares_de_parcelas_cercanas.csv,id_parcela_a,texto,,,texto
+pares_de_parcelas_cercanas.csv,id_parcela_b,texto,,,texto
+pares_de_parcelas_cercanas.csv,distancia_orillas_m,decimal,2,0.01,valor calculado
+pares_de_parcelas_cercanas.csv,municipio_a,texto,,,texto
+pares_de_parcelas_cercanas.csv,municipio_b,texto,,,texto
+pares_de_parcelas_cercanas.csv,cultivo_origen_a,texto,,,texto
+pares_de_parcelas_cercanas.csv,cultivo_origen_b,texto,,,texto
+pares_de_parcelas_cercanas.csv,conjunto_origen_a,texto,,,texto
+pares_de_parcelas_cercanas.csv,conjunto_origen_b,texto,,,texto
+pares_de_parcelas_cercanas.csv,ambas_conocidas,texto,,,texto
+pares_de_parcelas_cercanas.csv,rendimiento_t_ha_a,decimal,2,0,copiado del dataset original
+pares_de_parcelas_cercanas.csv,rendimiento_t_ha_b,decimal,2,0,copiado del dataset original
+pares_de_parcelas_cercanas.csv,mismo_rendimiento,texto,,,texto
+pares_de_parcelas_cercanas.csv,grupo_mismo_rendimiento,texto,,,texto
+precision_etiqueta_por_municipio.csv,agrupacion,texto,,,texto
+precision_etiqueta_por_municipio.csv,grupo,texto,,,texto
+precision_etiqueta_por_municipio.csv,estado,texto,,,texto
+precision_etiqueta_por_municipio.csv,cultivo_origen,texto,,,texto
+precision_etiqueta_por_municipio.csv,parcelas_conocidas,entero,,,conteo
+precision_etiqueta_por_municipio.csv,rendimiento_minimo,decimal,2,0,copiado del dataset original
+precision_etiqueta_por_municipio.csv,rendimiento_maximo,decimal,2,0,copiado del dataset original
+precision_etiqueta_por_municipio.csv,valores_distintos,entero,,,conteo
+precision_etiqueta_por_municipio.csv,con_0_decimales,entero,,,conteo
+precision_etiqueta_por_municipio.csv,con_1_decimal,entero,,,conteo
+precision_etiqueta_por_municipio.csv,con_2_decimales,entero,,,conteo
+precision_etiqueta_por_municipio.csv,multiplos_de_medio,entero,,,conteo
+precision_etiqueta_por_municipio.csv,paso_comun,decimal,2,0,"escalón: 0.5, 0.1 o 0.01"
+precision_etiqueta_por_municipio.csv,valor_mas_repetido,decimal,2,0,copiado del dataset original
+precision_etiqueta_por_municipio.csv,veces_valor_mas_repetido,entero,,,conteo
+precision_etiqueta_por_municipio.csv,parcelas_con_valor_compartido,entero,,,conteo
+soporte_por_parcela.csv,id_parcela,texto,,,texto
+soporte_por_parcela.csv,conjunto_origen,texto,,,texto
+soporte_por_parcela.csv,municipio,texto,,,texto
+soporte_por_parcela.csv,area_ha_origen,decimal,2,0,copiado del dataset original
+soporte_por_parcela.csv,conocidas_en_municipio,entero,,,conteo
+soporte_por_parcela.csv,escalon_etiqueta_municipio,decimal,2,0,"escalón: 0.5, 0.1 o 0.01"
+soporte_por_parcela.csv,conocida_mas_cercana,texto,,,texto
+soporte_por_parcela.csv,distancia_centros_m,decimal,1,0.1,valor calculado
+soporte_por_parcela.csv,mas_cercana_en_su_municipio,texto,,,texto
+soporte_por_parcela.csv,conocida_mas_cercana_por_orilla,texto,,,texto
+soporte_por_parcela.csv,distancia_orillas_m,decimal,2,0.01,valor calculado
+soporte_por_parcela.csv,conocidas_a_menos_de_500_m,entero,,,conteo
+soporte_por_parcela.csv,conocidas_a_menos_de_1_km,entero,,,conteo
+soporte_por_parcela.csv,celdas_clima_tocadas,entero,,,conteo
+soporte_por_parcela.csv,celda_clima_principal,texto,,,texto
+soporte_por_parcela.csv,fraccion_en_celda_principal,decimal,4,0.0001,valor calculado
+soporte_por_parcela.csv,conocidas_que_comparten_celda,entero,,,conteo
+soporte_por_parcela.csv,s2_observaciones_con_dato,entero,,,conteo
+soporte_por_parcela.csv,s2_meses_con_dato,entero,,,conteo
+soporte_por_parcela.csv,s2_hueco_maximo_dias,entero,,,conteo
+soporte_por_parcela.csv,planet_observaciones_con_dato,entero,,,conteo
+soporte_por_parcela.csv,planet_meses_con_dato,entero,,,conteo
+soporte_por_parcela.csv,planet_hueco_maximo_dias,entero,,,conteo
+soporte_por_parcela.csv,landsat_observaciones_con_dato,entero,,,conteo
+soporte_por_parcela.csv,landsat_meses_con_dato,entero,,,conteo
+soporte_por_parcela.csv,landsat_hueco_maximo_dias,entero,,,conteo
+soporte_por_parcela.csv,cobertura_elevacion,decimal,4,0.0001,valor calculado
+soporte_por_parcela.csv,cobertura_pendiente,decimal,4,0.0001,valor calculado
+soporte_por_parcela.csv,contorno_categoria,texto,,,texto
+soporte_por_parcela.csv,contorno_mezcla_senal,texto,,,texto
+soporte_por_parcela.csv,avisos,texto,,,texto
+soporte_por_parcela.csv,numero_de_avisos,entero,,,conteo
+soporte_resumen_por_municipio.csv,municipio,texto,,,texto
+soporte_resumen_por_municipio.csv,conjunto_origen,texto,,,texto
+soporte_resumen_por_municipio.csv,parcelas,entero,,,conteo
+soporte_resumen_por_municipio.csv,distancia_centros_mediana_m,decimal,1,0.1,valor calculado
+soporte_resumen_por_municipio.csv,distancia_centros_maxima_m,decimal,1,0.1,valor calculado
+soporte_resumen_por_municipio.csv,distancia_orillas_mediana_m,decimal,1,0.1,valor calculado
+soporte_resumen_por_municipio.csv,sin_conocida_a_menos_de_1_km,entero,,,conteo
+soporte_resumen_por_municipio.csv,celda_clima_sin_conocidas,entero,,,conteo
+soporte_resumen_por_municipio.csv,s2_observaciones_mediana,decimal,1,0,mediana de conteos
+soporte_resumen_por_municipio.csv,planet_observaciones_mediana,decimal,1,0,mediana de conteos
+soporte_resumen_por_municipio.csv,landsat_observaciones_mediana,decimal,1,0,mediana de conteos
+soporte_resumen_por_municipio.csv,relieve_incompleto,entero,,,conteo
+soporte_resumen_por_municipio.csv,contorno_b_o_c,entero,,,conteo
+soporte_resumen_por_municipio.csv,contorno_mezcla_senal,entero,,,conteo
+soporte_resumen_por_municipio.csv,con_algun_aviso,entero,,,conteo

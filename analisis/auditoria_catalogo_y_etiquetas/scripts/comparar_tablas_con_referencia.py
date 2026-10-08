@@ -1,4 +1,4 @@
-"""Compara las tablas recién generadas con una versión de referencia, aceptando diferencias mínimas.
+"""Compara las tablas recién generadas con una versión de referencia, según un esquema declarado.
 
 Uso (después de correr los scripts de la auditoría, desde la raíz del repositorio):
     python analisis/auditoria_catalogo_y_etiquetas/scripts/comparar_tablas_con_referencia.py
@@ -10,18 +10,22 @@ Opciones:
     --tablas CARPETA       Tablas recién generadas. Por omisión, tablas/ de esta auditoría.
     --referencia CARPETA   Carpeta con las tablas de referencia, en lugar de Git.
     --version NOMBRE       Versión de Git que sirve de referencia. Por omisión, HEAD.
+    --esquema ARCHIVO      Esquema de las tablas. Por omisión, esquema_de_tablas.csv.
 
-Qué cuenta como «igual»:
-    - El fin de línea (Windows o Mac/Linux) no se toma en cuenta.
-    - Mismas columnas en el mismo orden y mismas filas en el mismo orden.
-    - Texto, enteros, marcas si/no y huellas: deben coincidir exactamente.
-    - Columnas con decimales: se acepta una diferencia de hasta una unidad en el último
-      decimal con que está escrita la columna. Por ejemplo, 0.000001 ha en un área escrita
-      con 6 decimales, o 0.1 m en una distancia escrita con 1 decimal. Esa diferencia puede
-      aparecer al redondear en otro sistema operativo o con otra versión de las librerías.
+El esquema (esquema_de_tablas.csv) declara, para cada columna de cada tabla, su tipo y cuánta
+diferencia se acepta. Lo que decide es el esquema, no lo que traiga la tabla nueva:
+    texto     Debe coincidir exactamente.
+    entero    Debe ser un entero y coincidir exactamente.
+    decimal   Debe ser un número con a lo sumo los decimales declarados. Se acepta una diferencia
+              de hasta la tolerancia declarada; si la tolerancia es 0, debe coincidir exactamente.
+El fin de línea (Windows o Mac/Linux) no se toma en cuenta.
 
-Termina con código 0 si todas las tablas son iguales o iguales dentro de la tolerancia,
-y con código 1 si alguna es distinta, falta o sobra.
+Además del esquema se usa la referencia como segunda comprobación: antes de comparar se revisa
+que la propia referencia cumpla el esquema. Si no lo cumple, se avisa y cuenta como falla.
+
+Termina con código 0 solo si todas las tablas del esquema se compararon y son iguales o iguales
+dentro de la tolerancia. Termina con código 1 si alguna es distinta, falta, sobra o no cumple el
+esquema, y también si una carpeta no existe o no hay ninguna tabla que comparar.
 """
 import argparse
 import csv
@@ -29,15 +33,21 @@ import io
 import re
 import subprocess
 import sys
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 sys.dont_write_bytecode = True
 
 CARPETA = Path(__file__).resolve().parents[1]
 TABLAS_POR_OMISION = CARPETA / "tablas"
+ESQUEMA_POR_OMISION = CARPETA / "esquema_de_tablas.csv"
+COLUMNAS_DEL_ESQUEMA = ["tabla", "columna", "tipo", "decimales", "tolerancia", "motivo"]
+TIPOS = ("texto", "entero", "decimal")
+ENTERO = re.compile(r"-?\d+")
 NUMERO = re.compile(r"-?\d+(\.\d+)?")
 MAXIMO_A_MOSTRAR = 5
+ETIQUETAS = {"igual": "igual", "tolerancia": "igual dentro de la tolerancia", "distinta": "DISTINTA",
+             "referencia": "LA REFERENCIA NO CUMPLE EL ESQUEMA", "sin_esquema": "SIN ESQUEMA"}
 
 
 def leer_tabla(contenido: bytes):
@@ -47,47 +57,90 @@ def leer_tabla(contenido: bytes):
     return (filas[0], filas[1:]) if filas else ([], [])
 
 
-def decimales(valor: str) -> int:
-    return len(valor.split(".")[1]) if "." in valor else 0
+def leer_esquema(contenido: bytes) -> dict:
+    """Devuelve {tabla: [(columna, tipo, decimales, tolerancia), ...]} y comprueba que el esquema esté bien escrito."""
+    columnas, filas = leer_tabla(contenido)
+    if columnas != COLUMNAS_DEL_ESQUEMA:
+        raise SystemExit(f"El esquema debe tener las columnas {COLUMNAS_DEL_ESQUEMA}; tiene {columnas}")
+    esquema = {}
+    for numero, fila in enumerate(filas, start=2):
+        if len(fila) != len(COLUMNAS_DEL_ESQUEMA):
+            raise SystemExit(f"Esquema, línea {numero}: número de celdas inesperado")
+        tabla, columna, tipo, decimales, tolerancia, _ = fila
+        if tipo not in TIPOS:
+            raise SystemExit(f"Esquema, línea {numero}: el tipo «{tipo}» no es uno de {TIPOS}")
+        if tipo == "decimal":
+            try:
+                decimales, tolerancia = int(decimales), Decimal(tolerancia)
+            except (ValueError, InvalidOperation):
+                raise SystemExit(f"Esquema, línea {numero}: una columna decimal necesita decimales y tolerancia")
+            if decimales < 0 or tolerancia < 0:
+                raise SystemExit(f"Esquema, línea {numero}: decimales y tolerancia no pueden ser negativos")
+        elif decimales or tolerancia:
+            raise SystemExit(f"Esquema, línea {numero}: solo las columnas decimales llevan decimales y tolerancia")
+        else:
+            decimales, tolerancia = 0, Decimal(0)
+        if columna in [c for c, *_ in esquema.get(tabla, [])]:
+            raise SystemExit(f"Esquema, línea {numero}: la columna {columna} de {tabla} está repetida")
+        esquema.setdefault(tabla, []).append((columna, tipo, decimales, tolerancia))
+    if not esquema:
+        raise SystemExit("El esquema no declara ninguna tabla")
+    return esquema
 
 
-def tolerancias_por_columna(columnas, filas_a, filas_b):
-    """Para cada columna con decimales, una unidad de su último decimal. Las demás no tienen tolerancia."""
-    tolerancias = {}
-    for i, nombre in enumerate(columnas):
-        valores = [f[i] for f in filas_a + filas_b if i < len(f) and f[i] != ""]
-        if valores and all(NUMERO.fullmatch(v) for v in valores):
-            d = max(decimales(v) for v in valores)
-            if d > 0:
-                tolerancias[nombre] = Decimal(1).scaleb(-d)
-    return tolerancias
+def valor_cumple(valor: str, tipo: str, decimales: int) -> bool:
+    """Una celda vacía significa «no hay dato» y se admite en cualquier tipo."""
+    if valor == "" or tipo == "texto":
+        return True
+    if tipo == "entero":
+        return bool(ENTERO.fullmatch(valor))
+    return bool(NUMERO.fullmatch(valor)) and (len(valor.split(".")[1]) if "." in valor else 0) <= decimales
 
 
-def comparar_tablas(referencia: bytes, nueva: bytes):
-    """Compara dos CSV. Devuelve (estado, detalles); estado es 'igual', 'tolerancia' o 'distinta'."""
+def revisar_contra_esquema(columnas, filas, esquema_tabla):
+    """Lista de problemas de una tabla frente a su esquema; vacía si lo cumple."""
+    declaradas = [c for c, *_ in esquema_tabla]
+    if columnas != declaradas:
+        return [f"columnas distintas de las del esquema: esquema {declaradas}; tabla {columnas}"]
+    problemas = []
+    for numero, fila in enumerate(filas, start=2):
+        if len(fila) != len(declaradas):
+            problemas.append(f"línea {numero}: número de celdas inesperado")
+            continue
+        for (columna, tipo, decimales, _), valor in zip(esquema_tabla, fila):
+            if not valor_cumple(valor, tipo, decimales):
+                esperado = "un entero" if tipo == "entero" else f"un número con a lo sumo {decimales} decimales"
+                problemas.append(f"línea {numero}, columna {columna}: «{valor}» no es {esperado}")
+    return problemas
+
+
+def comparar_tablas(referencia: bytes, nueva: bytes, esquema_tabla):
+    """Compara dos CSV según el esquema. Devuelve (estado, detalles).
+
+    El estado es 'igual', 'tolerancia', 'distinta' o 'referencia' (la referencia no cumple el esquema).
+    """
     columnas_r, filas_r = leer_tabla(referencia)
     columnas_n, filas_n = leer_tabla(nueva)
-    if columnas_r != columnas_n:
-        return "distinta", [f"columnas distintas: referencia {columnas_r}; nueva {columnas_n}"]
+    problemas = revisar_contra_esquema(columnas_r, filas_r, esquema_tabla)
+    if problemas:
+        return "referencia", problemas
+    problemas = revisar_contra_esquema(columnas_n, filas_n, esquema_tabla)
+    if problemas:
+        return "distinta", ["la tabla nueva no cumple el esquema"] + problemas
     if len(filas_r) != len(filas_n):
         return "distinta", [f"número de filas distinto: referencia {len(filas_r)}; nueva {len(filas_n)}"]
-    tolerancias = tolerancias_por_columna(columnas_r, filas_r, filas_n)
     distintas, toleradas, mayor = [], 0, {}
     for numero, (fr, fn) in enumerate(zip(filas_r, filas_n), start=2):
-        if len(fr) != len(columnas_r) or len(fn) != len(columnas_r):
-            distintas.append(f"línea {numero}: número de celdas inesperado")
-            continue
-        for nombre, a, b in zip(columnas_r, fr, fn):
+        for (columna, tipo, _, tolerancia), a, b in zip(esquema_tabla, fr, fn):
             if a == b:
                 continue
-            tolerancia = tolerancias.get(nombre)
-            if tolerancia is not None and a != "" and b != "":
+            if tipo == "decimal" and tolerancia > 0 and a != "" and b != "":
                 diferencia = abs(Decimal(a) - Decimal(b))
                 if diferencia <= tolerancia:
                     toleradas += 1
-                    mayor[nombre] = max(mayor.get(nombre, Decimal(0)), diferencia)
+                    mayor[columna] = max(mayor.get(columna, Decimal(0)), diferencia)
                     continue
-            distintas.append(f"línea {numero}, columna {nombre}: referencia «{a}»; nueva «{b}»")
+            distintas.append(f"línea {numero}, columna {columna}: referencia «{a}»; nueva «{b}»")
     if distintas:
         return "distinta", distintas
     if toleradas:
@@ -96,13 +149,32 @@ def comparar_tablas(referencia: bytes, nueva: bytes):
     return "igual", []
 
 
-def tablas_de_git(tablas: Path, version: str):
-    """Lee de Git, sin modificarlo, los CSV de la carpeta de tablas en la versión indicada."""
+def comparar_carpetas(referencia: dict, nuevas: dict, esquema: dict):
+    """Compara todas las tablas. Devuelve una lista de (nombre, estado, detalles), ordenada por nombre."""
+    resultados = []
+    for nombre in sorted(set(esquema) | set(referencia) | set(nuevas)):
+        if nombre not in esquema:
+            resultados.append((nombre, "sin_esquema", ["la tabla no está declarada en el esquema"]))
+        elif nombre not in referencia and nombre not in nuevas:
+            resultados.append((nombre, "distinta", ["falta en la referencia y entre las tablas nuevas"]))
+        elif nombre not in nuevas:
+            resultados.append((nombre, "distinta", ["falta entre las tablas nuevas"]))
+        elif nombre not in referencia:
+            resultados.append((nombre, "distinta", ["no está en la referencia (tabla nueva)"]))
+        else:
+            resultados.append((nombre, *comparar_tablas(referencia[nombre], nuevas[nombre], esquema[nombre])))
+    return resultados
+
+
+def tablas_de_git(version: str):
+    """Lee de Git, sin modificarlo, los CSV de tablas/ de esta auditoría en la versión indicada.
+
+    La referencia es siempre tablas/ de esta auditoría, esté donde esté la carpeta nueva (--tablas)."""
     def git(carpeta, *argumentos):
         return subprocess.run(["git", "--no-optional-locks", *argumentos], cwd=carpeta, capture_output=True, check=True).stdout
     try:
-        raiz = Path(git(tablas, "rev-parse", "--show-toplevel").decode().strip())
-        relativa = tablas.resolve().relative_to(raiz.resolve()).as_posix()
+        raiz = Path(git(CARPETA, "rev-parse", "--show-toplevel").decode().strip())
+        relativa = TABLAS_POR_OMISION.resolve().relative_to(raiz.resolve()).as_posix()
         nombres = git(raiz, "ls-tree", "--name-only", f"{version}:{relativa}").decode().split("\n")
         return {n: git(raiz, "show", f"{version}:{relativa}/{n}") for n in nombres if n.endswith(".csv")}
     except (subprocess.CalledProcessError, FileNotFoundError, ValueError) as error:
@@ -110,43 +182,51 @@ def tablas_de_git(tablas: Path, version: str):
                          "Indica una carpeta de referencia con --referencia.")
 
 
-def tablas_de_carpeta(carpeta: Path):
+def tablas_de_carpeta(carpeta: Path, papel: str):
+    if not carpeta.is_dir():
+        raise SystemExit(f"No existe la carpeta de {papel}: {carpeta}")
     return {r.name: r.read_bytes() for r in sorted(carpeta.glob("*.csv"))}
 
 
-def main():
+def main(argumentos=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--tablas", type=Path, default=TABLAS_POR_OMISION)
     ap.add_argument("--referencia", type=Path, default=None)
     ap.add_argument("--version", default="HEAD")
-    a = ap.parse_args()
+    ap.add_argument("--esquema", type=Path, default=ESQUEMA_POR_OMISION)
+    a = ap.parse_args(argumentos)
 
-    nuevas = tablas_de_carpeta(a.tablas)
+    if not a.esquema.is_file():
+        raise SystemExit(f"No existe el esquema: {a.esquema}")
+    esquema = leer_esquema(a.esquema.read_bytes())
+    nuevas = tablas_de_carpeta(a.tablas, "tablas nuevas")
     if a.referencia is not None:
-        referencia, origen = tablas_de_carpeta(a.referencia), f"la carpeta {a.referencia}"
+        referencia, origen = tablas_de_carpeta(a.referencia, "referencia"), f"la carpeta {a.referencia}"
     else:
-        referencia, origen = tablas_de_git(a.tablas, a.version), f"la versión {a.version} de Git"
-    print(f"Tablas de {a.tablas} comparadas con {origen}\n")
+        referencia, origen = tablas_de_git(a.version), f"la versión {a.version} de Git"
+    if not referencia:
+        raise SystemExit(f"No hay ninguna tabla CSV en {origen}: no hay contra qué comparar.")
+    if not nuevas:
+        raise SystemExit(f"No hay ninguna tabla CSV en {a.tablas}: no hay nada que comparar.")
+    print(f"Tablas de {a.tablas} comparadas con {origen}, según {a.esquema.name}\n")
 
-    conteo = dict(igual=0, tolerancia=0, distinta=0)
-    for nombre in sorted(set(referencia) | set(nuevas)):
-        if nombre not in nuevas:
-            estado, detalles = "distinta", ["falta entre las tablas nuevas"]
-        elif nombre not in referencia:
-            estado, detalles = "distinta", ["no está en la referencia (tabla nueva)"]
-        else:
-            estado, detalles = comparar_tablas(referencia[nombre], nuevas[nombre])
+    resultados = comparar_carpetas(referencia, nuevas, esquema)
+    conteo = {estado: 0 for estado in ETIQUETAS}
+    for nombre, estado, detalles in resultados:
         conteo[estado] += 1
-        etiqueta = dict(igual="igual", tolerancia="igual dentro de la tolerancia", distinta="DISTINTA")[estado]
-        print(f"{etiqueta:<30} {nombre}")
+        print(f"{ETIQUETAS[estado]:<30} {nombre}")
         for detalle in detalles[:MAXIMO_A_MOSTRAR]:
             print(f"    {detalle}")
         if len(detalles) > MAXIMO_A_MOSTRAR:
-            print(f"    … y {len(detalles) - MAXIMO_A_MOSTRAR} diferencias más")
+            print(f"    … y {len(detalles) - MAXIMO_A_MOSTRAR} más")
+    fallas = conteo["distinta"] + conteo["referencia"] + conteo["sin_esquema"]
     print(f"\n{conteo['igual']} iguales, {conteo['tolerancia']} iguales dentro de la tolerancia, "
-          f"{conteo['distinta']} distintas")
-    sys.exit(1 if conteo["distinta"] else 0)
+          f"{conteo['distinta']} distintas, {conteo['referencia']} con la referencia fuera del esquema, "
+          f"{conteo['sin_esquema']} sin esquema")
+    if conteo["igual"] + conteo["tolerancia"] == 0:
+        print("Ninguna tabla resultó igual: revisa las rutas.")
+    return 1 if fallas else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
