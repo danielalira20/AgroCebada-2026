@@ -2,7 +2,7 @@
 
 Define, **antes de calcular**, qué columnas tendrá cada tabla de esta auditoría, de dónde sale cada una y qué valores puede tomar. Si una columna cambia durante el trabajo, se cambia primero aquí y se anota el motivo en la bitácora.
 
-**Estado:** aprobado por Jass el 5 de octubre de 2026. Ninguna tabla existe todavía.
+**Estado:** aprobado por Jass el 5 de octubre de 2026, antes de calcular. Revisado el 6 de octubre, después de la revisión de Dani: se marcaron las columnas que son solo para auditoría y se añadió la tabla de pares cercanos. Todas las tablas existen ya.
 
 ## Reglas comunes a todas las tablas
 
@@ -13,6 +13,24 @@ Define, **antes de calcular**, qué columnas tendrá cada tabla de esta auditor�
 - Las respuestas de sí o no se escriben `si` / `no`, en minúsculas y sin acento, igual que en la tabla de revisión de contornos.
 - Los valores que vienen del dataset se copian tal cual, sin corregir mayúsculas, acentos ni decimales.
 - Las filas van ordenadas por `id_parcela`.
+
+## Columnas que salen del rendimiento: solo auditoría
+
+El rendimiento es lo que el modelo debe predecir. Una columna calculada a partir del rendimiento lleva la respuesta escondida: usarla como variable de un modelo sería como estudiar con las respuestas del examen. El error medido saldría mejor de lo real, y para las 59 reservadas esas columnas ni siquiera existen.
+
+**Regla:** las columnas y tablas de esta lista sirven para auditar las etiquetas. No deben entrar como variables de ningún modelo.
+
+| Tabla | Qué es solo auditoría |
+|---|---|
+| `catalogo_parcelas.csv` | `rendimiento_decimales` y `rendimiento_multiplo_de_medio`. `rendimiento_t_ha` es el objetivo: tampoco es una variable |
+| `precision_etiqueta_por_municipio.csv` | Toda la tabla |
+| `pares_de_parcelas_cercanas.csv` | `rendimiento_t_ha_a`, `rendimiento_t_ha_b`, `mismo_rendimiento` y `grupo_mismo_rendimiento` |
+| `cruce_contorno_rendimiento.csv`, `cruce_contorno_por_municipio.csv`, `cruce_contorno_parcelas_b_c.csv` | Las tres tablas |
+| `desviacion_municipal_por_parcela.csv`, `desviacion_por_tamano.csv` | Las dos tablas, incluida la marca `extrema` |
+| `soporte_por_parcela.csv` | `escalon_etiqueta_municipio`, y el aviso `etiqueta_gruesa_en_municipio` dentro de `avisos` y de `numero_de_avisos` |
+| `soporte_resumen_por_municipio.csv` | `con_algun_aviso`, porque cuenta ese mismo aviso |
+
+**Otra precaución, distinta.** En `soporte_por_parcela.csv`, las columnas de municipio, cercanía y clima compartido no usan el valor del rendimiento, pero sí cuáles parcelas lo tienen: cuentan como conocidas a las 138. Describen el respaldo de cada parcela frente al conjunto completo. Si alguien las quisiera usar dentro de una validación cruzada, tendría que recalcularlas en cada partición solo con las parcelas de entrenamiento.
 
 ## Cómo se llama cada cosa en cada archivo
 
@@ -77,10 +95,14 @@ La nota escrita de cada parcela no se copia al catálogo; se consulta en la tabl
 
 | Columna | Qué contiene | Cómo se obtiene | Valores |
 |---|---|---|---|
-| `rendimiento_decimales` | Con cuántos decimales está escrito el rendimiento | Conteo sobre el texto original del CSV | Entero; vacío en las 59 reservadas |
-| `rendimiento_multiplo_de_medio` | Si el rendimiento es un múltiplo exacto de 0.5 t/ha | Comprobación sobre el valor | `si` / `no`; vacío en las 59 reservadas |
+| `rendimiento_decimales` | **Solo auditoría.** Con cuántos decimales está escrito el rendimiento | Conteo sobre el texto original del CSV | Entero; vacío en las 59 reservadas |
+| `rendimiento_multiplo_de_medio` | **Solo auditoría.** Si el rendimiento es un múltiplo exacto de 0.5 t/ha | Comprobación sobre el valor | `si` / `no`; vacío en las 59 reservadas |
+
+**`tablas/huellas_archivos_leidos.csv`** — una fila por archivo que lee `construir_catalogo.py`, con las columnas `archivo`, `bytes` (tamaño) y `sha256` (huella). Los archivos del dataset original se miden tal cual están en el disco. La tabla `revision_contornos.csv` sí está en Git, así que su tamaño y su huella se calculan sin los retornos de carro, para que den lo mismo en Windows, Mac y Linux.
 
 ## Tabla de precisión de la etiqueta: `tablas/precision_etiqueta_por_municipio.csv` (etapa 4)
+
+**Solo auditoría.** Toda la tabla sale del rendimiento.
 
 Definida el 5 de octubre de 2026, antes de calcular. 12 filas: una por municipio (9), una por cada escritura del campo `Cultivo` (2) y una del total. Solo cuenta las 138 parcelas con rendimiento. Cambio respecto a la primera versión de este diccionario, que decía «una por municipio»: se añadieron las filas por escritura y la del total para poder comparar sin hacer cuentas aparte.
 
@@ -105,7 +127,29 @@ Definida el 5 de octubre de 2026, antes de calcular. 12 filas: una por municipio
 
 **Aviso sobre los decimales:** el CSV no guarda ceros finales (un 4.50 aparece como `4.5` y un 3.00 como `3`). Por eso contar decimales en el texto puede quedarse corto; `paso_comun` es la medida más fiable de la finura.
 
+## Tabla de pares cercanos: `tablas/pares_de_parcelas_cercanas.csv`
+
+Una fila por cada par de parcelas cuyas orillas están a menos de 20 m: 87 pares. La escribe `construir_catalogo.py` con las mismas distancias de la etapa 2. Cada par aparece una sola vez, con el identificador menor en `a`.
+
+**Para qué sirve.** Para que la evaluación de modelos pueda mantener juntas a las parcelas vecinas, de modo que una no quede en el entrenamiento y su vecina en la prueba. Para eso bastan las tres primeras columnas, que no dependen del rendimiento.
+
+**Qué no se debe hacer.** Las columnas `rendimiento_t_ha_a`, `rendimiento_t_ha_b`, `mismo_rendimiento` y `grupo_mismo_rendimiento` salen del rendimiento: son solo para auditoría y no deben usarse como variables de un modelo.
+
+| Columna | Qué contiene | Cómo se obtiene | Valores |
+|---|---|---|---|
+| `id_parcela_a`, `id_parcela_b` | Las dos parcelas del par | Catálogo | `AGC_001` a `AGC_197` |
+| `distancia_orillas_m` | Distancia de orilla a orilla, en metros | Distancia entre contornos en UTM zona 14 norte, igual que en la etapa 2 | Número con 2 decimales, menor que 20 |
+| `municipio_a`, `municipio_b` | Municipio de cada parcela | Catálogo | Dos pares juntan municipios distintos: AGC_164, de Apan, con AGC_023 y con AGC_170, de Calpulalpan. Jass comprobó en QGIS que AGC_164 sí está en Apan |
+| `cultivo_origen_a`, `cultivo_origen_b` | Escritura del campo `Cultivo` de cada parcela | Catálogo | `Cebada` o `CEBADA` |
+| `conjunto_origen_a`, `conjunto_origen_b` | Grupo de cada parcela | Catálogo | `ENTRENAMIENTO` o `PREDICCION` |
+| `ambas_conocidas` | Si las dos parcelas tienen rendimiento | Catálogo | `si` (45) / `no` (42) |
+| `rendimiento_t_ha_a`, `rendimiento_t_ha_b` | Rendimiento de cada parcela. **Solo auditoría** | Catálogo, tal cual | Vacío en las reservadas |
+| `mismo_rendimiento` | Si las dos tienen exactamente el mismo rendimiento. **Solo auditoría** | Comparación de los dos valores | `si` (9) / `no` (36); vacío si alguna es reservada |
+| `grupo_mismo_rendimiento` | Nombre del grupo de vecinas que comparten rendimiento. **Solo auditoría** | Se encadenan los pares con `mismo_rendimiento` = `si`; el grupo lleva el identificador menor | 7 grupos que reúnen 15 parcelas; vacío en los demás pares |
+
 ## Tabla del cruce: `tablas/cruce_contorno_rendimiento.csv` (etapa 5)
+
+**Solo auditoría.** Esta tabla y las dos de apoyo salen del rendimiento.
 
 **Aprobada por Jass el 5 de octubre de 2026.** Escrita antes de cruzar. 7 filas: una por comparación (la principal y seis secundarias). Solo usa las parcelas conocidas. La regla completa está en la bitácora.
 
@@ -149,6 +193,8 @@ Se añadieron el 5 de octubre de 2026 **después** de conocer el resultado de la
 **`tablas/cruce_contorno_parcelas_b_c.csv`** — 13 filas: las parcelas conocidas en B o C. Columnas: `id_parcela`, `municipio`, `contorno_categoria`, `contorno_angosta_o_muy_pequena`, `area_ha_origen`, `rendimiento_t_ha` y `desviacion_municipal` (su rendimiento menos el promedio de las demás conocidas de su municipio, en t/ha).
 
 ## Tablas de parcelas extremas (etapa 6)
+
+**Solo auditoría.** Las dos tablas salen del rendimiento, incluida la marca `extrema`.
 
 Definidas el 5 de octubre de 2026, antes de calcular. Aprobadas por Jass el 5 de octubre.
 
@@ -204,7 +250,7 @@ Definidas el 5 de octubre de 2026, antes de calcular. Aprobadas por Jass el 5 de
 | `area_ha_origen` | Superficie registrada | Texto original |
 | **Municipio compartido** | | |
 | `conocidas_en_municipio` | Otras parcelas conocidas en su municipio | Entero |
-| `escalon_etiqueta_municipio` | Finura con que está anotado el rendimiento en su municipio (etapa 4) | `0.5`, `0.1`, `0.01`, o vacío si hay menos de 3 conocidas |
+| `escalon_etiqueta_municipio` | **Solo auditoría.** Finura con que está anotado el rendimiento en su municipio (etapa 4) | `0.5`, `0.1`, `0.01`, o vacío si hay menos de 3 conocidas |
 | **Cercanía** | | |
 | `conocida_mas_cercana` | La conocida cuyo centro está más cerca | `AGC_###` |
 | `distancia_centros_m` | Distancia geodésica entre centros a esa parcela, en metros | Número |
@@ -230,8 +276,8 @@ Definidas el 5 de octubre de 2026, antes de calcular. Aprobadas por Jass el 5 de
 | `contorno_categoria` | Categoría de contorno | `A`, `B` o `C` |
 | `contorno_mezcla_senal` | Si hay algo dentro que mezcla la señal: está en B o C, o tiene árboles o construcción dentro, o es angosta o muy pequeña | `si` / `no` |
 | **Resumen** | | |
-| `avisos` | Lista de avisos que le aplican, separados por punto y coma | Texto; vacío si no tiene ninguno |
-| `numero_de_avisos` | Cuántos avisos tiene | Entero |
+| `avisos` | Lista de avisos que le aplican, separados por punto y coma. El aviso `etiqueta_gruesa_en_municipio` sale del rendimiento: es solo auditoría | Texto; vacío si no tiene ninguno |
+| `numero_de_avisos` | Cuántos avisos tiene. Cuenta también `etiqueta_gruesa_en_municipio` | Entero |
 
 **`tablas/soporte_resumen_por_municipio.csv`** — una fila por municipio y conjunto, más las filas `todos`. Compara las reservadas con las conocidas.
 
@@ -251,9 +297,9 @@ Definidas el 5 de octubre de 2026, antes de calcular. Aprobadas por Jass el 5 de
 | `relieve_incompleto` | Parcelas con menos del 99 % de cobertura de elevación o de pendiente |
 | `contorno_b_o_c` | Parcelas en B o C |
 | `contorno_mezcla_senal` | Parcelas con algo dentro que mezcla la señal |
-| `con_algun_aviso` | Parcelas con al menos un aviso |
+| `con_algun_aviso` | Parcelas con al menos un aviso, contando `etiqueta_gruesa_en_municipio` |
 
-**`tablas/huellas_archivos_leidos_soporte.csv`** — una fila por archivo original que lee el script de soporte, con las mismas columnas que `huellas_archivos_leidos.csv`: `archivo`, `bytes` y `sha256`.
+**`tablas/huellas_archivos_leidos_soporte.csv`** — una fila por archivo original que lee el script de soporte, con las mismas columnas que `huellas_archivos_leidos.csv`: `archivo`, `bytes` y `sha256`. De los tres mapas (lluvia, elevación y pendiente) se anota solo el nombre del archivo y no la carpeta, porque el script los busca por nombre y la carpeta en que quedan depende de cómo se descomprimió el dataset.
 
 ## Tablas de la comparación con el diagnóstico de T03 (etapa 8)
 
@@ -276,10 +322,3 @@ Definidas el 5 de octubre de 2026, antes de abrir la tabla de T03 (`registro/t03
 **`tablas/comparacion_con_t03_por_parcela.csv`** — una fila por parcela y columna donde el valor no coincide, solo para las columnas de conteo o de categoría (no para distancias, que difieren en todas por el método). Columnas: `id_parcela`, `conjunto_origen`, `municipio`, `columna_t03`, `valor_t03`, `columna_auditoria` y `valor_auditoria`.
 
 **`tablas/huellas_archivos_leidos_comparacion.csv`** — huella de la tabla de T03 que se comparó, con las columnas `archivo`, `bytes` y `sha256`. Como esa tabla sí está en Git, el tamaño y la huella se calculan sin los retornos de carro, para que den lo mismo en Windows, Mac y Linux.
-
-## Tablas que se definen al llegar a su etapa
-
-Sus columnas se escriben aquí al empezar la etapa correspondiente, antes de calcular.
-
-| Tabla | Etapa | Filas | Para qué |
-|---|---|---|---|

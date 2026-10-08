@@ -1,0 +1,64 @@
+candidato,municipio,MAE,n_parcelas,poco_informativo
+media_global,Almoloya,0.5656,10,False
+media_global,Apan,0.9651,1,True
+media_global,Calpulalpan,0.9554,30,False
+media_global,Chignahuapan,0.6724,71,False
+media_global,Cuautepec de Hinojosa,0.6426,5,False
+media_global,Emiliano Zapata,0.4593,3,True
+media_global,Nanacamilpa de Mariano Arista,1.4792,1,True
+media_global,Singuilucan,0.8756,16,False
+media_global,Tepeapulco,0.5303,1,True
+media_mun__resp_global,Almoloya,0.1412,10,False
+media_mun__resp_global,Apan,0.9651,1,True
+media_mun__resp_global,Calpulalpan,0.2869,30,False
+media_mun__resp_global,Chignahuapan,0.3801,71,False
+media_mun__resp_global,Cuautepec de Hinojosa,0.143,5,False
+media_mun__resp_global,Emiliano Zapata,0.0,3,True
+media_mun__resp_global,Nanacamilpa de Mariano Arista,1.4792,1,True
+media_mun__resp_global,Singuilucan,0.3467,16,False
+media_mun__resp_global,Tepeapulco,0.5303,1,True
+media_mun__resp_grupo,Almoloya,0.1412,10,False
+media_mun__resp_grupo,Apan,0.0259,1,True
+media_mun__resp_grupo,Calpulalpan,0.2869,30,False
+media_mun__resp_grupo,Chignahuapan,0.3801,71,False
+media_mun__resp_grupo,Cuautepec de Hinojosa,0.143,5,False
+media_mun__resp_grupo,Emiliano Zapata,0.0,3,True
+media_mun__resp_grupo,Nanacamilpa de Mariano Arista,0.5536,1,True
+media_mun__resp_grupo,Singuilucan,0.3467,16,False
+media_mun__resp_grupo,Tepeapulco,0.2109,1,True
+mediana_global,Almoloya,0.2578,10,False
+mediana_global,Apan,1.348,1,True
+mediana_global,Calpulalpan,1.3072,30,False
+mediana_global,Chignahuapan,0.4659,71,False
+mediana_global,Cuautepec de Hinojosa,0.2908,5,False
+mediana_global,Emiliano Zapata,0.8367,3,True
+mediana_global,Nanacamilpa de Mariano Arista,1.852,1,True
+mediana_global,Singuilucan,1.2288,16,False
+mediana_global,Tepeapulco,0.276,1,True
+mediana_mun__resp_global,Almoloya,0.1362,10,False
+mediana_mun__resp_global,Apan,1.348,1,True
+mediana_mun__resp_global,Calpulalpan,0.2667,30,False
+mediana_mun__resp_global,Chignahuapan,0.3678,71,False
+mediana_mun__resp_global,Cuautepec de Hinojosa,0.149,5,False
+mediana_mun__resp_global,Emiliano Zapata,0.0,3,True
+mediana_mun__resp_global,Nanacamilpa de Mariano Arista,1.852,1,True
+mediana_mun__resp_global,Singuilucan,0.3737,16,False
+mediana_mun__resp_global,Tepeapulco,0.276,1,True
+mediana_mun__resp_grupo,Almoloya,0.1362,10,False
+mediana_mun__resp_grupo,Apan,0.0,1,True
+mediana_mun__resp_grupo,Calpulalpan,0.2667,30,False
+mediana_mun__resp_grupo,Chignahuapan,0.3678,71,False
+mediana_mun__resp_grupo,Cuautepec de Hinojosa,0.149,5,False
+mediana_mun__resp_grupo,Emiliano Zapata,0.0,3,True
+mediana_mun__resp_grupo,Nanacamilpa de Mariano Arista,0.5,1,True
+mediana_mun__resp_grupo,Singuilucan,0.3737,16,False
+mediana_mun__resp_grupo,Tepeapulco,0.04,1,True
+mediana_mun_contraida_grupo,Almoloya,0.1362,10,False
+mediana_mun_contraida_grupo,Apan,0.0,1,True
+mediana_mun_contraida_grupo,Calpulalpan,0.2667,30,False
+mediana_mun_contraida_grupo,Chignahuapan,0.3678,71,False
+mediana_mun_contraida_grupo,Cuautepec de Hinojosa,0.149,5,False
+mediana_mun_contraida_grupo,Emiliano Zapata,0.0,3,True
+mediana_mun_contraida_grupo,Nanacamilpa de Mariano Arista,0.5,1,True
+mediana_mun_contraida_grupo,Singuilucan,0.3737,16,False
+mediana_mun_contraida_grupo,Tepeapulco,0.04,1,True

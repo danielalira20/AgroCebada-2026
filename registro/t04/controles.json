@@ -1,0 +1,10 @@
+{
+  "filas": 28368,
+  "ids": 197,
+  "periodos": 48,
+  "estados": {
+    "cobertura_completa": 28368
+  },
+  "filas_posteriores_al_corte": 1182,
+  "filas_centroide_exterior": 432
+}

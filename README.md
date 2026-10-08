@@ -4,9 +4,9 @@ Repositorio de trabajo de Dani, Jass, Migue, Daf y Diego para estimar el rendimi
 
 La [pestaña «Plan unificado corregido»](https://docs.google.com/document/d/1G2-cyDyIHyaQsGjbdzdvvsU65rnc6Tc4SrnIZAoNynk/edit?tab=t.q0k09ka9rtmy) es la fuente de responsabilidades y decisiones. Las tareas vigentes son T01–T22. Las versiones anteriores sirven como antecedentes.
 
-## Estado inicial
+## Estado de trabajo
 
-T01 está en curso. El repositorio contiene sólo el arranque común, un contrato de datos preliminar y una comprobación con datos de ejemplo. Aún faltan el catálogo de 197 parcelas, las particiones acordadas, los modelos, la aplicación y la reproducción cruzada en Mac y Windows. No se declara completo el entorno hasta fijar dependencias, ejecutar Docker y comprobar ambos tipos de equipo.
+T01 sigue en curso: falta cerrar la verificación del equipo completo. T03 está integrado y en revisión. T04 tiene 28,368 registros históricos; Jass informó una validación independiente del cálculo. El PR 6 está abierto hacia `dev`. Esta actualización incorpora las correcciones de entrega autorizadas por Dani para el PR y pendientes de nueva revisión de Jass: [tabla mensual compartida y conciliación T02](docs/t04_entrega_equipo.md), [diccionario de columnas](docs/t04_diccionario_columnas.md) y [versión/disponibilidad temporal](docs/t04_version_disponibilidad.md). La tabla compacta conserva todos los valores y puede verificarse sin el ZIP ni Docker. T04 sigue en revisión; disponibilidad histórica y ventanas de integración siguen pendientes de acuerdo. El [informe de extracción completa](docs/t04_fase3_completa.md) y la [fase 2 con QGIS](docs/t04_fase2.md) conservan la evidencia anterior.
 
 ## Preparar el entorno
 
@@ -42,7 +42,9 @@ Para cerrar T01 se necesitan las salidas aprobadas en los cinco equipos, una eje
 
 ## Datos y trabajo en equipo
 
-Guardar el paquete original de FIRA fuera del repositorio o bajo `data/raw/` local, sin modificarlo. `data/` y `reports/` se excluyen de Git. Nadie une tablas por posición de fila: se conserva el identificador de parcela y se comprueban los conteos. El [contrato inicial](docs/contrato_datos.md) fija los campos comunes sin inventar valores ausentes.
+El orden inmediato y las responsabilidades de Dani están en [tareas de Dani](docs/tareas_dani.md). T04 empieza con el inventario reproducible del ZIP original mediante `scripts/inventariar_clima.py`; el comando y su alcance están documentados allí. Sus pruebas se ejecutan con `python -m unittest discover -s tests -v` en el entorno local.
+
+Guardar el paquete original de FIRA fuera del repositorio o bajo `data/raw/` local, sin modificarlo. `data/` y `reports/` se excluyen de Git. La tabla derivada mensual compacta de T04 y su procedencia se comparten en `registro/t04/`, según el acuerdo del equipo; los originales y el detalle por celda siguen locales. Nadie une tablas por posición de fila: se conserva el identificador de parcela y se comprueban los conteos. El [contrato inicial](docs/contrato_datos.md) fija los campos comunes sin inventar valores ausentes.
 
 Cada experimento deberá registrar entradas, versión, corte temporal, particiones, variables, parámetros, predicciones fuera de entrenamiento y resultados, incluso si no mejora. Los acuerdos y el uso de IA se anotan en `registro/`. Las tareas del documento se trasladarán a GitHub Issues con su ID, responsable, revisor, dependencia y evidencia.
 

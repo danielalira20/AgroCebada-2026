@@ -66,11 +66,18 @@ def buscar(datos: Path, nombre: str) -> Path:
 
 
 def area_geodesica(geometria) -> float:
-    """Superficie sobre el elipsoide WGS84, en metros cuadrados. Admite una o varias piezas."""
+    """Superficie sobre el elipsoide WGS84, en metros cuadrados.
+
+    Admite una pieza, varias piezas o una mezcla de piezas. Un punto o una línea no tienen
+    superficie: valen 0. Ese es el caso de un contorno que solo toca el borde de una celda.
+    """
     if geometria.is_empty:
         return 0.0
-    piezas = [geometria] if geometria.geom_type == "Polygon" else [p for p in geometria.geoms if p.geom_type == "Polygon"]
-    return sum(abs(GEOD.geometry_area_perimeter(orient(p, 1.0))[0]) for p in piezas)
+    if geometria.geom_type == "Polygon":
+        return abs(GEOD.geometry_area_perimeter(orient(geometria, 1.0))[0])
+    if hasattr(geometria, "geoms"):                  # varias piezas, del mismo tipo o mezcladas
+        return sum(area_geodesica(pieza) for pieza in geometria.geoms)
+    return 0.0                                       # punto o línea
 
 
 def celdas_de_clima(geoms, ruta: Path):
@@ -81,14 +88,14 @@ def celdas_de_clima(geoms, ruta: Path):
     resultado = []
     for g in geoms:
         x0, y0, x1, y1 = g.bounds
-        col0, fila1 = ~transformacion * (x0, y0)
-        col1, fila0 = ~transformacion * (x1, y1)
+        col0, fila1 = ~transformacion @ (x0, y0)
+        col1, fila0 = ~transformacion @ (x1, y1)
         total = area_geodesica(g)
         partes = {}
         for fila in range(int(np.floor(fila0)), int(np.floor(fila1)) + 1):
             for col in range(int(np.floor(col0)), int(np.floor(col1)) + 1):
-                izq, arriba = transformacion * (col, fila)
-                der, abajo = transformacion * (col + 1, fila + 1)
+                izq, arriba = transformacion @ (col, fila)
+                der, abajo = transformacion @ (col + 1, fila + 1)
                 superficie = area_geodesica(g.intersection(box(izq, abajo, der, arriba)))
                 if superficie > 0:
                     partes[f"{fila}_{col}"] = superficie / total
@@ -104,8 +111,8 @@ def cobertura_de_mapa(geoms_6372, ruta: Path):
         for g in geoms_6372:
             # Ventana de celdas que cubre todo el contorno, con una celda de margen por cada lado.
             x0, y0, x1, y1 = g.bounds
-            col0, fila1 = ~r.transform * (x0, y0)
-            col1, fila0 = ~r.transform * (x1, y1)
+            col0, fila1 = ~r.transform @ (x0, y0)
+            col1, fila0 = ~r.transform @ (x1, y1)
             c0, f0 = int(np.floor(col0)) - 1, int(np.floor(fila0)) - 1
             ventana = Window(c0, f0, int(np.floor(col1)) + 2 - c0, int(np.floor(fila1)) + 2 - f0)
             datos = r.read(1, window=ventana, boundless=True, fill_value=r.nodata)
@@ -115,8 +122,8 @@ def cobertura_de_mapa(geoms_6372, ruta: Path):
                 for j in range(datos.shape[1]):
                     if datos[i, j] == r.nodata or np.isnan(datos[i, j]):
                         continue
-                    izq, arriba = t * (j, i)
-                    der, abajo = t * (j + 1, i + 1)
+                    izq, arriba = t @ (j, i)
+                    der, abajo = t @ (j + 1, i + 1)
                     valida += g.intersection(box(izq, abajo, der, arriba)).area
             coberturas.append(min(valida / g.area, 1.0))
     return coberturas
@@ -269,9 +276,12 @@ def main():
     resumen = pd.DataFrame(filas)
     resumen.to_csv(a.tablas / "soporte_resumen_por_municipio.csv", index=False, encoding="utf-8-sig", lineterminator="\n")
 
-    leidos = [ruta_shp, ruta_lluvia, ruta_elev, ruta_pend, a.datos / TABLA_BASICO, a.datos / TABLA_PRO]
-    pd.DataFrame([dict(archivo=r.relative_to(a.datos).as_posix(), bytes=r.stat().st_size, sha256=huella(r))
-                  for r in leidos]).to_csv(a.tablas / "huellas_archivos_leidos_soporte.csv", index=False,
+    # Los mapas se buscan por nombre, porque la carpeta en que quedan depende de cómo se descomprimió
+    # el dataset. Por eso de ellos se anota solo el nombre, que es igual en cualquier computadora.
+    leidos = [(SHAPEFILE, ruta_shp), (ruta_lluvia.name, ruta_lluvia), (ruta_elev.name, ruta_elev),
+              (ruta_pend.name, ruta_pend), (TABLA_BASICO, a.datos / TABLA_BASICO), (TABLA_PRO, a.datos / TABLA_PRO)]
+    pd.DataFrame([dict(archivo=nombre, bytes=r.stat().st_size, sha256=huella(r))
+                  for nombre, r in leidos]).to_csv(a.tablas / "huellas_archivos_leidos_soporte.csv", index=False,
                                            encoding="utf-8-sig", lineterminator="\n")
 
     pd.set_option("display.width", 250)
