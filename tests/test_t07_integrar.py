@@ -1,0 +1,125 @@
+"""Integración real en un Git temporal aislado; no publica ni aprueba entregas."""
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import unittest
+
+from scripts.t07_fuentes import leer_csv, sha
+from scripts.t07_integrar import integrar, comprobar_protocolo, T06_ARCHIVOS, CODIGO
+from scripts.t07_preparar import T02, T02_ARCHIVOS, T04_ARCHIVOS
+
+RAIZ = Path(__file__).resolve().parents[1]
+
+
+class Integracion(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+        fuentes = [f'{T02}/{n}' for n in T02_ARCHIVOS] + list(T06_ARCHIVOS)
+        fuentes += ['docs/T03_protocolo_evaluacion.md'] + [f'scripts/{n}' for n in CODIGO]
+        fuentes += [f'registro/t04/{n}' for n in T04_ARCHIVOS]
+        for n in fuentes:
+            p = cls.root / n; p.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(RAIZ/n, p)
+        cls.clima = cls.root/'registro/t04'
+        # La referencia se identifica para este Git efímero, sin cambiar el repositorio real.
+        c = json.loads((cls.clima/'conciliacion_t02.json').read_text())
+        c['archivos_t02_sha256'] = {n: sha(cls.root/T02/n) for n in T02_ARCHIVOS}
+        (cls.clima/'conciliacion_t02.json').write_text(json.dumps(c))
+        m = json.loads((cls.clima/'manifest.json').read_text())
+        m['archivos_sha256']['conciliacion_t02.json'] = sha(cls.clima/'conciliacion_t02.json')
+        (cls.clima/'manifest.json').write_text(json.dumps(m))
+        def g(*args): return subprocess.check_output(['git',*args],cwd=cls.root,stderr=subprocess.PIPE)
+        g('init','-q');g('config','user.name','Prueba T07');g('config','user.email','prueba@example.invalid')
+        g('add','.');g('commit','-qm','fixture aislada de fuentes reales')
+        cls.rev = g('rev-parse','HEAD').decode().strip()
+        cls.origen = dict(schema='t07_copia_t04_v1', revision_git=cls.rev, prefijo_git='registro/t04',
+                          estado_revision_declarado='aceptada', archivos_sha256={n:sha(cls.clima/n) for n in T04_ARCHIVOS})
+        cls.estado('aceptada')
+
+    @classmethod
+    def estado(cls, estado):
+        o = dict(cls.origen, estado_revision_declarado=estado)
+        (cls.clima/'origen_git.json').write_text(json.dumps(o))
+
+    @classmethod
+    def tearDownClass(cls): cls.tmp.cleanup()
+
+    def ejecutar(self, nombre, revision=False, clima=True):
+        return integrar(self.rev, self.root/nombre, self.clima if clima else None,
+                        self.rev if clima else None, revision, self.root)
+
+    def test_union_completa_reproducible_diccionario_unico(self):
+        a=self.root/'a';b=self.root/'b'
+        c=self.ejecutar('a');self.ejecutar('b')
+        self.assertEqual((c['parcelas'],c['columnas_tabla_comun'],c['etiquetas_originales'],c['etiquetas_ausentes']), (197,58,138,59))
+        self.assertEqual(c['resumenes_climaticos_completos'],1182)
+        self.assertEqual({p.name:sha(p) for p in a.iterdir()}, {p.name:sha(p) for p in b.iterdir()})
+        _, d=leer_csv(a/'diccionario_columnas.csv')
+        self.assertEqual(len(d),109)
+        self.assertEqual(len({(r['archivo'],r['columna']) for r in d}),109)
+        ident=[r for r in d if r['archivo']=='tabla_comun.csv' and r['columna']=='id_parcela']
+        self.assertEqual(len(ident),1)
+        self.assertTrue(all(r['funcion']=='metadato' for r in ident))
+        roles=json.loads((a/'contrato_columnas.json').read_text())['columnas_por_funcion']
+        self.assertNotIn('rendimiento_t_ha',roles['predictor_candidato'])
+        with self.assertRaisesRegex(ValueError,'ya existe'):self.ejecutar('a')
+
+    def test_revision_pendiente_no_se_publica_fuera_de_reports(self):
+        self.estado('en_revision')
+        try:
+            with self.assertRaisesRegex(ValueError,'sólo puede'):self.ejecutar('registro/publicar',revision=True)
+            with self.assertRaisesRegex(ValueError,'pendiente de aceptación'):self.ejecutar('reports/sin_bandera')
+            self.assertFalse((self.root/'registro/publicar').exists())
+            self.assertFalse((self.root/'reports/sin_bandera').exists())
+            c=self.ejecutar('reports/borrador',revision=True)
+            m=json.loads((self.root/'reports/borrador/manifest.json').read_text())
+            self.assertFalse(m['clima_aceptado']); self.assertFalse(m['cierre_t07'])
+            self.assertEqual(c['estado_entrega'],'borrador_local_para_revision')
+        finally:self.estado('aceptada')
+
+    def test_sin_clima_no_lee_entrada_ni_genera_filas_climaticas(self):
+        p=self.clima/'origen_git.json';original=p.read_bytes()
+        try:
+            p.unlink();c=self.ejecutar('sat',clima=False)
+            self.assertEqual(c['columnas_tabla_comun'],52)
+            self.assertFalse((self.root/'sat/clima_variables.csv').exists())
+            m=json.loads((self.root/'sat/inventario_fuentes.json').read_text())
+            self.assertFalse(m['bloques']['T04']['valores_generados'])
+        finally:p.write_bytes(original)
+
+    def test_fuente_satelital_alterada_no_publica(self):
+        p=self.root/T06_ARCHIVOS[0];original=p.read_bytes()
+        try:
+            p.write_bytes(original+b'alteracion\n')
+            with self.assertRaisesRegex(ValueError,'Fuente local distinta'):self.ejecutar('alterada')
+            self.assertFalse((self.root/'alterada').exists())
+        finally:p.write_bytes(original)
+
+    def test_copia_climatica_alterada_no_publica(self):
+        p=self.clima/'clima_parcela_mes.csv';original=p.read_bytes()
+        try:
+            p.write_bytes(original+b'alteracion\n')
+            with self.assertRaisesRegex(ValueError,'Copia T04 alterada'):self.ejecutar('clima_alterada')
+            self.assertFalse((self.root/'clima_alterada').exists())
+        finally:p.write_bytes(original)
+
+    def test_corte_ventana_nuevos_requieren_contrato(self):
+        t=(RAIZ/'docs/T03_protocolo_evaluacion.md').read_text()
+        comprobar_protocolo(t)
+        for x in [t.replace('hasta el **31 de octubre de 2025**','hasta el **30 de noviembre de 2025**'),
+                  t.replace('1 de junio–31 de octubre','1 de julio–31 de octubre')]:
+            with self.assertRaisesRegex(ValueError,'Corte/ventanas'):comprobar_protocolo(x)
+
+    def test_salidas_protegidas(self):
+        for n in ['data/raw/error','registro/t04/error']:
+            with self.assertRaisesRegex(ValueError,'Salida protegida'):self.ejecutar(n)
+
+    def test_parametros_incompletos(self):
+        with self.assertRaisesRegex(ValueError,'conjuntamente'):
+            integrar(self.rev,self.root/'parametros',self.clima,None,False,self.root)
+
+
+if __name__=='__main__':unittest.main()
