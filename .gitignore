@@ -26,3 +26,6 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 .DS_Store
+
+# Instrucciones locales del asistente
+AGENTS.md
