@@ -18,7 +18,7 @@ from scripts.t07_satelite import validar, unir, diccionario_satelite, diccionari
 T06_ARCHIVOS = ("registro/t06/variables_satelitales.csv", "registro/t06/variables_satelitales_diccionario.csv",
                 "registro/t06/cobertura_ventana.csv", "docs/T06_satelite.md", "scripts/t06_satelite.py")
 CODIGO = ("t07_integrar.py", "t07_satelite.py", "t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py",
-          "t07_diccionario.py", "t07_preparar_insumos.py")
+          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py")
 
 
 def comprobar_protocolo(texto):
@@ -116,6 +116,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
         filas_por_tabla={n: len(r) for n, (_, r) in tablas.items()},
         valores_satelitales_verificados=len(ids)*len(META), conciliaciones_cobertura=len(calidad_sat),
         ausencias_satelitales=sum(r[c] == '' for r in comun for c in META),
+        ausencias_por_columna_satelite={c: sum(r[c] == '' for r in comun) for c in columnas if c != 'ID_POLIGONO'},
         estados_calidad_satelite=dict(Counter(r['estado'] for r in calidad_sat)),
         equivalencias_observadas_entre_ventanas=equivalencias, diccionario_columnas=len(definiciones),
         roles_tabla_comun={k: len(v) for k, v in roles.items()}, etiquetas_sin_transformar=True,
