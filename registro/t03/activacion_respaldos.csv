@@ -1,0 +1,13 @@
+candidato,fuente,n_predicciones_oof,n_en_las_59
+media_global,global,690,59.0
+media_mun__resp_global,global,15,0.0
+media_mun__resp_global,municipio,675,59.0
+media_mun__resp_grupo,grupo,15,0.0
+media_mun__resp_grupo,municipio,675,59.0
+mediana_global,global,690,59.0
+mediana_mun__resp_global,global,15,0.0
+mediana_mun__resp_global,municipio,675,59.0
+mediana_mun__resp_grupo,grupo,15,0.0
+mediana_mun__resp_grupo,municipio,675,59.0
+mediana_mun_contraida_grupo,contraida_k0,675,59.0
+mediana_mun_contraida_grupo,grupo,15,0.0
