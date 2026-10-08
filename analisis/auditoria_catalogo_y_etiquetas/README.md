@@ -137,11 +137,12 @@ Debe terminar con «0 distintas» y con «0 sin esquema». La última línea tam
 |---|---|
 | Fin de línea (Windows o Mac/Linux) y marca BOM | No se toman en cuenta |
 | Texto y enteros (incluidas las marcas `si`/`no` y las huellas) | Deben coincidir exactamente. Un entero que pasa a decimal (`5` a `5.1`) es una diferencia, aunque sea pequeña |
-| Decimal copiado del dataset original (por ejemplo `rendimiento_t_ha`) | Debe coincidir exactamente: la tolerancia es 0 |
-| Decimal calculado | Hasta una unidad del último decimal declarado: por ejemplo 0.000001 ha en `area_ha_geodesica` o 1 m en `distancia_conocida_mas_cercana_m` |
+| Decimal copiado del dataset original (por ejemplo `rendimiento_t_ha`) | Debe coincidir exactamente: la tolerancia es 0. Se compara el texto, así que `3.5` y `3.50` cuentan como distintos, igual que `0.0` y `-0.0` |
+| Decimal calculado | Hasta una unidad del último decimal declarado: por ejemplo 0.000001 ha en `area_ha_geodesica` o 1 m en `distancia_conocida_mas_cercana_m`. Se acepta la notación científica (`1e-05`, que es como pandas escribe los números muy chicos) y se compara por su valor |
+| Cualquier número | Solo dígitos 0 a 9. Se rechazan `nan`, `inf`, `+1.0`, `.5`, `5.`, espacios y números absurdamente grandes o chicos |
 | Celda vacía | Significa «no hay dato» y se acepta en cualquier tipo; que un valor aparezca o desaparezca es una diferencia |
 
-El comparador **termina con error** (no con «0 distintas») si: una carpeta no existe o no tiene tablas; falta o sobra una tabla; una tabla no está en el esquema; o las tablas de referencia no cumplen el propio esquema. Esto evita que una comparación vacía parezca un éxito.
+El comparador **termina con error** (no con «0 distintas») si: una carpeta no existe o no tiene tablas; falta o sobra una tabla; una tabla no está en el esquema; las tablas de referencia no cumplen el propio esquema; la carpeta de referencia es la misma que la de las tablas nuevas (se compararía cada tabla consigo misma); o un archivo no se puede leer como CSV en UTF-8. Esto evita que una comparación vacía o trivial parezca un éxito.
 
 Esa tolerancia existe porque el redondeo del último decimal puede cambiar con otro sistema operativo o con otra versión de las librerías. No se afirma que las tablas salgan idénticas byte a byte en cualquier computadora.
 
@@ -149,7 +150,7 @@ Esa tolerancia existe porque el redondeo del último decimal puede cambiar con o
 
 **Si una tabla sale distinta:** el comparador dice en qué tabla, línea y columna. Revisa primero las dos tablas de huellas: si la huella de un archivo cambió, ese archivo no es igual al que se usó aquí. Si las huellas coinciden y aun así hay diferencias mayores a la tolerancia, la causa está en el entorno (versiones de las librerías) o en los scripts; anota el caso en el registro en lugar de descartarlo.
 
-**Pruebas de los scripts:** `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_area_geodesica.py` (debe terminar con «7 de 7 pruebas cumplen») y `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_comparar_tablas.py` (debe terminar con «20 de 20 pruebas cumplen»). No leen el dataset; la segunda usa carpetas temporales y solo lee `tablas/` y el esquema del repositorio.
+**Pruebas de los scripts:** `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_area_geodesica.py` (debe terminar con «7 de 7 pruebas cumplen») y `python analisis/auditoria_catalogo_y_etiquetas/scripts/probar_comparar_tablas.py` (debe terminar con «33 de 33 pruebas cumplen»). No leen el dataset; la segunda usa carpetas temporales y solo lee `tablas/` y el esquema del repositorio. Incluye pruebas con miles de valores al azar y una que cambia una celda de cada columna de las 16 tablas reales para comprobar que el comparador lo detecta.
 
 Los scripts solo leen el dataset. Además leen dos archivos del repositorio: `analisis/exploracion_parcelas_qgis/revision_contornos/revision_contornos.csv` y `registro/t03/soporte_parcelas.csv`.
 

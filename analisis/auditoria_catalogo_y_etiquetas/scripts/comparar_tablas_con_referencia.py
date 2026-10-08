@@ -16,8 +16,10 @@ El esquema (esquema_de_tablas.csv) declara, para cada columna de cada tabla, su 
 diferencia se acepta. Lo que decide es el esquema, no lo que traiga la tabla nueva:
     texto     Debe coincidir exactamente.
     entero    Debe ser un entero y coincidir exactamente.
-    decimal   Debe ser un número con a lo sumo los decimales declarados. Se acepta una diferencia
-              de hasta la tolerancia declarada; si la tolerancia es 0, debe coincidir exactamente.
+    decimal   Debe ser un número con a lo sumo los decimales declarados (se acepta la notación
+              científica, como 1e-05, que escribe pandas con los números muy chicos). Se acepta una
+              diferencia de hasta la tolerancia declarada; si la tolerancia es 0, el texto debe
+              coincidir exactamente (3.5 y 3.50 cuentan como distintos, y 0.0 y -0.0 también).
 El fin de línea (Windows o Mac/Linux) no se toma en cuenta.
 
 Además del esquema se usa la referencia como segunda comprobación: antes de comparar se revisa
@@ -25,7 +27,8 @@ que la propia referencia cumpla el esquema. Si no lo cumple, se avisa y cuenta c
 
 Termina con código 0 solo si todas las tablas del esquema se compararon y son iguales o iguales
 dentro de la tolerancia. Termina con código 1 si alguna es distinta, falta, sobra o no cumple el
-esquema, y también si una carpeta no existe o no hay ninguna tabla que comparar.
+esquema, y también si una carpeta no existe, no hay ninguna tabla que comparar, la carpeta de
+referencia es la misma que la de las tablas nuevas, o un archivo no se puede leer como CSV UTF-8.
 """
 import argparse
 import csv
@@ -43,23 +46,45 @@ TABLAS_POR_OMISION = CARPETA / "tablas"
 ESQUEMA_POR_OMISION = CARPETA / "esquema_de_tablas.csv"
 COLUMNAS_DEL_ESQUEMA = ["tabla", "columna", "tipo", "decimales", "tolerancia", "motivo"]
 TIPOS = ("texto", "entero", "decimal")
-ENTERO = re.compile(r"-?\d+")
-NUMERO = re.compile(r"-?\d+(\.\d+)?")
+ENTERO = re.compile(r"-?\d+", re.ASCII)
+NUMERO = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?", re.ASCII)   # solo dígitos 0-9, no los de otros alfabetos
+LIMITE_EXPONENTE = 300      # un valor más grande o más chico que esto no es un dato plausible de estas tablas
 MAXIMO_A_MOSTRAR = 5
 ETIQUETAS = {"igual": "igual", "tolerancia": "igual dentro de la tolerancia", "distinta": "DISTINTA",
              "referencia": "LA REFERENCIA NO CUMPLE EL ESQUEMA", "sin_esquema": "SIN ESQUEMA"}
 
 
 def leer_tabla(contenido: bytes):
-    """Devuelve (columnas, filas) de un CSV, sin importar el fin de línea ni la marca inicial."""
-    texto = contenido.decode("utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
-    filas = list(csv.reader(io.StringIO(texto)))
+    """Devuelve (columnas, filas) de un CSV, sin importar el fin de línea ni la marca inicial.
+
+    Si el archivo no es un CSV legible en UTF-8 lanza ValueError con un mensaje claro."""
+    try:
+        texto = contenido.decode("utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
+        filas = list(csv.reader(io.StringIO(texto)))
+    except (UnicodeDecodeError, csv.Error) as error:
+        raise ValueError(f"no se puede leer como CSV en UTF-8 ({error})") from None
     return (filas[0], filas[1:]) if filas else ([], [])
+
+
+def decimales_de(valor: str):
+    """Cuántos decimales tiene un número escrito (1.50 tiene 2; 1e-05 tiene 5), o None si no es un número normal."""
+    if not NUMERO.fullmatch(valor):
+        return None
+    try:
+        numero = Decimal(valor)
+    except InvalidOperation:
+        return None
+    if not numero.is_finite() or abs(numero.adjusted()) > LIMITE_EXPONENTE:
+        return None
+    return max(0, -numero.as_tuple().exponent)
 
 
 def leer_esquema(contenido: bytes) -> dict:
     """Devuelve {tabla: [(columna, tipo, decimales, tolerancia), ...]} y comprueba que el esquema esté bien escrito."""
-    columnas, filas = leer_tabla(contenido)
+    try:
+        columnas, filas = leer_tabla(contenido)
+    except ValueError as error:
+        raise SystemExit(f"El esquema {error}")
     if columnas != COLUMNAS_DEL_ESQUEMA:
         raise SystemExit(f"El esquema debe tener las columnas {COLUMNAS_DEL_ESQUEMA}; tiene {columnas}")
     esquema = {}
@@ -74,8 +99,8 @@ def leer_esquema(contenido: bytes) -> dict:
                 decimales, tolerancia = int(decimales), Decimal(tolerancia)
             except (ValueError, InvalidOperation):
                 raise SystemExit(f"Esquema, línea {numero}: una columna decimal necesita decimales y tolerancia")
-            if decimales < 0 or tolerancia < 0:
-                raise SystemExit(f"Esquema, línea {numero}: decimales y tolerancia no pueden ser negativos")
+            if decimales < 0 or not tolerancia.is_finite() or tolerancia < 0:
+                raise SystemExit(f"Esquema, línea {numero}: decimales y tolerancia deben ser números finitos no negativos")
         elif decimales or tolerancia:
             raise SystemExit(f"Esquema, línea {numero}: solo las columnas decimales llevan decimales y tolerancia")
         else:
@@ -94,7 +119,8 @@ def valor_cumple(valor: str, tipo: str, decimales: int) -> bool:
         return True
     if tipo == "entero":
         return bool(ENTERO.fullmatch(valor))
-    return bool(NUMERO.fullmatch(valor)) and (len(valor.split(".")[1]) if "." in valor else 0) <= decimales
+    lugares = decimales_de(valor)
+    return lugares is not None and lugares <= decimales
 
 
 def revisar_contra_esquema(columnas, filas, esquema_tabla):
@@ -119,8 +145,14 @@ def comparar_tablas(referencia: bytes, nueva: bytes, esquema_tabla):
 
     El estado es 'igual', 'tolerancia', 'distinta' o 'referencia' (la referencia no cumple el esquema).
     """
-    columnas_r, filas_r = leer_tabla(referencia)
-    columnas_n, filas_n = leer_tabla(nueva)
+    try:
+        columnas_r, filas_r = leer_tabla(referencia)
+    except ValueError as error:
+        return "referencia", [f"la referencia {error}"]
+    try:
+        columnas_n, filas_n = leer_tabla(nueva)
+    except ValueError as error:
+        return "distinta", [f"la tabla nueva {error}"]
     problemas = revisar_contra_esquema(columnas_r, filas_r, esquema_tabla)
     if problemas:
         return "referencia", problemas
@@ -185,7 +217,10 @@ def tablas_de_git(version: str):
 def tablas_de_carpeta(carpeta: Path, papel: str):
     if not carpeta.is_dir():
         raise SystemExit(f"No existe la carpeta de {papel}: {carpeta}")
-    return {r.name: r.read_bytes() for r in sorted(carpeta.glob("*.csv"))}
+    try:
+        return {r.name: r.read_bytes() for r in sorted(carpeta.glob("*.csv")) if r.is_file()}
+    except OSError as error:
+        raise SystemExit(f"No se pudo leer la carpeta de {papel} ({error})")
 
 
 def main(argumentos=None) -> int:
@@ -198,6 +233,9 @@ def main(argumentos=None) -> int:
 
     if not a.esquema.is_file():
         raise SystemExit(f"No existe el esquema: {a.esquema}")
+    if a.referencia is not None and a.referencia.resolve() == a.tablas.resolve():
+        raise SystemExit("La carpeta de referencia es la misma que la de las tablas nuevas: "
+                         "compararía cada tabla consigo misma y siempre saldría igual.")
     esquema = leer_esquema(a.esquema.read_bytes())
     nuevas = tablas_de_carpeta(a.tablas, "tablas nuevas")
     if a.referencia is not None:
@@ -223,8 +261,6 @@ def main(argumentos=None) -> int:
     print(f"\n{conteo['igual']} iguales, {conteo['tolerancia']} iguales dentro de la tolerancia, "
           f"{conteo['distinta']} distintas, {conteo['referencia']} con la referencia fuera del esquema, "
           f"{conteo['sin_esquema']} sin esquema")
-    if conteo["igual"] + conteo["tolerancia"] == 0:
-        print("Ninguna tabla resultó igual: revisa las rutas.")
     return 1 if fallas else 0
 
 

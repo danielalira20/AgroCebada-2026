@@ -834,3 +834,27 @@ Una integrante del equipo señaló tres observaciones sobre el protocolo de T03.
 **Repetición completa** (desde la raíz del repositorio, en Linux, con Python 3.12 y las dependencias de `dev`; salida en una carpeta temporal para no tocar `tablas/`): los cinco scripts terminaron sin errores, 60 de 60 comprobaciones, y el comparador dio 16 iguales, 0 dentro de la tolerancia, 0 distintas, 0 sin esquema. Pasaron 7 y 20 pruebas de la auditoría y 68 de `tests/`. **Ningún resultado ni ninguna tabla cambió.**
 
 **No comprobado:** la repetición en Mac, Windows y Docker sigue pendiente.
+
+### 8 de octubre de 2026 — Detalles finales del comparador
+
+**Contexto.** En la segunda revisión del PR, Migue comprobó que las cifras de parcelas vecinas (87 pares, 45 entre etiquetadas, 70 de 138 y 24 de 59) le salen iguales, que su T08 corre igual con la copia que crea `preparar_copia_del_dataset.py` y que el comparador se comporta bien con vacíos, BOM, filas reordenadas, repetidas o faltantes y `0.0` frente a `-0.0`. Señaló dos detalles que no bloqueaban.
+
+**Los dos detalles de Migue, comprobados antes de corregir:**
+
+- El mensaje «Ninguna tabla resultó igual: revisa las rutas» salía también cuando solo una tabla era distinta. Se quitó: con carpetas vacías o mal escritas el comparador ya termina con error, así que el mensaje sobraba.
+- El comparador rechazaba `1e-3`, `1E-3` y `1e-05`, que es como pandas escribe los números muy chicos. Ninguna de las 16 tablas actuales los tiene, pero podría pasar en tablas futuras. Ahora se aceptan en los decimales y se comparan por su valor.
+
+**Huecos que se encontraron al revisar el comparador y se cerraron** (cada uno con una prueba que falla con la versión anterior):
+
+- Aceptaba dígitos de otros alfabetos como números (por ejemplo `١٢٣`). Ahora solo valen los dígitos 0 a 9.
+- Si la carpeta de referencia era la misma que la de las tablas nuevas, decía «igual» sin comparar nada. Ahora termina con error.
+- Un archivo que no era UTF-8, un campo de más de 131 072 caracteres o un subdirectorio llamado `algo.csv` producían un error de Python con mucho texto. Ahora dan un mensaje claro (o se ignoran, en el caso del subdirectorio).
+- Una tolerancia escrita como `NaN` en el esquema producía un error de Python, y `Infinity` habría aceptado cualquier diferencia. Ahora el esquema las rechaza.
+
+**Pruebas.** `probar_comparar_tablas.py` pasó de 20 a 33 pruebas. Dos son de otro tipo: una con 2 000 valores al azar (semilla fija) que comprueba la regla de la tolerancia, y otra que cambia una celda de cada columna de las 16 tablas reales y comprueba que el comparador la detecta. Con la versión anterior del comparador fallan 8 de las 33, con los errores esperados.
+
+**Repetición completa** (desde la raíz del repositorio, en Linux): los cinco scripts, 60 de 60 comprobaciones, comparador con 16 iguales y 0 distintas, 7 y 33 pruebas de la auditoría y 68 de `tests/`. **Ninguna tabla ni ningún resultado cambió.**
+
+**Decisión de diseño que queda escrita:** en las columnas copiadas del dataset (tolerancia 0) se compara el texto, así que `3.5` y `3.50` cuentan como distintos. Es deliberado: un cambio de formato en un valor copiado debe verse.
+
+**No comprobado:** la repetición en Mac, Windows y Docker sigue pendiente.
