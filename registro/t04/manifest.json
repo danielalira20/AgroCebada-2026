@@ -1,52 +1,5 @@
 {
-  "actualizacion_referencia_t02": {
-    "codigo_conciliacion_sha256": {
-      "t02_contrato.py": "ae484660f58cbd49a36829d2e3b61a4db92ab7baf9dcb8971168c769348eace8",
-      "t04_t02.py": "962f92589779a60ff1bb060a7a227a30ac053ef84af1a1f6fdea5f70ff7b6a8d"
-    },
-    "detalle_y_maximos_espaciales_identicos": true,
-    "entrega_anterior_revision_git": "842f4c459fe85120867d8c9fd27e05fe049d3fb1",
-    "extraccion_original_preservada": true,
-    "identidades_soporte_verificadas": 394,
-    "manifest_anterior_sha256": "0e00444924653ddea337d47b1da113dc3b0cf41ff26ad38c4febc6988ce9863d",
-    "motivo": "Separar dos tablas de compatibilidad y tres archivos de procedencia; sin recalcular clima",
-    "parcelas_reconciliadas": 197,
-    "referencia_anterior_sha256": "8b84ad9f7dc93ac77a9693574f7251878bf70c41d1957a4514cdc260dfb8790f",
-    "referencia_nueva_sha256": "d9287e6542545389f4174e1145125c2443c01b8558385e6060f6552f348cc65c",
-    "revision_codigo_conciliacion": "2ea8b0d5fe79f61940f6860688b162b76f6e1ff7",
-    "schema": "t04_actualizacion_contrato_t02_v1",
-    "valores_climaticos_recalculados": false
-  },
-  "alcance_temporal": "posterior_al_corte usa fin de mes; False NO implica disponible en esa fecha",
-  "archivos_sha256": {
-    "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
-    "conciliacion_t02.json": "4b23fe4195e12d3b4cf2101b30801a55aaaac4294456b79b679b9d7b84333303",
-    "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce",
-    "procedencia.json": "da2bd97d4959cb142a2d80c3a9c24ea885278a03a20130876b7ea7881d329524"
-  },
-  "cierre_t04": false,
-  "codigo_entrega_sha256": "df1679bd39b023b5fd123d2bf000eee95086c4d48b2952a91ceaa69bb16c4c92",
-  "columnas": [
-    "id_parcela",
-    "periodo",
-    "variable",
-    "unidad",
-    "media_ponderada",
-    "estado",
-    "cobertura_valida",
-    "valor_centroide",
-    "diferencia_media_menos_centroide",
-    "centroide_dentro_parcela",
-    "posterior_al_corte"
-  ],
-  "corte_observacional_provisional": "2025-10-31",
-  "disponibilidad_historica_fira": "no documentada",
-  "fuente_archivos_sha256": {
-    "clima_parcela_mes.csv": "5618a69b4f109923b049f0c52c8278726ee72068970a2bba91705f63ac227bdf",
-    "controles.json": "5e6b59c7c4ca492b36dda6be8c3591a4c01d7afc6ce5092c52ea5da56a5104b3",
-    "manifest.json": "8033eb53d6cce0e754ad49198d257c3ea4167a25b4855181aaaca51cf662a2ca",
-    "soportes.json": "e38f958b80a58432a84c54a41240cc404dd2ed0ade8600157d1481e12efa957b"
-  },
+  "schema": "t04_entrega_compacta_v1",
   "ids": [
     "AGC_001",
     "AGC_002",
@@ -296,7 +249,54 @@
     "2025-11",
     "2025-12"
   ],
-  "schema": "t04_entrega_compacta_v1",
+  "columnas": [
+    "id_parcela",
+    "periodo",
+    "variable",
+    "unidad",
+    "media_ponderada",
+    "estado",
+    "cobertura_valida",
+    "valor_centroide",
+    "diferencia_media_menos_centroide",
+    "centroide_dentro_parcela",
+    "posterior_al_corte"
+  ],
+  "corte_observacional_provisional": "2025-10-31",
+  "alcance_temporal": "posterior_al_corte usa fin de mes; False NO implica disponible en esa fecha",
+  "disponibilidad_historica_fira": "no documentada",
+  "versiones_producto_fira": "sin número documentado; CHIRPS y CHIRTS-ERA5 según metadatos",
   "uso": "historia mensual descriptiva; admisibilidad/ventanas/modelo pendientes del protocolo",
-  "versiones_producto_fira": "sin número documentado; CHIRPS y CHIRTS-ERA5 según metadatos"
+  "fuente_archivos_sha256": {
+    "clima_parcela_mes.csv": "5618a69b4f109923b049f0c52c8278726ee72068970a2bba91705f63ac227bdf",
+    "soportes.json": "e38f958b80a58432a84c54a41240cc404dd2ed0ade8600157d1481e12efa957b",
+    "manifest.json": "8033eb53d6cce0e754ad49198d257c3ea4167a25b4855181aaaca51cf662a2ca",
+    "controles.json": "5e6b59c7c4ca492b36dda6be8c3591a4c01d7afc6ce5092c52ea5da56a5104b3"
+  },
+  "codigo_entrega_sha256": "df1679bd39b023b5fd123d2bf000eee95086c4d48b2952a91ceaa69bb16c4c92",
+  "archivos_sha256": {
+    "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
+    "procedencia.json": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+    "conciliacion_t02.json": "de64fa03cbed798b2395b1ab99395ea8597fa2cfe6b1de33ffdacf1d0245e7e2",
+    "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce"
+  },
+  "cierre_t04": false,
+  "actualizacion_referencia_t02": {
+    "codigo_conciliacion_sha256": {
+      "t02_contrato.py": "ae484660f58cbd49a36829d2e3b61a4db92ab7baf9dcb8971168c769348eace8",
+      "t04_t02.py": "962f92589779a60ff1bb060a7a227a30ac053ef84af1a1f6fdea5f70ff7b6a8d"
+    },
+    "detalle_y_maximos_espaciales_identicos": true,
+    "entrega_anterior_revision_git": "842f4c459fe85120867d8c9fd27e05fe049d3fb1",
+    "extraccion_original_preservada": true,
+    "identidades_soporte_verificadas": 394,
+    "manifest_anterior_sha256": "0e00444924653ddea337d47b1da113dc3b0cf41ff26ad38c4febc6988ce9863d",
+    "motivo": "Separar dos tablas de compatibilidad y tres archivos de procedencia; sin recalcular clima",
+    "parcelas_reconciliadas": 197,
+    "referencia_anterior_sha256": "8b84ad9f7dc93ac77a9693574f7251878bf70c41d1957a4514cdc260dfb8790f",
+    "referencia_nueva_sha256": "63a383c25417af4b5deeb636c3a3758f09a126799983d195709cb5835a5d3572",
+    "revision_codigo_conciliacion": "2ea8b0d5fe79f61940f6860688b162b76f6e1ff7",
+    "schema": "t04_actualizacion_contrato_t02_v1",
+    "valores_climaticos_recalculados": false
+  }
 }

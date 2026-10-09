@@ -1,1625 +1,1625 @@
 {
+  "estado": "conciliada_con_referencia_identificada",
+  "revision_t02": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+  "referencia_sha256": "63a383c25417af4b5deeb636c3a3758f09a126799983d195709cb5835a5d3572",
   "archivos_t02_sha256": {
     "tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
     "tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
   },
+  "origen": "tablas locales verificadas",
+  "ids_verificados": 197,
   "areas_origen_iguales": 197,
-  "catalogo_compatible_con_definicion_precision_t02": 197,
   "celdas_principales_iguales": 197,
-  "detalle": [
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00017478351605596385,
-      "diferencia_area_t04_menos_t02_pct": -0.0001683906564391732,
-      "diferencia_centroide_lat_grados": 2.4014312316467112e-08,
-      "diferencia_centroide_lon_grados": 1.4262710124057776e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_001"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8227121315377124e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.3848592702519966e-05,
-      "diferencia_centroide_lat_grados": 2.983349389751311e-08,
-      "diferencia_centroide_lon_grados": -3.827932459898875e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_002"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00010275130866681573,
-      "diferencia_area_t04_menos_t02_pct": 0.00010480884387043969,
-      "diferencia_centroide_lat_grados": -1.1667797394920854e-08,
-      "diferencia_centroide_lon_grados": 4.1708730691425444e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_003"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.1559440013294956e-06,
-      "diferencia_area_t04_menos_t02_pct": -7.4000771154510524e-06,
-      "diferencia_centroide_lat_grados": -4.097056915952635e-09,
-      "diferencia_centroide_lon_grados": 1.0698116170715366e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_004"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.9228705194906814e-05,
-      "diferencia_area_t04_menos_t02_pct": -5.413386834096501e-05,
-      "diferencia_centroide_lat_grados": 2.419653100105279e-08,
-      "diferencia_centroide_lon_grados": 2.0102532971577602e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_005"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.617558205317524e-06,
-      "diferencia_area_t04_menos_t02_pct": -2.15718293577711e-05,
-      "diferencia_centroide_lat_grados": -1.2771590007787381e-08,
-      "diferencia_centroide_lon_grados": 2.8979400212847395e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_006"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00015549316138516075,
-      "diferencia_area_t04_menos_t02_pct": 0.0001557804566703535,
-      "diferencia_centroide_lat_grados": 1.0061032895691824e-08,
-      "diferencia_centroide_lon_grados": -4.6117150986901834e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_007"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.723173746714962e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.489432400088424e-05,
-      "diferencia_centroide_lat_grados": -2.9945724122626416e-08,
-      "diferencia_centroide_lon_grados": 4.1608203105170105e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_008"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.377746219337932e-05,
-      "diferencia_area_t04_menos_t02_pct": -3.3057177592910645e-05,
-      "diferencia_centroide_lat_grados": 1.6343303599342107e-08,
-      "diferencia_centroide_lon_grados": -3.617257959831477e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_009"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.621104474742363e-05,
-      "diferencia_area_t04_menos_t02_pct": -9.131629590571969e-05,
-      "diferencia_centroide_lat_grados": 4.34585913922092e-08,
-      "diferencia_centroide_lon_grados": -2.653889907833218e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_010"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.2158974992442892e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.0710068313895734e-06,
-      "diferencia_centroide_lat_grados": -1.7383715800178834e-08,
-      "diferencia_centroide_lon_grados": 1.466473520395084e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_011"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.6400637992798659e-06,
-      "diferencia_area_t04_menos_t02_pct": 6.895436007615576e-06,
-      "diferencia_centroide_lat_grados": -3.94364896294519e-08,
-      "diferencia_centroide_lon_grados": 1.8600601947582618e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_012"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.1753146917171367e-05,
-      "diferencia_area_t04_menos_t02_pct": 3.161698499547655e-05,
-      "diferencia_centroide_lat_grados": -6.062954582830571e-09,
-      "diferencia_centroide_lon_grados": -7.387342293441179e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_013"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.711683459649273e-05,
-      "diferencia_area_t04_menos_t02_pct": 5.388180301589959e-05,
-      "diferencia_centroide_lat_grados": -2.8834804766120214e-08,
-      "diferencia_centroide_lon_grados": -4.142343357216305e-08,
-      "diferencia_fraccion": -1.107400189326313e-05,
-      "id_parcela": "AGC_014"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.6314645806868364e-05,
-      "diferencia_area_t04_menos_t02_pct": -4.0207157375412435e-05,
-      "diferencia_centroide_lat_grados": -7.119435707636512e-09,
-      "diferencia_centroide_lon_grados": -3.6366060385262244e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_015"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.5575450193688076e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.9505423040771823e-05,
-      "diferencia_centroide_lat_grados": -4.794372543415193e-08,
-      "diferencia_centroide_lon_grados": 2.684950572984235e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_016"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.0069453822094148e-05,
-      "diferencia_area_t04_menos_t02_pct": -9.312718264649257e-06,
-      "diferencia_centroide_lat_grados": -2.167489299154113e-09,
-      "diferencia_centroide_lon_grados": 9.071996487364231e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_017"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.026463878032508e-05,
-      "diferencia_area_t04_menos_t02_pct": -0.0001169761228209267,
-      "diferencia_centroide_lat_grados": 3.4253208269774404e-08,
-      "diferencia_centroide_lon_grados": 3.562165318271582e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_018"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.163980243523623e-05,
-      "diferencia_area_t04_menos_t02_pct": 5.0129426909307046e-05,
-      "diferencia_centroide_lat_grados": 2.5714754769978754e-09,
-      "diferencia_centroide_lon_grados": -2.4594655201326532e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_019"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.0844639919019593e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.7044953426604394e-05,
-      "diferencia_centroide_lat_grados": -1.0145477347123233e-08,
-      "diferencia_centroide_lon_grados": -5.621473064820748e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_020"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.358162765333753e-05,
-      "diferencia_area_t04_menos_t02_pct": 6.04767983625152e-05,
-      "diferencia_centroide_lat_grados": -1.74868866054112e-08,
-      "diferencia_centroide_lon_grados": 6.815369602009014e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_021"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.167507284770182e-05,
-      "diferencia_area_t04_menos_t02_pct": 7.310470891439177e-05,
-      "diferencia_centroide_lat_grados": -1.1774986319323943e-08,
-      "diferencia_centroide_lon_grados": -3.97594419609959e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_022"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00020175133308106884,
-      "diferencia_area_t04_menos_t02_pct": 0.00020101468759943557,
-      "diferencia_centroide_lat_grados": 4.449591273214537e-08,
-      "diferencia_centroide_lon_grados": 2.4325828462679056e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_023"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.225427092510809e-05,
-      "diferencia_area_t04_menos_t02_pct": 8.137895513927421e-05,
-      "diferencia_centroide_lat_grados": 4.7519481682911646e-08,
-      "diferencia_centroide_lon_grados": -4.651987239867594e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_024"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003870854509770743,
-      "diferencia_area_t04_menos_t02_pct": -0.0003732553278174621,
-      "diferencia_centroide_lat_grados": -4.71396077728059e-08,
-      "diferencia_centroide_lon_grados": 2.6109631789950072e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_025"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.775732078702844e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.563466266096785e-05,
-      "diferencia_centroide_lat_grados": -6.734733659641279e-09,
-      "diferencia_centroide_lon_grados": 3.049315466796543e-08,
-      "diferencia_fraccion": -1.0787748111806827e-05,
-      "id_parcela": "AGC_026"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.6352210670709045e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.416567897480485e-05,
-      "diferencia_centroide_lat_grados": 3.041232332634536e-08,
-      "diferencia_centroide_lon_grados": -1.596190202235448e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_027"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 9.385175583087897e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.3573582610094312e-05,
-      "diferencia_centroide_lat_grados": -4.6764991878944784e-08,
-      "diferencia_centroide_lon_grados": 3.79350808543677e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_028"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00011180155049718334,
-      "diferencia_area_t04_menos_t02_pct": 0.00011708118104561313,
-      "diferencia_centroide_lat_grados": -1.6556118254129615e-08,
-      "diferencia_centroide_lon_grados": -3.031871642633632e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_029"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.18672523264611e-05,
-      "diferencia_area_t04_menos_t02_pct": -5.169539047642426e-05,
-      "diferencia_centroide_lat_grados": -3.024658212780196e-08,
-      "diferencia_centroide_lon_grados": -4.080565929598379e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_030"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.172157153187635e-05,
-      "diferencia_area_t04_menos_t02_pct": -8.27173610337722e-05,
-      "diferencia_centroide_lat_grados": -8.019714670126632e-09,
-      "diferencia_centroide_lon_grados": 2.990923064771778e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_031"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.6399649051760166e-05,
-      "diferencia_area_t04_menos_t02_pct": 7.225749184760359e-05,
-      "diferencia_centroide_lat_grados": 3.89431704661547e-08,
-      "diferencia_centroide_lon_grados": -3.2577901265540277e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_032"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.762753649621216e-05,
-      "diferencia_area_t04_menos_t02_pct": -2.6881262142047976e-05,
-      "diferencia_centroide_lat_grados": 1.8329672002437292e-08,
-      "diferencia_centroide_lon_grados": 7.0252070827336865e-09,
-      "diferencia_fraccion": 4.9998313573551556e-05,
-      "id_parcela": "AGC_033"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0001444593747931105,
-      "diferencia_area_t04_menos_t02_pct": 0.00014075687117039807,
-      "diferencia_centroide_lat_grados": -1.609651789635791e-08,
-      "diferencia_centroide_lon_grados": 1.9138951756758615e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_034"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00034354881365105126,
-      "diferencia_area_t04_menos_t02_pct": -0.00034277846639553213,
-      "diferencia_centroide_lat_grados": -7.418491421162798e-08,
-      "diferencia_centroide_lon_grados": -1.4212275800673524e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_035"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.484298179664441e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.6462911732245674e-05,
-      "diferencia_centroide_lat_grados": -7.694755055354108e-09,
-      "diferencia_centroide_lon_grados": 2.355079686822137e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_036"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.550236055383872e-05,
-      "diferencia_area_t04_menos_t02_pct": -8.281996596298737e-05,
-      "diferencia_centroide_lat_grados": -2.4144771515466346e-08,
-      "diferencia_centroide_lon_grados": 4.6797950403743016e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_037"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.3823690242994376e-05,
-      "diferencia_area_t04_menos_t02_pct": -5.418452808535562e-05,
-      "diferencia_centroide_lat_grados": 1.1209955630420154e-08,
-      "diferencia_centroide_lon_grados": 1.7871997215479496e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_038"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.766811693330661e-05,
-      "diferencia_area_t04_menos_t02_pct": -4.048259795265999e-05,
-      "diferencia_centroide_lat_grados": -9.438004155981616e-09,
-      "diferencia_centroide_lon_grados": 4.6377635953831486e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_039"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00036914617715448763,
-      "diferencia_area_t04_menos_t02_pct": -0.0003619808550991676,
-      "diferencia_centroide_lat_grados": -2.963744805128954e-09,
-      "diferencia_centroide_lon_grados": 6.679513830931683e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_040"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.4579629526243258e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.4550752522679513e-05,
-      "diferencia_centroide_lat_grados": 1.156746165520417e-08,
-      "diferencia_centroide_lon_grados": -5.082546294943313e-08,
-      "diferencia_fraccion": 4.026692231662299e-05,
-      "id_parcela": "AGC_041"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.8197299727570652e-05,
-      "diferencia_area_t04_menos_t02_pct": -3.113884200191794e-05,
-      "diferencia_centroide_lat_grados": 1.4142589321863852e-08,
-      "diferencia_centroide_lon_grados": -4.789808372152038e-08,
-      "diferencia_fraccion": 1.0012117638180662e-05,
-      "id_parcela": "AGC_042"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.323379121969231e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.5245789390775571e-05,
-      "diferencia_centroide_lat_grados": 1.4582489882286609e-08,
-      "diferencia_centroide_lon_grados": -6.85767531649617e-09,
-      "diferencia_fraccion": -1.85274217410214e-05,
-      "id_parcela": "AGC_043"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0005162849430573577,
-      "diferencia_area_t04_menos_t02_pct": 0.0005328675183612357,
-      "diferencia_centroide_lat_grados": 3.557182282065696e-08,
-      "diferencia_centroide_lon_grados": 1.5482982007597457e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_044"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.1244024896077685e-05,
-      "diferencia_area_t04_menos_t02_pct": -2.2012291976283553e-05,
-      "diferencia_centroide_lat_grados": -1.2375451774460089e-09,
-      "diferencia_centroide_lon_grados": 9.459299121772347e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_045"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8352161883504174e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.8113389772103395e-05,
-      "diferencia_centroide_lat_grados": 1.0858499877031136e-08,
-      "diferencia_centroide_lon_grados": 2.0013644075334014e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_046"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00010822377062853459,
-      "diferencia_area_t04_menos_t02_pct": -0.00010840478988971745,
-      "diferencia_centroide_lat_grados": -1.2909175950426288e-08,
-      "diferencia_centroide_lon_grados": 4.178116341790883e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_047"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.1197181541918237e-06,
-      "diferencia_area_t04_menos_t02_pct": -4.508088261308565e-06,
-      "diferencia_centroide_lat_grados": 6.926807571971949e-09,
-      "diferencia_centroide_lon_grados": 9.978236903407378e-09,
-      "diferencia_fraccion": 4.2976435426833604e-05,
-      "id_parcela": "AGC_048"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.5675012848475463e-06,
-      "diferencia_area_t04_menos_t02_pct": -6.092659101574759e-06,
-      "diferencia_centroide_lat_grados": 3.0050660626557146e-08,
-      "diferencia_centroide_lon_grados": -4.717192325642827e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_049"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0003400544368909595,
-      "diferencia_area_t04_menos_t02_pct": 0.00032411095893660564,
-      "diferencia_centroide_lat_grados": -6.926264006779093e-10,
-      "diferencia_centroide_lon_grados": 8.03387933956401e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_050"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.191467221332175e-05,
-      "diferencia_area_t04_menos_t02_pct": 7.327475085619303e-05,
-      "diferencia_centroide_lat_grados": 8.416620289608545e-09,
-      "diferencia_centroide_lon_grados": 2.019071132508543e-08,
-      "diferencia_fraccion": 8.144889596328753e-06,
-      "id_parcela": "AGC_051"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.013821871419747e-05,
-      "diferencia_area_t04_menos_t02_pct": -1.7426661306139822e-05,
-      "diferencia_centroide_lat_grados": -4.693763955287977e-08,
-      "diferencia_centroide_lon_grados": 3.1513096132584906e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_052"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.551774280247606e-05,
-      "diferencia_area_t04_menos_t02_pct": -8.06139363198822e-05,
-      "diferencia_centroide_lat_grados": 3.1408372791474903e-08,
-      "diferencia_centroide_lon_grados": -5.0497845904828864e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_053"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.1236017441617596e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.3067747666210633e-05,
-      "diferencia_centroide_lat_grados": 1.2822560790937132e-09,
-      "diferencia_centroide_lon_grados": -1.4665189951301727e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_054"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.500385537522102e-07,
-      "diferencia_area_t04_menos_t02_pct": 2.1447026178368377e-06,
-      "diferencia_centroide_lat_grados": -1.8788281153092612e-08,
-      "diferencia_centroide_lon_grados": -6.4165419644268695e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_055"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.3637960579005e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.7263084443572048e-06,
-      "diferencia_centroide_lat_grados": -8.533756812312276e-09,
-      "diferencia_centroide_lon_grados": -1.337056687589211e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_056"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.269513195819006e-06,
-      "diferencia_area_t04_menos_t02_pct": -2.248383139724144e-05,
-      "diferencia_centroide_lat_grados": -4.621524851700087e-08,
-      "diferencia_centroide_lon_grados": 1.592707121744752e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_057"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.643056733530817e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.1028314494102366e-05,
-      "diferencia_centroide_lat_grados": 3.405752480034607e-08,
-      "diferencia_centroide_lon_grados": 1.2360771961539285e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_058"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.247672981316426e-05,
-      "diferencia_area_t04_menos_t02_pct": -6.506966486290302e-05,
-      "diferencia_centroide_lat_grados": 3.446827534503427e-08,
-      "diferencia_centroide_lon_grados": -4.098890826753632e-08,
-      "diferencia_fraccion": -4.4001407913163426e-05,
-      "id_parcela": "AGC_059"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.8132269998955513e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.8494689455025135e-05,
-      "diferencia_centroide_lat_grados": -3.682087168499493e-08,
-      "diferencia_centroide_lon_grados": -2.379223928983265e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_060"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.000239219308682267,
-      "diferencia_area_t04_menos_t02_pct": -0.00023937030824190472,
-      "diferencia_centroide_lat_grados": -3.5926785102446956e-08,
-      "diferencia_centroide_lon_grados": -7.4430062113606255e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_061"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003776985064072878,
-      "diferencia_area_t04_menos_t02_pct": -0.00037628001458090164,
-      "diferencia_centroide_lat_grados": -2.287389833099951e-08,
-      "diferencia_centroide_lon_grados": 2.5360066047142027e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_062"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.1408832931958435e-05,
-      "diferencia_area_t04_menos_t02_pct": -9.108090912112231e-06,
-      "diferencia_centroide_lat_grados": -3.227935962968331e-08,
-      "diferencia_centroide_lon_grados": -1.9589506905504095e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_063"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0006843128288466174,
-      "diferencia_area_t04_menos_t02_pct": 0.0006716676730397978,
-      "diferencia_centroide_lat_grados": 9.130239675414487e-09,
-      "diferencia_centroide_lon_grados": -4.019551624878659e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_064"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0011364640228506333,
-      "diferencia_area_t04_menos_t02_pct": -0.0011356193336070602,
-      "diferencia_centroide_lat_grados": -6.431995558386916e-08,
-      "diferencia_centroide_lon_grados": -4.982581458534696e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_065"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0005049779987026712,
-      "diferencia_area_t04_menos_t02_pct": -0.0004985219578942631,
-      "diferencia_centroide_lat_grados": -9.931060418466586e-09,
-      "diferencia_centroide_lon_grados": -1.5796501884324243e-09,
-      "diferencia_fraccion": 1.8815528900040235e-05,
-      "id_parcela": "AGC_066"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.056217936410739e-05,
-      "diferencia_area_t04_menos_t02_pct": 3.704250004365654e-05,
-      "diferencia_centroide_lat_grados": -1.0872511779780325e-08,
-      "diferencia_centroide_lon_grados": -1.3292407174958498e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_067"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0009992297493019741,
-      "diferencia_area_t04_menos_t02_pct": -0.001012236259447054,
-      "diferencia_centroide_lat_grados": -3.425513739330199e-08,
-      "diferencia_centroide_lon_grados": -3.859284447571554e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_068"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.7075653755959455e-05,
-      "diferencia_area_t04_menos_t02_pct": 9.427951733997928e-06,
-      "diferencia_centroide_lat_grados": 1.8030572590532756e-08,
-      "diferencia_centroide_lon_grados": 2.810330101965519e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_069"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0001557742735740695,
-      "diferencia_area_t04_menos_t02_pct": -0.00015480284541890066,
-      "diferencia_centroide_lat_grados": -2.6631294502976743e-08,
-      "diferencia_centroide_lon_grados": 2.3756484779369202e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_070"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0002509654189366684,
-      "diferencia_area_t04_menos_t02_pct": -0.00026050251331038787,
-      "diferencia_centroide_lat_grados": -3.4753906419382474e-08,
-      "diferencia_centroide_lon_grados": 3.538218606990995e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_071"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.415811814884313e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.4503344136531261e-05,
-      "diferencia_centroide_lat_grados": 1.8439330062847148e-09,
-      "diferencia_centroide_lon_grados": -5.869623009857605e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_072"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0027911853431866673,
-      "diferencia_area_t04_menos_t02_pct": 0.0028060831800869853,
-      "diferencia_centroide_lat_grados": -1.4142933935090696e-08,
-      "diferencia_centroide_lon_grados": 3.3133545684904675e-08,
-      "diferencia_fraccion": 0.0,
+  "numero_celdas_igual": 197,
+  "fracciones_iguales_a_4_decimales": 197,
+  "catalogo_compatible_con_definicion_precision_t02": 197,
+  "tolerancia_area_t02_ha": "0.5e-6 ha (semipaso publicado) + 1e-8 relativo Geod; no modifica tolerancias T04",
+  "maximos": {
+    "diferencia_area_t04_menos_t02_pct": {
+      "valor_absoluto": 0.0028060831800869853,
       "id_parcela": "AGC_073"
     },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.713812335633007e-05,
-      "diferencia_area_t04_menos_t02_pct": -8.660341953793632e-05,
-      "diferencia_centroide_lat_grados": 3.6115039847572916e-09,
-      "diferencia_centroide_lon_grados": 2.546262578562164e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_074"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.77807104946959e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.493494726091549e-05,
-      "diferencia_centroide_lat_grados": -2.8711056643260235e-08,
-      "diferencia_centroide_lon_grados": -5.029598071359942e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_075"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.9970330016775704e-05,
-      "diferencia_area_t04_menos_t02_pct": -1.1853328394797666e-06,
-      "diferencia_centroide_lat_grados": 4.516235563301052e-08,
-      "diferencia_centroide_lon_grados": 4.553299959297874e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_076"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00022892909350469786,
-      "diferencia_area_t04_menos_t02_pct": -0.00022361593827573926,
-      "diferencia_centroide_lat_grados": 8.66261729015605e-09,
-      "diferencia_centroide_lon_grados": -1.8643817156771547e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_077"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.321087461571177e-05,
-      "diferencia_area_t04_menos_t02_pct": 6.419255613726575e-05,
-      "diferencia_centroide_lat_grados": 3.589001806858505e-08,
-      "diferencia_centroide_lon_grados": -6.126299467723584e-11,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_078"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003689295379237559,
-      "diferencia_area_t04_menos_t02_pct": -0.0003703815284806419,
-      "diferencia_centroide_lat_grados": 1.6345531150818715e-08,
-      "diferencia_centroide_lon_grados": -3.227410161343869e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_079"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00013340582407999523,
-      "diferencia_area_t04_menos_t02_pct": -0.00013382212353514034,
-      "diferencia_centroide_lat_grados": -4.4315996206023556e-08,
-      "diferencia_centroide_lon_grados": -2.6231717242808372e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_080"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00021097549505345303,
-      "diferencia_area_t04_menos_t02_pct": 0.0001993149422450221,
-      "diferencia_centroide_lat_grados": 2.7373346256354125e-08,
-      "diferencia_centroide_lon_grados": 2.106111196553684e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_081"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.3449858412780887e-07,
-      "diferencia_area_t04_menos_t02_pct": -4.97367614354172e-06,
-      "diferencia_centroide_lat_grados": -8.730239642318338e-09,
-      "diferencia_centroide_lon_grados": 8.384347438550321e-09,
-      "diferencia_fraccion": -2.3966977707345904e-05,
-      "id_parcela": "AGC_082"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.9116341949147175e-06,
-      "diferencia_area_t04_menos_t02_pct": -2.2891589106359374e-06,
-      "diferencia_centroide_lat_grados": -2.9224722197795927e-08,
-      "diferencia_centroide_lon_grados": 4.596367375597765e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_083"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0001285888866882641,
-      "diferencia_area_t04_menos_t02_pct": -0.00012677332982323792,
-      "diferencia_centroide_lat_grados": 3.4712265062353254e-08,
-      "diferencia_centroide_lon_grados": -2.3469510779250413e-08,
-      "diferencia_fraccion": 4.264568411271874e-05,
-      "id_parcela": "AGC_084"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00011997418371391684,
-      "diferencia_area_t04_menos_t02_pct": -0.00011718325255507453,
-      "diferencia_centroide_lat_grados": -1.3436181944825876e-08,
-      "diferencia_centroide_lon_grados": 4.417709931203717e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_085"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00033448229562797516,
-      "diferencia_area_t04_menos_t02_pct": 0.0003306394558621304,
-      "diferencia_centroide_lat_grados": -2.5822082250215317e-08,
-      "diferencia_centroide_lon_grados": 3.61657868097609e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_086"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.0928196299278485e-05,
-      "diferencia_area_t04_menos_t02_pct": 5.779176676779865e-05,
-      "diferencia_centroide_lat_grados": 1.036759300632184e-08,
-      "diferencia_centroide_lon_grados": -3.256506886373245e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_087"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.933631025746955e-06,
-      "diferencia_area_t04_menos_t02_pct": 9.835932196834942e-06,
-      "diferencia_centroide_lat_grados": 3.720297314657728e-08,
-      "diferencia_centroide_lon_grados": -4.701199429746339e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_088"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8498050151519796e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.0417055003564686e-05,
-      "diferencia_centroide_lat_grados": -3.272126392062091e-08,
-      "diferencia_centroide_lon_grados": -3.0464732958535023e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_089"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.5328312772132237e-06,
-      "diferencia_area_t04_menos_t02_pct": 3.8447494972922095e-06,
-      "diferencia_centroide_lat_grados": 9.223807495573055e-09,
-      "diferencia_centroide_lon_grados": 6.0896923059772234e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_090"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.0450332968294285e-06,
-      "diferencia_area_t04_menos_t02_pct": -5.1275278420542744e-05,
-      "diferencia_centroide_lat_grados": 3.2249822368157766e-08,
-      "diferencia_centroide_lon_grados": 6.987320944062958e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_091"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8156273105104858e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.5195218198446852e-05,
-      "diferencia_centroide_lat_grados": -2.4075291094050044e-08,
-      "diferencia_centroide_lon_grados": 1.4911179846421874e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_092"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.884415370363858e-07,
-      "diferencia_area_t04_menos_t02_pct": 1.9174976516154807e-06,
-      "diferencia_centroide_lat_grados": 1.0939007921706434e-08,
-      "diferencia_centroide_lon_grados": -4.4609961946662224e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_093"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.933191472374018e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.4021954390511542e-05,
-      "diferencia_centroide_lat_grados": 2.8848955224702877e-08,
-      "diferencia_centroide_lon_grados": -4.0187387639889494e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_094"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.5803561247898214e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.0277699361085625e-05,
-      "diferencia_centroide_lat_grados": 2.972183210658841e-08,
-      "diferencia_centroide_lon_grados": 3.687672744945303e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_095"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.864637832979869e-05,
-      "diferencia_area_t04_menos_t02_pct": 8.234442831811588e-05,
-      "diferencia_centroide_lat_grados": -1.0616076906444505e-09,
-      "diferencia_centroide_lon_grados": 1.6688829873601208e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_096"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.597084693443325e-05,
-      "diferencia_area_t04_menos_t02_pct": -6.593605708688197e-05,
-      "diferencia_centroide_lat_grados": -5.4282619288414935e-08,
-      "diferencia_centroide_lon_grados": -7.973852689246996e-10,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_097"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0003061247838300114,
-      "diferencia_area_t04_menos_t02_pct": 0.00031493537123553165,
-      "diferencia_centroide_lat_grados": -4.02051334447151e-08,
-      "diferencia_centroide_lon_grados": 2.0507172848738264e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_098"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0004113405113431025,
-      "diferencia_area_t04_menos_t02_pct": 0.00044914036608234694,
-      "diferencia_centroide_lat_grados": -1.9940753048786064e-08,
-      "diferencia_centroide_lon_grados": -7.42116412766336e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_099"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.6508729425695994e-05,
-      "diferencia_area_t04_menos_t02_pct": 5.2373498572118874e-05,
-      "diferencia_centroide_lat_grados": 2.8116016181911618e-08,
-      "diferencia_centroide_lon_grados": 4.109030271592928e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_100"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.7878842475206235e-05,
-      "diferencia_area_t04_menos_t02_pct": -2.412968017428087e-05,
-      "diferencia_centroide_lat_grados": 1.7298699361845138e-08,
-      "diferencia_centroide_lon_grados": 1.5273073472599208e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_101"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.332772951860751e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.641494763587479e-05,
-      "diferencia_centroide_lat_grados": -5.235475697418224e-08,
-      "diferencia_centroide_lon_grados": 3.5657052421811386e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_102"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.0702530954667134e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.2924990595916447e-05,
-      "diferencia_centroide_lat_grados": -1.5751599136137884e-08,
-      "diferencia_centroide_lon_grados": -3.763993561278767e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_103"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.808795836021166e-05,
-      "diferencia_area_t04_menos_t02_pct": -0.00010155402866582523,
-      "diferencia_centroide_lat_grados": 3.506259460550609e-08,
-      "diferencia_centroide_lon_grados": -8.053049782574817e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_104"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00011352018570515106,
-      "diferencia_area_t04_menos_t02_pct": -0.00010556704844161498,
-      "diferencia_centroide_lat_grados": 1.726593623629924e-08,
-      "diferencia_centroide_lon_grados": 1.4768744449611404e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_105"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003188850319346198,
-      "diferencia_area_t04_menos_t02_pct": -0.00031466666962612523,
-      "diferencia_centroide_lat_grados": -8.228031589396778e-09,
-      "diferencia_centroide_lon_grados": 3.650062296856049e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_106"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0004089914760120439,
-      "diferencia_area_t04_menos_t02_pct": 0.0003914498173617637,
-      "diferencia_centroide_lat_grados": -2.770860874079517e-09,
-      "diferencia_centroide_lon_grados": 1.030406338031753e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_107"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.185013289684457e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.9997104047453896e-06,
-      "diferencia_centroide_lat_grados": -1.5906739037063744e-08,
-      "diferencia_centroide_lon_grados": 1.7666380358605238e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_108"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.4197649072841797e-06,
-      "diferencia_area_t04_menos_t02_pct": -6.249906707196819e-06,
-      "diferencia_centroide_lat_grados": 1.1181850112507163e-08,
-      "diferencia_centroide_lon_grados": -1.8807170931722794e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_109"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.3368975019860444e-05,
-      "diferencia_area_t04_menos_t02_pct": -1.8195380072268276e-05,
-      "diferencia_centroide_lat_grados": 2.3804663129567416e-08,
-      "diferencia_centroide_lon_grados": 3.3956197853513004e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_110"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.3684853563913874e-05,
-      "diferencia_area_t04_menos_t02_pct": -3.6333008353546356e-05,
-      "diferencia_centroide_lat_grados": -2.532958021106424e-08,
-      "diferencia_centroide_lon_grados": 3.6991707474953728e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_111"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.544254338064941e-05,
-      "diferencia_area_t04_menos_t02_pct": -7.041803504190604e-05,
-      "diferencia_centroide_lat_grados": -9.501029296643537e-09,
-      "diferencia_centroide_lon_grados": 4.488032345761894e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_112"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0013731865114734183,
-      "diferencia_area_t04_menos_t02_pct": 0.001374733306760139,
-      "diferencia_centroide_lat_grados": 2.137947419100783e-08,
-      "diferencia_centroide_lon_grados": -2.605329996185901e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_113"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.8428165448655294e-05,
-      "diferencia_area_t04_menos_t02_pct": -2.1679690190648717e-05,
-      "diferencia_centroide_lat_grados": 1.7049107015054688e-08,
-      "diferencia_centroide_lon_grados": -1.7402555840817513e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_114"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.775020851361494e-05,
-      "diferencia_area_t04_menos_t02_pct": -3.597020605950411e-05,
-      "diferencia_centroide_lat_grados": 2.971895440850858e-08,
-      "diferencia_centroide_lon_grados": 6.903628957388719e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_115"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.42836783146791e-05,
-      "diferencia_area_t04_menos_t02_pct": -6.93217168131977e-05,
-      "diferencia_centroide_lat_grados": -4.554159716008144e-09,
-      "diferencia_centroide_lon_grados": 1.1405617783566413e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_116"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.7834325687470985e-05,
-      "diferencia_area_t04_menos_t02_pct": -2.380264277385663e-05,
-      "diferencia_centroide_lat_grados": -8.697053743844663e-09,
-      "diferencia_centroide_lon_grados": 2.2623012796429975e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_117"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.0017709638392998e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.00749887746891e-05,
-      "diferencia_centroide_lat_grados": -1.0426411733988061e-08,
-      "diferencia_centroide_lon_grados": 3.098270440204942e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_118"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.255893770503289e-05,
-      "diferencia_area_t04_menos_t02_pct": 9.461079792204826e-05,
-      "diferencia_centroide_lat_grados": 3.419937755211322e-08,
-      "diferencia_centroide_lon_grados": -2.0138188006058044e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_119"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.7249079781930513e-05,
-      "diferencia_area_t04_menos_t02_pct": -1.5892230813335394e-05,
-      "diferencia_centroide_lat_grados": -6.738108027093404e-08,
-      "diferencia_centroide_lon_grados": -7.931585344067571e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_120"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00024375401270237005,
-      "diferencia_area_t04_menos_t02_pct": -0.0002469907151403168,
-      "diferencia_centroide_lat_grados": 2.5746921039626613e-08,
-      "diferencia_centroide_lon_grados": 2.544159372064314e-08,
-      "diferencia_fraccion": 3.5020525175788464e-05,
-      "id_parcela": "AGC_121"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.0068403706927487e-05,
-      "diferencia_area_t04_menos_t02_pct": 3.51424494814033e-05,
-      "diferencia_centroide_lat_grados": -3.7920869999652496e-08,
-      "diferencia_centroide_lon_grados": -2.3521664616055205e-09,
-      "diferencia_fraccion": 3.5191172531923165e-05,
-      "id_parcela": "AGC_122"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0002702710462292347,
-      "diferencia_area_t04_menos_t02_pct": 0.00027619102785234127,
-      "diferencia_centroide_lat_grados": -5.147548165496119e-09,
-      "diferencia_centroide_lon_grados": -3.4133194048990845e-09,
-      "diferencia_fraccion": -9.663398995440886e-06,
-      "id_parcela": "AGC_123"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.292888012586838e-06,
-      "diferencia_area_t04_menos_t02_pct": 2.168583813229847e-05,
-      "diferencia_centroide_lat_grados": 4.9517176137214847e-08,
-      "diferencia_centroide_lon_grados": 1.4017970784152567e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_124"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.645846510368587e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.1775409022462347e-05,
-      "diferencia_centroide_lat_grados": 1.0146948170586256e-08,
-      "diferencia_centroide_lon_grados": -3.120504743492347e-08,
-      "diferencia_fraccion": 2.6101018651414343e-05,
-      "id_parcela": "AGC_125"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.374583198130261e-05,
-      "diferencia_area_t04_menos_t02_pct": -8.607162189925602e-05,
-      "diferencia_centroide_lat_grados": 4.850335955097762e-08,
-      "diferencia_centroide_lon_grados": 1.0536226113799785e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_126"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.7095614709766852e-06,
-      "diferencia_area_t04_menos_t02_pct": -3.258041200343524e-05,
-      "diferencia_centroide_lat_grados": -3.213002486290861e-08,
-      "diferencia_centroide_lon_grados": 3.980645146839379e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_127"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.796515440303943e-06,
-      "diferencia_area_t04_menos_t02_pct": 6.810345449722818e-07,
-      "diferencia_centroide_lat_grados": -3.7562074339803075e-08,
-      "diferencia_centroide_lon_grados": -3.537572013101453e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_128"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00010017209743471728,
-      "diferencia_area_t04_menos_t02_pct": -9.515522732235482e-05,
-      "diferencia_centroide_lat_grados": 1.696196250122739e-08,
-      "diferencia_centroide_lon_grados": -4.069724468536151e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_129"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.064760228570429e-05,
-      "diferencia_area_t04_menos_t02_pct": -2.6755065107173115e-05,
-      "diferencia_centroide_lat_grados": -1.001010119239254e-08,
-      "diferencia_centroide_lon_grados": -4.716721946351754e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_130"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.470441333966659e-05,
-      "diferencia_area_t04_menos_t02_pct": -4.8481363723205206e-05,
-      "diferencia_centroide_lat_grados": 3.593183706129821e-08,
-      "diferencia_centroide_lon_grados": 4.230999195442564e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_131"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.723817592407339e-06,
-      "diferencia_area_t04_menos_t02_pct": -5.129261261103429e-07,
-      "diferencia_centroide_lat_grados": 1.507222791019558e-08,
-      "diferencia_centroide_lon_grados": 2.6891015636465454e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_132"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.537751131934317e-06,
-      "diferencia_area_t04_menos_t02_pct": 4.2790190707647005e-06,
-      "diferencia_centroide_lat_grados": 1.6133906655113606e-08,
-      "diferencia_centroide_lon_grados": 4.889955107501009e-10,
-      "diferencia_fraccion": 2.84346670493818e-05,
-      "id_parcela": "AGC_133"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.2516695956472864e-06,
-      "diferencia_area_t04_menos_t02_pct": 7.781842321830091e-06,
-      "diferencia_centroide_lat_grados": -1.458716525348791e-08,
-      "diferencia_centroide_lon_grados": 3.5221461303081014e-08,
-      "diferencia_fraccion": -4.871257937888451e-05,
-      "id_parcela": "AGC_134"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.3738765685572645e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.8116436182243553e-05,
-      "diferencia_centroide_lat_grados": 3.031169626410701e-08,
-      "diferencia_centroide_lon_grados": -3.6474190778790216e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_135"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.7795981624797744e-05,
-      "diferencia_area_t04_menos_t02_pct": 3.226603295008403e-05,
-      "diferencia_centroide_lat_grados": 9.786830901248322e-09,
-      "diferencia_centroide_lon_grados": -1.2582205499711563e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_136"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0001015594356829464,
-      "diferencia_area_t04_menos_t02_pct": 0.00010172226625163336,
-      "diferencia_centroide_lat_grados": -1.148581425525208e-07,
-      "diferencia_centroide_lon_grados": 6.859585255369893e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_137"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.114481248436421e-06,
-      "diferencia_area_t04_menos_t02_pct": 8.207782255419534e-07,
-      "diferencia_centroide_lat_grados": -4.417639232201509e-08,
-      "diferencia_centroide_lon_grados": -1.9631713144008245e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_138"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00016046198048160688,
-      "diferencia_area_t04_menos_t02_pct": -0.0001713538301622945,
-      "diferencia_centroide_lat_grados": -2.7505571154051722e-09,
-      "diferencia_centroide_lon_grados": 5.756014331836923e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_139"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0007393054166938009,
-      "diferencia_area_t04_menos_t02_pct": 0.0007424061982628518,
-      "diferencia_centroide_lat_grados": -4.525571029034836e-09,
-      "diferencia_centroide_lon_grados": -1.9013938867828983e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_140"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00016607060844579994,
-      "diferencia_area_t04_menos_t02_pct": -0.00016758918990051268,
-      "diferencia_centroide_lat_grados": 3.6045822326968846e-08,
-      "diferencia_centroide_lon_grados": 1.8174048932451115e-08,
-      "diferencia_fraccion": 7.402316156035482e-06,
-      "id_parcela": "AGC_141"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.873523520283687e-06,
-      "diferencia_area_t04_menos_t02_pct": 2.3478111758759112e-05,
-      "diferencia_centroide_lat_grados": 4.835213118781212e-08,
-      "diferencia_centroide_lon_grados": -3.5457958347251406e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_142"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.599597232155972e-05,
-      "diferencia_area_t04_menos_t02_pct": -9.694948400262889e-05,
-      "diferencia_centroide_lat_grados": -3.578156437811231e-08,
-      "diferencia_centroide_lon_grados": 2.5263929614993685e-08,
-      "diferencia_fraccion": -2.2774768455802175e-05,
-      "id_parcela": "AGC_143"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.379304681896194e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.2917411890556063e-05,
-      "diferencia_centroide_lat_grados": 2.5360922251138618e-08,
-      "diferencia_centroide_lon_grados": 2.1754374301963253e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_144"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.3021447035047607e-06,
-      "diferencia_area_t04_menos_t02_pct": -9.414408458243643e-06,
-      "diferencia_centroide_lat_grados": 9.434977243927278e-09,
-      "diferencia_centroide_lon_grados": 4.232551020777464e-08,
-      "diferencia_fraccion": -3.2561726291402415e-05,
-      "id_parcela": "AGC_145"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.080722067188262e-05,
-      "diferencia_area_t04_menos_t02_pct": -1.3784556349447305e-05,
-      "diferencia_centroide_lat_grados": 2.2002591748560008e-08,
-      "diferencia_centroide_lon_grados": -1.7802079810280702e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_146"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.446422378120565e-06,
-      "diferencia_area_t04_menos_t02_pct": 6.657457679587554e-06,
-      "diferencia_centroide_lat_grados": -2.178044411493829e-08,
-      "diferencia_centroide_lon_grados": 1.48240815178724e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_147"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.8907523570615648e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.602864823466281e-05,
-      "diferencia_centroide_lat_grados": 1.3945243182433842e-08,
-      "diferencia_centroide_lon_grados": -4.562633648674819e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_148"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.770303190821092e-05,
-      "diferencia_area_t04_menos_t02_pct": -7.095628394860357e-05,
-      "diferencia_centroide_lat_grados": -2.7141080494175185e-08,
-      "diferencia_centroide_lon_grados": 1.9399422512833553e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_149"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00037581743457557493,
-      "diferencia_area_t04_menos_t02_pct": 0.00038668825058422806,
-      "diferencia_centroide_lat_grados": -9.503839493163468e-09,
-      "diferencia_centroide_lon_grados": -1.771014979112806e-08,
-      "diferencia_fraccion": 4.334618965895487e-05,
-      "id_parcela": "AGC_150"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.10351364029755e-06,
-      "diferencia_area_t04_menos_t02_pct": -7.986224713255686e-06,
-      "diferencia_centroide_lat_grados": -1.901543100757408e-08,
-      "diferencia_centroide_lon_grados": -6.545216990616609e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_151"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00024188640265990335,
-      "diferencia_area_t04_menos_t02_pct": -0.0002379256315382866,
-      "diferencia_centroide_lat_grados": 4.1521126092902705e-08,
-      "diferencia_centroide_lon_grados": 1.906794011574675e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_152"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.0353745025379e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.825751627586562e-05,
-      "diferencia_centroide_lat_grados": 1.407225269645096e-08,
-      "diferencia_centroide_lon_grados": 5.0923816274917044e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_153"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8907802898855013e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.3029359113770817e-05,
-      "diferencia_centroide_lat_grados": 3.731824804731332e-08,
-      "diferencia_centroide_lon_grados": 4.594525648826675e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_154"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.836097113539561e-07,
-      "diferencia_area_t04_menos_t02_pct": 6.761825514080515e-06,
-      "diferencia_centroide_lat_grados": 4.211603510384521e-09,
-      "diferencia_centroide_lon_grados": -1.4301534179139708e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_155"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.491989109206939e-05,
-      "diferencia_area_t04_menos_t02_pct": -9.341894080553793e-05,
-      "diferencia_centroide_lat_grados": 1.6379157585788562e-08,
-      "diferencia_centroide_lon_grados": 3.8921825762372464e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_156"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0002753173026250532,
-      "diferencia_area_t04_menos_t02_pct": 0.00029915760870380685,
-      "diferencia_centroide_lat_grados": -3.1622629848016004e-08,
-      "diferencia_centroide_lon_grados": -3.0842002729514206e-08,
-      "diferencia_fraccion": 9.987902549135619e-06,
-      "id_parcela": "AGC_157"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.692860604990629e-05,
-      "diferencia_area_t04_menos_t02_pct": -4.244923220384814e-05,
-      "diferencia_centroide_lat_grados": 3.4657499980994544e-08,
-      "diferencia_centroide_lon_grados": 4.962871003044711e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_158"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.104398590020571e-06,
-      "diferencia_area_t04_menos_t02_pct": -8.035151485429349e-06,
-      "diferencia_centroide_lat_grados": 2.1835365515698868e-08,
-      "diferencia_centroide_lon_grados": 2.3246400360221742e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_159"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.9563628245877556e-06,
-      "diferencia_area_t04_menos_t02_pct": 2.4991827056882617e-06,
-      "diferencia_centroide_lat_grados": 1.071797584017986e-08,
-      "diferencia_centroide_lon_grados": -1.2504656865530706e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_160"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.1165056404679816e-06,
-      "diferencia_area_t04_menos_t02_pct": -6.100951300398214e-06,
-      "diferencia_centroide_lat_grados": -4.80118202972335e-08,
-      "diferencia_centroide_lon_grados": -4.166140854522382e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_161"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0002077429447360196,
-      "diferencia_area_t04_menos_t02_pct": 0.00020261375378479425,
-      "diferencia_centroide_lat_grados": 8.803763051901115e-09,
-      "diferencia_centroide_lon_grados": -9.404601541973534e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_162"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.740384126356738e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.8283362063664343e-05,
-      "diferencia_centroide_lat_grados": -2.6518108597883838e-08,
-      "diferencia_centroide_lon_grados": 3.3948310829146067e-09,
-      "diferencia_fraccion": -4.370078876658745e-06,
-      "id_parcela": "AGC_163"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00017893202742536732,
-      "diferencia_area_t04_menos_t02_pct": 0.00018207354867697814,
-      "diferencia_centroide_lat_grados": -1.3939924770056678e-08,
-      "diferencia_centroide_lon_grados": -1.8941250345960725e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_164"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.921467116539258e-06,
-      "diferencia_area_t04_menos_t02_pct": -6.6657946964346186e-06,
-      "diferencia_centroide_lat_grados": -1.3844271506968653e-08,
-      "diferencia_centroide_lon_grados": -5.433844307844993e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_165"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.028123263288805e-05,
-      "diferencia_area_t04_menos_t02_pct": -9.472825096585193e-05,
-      "diferencia_centroide_lat_grados": 3.915378243846135e-09,
-      "diferencia_centroide_lon_grados": -2.809240129408863e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_166"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.914136756267447e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.0886605638536387e-05,
-      "diferencia_centroide_lat_grados": -1.658865400600007e-08,
-      "diferencia_centroide_lon_grados": 1.434634100405674e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_167"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.5489247463883896e-05,
-      "diferencia_area_t04_menos_t02_pct": 4.154255275649238e-05,
-      "diferencia_centroide_lat_grados": -9.320373806076532e-09,
-      "diferencia_centroide_lon_grados": -2.6777343009598553e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_168"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.6353614579261356e-05,
-      "diferencia_area_t04_menos_t02_pct": 8.446337558687045e-06,
-      "diferencia_centroide_lat_grados": -1.8866472828449332e-09,
-      "diferencia_centroide_lon_grados": -4.063821279487456e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_169"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.4751660175336e-07,
-      "diferencia_area_t04_menos_t02_pct": 1.7836982527942871e-06,
-      "diferencia_centroide_lat_grados": -3.783110713584392e-08,
-      "diferencia_centroide_lon_grados": 6.027816823461762e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_170"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.1401346385824529e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.2129720680465009e-05,
-      "diferencia_centroide_lat_grados": 1.7517770345421013e-08,
-      "diferencia_centroide_lon_grados": 3.619533117671381e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_171"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.714182011109856e-05,
-      "diferencia_area_t04_menos_t02_pct": -8.038680436688254e-06,
-      "diferencia_centroide_lat_grados": 2.9583887339867943e-08,
-      "diferencia_centroide_lon_grados": 3.740497334092652e-08,
-      "diferencia_fraccion": 2.0183854751998354e-06,
-      "id_parcela": "AGC_172"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.1801799652748106e-05,
-      "diferencia_area_t04_menos_t02_pct": 1.5512314323785633e-06,
-      "diferencia_centroide_lat_grados": 2.985996871984753e-08,
-      "diferencia_centroide_lon_grados": -3.0554176078112505e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_173"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.12208635937942e-05,
-      "diferencia_area_t04_menos_t02_pct": -7.2941350139472e-05,
-      "diferencia_centroide_lat_grados": 2.720864955563229e-08,
-      "diferencia_centroide_lon_grados": -2.26827694405074e-08,
-      "diferencia_fraccion": -2.3594383447012035e-08,
-      "id_parcela": "AGC_174"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.3261669082066698e-06,
-      "diferencia_area_t04_menos_t02_pct": 2.9833137148371033e-05,
-      "diferencia_centroide_lat_grados": 4.624126503927073e-08,
-      "diferencia_centroide_lon_grados": -7.965212489580153e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_175"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.9069570682021876e-06,
-      "diferencia_area_t04_menos_t02_pct": 3.7998964610819343e-06,
-      "diferencia_centroide_lat_grados": -2.767410833826034e-08,
-      "diferencia_centroide_lon_grados": -4.271555553714279e-08,
-      "diferencia_fraccion": 3.39097253693188e-05,
-      "id_parcela": "AGC_176"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.105003914466878e-05,
-      "diferencia_area_t04_menos_t02_pct": -7.937870033896373e-05,
-      "diferencia_centroide_lat_grados": -1.6418546522345423e-08,
-      "diferencia_centroide_lon_grados": 1.7346394542983035e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_177"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.856379029352043e-05,
-      "diferencia_area_t04_menos_t02_pct": -0.00010193513596762397,
-      "diferencia_centroide_lat_grados": 1.7285493925101036e-08,
-      "diferencia_centroide_lon_grados": -3.4646063795662485e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_178"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.071997703139642e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.4255345384300912e-05,
-      "diferencia_centroide_lat_grados": -2.2160701718121345e-08,
-      "diferencia_centroide_lon_grados": 3.2108630421134876e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_179"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.891921911722349e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.0748812472367334e-05,
-      "diferencia_centroide_lat_grados": -9.639204989753125e-09,
-      "diferencia_centroide_lon_grados": -2.724398484588164e-08,
-      "diferencia_fraccion": 3.33579017877117e-05,
-      "id_parcela": "AGC_180"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.627014703462834e-06,
-      "diferencia_area_t04_menos_t02_pct": -5.46408426717348e-06,
-      "diferencia_centroide_lat_grados": -4.934241104592729e-08,
-      "diferencia_centroide_lon_grados": 2.808521060160274e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_181"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.323180972589417e-06,
-      "diferencia_area_t04_menos_t02_pct": 1.3171770022910408e-06,
-      "diferencia_centroide_lat_grados": -4.0509302579039286e-08,
-      "diferencia_centroide_lon_grados": -1.0937142747025064e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_182"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.854942104275386e-06,
-      "diferencia_area_t04_menos_t02_pct": 3.83965002465322e-06,
-      "diferencia_centroide_lat_grados": -3.211966159710755e-08,
-      "diferencia_centroide_lon_grados": 2.594099157704477e-08,
-      "diferencia_fraccion": -3.067898571185168e-05,
-      "id_parcela": "AGC_183"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.431196171244144e-05,
-      "diferencia_area_t04_menos_t02_pct": -7.748586241543984e-05,
-      "diferencia_centroide_lat_grados": -4.7800860158986325e-08,
-      "diferencia_centroide_lon_grados": -4.231144146160659e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_184"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.353006792805784e-05,
-      "diferencia_area_t04_menos_t02_pct": 5.615226292782779e-05,
-      "diferencia_centroide_lat_grados": 8.922402372490978e-09,
-      "diferencia_centroide_lon_grados": 1.1205813166270673e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_185"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00013569670495323376,
-      "diferencia_area_t04_menos_t02_pct": -0.0001336579741260555,
-      "diferencia_centroide_lat_grados": 1.001925298282913e-08,
-      "diferencia_centroide_lon_grados": -3.7117416695764405e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_186"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.112555315726737e-05,
-      "diferencia_area_t04_menos_t02_pct": -7.979601172046117e-06,
-      "diferencia_centroide_lat_grados": 2.7797305790500104e-08,
-      "diferencia_centroide_lon_grados": 1.5478747172892326e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_187"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.475205750847137e-06,
-      "diferencia_area_t04_menos_t02_pct": -2.3687445847001966e-05,
-      "diferencia_centroide_lat_grados": 3.074898202726217e-08,
-      "diferencia_centroide_lon_grados": -3.3023212608895847e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_188"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.04178386420644e-06,
-      "diferencia_area_t04_menos_t02_pct": -1.4516219941318963e-05,
-      "diferencia_centroide_lat_grados": -4.150660259938377e-09,
-      "diferencia_centroide_lon_grados": 1.1753797934943577e-09,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_189"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00035010305892453007,
-      "diferencia_area_t04_menos_t02_pct": -0.00035870887289318645,
-      "diferencia_centroide_lat_grados": -2.7761604570741838e-08,
-      "diferencia_centroide_lon_grados": 4.032132494558027e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_190"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.160733499626092e-06,
-      "diferencia_area_t04_menos_t02_pct": 2.2819702632765196e-05,
-      "diferencia_centroide_lat_grados": 1.9202932577400134e-08,
-      "diferencia_centroide_lon_grados": -3.126426406652172e-08,
-      "diferencia_fraccion": -1.7674952603963234e-05,
-      "id_parcela": "AGC_191"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.205516533148515e-06,
-      "diferencia_area_t04_menos_t02_pct": -2.2224845203284263e-05,
-      "diferencia_centroide_lat_grados": 4.779313655944861e-08,
-      "diferencia_centroide_lon_grados": 4.585510282595351e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_192"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.1979099927967177e-05,
-      "diferencia_area_t04_menos_t02_pct": 2.5425815999991584e-05,
-      "diferencia_centroide_lat_grados": -2.1517244874758035e-08,
-      "diferencia_centroide_lon_grados": -3.616209198753495e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_193"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 9.042494792823137e-05,
-      "diferencia_area_t04_menos_t02_pct": 9.059835033963701e-05,
-      "diferencia_centroide_lat_grados": -4.465205805104233e-08,
-      "diferencia_centroide_lon_grados": 1.5544983966719883e-08,
-      "diferencia_fraccion": -2.8728538677524895e-05,
-      "id_parcela": "AGC_194"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.000770969746581076,
-      "diferencia_area_t04_menos_t02_pct": 0.000756382993390556,
-      "diferencia_centroide_lat_grados": 1.0628397717482585e-08,
-      "diferencia_centroide_lon_grados": 4.388728314097534e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_195"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00021859220349343606,
-      "diferencia_area_t04_menos_t02_pct": -0.00021918346278726038,
-      "diferencia_centroide_lat_grados": 5.3259096688407226e-08,
-      "diferencia_centroide_lon_grados": 2.6379737505521916e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_196"
-    },
-    {
-      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00013323207805326288,
-      "diferencia_area_t04_menos_t02_pct": -0.00012906312025214668,
-      "diferencia_centroide_lat_grados": 9.59446921910967e-09,
-      "diferencia_centroide_lon_grados": 1.9113755911348562e-08,
-      "diferencia_fraccion": 0.0,
-      "id_parcela": "AGC_197"
-    }
-  ],
-  "estado": "conciliada_con_referencia_identificada",
-  "fracciones_iguales_a_4_decimales": 197,
-  "ids_verificados": 197,
-  "interpretacion": "Las diferencias de área/centroide incluyen método y redondeo; T04/T03 conservan sus definiciones. Conciliar no equivale a aprobar toda T02 ni cerrar T04.",
-  "maximos": {
     "diferencia_area_t04_menos_geod_sin_redondear_pct": {
-      "id_parcela": "AGC_073",
-      "valor_absoluto": 0.0027911853431866673
-    },
-    "diferencia_area_t04_menos_t02_pct": {
-      "id_parcela": "AGC_073",
-      "valor_absoluto": 0.0028060831800869853
-    },
-    "diferencia_centroide_lat_grados": {
-      "id_parcela": "AGC_137",
-      "valor_absoluto": 1.148581425525208e-07
+      "valor_absoluto": 0.0027911853431866673,
+      "id_parcela": "AGC_073"
     },
     "diferencia_centroide_lon_grados": {
-      "id_parcela": "AGC_120",
-      "valor_absoluto": 7.931585344067571e-08
+      "valor_absoluto": 7.931585344067571e-08,
+      "id_parcela": "AGC_120"
+    },
+    "diferencia_centroide_lat_grados": {
+      "valor_absoluto": 1.148581425525208e-07,
+      "id_parcela": "AGC_137"
     },
     "diferencia_fraccion": {
-      "id_parcela": "AGC_033",
-      "valor_absoluto": 4.9998313573551556e-05
+      "valor_absoluto": 4.9998313573551556e-05,
+      "id_parcela": "AGC_033"
     }
   },
-  "numero_celdas_igual": 197,
-  "origen": "tablas locales verificadas",
+  "interpretacion": "Las diferencias de área/centroide incluyen método y redondeo; T04/T03 conservan sus definiciones. Conciliar no equivale a aprobar toda T02 ni cerrar T04.",
+  "detalle": [
+    {
+      "id_parcela": "AGC_001",
+      "diferencia_area_t04_menos_t02_pct": -0.0001683906564391732,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00017478351605596385,
+      "diferencia_centroide_lon_grados": 1.4262710124057776e-08,
+      "diferencia_centroide_lat_grados": 2.4014312316467112e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_002",
+      "diferencia_area_t04_menos_t02_pct": -1.3848592702519966e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8227121315377124e-06,
+      "diferencia_centroide_lon_grados": -3.827932459898875e-08,
+      "diferencia_centroide_lat_grados": 2.983349389751311e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_003",
+      "diferencia_area_t04_menos_t02_pct": 0.00010480884387043969,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00010275130866681573,
+      "diferencia_centroide_lon_grados": 4.1708730691425444e-08,
+      "diferencia_centroide_lat_grados": -1.1667797394920854e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_004",
+      "diferencia_area_t04_menos_t02_pct": -7.4000771154510524e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.1559440013294956e-06,
+      "diferencia_centroide_lon_grados": 1.0698116170715366e-08,
+      "diferencia_centroide_lat_grados": -4.097056915952635e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_005",
+      "diferencia_area_t04_menos_t02_pct": -5.413386834096501e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.9228705194906814e-05,
+      "diferencia_centroide_lon_grados": 2.0102532971577602e-08,
+      "diferencia_centroide_lat_grados": 2.419653100105279e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_006",
+      "diferencia_area_t04_menos_t02_pct": -2.15718293577711e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.617558205317524e-06,
+      "diferencia_centroide_lon_grados": 2.8979400212847395e-08,
+      "diferencia_centroide_lat_grados": -1.2771590007787381e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_007",
+      "diferencia_area_t04_menos_t02_pct": 0.0001557804566703535,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00015549316138516075,
+      "diferencia_centroide_lon_grados": -4.6117150986901834e-08,
+      "diferencia_centroide_lat_grados": 1.0061032895691824e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_008",
+      "diferencia_area_t04_menos_t02_pct": 4.489432400088424e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.723173746714962e-05,
+      "diferencia_centroide_lon_grados": 4.1608203105170105e-08,
+      "diferencia_centroide_lat_grados": -2.9945724122626416e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_009",
+      "diferencia_area_t04_menos_t02_pct": -3.3057177592910645e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.377746219337932e-05,
+      "diferencia_centroide_lon_grados": -3.617257959831477e-08,
+      "diferencia_centroide_lat_grados": 1.6343303599342107e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_010",
+      "diferencia_area_t04_menos_t02_pct": -9.131629590571969e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.621104474742363e-05,
+      "diferencia_centroide_lon_grados": -2.653889907833218e-08,
+      "diferencia_centroide_lat_grados": 4.34585913922092e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_011",
+      "diferencia_area_t04_menos_t02_pct": -1.0710068313895734e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.2158974992442892e-06,
+      "diferencia_centroide_lon_grados": 1.466473520395084e-08,
+      "diferencia_centroide_lat_grados": -1.7383715800178834e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_012",
+      "diferencia_area_t04_menos_t02_pct": 6.895436007615576e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.6400637992798659e-06,
+      "diferencia_centroide_lon_grados": 1.8600601947582618e-08,
+      "diferencia_centroide_lat_grados": -3.94364896294519e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_013",
+      "diferencia_area_t04_menos_t02_pct": 3.161698499547655e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.1753146917171367e-05,
+      "diferencia_centroide_lon_grados": -7.387342293441179e-09,
+      "diferencia_centroide_lat_grados": -6.062954582830571e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_014",
+      "diferencia_area_t04_menos_t02_pct": 5.388180301589959e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.711683459649273e-05,
+      "diferencia_centroide_lon_grados": -4.142343357216305e-08,
+      "diferencia_centroide_lat_grados": -2.8834804766120214e-08,
+      "diferencia_fraccion": -1.107400189326313e-05
+    },
+    {
+      "id_parcela": "AGC_015",
+      "diferencia_area_t04_menos_t02_pct": -4.0207157375412435e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.6314645806868364e-05,
+      "diferencia_centroide_lon_grados": -3.6366060385262244e-08,
+      "diferencia_centroide_lat_grados": -7.119435707636512e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_016",
+      "diferencia_area_t04_menos_t02_pct": 2.9505423040771823e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.5575450193688076e-05,
+      "diferencia_centroide_lon_grados": 2.684950572984235e-08,
+      "diferencia_centroide_lat_grados": -4.794372543415193e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_017",
+      "diferencia_area_t04_menos_t02_pct": -9.312718264649257e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.0069453822094148e-05,
+      "diferencia_centroide_lon_grados": 9.071996487364231e-09,
+      "diferencia_centroide_lat_grados": -2.167489299154113e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_018",
+      "diferencia_area_t04_menos_t02_pct": -0.0001169761228209267,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.026463878032508e-05,
+      "diferencia_centroide_lon_grados": 3.562165318271582e-08,
+      "diferencia_centroide_lat_grados": 3.4253208269774404e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_019",
+      "diferencia_area_t04_menos_t02_pct": 5.0129426909307046e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.163980243523623e-05,
+      "diferencia_centroide_lon_grados": -2.4594655201326532e-08,
+      "diferencia_centroide_lat_grados": 2.5714754769978754e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_020",
+      "diferencia_area_t04_menos_t02_pct": 2.7044953426604394e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.0844639919019593e-05,
+      "diferencia_centroide_lon_grados": -5.621473064820748e-08,
+      "diferencia_centroide_lat_grados": -1.0145477347123233e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_021",
+      "diferencia_area_t04_menos_t02_pct": 6.04767983625152e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.358162765333753e-05,
+      "diferencia_centroide_lon_grados": 6.815369602009014e-09,
+      "diferencia_centroide_lat_grados": -1.74868866054112e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_022",
+      "diferencia_area_t04_menos_t02_pct": 7.310470891439177e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.167507284770182e-05,
+      "diferencia_centroide_lon_grados": -3.97594419609959e-08,
+      "diferencia_centroide_lat_grados": -1.1774986319323943e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_023",
+      "diferencia_area_t04_menos_t02_pct": 0.00020101468759943557,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00020175133308106884,
+      "diferencia_centroide_lon_grados": 2.4325828462679056e-08,
+      "diferencia_centroide_lat_grados": 4.449591273214537e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_024",
+      "diferencia_area_t04_menos_t02_pct": 8.137895513927421e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.225427092510809e-05,
+      "diferencia_centroide_lon_grados": -4.651987239867594e-08,
+      "diferencia_centroide_lat_grados": 4.7519481682911646e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_025",
+      "diferencia_area_t04_menos_t02_pct": -0.0003732553278174621,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003870854509770743,
+      "diferencia_centroide_lon_grados": 2.6109631789950072e-08,
+      "diferencia_centroide_lat_grados": -4.71396077728059e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_026",
+      "diferencia_area_t04_menos_t02_pct": -1.563466266096785e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.775732078702844e-06,
+      "diferencia_centroide_lon_grados": 3.049315466796543e-08,
+      "diferencia_centroide_lat_grados": -6.734733659641279e-09,
+      "diferencia_fraccion": -1.0787748111806827e-05
+    },
+    {
+      "id_parcela": "AGC_027",
+      "diferencia_area_t04_menos_t02_pct": 2.416567897480485e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.6352210670709045e-05,
+      "diferencia_centroide_lon_grados": -1.596190202235448e-08,
+      "diferencia_centroide_lat_grados": 3.041232332634536e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_028",
+      "diferencia_area_t04_menos_t02_pct": 1.3573582610094312e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 9.385175583087897e-06,
+      "diferencia_centroide_lon_grados": 3.79350808543677e-08,
+      "diferencia_centroide_lat_grados": -4.6764991878944784e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_029",
+      "diferencia_area_t04_menos_t02_pct": 0.00011708118104561313,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00011180155049718334,
+      "diferencia_centroide_lon_grados": -3.031871642633632e-08,
+      "diferencia_centroide_lat_grados": -1.6556118254129615e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_030",
+      "diferencia_area_t04_menos_t02_pct": -5.169539047642426e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.18672523264611e-05,
+      "diferencia_centroide_lon_grados": -4.080565929598379e-08,
+      "diferencia_centroide_lat_grados": -3.024658212780196e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_031",
+      "diferencia_area_t04_menos_t02_pct": -8.27173610337722e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.172157153187635e-05,
+      "diferencia_centroide_lon_grados": 2.990923064771778e-08,
+      "diferencia_centroide_lat_grados": -8.019714670126632e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_032",
+      "diferencia_area_t04_menos_t02_pct": 7.225749184760359e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.6399649051760166e-05,
+      "diferencia_centroide_lon_grados": -3.2577901265540277e-08,
+      "diferencia_centroide_lat_grados": 3.89431704661547e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_033",
+      "diferencia_area_t04_menos_t02_pct": -2.6881262142047976e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.762753649621216e-05,
+      "diferencia_centroide_lon_grados": 7.0252070827336865e-09,
+      "diferencia_centroide_lat_grados": 1.8329672002437292e-08,
+      "diferencia_fraccion": 4.9998313573551556e-05
+    },
+    {
+      "id_parcela": "AGC_034",
+      "diferencia_area_t04_menos_t02_pct": 0.00014075687117039807,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0001444593747931105,
+      "diferencia_centroide_lon_grados": 1.9138951756758615e-08,
+      "diferencia_centroide_lat_grados": -1.609651789635791e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_035",
+      "diferencia_area_t04_menos_t02_pct": -0.00034277846639553213,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00034354881365105126,
+      "diferencia_centroide_lon_grados": -1.4212275800673524e-09,
+      "diferencia_centroide_lat_grados": -7.418491421162798e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_036",
+      "diferencia_area_t04_menos_t02_pct": 4.6462911732245674e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.484298179664441e-05,
+      "diferencia_centroide_lon_grados": 2.355079686822137e-08,
+      "diferencia_centroide_lat_grados": -7.694755055354108e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_037",
+      "diferencia_area_t04_menos_t02_pct": -8.281996596298737e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.550236055383872e-05,
+      "diferencia_centroide_lon_grados": 4.6797950403743016e-08,
+      "diferencia_centroide_lat_grados": -2.4144771515466346e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_038",
+      "diferencia_area_t04_menos_t02_pct": -5.418452808535562e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.3823690242994376e-05,
+      "diferencia_centroide_lon_grados": 1.7871997215479496e-08,
+      "diferencia_centroide_lat_grados": 1.1209955630420154e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_039",
+      "diferencia_area_t04_menos_t02_pct": -4.048259795265999e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.766811693330661e-05,
+      "diferencia_centroide_lon_grados": 4.6377635953831486e-08,
+      "diferencia_centroide_lat_grados": -9.438004155981616e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_040",
+      "diferencia_area_t04_menos_t02_pct": -0.0003619808550991676,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00036914617715448763,
+      "diferencia_centroide_lon_grados": 6.679513830931683e-09,
+      "diferencia_centroide_lat_grados": -2.963744805128954e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_041",
+      "diferencia_area_t04_menos_t02_pct": 2.4550752522679513e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.4579629526243258e-05,
+      "diferencia_centroide_lon_grados": -5.082546294943313e-08,
+      "diferencia_centroide_lat_grados": 1.156746165520417e-08,
+      "diferencia_fraccion": 4.026692231662299e-05
+    },
+    {
+      "id_parcela": "AGC_042",
+      "diferencia_area_t04_menos_t02_pct": -3.113884200191794e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.8197299727570652e-05,
+      "diferencia_centroide_lon_grados": -4.789808372152038e-08,
+      "diferencia_centroide_lat_grados": 1.4142589321863852e-08,
+      "diferencia_fraccion": 1.0012117638180662e-05
+    },
+    {
+      "id_parcela": "AGC_043",
+      "diferencia_area_t04_menos_t02_pct": -1.5245789390775571e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.323379121969231e-06,
+      "diferencia_centroide_lon_grados": -6.85767531649617e-09,
+      "diferencia_centroide_lat_grados": 1.4582489882286609e-08,
+      "diferencia_fraccion": -1.85274217410214e-05
+    },
+    {
+      "id_parcela": "AGC_044",
+      "diferencia_area_t04_menos_t02_pct": 0.0005328675183612357,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0005162849430573577,
+      "diferencia_centroide_lon_grados": 1.5482982007597457e-08,
+      "diferencia_centroide_lat_grados": 3.557182282065696e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_045",
+      "diferencia_area_t04_menos_t02_pct": -2.2012291976283553e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.1244024896077685e-05,
+      "diferencia_centroide_lon_grados": 9.459299121772347e-09,
+      "diferencia_centroide_lat_grados": -1.2375451774460089e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_046",
+      "diferencia_area_t04_menos_t02_pct": 1.8113389772103395e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8352161883504174e-05,
+      "diferencia_centroide_lon_grados": 2.0013644075334014e-08,
+      "diferencia_centroide_lat_grados": 1.0858499877031136e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_047",
+      "diferencia_area_t04_menos_t02_pct": -0.00010840478988971745,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00010822377062853459,
+      "diferencia_centroide_lon_grados": 4.178116341790883e-08,
+      "diferencia_centroide_lat_grados": -1.2909175950426288e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_048",
+      "diferencia_area_t04_menos_t02_pct": -4.508088261308565e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.1197181541918237e-06,
+      "diferencia_centroide_lon_grados": 9.978236903407378e-09,
+      "diferencia_centroide_lat_grados": 6.926807571971949e-09,
+      "diferencia_fraccion": 4.2976435426833604e-05
+    },
+    {
+      "id_parcela": "AGC_049",
+      "diferencia_area_t04_menos_t02_pct": -6.092659101574759e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.5675012848475463e-06,
+      "diferencia_centroide_lon_grados": -4.717192325642827e-08,
+      "diferencia_centroide_lat_grados": 3.0050660626557146e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_050",
+      "diferencia_area_t04_menos_t02_pct": 0.00032411095893660564,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0003400544368909595,
+      "diferencia_centroide_lon_grados": 8.03387933956401e-09,
+      "diferencia_centroide_lat_grados": -6.926264006779093e-10,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_051",
+      "diferencia_area_t04_menos_t02_pct": 7.327475085619303e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.191467221332175e-05,
+      "diferencia_centroide_lon_grados": 2.019071132508543e-08,
+      "diferencia_centroide_lat_grados": 8.416620289608545e-09,
+      "diferencia_fraccion": 8.144889596328753e-06
+    },
+    {
+      "id_parcela": "AGC_052",
+      "diferencia_area_t04_menos_t02_pct": -1.7426661306139822e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.013821871419747e-05,
+      "diferencia_centroide_lon_grados": 3.1513096132584906e-08,
+      "diferencia_centroide_lat_grados": -4.693763955287977e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_053",
+      "diferencia_area_t04_menos_t02_pct": -8.06139363198822e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.551774280247606e-05,
+      "diferencia_centroide_lon_grados": -5.0497845904828864e-08,
+      "diferencia_centroide_lat_grados": 3.1408372791474903e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_054",
+      "diferencia_area_t04_menos_t02_pct": 1.3067747666210633e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.1236017441617596e-05,
+      "diferencia_centroide_lon_grados": -1.4665189951301727e-08,
+      "diferencia_centroide_lat_grados": 1.2822560790937132e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_055",
+      "diferencia_area_t04_menos_t02_pct": 2.1447026178368377e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.500385537522102e-07,
+      "diferencia_centroide_lon_grados": -6.4165419644268695e-09,
+      "diferencia_centroide_lat_grados": -1.8788281153092612e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_056",
+      "diferencia_area_t04_menos_t02_pct": 1.7263084443572048e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.3637960579005e-06,
+      "diferencia_centroide_lon_grados": -1.337056687589211e-08,
+      "diferencia_centroide_lat_grados": -8.533756812312276e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_057",
+      "diferencia_area_t04_menos_t02_pct": -2.248383139724144e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.269513195819006e-06,
+      "diferencia_centroide_lon_grados": 1.592707121744752e-08,
+      "diferencia_centroide_lat_grados": -4.621524851700087e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_058",
+      "diferencia_area_t04_menos_t02_pct": 1.1028314494102366e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.643056733530817e-06,
+      "diferencia_centroide_lon_grados": 1.2360771961539285e-08,
+      "diferencia_centroide_lat_grados": 3.405752480034607e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_059",
+      "diferencia_area_t04_menos_t02_pct": -6.506966486290302e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.247672981316426e-05,
+      "diferencia_centroide_lon_grados": -4.098890826753632e-08,
+      "diferencia_centroide_lat_grados": 3.446827534503427e-08,
+      "diferencia_fraccion": -4.4001407913163426e-05
+    },
+    {
+      "id_parcela": "AGC_060",
+      "diferencia_area_t04_menos_t02_pct": 1.8494689455025135e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.8132269998955513e-06,
+      "diferencia_centroide_lon_grados": -2.379223928983265e-09,
+      "diferencia_centroide_lat_grados": -3.682087168499493e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_061",
+      "diferencia_area_t04_menos_t02_pct": -0.00023937030824190472,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.000239219308682267,
+      "diferencia_centroide_lon_grados": -7.4430062113606255e-09,
+      "diferencia_centroide_lat_grados": -3.5926785102446956e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_062",
+      "diferencia_area_t04_menos_t02_pct": -0.00037628001458090164,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003776985064072878,
+      "diferencia_centroide_lon_grados": 2.5360066047142027e-08,
+      "diferencia_centroide_lat_grados": -2.287389833099951e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_063",
+      "diferencia_area_t04_menos_t02_pct": -9.108090912112231e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.1408832931958435e-05,
+      "diferencia_centroide_lon_grados": -1.9589506905504095e-08,
+      "diferencia_centroide_lat_grados": -3.227935962968331e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_064",
+      "diferencia_area_t04_menos_t02_pct": 0.0006716676730397978,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0006843128288466174,
+      "diferencia_centroide_lon_grados": -4.019551624878659e-08,
+      "diferencia_centroide_lat_grados": 9.130239675414487e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_065",
+      "diferencia_area_t04_menos_t02_pct": -0.0011356193336070602,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0011364640228506333,
+      "diferencia_centroide_lon_grados": -4.982581458534696e-09,
+      "diferencia_centroide_lat_grados": -6.431995558386916e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_066",
+      "diferencia_area_t04_menos_t02_pct": -0.0004985219578942631,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0005049779987026712,
+      "diferencia_centroide_lon_grados": -1.5796501884324243e-09,
+      "diferencia_centroide_lat_grados": -9.931060418466586e-09,
+      "diferencia_fraccion": 1.8815528900040235e-05
+    },
+    {
+      "id_parcela": "AGC_067",
+      "diferencia_area_t04_menos_t02_pct": 3.704250004365654e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.056217936410739e-05,
+      "diferencia_centroide_lon_grados": -1.3292407174958498e-09,
+      "diferencia_centroide_lat_grados": -1.0872511779780325e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_068",
+      "diferencia_area_t04_menos_t02_pct": -0.001012236259447054,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0009992297493019741,
+      "diferencia_centroide_lon_grados": -3.859284447571554e-09,
+      "diferencia_centroide_lat_grados": -3.425513739330199e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_069",
+      "diferencia_area_t04_menos_t02_pct": 9.427951733997928e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.7075653755959455e-05,
+      "diferencia_centroide_lon_grados": 2.810330101965519e-08,
+      "diferencia_centroide_lat_grados": 1.8030572590532756e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_070",
+      "diferencia_area_t04_menos_t02_pct": -0.00015480284541890066,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0001557742735740695,
+      "diferencia_centroide_lon_grados": 2.3756484779369202e-08,
+      "diferencia_centroide_lat_grados": -2.6631294502976743e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_071",
+      "diferencia_area_t04_menos_t02_pct": -0.00026050251331038787,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0002509654189366684,
+      "diferencia_centroide_lon_grados": 3.538218606990995e-08,
+      "diferencia_centroide_lat_grados": -3.4753906419382474e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_072",
+      "diferencia_area_t04_menos_t02_pct": 1.4503344136531261e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.415811814884313e-06,
+      "diferencia_centroide_lon_grados": -5.869623009857605e-09,
+      "diferencia_centroide_lat_grados": 1.8439330062847148e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_073",
+      "diferencia_area_t04_menos_t02_pct": 0.0028060831800869853,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0027911853431866673,
+      "diferencia_centroide_lon_grados": 3.3133545684904675e-08,
+      "diferencia_centroide_lat_grados": -1.4142933935090696e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_074",
+      "diferencia_area_t04_menos_t02_pct": -8.660341953793632e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.713812335633007e-05,
+      "diferencia_centroide_lon_grados": 2.546262578562164e-08,
+      "diferencia_centroide_lat_grados": 3.6115039847572916e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_075",
+      "diferencia_area_t04_menos_t02_pct": 2.493494726091549e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.77807104946959e-05,
+      "diferencia_centroide_lon_grados": -5.029598071359942e-08,
+      "diferencia_centroide_lat_grados": -2.8711056643260235e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_076",
+      "diferencia_area_t04_menos_t02_pct": -1.1853328394797666e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.9970330016775704e-05,
+      "diferencia_centroide_lon_grados": 4.553299959297874e-09,
+      "diferencia_centroide_lat_grados": 4.516235563301052e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_077",
+      "diferencia_area_t04_menos_t02_pct": -0.00022361593827573926,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00022892909350469786,
+      "diferencia_centroide_lon_grados": -1.8643817156771547e-08,
+      "diferencia_centroide_lat_grados": 8.66261729015605e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_078",
+      "diferencia_area_t04_menos_t02_pct": 6.419255613726575e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.321087461571177e-05,
+      "diferencia_centroide_lon_grados": -6.126299467723584e-11,
+      "diferencia_centroide_lat_grados": 3.589001806858505e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_079",
+      "diferencia_area_t04_menos_t02_pct": -0.0003703815284806419,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003689295379237559,
+      "diferencia_centroide_lon_grados": -3.227410161343869e-08,
+      "diferencia_centroide_lat_grados": 1.6345531150818715e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_080",
+      "diferencia_area_t04_menos_t02_pct": -0.00013382212353514034,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00013340582407999523,
+      "diferencia_centroide_lon_grados": -2.6231717242808372e-08,
+      "diferencia_centroide_lat_grados": -4.4315996206023556e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_081",
+      "diferencia_area_t04_menos_t02_pct": 0.0001993149422450221,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00021097549505345303,
+      "diferencia_centroide_lon_grados": 2.106111196553684e-08,
+      "diferencia_centroide_lat_grados": 2.7373346256354125e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_082",
+      "diferencia_area_t04_menos_t02_pct": -4.97367614354172e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.3449858412780887e-07,
+      "diferencia_centroide_lon_grados": 8.384347438550321e-09,
+      "diferencia_centroide_lat_grados": -8.730239642318338e-09,
+      "diferencia_fraccion": -2.3966977707345904e-05
+    },
+    {
+      "id_parcela": "AGC_083",
+      "diferencia_area_t04_menos_t02_pct": -2.2891589106359374e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.9116341949147175e-06,
+      "diferencia_centroide_lon_grados": 4.596367375597765e-08,
+      "diferencia_centroide_lat_grados": -2.9224722197795927e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_084",
+      "diferencia_area_t04_menos_t02_pct": -0.00012677332982323792,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0001285888866882641,
+      "diferencia_centroide_lon_grados": -2.3469510779250413e-08,
+      "diferencia_centroide_lat_grados": 3.4712265062353254e-08,
+      "diferencia_fraccion": 4.264568411271874e-05
+    },
+    {
+      "id_parcela": "AGC_085",
+      "diferencia_area_t04_menos_t02_pct": -0.00011718325255507453,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00011997418371391684,
+      "diferencia_centroide_lon_grados": 4.417709931203717e-08,
+      "diferencia_centroide_lat_grados": -1.3436181944825876e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_086",
+      "diferencia_area_t04_menos_t02_pct": 0.0003306394558621304,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00033448229562797516,
+      "diferencia_centroide_lon_grados": 3.61657868097609e-08,
+      "diferencia_centroide_lat_grados": -2.5822082250215317e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_087",
+      "diferencia_area_t04_menos_t02_pct": 5.779176676779865e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.0928196299278485e-05,
+      "diferencia_centroide_lon_grados": -3.256506886373245e-08,
+      "diferencia_centroide_lat_grados": 1.036759300632184e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_088",
+      "diferencia_area_t04_menos_t02_pct": 9.835932196834942e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.933631025746955e-06,
+      "diferencia_centroide_lon_grados": -4.701199429746339e-08,
+      "diferencia_centroide_lat_grados": 3.720297314657728e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_089",
+      "diferencia_area_t04_menos_t02_pct": 1.0417055003564686e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8498050151519796e-05,
+      "diferencia_centroide_lon_grados": -3.0464732958535023e-08,
+      "diferencia_centroide_lat_grados": -3.272126392062091e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_090",
+      "diferencia_area_t04_menos_t02_pct": 3.8447494972922095e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.5328312772132237e-06,
+      "diferencia_centroide_lon_grados": 6.0896923059772234e-09,
+      "diferencia_centroide_lat_grados": 9.223807495573055e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_091",
+      "diferencia_area_t04_menos_t02_pct": -5.1275278420542744e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.0450332968294285e-06,
+      "diferencia_centroide_lon_grados": 6.987320944062958e-09,
+      "diferencia_centroide_lat_grados": 3.2249822368157766e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_092",
+      "diferencia_area_t04_menos_t02_pct": -1.5195218198446852e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8156273105104858e-06,
+      "diferencia_centroide_lon_grados": 1.4911179846421874e-08,
+      "diferencia_centroide_lat_grados": -2.4075291094050044e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_093",
+      "diferencia_area_t04_menos_t02_pct": 1.9174976516154807e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.884415370363858e-07,
+      "diferencia_centroide_lon_grados": -4.4609961946662224e-08,
+      "diferencia_centroide_lat_grados": 1.0939007921706434e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_094",
+      "diferencia_area_t04_menos_t02_pct": -1.4021954390511542e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.933191472374018e-06,
+      "diferencia_centroide_lon_grados": -4.0187387639889494e-08,
+      "diferencia_centroide_lat_grados": 2.8848955224702877e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_095",
+      "diferencia_area_t04_menos_t02_pct": 4.0277699361085625e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.5803561247898214e-05,
+      "diferencia_centroide_lon_grados": 3.687672744945303e-08,
+      "diferencia_centroide_lat_grados": 2.972183210658841e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_096",
+      "diferencia_area_t04_menos_t02_pct": 8.234442831811588e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.864637832979869e-05,
+      "diferencia_centroide_lon_grados": 1.6688829873601208e-08,
+      "diferencia_centroide_lat_grados": -1.0616076906444505e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_097",
+      "diferencia_area_t04_menos_t02_pct": -6.593605708688197e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.597084693443325e-05,
+      "diferencia_centroide_lon_grados": -7.973852689246996e-10,
+      "diferencia_centroide_lat_grados": -5.4282619288414935e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_098",
+      "diferencia_area_t04_menos_t02_pct": 0.00031493537123553165,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0003061247838300114,
+      "diferencia_centroide_lon_grados": 2.0507172848738264e-08,
+      "diferencia_centroide_lat_grados": -4.02051334447151e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_099",
+      "diferencia_area_t04_menos_t02_pct": 0.00044914036608234694,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0004113405113431025,
+      "diferencia_centroide_lon_grados": -7.42116412766336e-09,
+      "diferencia_centroide_lat_grados": -1.9940753048786064e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_100",
+      "diferencia_area_t04_menos_t02_pct": 5.2373498572118874e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.6508729425695994e-05,
+      "diferencia_centroide_lon_grados": 4.109030271592928e-08,
+      "diferencia_centroide_lat_grados": 2.8116016181911618e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_101",
+      "diferencia_area_t04_menos_t02_pct": -2.412968017428087e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.7878842475206235e-05,
+      "diferencia_centroide_lon_grados": 1.5273073472599208e-08,
+      "diferencia_centroide_lat_grados": 1.7298699361845138e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_102",
+      "diferencia_area_t04_menos_t02_pct": 4.641494763587479e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.332772951860751e-05,
+      "diferencia_centroide_lon_grados": 3.5657052421811386e-08,
+      "diferencia_centroide_lat_grados": -5.235475697418224e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_103",
+      "diferencia_area_t04_menos_t02_pct": -1.2924990595916447e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.0702530954667134e-06,
+      "diferencia_centroide_lon_grados": -3.763993561278767e-08,
+      "diferencia_centroide_lat_grados": -1.5751599136137884e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_104",
+      "diferencia_area_t04_menos_t02_pct": -0.00010155402866582523,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.808795836021166e-05,
+      "diferencia_centroide_lon_grados": -8.053049782574817e-09,
+      "diferencia_centroide_lat_grados": 3.506259460550609e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_105",
+      "diferencia_area_t04_menos_t02_pct": -0.00010556704844161498,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00011352018570515106,
+      "diferencia_centroide_lon_grados": 1.4768744449611404e-08,
+      "diferencia_centroide_lat_grados": 1.726593623629924e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_106",
+      "diferencia_area_t04_menos_t02_pct": -0.00031466666962612523,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.0003188850319346198,
+      "diferencia_centroide_lon_grados": 3.650062296856049e-08,
+      "diferencia_centroide_lat_grados": -8.228031589396778e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_107",
+      "diferencia_area_t04_menos_t02_pct": 0.0003914498173617637,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0004089914760120439,
+      "diferencia_centroide_lon_grados": 1.030406338031753e-08,
+      "diferencia_centroide_lat_grados": -2.770860874079517e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_108",
+      "diferencia_area_t04_menos_t02_pct": -1.9997104047453896e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.185013289684457e-06,
+      "diferencia_centroide_lon_grados": 1.7666380358605238e-08,
+      "diferencia_centroide_lat_grados": -1.5906739037063744e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_109",
+      "diferencia_area_t04_menos_t02_pct": -6.249906707196819e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.4197649072841797e-06,
+      "diferencia_centroide_lon_grados": -1.8807170931722794e-08,
+      "diferencia_centroide_lat_grados": 1.1181850112507163e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_110",
+      "diferencia_area_t04_menos_t02_pct": -1.8195380072268276e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.3368975019860444e-05,
+      "diferencia_centroide_lon_grados": 3.3956197853513004e-08,
+      "diferencia_centroide_lat_grados": 2.3804663129567416e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_111",
+      "diferencia_area_t04_menos_t02_pct": -3.6333008353546356e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.3684853563913874e-05,
+      "diferencia_centroide_lon_grados": 3.6991707474953728e-09,
+      "diferencia_centroide_lat_grados": -2.532958021106424e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_112",
+      "diferencia_area_t04_menos_t02_pct": -7.041803504190604e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.544254338064941e-05,
+      "diferencia_centroide_lon_grados": 4.488032345761894e-08,
+      "diferencia_centroide_lat_grados": -9.501029296643537e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_113",
+      "diferencia_area_t04_menos_t02_pct": 0.001374733306760139,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0013731865114734183,
+      "diferencia_centroide_lon_grados": -2.605329996185901e-08,
+      "diferencia_centroide_lat_grados": 2.137947419100783e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_114",
+      "diferencia_area_t04_menos_t02_pct": -2.1679690190648717e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.8428165448655294e-05,
+      "diferencia_centroide_lon_grados": -1.7402555840817513e-08,
+      "diferencia_centroide_lat_grados": 1.7049107015054688e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_115",
+      "diferencia_area_t04_menos_t02_pct": -3.597020605950411e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.775020851361494e-05,
+      "diferencia_centroide_lon_grados": 6.903628957388719e-08,
+      "diferencia_centroide_lat_grados": 2.971895440850858e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_116",
+      "diferencia_area_t04_menos_t02_pct": -6.93217168131977e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.42836783146791e-05,
+      "diferencia_centroide_lon_grados": 1.1405617783566413e-08,
+      "diferencia_centroide_lat_grados": -4.554159716008144e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_117",
+      "diferencia_area_t04_menos_t02_pct": -2.380264277385663e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.7834325687470985e-05,
+      "diferencia_centroide_lon_grados": 2.2623012796429975e-08,
+      "diferencia_centroide_lat_grados": -8.697053743844663e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_118",
+      "diferencia_area_t04_menos_t02_pct": 4.00749887746891e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.0017709638392998e-05,
+      "diferencia_centroide_lon_grados": 3.098270440204942e-08,
+      "diferencia_centroide_lat_grados": -1.0426411733988061e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_119",
+      "diferencia_area_t04_menos_t02_pct": 9.461079792204826e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.255893770503289e-05,
+      "diferencia_centroide_lon_grados": -2.0138188006058044e-08,
+      "diferencia_centroide_lat_grados": 3.419937755211322e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_120",
+      "diferencia_area_t04_menos_t02_pct": -1.5892230813335394e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.7249079781930513e-05,
+      "diferencia_centroide_lon_grados": -7.931585344067571e-08,
+      "diferencia_centroide_lat_grados": -6.738108027093404e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_121",
+      "diferencia_area_t04_menos_t02_pct": -0.0002469907151403168,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00024375401270237005,
+      "diferencia_centroide_lon_grados": 2.544159372064314e-08,
+      "diferencia_centroide_lat_grados": 2.5746921039626613e-08,
+      "diferencia_fraccion": 3.5020525175788464e-05
+    },
+    {
+      "id_parcela": "AGC_122",
+      "diferencia_area_t04_menos_t02_pct": 3.51424494814033e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.0068403706927487e-05,
+      "diferencia_centroide_lon_grados": -2.3521664616055205e-09,
+      "diferencia_centroide_lat_grados": -3.7920869999652496e-08,
+      "diferencia_fraccion": 3.5191172531923165e-05
+    },
+    {
+      "id_parcela": "AGC_123",
+      "diferencia_area_t04_menos_t02_pct": 0.00027619102785234127,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0002702710462292347,
+      "diferencia_centroide_lon_grados": -3.4133194048990845e-09,
+      "diferencia_centroide_lat_grados": -5.147548165496119e-09,
+      "diferencia_fraccion": -9.663398995440886e-06
+    },
+    {
+      "id_parcela": "AGC_124",
+      "diferencia_area_t04_menos_t02_pct": 2.168583813229847e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.292888012586838e-06,
+      "diferencia_centroide_lon_grados": 1.4017970784152567e-08,
+      "diferencia_centroide_lat_grados": 4.9517176137214847e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_125",
+      "diferencia_area_t04_menos_t02_pct": 1.1775409022462347e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.645846510368587e-05,
+      "diferencia_centroide_lon_grados": -3.120504743492347e-08,
+      "diferencia_centroide_lat_grados": 1.0146948170586256e-08,
+      "diferencia_fraccion": 2.6101018651414343e-05
+    },
+    {
+      "id_parcela": "AGC_126",
+      "diferencia_area_t04_menos_t02_pct": -8.607162189925602e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.374583198130261e-05,
+      "diferencia_centroide_lon_grados": 1.0536226113799785e-08,
+      "diferencia_centroide_lat_grados": 4.850335955097762e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_127",
+      "diferencia_area_t04_menos_t02_pct": -3.258041200343524e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.7095614709766852e-06,
+      "diferencia_centroide_lon_grados": 3.980645146839379e-09,
+      "diferencia_centroide_lat_grados": -3.213002486290861e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_128",
+      "diferencia_area_t04_menos_t02_pct": 6.810345449722818e-07,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 7.796515440303943e-06,
+      "diferencia_centroide_lon_grados": -3.537572013101453e-08,
+      "diferencia_centroide_lat_grados": -3.7562074339803075e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_129",
+      "diferencia_area_t04_menos_t02_pct": -9.515522732235482e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00010017209743471728,
+      "diferencia_centroide_lon_grados": -4.069724468536151e-08,
+      "diferencia_centroide_lat_grados": 1.696196250122739e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_130",
+      "diferencia_area_t04_menos_t02_pct": -2.6755065107173115e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.064760228570429e-05,
+      "diferencia_centroide_lon_grados": -4.716721946351754e-08,
+      "diferencia_centroide_lat_grados": -1.001010119239254e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_131",
+      "diferencia_area_t04_menos_t02_pct": -4.8481363723205206e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.470441333966659e-05,
+      "diferencia_centroide_lon_grados": 4.230999195442564e-08,
+      "diferencia_centroide_lat_grados": 3.593183706129821e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_132",
+      "diferencia_area_t04_menos_t02_pct": -5.129261261103429e-07,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.723817592407339e-06,
+      "diferencia_centroide_lon_grados": 2.6891015636465454e-08,
+      "diferencia_centroide_lat_grados": 1.507222791019558e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_133",
+      "diferencia_area_t04_menos_t02_pct": 4.2790190707647005e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.537751131934317e-06,
+      "diferencia_centroide_lon_grados": 4.889955107501009e-10,
+      "diferencia_centroide_lat_grados": 1.6133906655113606e-08,
+      "diferencia_fraccion": 2.84346670493818e-05
+    },
+    {
+      "id_parcela": "AGC_134",
+      "diferencia_area_t04_menos_t02_pct": 7.781842321830091e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.2516695956472864e-06,
+      "diferencia_centroide_lon_grados": 3.5221461303081014e-08,
+      "diferencia_centroide_lat_grados": -1.458716525348791e-08,
+      "diferencia_fraccion": -4.871257937888451e-05
+    },
+    {
+      "id_parcela": "AGC_135",
+      "diferencia_area_t04_menos_t02_pct": 1.8116436182243553e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.3738765685572645e-06,
+      "diferencia_centroide_lon_grados": -3.6474190778790216e-08,
+      "diferencia_centroide_lat_grados": 3.031169626410701e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_136",
+      "diferencia_area_t04_menos_t02_pct": 3.226603295008403e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.7795981624797744e-05,
+      "diferencia_centroide_lon_grados": -1.2582205499711563e-08,
+      "diferencia_centroide_lat_grados": 9.786830901248322e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_137",
+      "diferencia_area_t04_menos_t02_pct": 0.00010172226625163336,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0001015594356829464,
+      "diferencia_centroide_lon_grados": 6.859585255369893e-08,
+      "diferencia_centroide_lat_grados": -1.148581425525208e-07,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_138",
+      "diferencia_area_t04_menos_t02_pct": 8.207782255419534e-07,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.114481248436421e-06,
+      "diferencia_centroide_lon_grados": -1.9631713144008245e-08,
+      "diferencia_centroide_lat_grados": -4.417639232201509e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_139",
+      "diferencia_area_t04_menos_t02_pct": -0.0001713538301622945,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00016046198048160688,
+      "diferencia_centroide_lon_grados": 5.756014331836923e-08,
+      "diferencia_centroide_lat_grados": -2.7505571154051722e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_140",
+      "diferencia_area_t04_menos_t02_pct": 0.0007424061982628518,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0007393054166938009,
+      "diferencia_centroide_lon_grados": -1.9013938867828983e-08,
+      "diferencia_centroide_lat_grados": -4.525571029034836e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_141",
+      "diferencia_area_t04_menos_t02_pct": -0.00016758918990051268,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00016607060844579994,
+      "diferencia_centroide_lon_grados": 1.8174048932451115e-08,
+      "diferencia_centroide_lat_grados": 3.6045822326968846e-08,
+      "diferencia_fraccion": 7.402316156035482e-06
+    },
+    {
+      "id_parcela": "AGC_142",
+      "diferencia_area_t04_menos_t02_pct": 2.3478111758759112e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.873523520283687e-06,
+      "diferencia_centroide_lon_grados": -3.5457958347251406e-08,
+      "diferencia_centroide_lat_grados": 4.835213118781212e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_143",
+      "diferencia_area_t04_menos_t02_pct": -9.694948400262889e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.599597232155972e-05,
+      "diferencia_centroide_lon_grados": 2.5263929614993685e-08,
+      "diferencia_centroide_lat_grados": -3.578156437811231e-08,
+      "diferencia_fraccion": -2.2774768455802175e-05
+    },
+    {
+      "id_parcela": "AGC_144",
+      "diferencia_area_t04_menos_t02_pct": 2.2917411890556063e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.379304681896194e-05,
+      "diferencia_centroide_lon_grados": 2.1754374301963253e-08,
+      "diferencia_centroide_lat_grados": 2.5360922251138618e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_145",
+      "diferencia_area_t04_menos_t02_pct": -9.414408458243643e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.3021447035047607e-06,
+      "diferencia_centroide_lon_grados": 4.232551020777464e-08,
+      "diferencia_centroide_lat_grados": 9.434977243927278e-09,
+      "diferencia_fraccion": -3.2561726291402415e-05
+    },
+    {
+      "id_parcela": "AGC_146",
+      "diferencia_area_t04_menos_t02_pct": -1.3784556349447305e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.080722067188262e-05,
+      "diferencia_centroide_lon_grados": -1.7802079810280702e-08,
+      "diferencia_centroide_lat_grados": 2.2002591748560008e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_147",
+      "diferencia_area_t04_menos_t02_pct": 6.657457679587554e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.446422378120565e-06,
+      "diferencia_centroide_lon_grados": 1.48240815178724e-08,
+      "diferencia_centroide_lat_grados": -2.178044411493829e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_148",
+      "diferencia_area_t04_menos_t02_pct": 4.602864823466281e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.8907523570615648e-05,
+      "diferencia_centroide_lon_grados": -4.562633648674819e-08,
+      "diferencia_centroide_lat_grados": 1.3945243182433842e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_149",
+      "diferencia_area_t04_menos_t02_pct": -7.095628394860357e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.770303190821092e-05,
+      "diferencia_centroide_lon_grados": 1.9399422512833553e-08,
+      "diferencia_centroide_lat_grados": -2.7141080494175185e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_150",
+      "diferencia_area_t04_menos_t02_pct": 0.00038668825058422806,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00037581743457557493,
+      "diferencia_centroide_lon_grados": -1.771014979112806e-08,
+      "diferencia_centroide_lat_grados": -9.503839493163468e-09,
+      "diferencia_fraccion": 4.334618965895487e-05
+    },
+    {
+      "id_parcela": "AGC_151",
+      "diferencia_area_t04_menos_t02_pct": -7.986224713255686e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.10351364029755e-06,
+      "diferencia_centroide_lon_grados": -6.545216990616609e-08,
+      "diferencia_centroide_lat_grados": -1.901543100757408e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_152",
+      "diferencia_area_t04_menos_t02_pct": -0.0002379256315382866,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00024188640265990335,
+      "diferencia_centroide_lon_grados": 1.906794011574675e-08,
+      "diferencia_centroide_lat_grados": 4.1521126092902705e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_153",
+      "diferencia_area_t04_menos_t02_pct": 4.825751627586562e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.0353745025379e-05,
+      "diferencia_centroide_lon_grados": 5.0923816274917044e-08,
+      "diferencia_centroide_lat_grados": 1.407225269645096e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_154",
+      "diferencia_area_t04_menos_t02_pct": 2.3029359113770817e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.8907802898855013e-05,
+      "diferencia_centroide_lon_grados": 4.594525648826675e-08,
+      "diferencia_centroide_lat_grados": 3.731824804731332e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_155",
+      "diferencia_area_t04_menos_t02_pct": 6.761825514080515e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.836097113539561e-07,
+      "diferencia_centroide_lon_grados": -1.4301534179139708e-08,
+      "diferencia_centroide_lat_grados": 4.211603510384521e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_156",
+      "diferencia_area_t04_menos_t02_pct": -9.341894080553793e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.491989109206939e-05,
+      "diferencia_centroide_lon_grados": 3.8921825762372464e-08,
+      "diferencia_centroide_lat_grados": 1.6379157585788562e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_157",
+      "diferencia_area_t04_menos_t02_pct": 0.00029915760870380685,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0002753173026250532,
+      "diferencia_centroide_lon_grados": -3.0842002729514206e-08,
+      "diferencia_centroide_lat_grados": -3.1622629848016004e-08,
+      "diferencia_fraccion": 9.987902549135619e-06
+    },
+    {
+      "id_parcela": "AGC_158",
+      "diferencia_area_t04_menos_t02_pct": -4.244923220384814e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -4.692860604990629e-05,
+      "diferencia_centroide_lon_grados": 4.962871003044711e-09,
+      "diferencia_centroide_lat_grados": 3.4657499980994544e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_159",
+      "diferencia_area_t04_menos_t02_pct": -8.035151485429349e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.104398590020571e-06,
+      "diferencia_centroide_lon_grados": 2.3246400360221742e-08,
+      "diferencia_centroide_lat_grados": 2.1835365515698868e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_160",
+      "diferencia_area_t04_menos_t02_pct": 2.4991827056882617e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.9563628245877556e-06,
+      "diferencia_centroide_lon_grados": -1.2504656865530706e-08,
+      "diferencia_centroide_lat_grados": 1.071797584017986e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_161",
+      "diferencia_area_t04_menos_t02_pct": -6.100951300398214e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.1165056404679816e-06,
+      "diferencia_centroide_lon_grados": -4.166140854522382e-08,
+      "diferencia_centroide_lat_grados": -4.80118202972335e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_162",
+      "diferencia_area_t04_menos_t02_pct": 0.00020261375378479425,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.0002077429447360196,
+      "diferencia_centroide_lon_grados": -9.404601541973534e-09,
+      "diferencia_centroide_lat_grados": 8.803763051901115e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_163",
+      "diferencia_area_t04_menos_t02_pct": 1.8283362063664343e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.740384126356738e-05,
+      "diferencia_centroide_lon_grados": 3.3948310829146067e-09,
+      "diferencia_centroide_lat_grados": -2.6518108597883838e-08,
+      "diferencia_fraccion": -4.370078876658745e-06
+    },
+    {
+      "id_parcela": "AGC_164",
+      "diferencia_area_t04_menos_t02_pct": 0.00018207354867697814,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.00017893202742536732,
+      "diferencia_centroide_lon_grados": -1.8941250345960725e-08,
+      "diferencia_centroide_lat_grados": -1.3939924770056678e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_165",
+      "diferencia_area_t04_menos_t02_pct": -6.6657946964346186e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -2.921467116539258e-06,
+      "diferencia_centroide_lon_grados": -5.433844307844993e-08,
+      "diferencia_centroide_lat_grados": -1.3844271506968653e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_166",
+      "diferencia_area_t04_menos_t02_pct": -9.472825096585193e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.028123263288805e-05,
+      "diferencia_centroide_lon_grados": -2.809240129408863e-08,
+      "diferencia_centroide_lat_grados": 3.915378243846135e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_167",
+      "diferencia_area_t04_menos_t02_pct": 1.0886605638536387e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 3.914136756267447e-06,
+      "diferencia_centroide_lon_grados": 1.434634100405674e-08,
+      "diferencia_centroide_lat_grados": -1.658865400600007e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_168",
+      "diferencia_area_t04_menos_t02_pct": 4.154255275649238e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 4.5489247463883896e-05,
+      "diferencia_centroide_lon_grados": -2.6777343009598553e-08,
+      "diferencia_centroide_lat_grados": -9.320373806076532e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_169",
+      "diferencia_area_t04_menos_t02_pct": 8.446337558687045e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.6353614579261356e-05,
+      "diferencia_centroide_lon_grados": -4.063821279487456e-08,
+      "diferencia_centroide_lat_grados": -1.8866472828449332e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_170",
+      "diferencia_area_t04_menos_t02_pct": 1.7836982527942871e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.4751660175336e-07,
+      "diferencia_centroide_lon_grados": 6.027816823461762e-08,
+      "diferencia_centroide_lat_grados": -3.783110713584392e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_171",
+      "diferencia_area_t04_menos_t02_pct": 1.2129720680465009e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.1401346385824529e-05,
+      "diferencia_centroide_lon_grados": 3.619533117671381e-08,
+      "diferencia_centroide_lat_grados": 1.7517770345421013e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_172",
+      "diferencia_area_t04_menos_t02_pct": -8.038680436688254e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.714182011109856e-05,
+      "diferencia_centroide_lon_grados": 3.740497334092652e-08,
+      "diferencia_centroide_lat_grados": 2.9583887339867943e-08,
+      "diferencia_fraccion": 2.0183854751998354e-06
+    },
+    {
+      "id_parcela": "AGC_173",
+      "diferencia_area_t04_menos_t02_pct": 1.5512314323785633e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.1801799652748106e-05,
+      "diferencia_centroide_lon_grados": -3.0554176078112505e-08,
+      "diferencia_centroide_lat_grados": 2.985996871984753e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_174",
+      "diferencia_area_t04_menos_t02_pct": -7.2941350139472e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.12208635937942e-05,
+      "diferencia_centroide_lon_grados": -2.26827694405074e-08,
+      "diferencia_centroide_lat_grados": 2.720864955563229e-08,
+      "diferencia_fraccion": -2.3594383447012035e-08
+    },
+    {
+      "id_parcela": "AGC_175",
+      "diferencia_area_t04_menos_t02_pct": 2.9833137148371033e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.3261669082066698e-06,
+      "diferencia_centroide_lon_grados": -7.965212489580153e-09,
+      "diferencia_centroide_lat_grados": 4.624126503927073e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_176",
+      "diferencia_area_t04_menos_t02_pct": 3.7998964610819343e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 1.9069570682021876e-06,
+      "diferencia_centroide_lon_grados": -4.271555553714279e-08,
+      "diferencia_centroide_lat_grados": -2.767410833826034e-08,
+      "diferencia_fraccion": 3.39097253693188e-05
+    },
+    {
+      "id_parcela": "AGC_177",
+      "diferencia_area_t04_menos_t02_pct": -7.937870033896373e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.105003914466878e-05,
+      "diferencia_centroide_lon_grados": 1.7346394542983035e-08,
+      "diferencia_centroide_lat_grados": -1.6418546522345423e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_178",
+      "diferencia_area_t04_menos_t02_pct": -0.00010193513596762397,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.856379029352043e-05,
+      "diferencia_centroide_lon_grados": -3.4646063795662485e-08,
+      "diferencia_centroide_lat_grados": 1.7285493925101036e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_179",
+      "diferencia_area_t04_menos_t02_pct": 1.4255345384300912e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 8.071997703139642e-06,
+      "diferencia_centroide_lon_grados": 3.2108630421134876e-08,
+      "diferencia_centroide_lat_grados": -2.2160701718121345e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_180",
+      "diferencia_area_t04_menos_t02_pct": -1.0748812472367334e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -6.891921911722349e-06,
+      "diferencia_centroide_lon_grados": -2.724398484588164e-08,
+      "diferencia_centroide_lat_grados": -9.639204989753125e-09,
+      "diferencia_fraccion": 3.33579017877117e-05
+    },
+    {
+      "id_parcela": "AGC_181",
+      "diferencia_area_t04_menos_t02_pct": -5.46408426717348e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 6.627014703462834e-06,
+      "diferencia_centroide_lon_grados": 2.808521060160274e-08,
+      "diferencia_centroide_lat_grados": -4.934241104592729e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_182",
+      "diferencia_area_t04_menos_t02_pct": 1.3171770022910408e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.323180972589417e-06,
+      "diferencia_centroide_lon_grados": -1.0937142747025064e-08,
+      "diferencia_centroide_lat_grados": -4.0509302579039286e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_183",
+      "diferencia_area_t04_menos_t02_pct": 3.83965002465322e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.854942104275386e-06,
+      "diferencia_centroide_lon_grados": 2.594099157704477e-08,
+      "diferencia_centroide_lat_grados": -3.211966159710755e-08,
+      "diferencia_fraccion": -3.067898571185168e-05
+    },
+    {
+      "id_parcela": "AGC_184",
+      "diferencia_area_t04_menos_t02_pct": -7.748586241543984e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -7.431196171244144e-05,
+      "diferencia_centroide_lon_grados": -4.231144146160659e-08,
+      "diferencia_centroide_lat_grados": -4.7800860158986325e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_185",
+      "diferencia_area_t04_menos_t02_pct": 5.615226292782779e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 5.353006792805784e-05,
+      "diferencia_centroide_lon_grados": 1.1205813166270673e-08,
+      "diferencia_centroide_lat_grados": 8.922402372490978e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_186",
+      "diferencia_area_t04_menos_t02_pct": -0.0001336579741260555,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00013569670495323376,
+      "diferencia_centroide_lon_grados": -3.7117416695764405e-08,
+      "diferencia_centroide_lat_grados": 1.001925298282913e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_187",
+      "diferencia_area_t04_menos_t02_pct": -7.979601172046117e-06,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -1.112555315726737e-05,
+      "diferencia_centroide_lon_grados": 1.5478747172892326e-08,
+      "diferencia_centroide_lat_grados": 2.7797305790500104e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_188",
+      "diferencia_area_t04_menos_t02_pct": -2.3687445847001966e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -9.475205750847137e-06,
+      "diferencia_centroide_lon_grados": -3.3023212608895847e-08,
+      "diferencia_centroide_lat_grados": 3.074898202726217e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_189",
+      "diferencia_area_t04_menos_t02_pct": -1.4516219941318963e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -8.04178386420644e-06,
+      "diferencia_centroide_lon_grados": 1.1753797934943577e-09,
+      "diferencia_centroide_lat_grados": -4.150660259938377e-09,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_190",
+      "diferencia_area_t04_menos_t02_pct": -0.00035870887289318645,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00035010305892453007,
+      "diferencia_centroide_lon_grados": 4.032132494558027e-08,
+      "diferencia_centroide_lat_grados": -2.7761604570741838e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_191",
+      "diferencia_area_t04_menos_t02_pct": 2.2819702632765196e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -5.160733499626092e-06,
+      "diferencia_centroide_lon_grados": -3.126426406652172e-08,
+      "diferencia_centroide_lat_grados": 1.9202932577400134e-08,
+      "diferencia_fraccion": -1.7674952603963234e-05
+    },
+    {
+      "id_parcela": "AGC_192",
+      "diferencia_area_t04_menos_t02_pct": -2.2224845203284263e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -3.205516533148515e-06,
+      "diferencia_centroide_lon_grados": 4.585510282595351e-08,
+      "diferencia_centroide_lat_grados": 4.779313655944861e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_193",
+      "diferencia_area_t04_menos_t02_pct": 2.5425815999991584e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 2.1979099927967177e-05,
+      "diferencia_centroide_lon_grados": -3.616209198753495e-08,
+      "diferencia_centroide_lat_grados": -2.1517244874758035e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_194",
+      "diferencia_area_t04_menos_t02_pct": 9.059835033963701e-05,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 9.042494792823137e-05,
+      "diferencia_centroide_lon_grados": 1.5544983966719883e-08,
+      "diferencia_centroide_lat_grados": -4.465205805104233e-08,
+      "diferencia_fraccion": -2.8728538677524895e-05
+    },
+    {
+      "id_parcela": "AGC_195",
+      "diferencia_area_t04_menos_t02_pct": 0.000756382993390556,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": 0.000770969746581076,
+      "diferencia_centroide_lon_grados": 4.388728314097534e-08,
+      "diferencia_centroide_lat_grados": 1.0628397717482585e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_196",
+      "diferencia_area_t04_menos_t02_pct": -0.00021918346278726038,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00021859220349343606,
+      "diferencia_centroide_lon_grados": 2.6379737505521916e-08,
+      "diferencia_centroide_lat_grados": 5.3259096688407226e-08,
+      "diferencia_fraccion": 0.0
+    },
+    {
+      "id_parcela": "AGC_197",
+      "diferencia_area_t04_menos_t02_pct": -0.00012906312025214668,
+      "diferencia_area_t04_menos_geod_sin_redondear_pct": -0.00013323207805326288,
+      "diferencia_centroide_lon_grados": 1.9113755911348562e-08,
+      "diferencia_centroide_lat_grados": 9.59446921910967e-09,
+      "diferencia_fraccion": 0.0
+    }
+  ],
   "politica_compatibilidad_t02": "tablas_identicas_procedencia_no_bloqueante",
   "procedencia_t02_sha256": {
     "scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
     "scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d",
     "tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86"
   },
-  "referencia_sha256": "d9287e6542545389f4174e1145125c2443c01b8558385e6060f6552f348cc65c",
-  "revision_t02": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
-  "schema_referencia_t02": "t04_referencia_t02_v2",
-  "tolerancia_area_t02_ha": "0.5e-6 ha (semipaso publicado) + 1e-8 relativo Geod; no modifica tolerancias T04"
+  "schema_referencia_t02": "t04_referencia_t02_v2"
 }
