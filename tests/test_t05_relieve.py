@@ -4,6 +4,7 @@ Cada prueba fabrica un ráster diminuto en EPSG:6372 (celdas de 120 m) con
 valores elegidos, de modo que el resultado correcto se calcula a mano.
 """
 import unittest
+from pathlib import Path
 
 import numpy as np
 from affine import Affine
@@ -229,6 +230,70 @@ class Errores(Base):
         s = preparar_soporte(box(X0+10, Y0-50, X0+50, Y0-10), CRS, r)
         with self.assertRaisesRegex(ValueError, "no corresponden"):
             resumir_variable(s, r, datos=np.ma.masked_array(np.zeros((3, 3))))
+
+
+class ExtraccionDePuntaAPunta(unittest.TestCase):
+    """Shapefile y TIFF diminutos en una carpeta temporal: lectura, cambio de ID y CSV."""
+
+    def setUp(self):
+        import tempfile
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.raiz = Path(self.tmp.name)
+        self.dataset = self.raiz / "dataset"
+        (self.dataset / "topo").mkdir(parents=True)
+
+    def tiff(self, nombre, valores):
+        import rasterio
+        d = np.asarray(valores, dtype="float32")
+        with rasterio.open(self.dataset / "topo" / nombre, "w", driver="GTiff",
+                           height=d.shape[0], width=d.shape[1], count=1, dtype="float32",
+                           crs=CRS, nodata=-9999, transform=T) as r:
+            r.write(d, 1)
+
+    def shapefile(self, geoms_6372, ids):
+        import geopandas as gpd
+        g = gpd.GeoDataFrame({"ID_POLIGON": ids}, geometry=geoms_6372, crs=CRS).to_crs("EPSG:4326")
+        g.to_file(self.dataset / "Parcelas_Reto_AGC_CONJUNTO.shp")
+
+    def test_extrae_y_escribe_csv(self):
+        from scripts.t05_relieve import extraer
+        self.tiff("Elevacion_INEGI_CEM4_120m.tif", [[2500, 2600], [2700, 2800]])
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1, -9999], [3, 4]])
+        self.shapefile([box(X0+24, Y0-100, X0+144, Y0-20), box(X0+130, Y0-230, X0+230, Y0-130)],
+                       ["AGC_002", "AGC_001"])
+        salida = self.raiz / "salida"
+        filas, celdas = extraer(self.dataset, salida)
+        self.assertEqual([f["id_parcela"] for f in filas], ["AGC_001", "AGC_002"])
+        a2 = filas[1]
+        self.assertAlmostEqual(a2["elevacion_media_m"], 2520, places=3)
+        self.assertEqual(a2["pendiente_media_grados"], 1.0)
+        self.assertAlmostEqual(a2["pendiente_cobertura_valida"], .8, places=6)
+        self.assertEqual(a2["estado_pendiente"], "cobertura_parcial")
+        self.assertIn("cobertura_parcial_pendiente", a2["avisos"])
+        texto = (salida / "relieve_parcela.csv").read_bytes()
+        self.assertNotIn(b"\r", texto)
+        self.assertTrue(texto.startswith(b"id_parcela,area_parcela_6372_m2,"))
+        self.assertEqual(len((salida / "relieve_celdas.csv").read_text().splitlines()), 1 + len(celdas))
+        with self.assertRaisesRegex(ValueError, "carpeta nueva"):
+            extraer(self.dataset, salida)
+
+    def test_ids_duplicados_detienen(self):
+        from scripts.t05_relieve import extraer
+        self.tiff("Elevacion_INEGI_CEM4_120m.tif", [[1, 2]])
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1, 2]])
+        self.shapefile([box(X0+10, Y0-50, X0+50, Y0-10)] * 2, ["AGC_001", "AGC_001"])
+        with self.assertRaisesRegex(ValueError, "duplicados"):
+            extraer(self.dataset, self.raiz / "salida")
+        self.assertFalse((self.raiz / "salida").exists())
+
+    def test_cuadriculas_no_alineadas_detienen(self):
+        from scripts.t05_relieve import extraer
+        self.tiff("Elevacion_INEGI_CEM4_120m.tif", [[1, 2]])
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1, 2, 3]])
+        self.shapefile([box(X0+10, Y0-50, X0+50, Y0-10)], ["AGC_001"])
+        with self.assertRaisesRegex(ValueError, "no alineadas"):
+            extraer(self.dataset, self.raiz / "salida")
 
 
 if __name__ == "__main__":

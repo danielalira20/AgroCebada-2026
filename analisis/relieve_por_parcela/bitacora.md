@@ -6,7 +6,7 @@
 
 Responsable: Jass. Revisora: Dani.
 
-**Estado al 8 de octubre de 2026:** método congelado; funciones de extracción listas y cubiertas por 30 pruebas sintéticas. Falta la ejecución con los datos reales y el cierre.
+**Estado al 8 de octubre de 2026:** método congelado; extracción real de las 197 parcelas hecha y cubierta por 33 pruebas. Faltan los controles sobre datos reales, la publicación en `registro/t05/` y el cierre.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -32,7 +32,7 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 | 1 | Documento del método y estructura de archivos | **Hecho** (8 oct) |
 | 2 | Esqueleto de `scripts/t05_relieve.py` con funciones puras | **Hecho** (8 oct) |
 | 3 | Pruebas formales con datos sintéticos | **Hecho** (8 oct) |
-| 4 | Ejecución real: `relieve_parcela.csv` y `relieve_celdas.csv` (197 parcelas) | Pendiente |
+| 4 | Ejecución real: `relieve_parcela.csv` y `relieve_celdas.csv` (197 parcelas) | **Hecho** (8 oct) |
 | 5 | Controles sobre datos reales: T02, cálculo independiente, 5 parciales, 59 reservadas completas | Pendiente |
 | 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | Pendiente |
 | 7 | Registros, PR con la plantilla y reproducción por Dani | Pendiente |
@@ -103,4 +103,32 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 **Cómo repetirlas.** Desde la raíz del repositorio: `python -m unittest discover -s tests -v`.
 
 **Lo que sigue.** Paso 4: leer los TIFF y el shapefile, extraer las 197 parcelas y escribir `relieve_parcela.csv` y `relieve_celdas.csv`.
+
+### 8 de octubre de 2026 — Informe del paso 4: extracción real
+
+**Qué se hizo.** Se añadió a `scripts/t05_relieve.py` la lectura de archivos y la línea de comandos. Lee el shapefile (`ID_POLIGON` → `id_parcela`), lo reproyecta a EPSG:6372, comprueba que los dos TIFF comparten cuadrícula, CRS y NoData, extrae cada parcela y escribe dos CSV con fin de línea LF y números sin redondear. Solo escribe si todo pasó los controles que detienen la entrega, y se niega a sobrescribir una carpeta con contenido. Siguiendo a T04, la salida va primero a `data/processed/t05/<ejecucion>/` (ignorada por Git); la publicación en `registro/t05/` es el paso 6. Se agregaron 3 pruebas de punta a punta con un shapefile y dos TIFF diminutos (33 en total, todas pasan).
+
+Orden usado, desde la raíz del repositorio:
+
+    python -m scripts.t05_relieve --extraer --salida data/processed/t05/primera_extraccion
+
+**Qué se esperaba.** 197 IDs únicos, sin errores; cinco parcelas con cobertura incompleta (cuatro en ambas variables y AGC_044 solo en pendiente); AGC_023 y AGC_170 bajo el piso de 0.5; tres centroides fuera de su parcela.
+
+**Qué se encontró (verificado).**
+- 197 parcelas, 197 IDs únicos, 26 columnas; 2 253 filas de celdas. Tiempo: unos 7 segundos.
+- Estados: 192 completas en ambas variables; 4 parciales en ambas (AGC_020, 023, 164 y 170); 1 completa en elevación y parcial en pendiente (AGC_044). Ninguna `todo_nodata` ni `sin_cobertura_espacial`.
+- Coberturas de las cinco: elevación 0.9783 / 0.9590 / 1.0000 / 0.9506 / 0.7594 y pendiente 0.6525 / 0.2864 / 0.9803 / 0.5527 / 0.0210 (AGC_020, 023, 044, 164, 170). Coinciden con lo calculado antes.
+- `pendiente_media_t10_grados` queda vacía exactamente en AGC_023 y AGC_170; el valor original se conserva en `pendiente_media_grados`.
+- Centroide fuera de la parcela: AGC_078, AGC_152 y AGC_182, las mismas que reporta T04. Tres centroides sin dato de pendiente.
+- Coherencia interna: el número de celdas por parcela coincide entre las dos tablas, y la suma de áreas por celda difiere del área de la parcela como máximo en 3 × 10⁻¹² (relativo).
+- Rangos: elevación media de 2 497 a 2 906 m; pendiente media de 0.28° a 9.40°.
+- Avisos: `parcela_menor_a_una_celda` 18, `pocas_celdas_validas` 17, `cobertura_parcial_pendiente` 5, `cobertura_parcial_elevacion` 4, `pendiente_bajo_piso_50` 2, `centroide_fuera_de_parcela` 3, `centroide_sin_dato_pendiente` 3.
+
+**Diferencia explicada.** Antes se dijo que 17 parcelas medían menos de 1.44 ha; el aviso marca 18. La diferencia es AGC_032: el catálogo le da 1.44 ha (redondeado a dos decimales, justo en el límite) y en EPSG:6372 mide 1.426 ha, porque el área plana es un 0.7 % menor. El aviso compara la parcela con una celda de 120 m × 120 m en el mismo sistema, así que 18 es lo coherente. No es un error.
+
+**Qué no demuestra todavía.** La conciliación formal con T02 y con un cálculo independiente, la comprobación de que las 59 reservadas están completas y la comparación de áreas planas contra físicas son el paso 5. Las medias de pendiente de las parcelas parciales difieren algo de unas estimaciones rápidas hechas antes con un método aproximado (subdivisión de celdas); se concilian contra el cálculo exacto en el paso 5.
+
+**Incidente menor.** Al preparar las pruebas se creó por accidente un archivo vacío, `tests/test_t05_relieve.py.tmp`, que el asistente no puede borrar. No afecta a las pruebas; debe borrarse a mano.
+
+**Lo que sigue.** Paso 5: controles sobre los datos reales.
 
