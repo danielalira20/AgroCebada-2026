@@ -61,3 +61,17 @@ Las tablas compactas, procedencia, conciliación y controles se reprodujeron con
 La evidencia local de esta revisión está en `reports/t04_revision_jass_20261007/`; no se sube. Las ejecuciones del 6 de octubre se conservan intactas. La validación independiente de Jass informada por Dani es evidencia de la revisión previa; las pruebas/evidencia nuevas se registran aparte y no se atribuyen a Jass.
 
 Pendiente: revisión de esta entrega; confirmación temporal donde no consta; discutir responsabilidad, reglas y documento de las ventanas del punto 5. No se agregaron ventanas, no se usaron etiquetas para ajustar y no se modificaron particiones ni modelos.
+
+## Compatibilidad T02 y procedencia · actualización del 9 de octubre
+
+La referencia espacial v2 comprueba dos tablas T02: catálogo y soporte por
+parcela. Las huellas de construir_catalogo.py, diagnosticar_soporte.py y
+huellas_archivos_leidos.csv se conservan aparte como procedencia de la revisión
+identificada. Un cambio sólo en esos auxiliares no invalida la compatibilidad.
+Cambios en tablas u originales siguen requiriendo revisión y revalidación.
+
+El lector conserva compatibilidad con referencias v1 completas. Esta migración
+no modifica las 28,368 filas ni controles y documenta el cambio por separado,
+sin sustituir el código histórico de extracción. Véase t04_referencia_t02.md.
+La entrega compacta sigue usando t04_entrega_compacta_v1: columnas, unidades y
+corte permanecen iguales. T07 se adapta al mismo contrato de dos tablas.

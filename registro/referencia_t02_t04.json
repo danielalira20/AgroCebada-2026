@@ -1,1997 +1,1999 @@
 {
-  "schema": "t04_referencia_t02_v1",
-  "revision": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
-  "ruta_en_repo": "analisis/auditoria_catalogo_y_etiquetas",
   "archivos_sha256": {
     "tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
-    "tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
-    "tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86",
-    "scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
-    "scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d"
-  },
-  "entradas_sha256": {
-    "ID_area_rendimiento_70_30_Reto_AgroCebada.csv": "ec07b7ede0ae692109d91b3e941b1a353fe7f89410507db9bfbe6d7c112590ef",
-    "Parcelas_Reto_AGC_CONJUNTO.shp": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29",
-    "Parcelas_Reto_AGC_CONJUNTO.dbf": "9b7d9e06beb70c688c59d4c2e4227ef851596e3382af7d5566b9c669dc35debb",
-    "Parcelas_Reto_AGC_CONJUNTO.shx": "b03e99bc1c619fd9351693091558f549e0b75220f41e1c3b6343dbc41cb7d1f7",
-    "Parcelas_Reto_AGC_CONJUNTO.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
-    "Parcelas_Reto_AGC_CONJUNTO.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    "tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
   },
   "definiciones": {
     "area": "Geod WGS84, vértices originales; ha con 6 decimales",
     "centroide": "planar en lon/lat originales; 7 decimales",
     "fraccion": "área Geod de intersección / área Geod de parcela; 4 decimales"
   },
+  "entradas_sha256": {
+    "ID_area_rendimiento_70_30_Reto_AgroCebada.csv": "ec07b7ede0ae692109d91b3e941b1a353fe7f89410507db9bfbe6d7c112590ef",
+    "Parcelas_Reto_AGC_CONJUNTO.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+    "Parcelas_Reto_AGC_CONJUNTO.dbf": "9b7d9e06beb70c688c59d4c2e4227ef851596e3382af7d5566b9c669dc35debb",
+    "Parcelas_Reto_AGC_CONJUNTO.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+    "Parcelas_Reto_AGC_CONJUNTO.shp": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29",
+    "Parcelas_Reto_AGC_CONJUNTO.shx": "b03e99bc1c619fd9351693091558f549e0b75220f41e1c3b6343dbc41cb7d1f7"
+  },
   "parcelas": [
     {
-      "id_parcela": "AGC_001",
-      "area_ha_origen": "7.61",
       "area_ha_geodesica": "7.614999",
-      "centroide_lon": "-98.5620797",
-      "centroide_lat": "19.5421006",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_002",
-      "area_ha_origen": "2.31",
-      "area_ha_geodesica": "2.309197",
-      "centroide_lon": "-98.2528981",
-      "centroide_lat": "19.861052",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_003",
-      "area_ha_origen": "18.68",
-      "area_ha_geodesica": "18.681726",
-      "centroide_lon": "-98.3749957",
-      "centroide_lat": "19.9813724",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_004",
-      "area_ha_origen": "8",
-      "area_ha_geodesica": "8.00047",
-      "centroide_lon": "-98.5367058",
-      "centroide_lat": "19.5779596",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_005",
-      "area_ha_origen": "2.27",
-      "area_ha_geodesica": "2.272741",
-      "centroide_lon": "-98.2440957",
-      "centroide_lat": "19.8589611",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_006",
-      "area_ha_origen": "3.84",
-      "area_ha_geodesica": "3.836653",
-      "centroide_lon": "-98.2363435",
-      "centroide_lat": "19.8983018",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_007",
-      "area_ha_origen": "2.87",
-      "area_ha_geodesica": "2.873956",
-      "centroide_lon": "-98.4155935",
-      "centroide_lat": "19.9559177",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_008",
-      "area_ha_origen": "10.77",
-      "area_ha_geodesica": "10.768254",
-      "centroide_lon": "-98.2716456",
-      "centroide_lat": "19.8631569",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_009",
-      "area_ha_origen": "0.38",
-      "area_ha_geodesica": "0.375767",
-      "centroide_lon": "-98.2768829",
-      "centroide_lat": "19.9275347",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_010",
-      "area_ha_origen": "7.27",
-      "area_ha_geodesica": "7.266501",
-      "centroide_lon": "-98.2639305",
-      "centroide_lat": "19.8559161",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_011",
-      "area_ha_origen": "7.17",
-      "area_ha_geodesica": "7.169462",
-      "centroide_lon": "-98.2090373",
-      "centroide_lat": "19.8642652",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_012",
-      "area_ha_origen": "4.08",
-      "area_ha_geodesica": "4.077016",
-      "centroide_lon": "-98.2382653",
-      "centroide_lat": "19.8878781",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_013",
-      "area_ha_origen": "5.6",
-      "area_ha_geodesica": "5.597984",
-      "centroide_lon": "-98.2366934",
-      "centroide_lat": "19.8919367",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_014",
-      "area_ha_origen": "7.44",
-      "area_ha_geodesica": "7.437406",
-      "centroide_lon": "-98.2633121",
-      "centroide_lat": "19.8495363",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "0.7231"
-    },
-    {
-      "id_parcela": "AGC_015",
-      "area_ha_origen": "1.97",
-      "area_ha_geodesica": "1.969457",
-      "centroide_lon": "-98.2374159",
-      "centroide_lat": "19.866067",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_016",
-      "area_ha_origen": "7.47",
-      "area_ha_geodesica": "7.46735",
-      "centroide_lon": "-98.2532598",
-      "centroide_lat": "19.8625548",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_017",
-      "area_ha_origen": "1.6",
-      "area_ha_geodesica": "1.59548",
-      "centroide_lon": "-98.2412876",
-      "centroide_lat": "19.850634",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_018",
-      "area_ha_origen": "1.67",
-      "area_ha_geodesica": "1.66808",
-      "centroide_lon": "-98.2954847",
-      "centroide_lat": "19.8644089",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_019",
-      "area_ha_origen": "5.65",
-      "area_ha_geodesica": "5.651976",
-      "centroide_lon": "-98.5857595",
-      "centroide_lat": "19.5845706",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_020",
-      "area_ha_origen": "8.34",
-      "area_ha_geodesica": "8.338138",
-      "centroide_lon": "-98.5861141",
-      "centroide_lat": "19.6279219",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "35_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_021",
-      "area_ha_origen": "2.86",
-      "area_ha_geodesica": "2.864494",
-      "centroide_lon": "-98.217935",
-      "centroide_lat": "19.8624526",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_022",
-      "area_ha_origen": "11.99",
-      "area_ha_geodesica": "11.99426",
-      "centroide_lon": "-98.2670439",
-      "centroide_lat": "19.8757093",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_023",
-      "area_ha_origen": "7.72",
-      "area_ha_geodesica": "7.716441",
-      "centroide_lon": "-98.5231396",
-      "centroide_lat": "19.6064315",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "35_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_024",
-      "area_ha_origen": "11.53",
-      "area_ha_geodesica": "11.52753",
-      "centroide_lon": "-98.2728645",
-      "centroide_lat": "19.8697038",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_025",
-      "area_ha_origen": "2",
-      "area_ha_geodesica": "2.004694",
-      "centroide_lon": "-98.5369035",
-      "centroide_lat": "19.5915543",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_026",
-      "area_ha_origen": "5.49",
-      "area_ha_geodesica": "5.49273",
-      "centroide_lon": "-98.2498806",
-      "centroide_lat": "19.8523421",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "0.5802"
-    },
-    {
-      "id_parcela": "AGC_027",
-      "area_ha_origen": "8.46",
-      "area_ha_geodesica": "8.461023",
-      "centroide_lon": "-98.5376456",
-      "centroide_lat": "19.562104",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_028",
-      "area_ha_origen": "1.86",
-      "area_ha_geodesica": "1.858801",
-      "centroide_lon": "-98.2600926",
-      "centroide_lat": "19.8767619",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_029",
-      "area_ha_origen": "5.9",
-      "area_ha_geodesica": "5.898326",
-      "centroide_lon": "-98.5566235",
-      "centroide_lat": "19.546916",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_030",
-      "area_ha_origen": "13.05",
-      "area_ha_geodesica": "13.050066",
-      "centroide_lon": "-98.4102864",
-      "centroide_lat": "19.9582869",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_031",
-      "area_ha_origen": "1.98",
-      "area_ha_geodesica": "1.984358",
-      "centroide_lon": "-98.2659691",
-      "centroide_lat": "19.8618693",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_032",
-      "area_ha_origen": "1.44",
-      "area_ha_geodesica": "1.435852",
-      "centroide_lon": "-98.2564003",
-      "centroide_lat": "19.8731265",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_033",
-      "area_ha_origen": "21.04",
-      "area_ha_geodesica": "21.04132",
-      "centroide_lon": "-98.2002463",
-      "centroide_lat": "19.8560912",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "0.5296"
-    },
-    {
-      "id_parcela": "AGC_034",
-      "area_ha_origen": "8.09",
-      "area_ha_geodesica": "8.087407",
-      "centroide_lon": "-98.3849003",
-      "centroide_lat": "19.9543755",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_035",
-      "area_ha_origen": "23.8",
-      "area_ha_geodesica": "23.797252",
-      "centroide_lon": "-98.3625697",
-      "centroide_lat": "19.8698739",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_036",
-      "area_ha_origen": "5",
-      "area_ha_geodesica": "4.995825",
-      "centroide_lon": "-98.2516021",
-      "centroide_lat": "19.8560916",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_037",
-      "area_ha_origen": "2.66",
-      "area_ha_geodesica": "2.661752",
-      "centroide_lon": "-98.5320887",
-      "centroide_lat": "19.5581295",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_038",
-      "area_ha_origen": "3.28",
-      "area_ha_geodesica": "3.276262",
-      "centroide_lon": "-98.3899766",
-      "centroide_lat": "19.9532924",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_039",
-      "area_ha_origen": "7.71",
-      "area_ha_geodesica": "7.70886",
-      "centroide_lon": "-98.5960552",
-      "centroide_lat": "19.5754785",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_040",
-      "area_ha_origen": "5.46",
-      "area_ha_geodesica": "5.455096",
-      "centroide_lon": "-98.5379733",
-      "centroide_lat": "19.5950062",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_041",
-      "area_ha_origen": "25.13",
-      "area_ha_geodesica": "25.127046",
-      "centroide_lon": "-98.3937716",
-      "centroide_lat": "19.9469544",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "29_31",
-      "fraccion_en_celda_principal": "0.975"
-    },
-    {
-      "id_parcela": "AGC_042",
-      "area_ha_origen": "3.81",
-      "area_ha_geodesica": "3.810215",
-      "centroide_lon": "-98.3885294",
-      "centroide_lat": "19.9507912",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "0.7782"
-    },
-    {
-      "id_parcela": "AGC_043",
-      "area_ha_origen": "7.15",
-      "area_ha_geodesica": "7.150915",
-      "centroide_lon": "-98.2605018",
-      "centroide_lat": "19.8515899",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "0.9971"
-    },
-    {
-      "id_parcela": "AGC_044",
-      "area_ha_origen": "0.68",
-      "area_ha_geodesica": "0.680328",
-      "centroide_lon": "-98.586252",
-      "centroide_lat": "19.6295369",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "35_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_045",
-      "area_ha_origen": "1.49",
-      "area_ha_geodesica": "1.487797",
-      "centroide_lon": "-98.2940258",
-      "centroide_lat": "19.8655017",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_046",
-      "area_ha_origen": "7.92",
-      "area_ha_geodesica": "7.917661",
-      "centroide_lon": "-98.5585032",
-      "centroide_lat": "19.5545031",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_047",
-      "area_ha_origen": "64.3",
-      "area_ha_geodesica": "64.301532",
-      "centroide_lon": "-98.3937642",
-      "centroide_lat": "19.8383846",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_048",
-      "area_ha_origen": "8.29",
-      "area_ha_geodesica": "8.289372",
-      "centroide_lon": "-98.51739",
-      "centroide_lat": "19.5514099",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "0.7692"
-    },
-    {
-      "id_parcela": "AGC_049",
-      "area_ha_origen": "0.87",
-      "area_ha_geodesica": "0.867448",
-      "centroide_lon": "-98.2360116",
-      "centroide_lat": "19.8859348",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_050",
-      "area_ha_origen": "2.42",
-      "area_ha_geodesica": "2.421718",
-      "centroide_lon": "-98.5901059",
-      "centroide_lat": "19.5810566",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_051",
-      "area_ha_origen": "11.12",
-      "area_ha_geodesica": "11.122517",
-      "centroide_lon": "-98.3478107",
-      "centroide_lat": "19.7510097",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "32_32",
-      "fraccion_en_celda_principal": "0.6827"
-    },
-    {
-      "id_parcela": "AGC_052",
-      "area_ha_origen": "6.23",
-      "area_ha_geodesica": "6.228336",
-      "centroide_lon": "-98.2787312",
-      "centroide_lat": "19.9288944",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_053",
-      "area_ha_origen": "8.54",
-      "area_ha_geodesica": "8.535491",
-      "centroide_lon": "-98.522293",
-      "centroide_lat": "19.5608703",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_054",
-      "area_ha_origen": "2.01",
-      "area_ha_geodesica": "2.011694",
-      "centroide_lon": "-98.5368068",
-      "centroide_lat": "19.5480927",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_055",
-      "area_ha_origen": "1.37",
-      "area_ha_geodesica": "1.370105",
-      "centroide_lon": "-98.2178743",
-      "centroide_lat": "19.8749898",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_056",
-      "area_ha_origen": "3.65",
-      "area_ha_geodesica": "3.647785",
-      "centroide_lon": "-98.2068046",
-      "centroide_lat": "19.8715152",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_057",
-      "area_ha_origen": "0.63",
-      "area_ha_geodesica": "0.628188",
-      "centroide_lon": "-98.2493407",
-      "centroide_lat": "19.8800098",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_058",
-      "area_ha_origen": "7.7",
-      "area_ha_geodesica": "7.699129",
-      "centroide_lon": "-98.5359834",
-      "centroide_lat": "19.5576402",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_059",
-      "area_ha_origen": "19.53",
-      "area_ha_geodesica": "19.530781",
-      "centroide_lon": "-98.2652483",
-      "centroide_lat": "19.7994974",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "32_33",
-      "fraccion_en_celda_principal": "0.6382"
-    },
-    {
-      "id_parcela": "AGC_060",
-      "area_ha_origen": "2.34",
-      "area_ha_geodesica": "2.341734",
-      "centroide_lon": "-98.2554323",
-      "centroide_lat": "19.8793016",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_061",
-      "area_ha_origen": "7.23",
-      "area_ha_geodesica": "7.234547",
-      "centroide_lon": "-98.6115314",
-      "centroide_lat": "19.5344654",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_26",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_062",
-      "area_ha_origen": "2",
-      "area_ha_geodesica": "1.999222",
-      "centroide_lon": "-98.2723876",
-      "centroide_lat": "19.8567107",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_063",
-      "area_ha_origen": "12.54",
-      "area_ha_geodesica": "12.544529",
-      "centroide_lon": "-98.2777295",
-      "centroide_lat": "19.8591216",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_064",
-      "area_ha_origen": "2.45",
-      "area_ha_geodesica": "2.446255",
-      "centroide_lon": "-98.2757035",
-      "centroide_lat": "19.9294037",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_065",
-      "area_ha_origen": "60.88",
-      "area_ha_geodesica": "60.882842",
-      "centroide_lon": "-98.3413351",
-      "centroide_lat": "19.7671919",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "32_32",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_066",
-      "area_ha_origen": "7.15",
-      "area_ha_geodesica": "7.148586",
-      "centroide_lon": "-98.5219996",
-      "centroide_lat": "19.5990919",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "0.8006"
-    },
-    {
-      "id_parcela": "AGC_067",
-      "area_ha_origen": "1.53",
-      "area_ha_geodesica": "1.52774",
-      "centroide_lon": "-98.4085438",
-      "centroide_lat": "19.9479329",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_068",
-      "area_ha_origen": "3.1",
-      "area_ha_geodesica": "3.095241",
-      "centroide_lon": "-98.5231383",
-      "centroide_lat": "19.5920543",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_069",
-      "area_ha_origen": "0.38",
-      "area_ha_geodesica": "0.375209",
-      "centroide_lon": "-98.2480056",
-      "centroide_lat": "19.8693958",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_070",
-      "area_ha_origen": "20.83",
-      "area_ha_geodesica": "20.828837",
-      "centroide_lon": "-98.3946021",
-      "centroide_lat": "19.954151",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_071",
-      "area_ha_origen": "5.21",
-      "area_ha_geodesica": "5.205054",
-      "centroide_lon": "-98.5335053",
-      "centroide_lat": "19.5593",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_072",
-      "area_ha_origen": "4.38",
-      "area_ha_geodesica": "4.382197",
-      "centroide_lon": "-98.2360216",
-      "centroide_lat": "19.8897076",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_073",
-      "area_ha_origen": "2.05",
-      "area_ha_geodesica": "2.049353",
-      "centroide_lon": "-98.2707405",
-      "centroide_lat": "19.8575486",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_074",
-      "area_ha_origen": "8.54",
-      "area_ha_geodesica": "8.539352",
-      "centroide_lon": "-98.6097807",
-      "centroide_lat": "19.5257365",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_26",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_075",
-      "area_ha_origen": "3.9",
-      "area_ha_geodesica": "3.903607",
-      "centroide_lon": "-98.5457397",
-      "centroide_lat": "19.5640248",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_076",
-      "area_ha_origen": "1.01",
-      "area_ha_geodesica": "1.00728",
-      "centroide_lon": "-98.2663074",
-      "centroide_lat": "19.880922",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_077",
-      "area_ha_origen": "6.08",
-      "area_ha_geodesica": "6.083511",
-      "centroide_lon": "-98.2524701",
-      "centroide_lat": "19.8898459",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_078",
-      "area_ha_origen": "2.3",
-      "area_ha_geodesica": "2.297887",
-      "centroide_lon": "-98.4120178",
-      "centroide_lat": "19.9540309",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_079",
-      "area_ha_origen": "18.87",
-      "area_ha_geodesica": "18.87192",
-      "centroide_lon": "-98.385746",
-      "centroide_lat": "19.9592673",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_080",
-      "area_ha_origen": "18.99",
-      "area_ha_geodesica": "18.991302",
-      "centroide_lon": "-98.429908",
-      "centroide_lat": "19.9766124",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_081",
-      "area_ha_origen": "3.28",
-      "area_ha_geodesica": "3.278658",
-      "centroide_lon": "-98.3714322",
-      "centroide_lat": "19.9805927",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_082",
-      "area_ha_origen": "2.77",
-      "area_ha_geodesica": "2.774141",
-      "centroide_lon": "-98.2692563",
-      "centroide_lat": "19.8018603",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "0.8871"
-    },
-    {
-      "id_parcela": "AGC_083",
-      "area_ha_origen": "2.87",
-      "area_ha_geodesica": "2.866407",
-      "centroide_lon": "-98.2925682",
-      "centroide_lat": "19.888302",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_084",
-      "area_ha_origen": "12.42",
-      "area_ha_geodesica": "12.418986",
-      "centroide_lon": "-98.2873044",
-      "centroide_lat": "19.7989293",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "32_33",
-      "fraccion_en_celda_principal": "0.7557"
-    },
-    {
-      "id_parcela": "AGC_085",
-      "area_ha_origen": "5.5",
-      "area_ha_geodesica": "5.502192",
-      "centroide_lon": "-98.2520166",
-      "centroide_lat": "19.8526702",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_086",
-      "area_ha_origen": "4.73",
-      "area_ha_geodesica": "4.734342",
-      "centroide_lon": "-98.5316732",
-      "centroide_lat": "19.5844866",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_087",
-      "area_ha_origen": "5.66",
-      "area_ha_geodesica": "5.661779",
-      "centroide_lon": "-98.5388596",
-      "centroide_lat": "19.5486854",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_088",
-      "area_ha_origen": "5.91",
-      "area_ha_geodesica": "5.909899",
-      "centroide_lon": "-98.2379385",
-      "centroide_lat": "19.8940273",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_089",
-      "area_ha_origen": "1.72",
-      "area_ha_geodesica": "1.715047",
-      "centroide_lon": "-98.4098452",
-      "centroide_lat": "19.9515974",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_090",
-      "area_ha_origen": "10.98",
-      "area_ha_geodesica": "10.97511",
-      "centroide_lon": "-98.2873554",
-      "centroide_lat": "19.8543805",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_091",
-      "area_ha_origen": "0.35",
-      "area_ha_geodesica": "0.351657",
-      "centroide_lon": "-98.2391361",
-      "centroide_lat": "19.8597158",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_092",
-      "area_ha_origen": "0.5",
-      "area_ha_geodesica": "0.502429",
-      "centroide_lon": "-98.2416178",
-      "centroide_lat": "19.8618177",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_093",
-      "area_ha_origen": "3.71",
-      "area_ha_geodesica": "3.711556",
-      "centroide_lon": "-98.5462595",
-      "centroide_lat": "19.5622521",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_094",
-      "area_ha_origen": "3.63",
-      "area_ha_geodesica": "3.627132",
-      "centroide_lon": "-98.2051013",
-      "centroide_lat": "19.8709975",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_095",
-      "area_ha_origen": "1.33",
-      "area_ha_geodesica": "1.334683",
-      "centroide_lon": "-98.2613661",
-      "centroide_lat": "19.8760469",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_096",
-      "area_ha_origen": "12.87",
-      "area_ha_geodesica": "12.865658",
-      "centroide_lon": "-98.2700943",
-      "centroide_lat": "19.8770511",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_097",
-      "area_ha_origen": "2.35",
-      "area_ha_geodesica": "2.347607",
-      "centroide_lon": "-98.2173397",
-      "centroide_lat": "19.8623633",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_098",
-      "area_ha_origen": "4.9",
-      "area_ha_geodesica": "4.8992",
-      "centroide_lon": "-98.5788673",
-      "centroide_lat": "19.5455808",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_099",
-      "area_ha_origen": "1.17",
-      "area_ha_geodesica": "1.174664",
-      "centroide_lon": "-98.5288387",
-      "centroide_lat": "19.5700802",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_100",
-      "area_ha_origen": "11.24",
-      "area_ha_geodesica": "11.237874",
-      "centroide_lon": "-98.2911011",
-      "centroide_lat": "19.8589675",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_101",
-      "area_ha_origen": "12.35",
-      "area_ha_geodesica": "12.347702",
-      "centroide_lon": "-98.2764017",
-      "centroide_lat": "19.8740231",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_102",
-      "area_ha_origen": "12.75",
-      "area_ha_geodesica": "12.745382",
-      "centroide_lon": "-98.2800311",
-      "centroide_lat": "19.8727544",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_103",
-      "area_ha_origen": "2.48",
-      "area_ha_geodesica": "2.476168",
-      "centroide_lon": "-98.5838036",
-      "centroide_lat": "19.5837803",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_104",
-      "area_ha_origen": "3.02",
-      "area_ha_geodesica": "3.020704",
-      "centroide_lon": "-98.2508902",
-      "centroide_lat": "19.8586744",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_105",
-      "area_ha_origen": "2.99",
-      "area_ha_geodesica": "2.992545",
-      "centroide_lon": "-98.2572442",
-      "centroide_lat": "19.8508673",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_106",
-      "area_ha_origen": "6.09",
-      "area_ha_geodesica": "6.089202",
-      "centroide_lon": "-98.2597173",
-      "centroide_lat": "19.8568103",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_107",
-      "area_ha_origen": "2.63",
-      "area_ha_geodesica": "2.632288",
-      "centroide_lon": "-98.2656511",
-      "centroide_lat": "19.8048744",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_108",
-      "area_ha_origen": "3.79",
-      "area_ha_geodesica": "3.790377",
-      "centroide_lon": "-98.217371",
-      "centroide_lat": "19.8899378",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_109",
-      "area_ha_origen": "3.14",
-      "area_ha_geodesica": "3.144433",
-      "centroide_lon": "-98.2204005",
-      "centroide_lat": "19.8630924",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_110",
-      "area_ha_origen": "6.19",
-      "area_ha_geodesica": "6.190575",
-      "centroide_lon": "-98.2589536",
-      "centroide_lat": "19.8550308",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_111",
-      "area_ha_origen": "1.71",
-      "area_ha_geodesica": "1.708536",
-      "centroide_lon": "-98.2463984",
-      "centroide_lat": "19.8949186",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_112",
-      "area_ha_origen": "7.96",
-      "area_ha_geodesica": "7.956615",
-      "centroide_lon": "-98.5270966",
-      "centroide_lat": "19.5873489",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_113",
-      "area_ha_origen": "10.58",
-      "area_ha_geodesica": "10.578437",
-      "centroide_lon": "-98.3895108",
-      "centroide_lat": "19.9552769",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_114",
-      "area_ha_origen": "6.95",
-      "area_ha_geodesica": "6.948133",
-      "centroide_lon": "-98.5768822",
-      "centroide_lat": "19.5529867",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_115",
-      "area_ha_origen": "1.93",
-      "area_ha_geodesica": "1.93369",
-      "centroide_lon": "-98.2710438",
-      "centroide_lat": "19.8573559",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_116",
-      "area_ha_origen": "7.43",
-      "area_ha_geodesica": "7.430512",
-      "centroide_lon": "-98.2621495",
-      "centroide_lat": "19.8480919",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_117",
-      "area_ha_origen": "5.68",
-      "area_ha_geodesica": "5.677264",
-      "centroide_lon": "-98.5211852",
-      "centroide_lat": "19.5593472",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_118",
-      "area_ha_origen": "4.42",
-      "area_ha_geodesica": "4.419281",
-      "centroide_lon": "-98.4231463",
-      "centroide_lat": "19.947551",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_119",
-      "area_ha_origen": "0.64",
-      "area_ha_geodesica": "0.642354",
-      "centroide_lon": "-98.2768009",
-      "centroide_lat": "19.9267857",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_120",
-      "area_ha_origen": "7.47",
-      "area_ha_geodesica": "7.47088",
-      "centroide_lon": "-98.5366974",
-      "centroide_lat": "19.5367189",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "37_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_121",
-      "area_ha_origen": "5.92",
-      "area_ha_geodesica": "5.919799",
-      "centroide_lon": "-98.4135968",
-      "centroide_lat": "19.9510979",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "0.827"
-    },
-    {
-      "id_parcela": "AGC_122",
-      "area_ha_origen": "7.45",
-      "area_ha_geodesica": "7.446961",
-      "centroide_lon": "-98.6006316",
-      "centroide_lat": "19.5415429",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "37_26",
-      "fraccion_en_celda_principal": "0.8741"
-    },
-    {
-      "id_parcela": "AGC_123",
-      "area_ha_origen": "8.01",
-      "area_ha_geodesica": "8.011876",
-      "centroide_lon": "-98.5989618",
-      "centroide_lat": "19.5512693",
-      "celdas_clima_tocadas": "3",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "0.7083"
-    },
-    {
-      "id_parcela": "AGC_124",
-      "area_ha_origen": "1.96",
-      "area_ha_geodesica": "1.960498",
-      "centroide_lon": "-98.2262256",
-      "centroide_lat": "19.8557122",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_125",
-      "area_ha_origen": "10.14",
-      "area_ha_geodesica": "10.136346",
-      "centroide_lon": "-98.2594484",
-      "centroide_lat": "19.8477495",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "0.9015"
-    },
-    {
-      "id_parcela": "AGC_126",
-      "area_ha_origen": "5.75",
-      "area_ha_geodesica": "5.747186",
-      "centroide_lon": "-98.2437073",
-      "centroide_lat": "19.895893",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_127",
-      "area_ha_origen": "0.91",
-      "area_ha_geodesica": "0.914796",
-      "centroide_lon": "-98.2561756",
-      "centroide_lat": "19.8802738",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_128",
-      "area_ha_origen": "6.15",
-      "area_ha_geodesica": "6.150054",
-      "centroide_lon": "-98.26919",
-      "centroide_lat": "19.8051659",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_129",
-      "area_ha_origen": "8.16",
-      "area_ha_geodesica": "8.156884",
-      "centroide_lon": "-98.3740354",
-      "centroide_lat": "19.976635",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_130",
-      "area_ha_origen": "12.1",
-      "area_ha_geodesica": "12.097472",
-      "centroide_lon": "-98.2734582",
-      "centroide_lat": "19.9328316",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_131",
-      "area_ha_origen": "1.46",
-      "area_ha_geodesica": "1.459918",
-      "centroide_lon": "-98.2637112",
-      "centroide_lat": "19.8744845",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_132",
-      "area_ha_origen": "6.1",
-      "area_ha_geodesica": "6.095431",
-      "centroide_lon": "-98.2332033",
-      "centroide_lat": "19.8935825",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_133",
-      "area_ha_origen": "6.08",
-      "area_ha_geodesica": "6.084338",
-      "centroide_lon": "-98.2495536",
-      "centroide_lat": "19.8913249",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "0.659"
-    },
-    {
-      "id_parcela": "AGC_134",
-      "area_ha_origen": "2.25",
-      "area_ha_geodesica": "2.252287",
-      "centroide_lon": "-98.3544482",
-      "centroide_lat": "19.750717",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "32_31",
-      "fraccion_en_celda_principal": "0.964"
-    },
-    {
-      "id_parcela": "AGC_135",
-      "area_ha_origen": "1.62",
-      "area_ha_geodesica": "1.623417",
-      "centroide_lon": "-98.2460748",
-      "centroide_lat": "19.8942007",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_136",
-      "area_ha_origen": "1.69",
-      "area_ha_geodesica": "1.688743",
-      "centroide_lon": "-98.254073",
-      "centroide_lat": "19.8598189",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_137",
-      "area_ha_origen": "24.81",
-      "area_ha_geodesica": "24.810588",
-      "centroide_lon": "-98.2832903",
-      "centroide_lat": "19.7637682",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "32_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_138",
-      "area_ha_origen": "7.86",
-      "area_ha_geodesica": "7.86067",
-      "centroide_lon": "-98.5256248",
-      "centroide_lat": "19.5658757",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_139",
-      "area_ha_origen": "1.92",
-      "area_ha_geodesica": "1.91537",
-      "centroide_lon": "-98.2716524",
-      "centroide_lat": "19.8570179",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_140",
-      "area_ha_origen": "4.13",
-      "area_ha_geodesica": "4.133104",
-      "centroide_lon": "-98.427676",
-      "centroide_lat": "19.9662448",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_141",
-      "area_ha_origen": "3.94",
-      "area_ha_geodesica": "3.935522",
-      "centroide_lon": "-98.5501895",
-      "centroide_lat": "19.5625958",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "0.6342"
-    },
-    {
-      "id_parcela": "AGC_142",
-      "area_ha_origen": "1.29",
-      "area_ha_geodesica": "1.290985",
-      "centroide_lon": "-98.2487033",
-      "centroide_lat": "19.8800278",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_143",
-      "area_ha_origen": "11.48",
-      "area_ha_geodesica": "11.483734",
-      "centroide_lon": "-98.2855334",
-      "centroide_lat": "19.8520762",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "0.9989"
-    },
-    {
-      "id_parcela": "AGC_144",
-      "area_ha_origen": "7.48",
-      "area_ha_geodesica": "7.483095",
-      "centroide_lon": "-98.5969123",
-      "centroide_lat": "19.5797644",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_145",
-      "area_ha_origen": "8.33",
-      "area_ha_geodesica": "8.330562",
-      "centroide_lon": "-98.5946503",
-      "centroide_lat": "19.5502915",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "0.6641"
-    },
-    {
-      "id_parcela": "AGC_146",
-      "area_ha_origen": "1.33",
-      "area_ha_geodesica": "1.330361",
-      "centroide_lon": "-98.2680161",
-      "centroide_lat": "19.8071165",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_147",
-      "area_ha_origen": "6.8",
-      "area_ha_geodesica": "6.796858",
-      "centroide_lon": "-98.6031543",
-      "centroide_lat": "19.5710068",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_26",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_148",
-      "area_ha_origen": "2.46",
-      "area_ha_geodesica": "2.458661",
-      "centroide_lon": "-98.409134",
-      "centroide_lat": "19.9529281",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_149",
-      "area_ha_origen": "8.99",
-      "area_ha_geodesica": "8.99384",
-      "centroide_lon": "-98.2763428",
-      "centroide_lat": "19.9316054",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_150",
-      "area_ha_origen": "1.99",
-      "area_ha_geodesica": "1.98858",
-      "centroide_lon": "-98.2497051",
-      "centroide_lat": "19.85833",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "0.8657"
-    },
-    {
-      "id_parcela": "AGC_151",
-      "area_ha_origen": "9.32",
-      "area_ha_geodesica": "9.324529",
-      "centroide_lon": "-98.2824256",
-      "centroide_lat": "19.7729968",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "32_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_152",
-      "area_ha_origen": "2.63",
-      "area_ha_geodesica": "2.631521",
-      "centroide_lon": "-98.277033",
-      "centroide_lat": "19.7770025",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "32_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_153",
-      "area_ha_origen": "1.99",
-      "area_ha_geodesica": "1.985979",
-      "centroide_lon": "-98.2609226",
-      "centroide_lat": "19.8630131",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_154",
-      "area_ha_origen": "1.49",
-      "area_ha_geodesica": "1.491615",
-      "centroide_lon": "-98.2630773",
-      "centroide_lat": "19.8771192",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_155",
-      "area_ha_origen": "2.24",
-      "area_ha_geodesica": "2.243484",
-      "centroide_lon": "-98.223746",
-      "centroide_lat": "19.8844023",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_156",
-      "area_ha_origen": "8.2",
-      "area_ha_geodesica": "8.197419",
-      "centroide_lon": "-98.4335704",
-      "centroide_lat": "19.9703608",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "28_30",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_157",
-      "area_ha_origen": "1.18",
-      "area_ha_geodesica": "1.179216",
-      "centroide_lon": "-98.5494093",
-      "centroide_lat": "19.5637507",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "0.9085"
-    },
-    {
-      "id_parcela": "AGC_158",
-      "area_ha_origen": "11.22",
-      "area_ha_geodesica": "11.222537",
-      "centroide_lon": "-98.2780823",
-      "centroide_lat": "19.8702767",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_159",
-      "area_ha_origen": "2.14",
-      "area_ha_geodesica": "2.142544",
-      "centroide_lon": "-98.2432882",
-      "centroide_lat": "19.8606788",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_160",
       "area_ha_origen": "7.61",
-      "area_ha_geodesica": "7.612533",
-      "centroide_lon": "-98.2225643",
-      "centroide_lat": "19.8520159",
+      "celda_clima_principal": "37_27",
       "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
+      "centroide_lat": "19.5421006",
+      "centroide_lon": "-98.5620797",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_001"
     },
     {
-      "id_parcela": "AGC_161",
-      "area_ha_origen": "3.36",
-      "area_ha_geodesica": "3.358949",
-      "centroide_lon": "-98.2202004",
-      "centroide_lat": "19.8659539",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_162",
-      "area_ha_origen": "4.93",
-      "area_ha_geodesica": "4.928268",
-      "centroide_lon": "-98.2327049",
-      "centroide_lat": "19.8837107",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_163",
-      "area_ha_origen": "2.57",
-      "area_ha_geodesica": "2.565923",
-      "centroide_lon": "-98.5494388",
-      "centroide_lat": "19.5647887",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "0.7927"
-    },
-    {
-      "id_parcela": "AGC_164",
-      "area_ha_origen": "11.84",
-      "area_ha_geodesica": "11.837268",
-      "centroide_lon": "-98.5222196",
-      "centroide_lat": "19.6100494",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "35_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_165",
-      "area_ha_origen": "6.21",
-      "area_ha_geodesica": "6.205841",
-      "centroide_lon": "-98.2372601",
-      "centroide_lat": "19.8929842",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_166",
-      "area_ha_origen": "6.76",
-      "area_ha_geodesica": "6.757887",
-      "centroide_lon": "-98.3967659",
-      "centroide_lat": "19.9451997",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "29_31",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_167",
-      "area_ha_origen": "2.46",
-      "area_ha_geodesica": "2.463541",
-      "centroide_lon": "-98.23992",
-      "centroide_lat": "19.8601213",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_168",
-      "area_ha_origen": "1.53",
-      "area_ha_geodesica": "1.528142",
-      "centroide_lon": "-98.265496",
-      "centroide_lat": "19.8782396",
-      "celdas_clima_tocadas": "1",
+      "area_ha_geodesica": "2.309197",
+      "area_ha_origen": "2.31",
       "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_169",
-      "area_ha_origen": "2.51",
-      "area_ha_geodesica": "2.513501",
-      "centroide_lon": "-98.5288705",
-      "centroide_lat": "19.5908348",
       "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "1.0"
+      "centroide_lat": "19.861052",
+      "centroide_lon": "-98.2528981",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_002"
     },
     {
-      "id_parcela": "AGC_170",
-      "area_ha_origen": "8.13",
-      "area_ha_geodesica": "8.128849",
-      "centroide_lon": "-98.5254405",
-      "centroide_lat": "19.6091787",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "35_28",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_171",
-      "area_ha_origen": "11.63",
-      "area_ha_geodesica": "11.632051",
-      "centroide_lon": "-98.2710122",
-      "centroide_lat": "19.8676407",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_172",
-      "area_ha_origen": "2.33",
-      "area_ha_geodesica": "2.329316",
-      "centroide_lon": "-98.232325",
-      "centroide_lat": "19.8997424",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "0.7327"
-    },
-    {
-      "id_parcela": "AGC_173",
-      "area_ha_origen": "3.6",
-      "area_ha_geodesica": "3.595523",
-      "centroide_lon": "-98.561625",
-      "centroide_lat": "19.5956582",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "36_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_174",
-      "area_ha_origen": "6.89",
-      "area_ha_geodesica": "6.889965",
-      "centroide_lon": "-98.3042784",
-      "centroide_lat": "19.8981839",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_32",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_175",
-      "area_ha_origen": "1.41",
-      "area_ha_geodesica": "1.406628",
-      "centroide_lon": "-98.2416137",
-      "centroide_lat": "19.8529969",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_176",
-      "area_ha_origen": "7.15",
-      "area_ha_geodesica": "7.145039",
-      "centroide_lon": "-98.2350538",
-      "centroide_lat": "19.8487605",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "31_34",
-      "fraccion_en_celda_principal": "0.983"
-    },
-    {
-      "id_parcela": "AGC_177",
-      "area_ha_origen": "5.66",
-      "area_ha_geodesica": "5.660743",
-      "centroide_lon": "-98.2532845",
-      "centroide_lat": "19.8530508",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_178",
-      "area_ha_origen": "9.82",
-      "area_ha_geodesica": "9.816091",
-      "centroide_lon": "-98.2942215",
-      "centroide_lat": "19.858143",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_179",
-      "area_ha_origen": "6.35",
-      "area_ha_geodesica": "6.345054",
-      "centroide_lon": "-98.2257577",
-      "centroide_lat": "19.8585592",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_180",
-      "area_ha_origen": "10.9",
-      "area_ha_geodesica": "10.90255",
-      "centroide_lon": "-98.3509657",
-      "centroide_lat": "19.7492122",
-      "celdas_clima_tocadas": "3",
-      "celda_clima_principal": "33_31",
-      "fraccion_en_celda_principal": "0.5573"
-    },
-    {
-      "id_parcela": "AGC_181",
-      "area_ha_origen": "1.49",
-      "area_ha_geodesica": "1.49406",
-      "centroide_lon": "-98.2596699",
-      "centroide_lat": "19.8749669",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_182",
-      "area_ha_origen": "4.13",
-      "area_ha_geodesica": "4.128622",
-      "centroide_lon": "-98.2440638",
-      "centroide_lat": "19.8481497",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_183",
-      "area_ha_origen": "7.85",
-      "area_ha_geodesica": "7.848478",
-      "centroide_lon": "-98.5498345",
-      "centroide_lat": "19.574596",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "36_28",
-      "fraccion_en_celda_principal": "0.5452"
-    },
-    {
-      "id_parcela": "AGC_184",
-      "area_ha_origen": "9.96",
-      "area_ha_geodesica": "9.956604",
-      "centroide_lon": "-98.2656034",
-      "centroide_lat": "19.8066822",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_185",
-      "area_ha_origen": "11.88",
-      "area_ha_geodesica": "11.876377",
-      "centroide_lon": "-98.2815114",
-      "centroide_lat": "19.8636118",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_186",
-      "area_ha_origen": "11.7",
-      "area_ha_geodesica": "11.695291",
-      "centroide_lon": "-98.2774935",
-      "centroide_lat": "19.8554965",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_187",
-      "area_ha_origen": "8.04",
-      "area_ha_geodesica": "8.036957",
-      "centroide_lon": "-98.5732205",
-      "centroide_lat": "19.6063769",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "35_27",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_188",
-      "area_ha_origen": "2.34",
-      "area_ha_geodesica": "2.343941",
-      "centroide_lon": "-98.2396373",
-      "centroide_lat": "19.8532291",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_189",
-      "area_ha_origen": "4.6",
-      "area_ha_geodesica": "4.595343",
-      "centroide_lon": "-98.2547705",
-      "centroide_lat": "19.8405409",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "31_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_190",
-      "area_ha_origen": "5.01",
-      "area_ha_geodesica": "5.009281",
-      "centroide_lon": "-98.2345692",
-      "centroide_lat": "19.8963023",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_191",
-      "area_ha_origen": "1.75",
-      "area_ha_geodesica": "1.749989",
-      "centroide_lon": "-98.2509646",
-      "centroide_lat": "19.8788756",
-      "celdas_clima_tocadas": "2",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "0.9979"
-    },
-    {
-      "id_parcela": "AGC_192",
-      "area_ha_origen": "2.14",
-      "area_ha_geodesica": "2.135765",
-      "centroide_lon": "-98.2274878",
-      "centroide_lat": "19.8660555",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_34",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_193",
-      "area_ha_origen": "12.41",
-      "area_ha_geodesica": "12.413158",
-      "centroide_lon": "-98.2742989",
-      "centroide_lat": "19.8657711",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
-    },
-    {
-      "id_parcela": "AGC_194",
-      "area_ha_origen": "4.12",
-      "area_ha_geodesica": "4.121918",
-      "centroide_lon": "-98.3923619",
-      "centroide_lat": "19.9505091",
-      "celdas_clima_tocadas": "2",
+      "area_ha_geodesica": "18.681726",
+      "area_ha_origen": "18.68",
       "celda_clima_principal": "28_31",
-      "fraccion_en_celda_principal": "0.7803"
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9813724",
+      "centroide_lon": "-98.3749957",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_003"
     },
     {
-      "id_parcela": "AGC_195",
+      "area_ha_geodesica": "8.00047",
+      "area_ha_origen": "8",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5779596",
+      "centroide_lon": "-98.5367058",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_004"
+    },
+    {
+      "area_ha_geodesica": "2.272741",
+      "area_ha_origen": "2.27",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8589611",
+      "centroide_lon": "-98.2440957",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_005"
+    },
+    {
+      "area_ha_geodesica": "3.836653",
+      "area_ha_origen": "3.84",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8983018",
+      "centroide_lon": "-98.2363435",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_006"
+    },
+    {
+      "area_ha_geodesica": "2.873956",
+      "area_ha_origen": "2.87",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9559177",
+      "centroide_lon": "-98.4155935",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_007"
+    },
+    {
+      "area_ha_geodesica": "10.768254",
+      "area_ha_origen": "10.77",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8631569",
+      "centroide_lon": "-98.2716456",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_008"
+    },
+    {
+      "area_ha_geodesica": "0.375767",
+      "area_ha_origen": "0.38",
+      "celda_clima_principal": "29_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9275347",
+      "centroide_lon": "-98.2768829",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_009"
+    },
+    {
+      "area_ha_geodesica": "7.266501",
+      "area_ha_origen": "7.27",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8559161",
+      "centroide_lon": "-98.2639305",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_010"
+    },
+    {
+      "area_ha_geodesica": "7.169462",
+      "area_ha_origen": "7.17",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8642652",
+      "centroide_lon": "-98.2090373",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_011"
+    },
+    {
+      "area_ha_geodesica": "4.077016",
+      "area_ha_origen": "4.08",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8878781",
+      "centroide_lon": "-98.2382653",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_012"
+    },
+    {
+      "area_ha_geodesica": "5.597984",
+      "area_ha_origen": "5.6",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8919367",
+      "centroide_lon": "-98.2366934",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_013"
+    },
+    {
+      "area_ha_geodesica": "7.437406",
+      "area_ha_origen": "7.44",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8495363",
+      "centroide_lon": "-98.2633121",
+      "fraccion_en_celda_principal": "0.7231",
+      "id_parcela": "AGC_014"
+    },
+    {
+      "area_ha_geodesica": "1.969457",
+      "area_ha_origen": "1.97",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.866067",
+      "centroide_lon": "-98.2374159",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_015"
+    },
+    {
+      "area_ha_geodesica": "7.46735",
+      "area_ha_origen": "7.47",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8625548",
+      "centroide_lon": "-98.2532598",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_016"
+    },
+    {
+      "area_ha_geodesica": "1.59548",
+      "area_ha_origen": "1.6",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.850634",
+      "centroide_lon": "-98.2412876",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_017"
+    },
+    {
+      "area_ha_geodesica": "1.66808",
+      "area_ha_origen": "1.67",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8644089",
+      "centroide_lon": "-98.2954847",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_018"
+    },
+    {
+      "area_ha_geodesica": "5.651976",
+      "area_ha_origen": "5.65",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5845706",
+      "centroide_lon": "-98.5857595",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_019"
+    },
+    {
+      "area_ha_geodesica": "8.338138",
+      "area_ha_origen": "8.34",
+      "celda_clima_principal": "35_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6279219",
+      "centroide_lon": "-98.5861141",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_020"
+    },
+    {
+      "area_ha_geodesica": "2.864494",
+      "area_ha_origen": "2.86",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8624526",
+      "centroide_lon": "-98.217935",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_021"
+    },
+    {
+      "area_ha_geodesica": "11.99426",
+      "area_ha_origen": "11.99",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8757093",
+      "centroide_lon": "-98.2670439",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_022"
+    },
+    {
+      "area_ha_geodesica": "7.716441",
+      "area_ha_origen": "7.72",
+      "celda_clima_principal": "35_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6064315",
+      "centroide_lon": "-98.5231396",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_023"
+    },
+    {
+      "area_ha_geodesica": "11.52753",
+      "area_ha_origen": "11.53",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8697038",
+      "centroide_lon": "-98.2728645",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_024"
+    },
+    {
+      "area_ha_geodesica": "2.004694",
+      "area_ha_origen": "2",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5915543",
+      "centroide_lon": "-98.5369035",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_025"
+    },
+    {
+      "area_ha_geodesica": "5.49273",
+      "area_ha_origen": "5.49",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8523421",
+      "centroide_lon": "-98.2498806",
+      "fraccion_en_celda_principal": "0.5802",
+      "id_parcela": "AGC_026"
+    },
+    {
+      "area_ha_geodesica": "8.461023",
+      "area_ha_origen": "8.46",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.562104",
+      "centroide_lon": "-98.5376456",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_027"
+    },
+    {
+      "area_ha_geodesica": "1.858801",
+      "area_ha_origen": "1.86",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8767619",
+      "centroide_lon": "-98.2600926",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_028"
+    },
+    {
+      "area_ha_geodesica": "5.898326",
+      "area_ha_origen": "5.9",
+      "celda_clima_principal": "37_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.546916",
+      "centroide_lon": "-98.5566235",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_029"
+    },
+    {
+      "area_ha_geodesica": "13.050066",
+      "area_ha_origen": "13.05",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9582869",
+      "centroide_lon": "-98.4102864",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_030"
+    },
+    {
+      "area_ha_geodesica": "1.984358",
+      "area_ha_origen": "1.98",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8618693",
+      "centroide_lon": "-98.2659691",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_031"
+    },
+    {
+      "area_ha_geodesica": "1.435852",
+      "area_ha_origen": "1.44",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8731265",
+      "centroide_lon": "-98.2564003",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_032"
+    },
+    {
+      "area_ha_geodesica": "21.04132",
+      "area_ha_origen": "21.04",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8560912",
+      "centroide_lon": "-98.2002463",
+      "fraccion_en_celda_principal": "0.5296",
+      "id_parcela": "AGC_033"
+    },
+    {
+      "area_ha_geodesica": "8.087407",
+      "area_ha_origen": "8.09",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9543755",
+      "centroide_lon": "-98.3849003",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_034"
+    },
+    {
+      "area_ha_geodesica": "23.797252",
+      "area_ha_origen": "23.8",
+      "celda_clima_principal": "30_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8698739",
+      "centroide_lon": "-98.3625697",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_035"
+    },
+    {
+      "area_ha_geodesica": "4.995825",
+      "area_ha_origen": "5",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8560916",
+      "centroide_lon": "-98.2516021",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_036"
+    },
+    {
+      "area_ha_geodesica": "2.661752",
+      "area_ha_origen": "2.66",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5581295",
+      "centroide_lon": "-98.5320887",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_037"
+    },
+    {
+      "area_ha_geodesica": "3.276262",
+      "area_ha_origen": "3.28",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9532924",
+      "centroide_lon": "-98.3899766",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_038"
+    },
+    {
+      "area_ha_geodesica": "7.70886",
+      "area_ha_origen": "7.71",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5754785",
+      "centroide_lon": "-98.5960552",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_039"
+    },
+    {
+      "area_ha_geodesica": "5.455096",
+      "area_ha_origen": "5.46",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5950062",
+      "centroide_lon": "-98.5379733",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_040"
+    },
+    {
+      "area_ha_geodesica": "25.127046",
+      "area_ha_origen": "25.13",
+      "celda_clima_principal": "29_31",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.9469544",
+      "centroide_lon": "-98.3937716",
+      "fraccion_en_celda_principal": "0.975",
+      "id_parcela": "AGC_041"
+    },
+    {
+      "area_ha_geodesica": "3.810215",
+      "area_ha_origen": "3.81",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.9507912",
+      "centroide_lon": "-98.3885294",
+      "fraccion_en_celda_principal": "0.7782",
+      "id_parcela": "AGC_042"
+    },
+    {
+      "area_ha_geodesica": "7.150915",
+      "area_ha_origen": "7.15",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8515899",
+      "centroide_lon": "-98.2605018",
+      "fraccion_en_celda_principal": "0.9971",
+      "id_parcela": "AGC_043"
+    },
+    {
+      "area_ha_geodesica": "0.680328",
+      "area_ha_origen": "0.68",
+      "celda_clima_principal": "35_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6295369",
+      "centroide_lon": "-98.586252",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_044"
+    },
+    {
+      "area_ha_geodesica": "1.487797",
+      "area_ha_origen": "1.49",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8655017",
+      "centroide_lon": "-98.2940258",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_045"
+    },
+    {
+      "area_ha_geodesica": "7.917661",
+      "area_ha_origen": "7.92",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5545031",
+      "centroide_lon": "-98.5585032",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_046"
+    },
+    {
+      "area_ha_geodesica": "64.301532",
+      "area_ha_origen": "64.3",
+      "celda_clima_principal": "31_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8383846",
+      "centroide_lon": "-98.3937642",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_047"
+    },
+    {
+      "area_ha_geodesica": "8.289372",
+      "area_ha_origen": "8.29",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5514099",
+      "centroide_lon": "-98.51739",
+      "fraccion_en_celda_principal": "0.7692",
+      "id_parcela": "AGC_048"
+    },
+    {
+      "area_ha_geodesica": "0.867448",
+      "area_ha_origen": "0.87",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8859348",
+      "centroide_lon": "-98.2360116",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_049"
+    },
+    {
+      "area_ha_geodesica": "2.421718",
+      "area_ha_origen": "2.42",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5810566",
+      "centroide_lon": "-98.5901059",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_050"
+    },
+    {
+      "area_ha_geodesica": "11.122517",
+      "area_ha_origen": "11.12",
+      "celda_clima_principal": "32_32",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.7510097",
+      "centroide_lon": "-98.3478107",
+      "fraccion_en_celda_principal": "0.6827",
+      "id_parcela": "AGC_051"
+    },
+    {
+      "area_ha_geodesica": "6.228336",
+      "area_ha_origen": "6.23",
+      "celda_clima_principal": "29_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9288944",
+      "centroide_lon": "-98.2787312",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_052"
+    },
+    {
+      "area_ha_geodesica": "8.535491",
+      "area_ha_origen": "8.54",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5608703",
+      "centroide_lon": "-98.522293",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_053"
+    },
+    {
+      "area_ha_geodesica": "2.011694",
+      "area_ha_origen": "2.01",
+      "celda_clima_principal": "37_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5480927",
+      "centroide_lon": "-98.5368068",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_054"
+    },
+    {
+      "area_ha_geodesica": "1.370105",
+      "area_ha_origen": "1.37",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8749898",
+      "centroide_lon": "-98.2178743",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_055"
+    },
+    {
+      "area_ha_geodesica": "3.647785",
+      "area_ha_origen": "3.65",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8715152",
+      "centroide_lon": "-98.2068046",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_056"
+    },
+    {
+      "area_ha_geodesica": "0.628188",
+      "area_ha_origen": "0.63",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8800098",
+      "centroide_lon": "-98.2493407",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_057"
+    },
+    {
+      "area_ha_geodesica": "7.699129",
+      "area_ha_origen": "7.7",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5576402",
+      "centroide_lon": "-98.5359834",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_058"
+    },
+    {
+      "area_ha_geodesica": "19.530781",
+      "area_ha_origen": "19.53",
+      "celda_clima_principal": "32_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.7994974",
+      "centroide_lon": "-98.2652483",
+      "fraccion_en_celda_principal": "0.6382",
+      "id_parcela": "AGC_059"
+    },
+    {
+      "area_ha_geodesica": "2.341734",
+      "area_ha_origen": "2.34",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8793016",
+      "centroide_lon": "-98.2554323",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_060"
+    },
+    {
+      "area_ha_geodesica": "7.234547",
+      "area_ha_origen": "7.23",
+      "celda_clima_principal": "37_26",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5344654",
+      "centroide_lon": "-98.6115314",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_061"
+    },
+    {
+      "area_ha_geodesica": "1.999222",
+      "area_ha_origen": "2",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8567107",
+      "centroide_lon": "-98.2723876",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_062"
+    },
+    {
+      "area_ha_geodesica": "12.544529",
+      "area_ha_origen": "12.54",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8591216",
+      "centroide_lon": "-98.2777295",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_063"
+    },
+    {
+      "area_ha_geodesica": "2.446255",
+      "area_ha_origen": "2.45",
+      "celda_clima_principal": "29_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9294037",
+      "centroide_lon": "-98.2757035",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_064"
+    },
+    {
+      "area_ha_geodesica": "60.882842",
+      "area_ha_origen": "60.88",
+      "celda_clima_principal": "32_32",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.7671919",
+      "centroide_lon": "-98.3413351",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_065"
+    },
+    {
+      "area_ha_geodesica": "7.148586",
+      "area_ha_origen": "7.15",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5990919",
+      "centroide_lon": "-98.5219996",
+      "fraccion_en_celda_principal": "0.8006",
+      "id_parcela": "AGC_066"
+    },
+    {
+      "area_ha_geodesica": "1.52774",
+      "area_ha_origen": "1.53",
+      "celda_clima_principal": "29_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9479329",
+      "centroide_lon": "-98.4085438",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_067"
+    },
+    {
+      "area_ha_geodesica": "3.095241",
+      "area_ha_origen": "3.1",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5920543",
+      "centroide_lon": "-98.5231383",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_068"
+    },
+    {
+      "area_ha_geodesica": "0.375209",
+      "area_ha_origen": "0.38",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8693958",
+      "centroide_lon": "-98.2480056",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_069"
+    },
+    {
+      "area_ha_geodesica": "20.828837",
+      "area_ha_origen": "20.83",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.954151",
+      "centroide_lon": "-98.3946021",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_070"
+    },
+    {
+      "area_ha_geodesica": "5.205054",
+      "area_ha_origen": "5.21",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5593",
+      "centroide_lon": "-98.5335053",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_071"
+    },
+    {
+      "area_ha_geodesica": "4.382197",
+      "area_ha_origen": "4.38",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8897076",
+      "centroide_lon": "-98.2360216",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_072"
+    },
+    {
+      "area_ha_geodesica": "2.049353",
+      "area_ha_origen": "2.05",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8575486",
+      "centroide_lon": "-98.2707405",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_073"
+    },
+    {
+      "area_ha_geodesica": "8.539352",
+      "area_ha_origen": "8.54",
+      "celda_clima_principal": "37_26",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5257365",
+      "centroide_lon": "-98.6097807",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_074"
+    },
+    {
+      "area_ha_geodesica": "3.903607",
+      "area_ha_origen": "3.9",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5640248",
+      "centroide_lon": "-98.5457397",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_075"
+    },
+    {
+      "area_ha_geodesica": "1.00728",
+      "area_ha_origen": "1.01",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.880922",
+      "centroide_lon": "-98.2663074",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_076"
+    },
+    {
+      "area_ha_geodesica": "6.083511",
+      "area_ha_origen": "6.08",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8898459",
+      "centroide_lon": "-98.2524701",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_077"
+    },
+    {
+      "area_ha_geodesica": "2.297887",
+      "area_ha_origen": "2.3",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9540309",
+      "centroide_lon": "-98.4120178",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_078"
+    },
+    {
+      "area_ha_geodesica": "18.87192",
+      "area_ha_origen": "18.87",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9592673",
+      "centroide_lon": "-98.385746",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_079"
+    },
+    {
+      "area_ha_geodesica": "18.991302",
+      "area_ha_origen": "18.99",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9766124",
+      "centroide_lon": "-98.429908",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_080"
+    },
+    {
+      "area_ha_geodesica": "3.278658",
+      "area_ha_origen": "3.28",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9805927",
+      "centroide_lon": "-98.3714322",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_081"
+    },
+    {
+      "area_ha_geodesica": "2.774141",
+      "area_ha_origen": "2.77",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8018603",
+      "centroide_lon": "-98.2692563",
+      "fraccion_en_celda_principal": "0.8871",
+      "id_parcela": "AGC_082"
+    },
+    {
+      "area_ha_geodesica": "2.866407",
+      "area_ha_origen": "2.87",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.888302",
+      "centroide_lon": "-98.2925682",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_083"
+    },
+    {
+      "area_ha_geodesica": "12.418986",
+      "area_ha_origen": "12.42",
+      "celda_clima_principal": "32_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.7989293",
+      "centroide_lon": "-98.2873044",
+      "fraccion_en_celda_principal": "0.7557",
+      "id_parcela": "AGC_084"
+    },
+    {
+      "area_ha_geodesica": "5.502192",
+      "area_ha_origen": "5.5",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8526702",
+      "centroide_lon": "-98.2520166",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_085"
+    },
+    {
+      "area_ha_geodesica": "4.734342",
+      "area_ha_origen": "4.73",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5844866",
+      "centroide_lon": "-98.5316732",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_086"
+    },
+    {
+      "area_ha_geodesica": "5.661779",
+      "area_ha_origen": "5.66",
+      "celda_clima_principal": "37_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5486854",
+      "centroide_lon": "-98.5388596",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_087"
+    },
+    {
+      "area_ha_geodesica": "5.909899",
+      "area_ha_origen": "5.91",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8940273",
+      "centroide_lon": "-98.2379385",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_088"
+    },
+    {
+      "area_ha_geodesica": "1.715047",
+      "area_ha_origen": "1.72",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9515974",
+      "centroide_lon": "-98.4098452",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_089"
+    },
+    {
+      "area_ha_geodesica": "10.97511",
+      "area_ha_origen": "10.98",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8543805",
+      "centroide_lon": "-98.2873554",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_090"
+    },
+    {
+      "area_ha_geodesica": "0.351657",
+      "area_ha_origen": "0.35",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8597158",
+      "centroide_lon": "-98.2391361",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_091"
+    },
+    {
+      "area_ha_geodesica": "0.502429",
+      "area_ha_origen": "0.5",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8618177",
+      "centroide_lon": "-98.2416178",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_092"
+    },
+    {
+      "area_ha_geodesica": "3.711556",
+      "area_ha_origen": "3.71",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5622521",
+      "centroide_lon": "-98.5462595",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_093"
+    },
+    {
+      "area_ha_geodesica": "3.627132",
+      "area_ha_origen": "3.63",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8709975",
+      "centroide_lon": "-98.2051013",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_094"
+    },
+    {
+      "area_ha_geodesica": "1.334683",
+      "area_ha_origen": "1.33",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8760469",
+      "centroide_lon": "-98.2613661",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_095"
+    },
+    {
+      "area_ha_geodesica": "12.865658",
+      "area_ha_origen": "12.87",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8770511",
+      "centroide_lon": "-98.2700943",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_096"
+    },
+    {
+      "area_ha_geodesica": "2.347607",
+      "area_ha_origen": "2.35",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8623633",
+      "centroide_lon": "-98.2173397",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_097"
+    },
+    {
+      "area_ha_geodesica": "4.8992",
+      "area_ha_origen": "4.9",
+      "celda_clima_principal": "37_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5455808",
+      "centroide_lon": "-98.5788673",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_098"
+    },
+    {
+      "area_ha_geodesica": "1.174664",
+      "area_ha_origen": "1.17",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5700802",
+      "centroide_lon": "-98.5288387",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_099"
+    },
+    {
+      "area_ha_geodesica": "11.237874",
+      "area_ha_origen": "11.24",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8589675",
+      "centroide_lon": "-98.2911011",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_100"
+    },
+    {
+      "area_ha_geodesica": "12.347702",
+      "area_ha_origen": "12.35",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8740231",
+      "centroide_lon": "-98.2764017",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_101"
+    },
+    {
+      "area_ha_geodesica": "12.745382",
+      "area_ha_origen": "12.75",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8727544",
+      "centroide_lon": "-98.2800311",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_102"
+    },
+    {
+      "area_ha_geodesica": "2.476168",
+      "area_ha_origen": "2.48",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5837803",
+      "centroide_lon": "-98.5838036",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_103"
+    },
+    {
+      "area_ha_geodesica": "3.020704",
+      "area_ha_origen": "3.02",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8586744",
+      "centroide_lon": "-98.2508902",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_104"
+    },
+    {
+      "area_ha_geodesica": "2.992545",
+      "area_ha_origen": "2.99",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8508673",
+      "centroide_lon": "-98.2572442",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_105"
+    },
+    {
+      "area_ha_geodesica": "6.089202",
+      "area_ha_origen": "6.09",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8568103",
+      "centroide_lon": "-98.2597173",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_106"
+    },
+    {
+      "area_ha_geodesica": "2.632288",
+      "area_ha_origen": "2.63",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8048744",
+      "centroide_lon": "-98.2656511",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_107"
+    },
+    {
+      "area_ha_geodesica": "3.790377",
+      "area_ha_origen": "3.79",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8899378",
+      "centroide_lon": "-98.217371",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_108"
+    },
+    {
+      "area_ha_geodesica": "3.144433",
+      "area_ha_origen": "3.14",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8630924",
+      "centroide_lon": "-98.2204005",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_109"
+    },
+    {
+      "area_ha_geodesica": "6.190575",
+      "area_ha_origen": "6.19",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8550308",
+      "centroide_lon": "-98.2589536",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_110"
+    },
+    {
+      "area_ha_geodesica": "1.708536",
+      "area_ha_origen": "1.71",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8949186",
+      "centroide_lon": "-98.2463984",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_111"
+    },
+    {
+      "area_ha_geodesica": "7.956615",
+      "area_ha_origen": "7.96",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5873489",
+      "centroide_lon": "-98.5270966",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_112"
+    },
+    {
+      "area_ha_geodesica": "10.578437",
+      "area_ha_origen": "10.58",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9552769",
+      "centroide_lon": "-98.3895108",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_113"
+    },
+    {
+      "area_ha_geodesica": "6.948133",
+      "area_ha_origen": "6.95",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5529867",
+      "centroide_lon": "-98.5768822",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_114"
+    },
+    {
+      "area_ha_geodesica": "1.93369",
+      "area_ha_origen": "1.93",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8573559",
+      "centroide_lon": "-98.2710438",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_115"
+    },
+    {
+      "area_ha_geodesica": "7.430512",
+      "area_ha_origen": "7.43",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8480919",
+      "centroide_lon": "-98.2621495",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_116"
+    },
+    {
+      "area_ha_geodesica": "5.677264",
+      "area_ha_origen": "5.68",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5593472",
+      "centroide_lon": "-98.5211852",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_117"
+    },
+    {
+      "area_ha_geodesica": "4.419281",
+      "area_ha_origen": "4.42",
+      "celda_clima_principal": "29_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.947551",
+      "centroide_lon": "-98.4231463",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_118"
+    },
+    {
+      "area_ha_geodesica": "0.642354",
+      "area_ha_origen": "0.64",
+      "celda_clima_principal": "29_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9267857",
+      "centroide_lon": "-98.2768009",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_119"
+    },
+    {
+      "area_ha_geodesica": "7.47088",
+      "area_ha_origen": "7.47",
+      "celda_clima_principal": "37_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5367189",
+      "centroide_lon": "-98.5366974",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_120"
+    },
+    {
+      "area_ha_geodesica": "5.919799",
+      "area_ha_origen": "5.92",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.9510979",
+      "centroide_lon": "-98.4135968",
+      "fraccion_en_celda_principal": "0.827",
+      "id_parcela": "AGC_121"
+    },
+    {
+      "area_ha_geodesica": "7.446961",
+      "area_ha_origen": "7.45",
+      "celda_clima_principal": "37_26",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5415429",
+      "centroide_lon": "-98.6006316",
+      "fraccion_en_celda_principal": "0.8741",
+      "id_parcela": "AGC_122"
+    },
+    {
+      "area_ha_geodesica": "8.011876",
+      "area_ha_origen": "8.01",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "3",
+      "centroide_lat": "19.5512693",
+      "centroide_lon": "-98.5989618",
+      "fraccion_en_celda_principal": "0.7083",
+      "id_parcela": "AGC_123"
+    },
+    {
+      "area_ha_geodesica": "1.960498",
+      "area_ha_origen": "1.96",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8557122",
+      "centroide_lon": "-98.2262256",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_124"
+    },
+    {
+      "area_ha_geodesica": "10.136346",
+      "area_ha_origen": "10.14",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8477495",
+      "centroide_lon": "-98.2594484",
+      "fraccion_en_celda_principal": "0.9015",
+      "id_parcela": "AGC_125"
+    },
+    {
+      "area_ha_geodesica": "5.747186",
+      "area_ha_origen": "5.75",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.895893",
+      "centroide_lon": "-98.2437073",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_126"
+    },
+    {
+      "area_ha_geodesica": "0.914796",
+      "area_ha_origen": "0.91",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8802738",
+      "centroide_lon": "-98.2561756",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_127"
+    },
+    {
+      "area_ha_geodesica": "6.150054",
+      "area_ha_origen": "6.15",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8051659",
+      "centroide_lon": "-98.26919",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_128"
+    },
+    {
+      "area_ha_geodesica": "8.156884",
+      "area_ha_origen": "8.16",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.976635",
+      "centroide_lon": "-98.3740354",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_129"
+    },
+    {
+      "area_ha_geodesica": "12.097472",
+      "area_ha_origen": "12.1",
+      "celda_clima_principal": "29_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9328316",
+      "centroide_lon": "-98.2734582",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_130"
+    },
+    {
+      "area_ha_geodesica": "1.459918",
+      "area_ha_origen": "1.46",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8744845",
+      "centroide_lon": "-98.2637112",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_131"
+    },
+    {
+      "area_ha_geodesica": "6.095431",
+      "area_ha_origen": "6.1",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8935825",
+      "centroide_lon": "-98.2332033",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_132"
+    },
+    {
+      "area_ha_geodesica": "6.084338",
+      "area_ha_origen": "6.08",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8913249",
+      "centroide_lon": "-98.2495536",
+      "fraccion_en_celda_principal": "0.659",
+      "id_parcela": "AGC_133"
+    },
+    {
+      "area_ha_geodesica": "2.252287",
+      "area_ha_origen": "2.25",
+      "celda_clima_principal": "32_31",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.750717",
+      "centroide_lon": "-98.3544482",
+      "fraccion_en_celda_principal": "0.964",
+      "id_parcela": "AGC_134"
+    },
+    {
+      "area_ha_geodesica": "1.623417",
+      "area_ha_origen": "1.62",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8942007",
+      "centroide_lon": "-98.2460748",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_135"
+    },
+    {
+      "area_ha_geodesica": "1.688743",
+      "area_ha_origen": "1.69",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8598189",
+      "centroide_lon": "-98.254073",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_136"
+    },
+    {
+      "area_ha_geodesica": "24.810588",
+      "area_ha_origen": "24.81",
+      "celda_clima_principal": "32_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.7637682",
+      "centroide_lon": "-98.2832903",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_137"
+    },
+    {
+      "area_ha_geodesica": "7.86067",
+      "area_ha_origen": "7.86",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5658757",
+      "centroide_lon": "-98.5256248",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_138"
+    },
+    {
+      "area_ha_geodesica": "1.91537",
       "area_ha_origen": "1.92",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8570179",
+      "centroide_lon": "-98.2716524",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_139"
+    },
+    {
+      "area_ha_geodesica": "4.133104",
+      "area_ha_origen": "4.13",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9662448",
+      "centroide_lon": "-98.427676",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_140"
+    },
+    {
+      "area_ha_geodesica": "3.935522",
+      "area_ha_origen": "3.94",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5625958",
+      "centroide_lon": "-98.5501895",
+      "fraccion_en_celda_principal": "0.6342",
+      "id_parcela": "AGC_141"
+    },
+    {
+      "area_ha_geodesica": "1.290985",
+      "area_ha_origen": "1.29",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8800278",
+      "centroide_lon": "-98.2487033",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_142"
+    },
+    {
+      "area_ha_geodesica": "11.483734",
+      "area_ha_origen": "11.48",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8520762",
+      "centroide_lon": "-98.2855334",
+      "fraccion_en_celda_principal": "0.9989",
+      "id_parcela": "AGC_143"
+    },
+    {
+      "area_ha_geodesica": "7.483095",
+      "area_ha_origen": "7.48",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5797644",
+      "centroide_lon": "-98.5969123",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_144"
+    },
+    {
+      "area_ha_geodesica": "8.330562",
+      "area_ha_origen": "8.33",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5502915",
+      "centroide_lon": "-98.5946503",
+      "fraccion_en_celda_principal": "0.6641",
+      "id_parcela": "AGC_145"
+    },
+    {
+      "area_ha_geodesica": "1.330361",
+      "area_ha_origen": "1.33",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8071165",
+      "centroide_lon": "-98.2680161",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_146"
+    },
+    {
+      "area_ha_geodesica": "6.796858",
+      "area_ha_origen": "6.8",
+      "celda_clima_principal": "36_26",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5710068",
+      "centroide_lon": "-98.6031543",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_147"
+    },
+    {
+      "area_ha_geodesica": "2.458661",
+      "area_ha_origen": "2.46",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9529281",
+      "centroide_lon": "-98.409134",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_148"
+    },
+    {
+      "area_ha_geodesica": "8.99384",
+      "area_ha_origen": "8.99",
+      "celda_clima_principal": "29_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9316054",
+      "centroide_lon": "-98.2763428",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_149"
+    },
+    {
+      "area_ha_geodesica": "1.98858",
+      "area_ha_origen": "1.99",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.85833",
+      "centroide_lon": "-98.2497051",
+      "fraccion_en_celda_principal": "0.8657",
+      "id_parcela": "AGC_150"
+    },
+    {
+      "area_ha_geodesica": "9.324529",
+      "area_ha_origen": "9.32",
+      "celda_clima_principal": "32_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.7729968",
+      "centroide_lon": "-98.2824256",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_151"
+    },
+    {
+      "area_ha_geodesica": "2.631521",
+      "area_ha_origen": "2.63",
+      "celda_clima_principal": "32_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.7770025",
+      "centroide_lon": "-98.277033",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_152"
+    },
+    {
+      "area_ha_geodesica": "1.985979",
+      "area_ha_origen": "1.99",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8630131",
+      "centroide_lon": "-98.2609226",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_153"
+    },
+    {
+      "area_ha_geodesica": "1.491615",
+      "area_ha_origen": "1.49",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8771192",
+      "centroide_lon": "-98.2630773",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_154"
+    },
+    {
+      "area_ha_geodesica": "2.243484",
+      "area_ha_origen": "2.24",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8844023",
+      "centroide_lon": "-98.223746",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_155"
+    },
+    {
+      "area_ha_geodesica": "8.197419",
+      "area_ha_origen": "8.2",
+      "celda_clima_principal": "28_30",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9703608",
+      "centroide_lon": "-98.4335704",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_156"
+    },
+    {
+      "area_ha_geodesica": "1.179216",
+      "area_ha_origen": "1.18",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5637507",
+      "centroide_lon": "-98.5494093",
+      "fraccion_en_celda_principal": "0.9085",
+      "id_parcela": "AGC_157"
+    },
+    {
+      "area_ha_geodesica": "11.222537",
+      "area_ha_origen": "11.22",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8702767",
+      "centroide_lon": "-98.2780823",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_158"
+    },
+    {
+      "area_ha_geodesica": "2.142544",
+      "area_ha_origen": "2.14",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8606788",
+      "centroide_lon": "-98.2432882",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_159"
+    },
+    {
+      "area_ha_geodesica": "7.612533",
+      "area_ha_origen": "7.61",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8520159",
+      "centroide_lon": "-98.2225643",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_160"
+    },
+    {
+      "area_ha_geodesica": "3.358949",
+      "area_ha_origen": "3.36",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8659539",
+      "centroide_lon": "-98.2202004",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_161"
+    },
+    {
+      "area_ha_geodesica": "4.928268",
+      "area_ha_origen": "4.93",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8837107",
+      "centroide_lon": "-98.2327049",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_162"
+    },
+    {
+      "area_ha_geodesica": "2.565923",
+      "area_ha_origen": "2.57",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.5647887",
+      "centroide_lon": "-98.5494388",
+      "fraccion_en_celda_principal": "0.7927",
+      "id_parcela": "AGC_163"
+    },
+    {
+      "area_ha_geodesica": "11.837268",
+      "area_ha_origen": "11.84",
+      "celda_clima_principal": "35_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6100494",
+      "centroide_lon": "-98.5222196",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_164"
+    },
+    {
+      "area_ha_geodesica": "6.205841",
+      "area_ha_origen": "6.21",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8929842",
+      "centroide_lon": "-98.2372601",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_165"
+    },
+    {
+      "area_ha_geodesica": "6.757887",
+      "area_ha_origen": "6.76",
+      "celda_clima_principal": "29_31",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.9451997",
+      "centroide_lon": "-98.3967659",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_166"
+    },
+    {
+      "area_ha_geodesica": "2.463541",
+      "area_ha_origen": "2.46",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8601213",
+      "centroide_lon": "-98.23992",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_167"
+    },
+    {
+      "area_ha_geodesica": "1.528142",
+      "area_ha_origen": "1.53",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8782396",
+      "centroide_lon": "-98.265496",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_168"
+    },
+    {
+      "area_ha_geodesica": "2.513501",
+      "area_ha_origen": "2.51",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5908348",
+      "centroide_lon": "-98.5288705",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_169"
+    },
+    {
+      "area_ha_geodesica": "8.128849",
+      "area_ha_origen": "8.13",
+      "celda_clima_principal": "35_28",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6091787",
+      "centroide_lon": "-98.5254405",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_170"
+    },
+    {
+      "area_ha_geodesica": "11.632051",
+      "area_ha_origen": "11.63",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8676407",
+      "centroide_lon": "-98.2710122",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_171"
+    },
+    {
+      "area_ha_geodesica": "2.329316",
+      "area_ha_origen": "2.33",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8997424",
+      "centroide_lon": "-98.232325",
+      "fraccion_en_celda_principal": "0.7327",
+      "id_parcela": "AGC_172"
+    },
+    {
+      "area_ha_geodesica": "3.595523",
+      "area_ha_origen": "3.6",
+      "celda_clima_principal": "36_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.5956582",
+      "centroide_lon": "-98.561625",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_173"
+    },
+    {
+      "area_ha_geodesica": "6.889965",
+      "area_ha_origen": "6.89",
+      "celda_clima_principal": "30_32",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8981839",
+      "centroide_lon": "-98.3042784",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_174"
+    },
+    {
+      "area_ha_geodesica": "1.406628",
+      "area_ha_origen": "1.41",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8529969",
+      "centroide_lon": "-98.2416137",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_175"
+    },
+    {
+      "area_ha_geodesica": "7.145039",
+      "area_ha_origen": "7.15",
+      "celda_clima_principal": "31_34",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8487605",
+      "centroide_lon": "-98.2350538",
+      "fraccion_en_celda_principal": "0.983",
+      "id_parcela": "AGC_176"
+    },
+    {
+      "area_ha_geodesica": "5.660743",
+      "area_ha_origen": "5.66",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8530508",
+      "centroide_lon": "-98.2532845",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_177"
+    },
+    {
+      "area_ha_geodesica": "9.816091",
+      "area_ha_origen": "9.82",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.858143",
+      "centroide_lon": "-98.2942215",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_178"
+    },
+    {
+      "area_ha_geodesica": "6.345054",
+      "area_ha_origen": "6.35",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8585592",
+      "centroide_lon": "-98.2257577",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_179"
+    },
+    {
+      "area_ha_geodesica": "10.90255",
+      "area_ha_origen": "10.9",
+      "celda_clima_principal": "33_31",
+      "celdas_clima_tocadas": "3",
+      "centroide_lat": "19.7492122",
+      "centroide_lon": "-98.3509657",
+      "fraccion_en_celda_principal": "0.5573",
+      "id_parcela": "AGC_180"
+    },
+    {
+      "area_ha_geodesica": "1.49406",
+      "area_ha_origen": "1.49",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8749669",
+      "centroide_lon": "-98.2596699",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_181"
+    },
+    {
+      "area_ha_geodesica": "4.128622",
+      "area_ha_origen": "4.13",
+      "celda_clima_principal": "31_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8481497",
+      "centroide_lon": "-98.2440638",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_182"
+    },
+    {
+      "area_ha_geodesica": "7.848478",
+      "area_ha_origen": "7.85",
+      "celda_clima_principal": "36_28",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.574596",
+      "centroide_lon": "-98.5498345",
+      "fraccion_en_celda_principal": "0.5452",
+      "id_parcela": "AGC_183"
+    },
+    {
+      "area_ha_geodesica": "9.956604",
+      "area_ha_origen": "9.96",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8066822",
+      "centroide_lon": "-98.2656034",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_184"
+    },
+    {
+      "area_ha_geodesica": "11.876377",
+      "area_ha_origen": "11.88",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8636118",
+      "centroide_lon": "-98.2815114",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_185"
+    },
+    {
+      "area_ha_geodesica": "11.695291",
+      "area_ha_origen": "11.7",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8554965",
+      "centroide_lon": "-98.2774935",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_186"
+    },
+    {
+      "area_ha_geodesica": "8.036957",
+      "area_ha_origen": "8.04",
+      "celda_clima_principal": "35_27",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6063769",
+      "centroide_lon": "-98.5732205",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_187"
+    },
+    {
+      "area_ha_geodesica": "2.343941",
+      "area_ha_origen": "2.34",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8532291",
+      "centroide_lon": "-98.2396373",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_188"
+    },
+    {
+      "area_ha_geodesica": "4.595343",
+      "area_ha_origen": "4.6",
+      "celda_clima_principal": "31_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8405409",
+      "centroide_lon": "-98.2547705",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_189"
+    },
+    {
+      "area_ha_geodesica": "5.009281",
+      "area_ha_origen": "5.01",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8963023",
+      "centroide_lon": "-98.2345692",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_190"
+    },
+    {
+      "area_ha_geodesica": "1.749989",
+      "area_ha_origen": "1.75",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.8788756",
+      "centroide_lon": "-98.2509646",
+      "fraccion_en_celda_principal": "0.9979",
+      "id_parcela": "AGC_191"
+    },
+    {
+      "area_ha_geodesica": "2.135765",
+      "area_ha_origen": "2.14",
+      "celda_clima_principal": "30_34",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8660555",
+      "centroide_lon": "-98.2274878",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_192"
+    },
+    {
+      "area_ha_geodesica": "12.413158",
+      "area_ha_origen": "12.41",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8657711",
+      "centroide_lon": "-98.2742989",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_193"
+    },
+    {
+      "area_ha_geodesica": "4.121918",
+      "area_ha_origen": "4.12",
+      "celda_clima_principal": "28_31",
+      "celdas_clima_tocadas": "2",
+      "centroide_lat": "19.9505091",
+      "centroide_lon": "-98.3923619",
+      "fraccion_en_celda_principal": "0.7803",
+      "id_parcela": "AGC_194"
+    },
+    {
       "area_ha_geodesica": "1.918328",
-      "centroide_lon": "-98.265056",
+      "area_ha_origen": "1.92",
+      "celda_clima_principal": "30_33",
+      "celdas_clima_tocadas": "1",
       "centroide_lat": "19.8604769",
-      "celdas_clima_tocadas": "1",
-      "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
+      "centroide_lon": "-98.265056",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_195"
     },
     {
-      "id_parcela": "AGC_196",
-      "area_ha_origen": "8.57",
       "area_ha_geodesica": "8.567587",
-      "centroide_lon": "-98.5790745",
-      "centroide_lat": "19.6562567",
-      "celdas_clima_tocadas": "1",
+      "area_ha_origen": "8.57",
       "celda_clima_principal": "34_27",
-      "fraccion_en_celda_principal": "1.0"
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.6562567",
+      "centroide_lon": "-98.5790745",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_196"
     },
     {
-      "id_parcela": "AGC_197",
-      "area_ha_origen": "11.52",
       "area_ha_geodesica": "11.524904",
-      "centroide_lon": "-98.2746736",
-      "centroide_lat": "19.8779521",
-      "celdas_clima_tocadas": "1",
+      "area_ha_origen": "11.52",
       "celda_clima_principal": "30_33",
-      "fraccion_en_celda_principal": "1.0"
+      "celdas_clima_tocadas": "1",
+      "centroide_lat": "19.8779521",
+      "centroide_lon": "-98.2746736",
+      "fraccion_en_celda_principal": "1.0",
+      "id_parcela": "AGC_197"
     }
-  ]
+  ],
+  "procedencia_t02_sha256": {
+    "scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
+    "scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d",
+    "tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86"
+  },
+  "revision": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+  "ruta_en_repo": "analisis/auditoria_catalogo_y_etiquetas",
+  "schema": "t04_referencia_t02_v2"
 }

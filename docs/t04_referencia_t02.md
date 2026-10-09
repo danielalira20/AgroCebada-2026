@@ -3,7 +3,13 @@
 8 de octubre de 2026. Rama local: `t04-actualizar-referencia-t02`.
 Base de revalidación y referencia T02: `11d947098d8d6e56902a7f09a2c75953f09fdb21`, que integra la T02 corregida por el PR #9.
 Base actual del PR: dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8`, incorporada mediante merge local `9347017`.
-Responsable: Dani. Revisora: Jass. Cambio preparado localmente; publicación y revisión de esta actualización pendientes.
+Responsable: Dani. Revisora: Jass. PR #11 publicado; Jass revisó la versión 842f4c4 sin correcciones obligatorias.
+La mejora del contrato descrita abajo se prepara localmente el 9 de octubre y requiere publicación y revisión del nuevo cambio.
+
+## Corrección inicial · evidencia del 8 de octubre
+
+Las secciones siguientes conservan la primera revalidación, anterior a separar
+compatibilidad y procedencia. La política vigente está en la sección final.
 
 ## Problema que resuelve
 
@@ -91,3 +97,48 @@ de cálculo cambió. Evidencia nueva: reports/t04_t07_sincronizacion_dev_2026100
 
 La revisión de Jass sigue pendiente. El PR propuesto apunta a dev y contiene
 sólo los ocho archivos propios de esta corrección; no publica T07 ni originales.
+
+## Mejora vigente · contrato de dos tablas, 9 de octubre
+
+### Problema que resuelve
+
+Jass observó en el PR #11 que las huellas de los scripts T02 hacían depender la
+conciliación de cambios sin efecto en los datos. Un comentario disparaba una
+actualización de referencia aun con las dos tablas idénticas. Dani autorizó
+resolverlo ahora; no es un error de cálculo ni una mejora predictiva.
+
+### Solución que implementa
+
+scripts/t02_contrato.py fija un contrato común para T04 y T07. La referencia
+nueva t04_referencia_t02_v2 conserva sólo catalogo_parcelas.csv y
+soporte_por_parcela.csv en archivos_sha256. Las tres huellas auxiliares pasan
+a procedencia_t02_sha256; identifican la revisión histórica documentada y no
+exigen que los scripts actuales sigan iguales. Ambas tablas siguen requiriendo
+igualdad byte a byte: este ajuste no omite cambios de datos o formato en ellas.
+
+El lector también acepta la referencia v1 completa de cinco huellas y las
+separa al leer, sin editar archivos de entregas anteriores. Rechaza versiones
+contradictorias, archivos adicionales, huellas inválidas y contratos incompletos.
+Los originales, los IDs y los ocho campos espaciales siguen comprobándose; las
+tolerancias, cuadrículas, áreas, centroides y fórmulas climáticas no cambian.
+
+### Comprobación y actualización de la entrega
+
+Pasaron 72 pruebas T04, incluidas cuatro regresiones: comentarios/auxiliares
+ausentes; cada tabla cambiada o faltante; lectura v1; contrato mal formado.
+Se reconciliaron las 197 parcelas usando los 394 soportes ya verificados, tras
+comprobar sus huellas e identidades contra las geometrías y cuadrículas del ZIP
+original. El detalle y los máximos espaciales coinciden con la conciliación
+anterior. CSV climático y controles son idénticos byte a byte y el verificador
+Python -S aprueba las 28,368 filas.
+
+Se actualizan la referencia y los tres metadatos de entrega. El código y las
+huellas de la extracción original se conservan; actualizacion_referencia_t02
+registra aparte la migración, su código y la entrega anterior. No se afirma que
+la versión nueva del lector produjo los valores antiguos ni se repiten los 144
+mapas sin una modificación de entradas o fórmulas que lo justifique.
+
+Evidencia local: reports/t04_contrato_tablas_20261009/. La revisión anterior de
+Jass corresponde a 842f4c4; este nuevo cambio debe presentarse para su revisión.
+T07 necesita el mismo contrato antes de incorporar la entrega v2. El nuevo lote
+no está publicado y no autoriza fusionar el PR ni cerrar T04/T07 automáticamente.
