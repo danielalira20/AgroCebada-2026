@@ -12,13 +12,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.t07_fuentes import BASE, leer_csv, leer_entrega, sha, validar_catalogo, guardar_csv, guardar_json
 from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
 from scripts.t07_diccionario import diccionario, CAMPOS
-from scripts.t07_preparar import RAIZ, T02, T02_ARCHIVOS, revision, comprobar_fuente, comprobar_copia
+from scripts.t07_preparar import RAIZ, T02, DATOS_T02, revision, comprobar_fuente, comprobar_copia, compatibilidad_t02, procedencia_t02
 from scripts.t07_satelite import validar, unir, diccionario_satelite, diccionario_calidad, CALIDAD as CALIDAD_SAT, CORTE, META
 
 T06_ARCHIVOS = ("registro/t06/variables_satelitales.csv", "registro/t06/variables_satelitales_diccionario.csv",
                 "registro/t06/cobertura_ventana.csv", "docs/T06_satelite.md", "scripts/t06_satelite.py")
 CODIGO = ("t07_integrar.py", "t07_satelite.py", "t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py",
-          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py")
+          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py", "t02_contrato.py")
 
 
 def comprobar_protocolo(texto):
@@ -43,7 +43,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
     if para_revision and not salida.is_relative_to(raiz / 'reports'):
         raise ValueError("Entrega pendiente de revisión sólo puede generarse en reports/")
     base = revision(base_dev, raiz)
-    ht02 = {f'{T02}/{n}': comprobar_fuente(f'{T02}/{n}', base, raiz=raiz) for n in sorted(T02_ARCHIVOS)}
+    ht02 = {f'{T02}/{n}': comprobar_fuente(f'{T02}/{n}', base, raiz=raiz) for n in sorted(DATOS_T02)}
     _, filas = leer_csv(raiz / T02 / 'tablas/catalogo_parcelas.csv')
     catalogo = validar_catalogo(filas)
     ids = [r['id_parcela'] for r in catalogo]
@@ -61,7 +61,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
     inventario = dict(schema='t07_inventario_v2', base_dev=base, corte_observacional=CORTE.isoformat(),
         alcance='Reconstrucción retrospectiva; fecha observada no acredita disponibilidad histórica',
         cierre_t07=False, bloques={
-            'T02': dict(estado='base_dev_identificada', archivos_sha256=ht02),
+            'T02': dict(estado='base_dev_identificada', archivos_sha256=ht02, procedencia_sha256=procedencia_t02(base, raiz)),
             'T03': dict(estado='protocolo_base_identificado_corte_provisional', archivos_sha256={protocolo: ht03},
                         reglas_evaluacion_no_modificadas=True),
             'T04': dict(estado='pendiente_integracion_revisada', integrado_en_t07=False, valores_generados=False),
@@ -75,10 +75,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
         if origen['estado_revision_declarado'] != 'aceptada' and not para_revision:
             raise ValueError("T04 pendiente de aceptación: usar --para-revision con salida local en reports/")
         indice, m, pro, con = leer_entrega(clima, ids)
-        if set(con.get('archivos_t02_sha256', {})) != T02_ARCHIVOS:
-            raise ValueError("Referencia T02 T04 sin cinco archivos requeridos")
-        for n, h in sorted(con['archivos_t02_sha256'].items()):
-            comprobar_fuente(f'{T02}/{n}', base, h, raiz)
+        compatibilidad_t02(con, base, raiz)
         larga, ancha, calidad = agregar(indice, ids)
         tablas.update({'clima_ventanas.csv': (LARGA, larga), 'clima_variables.csv': (ANCHA, ancha),
                        'calidad_ventanas.csv': (CALIDAD, calidad)})

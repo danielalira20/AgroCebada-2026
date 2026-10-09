@@ -64,6 +64,23 @@ class Verificacion(unittest.TestCase):
         self.editar(out,'diccionario_columnas.csv',cambiar)
         with self.assertRaisesRegex(ValueError,'no debe ser predictor'):verificar(out,self.clima,self.root)
 
+    def test_comentario_local_en_script_t02_no_invalida_entrega(self):
+        p=self.root/'analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py'
+        antes=p.read_bytes()
+        try:
+            p.write_bytes(antes+b'\n# comentario\n')
+            self.assertEqual(verificar(self.original,self.clima,self.root)['resultado'],'verificado')
+        finally:p.write_bytes(antes)
+
+    def test_procedencia_archivada_alterada_se_detecta(self):
+        out=self.copia('error_procedencia')
+        p=out/'inventario_fuentes.json';inv=json.loads(p.read_text())
+        audit=inv['bloques']['T02']['procedencia_sha256'];audit[next(iter(audit))]='0'*64
+        p.write_text(json.dumps(inv))
+        m=json.loads((out/'manifest.json').read_text());m['archivos_sha256'][p.name]=sha(p)
+        (out/'manifest.json').write_text(json.dumps(m))
+        with self.assertRaisesRegex(ValueError,'Procedencia T02 distinta'):verificar(out,self.clima,self.root)
+
     def test_historia_real_fuera_de_ventanas_no_afecta_ningun_resumen(self):
         _,filas=leer_csv(self.clima/'clima_parcela_mes.csv')
         indice={(r['id_parcela'],r['periodo'],r['variable']):r for r in filas}

@@ -52,7 +52,7 @@ class Preparacion(unittest.TestCase):
                      periodos=periodos, columnas=list(CLIMA), corte_observacional_provisional='2025-10-31', cierre_t04=False,
                      disponibilidad_historica_fira='no documentada', versiones_producto_fira='sin número documentado',
                      archivos_sha256={n: sha(cls.clima / n) for n in T04_ARCHIVOS if n != 'manifest.json'}))
-        for n in ['t07_preparar.py','t07_fuentes.py','t07_ventanas.py','t07_diccionario.py','t07_preparar_insumos.py']:
+        for n in ['t07_preparar.py','t07_fuentes.py','t07_ventanas.py','t07_diccionario.py','t07_preparar_insumos.py','t02_contrato.py']:
             p = cls.root / 'scripts' / n; p.parent.mkdir(exist_ok=True); p.write_text('código de prueba')
         g('add', '.'); g('commit', '-qm', 'fuentes identificadas')
         cls.rev = g('rev-parse', 'HEAD').decode().strip()

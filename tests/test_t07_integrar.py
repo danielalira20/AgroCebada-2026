@@ -117,6 +117,51 @@ class Integracion(unittest.TestCase):
         for n in ['data/raw/error','registro/t04/error']:
             with self.assertRaisesRegex(ValueError,'Salida protegida'):self.ejecutar(n)
 
+    def test_comentario_t02_en_nueva_base_no_reextrae_clima(self):
+        anterior=self.root/'antes_comentario'
+        integrar(self.rev,anterior,self.clima,self.rev,raiz=self.root)
+        nombres=['scripts/construir_catalogo.py','scripts/diagnosticar_soporte.py']
+        originales={n:(self.root/T02/n).read_bytes() for n in nombres}
+        def g(*a):return subprocess.check_output(['git',*a],cwd=self.root,stderr=subprocess.PIPE)
+        try:
+            for n,v in originales.items():(self.root/T02/n).write_bytes(v+b'\n# comentario sin efecto en datos\n')
+            g('add',*[str(Path(T02)/n) for n in nombres]);g('commit','-qm','comentario T02 en nueva base')
+            nueva=g('rev-parse','HEAD').decode().strip()
+            posterior=self.root/'despues_comentario'
+            integrar(nueva,posterior,self.clima,self.rev,raiz=self.root)
+            self.assertEqual((anterior/'tabla_comun.csv').read_bytes(),(posterior/'tabla_comun.csv').read_bytes())
+            inv=json.loads((posterior/'inventario_fuentes.json').read_text())['bloques']['T02']
+            self.assertEqual(len(inv['archivos_sha256']),2);self.assertEqual(len(inv['procedencia_sha256']),3)
+            from scripts.t07_verificar import verificar
+            self.assertEqual(verificar(posterior,self.clima,self.root)['contrastes_climaticos'],1182)
+        finally:
+            for n,v in originales.items():(self.root/T02/n).write_bytes(v)
+
+    def test_entrega_v2_se_integra_con_el_mismo_resultado(self):
+        nombres=['conciliacion_t02.json','manifest.json','origen_git.json']
+        originales={n:(self.clima/n).read_bytes() for n in nombres}
+        anterior=self.root/'v1_antes';integrar(self.rev,anterior,self.clima,self.rev,raiz=self.root)
+        try:
+            from scripts.t02_contrato import separar_huellas
+            c=json.loads(originales['conciliacion_t02.json'])
+            datos,audit=separar_huellas(c['archivos_t02_sha256'])
+            c['archivos_t02_sha256']=datos;c['procedencia_t02_sha256']=audit
+            c['schema_referencia_t02']='t04_referencia_t02_v2'
+            (self.clima/'conciliacion_t02.json').write_text(json.dumps(c))
+            m=json.loads(originales['manifest.json']);m['archivos_sha256']['conciliacion_t02.json']=sha(self.clima/'conciliacion_t02.json')
+            (self.clima/'manifest.json').write_text(json.dumps(m))
+            def g(*a):return subprocess.check_output(['git',*a],cwd=self.root,stderr=subprocess.PIPE)
+            g('add','registro/t04/conciliacion_t02.json','registro/t04/manifest.json');g('commit','-qm','contrato v2 temporal')
+            nueva=g('rev-parse','HEAD').decode().strip()
+            o=dict(self.origen,revision_git=nueva,archivos_sha256={n:sha(self.clima/n) for n in T04_ARCHIVOS})
+            (self.clima/'origen_git.json').write_text(json.dumps(o))
+            posterior=self.root/'v2_despues';integrar(self.rev,posterior,self.clima,nueva,raiz=self.root)
+            self.assertEqual((anterior/'tabla_comun.csv').read_bytes(),(posterior/'tabla_comun.csv').read_bytes())
+            from scripts.t07_verificar import verificar
+            self.assertEqual(verificar(posterior,self.clima,self.root)['contrastes_climaticos'],1182)
+        finally:
+            for n,v in originales.items():(self.clima/n).write_bytes(v)
+
     def test_parametros_incompletos(self):
         with self.assertRaisesRegex(ValueError,'conjuntamente'):
             integrar(self.rev,self.root/'parametros',self.clima,None,False,self.root)

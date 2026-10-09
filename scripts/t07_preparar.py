@@ -13,10 +13,12 @@ from scripts.t07_fuentes import BASE, leer_csv, leer_json, leer_entrega, sha, va
 from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
 from scripts.t07_diccionario import diccionario, CAMPOS
 
+from scripts.t02_contrato import DATOS_T02, PROCEDENCIA_T02, LEGADO_T02, separar_huellas
+
 RAIZ = Path(__file__).resolve().parents[1]
 T02 = "analisis/auditoria_catalogo_y_etiquetas"
-T02_ARCHIVOS = {"tablas/catalogo_parcelas.csv", "tablas/soporte_por_parcela.csv",
-                "tablas/huellas_archivos_leidos.csv", "scripts/construir_catalogo.py", "scripts/diagnosticar_soporte.py"}
+# Alias para leer entregas y fixtures v1; la compatibilidad utiliza DATOS_T02.
+T02_ARCHIVOS = LEGADO_T02
 T04_ARCHIVOS = ("manifest.json", "clima_parcela_mes.csv", "procedencia.json", "conciliacion_t02.json", "controles.json")
 
 
@@ -37,6 +39,18 @@ def comprobar_fuente(ruta, ref, esperado=None, raiz=RAIZ):
     if esperado is not None and h != esperado:
         raise ValueError(f"Referencia T02 cambió: {ruta}. Actualizar y revalidar T04; no saltar esta comprobación.")
     return h
+
+
+def procedencia_t02(base, raiz=RAIZ):
+    """Identifica auxiliares archivados en Git; T07 no los ejecuta ni los compara con T04."""
+    return {f"{T02}/{n}": hashlib.sha256(git("show", f"{base}:{T02}/{n}", raiz=raiz)).hexdigest()
+            for n in sorted(PROCEDENCIA_T02)}
+
+
+def compatibilidad_t02(con, base, raiz=RAIZ):
+    datos, _ = separar_huellas(con.get("archivos_t02_sha256"), con.get("procedencia_t02_sha256"))
+    return {f"{T02}/{n}": comprobar_fuente(f"{T02}/{n}", base, h, raiz)
+            for n, h in sorted(datos.items())}
 
 
 def comprobar_copia(clima, ref, raiz=RAIZ):
@@ -71,10 +85,7 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
     catalogo = validar_catalogo(filas)
     ids = [r["id_parcela"] for r in catalogo]
     indice, m, pro, con = leer_entrega(clima, ids)
-    if set(con.get("archivos_t02_sha256", {})) != T02_ARCHIVOS:
-        raise ValueError("Referencia T02 sin los cinco archivos requeridos")
-    ht02 = {f"{T02}/{n}": comprobar_fuente(f"{T02}/{n}", base, h, raiz)
-            for n, h in sorted(con["archivos_t02_sha256"].items())}
+    ht02 = compatibilidad_t02(con, base, raiz)
     protocolo = "docs/T03_protocolo_evaluacion.md"
     ht03 = comprobar_fuente(protocolo, base, raiz=raiz)
     ruta_t06, dic_t06 = "registro/t06/variables_satelitales.csv", "registro/t06/variables_satelitales_diccionario.csv"
@@ -87,7 +98,7 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
     # La fase 0 inventaría T06; interpretar/unir su diccionario corresponde a fase 3.
     inventario = dict(schema="t07_inventario_v1", base_dev=base,
         bloques={
-            "T02": dict(estado="base_dev_identificada", referencia_t04=con["revision_t02"], archivos_sha256=ht02),
+            "T02": dict(estado="base_dev_identificada", referencia_t04=con["revision_t02"], archivos_sha256=ht02, procedencia_sha256=procedencia_t02(base, raiz)),
             "T03": dict(estado="protocolo_base_identificado_corte_provisional", archivos_sha256={protocolo: ht03}),
             "T04": dict(estado=origen["estado_revision_declarado"], revision_git=rt04, archivos_sha256=ht04,
                         conciliacion="compatible_con_referencia_identificada", cierre_declarado=m["cierre_t04"],
@@ -123,7 +134,7 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
         guardar_csv(temp / "diccionario_columnas.csv", CAMPOS, definiciones)
         guardar_json(temp / "inventario_fuentes.json", inventario)
         guardar_json(temp / "controles.json", controles)
-        codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py"]
+        codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py", "t02_contrato.py"]
         guardar_json(temp / "manifest.json", dict(schema="t07_fases_0_2_v1",
                      codigo_sha256={f"scripts/{n}": sha(raiz / "scripts" / n) for n in codigo},
                      entradas= dict(base_dev=base, revision_t04=rt04, manifest_t04_sha256=ht04["manifest.json"]),
@@ -145,7 +156,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
     if salida.exists():
         raise ValueError("La salida ya existe; reproducir en una carpeta nueva")
     base = revision(base_dev, raiz)
-    ht02 = {f"{T02}/{n}": comprobar_fuente(f"{T02}/{n}", base, raiz=raiz) for n in sorted(T02_ARCHIVOS)}
+    ht02 = {f"{T02}/{n}": comprobar_fuente(f"{T02}/{n}", base, raiz=raiz) for n in sorted(DATOS_T02)}
     _, filas = leer_csv(raiz / T02 / "tablas/catalogo_parcelas.csv")
     catalogo = validar_catalogo(filas)
     ids = {r["id_parcela"] for r in catalogo}
@@ -159,7 +170,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
     if len(sat_ids) != len(ids) or len(set(sat_ids)) != len(ids) or set(sat_ids) != ids:
         raise ValueError("IDs T06 incompatibles")
     inventario = dict(schema="t07_inventario_v1", base_dev=base, bloques={
-        "T02": dict(estado="base_dev_identificada", archivos_sha256=ht02),
+        "T02": dict(estado="base_dev_identificada", archivos_sha256=ht02, procedencia_sha256=procedencia_t02(base, raiz)),
         "T03": dict(estado="protocolo_base_identificado_corte_provisional", archivos_sha256={protocolo: ht03}),
         "T04": dict(estado="pendiente_integracion_revisada", integrado_en_t07=False,
                     valores_generados=False, accion="Verificar referencia T02 y revalidación T04 antes de integrar; no generar valores provisionales"),
@@ -179,7 +190,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
         guardar_csv(temp / "diccionario_columnas.csv", CAMPOS, definiciones)
         guardar_json(temp / "inventario_fuentes.json", inventario)
         guardar_json(temp / "controles.json", controles)
-        codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py"]
+        codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py", "t02_contrato.py"]
         guardar_json(temp / "manifest.json", dict(schema="t07_catalogo_sin_clima_v1",
                      codigo_sha256={f"scripts/{n}": sha(raiz / "scripts" / n) for n in codigo},
                      entradas=dict(base_dev=base), archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},

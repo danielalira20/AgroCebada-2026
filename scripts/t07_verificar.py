@@ -9,7 +9,8 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.t07_fuentes import BASE, leer_csv, leer_json, sha
-from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia
+from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia, procedencia_t02, compatibilidad_t02
+from scripts.t02_contrato import separar_huellas
 
 # Se explicitan aquí para no reutilizar el agregador ni sus constantes de meses.
 PERIODOS = {'abr_oct': tuple(f'2025-{m:02d}' for m in range(4,11)),
@@ -36,7 +37,16 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     for n,h in m['archivos_sha256'].items(): exigir(sha(entrega/n)==h, f'Huella de salida distinta: {n}')
     for n,h in m['codigo_sha256'].items(): exigir(sha(raiz/n)==h, f'Código distinto de la ejecución: {n}')
     exigir(m['entradas']['base_dev']==inv['base_dev'], 'Bases distintas en inventario y manifiesto')
-    for bloque in ('T02','T03','T06'):
+    t02 = inv['bloques']['T02']
+    prefijo = T02+'/'
+    datos, audit = separar_huellas(
+        {n.removeprefix(prefijo):h for n,h in t02['archivos_sha256'].items()},
+        ({n.removeprefix(prefijo):h for n,h in t02['procedencia_sha256'].items()}
+         if 'procedencia_sha256' in t02 else None))
+    for n,h in datos.items(): comprobar_fuente(prefijo+n,inv['base_dev'],h,raiz)
+    exigir({prefijo+n:h for n,h in audit.items()}==procedencia_t02(inv['base_dev'],raiz),
+           'Procedencia T02 distinta de la revisión archivada')
+    for bloque in ('T03','T06'):
         for n,h in inv['bloques'][bloque]['archivos_sha256'].items():
             comprobar_fuente(n,inv['base_dev'],h,raiz)
     _, origen_cat=leer_csv(raiz/T02/'tablas/catalogo_parcelas.csv')
@@ -99,6 +109,7 @@ def verificar(entrega, clima=None, raiz=RAIZ):
         exigir(clima is not None, 'Contraste climático requiere la copia T04 original')
         estado, ht04=comprobar_copia(Path(clima),m['entradas']['revision_t04'],raiz)
         exigir(ht04==inv['bloques']['T04']['archivos_sha256'], 'Fuente T04 distinta del inventario')
+        compatibilidad_t02(leer_json(Path(clima)/'conciliacion_t02.json'),inv['base_dev'],raiz)
         exigir(m['clima_aceptado']==(estado['estado_revision_declarado']=='aceptada'), 'Aceptación declarada contradictoria')
         exigir(inv['bloques']['T04']['estado']==estado['estado_revision_declarado'], 'Estado T04 contradictorio')
         _, mensuales=leer_csv(Path(clima)/'clima_parcela_mes.csv'); mi=indexar(mensuales,('id_parcela','periodo','variable'))
