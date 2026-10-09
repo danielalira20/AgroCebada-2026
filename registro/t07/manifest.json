@@ -11,7 +11,7 @@
     "scripts/t07_verificar.py": "ffb58446fa995f55e37be93dcc4205d37346b355da96000ebcdfb3eda99a31d1"
   },
   "entradas": {
-    "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+    "base_dev": "9d5861c81713f2022d9fb9d1952c1feeb236a2f8",
     "revision_t04": null
   },
   "archivos_sha256": {
@@ -20,7 +20,7 @@
     "contrato_columnas.json": "f1c66cc7bfb0faac73ce7f1db7cb19da19708e523a89756451d67df77aabd329",
     "controles.json": "80000bee79ec98150581c1b89e6ec4e76a65ab0bfe3fdfbd5116dfecfc1d2db5",
     "diccionario_columnas.csv": "03be7050d56b611c8ae88ac45979d21950041e70663fd9c91c166bb2f087d09a",
-    "inventario_fuentes.json": "59b19560921daa10adff1eb41cab82515c6289533a3494468820de40b7040e29",
+    "inventario_fuentes.json": "27da3cf6cf3a81fea2ae28c2caf8c3bfa6a4f10dfddde4d6d5c93233619ff2a9",
     "tabla_comun.csv": "5295279b6ecbc12e778d7c6b7d31b54805c68342953b0db231ab4804e76c4ed6"
   },
   "estado_entrega": "integracion_por_bloques_para_revision",

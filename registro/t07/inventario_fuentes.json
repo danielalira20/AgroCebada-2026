@@ -1,6 +1,6 @@
 {
   "schema": "t07_inventario_v2",
-  "base_dev": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+  "base_dev": "9d5861c81713f2022d9fb9d1952c1feeb236a2f8",
   "corte_observacional": "2025-10-31",
   "alcance": "Reconstrucción retrospectiva; fecha observada no acredita disponibilidad histórica",
   "cierre_t07": false,
@@ -18,7 +18,7 @@
     "T03": {
       "estado": "protocolo_base_identificado_corte_provisional",
       "archivos_sha256": {
-        "docs/T03_protocolo_evaluacion.md": "4a477a3fc28383070057e2a568cbd08d30d4a61eddf54fe90496d47bf0aaf423"
+        "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9"
       },
       "reglas_evaluacion_no_modificadas": true
     },

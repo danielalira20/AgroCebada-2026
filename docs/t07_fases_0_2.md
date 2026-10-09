@@ -1,8 +1,9 @@
 # T07 · Catálogo sincronizado y bloques pendientes
 
-Actualización posterior del 8 de octubre: ver [fase 3](t07_fase_3.md).
+Documento histórico de fases 0–2 sobre base 11d9470. Para el estado vigente,
+ver [sincronización actual](t07_sincronizacion.md) y [fase 3](t07_fase_3.md).
 Catálogo + T06 ya integrados; ventanas reales sólo en borrador local para
-revisión. Este documento conserva la evidencia de la etapa anterior.
+revisión. Los estados y comandos siguientes describen la etapa anterior.
 
 Responsable: Dani. Revisora: Jass. Estado actualizado el 8 de octubre de 2026.
 

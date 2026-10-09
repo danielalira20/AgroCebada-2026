@@ -1,8 +1,46 @@
 # T07 · Sincronización con dev y preparación del catálogo
 
-Actualización posterior del 8 de octubre: ver [fase 3](t07_fase_3.md).
-Catálogo + T06 ya integrados; ventanas reales sólo en borrador local para
-revisión. Este documento conserva la evidencia de la etapa anterior.
+## Actualización vigente · dev 9d5861c
+
+8 de octubre de 2026, posterior a la fusión del PR #10. Base actual:
+`9d5861c81713f2022d9fb9d1952c1feeb236a2f8`. Merge local T07: `25247c7`.
+
+### Problema que resuelve
+
+El inventario y los documentos todavía identificaban la base anterior y el PR
+#10 como pendiente. Ambas ramas añadieron registros IA al mismo lugar.
+
+### Solución que implementa
+
+Incorporar dev sin perder historial y conciliar uso_ia.csv por ID contra el
+ancestro común. Se preservan IA014 y las cuatro entradas T07, sin renumerar.
+Actualizar sólo la identidad de fuentes T07: el catálogo, la tabla común,
+la calidad, el diccionario y el contrato conservan sus cifras y definiciones.
+
+| Comprobación actual | Resultado |
+|---|---|
+| Conflicto del merge | Sólo uso_ia.csv; 18 registros conservados antes de registrar esta tarea |
+| Bitácoras finales | 24 decisiones y 19 entradas IA; IDs únicos, campos CSV válidos |
+| Reproducción | Dos salidas idénticas de ocho archivos y dos verificaciones aprobadas |
+| Diferencia con entrega anterior | Sólo inventario y manifiesto; otros seis archivos idénticos |
+| Universo y satélite | 197 IDs, 138 etiquetas, 59 ausentes y 8,668 valores conservados |
+| Compatibilidad | 16 pruebas aprobadas de preparación/integración con T03 vigente |
+| Originales | ZIP, proyectos QGIS, particiones T03 y clima compartido intactos |
+
+T03 ya recoge D019: todas/sin_respaldo y referencia media_mun__resp_grupo;
+la decisión corresponde a sin_respaldo. Se conserva el corte provisional y las
+dos ventanas. No se recalcularon métricas T08 ni se cambiaron reglas en T07.
+T04 actualizada (`842f4c4`) sigue en rama propia, pendiente de publicación
+con autorización y revisión de Jass. Sus cinco huellas T02 coinciden con dev.
+T05 continúa pendiente; registro/t07/ sigue sin clima ni relieve. Los borradores
+climáticos anteriores se preservan como evidencia con su base original.
+
+Evidencia local: reports/t04_t07_sincronizacion_dev_20261008/.
+
+## Etapa anterior · base 11d9470
+
+Lo siguiente conserva la revisión anterior; sus estados y cifras de bitácora
+corresponden a ese momento. El estado vigente es el de la sección anterior.
 
 8 de octubre de 2026. Rama: `t07-tabla-comun`. Responsable: Dani. Revisora: Jass.
 Base compartida incorporada: `11d947098d8d6e56902a7f09a2c75953f09fdb21`.

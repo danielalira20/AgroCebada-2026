@@ -82,19 +82,20 @@ Originales inmutables.
 
 ## Dependencias y estado
 
-La base dev `11d947098d8d6e56902a7f09a2c75953f09fdb21` incluye T02 corregida
+La base dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8` incluye T02 corregida
 (PR #9), T04 mensual (PR #6), T06 (PR #4) y las referencias T08 (PR #8).
 La actualización de referencia T02 de T04 fue revalidada localmente en la rama
-`t04-actualizar-referencia-t02` (`7b2b4b4`); su publicación/revisión y posterior
+`t04-actualizar-referencia-t02` (`842f4c4`, que conserva la corrección `7b2b4b4`); su publicación/revisión y posterior
 incorporación a dev siguen pendientes. T07 no incorpora esa rama sin revisión.
 El [registro de sincronización](t07_sincronizacion.md) conserva la evidencia.
 t07_preparar.py --sin-clima conserva el modo inicial de catálogo y estados de
 bloques. t07_integrar.py --sin-clima añade T06 al catálogo. Ambos registran
 T04 pendiente, sin generar clima. El modo climático normal rechaza una fuente
 marcada en_revision y referencias T02 incompatibles.
-El PR #10 de T03 está cerrado sin merge en la consulta del 8 de octubre.
-La discrepancia de población para decidir entre T03 y D019/T08 sigue pendiente
-del acuerdo del equipo; no afecta a esta unión descriptiva.
+El PR #10 de T03 está fusionado en esta base. El protocolo ya recoge D019: se
+reportan todas y sin_respaldo; se decide en sin_respaldo frente a
+media_mun__resp_grupo. T07 identifica ese protocolo sin modificarlo, recalcular
+T08 ni elegir un modelo. El corte y las ventanas permanecen iguales.
 T05 no entregada se registra como pendiente, sin inventar relieve.
 Archivo faltante, NoData y bloque pendiente son situaciones distintas.
 La fase 2 está calculada y verificada en borrador real local; su aceptación e

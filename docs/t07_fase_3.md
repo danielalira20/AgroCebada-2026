@@ -18,10 +18,13 @@ las columnas y cifras de origen y separar su calidad. Las ventanas climáticas
 se agregan con un calendario explícito. La aceptación de una fuente se registra
 aparte de la comprobación numérica y nunca se deduce de que el cálculo termine.
 
-La base identificada es dev `11d947098d8d6e56902a7f09a2c75953f09fdb21`.
-La copia T04 usada en el borrador procede del commit local
-`7b2b4b4149540bc557af24bca959cea1b1b7860b`: actualiza la referencia T02 y
-está revalidada, pero pendiente de publicación/revisión e incorporación a dev.
+La base actual de catálogo + T06 es dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8`.
+La actualización T04 está en la rama local `t04-actualizar-referencia-t02`,
+commit `842f4c459fe85120867d8c9fd27e05fe049d3fb1`, pendiente de publicación/revisión e incorporación a dev.
+El borrador climático y la evidencia de la ejecución inicial se conservan sin
+reescribir en reports/t07_fase3_20261008/: identifican base `11d9470` y copia
+T04 `7b2b4b4`. Sus cinco archivos de entrada T04 son idénticos a los de la
+corrección actual. Ese borrador sigue siendo histórico y pendiente de aceptación.
 Dani autorizó expresamente preparar este borrador con datos reales para revisión.
 No se integra la rama T04 ni se modifica su estado para presentarla como aceptada.
 
@@ -86,7 +89,7 @@ Se preservan las 138 etiquetas originales y las 59 ausentes, sin imputarlas.
 
 | Comprobación | Resultado |
 |---|---|
-| Pruebas | 124 aprobadas; 27 nuevas para integración y auditoría |
+| Pruebas | 124 aprobadas en implementación inicial; 16 de compatibilidad tras actualizar dev |
 | Unión | 197 IDs; 8,668 valores satelitales conservados literalmente |
 | Cobertura T06 | 1,182 controles conciliados con su tabla independiente |
 | Clima | 28,368 registros leídos; 1,182 agregaciones contrastadas con Decimal |
@@ -122,6 +125,14 @@ satelital queda vacía, identificada por columna y en su control; cero conserva
 su significado numérico. La presencia de todas las cifras actuales no borra
 los huecos de observación ni garantiza calidad suficiente para cada experimento.
 
+La sincronización posterior con dev reejecutó catálogo + T06 y su verificador
+sobre la base actual, dos veces. Los ocho archivos nuevos son reproducibles;
+seis son idénticos a la etapa inicial, incluida tabla_comun.csv. Sólo cambian
+inventario_fuentes.json y manifest.json para identificar dev y el protocolo T03.
+No se repite el cálculo climático ni se traslada el borrador al registro.
+Evidencia nueva: reports/t04_t07_sincronizacion_dev_20261008/ y
+[registro de sincronización](t07_sincronizacion.md).
+
 ## Reproducción y revisión
 
 Desde la raíz del repositorio, usando el entorno local existente:
@@ -130,7 +141,7 @@ Desde la raíz del repositorio, usando el entorno local existente:
 .venv/bin/python -m unittest discover -s tests -v
 
 .venv/bin/python scripts/t07_integrar.py --sin-clima \
-  --base-dev 11d947098d8d6e56902a7f09a2c75953f09fdb21 \
+  --base-dev 9d5861c81713f2022d9fb9d1952c1feeb236a2f8 \
   --salida reports/t07_revision_nueva/satelite
 
 .venv/bin/python scripts/t07_verificar.py \
@@ -141,13 +152,13 @@ Para revisar el borrador real T04, sin fusionar su rama:
 
 ```sh
 .venv/bin/python scripts/t07_preparar_insumos.py \
-  --revision-t04 7b2b4b4149540bc557af24bca959cea1b1b7860b \
+  --revision-t04 842f4c459fe85120867d8c9fd27e05fe049d3fb1 \
   --estado-t04 en_revision --salida reports/t07_revision_nueva/entrada_t04
 
 .venv/bin/python scripts/t07_integrar.py \
-  --base-dev 11d947098d8d6e56902a7f09a2c75953f09fdb21 \
+  --base-dev 9d5861c81713f2022d9fb9d1952c1feeb236a2f8 \
   --clima reports/t07_revision_nueva/entrada_t04 \
-  --revision-t04 7b2b4b4149540bc557af24bca959cea1b1b7860b \
+  --revision-t04 842f4c459fe85120867d8c9fd27e05fe049d3fb1 \
   --para-revision --salida reports/t07_revision_nueva/completa
 
 .venv/bin/python scripts/t07_verificar.py \
@@ -169,10 +180,10 @@ Evidencia local: `reports/t07_fase3_20261008/validacion_final.json`,
 ## Pendientes y límites de alcance
 
 Jass debe revisar T04 y esta integración. T05 se añadirá como otro bloque cuando
-llegue su entrega. El PR #10 de T03 está cerrado sin merge en la consulta del
-8 de octubre; la discrepancia entre la población de decisión de T03 y D019/T08
-sigue pendiente de acuerdo del equipo antes de comparar modelos. No cambia
-las fechas de estas ventanas ni se resuelve unilateralmente en T07.
+llegue su entrega. El PR #10 ya está fusionado: T03 recoge D019, reporta todas
+y sin_respaldo y decide en sin_respaldo frente a media_mun__resp_grupo.
+Se identifica el texto vigente; no se modifican las fechas de las ventanas ni
+se recalculan métricas o se decide un modelo en T07.
 
 Las guías sirven para justificar hipótesis antes de fijar variables. El siguiente
 hito para evaluar datos externos es la primera evaluación T09 frente a T08,
