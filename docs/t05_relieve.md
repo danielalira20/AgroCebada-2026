@@ -1,7 +1,7 @@
 # T05 · Relieve: método de extracción por parcela
 
 Responsable: Jass. Revisora: Dani. Fecha: 8 de octubre de 2026.
-Estado: **método congelado como base de implementación, script sin escribir.** Este documento fija qué se calculará y cómo se comprobará. Los cambios posteriores deben responder a un fallo reproducible, a una prueba o a un requisito incumplido. Las decisiones de uso están en D020 de `registro/decisiones.csv`.
+Estado (9 de octubre de 2026): **método congelado e implementado** en `scripts/t05_relieve.py`, con pruebas en `tests/test_t05_relieve.py` y entrega publicada en `registro/t05/`; cotejo en QGIS hecho. Pendiente la revisión de Dani. Este documento fija qué se calcula y cómo se comprueba. Los cambios posteriores deben responder a un fallo reproducible, a una prueba o a un requisito incumplido. Las decisiones de uso están en D020 de `registro/decisiones.csv`.
 
 ## Qué se entrega y cuándo se cierra T05
 
@@ -169,9 +169,9 @@ python -m scripts.t05_relieve --publicar  --salida data/processed/t05/<ejecucion
 
 ## Pasos siguientes
 
-1. Revisión de este método por Dani.
-2. Script `scripts/t05_relieve.py` y sus pruebas.
-3. Ejecución, conciliación con T02 y tabla de casos de borde.
-4. Registros y PR con la plantilla. Agregar `registro/t05/* text eol=lf` a `.gitattributes`.
-5. Ampliación: tabla de sensibilidad.
-6. Cotejo mínimo en QGIS, antes de dar T05 por «Hecha».
+1. ~~Script `scripts/t05_relieve.py` y sus pruebas.~~ Hecho.
+2. ~~Ejecución, conciliación con T02 y tabla de casos de borde.~~ Hecho.
+3. ~~Agregar `registro/t05/* text eol=lf` a `.gitattributes`.~~ Hecho.
+4. ~~Cotejo mínimo en QGIS.~~ Hecho (9 de octubre; ver la bitácora).
+5. Registros y PR con la plantilla; revisión y reproducción por Dani (`--verificar registro/t05 --reproducir`).
+6. Ampliación opcional: tabla de sensibilidad. No bloquea el cierre.

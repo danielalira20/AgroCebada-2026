@@ -1,12 +1,12 @@
 # Bitácora de la extracción de relieve por parcela (T05)
 
-> **Nota para el equipo.** Esta es la bitácora de trabajo, en orden cronológico: qué se hizo en cada paso, qué se esperaba, qué se encontró y qué se decidió. El método está en [`docs/t05_relieve.md`](../../docs/t05_relieve.md). Los datos compartidos irán en `registro/t05/`; esta carpeta guarda la evidencia que los explica. Cada paso cierra con un breve informe con la misma estructura.
+> **Nota para el equipo.** Esta es la bitácora de trabajo, en orden cronológico: qué se hizo en cada paso, qué se esperaba, qué se encontró y qué se decidió. El método está en [`docs/t05_relieve.md`](../../docs/t05_relieve.md). Los datos compartidos están en `registro/t05/`; esta carpeta guarda la evidencia que los explica. Cada paso cierra con un breve informe con la misma estructura.
 
 **Pregunta que debe quedar contestada:** ¿qué elevación y qué pendiente tiene cada una de las 197 parcelas, con qué cobertura de dato y con qué confianza?
 
 Responsable: Jass. Revisora: Dani.
 
-**Estado al 8 de octubre de 2026:** método congelado; extracción real de las 197 parcelas hecha, cubierta por 37 pruebas y aprobada en los controles sobre datos reales. Publicado en `registro/t05/` con manifiesto y verificación. Faltan los registros y el PR, la revisión de Dani y el cotejo en QGIS.
+**Estado al 9 de octubre de 2026:** método congelado e implementado; extracción real de las 197 parcelas cubierta por 60 pruebas propias de T05 (128 en la suite) y aprobada en los controles sobre datos reales; publicada en `registro/t05/` con manifiesto, procedencia generada en Docker y verificación con reproducción aprobada. Cotejo en QGIS hecho. Faltan el PR y la revisión de Dani.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -38,7 +38,7 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 | 4 | Ejecución real: `relieve_parcela.csv` y `relieve_celdas.csv` (197 parcelas) | **Hecho** (8 oct) |
 | 5 | Controles sobre datos reales: T02, cálculo independiente, 5 parciales, 59 reservadas completas | **Hecho** (8 oct) |
 | 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | **Hecho** (8 oct) |
-| 7 | Registros, PR con la plantilla y reproducción por Dani | Pendiente |
+| 7 | Registros, PR con la plantilla y reproducción por Dani | **En curso** (9 oct) |
 | 8 | Ampliación opcional: tabla de sensibilidad | Pendiente |
 | Final | Cotejo mínimo en QGIS (2–3 celdas de 2–3 parcelas y las 5 parcelas incompletas), **antes** de dar T05 por «Hecha» | **Hecho** (9 oct) |
 
