@@ -184,7 +184,7 @@ Orden usado, desde la raíz del repositorio:
 
 **Límite importante.** Esta publicación se generó en el entorno del asistente, que **no** es el fijado en `requirements.txt`: Python 3.10.12 (fijado 3.12), `geopandas` 1.1.4 (fijado 1.2.0) y `pyproj` 3.7.1 (fijado 3.8.0); `numpy`, `rasterio`, `shapely` y `pyogrio` coinciden. `procedencia.json` lo declara tal cual. Hace falta correr `--verificar registro/t05 --reproducir` en el entorno fijado para confirmar que da los mismos valores.
 
-**Lo que sigue.** Paso 7: registros (`experimentos.csv`, `uso_ia.csv`), PR con la plantilla y reproducción por Dani.
+**Lo que sigue.** Paso 7: registro en `uso_ia.csv` (T05 no entrena modelos, así que `experimentos.csv` no aplica), PR con la plantilla y reproducción por Dani.
 
 ### 8 de octubre de 2026 — Publicación regenerada en el entorno oficial
 
@@ -208,3 +208,17 @@ Orden usado, desde la raíz del repositorio:
 
 **Relación con T01.** Es una ejecución exitosa de la imagen Docker en Windows y sirve como evidencia de apoyo, pero **no** es la comprobación que pide el README para cerrar T01: esa es `docker run --rm agrocebada-entorno`, que corre `scripts/verificar_entorno.py`. T01 es responsabilidad de Dani.
 
+### 8 de octubre de 2026 — Corrección de tres controles tras una auditoría independiente
+
+**Qué se hizo.** Jass pidió a otra herramienta (Codex) una auditoría. Reprodujo las 197 parcelas y no halló valores incorrectos, pero señaló tres fallos en los controles. El asistente los comprobó en el código y corrigió `scripts/t05_relieve.py`.
+
+**Qué se encontró (verificado).**
+1. `comprobar_tablas` solo contrastaba conteos y áreas: una media o la columna para T10 alteradas en una tabla pasaban publicación e integridad (solo la reproducción las detectaba). Ahora rehace desde las celdas medias, extremos, coberturas, estados y la regla D020, y la diferencia con el centroide.
+2. `_iguales` daba «iguales» a 2500 e `inf` (con infinito, la tolerancia también es infinita). Reproducido. Ahora `inf`, `-inf` y `nan` nunca son iguales a nada, y las tablas con valores no finitos se rechazan.
+3. Una parcela totalmente fuera del mapa (cero celdas) hacía fallar la comparación de IDs entre tablas. Ahora se admite su ausencia en la tabla de celdas solo si el resumen declara cero celdas y `sin_cobertura_espacial`; celdas de IDs desconocidos o repetidas siguen deteniendo.
+
+**Comprobación.** 15 pruebas nuevas; ejecutadas contra el código anterior, 14 fallan y 1 da error (confirma que detectan los defectos); contra el código nuevo pasan. Suite completa: 126 pruebas OK en el entorno del asistente (Python 3.10). `--verificar registro/t05` sigue aprobando con los datos reales sin tocarlos.
+
+**Qué no demuestra.** La reconstrucción no cubre el centroide ni los avisos (dependen de los ráster; los cubre `--reproducir`). Falta repetir las pruebas y la publicación en Docker.
+
+**Consecuencia.** Cambió la huella de `scripts/t05_relieve.py`, así que `procedencia.json` y `manifest.json` deben regenerarse en Docker. Se espera que las dos tablas y `controles.json` salgan idénticos byte por byte.

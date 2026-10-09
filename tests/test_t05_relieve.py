@@ -405,5 +405,140 @@ class Controles(unittest.TestCase):
         self.assertEqual(r, {"reservadas": 2, "incompletas": ["B"]})
 
 
+class ComparadorNumerico(unittest.TestCase):
+    """Auditoría de 2026-10-08: el comparador aceptaba infinito frente a un número normal."""
+
+    def test_infinitos_y_nan_nunca_son_iguales(self):
+        from scripts.t05_relieve import _iguales
+        for raro in ("inf", "-inf", "nan", "Infinity"):
+            self.assertFalse(_iguales("2500", raro), raro)
+            self.assertFalse(_iguales(raro, "2500"), raro)
+            self.assertFalse(_iguales(raro, raro), raro)
+        self.assertFalse(_iguales("inf", "-inf"))
+
+    def test_numeros_y_textos_normales(self):
+        from scripts.t05_relieve import _iguales
+        self.assertTrue(_iguales("2500.0", "2500.0000000001"))
+        self.assertFalse(_iguales("2500.0", "2500.1"))
+        self.assertTrue(_iguales("", ""))
+        self.assertTrue(_iguales("True", "True"))
+        self.assertFalse(_iguales("True", "False"))
+        self.assertTrue(_iguales("AGC_001", "AGC_001"))
+
+
+class TablasReconstruidas(_DatasetTemporal, unittest.TestCase):
+    """comprobar_tablas rehace los resúmenes desde las celdas (auditoría de 2026-10-08)."""
+
+    def setUp(self):
+        super().setUp()
+        from scripts.t05_relieve import extraer, leer_csv
+        self.tiff("Elevacion_INEGI_CEM4_120m.tif", [[2500, 2600], [2700, 2800]])
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1, -9999], [3, 4]])
+        self.shapefile([box(X0+24, Y0-100, X0+144, Y0-20),           # AGC_002: dos celdas, pendiente parcial.
+                        box(X0+130, Y0-230, X0+230, Y0-130),         # AGC_001: completa.
+                        box(X0+1000, Y0-50, X0+1050, Y0-10)],        # AGC_003: fuera del mapa.
+                       ["AGC_002", "AGC_001", "AGC_003"])
+        self.origen = self.raiz / "extraccion"
+        extraer(self.dataset, self.origen)
+        self.filas = leer_csv(self.origen / "relieve_parcela.csv")
+        self.celdas = leer_csv(self.origen / "relieve_celdas.csv")
+
+    def fila(self, id_parcela):
+        return next(f for f in self.filas if f["id_parcela"] == id_parcela)
+
+    def comprobar(self):
+        from scripts.t05_relieve import comprobar_tablas
+        return comprobar_tablas(self.filas, self.celdas)
+
+    def test_entrega_correcta_pasa_incluida_parcela_fuera_del_mapa(self):
+        self.assertEqual(self.fila("AGC_003")["estado_elevacion"], "sin_cobertura_espacial")
+        self.assertFalse(any(c["id_parcela"] == "AGC_003" for c in self.celdas))
+        self.assertLessEqual(self.comprobar()["max_diferencia_area_relativa"], 1e-6)
+
+    def test_media_de_elevacion_alterada_se_detecta(self):
+        self.fila("AGC_002")["elevacion_media_m"] = "99999"
+        with self.assertRaisesRegex(ValueError, "reconstruido distinto: AGC_002 elevacion_media_m"):
+            self.comprobar()
+
+    def test_columna_para_t10_alterada_se_detecta(self):
+        self.fila("AGC_001")["pendiente_media_t10_grados"] = "99"
+        with self.assertRaisesRegex(ValueError, "pendiente_media_t10_grados"):
+            self.comprobar()
+
+    def test_t10_con_valor_donde_el_piso_exige_vacio_se_detecta(self):
+        f = self.fila("AGC_002")
+        f["pendiente_cobertura_valida"] = "0.3"           # Contradice las celdas.
+        with self.assertRaisesRegex(ValueError, "pendiente_cobertura_valida"):
+            self.comprobar()
+
+    def test_valores_no_finitos_se_rechazan(self):
+        for raro in ("inf", "-inf", "nan"):
+            with self.subTest(raro):
+                f = self.fila("AGC_001")
+                original = f["elevacion_media_m"]
+                f["elevacion_media_m"] = raro
+                with self.assertRaisesRegex(ValueError, "no finito"):
+                    self.comprobar()
+                f["elevacion_media_m"] = original
+
+    def test_celda_alterada_se_detecta(self):
+        c = next(c for c in self.celdas if c["id_parcela"] == "AGC_001")
+        c["elevacion_m"] = "5000.0"
+        with self.assertRaisesRegex(ValueError, "AGC_001"):
+            self.comprobar()
+
+    def test_celda_con_infinito_se_rechaza(self):
+        c = next(c for c in self.celdas if c["id_parcela"] == "AGC_001")
+        c["pendiente_grados"] = "inf"
+        with self.assertRaisesRegex(ValueError, "no finito"):
+            self.comprobar()
+
+    def test_bandera_de_validez_incoherente(self):
+        c = next(c for c in self.celdas if c["id_parcela"] == "AGC_001")
+        c["elevacion_valida"] = "False"                   # Con valor presente.
+        with self.assertRaisesRegex(ValueError, "incoherentes"):
+            self.comprobar()
+
+    def test_celdas_faltantes_de_parcela_con_cobertura_se_detectan(self):
+        self.celdas = [c for c in self.celdas if c["id_parcela"] != "AGC_001"]
+        with self.assertRaisesRegex(ValueError, "Celdas distintas entre tablas: AGC_001"):
+            self.comprobar()
+
+    def test_parcela_vacia_solo_si_el_resumen_lo_declara(self):
+        f = self.fila("AGC_003")
+        f["estado_elevacion"] = "cobertura_completa"      # Dice completa pero no hay celdas.
+        with self.assertRaisesRegex(ValueError, "AGC_003 estado_elevacion"):
+            self.comprobar()
+
+    def test_celdas_de_parcela_desconocida(self):
+        extra = dict(self.celdas[0], id_parcela="AGC_999")
+        self.celdas.append(extra)
+        with self.assertRaisesRegex(ValueError, "no están en el resumen"):
+            self.comprobar()
+
+    def test_celda_duplicada(self):
+        self.celdas.append(dict(self.celdas[0]))
+        with self.assertRaisesRegex(ValueError, "duplicada"):
+            self.comprobar()
+
+    def test_publicar_rechaza_una_extraccion_alterada(self):
+        from scripts.t05_relieve import publicar
+        ruta = self.origen / "relieve_parcela.csv"
+        t02 = self.raiz / "t02"
+        t02.mkdir()
+        (t02 / "catalogo.csv").write_text(
+            "id_parcela,conjunto_origen\nAGC_001,PREDICCION\nAGC_002,ENTRENAMIENTO\nAGC_003,ENTRENAMIENTO\n",
+            encoding="utf-8")
+        (t02 / "soporte.csv").write_text(
+            "id_parcela,cobertura_elevacion,cobertura_pendiente\nAGC_001,1.0,1.0\nAGC_002,1.0,0.8\nAGC_003,0.0,0.0\n",
+            encoding="utf-8")
+        texto = ruta.read_text(encoding="utf-8").replace("2800.0", "99999.0", 1)
+        ruta.write_text(texto, encoding="utf-8", newline="")
+        destino = self.raiz / "registro_t05"
+        with self.assertRaisesRegex(ValueError, "reconstruido distinto|no finito"):
+            publicar(self.dataset, self.origen, destino, t02 / "soporte.csv", t02 / "catalogo.csv")
+        self.assertFalse(destino.exists())
+
+
 if __name__ == "__main__":
     unittest.main()

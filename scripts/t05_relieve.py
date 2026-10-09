@@ -387,23 +387,139 @@ def comprobar_reservadas(filas, conjunto):
     return {"reservadas": len(reservadas), "incompletas": incompletas}
 
 
+TOLERANCIA_RECONSTRUCCION = 1e-9   # Relativa (mínimo absoluto 1e-9); los CSV guardan los números sin redondear.
+
+_VARIABLES = (
+    # nombre, valor en celdas, bandera en celdas, columnas del resumen por parcela
+    ("elevacion", "elevacion_m", "elevacion_valida",
+     {"media": "elevacion_media_m", "cobertura": "elevacion_cobertura_valida",
+      "intersectadas": "elevacion_celdas_intersectadas", "validas": "elevacion_celdas_validas",
+      "area": "elevacion_area_valida_m2", "minimo": "elevacion_min_m",
+      "maximo": "elevacion_max_m", "estado": "estado_elevacion"}),
+    ("pendiente", "pendiente_grados", "pendiente_valida",
+     {"media": "pendiente_media_grados", "cobertura": "pendiente_cobertura_valida",
+      "intersectadas": "pendiente_celdas_intersectadas", "validas": "pendiente_celdas_validas",
+      "area": "pendiente_area_valida_m2", "minimo": "pendiente_min_grados",
+      "maximo": "pendiente_max_grados", "estado": "estado_pendiente"}),
+)
+_COLUMNAS_NUMERICAS_EXTRA = (
+    "area_parcela_6372_m2", "cobertura_espacial", "pendiente_media_t10_grados",
+    "elevacion_centroide_m", "pendiente_centroide_grados",
+    "diferencia_elevacion_centroide_m", "diferencia_pendiente_centroide_grados",
+)
+
+
+def _finito_o_vacio(texto, donde):
+    """Número finito, o None si la celda está vacía. inf, -inf, nan o texto detienen."""
+    if texto == "":
+        return None
+    try:
+        valor = float(texto)
+    except (TypeError, ValueError):
+        raise ValueError(f"Valor no numérico: {donde}") from None
+    if not math.isfinite(valor):
+        raise ValueError(f"Valor no finito: {donde}")
+    return valor
+
+
+def _cerca(a, b):
+    if a is None or b is None:
+        return a is None and b is None
+    return abs(a - b) <= max(TOLERANCIA_RECONSTRUCCION, TOLERANCIA_RECONSTRUCCION * max(abs(a), abs(b)))
+
+
+def _reconstruir(celdas_parcela, area_parcela, col_valor, col_bandera, id_parcela):
+    """Rehace desde las celdas el resumen de una variable, con la misma regla que resumir_variable."""
+    validas = []
+    for c in celdas_parcela:
+        area = _finito_o_vacio(c["area_interseccion_m2"], f"{id_parcela} area_interseccion_m2")
+        if area is None or area <= 0:
+            raise ValueError(f"Área de celda no admisible: {id_parcela}")
+        if c[col_bandera] not in ("True", "False"):
+            raise ValueError(f"Bandera de validez no admisible: {id_parcela} {col_bandera}")
+        valor = _finito_o_vacio(c[col_valor], f"{id_parcela} {col_valor}")
+        if (c[col_bandera] == "True") != (valor is not None):
+            raise ValueError(f"Valor y validez incoherentes: {id_parcela} {col_valor}")
+        if valor is not None:
+            validas.append((valor, area))
+    area_valida = math.fsum(a for _, a in validas)
+    media = minimo = maximo = None
+    if validas:
+        media = math.fsum(v * a for v, a in validas) / area_valida
+        minimo, maximo = min(v for v, _ in validas), max(v for v, _ in validas)
+    cobertura = min(1.0, area_valida / area_parcela)
+    if not celdas_parcela:
+        estado = "sin_cobertura_espacial"
+    elif area_valida == 0:
+        estado = "todo_nodata"
+    elif cobertura >= 1 - TOLERANCIA_COMPLETA:
+        estado = "cobertura_completa"
+    else:
+        estado = "cobertura_parcial"
+    return {"media": media, "minimo": minimo, "maximo": maximo, "cobertura": cobertura,
+            "intersectadas": len(celdas_parcela), "validas": len(validas),
+            "area": area_valida, "estado": estado}
+
+
 def comprobar_tablas(filas, celdas):
-    """Coherencia entre relieve_parcela.csv y relieve_celdas.csv; detiene si falla."""
-    por_id = {}
+    """Coherencia entre relieve_parcela.csv y relieve_celdas.csv; detiene si falla.
+
+    Además de conteos y áreas, rehace desde las celdas las medias, extremos,
+    coberturas, estados y la columna para T10 (D020), y rechaza valores no finitos.
+    No cubre el centroide ni los avisos: eso depende de los ráster y lo comprueba la reproducción.
+    """
+    ids = [f["id_parcela"] for f in filas]
+    if len(ids) != len(set(ids)):
+        raise ValueError("IDs duplicados en el resumen por parcela")
+    por_id, vistas = {}, set()
     for c in celdas:
-        n, a = por_id.get(c["id_parcela"], (0, 0.0))
-        por_id[c["id_parcela"]] = (n + 1, a + float(c["area_interseccion_m2"]))
+        clave = (c["id_parcela"], c["fila"], c["columna"])
+        if clave in vistas:
+            raise ValueError(f"Celda duplicada en la tabla de celdas: {clave}")
+        vistas.add(clave)
+        por_id.setdefault(c["id_parcela"], []).append(c)
+    if set(por_id) - set(ids):
+        raise ValueError("Hay celdas de parcelas que no están en el resumen por parcela")
     peor = 0.0
     for f in filas:
-        n, a = por_id.get(f["id_parcela"], (0, 0.0))
-        if n != int(f["elevacion_celdas_intersectadas"]):
-            raise ValueError(f"Celdas distintas entre tablas: {f['id_parcela']}")
-        area = float(f["area_parcela_6372_m2"])
-        peor = max(peor, abs(a - area * float(f["cobertura_espacial"])) / area)
+        id_parcela = f["id_parcela"]
+        propias = por_id.get(id_parcela, [])
+        # Una parcela puede faltar en la tabla de celdas solo si el resumen declara cero celdas;
+        # lo exigen la comparación de conteos y la reconstrucción de estado de más abajo.
+        for v in (_COLUMNAS_NUMERICAS_EXTRA):
+            _finito_o_vacio(f[v], f"{id_parcela} {v}")
+        area = _finito_o_vacio(f["area_parcela_6372_m2"], f"{id_parcela} area_parcela_6372_m2")
+        cobertura_espacial = _finito_o_vacio(f["cobertura_espacial"], f"{id_parcela} cobertura_espacial")
+        if area is None or area <= 0 or cobertura_espacial is None:
+            raise ValueError(f"Área o cobertura espacial no admisible: {id_parcela}")
+        suma = math.fsum(float(c["area_interseccion_m2"]) for c in propias)
+        peor = max(peor, abs(suma - area * cobertura_espacial) / area)
+        reconstruidos = {}
+        for nombre, col_valor, col_bandera, columnas in _VARIABLES:
+            r = _reconstruir(propias, area, col_valor, col_bandera, id_parcela)
+            reconstruidos[nombre] = r
+            if int(f[columnas["intersectadas"]]) != r["intersectadas"]:
+                raise ValueError(f"Celdas distintas entre tablas: {id_parcela}")
+            if f[columnas["estado"]] != r["estado"]:
+                raise ValueError(f"Valor reconstruido distinto: {id_parcela} {columnas['estado']}")
+            if int(f[columnas["validas"]]) != r["validas"]:
+                raise ValueError(f"Valor reconstruido distinto: {id_parcela} {columnas['validas']}")
+            for clave in ("media", "minimo", "maximo", "cobertura", "area"):
+                escrito = _finito_o_vacio(f[columnas[clave]], f"{id_parcela} {columnas[clave]}")
+                if not _cerca(escrito, r[clave]):
+                    raise ValueError(f"Valor reconstruido distinto: {id_parcela} {columnas[clave]}")
+        p = reconstruidos["pendiente"]
+        t10 = p["media"] if p["media"] is not None and p["cobertura"] >= PISO_PENDIENTE_T10 else None
+        if not _cerca(_finito_o_vacio(f["pendiente_media_t10_grados"], f"{id_parcela} T10"), t10):
+            raise ValueError(f"Valor reconstruido distinto: {id_parcela} pendiente_media_t10_grados")
+        for dif, media, punto in (("diferencia_elevacion_centroide_m", "elevacion", "elevacion_centroide_m"),
+                                  ("diferencia_pendiente_centroide_grados", "pendiente", "pendiente_centroide_grados")):
+            m, q = reconstruidos[media]["media"], _finito_o_vacio(f[punto], punto)
+            esperado = None if m is None or q is None else m - q
+            if not _cerca(_finito_o_vacio(f[dif], dif), esperado):
+                raise ValueError(f"Valor reconstruido distinto: {id_parcela} {dif}")
     if peor > TOLERANCIA_AREA_REL:
         raise ValueError("Áreas de celdas no suman el área de la parcela")
-    if set(por_id) != {f["id_parcela"] for f in filas}:
-        raise ValueError("IDs distintos entre tablas")
     return {"max_diferencia_area_relativa": peor}
 
 
@@ -557,12 +673,15 @@ def _cabecera(ruta):
 
 
 def _iguales(a, b):
-    if a == b:
-        return True
+    """Texto idéntico, o números finitos dentro de la tolerancia. inf y nan nunca son iguales a nada."""
     try:
         x, y = float(a), float(b)
     except ValueError:
+        return a == b
+    if not (math.isfinite(x) and math.isfinite(y)):
         return False
+    if a == b:
+        return True
     return abs(x - y) <= max(1e-9, TOLERANCIA_REPRODUCCION * max(abs(x), abs(y)))
 
 

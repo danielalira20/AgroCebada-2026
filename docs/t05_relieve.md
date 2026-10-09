@@ -135,7 +135,7 @@ El ajuste de un plano por parcela es diagnóstico opcional, no condiciona el cie
 **Cotejo mínimo en QGIS** (al final, antes de dar T05 por «Hecha»): con «Identificar», comparar 2–3 celdas de 2–3 parcelas contra `relieve_celdas.csv`, y mirar las cinco parcelas incompletas sobre los TIFF. Es el único control que no pasa por las mismas bibliotecas (`rasterio`, `pyproj`, `shapely`), así que protege de un error común a todas, como un desfase de fila o columna. No se usa «Estadísticas de zona» para comparar promedios: cuenta celdas por su centro y no pondera por área.
 
 **Reproducción.** El script tendrá `--extraer` y `--verificar`, y se distinguen dos controles:
-- **Integridad:** el manifiesto contiene los hashes de los archivos de entrega, exceptuando el propio manifiesto. Comprueba que los archivos publicados no cambiaron.
+- **Integridad:** el manifiesto contiene los hashes de los archivos de entrega, exceptuando el propio manifiesto. Comprueba que los archivos publicados no cambiaron. Además, `--verificar` y `--publicar` rehacen desde `relieve_celdas.csv` las medias, extremos, coberturas, estados y la columna para T10, y rechazan valores no finitos; la reproducción numérica (`--reproducir`) cubre además el centroide y los avisos.
 - **Reproducción numérica:** una nueva extracción se compara con la publicada con las tolerancias declaradas. La identidad byte a byte solo se exige si se usa el mismo entorno y una serialización determinista; el fin de línea LF ayuda, pero por sí solo no la garantiza.
 
 La procedencia guarda además las versiones del entorno (Python y bibliotecas usadas) y los hashes de los componentes del shapefile que se leen (`.shp`, `.shx`, `.dbf` y `.prj`, es decir, geometría, atributos y proyección).

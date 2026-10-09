@@ -1,6 +1,6 @@
 {
   "codigo_sha256": {
-    "scripts/t05_relieve.py": "2b6b8edb61263649d6eb0de0dbcc7278b131d96b72bce725efde1588adf27bfa"
+    "scripts/t05_relieve.py": "8dd3f676db542c1e25e626395c0c4a306989dbb5c922dacae9bc02dba3c24678"
   },
   "cuadricula_relieve": {
     "columnas": 2900,
