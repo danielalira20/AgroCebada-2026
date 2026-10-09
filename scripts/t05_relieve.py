@@ -648,15 +648,31 @@ def procedencia(dataset):
 
 
 def publicar(dataset, origen, destino, ruta_soporte_t02, ruta_catalogo_t02):
-    """Vuelve a controlar la extracción de `origen` y la publica en `destino` con manifiesto."""
+    """Vuelve a controlar la extracción de `origen` y la publica en `destino` con manifiesto.
+
+    Tras los controles internos y antes de crear el destino, repite la extracción
+    desde `dataset` en una carpeta temporal y la compara con `origen`. Así la
+    procedencia (huellas de las fuentes) no puede atribuir a una fuente nueva unas
+    tablas extraídas de otra anterior. Las huellas se toman antes y después de esa
+    comparación y deben coincidir.
+    """
     origen, destino = Path(origen), Path(destino)
     if destino.exists() and any(destino.iterdir()):
         raise ValueError("El destino debe ser una carpeta nueva o vacía")
-    c = controlar(dataset, origen, ruta_soporte_t02, ruta_catalogo_t02)
+    prov = procedencia(dataset)
+    c = controlar(dataset, origen, ruta_soporte_t02, ruta_catalogo_t02)  # Coherencia interna primero.
+    with tempfile.TemporaryDirectory() as tmp:
+        extraer(dataset, Path(tmp) / "nueva")
+        try:
+            comparar_extracciones(origen, Path(tmp) / "nueva")
+        except ValueError as e:
+            raise ValueError(f"La extracción a publicar no corresponde al dataset actual: {e}") from None
+    if procedencia(dataset)["fuentes"] != prov["fuentes"]:
+        raise ValueError("Las fuentes cambiaron durante la publicación")
     destino.mkdir(parents=True, exist_ok=True)
     for nombre in ("relieve_parcela.csv", "relieve_celdas.csv", "controles.json"):
         shutil.copyfile(origen / nombre, destino / nombre)
-    escribir_json(destino / "procedencia.json", procedencia(dataset))
+    escribir_json(destino / "procedencia.json", prov)
     celdas = leer_csv(destino / "relieve_celdas.csv")
     escribir_json(destino / "manifest.json", {
         "schema": ESQUEMA_ENTREGA,

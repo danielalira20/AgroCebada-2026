@@ -368,6 +368,25 @@ class PublicacionYVerificacion(_DatasetTemporal, unittest.TestCase):
         self.assertEqual(c["resultado"], "aprobado_con_avisos_t05_no_cerrada")
         self.assertEqual(verificar(self.destino)["resultado_controles"], "aprobado_con_avisos_t05_no_cerrada")
 
+    def test_extraccion_antigua_con_fuente_nueva_no_se_publica(self):
+        # Auditoría del 9 de octubre: extraer, cambiar un valor del TIFF (misma cuadrícula y
+        # cobertura) y publicar las tablas viejas aprobaba y guardaba la huella del TIFF nuevo.
+        from scripts.t05_relieve import publicar
+        self.preparar()
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1.5, -9999], [3, 4]])
+        with self.assertRaisesRegex(ValueError, "no corresponde al dataset actual"):
+            publicar(self.dataset, self.origen, self.destino, *self.t02)
+        self.assertFalse(self.destino.exists())
+
+    def test_publicacion_guarda_las_huellas_de_las_fuentes_usadas(self):
+        import json
+        from scripts.t05_relieve import huella, publicar
+        self.preparar()
+        publicar(self.dataset, self.origen, self.destino, *self.t02)
+        fuentes = json.loads((self.destino / "procedencia.json").read_text(encoding="utf-8"))["fuentes"]
+        pend = next(f for f in fuentes if f["rol"] == "pendiente")
+        self.assertEqual(pend["sha256"], huella(self.dataset / pend["archivo"]))
+
     def test_destino_con_contenido_no_se_sobrescribe(self):
         from scripts.t05_relieve import publicar
         self.preparar()
