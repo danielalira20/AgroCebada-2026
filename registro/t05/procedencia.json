@@ -1,0 +1,91 @@
+{
+  "codigo_sha256": {
+    "scripts/t05_relieve.py": "2b6b8edb61263649d6eb0de0dbcc7278b131d96b72bce725efde1588adf27bfa"
+  },
+  "cuadricula_relieve": {
+    "columnas": 2900,
+    "crs": "EPSG:6372",
+    "filas": 3362,
+    "nodata": -9999.0,
+    "resolucion_m": [
+      120.0,
+      120.0
+    ],
+    "transformacion": [
+      120.0,
+      0.0,
+      2715840.0,
+      0.0,
+      -120.0,
+      1053840.0
+    ]
+  },
+  "decision_de_uso": "D020",
+  "documento_metodo": "docs/t05_relieve.md",
+  "entorno": {
+    "geopandas": "1.2.0",
+    "numpy": "2.2.6",
+    "pyogrio": "0.13.0",
+    "pyproj": "3.8.0",
+    "python": "3.12.15",
+    "rasterio": "1.4.4",
+    "shapely": "2.1.2"
+  },
+  "fuentes": [
+    {
+      "archivo": "Parcelas_Reto_AGC_CONJUNTO_70_30/Parcelas_Reto_AGC_CONJUNTO.shp",
+      "bytes": 168628,
+      "rol": "parcelas_shp",
+      "sha256": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29"
+    },
+    {
+      "archivo": "Parcelas_Reto_AGC_CONJUNTO_70_30/Parcelas_Reto_AGC_CONJUNTO.shx",
+      "bytes": 1676,
+      "rol": "parcelas_shx",
+      "sha256": "b03e99bc1c619fd9351693091558f549e0b75220f41e1c3b6343dbc41cb7d1f7"
+    },
+    {
+      "archivo": "Parcelas_Reto_AGC_CONJUNTO_70_30/Parcelas_Reto_AGC_CONJUNTO.dbf",
+      "bytes": 83951,
+      "rol": "parcelas_dbf",
+      "sha256": "9b7d9e06beb70c688c59d4c2e4227ef851596e3382af7d5566b9c669dc35debb"
+    },
+    {
+      "archivo": "Parcelas_Reto_AGC_CONJUNTO_70_30/Parcelas_Reto_AGC_CONJUNTO.prj",
+      "bytes": 145,
+      "rol": "parcelas_prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4"
+    },
+    {
+      "archivo": "Reto_AgroCebada_Topografia_INEGI_CEM4/Reto_AgroCebada_Topografia_INEGI_CEM4/Reto_AgroCebada_Topografia_INEGI_CEM4/Elevacion_INEGI_CEM4_120m.tif",
+      "bytes": 4488499,
+      "rol": "elevacion",
+      "sha256": "2f9b0a3deeb28089ef3253303b0fed1b67b3cac6e452a2d3d75c913d87fcc408"
+    },
+    {
+      "archivo": "Reto_AgroCebada_Topografia_INEGI_CEM4/Reto_AgroCebada_Topografia_INEGI_CEM4/Reto_AgroCebada_Topografia_INEGI_CEM4/Pendiente_INEGI_CEM4_120m_grados.tif",
+      "bytes": 13405501,
+      "rol": "pendiente",
+      "sha256": "f0fa8b07e06873d40d3741a8e5f2bba8f652be810fea21fa0f6fe13f8dc48d45"
+    }
+  ],
+  "metodo_area": "plana_crs_raster_v1",
+  "metodo_pendiente_declarado": "Horn 3x3 (LEEME de la entrega)",
+  "parcelas": {
+    "columna_id": "id_parcela",
+    "columna_id_origen": "ID_POLIGON",
+    "crs": "EPSG:4326",
+    "reproyeccion": "EPSG:6372"
+  },
+  "piso_pendiente_t10": 0.5,
+  "tolerancias": {
+    "area_relativa": 1e-06,
+    "cobertura_completa": 1e-09,
+    "conciliacion_t02": 5.0001000000000005e-05,
+    "reproduccion": 1e-09
+  },
+  "unidades": {
+    "elevacion": "m s.n.m.",
+    "pendiente": "grados"
+  }
+}

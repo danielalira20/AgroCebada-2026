@@ -6,7 +6,7 @@
 
 Responsable: Jass. Revisora: Dani.
 
-**Estado al 8 de octubre de 2026:** método congelado; extracción real de las 197 parcelas hecha, cubierta por 37 pruebas y aprobada en los controles sobre datos reales. Faltan la publicación en `registro/t05/`, la revisión de Dani y el cotejo en QGIS.
+**Estado al 8 de octubre de 2026:** método congelado; extracción real de las 197 parcelas hecha, cubierta por 37 pruebas y aprobada en los controles sobre datos reales. Publicado en `registro/t05/` con manifiesto y verificación. Faltan los registros y el PR, la revisión de Dani y el cotejo en QGIS.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -37,7 +37,7 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 | 3 | Pruebas formales con datos sintéticos | **Hecho** (8 oct) |
 | 4 | Ejecución real: `relieve_parcela.csv` y `relieve_celdas.csv` (197 parcelas) | **Hecho** (8 oct) |
 | 5 | Controles sobre datos reales: T02, cálculo independiente, 5 parciales, 59 reservadas completas | **Hecho** (8 oct) |
-| 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | Pendiente |
+| 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | **Hecho** (8 oct) |
 | 7 | Registros, PR con la plantilla y reproducción por Dani | Pendiente |
 | 8 | Ampliación opcional: tabla de sensibilidad | Pendiente |
 | Final | Cotejo mínimo en QGIS (2–3 celdas de 2–3 parcelas y las 5 parcelas incompletas), **antes** de dar T05 por «Hecha» | **Acordado** (8 oct) |
@@ -164,4 +164,47 @@ Orden usado, desde la raíz del repositorio:
 **Qué no demuestra todavía.** Todos estos controles usan las mismas bibliotecas (`rasterio`, `pyproj`, `shapely`); el cotejo en QGIS al final es el que cubre ese riesgo común. `controles.json` vive todavía en `data/processed/`; se publica en el paso 6.
 
 **Lo que sigue.** Paso 6: publicar en `registro/t05/` con procedencia, controles, manifiesto y `--verificar`.
+
+### 8 de octubre de 2026 — Informe del paso 6: publicación y verificación
+
+**Qué se hizo.**
+- `.gitattributes`: se reescribió con fin de línea LF (la primera línea tenía un retorno de carro), se conservaron las dos reglas de T04 y se agregó `registro/t05/* text eol=lf`. Comprobado con `git check-attr`.
+- Se añadieron a `scripts/t05_relieve.py` los modos `--publicar` y `--verificar` (con `--reproducir` opcional). Publicar vuelve a correr los controles, copia las dos tablas y `controles.json`, y escribe `procedencia.json` y `manifest.json`. Verificar distingue los dos controles acordados: **integridad** (hashes de todos los archivos excepto el propio manifiesto, columnas, conteos y coherencia entre tablas) y **reproducción numérica** (extrae de nuevo en una carpeta temporal y compara valor por valor con tolerancia relativa de 10⁻⁹).
+- `procedencia.json` guarda: hashes y tamaños de los cuatro componentes del shapefile y de los dos TIFF, cuadrícula, unidades, CRS, método de áreas, tolerancias, piso de T10, hash del script y versiones del entorno. Usa rutas relativas al dataset; no contiene rutas locales.
+- Se añadieron 6 pruebas de publicación y verificación, entre ellas una que simula la conversión a CRLF de un checkout de Windows y comprueba que la verificación la detecta. Total: 43 pruebas de T05; la suite completa del repositorio, 111, pasa.
+- Se publicó en `registro/t05/` y se añadió al documento del método la sección «Cómo reproducir y verificar».
+
+**Qué se esperaba.** Una entrega que Dani pueda verificar con una orden, que detecte cualquier alteración y que no repita el fallo de fin de línea de T04.
+
+**Qué se encontró (verificado).**
+- Controles al publicar: `aprobado`. Verificación de integridad: `integridad_aprobada` (197 parcelas, 2 253 celdas). Verificación con reproducción: `aprobada`, en unos 6 segundos.
+- Los cinco archivos publicados están en LF, sin retornos de carro.
+- La verificación detecta en las pruebas: un archivo alterado, una conversión a CRLF, un cambio en un TIFF fuente (reproducción distinta) y un destino con contenido previo.
+- Una discrepancia con T02 deja publicar, pero el manifiesto y los controles registran `aprobado_con_avisos_t05_no_cerrada`, como se acordó.
+
+**Límite importante.** Esta publicación se generó en el entorno del asistente, que **no** es el fijado en `requirements.txt`: Python 3.10.12 (fijado 3.12), `geopandas` 1.1.4 (fijado 1.2.0) y `pyproj` 3.7.1 (fijado 3.8.0); `numpy`, `rasterio`, `shapely` y `pyogrio` coinciden. `procedencia.json` lo declara tal cual. Hace falta correr `--verificar registro/t05 --reproducir` en el entorno fijado para confirmar que da los mismos valores.
+
+**Lo que sigue.** Paso 7: registros (`experimentos.csv`, `uso_ia.csv`), PR con la plantilla y reproducción por Dani.
+
+### 8 de octubre de 2026 — Publicación regenerada en el entorno oficial
+
+**Qué se hizo.** Jass corrió en Windows, dentro de la imagen Docker del repositorio (Python 3.12.15 y las versiones de `requirements.txt`), la suite completa de pruebas y la verificación con reproducción de la publicación hecha por el asistente. Después borró `registro/t05/` y la regeneró en ese mismo entorno. Órdenes, en PowerShell desde la raíz del repositorio:
+
+    docker build -t agrocebada-entorno .
+    docker run --rm -v "${PWD}:/proyecto" -w /proyecto agrocebada-entorno python -m unittest discover -s tests -v
+    docker run --rm -v "${PWD}:/proyecto" -w /proyecto agrocebada-entorno python -m scripts.t05_relieve --extraer --salida data/processed/t05/extraccion_docker
+    docker run --rm -v "${PWD}:/proyecto" -w /proyecto agrocebada-entorno python -m scripts.t05_relieve --publicar --salida data/processed/t05/extraccion_docker
+    docker run --rm -v "${PWD}:/proyecto" -w /proyecto agrocebada-entorno python -m scripts.t05_relieve --verificar registro/t05 --reproducir
+
+**Qué se esperaba.** Las 111 pruebas aprobadas y los mismos valores que la publicación anterior.
+
+**Qué se encontró (verificado).**
+- 111 pruebas aprobadas en Docker sobre Windows. Verificación de la publicación anterior: integridad y reproducción aprobadas.
+- La nueva extracción da los mismos estados (192 / 1 / 4), controles `aprobado` y verificación con reproducción aprobada.
+- `relieve_parcela.csv`, `relieve_celdas.csv` y `controles.json` son **idénticos byte por byte** a los generados en el entorno del asistente (Python 3.10). Solo cambian `procedencia.json` (entorno) y `manifest.json` (su huella).
+- `procedencia.json` declara ahora el entorno fijado: Python 3.12.15, `geopandas` 1.2.0, `pyproj` 3.8.0, `numpy` 2.2.6, `rasterio` 1.4.4, `shapely` 2.1.2, `pyogrio` 0.13.0. Los cinco archivos están en LF.
+
+**Queda resuelto** el límite anotado en el paso 6: la entrega no depende del entorno en que se genere.
+
+**Relación con T01.** Es una ejecución exitosa de la imagen Docker en Windows y sirve como evidencia de apoyo, pero **no** es la comprobación que pide el README para cerrar T01: esa es `docker run --rm agrocebada-entorno`, que corre `scripts/verificar_entorno.py`. T01 es responsabilidad de Dani.
 

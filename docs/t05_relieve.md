@@ -140,6 +140,26 @@ El ajuste de un plano por parcela es diagnóstico opcional, no condiciona el cie
 
 La procedencia guarda además las versiones del entorno (Python y bibliotecas usadas) y los hashes de los componentes del shapefile que se leen (`.shp`, `.shx`, `.dbf` y `.prj`, es decir, geometría, atributos y proyección).
 
+## Cómo reproducir y verificar
+
+Desde la raíz del repositorio, con el entorno de `requirements.txt` y el dataset original en `data/raw/DATASET_RETO_AGRO_2026/`:
+
+```bash
+python -m unittest discover -s tests -v                                   # pruebas
+python -m scripts.t05_relieve --verificar registro/t05                    # integridad: hashes y estructura
+python -m scripts.t05_relieve --verificar registro/t05 --reproducir       # además, extrae de nuevo y compara con tolerancia
+```
+
+Para regenerar la entrega desde cero (las carpetas de salida deben ser nuevas o estar vacías):
+
+```bash
+python -m scripts.t05_relieve --extraer   --salida data/processed/t05/<ejecucion>
+python -m scripts.t05_relieve --controlar --salida data/processed/t05/<ejecucion>
+python -m scripts.t05_relieve --publicar  --salida data/processed/t05/<ejecucion> --destino registro/t05
+```
+
+`--publicar` vuelve a correr los controles antes de copiar. `registro/t05/` contiene `relieve_parcela.csv`, `relieve_celdas.csv`, `controles.json`, `procedencia.json` y `manifest.json`.
+
 ## Lo que este documento no afirma
 
 - **La causa de la raya NoData.** Cerca de AGC_164, 170 y 023 corre en diagonal y separa parcelas de Tlaxcala y de Hidalgo. Es una **sospecha** de que coincide con una unión entre mapas estatales; no se comprobó con una capa oficial de límites.

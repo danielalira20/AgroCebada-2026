@@ -232,8 +232,8 @@ class Errores(Base):
             resumir_variable(s, r, datos=np.ma.masked_array(np.zeros((3, 3))))
 
 
-class ExtraccionDePuntaAPunta(unittest.TestCase):
-    """Shapefile y TIFF diminutos en una carpeta temporal: lectura, cambio de ID y CSV."""
+class _DatasetTemporal:
+    """Herramientas comunes, sin pruebas propias: shapefile y TIFF diminutos en una carpeta temporal."""
 
     def setUp(self):
         import tempfile
@@ -255,6 +255,10 @@ class ExtraccionDePuntaAPunta(unittest.TestCase):
         import geopandas as gpd
         g = gpd.GeoDataFrame({"ID_POLIGON": ids}, geometry=geoms_6372, crs=CRS).to_crs("EPSG:4326")
         g.to_file(self.dataset / "Parcelas_Reto_AGC_CONJUNTO.shp")
+
+
+class ExtraccionDePuntaAPunta(_DatasetTemporal, unittest.TestCase):
+    """Lectura de archivos, cambio de ID y escritura de CSV."""
 
     def test_extrae_y_escribe_csv(self):
         from scripts.t05_relieve import extraer
@@ -294,6 +298,83 @@ class ExtraccionDePuntaAPunta(unittest.TestCase):
         self.shapefile([box(X0+10, Y0-50, X0+50, Y0-10)], ["AGC_001"])
         with self.assertRaisesRegex(ValueError, "no alineadas"):
             extraer(self.dataset, self.raiz / "salida")
+
+
+class PublicacionYVerificacion(_DatasetTemporal, unittest.TestCase):
+    """Extraer, publicar y verificar en una carpeta temporal, con T02 sintético."""
+
+    def preparar(self, cobertura_pendiente_t02="0.8"):
+        from scripts.t05_relieve import extraer
+        self.tiff("Elevacion_INEGI_CEM4_120m.tif", [[2500, 2600], [2700, 2800]])
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1, -9999], [3, 4]])
+        self.shapefile([box(X0+24, Y0-100, X0+144, Y0-20), box(X0+130, Y0-230, X0+230, Y0-130)],
+                       ["AGC_002", "AGC_001"])
+        t02 = self.raiz / "t02"
+        t02.mkdir()
+        (t02 / "catalogo.csv").write_text(
+            "id_parcela,conjunto_origen\nAGC_001,PREDICCION\nAGC_002,ENTRENAMIENTO\n", encoding="utf-8")
+        (t02 / "soporte.csv").write_text(
+            "id_parcela,cobertura_elevacion,cobertura_pendiente\nAGC_001,1.0,1.0\n"
+            f"AGC_002,1.0,{cobertura_pendiente_t02}\n", encoding="utf-8")
+        self.origen = self.raiz / "extraccion"
+        extraer(self.dataset, self.origen)
+        self.t02 = (t02 / "soporte.csv", t02 / "catalogo.csv")
+        self.destino = self.raiz / "registro_t05"
+
+    def test_publicar_y_verificar_con_reproduccion(self):
+        from scripts.t05_relieve import publicar, verificar
+        self.preparar()
+        c = publicar(self.dataset, self.origen, self.destino, *self.t02)
+        self.assertEqual(c["resultado"], "aprobado")
+        self.assertEqual(sorted(p.name for p in self.destino.iterdir()),
+                         ["controles.json", "manifest.json", "procedencia.json",
+                          "relieve_celdas.csv", "relieve_parcela.csv"])
+        r = verificar(self.destino, reproducir=True, dataset=self.dataset)
+        self.assertEqual((r["resultado"], r["reproduccion"]), ("integridad_aprobada", "aprobada"))
+        for p in self.destino.iterdir():
+            self.assertNotIn(b"\r", p.read_bytes(), p.name)
+
+    def test_archivo_alterado_falla(self):
+        from scripts.t05_relieve import publicar, verificar
+        self.preparar()
+        publicar(self.dataset, self.origen, self.destino, *self.t02)
+        with open(self.destino / "relieve_parcela.csv", "a", encoding="utf-8") as f:
+            f.write(" ")
+        with self.assertRaisesRegex(ValueError, "Huella distinta: relieve_parcela.csv"):
+            verificar(self.destino)
+
+    def test_conversion_a_crlf_falla(self):
+        # Lo que hace un checkout de Windows sin .gitattributes: por eso registro/t05/* va con eol=lf.
+        from scripts.t05_relieve import publicar, verificar
+        self.preparar()
+        publicar(self.dataset, self.origen, self.destino, *self.t02)
+        ruta = self.destino / "controles.json"
+        ruta.write_bytes(ruta.read_bytes().replace(b"\n", b"\r\n"))
+        with self.assertRaisesRegex(ValueError, "Huella distinta: controles.json"):
+            verificar(self.destino)
+
+    def test_reproduccion_distinta_falla(self):
+        from scripts.t05_relieve import publicar, verificar
+        self.preparar()
+        publicar(self.dataset, self.origen, self.destino, *self.t02)
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1.5, -9999], [3, 4]])  # Cambia la fuente.
+        with self.assertRaisesRegex(ValueError, "Reproducción distinta"):
+            verificar(self.destino, reproducir=True, dataset=self.dataset)
+
+    def test_discrepancia_t02_publica_pero_no_cierra(self):
+        from scripts.t05_relieve import publicar, verificar
+        self.preparar(cobertura_pendiente_t02="0.7")
+        c = publicar(self.dataset, self.origen, self.destino, *self.t02)
+        self.assertEqual(c["resultado"], "aprobado_con_avisos_t05_no_cerrada")
+        self.assertEqual(verificar(self.destino)["resultado_controles"], "aprobado_con_avisos_t05_no_cerrada")
+
+    def test_destino_con_contenido_no_se_sobrescribe(self):
+        from scripts.t05_relieve import publicar
+        self.preparar()
+        self.destino.mkdir()
+        (self.destino / "otro.txt").write_text("x")
+        with self.assertRaisesRegex(ValueError, "carpeta nueva"):
+            publicar(self.dataset, self.origen, self.destino, *self.t02)
 
 
 class Controles(unittest.TestCase):

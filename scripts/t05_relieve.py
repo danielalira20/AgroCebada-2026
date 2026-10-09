@@ -10,7 +10,12 @@ quedan vacíos.
 """
 import argparse
 import csv
+import hashlib
+import json
 import math
+import shutil
+import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -435,7 +440,6 @@ def comparar_areas_fisicas(parcelas, elevacion, d_elev, pendiente, d_pend):
 
 
 def controlar(dataset, salida, ruta_soporte_t02, ruta_catalogo_t02):
-    import json
     import rasterio
     salida = Path(salida)
     filas = leer_csv(salida / "relieve_parcela.csv")
@@ -473,20 +477,167 @@ def controlar(dataset, salida, ruta_soporte_t02, ruta_catalogo_t02):
     return c
 
 
+# ---------------------------------------------------------------------------
+# Publicación y verificación (paso 6). La entrega compartida vive en registro/t05/.
+# ---------------------------------------------------------------------------
+ESQUEMA_ENTREGA = "t05_entrega_v1"
+ARCHIVOS_ENTREGA = ("relieve_parcela.csv", "relieve_celdas.csv", "controles.json", "procedencia.json")
+TOLERANCIA_REPRODUCCION = 1e-9   # Relativa (mínimo absoluto 1e-9) al comparar una nueva extracción.
+
+
+def huella(ruta):
+    return hashlib.sha256(Path(ruta).read_bytes()).hexdigest()
+
+
+def escribir_json(ruta, objeto):
+    with open(ruta, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(objeto, f, ensure_ascii=False, indent=2, sort_keys=True)
+        f.write("\n")
+
+
+def versiones_entorno():
+    import geopandas, numpy, pyogrio, pyproj, rasterio, shapely
+    return {"python": sys.version.split()[0], "numpy": numpy.__version__,
+            "rasterio": rasterio.__version__, "shapely": shapely.__version__,
+            "pyproj": pyproj.__version__, "geopandas": geopandas.__version__,
+            "pyogrio": pyogrio.__version__}
+
+
+def procedencia(dataset):
+    import rasterio
+    dataset = Path(dataset)
+    shp = buscar_unico(dataset, NOMBRE_SHP)
+    fuentes = []
+    for rol, ruta in [("parcelas_" + s[1:], shp.with_suffix(s)) for s in (".shp", ".shx", ".dbf", ".prj")] + \
+                     [("elevacion", buscar_unico(dataset, NOMBRE_ELEVACION)),
+                      ("pendiente", buscar_unico(dataset, NOMBRE_PENDIENTE))]:
+        fuentes.append({"rol": rol, "archivo": ruta.relative_to(dataset).as_posix(),
+                        "bytes": ruta.stat().st_size, "sha256": huella(ruta)})
+    with rasterio.open(buscar_unico(dataset, NOMBRE_ELEVACION)) as r:
+        cuadricula = {"crs": CRS_RELIEVE, "resolucion_m": [r.transform.a, -r.transform.e],
+                      "columnas": r.width, "filas": r.height, "nodata": r.nodata,
+                      "transformacion": list(r.transform)[:6]}
+    return {"documento_metodo": "docs/t05_relieve.md", "decision_de_uso": "D020",
+            "fuentes": fuentes, "cuadricula_relieve": cuadricula,
+            "unidades": {"elevacion": "m s.n.m.", "pendiente": "grados"},
+            "metodo_pendiente_declarado": "Horn 3x3 (LEEME de la entrega)",
+            "parcelas": {"crs": CRS_PARCELAS, "columna_id_origen": COLUMNA_ID_SHP,
+                         "columna_id": "id_parcela", "reproyeccion": CRS_RELIEVE},
+            "metodo_area": METODO_AREA,
+            "tolerancias": {"area_relativa": TOLERANCIA_AREA_REL, "cobertura_completa": TOLERANCIA_COMPLETA,
+                            "conciliacion_t02": TOLERANCIA_T02, "reproduccion": TOLERANCIA_REPRODUCCION},
+            "piso_pendiente_t10": PISO_PENDIENTE_T10,
+            "codigo_sha256": {"scripts/t05_relieve.py": huella(Path(__file__))},
+            "entorno": versiones_entorno()}
+
+
+def publicar(dataset, origen, destino, ruta_soporte_t02, ruta_catalogo_t02):
+    """Vuelve a controlar la extracción de `origen` y la publica en `destino` con manifiesto."""
+    origen, destino = Path(origen), Path(destino)
+    if destino.exists() and any(destino.iterdir()):
+        raise ValueError("El destino debe ser una carpeta nueva o vacía")
+    c = controlar(dataset, origen, ruta_soporte_t02, ruta_catalogo_t02)
+    destino.mkdir(parents=True, exist_ok=True)
+    for nombre in ("relieve_parcela.csv", "relieve_celdas.csv", "controles.json"):
+        shutil.copyfile(origen / nombre, destino / nombre)
+    escribir_json(destino / "procedencia.json", procedencia(dataset))
+    celdas = leer_csv(destino / "relieve_celdas.csv")
+    escribir_json(destino / "manifest.json", {
+        "schema": ESQUEMA_ENTREGA,
+        "nota": "Hashes de todos los archivos de entrega excepto este manifiesto.",
+        "archivos_sha256": {n: huella(destino / n) for n in ARCHIVOS_ENTREGA},
+        "parcelas": c["parcelas"], "celdas": len(celdas),
+        "resultado_controles": c["resultado"]})
+    return c
+
+
+def _cabecera(ruta):
+    with open(ruta, encoding="utf-8", newline="") as f:
+        return next(csv.reader(f))
+
+
+def _iguales(a, b):
+    if a == b:
+        return True
+    try:
+        x, y = float(a), float(b)
+    except ValueError:
+        return False
+    return abs(x - y) <= max(1e-9, TOLERANCIA_REPRODUCCION * max(abs(x), abs(y)))
+
+
+def comparar_extracciones(publicada, nueva):
+    """Reproducción numérica: mismas filas y columnas; números dentro de la tolerancia."""
+    for nombre, clave in (("relieve_parcela.csv", ("id_parcela",)),
+                          ("relieve_celdas.csv", ("id_parcela", "fila", "columna"))):
+        a, b = leer_csv(Path(publicada) / nombre), leer_csv(Path(nueva) / nombre)
+        if len(a) != len(b):
+            raise ValueError(f"Reproducción distinta: número de filas en {nombre}")
+        for fa, fb in zip(a, b):
+            if tuple(fa[k] for k in clave) != tuple(fb[k] for k in clave) or set(fa) != set(fb):
+                raise ValueError(f"Reproducción distinta: filas o columnas en {nombre}")
+            for col in fa:
+                if not _iguales(fa[col], fb[col]):
+                    raise ValueError(f"Reproducción distinta: {nombre} {fa[clave[0]]} {col}")
+
+
+def verificar(carpeta, reproducir=False, dataset=None):
+    """Integridad (hashes y estructura) y, si se pide, reproducción numérica."""
+    carpeta = Path(carpeta)
+    m = json.loads((carpeta / "manifest.json").read_text(encoding="utf-8"))
+    if m.get("schema") != ESQUEMA_ENTREGA:
+        raise ValueError("Esquema de entrega desconocido")
+    if set(m["archivos_sha256"]) != set(ARCHIVOS_ENTREGA):
+        raise ValueError("Lista de archivos de entrega incompatible")
+    for nombre, valor in m["archivos_sha256"].items():
+        if huella(carpeta / nombre) != valor:
+            raise ValueError(f"Huella distinta: {nombre}")
+    if tuple(_cabecera(carpeta / "relieve_parcela.csv")) != COLUMNAS_PARCELA or \
+            tuple(_cabecera(carpeta / "relieve_celdas.csv")) != COLUMNAS_CELDA:
+        raise ValueError("Columnas de entrega incompatibles")
+    filas, celdas = leer_csv(carpeta / "relieve_parcela.csv"), leer_csv(carpeta / "relieve_celdas.csv")
+    ids = [f["id_parcela"] for f in filas]
+    if len(ids) != len(set(ids)) or len(ids) != m["parcelas"] or len(celdas) != m["celdas"]:
+        raise ValueError("Conteos de entrega incompatibles con el manifiesto")
+    comprobar_tablas(filas, celdas)
+    controles = json.loads((carpeta / "controles.json").read_text(encoding="utf-8"))
+    if controles["resultado"] != m["resultado_controles"]:
+        raise ValueError("Resultado de controles distinto del manifiesto")
+    resumen = {"resultado": "integridad_aprobada", "parcelas": len(ids), "celdas": len(celdas),
+               "resultado_controles": controles["resultado"], "reproduccion": "no_solicitada"}
+    if reproducir:
+        with tempfile.TemporaryDirectory() as tmp:
+            extraer(dataset, Path(tmp) / "nueva")
+            comparar_extracciones(carpeta, Path(tmp) / "nueva")
+        resumen["reproduccion"] = "aprobada"
+    return resumen
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="T05: relieve por parcela (docs/t05_relieve.md)")
     modo = ap.add_mutually_exclusive_group(required=True)
     modo.add_argument("--extraer", action="store_true")
     modo.add_argument("--controlar", action="store_true")
+    modo.add_argument("--publicar", action="store_true")
+    modo.add_argument("--verificar", metavar="CARPETA", help="Normalmente registro/t05")
     ap.add_argument("--dataset", default="data/raw/DATASET_RETO_AGRO_2026")
-    ap.add_argument("--salida", required=True, help="Carpeta bajo data/processed/t05/")
+    ap.add_argument("--salida", help="Carpeta de extracción bajo data/processed/t05/")
+    ap.add_argument("--destino", default="registro/t05")
+    ap.add_argument("--reproducir", action="store_true",
+                    help="Con --verificar: extrae de nuevo y compara con tolerancia")
     t02 = "analisis/auditoria_catalogo_y_etiquetas/tablas/"
     ap.add_argument("--soporte-t02", default=t02 + "soporte_por_parcela.csv")
     ap.add_argument("--catalogo-t02", default=t02 + "catalogo_parcelas.csv")
     a = ap.parse_args(argv)
-    if a.controlar:
-        import json
-        c = controlar(a.dataset, a.salida, a.soporte_t02, a.catalogo_t02)
+    if a.verificar:
+        print(json.dumps(verificar(a.verificar, a.reproducir, a.dataset), ensure_ascii=False, indent=2))
+        return
+    if not a.salida:
+        ap.error("--salida es obligatoria con --extraer, --controlar y --publicar")
+    if a.controlar or a.publicar:
+        f = publicar if a.publicar else controlar
+        args = (a.dataset, a.salida, a.destino) if a.publicar else (a.dataset, a.salida)
+        c = f(*args, a.soporte_t02, a.catalogo_t02)
         print(json.dumps(c, ensure_ascii=False, indent=2, sort_keys=True))
         return
     filas, celdas = extraer(a.dataset, a.salida)
