@@ -258,4 +258,28 @@ Orden usado, desde la raíz del repositorio:
 
 **Consecuencia.** Cambia otra vez la huella del script: hay que regenerar `procedencia.json` y `manifest.json` en Docker; las tablas y `controles.json` no deberían cambiar.
 
-**Propuesta de cierre del script.** Después de este cambio se congela `scripts/t05_relieve.py`. Un hallazgo posterior obliga a corregir y regenerar solo si cambia valores publicados o permite publicar algo falso; lo demás se anota como pendiente.
+**Propuesta de cierre del script.** Después de este cambio se congela `scripts/t05_relieve.py`. Un hallazgo posterior obliga a corregir y regenerar solo si cambia valores publicados o permite publicar algo falso; lo demás se anota como pendiente. *(Ampliada el 9 de octubre, ver la entrada siguiente.)*
+
+### 9 de octubre de 2026 — Reproducción en Mac: tolerancia de áreas entre equipos (revisión de Dani, PR 12)
+
+**Qué reportó Dani.** Al repetir la extracción en Mac, `--reproducir` se detuvo por cuatro áreas que diferían en los últimos decimales; por ejemplo, AGC_038: 0.2575044137 m² publicado frente a 0.2575044124 m² en Mac (diferencia ≈ 1.3e-9 m²; el comparador admitía 1e-9). Dani localizó la causa: la conversión de coordenadas de las parcelas (PROJ, en `leer_parcelas`) difiere hasta ~4e-9 m entre Mac ARM y Linux Intel. Los archivos originales y los valores de los mapas son idénticos; Linux Intel reproduce exactamente lo publicado; y con las mismas coordenadas ya convertidas, las 2,253 áreas coinciden exactamente.
+
+**Qué comprobó el asistente (simulación sobre las 197 parcelas reales, perturbando todos los vértices).**
+- Con 4e-9 m la mayor diferencia de área de celda es 1.3e-6 m² (con 1e-8 m, 3.1e-6): el margen de 1e-6 m² que proponía Dani se quedaba corto.
+- El error de área crece con el borde de cada pedazo; en el área total de parcelas alargadas (AGC_115) llega a superar 1e-5 m² con 3e-8 m.
+- No cambia ninguna celda (la intersección más pequeña es 4.3e-4 m²), ningún estado ni ningún valor para T10; la cobertura se mueve como mucho 4.5e-11 con 1e-8 m. Los centroides quedan a 1.9 cm o más de una línea de la cuadrícula y a 2.7 cm o más del borde de su parcela.
+- `diferencia_*_centroide_*` era más estricta que la media de la que sale (falló con 3e-8 m aunque las áreas pasaran).
+
+**Cambio.** Solo en la comparación de reproducción entre equipos (`--reproducir`):
+- áreas (`*_m2`): mínimo absoluto de 1e-4 m² (1 cm²), además del relativo 1e-9;
+- `diferencia_*_centroide_*`: el mismo error absoluto que admite la media;
+- columnas discretas: texto exacto (antes, conteos con tolerancia numérica).
+La comprobación interna de `--publicar` (mismo equipo) no usa el margen de áreas. Con esto la reproducción completa se acepta hasta 6e-8 m de error de coordenada (15 veces lo medido) y se sigue rechazando con 1e-7 m.
+
+**Además.** `procedencia.json` registra sistema, arquitectura y versiones de PROJ, GEOS y GDAL. `--verificar` informa `codigo_coincide_con_procedencia`. Motivo: al cambiar de rama, el Git de Windows de Jass dejó `scripts/t05_relieve.py` y `tests/test_t05_relieve.py` en CRLF, y su huella cambió (`962f…` frente a `ced3…`, mismo contenido); `.gitattributes` fija ahora LF para esos dos archivos.
+
+**Comprobación.** 11 pruebas nuevas (71 de T05, 139 en total; OK en el entorno del asistente). Devolviendo el comparador al criterio anterior, las pruebas de «diferencia de redondeo aceptada» y «conteo exacto» fallan.
+
+**Qué no se ha comprobado.** La ejecución real en Mac ARM con el código nuevo (la hará Dani). Con Docker en Mac se puede forzar Intel: `docker run --platform linux/amd64 …`.
+
+**Regla de cierre ampliada.** Un hallazgo posterior obliga a corregir y regenerar si cambia valores publicados, permite publicar algo falso **o impide reproducir una entrega correcta**; lo demás se anota como pendiente.
