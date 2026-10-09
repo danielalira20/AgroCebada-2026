@@ -391,7 +391,7 @@ def ejecutar(paquete, salida, ids=None, periodos=None, modo=None, referencia_t02
                     bibliotecas_nativas={"PROJ": pyproj.proj_version_str, "GDAL": rasterio.__gdal_version__},
                     requirements_sha256=sha((repo/"requirements.txt").read_bytes()),
                     python=platform.python_version(), sistema=platform.system(), arquitectura=platform.machine(),
-                    codigo={p.name: sha(p.read_bytes()) for p in (Path(__file__), Path(__file__).with_name("t04_espacio.py"), Path(__file__).with_name("t04_control.py"), Path(__file__).with_name("t04_t02.py"))},
+                    codigo={p.name: sha(p.read_bytes()) for p in (Path(__file__), Path(__file__).with_name("t04_espacio.py"), Path(__file__).with_name("t04_control.py"), Path(__file__).with_name("t04_t02.py"), Path(__file__).with_name("t02_contrato.py"))},
                     commit_base=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip(),
                     cuadriculas=len({m.meta["cuadricula_id"] for m in mapas.values()}), soportes=len(soportes),
                     parametros={"tolerancia_area_rel": TOLERANCIA_AREA_REL, "tolerancia_suma_pesos_abs": 1e-12,
