@@ -136,6 +136,17 @@ El ajuste de un plano por parcela es diagnóstico opcional, no condiciona el cie
 
 **Reproducción.** El script tendrá `--extraer` y `--verificar`, y se distinguen dos controles:
 - **Integridad:** el manifiesto contiene los hashes de los archivos de entrega, exceptuando el propio manifiesto. Comprueba que los archivos publicados no cambiaron. Además, `--verificar` y `--publicar` rehacen desde `relieve_celdas.csv` las medias, extremos, coberturas, estados y la columna para T10, y rechazan valores no finitos; la reproducción numérica (`--reproducir`) cubre además el centroide y los avisos. `--publicar` repite además la extracción desde el dataset y la compara con las tablas que va a publicar, de modo que la procedencia no pueda atribuir unas tablas antiguas a una fuente nueva.
+
+**Reproducción en otro equipo.** La conversión de coordenadas de las parcelas (PROJ, de EPSG:4326 a EPSG:6372) da diferencias de unos 4e-9 m entre arquitecturas (Mac ARM frente a Intel); los TIFF y sus valores son idénticos. El error de área que eso produce crece con el borde de cada pedazo, no con su área, y por eso se nota en las intersecciones diminutas (AGC_038: 0.2575044137 frente a 0.2575044124 m²). `--reproducir` compara así:
+
+| Columnas | Criterio |
+|---|---|
+| Discretas (`id_parcela`, `fila`, `columna`, conteos de celdas, `estado_*`, banderas `*_valida`, `centroide_dentro_parcela`, `avisos`) | Texto exacto |
+| Áreas (`*_m2`) | Relativo 1e-9 con mínimo absoluto de 1e-4 m² (1 cm²) |
+| `diferencia_*_centroide_*` | Relativo 1e-9 con el mismo error absoluto que admite la media de la que salen |
+| Resto (medias, extremos, coberturas, valores en el centroide) | Relativo 1e-9, mínimo absoluto 1e-9 |
+
+Justificación medida: perturbando todos los vértices de las 197 parcelas, la reproducción completa se acepta hasta 6e-8 m de error de coordenada (15 veces lo observado); no cambia ninguna celda, estado ni valor para T10; con 1e-8 m la cobertura se mueve como mucho 4.5e-11, lejos del umbral de completa y del piso 0.5. En el mismo equipo (la comprobación interna de `--publicar`) las áreas no tienen ese margen. Para una reproducción idéntica en una Mac se puede usar `docker run --platform linux/amd64 …`. `procedencia.json` registra sistema, arquitectura y versiones de PROJ, GEOS y GDAL, y `--verificar` informa si el script actual es el que registró la procedencia (`codigo_coincide_con_procedencia`).
 - **Reproducción numérica:** una nueva extracción se compara con la publicada con las tolerancias declaradas. La identidad byte a byte solo se exige si se usa el mismo entorno y una serialización determinista; el fin de línea LF ayuda, pero por sí solo no la garantiza.
 
 La procedencia guarda además las versiones del entorno (Python y bibliotecas usadas) y los hashes de los componentes del shapefile que se leen (`.shp`, `.shx`, `.dbf` y `.prj`, es decir, geometría, atributos y proyección).

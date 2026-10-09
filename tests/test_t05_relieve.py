@@ -445,6 +445,122 @@ class ComparadorNumerico(unittest.TestCase):
         self.assertTrue(_iguales("AGC_001", "AGC_001"))
 
 
+class ReproduccionEntreEquipos(_DatasetTemporal, unittest.TestCase):
+    """Revisión del PR por Dani (9 de octubre): en Mac ARM cuatro áreas diferían ~1.3e-9 m² de las
+    publicadas en Intel por la conversión de coordenadas (PROJ). Se toleran diferencias de área de
+    hasta 1e-5 m² entre equipos; lo discreto debe coincidir exacto y lo demás conserva su tolerancia."""
+
+    def setUp(self):
+        super().setUp()
+        import shutil
+        from scripts.t05_relieve import extraer
+        self.tiff("Elevacion_INEGI_CEM4_120m.tif", [[2500, 2600], [2700, 2800]])
+        self.tiff("Pendiente_INEGI_CEM4_120m_grados.tif", [[1, -9999], [3, 4]])
+        self.shapefile([box(X0+24, Y0-100, X0+144, Y0-20), box(X0+130, Y0-230, X0+230, Y0-130)],
+                       ["AGC_002", "AGC_001"])
+        self.a = self.raiz / "publicada"
+        extraer(self.dataset, self.a)
+        self.b = self.raiz / "otro_equipo"
+        shutil.copytree(self.a, self.b)
+
+    def cambiar(self, archivo, columna, funcion, fila=0):
+        import csv
+        ruta = self.b / archivo
+        with open(ruta, encoding="utf-8", newline="") as f:
+            filas = list(csv.DictReader(f))
+        filas[fila][columna] = funcion(filas[fila][columna])
+        with open(ruta, "w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(filas[0]), lineterminator="\n")
+            w.writeheader()
+            w.writerows(filas)
+
+    def fila_area_minima(self):
+        import csv
+        with open(self.a / "relieve_celdas.csv", encoding="utf-8", newline="") as f:
+            areas = [float(r["area_interseccion_m2"]) for r in csv.DictReader(f)]
+        return areas.index(min(areas))   # Celda chica: ahí el criterio relativo es más estricto (AGC_038).
+
+    def comparar(self, mismo_equipo=False):
+        from scripts.t05_relieve import comparar_extracciones
+        comparar_extracciones(self.a, self.b, mismo_equipo)
+
+    def test_extracciones_identicas_pasan(self):
+        self.comparar()
+        self.comparar(mismo_equipo=True)
+
+    def test_area_con_diferencia_de_redondeo_entre_equipos_pasa(self):
+        self.cambiar("relieve_celdas.csv", "area_interseccion_m2", lambda v: repr(float(v) + 5e-6),
+                     self.fila_area_minima())
+        self.cambiar("relieve_parcela.csv", "elevacion_area_valida_m2", lambda v: repr(float(v) + 1e-6))
+        self.comparar()
+
+    def test_la_misma_diferencia_no_pasa_en_el_mismo_equipo(self):
+        self.cambiar("relieve_celdas.csv", "area_interseccion_m2", lambda v: repr(float(v) + 5e-6),
+                     self.fila_area_minima())
+        with self.assertRaisesRegex(ValueError, "area_interseccion_m2"):
+            self.comparar(mismo_equipo=True)
+
+    def test_area_alterada_por_encima_del_margen_falla(self):
+        self.cambiar("relieve_celdas.csv", "area_interseccion_m2", lambda v: repr(float(v) + 1e-3))
+        with self.assertRaisesRegex(ValueError, "Reproducción distinta"):
+            self.comparar()
+
+    def test_area_no_finita_falla(self):
+        self.cambiar("relieve_celdas.csv", "area_interseccion_m2", lambda v: "inf")
+        with self.assertRaisesRegex(ValueError, "Reproducción distinta"):
+            self.comparar()
+
+    def test_la_tolerancia_de_area_no_se_extiende_a_las_medias(self):
+        self.cambiar("relieve_parcela.csv", "elevacion_media_m", lambda v: repr(float(v) + 1e-3))
+        with self.assertRaisesRegex(ValueError, "elevacion_media_m"):
+            self.comparar()
+
+    def test_diferencia_con_centroide_no_es_mas_estricta_que_la_media(self):
+        # La media admite 1e-9 relativo (~2.6e-6 m en 2600 m); la diferencia, que sale de ella,
+        # admite el mismo error absoluto aunque su propio valor sea pequeño.
+        self.cambiar("relieve_parcela.csv", "diferencia_elevacion_centroide_m", lambda v: repr(float(v) + 2e-6), 1)
+        self.comparar()
+        self.cambiar("relieve_parcela.csv", "diferencia_elevacion_centroide_m", lambda v: repr(float(v) + 1e-3), 1)
+        with self.assertRaisesRegex(ValueError, "diferencia_elevacion_centroide_m"):
+            self.comparar()
+
+    def test_discretas_deben_coincidir_exactas(self):
+        casos = [("relieve_parcela.csv", "estado_pendiente", lambda v: "cobertura_completa"),
+                 ("relieve_parcela.csv", "elevacion_celdas_validas", lambda v: v + ".0"),
+                 ("relieve_parcela.csv", "avisos", lambda v: v + ";pocas_celdas_validas"),
+                 ("relieve_celdas.csv", "pendiente_valida", lambda v: "False" if v == "True" else "True")]
+        import shutil
+        for archivo, columna, funcion in casos:
+            with self.subTest(columna):
+                shutil.rmtree(self.b)
+                shutil.copytree(self.a, self.b)
+                fila = 1 if archivo == "relieve_parcela.csv" else 0
+                self.cambiar(archivo, columna, funcion, fila)
+                with self.assertRaisesRegex(ValueError, "Reproducción distinta"):
+                    self.comparar()
+
+    def test_celda_de_mas_o_de_menos_falla(self):
+        ruta = self.b / "relieve_celdas.csv"
+        lineas = ruta.read_text(encoding="utf-8").splitlines(keepends=True)
+        ruta.write_text("".join(lineas[:-1]), encoding="utf-8", newline="")
+        with self.assertRaisesRegex(ValueError, "número de filas"):
+            self.comparar()
+
+    def test_procedencia_registra_el_entorno_de_calculo(self):
+        from scripts.t05_relieve import procedencia
+        e = procedencia(self.dataset)["entorno"]
+        for clave in ("arquitectura", "sistema", "proj", "geos", "gdal"):
+            self.assertTrue(e.get(clave), clave)
+
+    def test_codigo_coincide_con_procedencia(self):
+        from scripts.t05_relieve import codigo_coincide, procedencia
+        p = procedencia(self.dataset)
+        self.assertTrue(codigo_coincide(p))
+        p["codigo_sha256"]["scripts/t05_relieve.py"] = "0" * 64   # p. ej., copia de trabajo en CRLF
+        self.assertFalse(codigo_coincide(p))
+        self.assertFalse(codigo_coincide({}))
+
+
 class TablasReconstruidas(_DatasetTemporal, unittest.TestCase):
     """comprobar_tablas rehace los resúmenes desde las celdas (auditoría de 2026-10-08)."""
 

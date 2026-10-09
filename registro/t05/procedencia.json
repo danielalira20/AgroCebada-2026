@@ -1,6 +1,6 @@
 {
   "codigo_sha256": {
-    "scripts/t05_relieve.py": "ced3203c8a8414b3ee5f68dae66392c1d985e0d6a73728e8ca8c9b2f6734f96b"
+    "scripts/t05_relieve.py": "954aba39adf3f84163db4df1bcd7f6929fc3bd559fef302699f4135e41fcec32"
   },
   "cuadricula_relieve": {
     "columnas": 2900,
@@ -23,13 +23,18 @@
   "decision_de_uso": "D020",
   "documento_metodo": "docs/t05_relieve.md",
   "entorno": {
+    "arquitectura": "x86_64",
+    "gdal": "3.10.3",
     "geopandas": "1.2.0",
+    "geos": "3.13.1",
     "numpy": "2.2.6",
+    "proj": "9.8.1",
     "pyogrio": "0.13.0",
     "pyproj": "3.8.0",
     "python": "3.12.15",
     "rasterio": "1.4.4",
-    "shapely": "2.1.2"
+    "shapely": "2.1.2",
+    "sistema": "Linux"
   },
   "fuentes": [
     {

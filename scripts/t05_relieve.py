@@ -599,6 +599,28 @@ def controlar(dataset, salida, ruta_soporte_t02, ruta_catalogo_t02):
 ESQUEMA_ENTREGA = "t05_entrega_v1"
 ARCHIVOS_ENTREGA = ("relieve_parcela.csv", "relieve_celdas.csv", "controles.json", "procedencia.json")
 TOLERANCIA_REPRODUCCION = 1e-9   # Relativa (mínimo absoluto 1e-9) al comparar una nueva extracción.
+# Áreas (*_m2) al reproducir en otro equipo: la conversión de coordenadas (PROJ) difiere en
+# ~4e-9 m entre arquitecturas (Mac ARM frente a Intel; medido por Dani el 9 de octubre), y el
+# error de área crece con el borde de cada pedazo, no con su área. Simulado sobre las 197
+# parcelas perturbando todos los vértices: con 1e-4 m² (1 cm²) la reproducción completa se
+# acepta hasta 6e-8 m de error (15 veces lo medido); con 1e-5 m², solo hasta 1e-8 m, porque
+# las parcelas alargadas (AGC_115) acumulan error en su perímetro. 1 cm² es menor que la
+# intersección real más pequeña (4.3e-4 m²) y no mueve ninguna media.
+TOLERANCIA_AREA_REPRODUCCION_M2 = 1e-4
+# Diferencia media - centroide: hereda el error absoluto de la media, así que no puede ser más
+# estricta que ella. Mínimo absoluto = tolerancia relativa de la media en el peor valor posible
+# (elevación < 10,000 m; pendiente <= 90°).
+MINIMO_ABS_DIFERENCIA_CENTROIDE = {
+    "diferencia_elevacion_centroide_m": TOLERANCIA_REPRODUCCION * 10_000,
+    "diferencia_pendiente_centroide_grados": TOLERANCIA_REPRODUCCION * 90,
+}
+# Columnas discretas: deben coincidir como texto, sin tolerancia.
+COLUMNAS_EXACTAS = {
+    "id_parcela", "fila", "columna", "elevacion_valida", "pendiente_valida",
+    "elevacion_celdas_intersectadas", "elevacion_celdas_validas", "estado_elevacion",
+    "pendiente_celdas_intersectadas", "pendiente_celdas_validas", "estado_pendiente",
+    "centroide_dentro_parcela", "avisos",
+}
 
 
 def huella(ruta):
@@ -612,11 +634,16 @@ def escribir_json(ruta, objeto):
 
 
 def versiones_entorno():
+    import platform
     import geopandas, numpy, pyogrio, pyproj, rasterio, shapely
     return {"python": sys.version.split()[0], "numpy": numpy.__version__,
             "rasterio": rasterio.__version__, "shapely": shapely.__version__,
             "pyproj": pyproj.__version__, "geopandas": geopandas.__version__,
-            "pyogrio": pyogrio.__version__}
+            "pyogrio": pyogrio.__version__,
+            # Componentes que explican diferencias numéricas entre equipos:
+            "proj": pyproj.proj_version_str, "geos": shapely.geos_version_string,
+            "gdal": rasterio.__gdal_version__,
+            "sistema": platform.system(), "arquitectura": platform.machine()}
 
 
 def procedencia(dataset):
@@ -664,7 +691,7 @@ def publicar(dataset, origen, destino, ruta_soporte_t02, ruta_catalogo_t02):
     with tempfile.TemporaryDirectory() as tmp:
         extraer(dataset, Path(tmp) / "nueva")
         try:
-            comparar_extracciones(origen, Path(tmp) / "nueva")
+            comparar_extracciones(origen, Path(tmp) / "nueva", mismo_equipo=True)
         except ValueError as e:
             raise ValueError(f"La extracción a publicar no corresponde al dataset actual: {e}") from None
     if procedencia(dataset)["fuentes"] != prov["fuentes"]:
@@ -688,7 +715,7 @@ def _cabecera(ruta):
         return next(csv.reader(f))
 
 
-def _iguales(a, b):
+def _iguales(a, b, minimo_abs=1e-9):
     """Texto idéntico, o números finitos dentro de la tolerancia. inf y nan nunca son iguales a nada."""
     try:
         x, y = float(a), float(b)
@@ -698,11 +725,24 @@ def _iguales(a, b):
         return False
     if a == b:
         return True
-    return abs(x - y) <= max(1e-9, TOLERANCIA_REPRODUCCION * max(abs(x), abs(y)))
+    return abs(x - y) <= max(minimo_abs, TOLERANCIA_REPRODUCCION * max(abs(x), abs(y)))
 
 
-def comparar_extracciones(publicada, nueva):
-    """Reproducción numérica: mismas filas y columnas; números dentro de la tolerancia."""
+def _iguales_columna(columna, a, b, mismo_equipo=False):
+    """Discretas: texto exacto. Áreas, si se compara con otro equipo: mínimo absoluto de
+    TOLERANCIA_AREA_REPRODUCCION_M2. Resto (y áreas en el mismo equipo): _iguales."""
+    if columna in COLUMNAS_EXACTAS:
+        return a == b
+    if columna.endswith("_m2") and not mismo_equipo:
+        return _iguales(a, b, TOLERANCIA_AREA_REPRODUCCION_M2)
+    if columna in MINIMO_ABS_DIFERENCIA_CENTROIDE:
+        return _iguales(a, b, MINIMO_ABS_DIFERENCIA_CENTROIDE[columna])
+    return _iguales(a, b)
+
+
+def comparar_extracciones(publicada, nueva, mismo_equipo=False):
+    """Reproducción numérica: mismas filas y columnas; discretas exactas; números dentro de la
+    tolerancia. `mismo_equipo=True` (lo usa publicar) no aplica la tolerancia de áreas entre equipos."""
     for nombre, clave in (("relieve_parcela.csv", ("id_parcela",)),
                           ("relieve_celdas.csv", ("id_parcela", "fila", "columna"))):
         a, b = leer_csv(Path(publicada) / nombre), leer_csv(Path(nueva) / nombre)
@@ -712,8 +752,15 @@ def comparar_extracciones(publicada, nueva):
             if tuple(fa[k] for k in clave) != tuple(fb[k] for k in clave) or set(fa) != set(fb):
                 raise ValueError(f"Reproducción distinta: filas o columnas en {nombre}")
             for col in fa:
-                if not _iguales(fa[col], fb[col]):
+                if not _iguales_columna(col, fa[col], fb[col], mismo_equipo):
                     raise ValueError(f"Reproducción distinta: {nombre} {fa[clave[0]]} {col}")
+
+
+def codigo_coincide(proc):
+    """¿El script que corre es el que registró la procedencia? Aviso, no bloqueo: una entrega de
+    otro commit puede verificarse con un script posterior. Un False con el mismo commit suele
+    indicar fin de línea CRLF en la copia de trabajo (ver .gitattributes)."""
+    return proc.get("codigo_sha256", {}).get("scripts/t05_relieve.py") == huella(Path(__file__))
 
 
 def verificar(carpeta, reproducir=False, dataset=None):
@@ -739,7 +786,9 @@ def verificar(carpeta, reproducir=False, dataset=None):
     if controles["resultado"] != m["resultado_controles"]:
         raise ValueError("Resultado de controles distinto del manifiesto")
     resumen = {"resultado": "integridad_aprobada", "parcelas": len(ids), "celdas": len(celdas),
-               "resultado_controles": controles["resultado"], "reproduccion": "no_solicitada"}
+               "resultado_controles": controles["resultado"], "reproduccion": "no_solicitada",
+               "codigo_coincide_con_procedencia": codigo_coincide(
+                   json.loads((carpeta / "procedencia.json").read_text(encoding="utf-8")))}
     if reproducir:
         with tempfile.TemporaryDirectory() as tmp:
             extraer(dataset, Path(tmp) / "nueva")
