@@ -336,12 +336,159 @@ def extraer(dataset, salida):
     return filas, celdas
 
 
+# ---------------------------------------------------------------------------
+# Controles sobre datos reales (paso 5). Leen los CSV escritos, que son lo que
+# el equipo usará, y escriben controles.json junto a ellos.
+# ---------------------------------------------------------------------------
+TOLERANCIA_T02 = 0.00005 + 1e-9   # T02 redondea coberturas a cuatro decimales.
+
+
+def _numero(v):
+    return None if v in ("", None) else float(v)
+
+
+def leer_csv(ruta):
+    with open(ruta, encoding="utf-8-sig", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def conciliar_con_t02(filas, t02):
+    """Compara coberturas con T02. Una diferencia mayor que la tolerancia es aviso, no
+    detiene la ejecución, pero T05 no se da por cerrada hasta explicarla."""
+    ids = {f["id_parcela"] for f in filas}
+    resultado = {"ids_solo_en_t05": sorted(ids - set(t02)),
+                 "ids_solo_en_t02": sorted(set(t02) - ids),
+                 "tolerancia": TOLERANCIA_T02, "max_diferencia": 0.0, "discrepancias": []}
+    for f in filas:
+        if f["id_parcela"] not in t02:
+            continue
+        for variable, col_t05 in (("elevacion", "elevacion_cobertura_valida"),
+                                  ("pendiente", "pendiente_cobertura_valida")):
+            a, b = _numero(f[col_t05]), t02[f["id_parcela"]][variable]
+            d = abs(a - b)
+            resultado["max_diferencia"] = max(resultado["max_diferencia"], d)
+            if d > TOLERANCIA_T02:
+                resultado["discrepancias"].append(
+                    {"id_parcela": f["id_parcela"], "variable": variable, "t05": a, "t02": b})
+    return resultado
+
+
+def comprobar_reservadas(filas, conjunto):
+    """Las parcelas de PREDICCION deben tener cobertura completa en las dos variables."""
+    reservadas = [f for f in filas if conjunto.get(f["id_parcela"]) == "PREDICCION"]
+    incompletas = sorted(f["id_parcela"] for f in reservadas
+                         if f["estado_elevacion"] != "cobertura_completa"
+                         or f["estado_pendiente"] != "cobertura_completa")
+    return {"reservadas": len(reservadas), "incompletas": incompletas}
+
+
+def comprobar_tablas(filas, celdas):
+    """Coherencia entre relieve_parcela.csv y relieve_celdas.csv; detiene si falla."""
+    por_id = {}
+    for c in celdas:
+        n, a = por_id.get(c["id_parcela"], (0, 0.0))
+        por_id[c["id_parcela"]] = (n + 1, a + float(c["area_interseccion_m2"]))
+    peor = 0.0
+    for f in filas:
+        n, a = por_id.get(f["id_parcela"], (0, 0.0))
+        if n != int(f["elevacion_celdas_intersectadas"]):
+            raise ValueError(f"Celdas distintas entre tablas: {f['id_parcela']}")
+        area = float(f["area_parcela_6372_m2"])
+        peor = max(peor, abs(a - area * float(f["cobertura_espacial"])) / area)
+    if peor > TOLERANCIA_AREA_REL:
+        raise ValueError("Áreas de celdas no suman el área de la parcela")
+    if set(por_id) != {f["id_parcela"] for f in filas}:
+        raise ValueError("IDs distintos entre tablas")
+    return {"max_diferencia_area_relativa": peor}
+
+
+def comparar_areas_fisicas(parcelas, elevacion, d_elev, pendiente, d_pend):
+    """Control, no decisión de método: medias y coberturas con pesos de área física
+    WGS84 (función ya probada de T04) frente a pesos de área plana EPSG:6372."""
+    from pyproj import Transformer
+    from shapely.ops import transform as transformar
+    from scripts.t04_espacio import area_fisica
+    a_wgs = Transformer.from_crs(CRS_RELIEVE, CRS_PARCELAS, always_xy=True).transform
+    t = elevacion.transform
+    peor = {"elevacion_media_m": 0.0, "pendiente_media_grados": 0.0, "cobertura": 0.0}
+    for _, geom in parcelas:
+        soporte = preparar_soporte(geom, CRS_RELIEVE, elevacion)
+        fisicas = []
+        for c in soporte["celdas"]:
+            x0, y0 = t @ (c["columna"], c["fila"])
+            x1, y1 = t @ (c["columna"] + 1, c["fila"] + 1)
+            pieza = geom.intersection(box(x0, y1, x1, y0))
+            fisicas.append(area_fisica(transformar(a_wgs, pieza)))
+        total_fisico = area_fisica(transformar(a_wgs, geom))
+        for nombre, raster, datos in (("elevacion_media_m", elevacion, d_elev),
+                                      ("pendiente_media_grados", pendiente, d_pend)):
+            plana = resumir_variable(soporte, raster, datos)
+            validas = [(c, af) for c, af in zip(plana["celdas"], fisicas) if c["valida"]]
+            if not validas:
+                continue
+            area_v = math.fsum(af for _, af in validas)
+            media_f = math.fsum(c["valor"] * af for c, af in validas) / area_v
+            peor[nombre] = max(peor[nombre], abs(media_f - plana["media"]))
+            peor["cobertura"] = max(peor["cobertura"],
+                                    abs(area_v / total_fisico - plana["cobertura_valida"]))
+    return {"max_diferencia_" + k: v for k, v in peor.items()}
+
+
+def controlar(dataset, salida, ruta_soporte_t02, ruta_catalogo_t02):
+    import json
+    import rasterio
+    salida = Path(salida)
+    filas = leer_csv(salida / "relieve_parcela.csv")
+    celdas = leer_csv(salida / "relieve_celdas.csv")
+    catalogo = leer_csv(ruta_catalogo_t02)
+    conjunto = {c["id_parcela"]: c["conjunto_origen"] for c in catalogo}
+    ids = [f["id_parcela"] for f in filas]
+    if len(ids) != len(set(ids)) or set(ids) != set(conjunto):
+        raise ValueError("IDs de T05 distintos del catálogo de T02")
+    t02 = {c["id_parcela"]: {"elevacion": float(c["cobertura_elevacion"]),
+                             "pendiente": float(c["cobertura_pendiente"])}
+           for c in leer_csv(ruta_soporte_t02)}
+    parcelas = leer_parcelas(buscar_unico(dataset, NOMBRE_SHP))
+    with rasterio.open(buscar_unico(dataset, NOMBRE_ELEVACION)) as re_, \
+         rasterio.open(buscar_unico(dataset, NOMBRE_PENDIENTE)) as rp:
+        comprobar_relieve(re_, rp)
+        areas = comparar_areas_fisicas(parcelas, re_, re_.read(1, masked=True),
+                                       rp, rp.read(1, masked=True))
+    c = {"parcelas": len(filas), "ids_coinciden_con_catalogo": True,
+         "tablas": comprobar_tablas(filas, celdas),
+         "reservadas": comprobar_reservadas(filas, conjunto),
+         "conciliacion_t02": conciliar_con_t02(filas, t02),
+         "areas_plana_frente_a_fisica": areas}
+    avisos_ = []
+    if c["reservadas"]["incompletas"]:
+        avisos_.append("reservadas_con_cobertura_incompleta")
+    if c["conciliacion_t02"]["discrepancias"] or c["conciliacion_t02"]["ids_solo_en_t02"] \
+            or c["conciliacion_t02"]["ids_solo_en_t05"]:
+        avisos_.append("discrepancia_con_t02")
+    c["avisos"] = avisos_
+    c["resultado"] = "aprobado" if not avisos_ else "aprobado_con_avisos_t05_no_cerrada"
+    with open(salida / "controles.json", "w", encoding="utf-8", newline="\n") as f:
+        json.dump(c, f, ensure_ascii=False, indent=2, sort_keys=True)
+        f.write("\n")
+    return c
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="T05: relieve por parcela (docs/t05_relieve.md)")
-    ap.add_argument("--extraer", action="store_true", required=True)
+    modo = ap.add_mutually_exclusive_group(required=True)
+    modo.add_argument("--extraer", action="store_true")
+    modo.add_argument("--controlar", action="store_true")
     ap.add_argument("--dataset", default="data/raw/DATASET_RETO_AGRO_2026")
-    ap.add_argument("--salida", required=True, help="Carpeta nueva bajo data/processed/t05/")
+    ap.add_argument("--salida", required=True, help="Carpeta bajo data/processed/t05/")
+    t02 = "analisis/auditoria_catalogo_y_etiquetas/tablas/"
+    ap.add_argument("--soporte-t02", default=t02 + "soporte_por_parcela.csv")
+    ap.add_argument("--catalogo-t02", default=t02 + "catalogo_parcelas.csv")
     a = ap.parse_args(argv)
+    if a.controlar:
+        import json
+        c = controlar(a.dataset, a.salida, a.soporte_t02, a.catalogo_t02)
+        print(json.dumps(c, ensure_ascii=False, indent=2, sort_keys=True))
+        return
     filas, celdas = extraer(a.dataset, a.salida)
     estados = {}
     for f in filas:

@@ -6,7 +6,7 @@
 
 Responsable: Jass. Revisora: Dani.
 
-**Estado al 8 de octubre de 2026:** método congelado; extracción real de las 197 parcelas hecha y cubierta por 33 pruebas. Faltan los controles sobre datos reales, la publicación en `registro/t05/` y el cierre.
+**Estado al 8 de octubre de 2026:** método congelado; extracción real de las 197 parcelas hecha, cubierta por 37 pruebas y aprobada en los controles sobre datos reales. Faltan la publicación en `registro/t05/`, la revisión de Dani y el cotejo en QGIS.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -14,7 +14,10 @@ Responsable: Jass. Revisora: Dani.
 |---|---|---|
 | `bitacora.md` | Este documento. | Creado |
 | `README.md` | Entrada corta para el equipo. | Se añade al subir la evidencia |
-| Informe de calidad, casos de borde, sensibilidad | Evidencia que explica los datos compartidos. | Se crea cuando haya resultados |
+| `scripts/calcular_relieve_independiente.py` | Cálculo independiente para conciliar con T05, por otro camino de código. | Creado (paso 5) |
+| `tablas/conciliacion_calculo_independiente.csv` | Comparación parcela por parcela entre T05 y el cálculo independiente. | Creado (paso 5) |
+| `tablas/casos_de_borde.csv` | Las 29 parcelas con algún aviso, con conjunto y municipio. | Creado (paso 5) |
+| Informe de calidad, sensibilidad | Evidencia que explica los datos compartidos. | Se crea cuando haya resultados |
 
 Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/test_t05_relieve.py`, tablas compartidas en `registro/t05/`. Regla: lo que el equipo ejecuta o consume va en las carpetas del equipo; lo que explica o justifica va aquí. Esta carpeta apunta a los datos y no los duplica.
 
@@ -33,7 +36,7 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 | 2 | Esqueleto de `scripts/t05_relieve.py` con funciones puras | **Hecho** (8 oct) |
 | 3 | Pruebas formales con datos sintéticos | **Hecho** (8 oct) |
 | 4 | Ejecución real: `relieve_parcela.csv` y `relieve_celdas.csv` (197 parcelas) | **Hecho** (8 oct) |
-| 5 | Controles sobre datos reales: T02, cálculo independiente, 5 parciales, 59 reservadas completas | Pendiente |
+| 5 | Controles sobre datos reales: T02, cálculo independiente, 5 parciales, 59 reservadas completas | **Hecho** (8 oct) |
 | 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | Pendiente |
 | 7 | Registros, PR con la plantilla y reproducción por Dani | Pendiente |
 | 8 | Ampliación opcional: tabla de sensibilidad | Pendiente |
@@ -131,4 +134,34 @@ Orden usado, desde la raíz del repositorio:
 **Incidente menor.** Al preparar las pruebas se creó por accidente un archivo vacío, `tests/test_t05_relieve.py.tmp`, que el asistente no puede borrar. No afecta a las pruebas; debe borrarse a mano.
 
 **Lo que sigue.** Paso 5: controles sobre los datos reales.
+
+### 8 de octubre de 2026 — Informe del paso 5: controles sobre datos reales
+
+**Qué se hizo.**
+- Se añadió a `scripts/t05_relieve.py` el modo `--controlar`. Lee los CSV escritos (lo que usará el equipo) y escribe `controles.json` junto a ellos con: IDs frente al catálogo de T02, coherencia entre las dos tablas, que las 59 reservadas estén completas, conciliación de coberturas con T02 y comparación de pesos de área plana frente a física. Se agregaron 4 pruebas (37 en total, todas pasan).
+- Se escribió un cálculo independiente reproducible, `scripts/calcular_relieve_independiente.py` en esta carpeta, por otro camino de código: lee el shapefile con `pyogrio` sin `geopandas`, reproyecta los vértices a mano con `pyproj`, calcula las intersecciones de forma vectorizada y **lee cada valor por la coordenada del centro de su celda**, no por fila y columna. El resultado está en `tablas/conciliacion_calculo_independiente.csv`.
+- Se armó `tablas/casos_de_borde.csv` con las parcelas que tienen algún aviso.
+
+Órdenes usadas, desde la raíz del repositorio:
+
+    python -m scripts.t05_relieve --controlar --salida data/processed/t05/primera_extraccion
+    python analisis/relieve_por_parcela/scripts/calcular_relieve_independiente.py --t05 data/processed/t05/primera_extraccion/relieve_parcela.csv --salida analisis/relieve_por_parcela/tablas/conciliacion_calculo_independiente.csv
+
+**Qué se esperaba.** Los 197 IDs del catálogo; las 59 reservadas completas; coberturas iguales a las de T02 dentro del redondeo a cuatro decimales; un cálculo independiente que coincida; y diferencias despreciables entre áreas planas y físicas.
+
+**Qué se encontró (verificado).**
+- **Resultado de los controles: `aprobado`, sin avisos.** 197 parcelas, IDs idénticos al catálogo de T02; las 59 reservadas tienen cobertura completa en elevación y pendiente.
+- **T02:** diferencia máxima de cobertura 0.000047, dentro de la tolerancia de 0.00005; ninguna discrepancia.
+- **Cálculo independiente:** las medias difieren como máximo 9 × 10⁻¹³ m en elevación y 3 × 10⁻¹⁵° en pendiente; las coberturas, 2 × 10⁻¹²; y el número de celdas intersectadas y válidas coincide en las 197 parcelas. Como lee por coordenada, también descarta un desfase de fila o columna en la extracción principal.
+- **Tablas:** el área de las celdas suma el área de la parcela con un error relativo máximo de 3 × 10⁻¹².
+- **Áreas plana frente a física:** las medias cambian como máximo 0.00006 m (elevación) y 0.000007° (pendiente). La cobertura difiere hasta 0.00003 (mediana 0.0000004); la diferencia no viene de los pesos, sino de que un borde recto en EPSG:6372 no es exactamente recto en latitud y longitud, y al sumar pedazos en el otro sistema la suma no cierra perfecto. El máximo aparece en AGC_073, una franja delgada. El documento del método decía «menos de 0.000002», medido con otro denominador, y se corrigió.
+- **Casos de borde:** 29 parcelas con algún aviso, 22 de entrenamiento y 7 reservadas. **Ninguna de las 7 reservadas tiene datos faltantes**; sus avisos son de resolución espacial (5 menores a una celda, 3 con 4 celdas válidas o menos) y AGC_182 tiene el centroide fuera de su contorno. En esas 7, el relieve resume muy pocas celdas.
+
+**Dos errores encontrados y corregidos en este paso.**
+- El primer intento del cálculo independiente trataba como válidos los valores sin dato (al convertirlos a número se perdía su marca). Lo delataron coberturas absurdas, de hasta 0.98 de diferencia. Se corrigió y el resumen ahora deja ver cualquier `NaN` en lugar de esconderlo.
+- Unas «estimaciones rápidas» de pendiente mencionadas en el paso 4 diferían de T05 entre 0.004° y 0.06°. Venían de un método aproximado (subdividir cada celda en 8 × 8 puntos) que pierde precisión donde hay pocas celdas válidas: AGC_023 tiene 4 y AGC_170 tiene 2. Un cálculo exacto anterior coincide con T05 hasta 3 × 10⁻¹⁵°. No había error en T05.
+
+**Qué no demuestra todavía.** Todos estos controles usan las mismas bibliotecas (`rasterio`, `pyproj`, `shapely`); el cotejo en QGIS al final es el que cubre ese riesgo común. `controles.json` vive todavía en `data/processed/`; se publica en el paso 6.
+
+**Lo que sigue.** Paso 6: publicar en `registro/t05/` con procedencia, controles, manifiesto y `--verificar`.
 

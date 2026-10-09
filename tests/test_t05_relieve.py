@@ -296,5 +296,33 @@ class ExtraccionDePuntaAPunta(unittest.TestCase):
             extraer(self.dataset, self.raiz / "salida")
 
 
+class Controles(unittest.TestCase):
+    def fila(self, id_, ce, cp, ee="cobertura_completa", ep="cobertura_completa"):
+        return {"id_parcela": id_, "elevacion_cobertura_valida": repr(ce),
+                "pendiente_cobertura_valida": repr(cp), "estado_elevacion": ee, "estado_pendiente": ep}
+
+    def test_t02_dentro_de_la_tolerancia_del_redondeo(self):
+        from scripts.t05_relieve import conciliar_con_t02
+        r = conciliar_con_t02([self.fila("A", .95064, .55274)], {"A": {"elevacion": .9506, "pendiente": .5527}})
+        self.assertEqual(r["discrepancias"], [])
+
+    def test_t02_fuera_de_tolerancia_se_reporta(self):
+        from scripts.t05_relieve import conciliar_con_t02
+        r = conciliar_con_t02([self.fila("A", .95066, 1.0)], {"A": {"elevacion": .9506, "pendiente": 1.0}})
+        self.assertEqual([d["variable"] for d in r["discrepancias"]], ["elevacion"])
+
+    def test_t02_ids_distintos_se_reportan(self):
+        from scripts.t05_relieve import conciliar_con_t02
+        r = conciliar_con_t02([self.fila("A", 1.0, 1.0)], {"B": {"elevacion": 1.0, "pendiente": 1.0}})
+        self.assertEqual((r["ids_solo_en_t05"], r["ids_solo_en_t02"]), (["A"], ["B"]))
+
+    def test_reservada_incompleta_se_reporta(self):
+        from scripts.t05_relieve import comprobar_reservadas
+        filas = [self.fila("A", 1, 1), self.fila("B", .9, .5, "cobertura_parcial", "cobertura_parcial"),
+                 self.fila("C", .9, .5, "cobertura_parcial", "cobertura_parcial")]
+        r = comprobar_reservadas(filas, {"A": "PREDICCION", "B": "PREDICCION", "C": "ENTRENAMIENTO"})
+        self.assertEqual(r, {"reservadas": 2, "incompletas": ["B"]})
+
+
 if __name__ == "__main__":
     unittest.main()
