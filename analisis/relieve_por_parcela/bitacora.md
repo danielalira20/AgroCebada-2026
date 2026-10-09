@@ -40,7 +40,7 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 | 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | **Hecho** (8 oct) |
 | 7 | Registros, PR con la plantilla y reproducción por Dani | Pendiente |
 | 8 | Ampliación opcional: tabla de sensibilidad | Pendiente |
-| Final | Cotejo mínimo en QGIS (2–3 celdas de 2–3 parcelas y las 5 parcelas incompletas), **antes** de dar T05 por «Hecha» | **Acordado** (8 oct) |
+| Final | Cotejo mínimo en QGIS (2–3 celdas de 2–3 parcelas y las 5 parcelas incompletas), **antes** de dar T05 por «Hecha» | **Hecho** (9 oct) |
 
 ## Bitácora
 
@@ -222,3 +222,40 @@ Orden usado, desde la raíz del repositorio:
 **Qué no demuestra.** La reconstrucción no cubre el centroide ni los avisos (dependen de los ráster; los cubre `--reproducir`). Falta repetir las pruebas y la publicación en Docker.
 
 **Consecuencia.** Cambió la huella de `scripts/t05_relieve.py`, así que `procedencia.json` y `manifest.json` deben regenerarse en Docker. Se espera que las dos tablas y `controles.json` salgan idénticos byte por byte.
+
+### 9 de octubre de 2026 — Cotejo mínimo en QGIS
+
+**Qué se hizo.** Jass abrió en QGIS (proyecto en EPSG:6372) los dos TIFF originales y el shapefile de parcelas, y comparó con `registro/t05/relieve_celdas.csv`. Herramienta «Identificar entidades» en modo «de arriba abajo», celda por celda, centrando el mapa con la caja «Coordenada» y la escala 1:500. No se usaron estadísticas zonales: calculan la media por centro de celda, distinta de la ponderada por área, y compararlas no habría sido una prueba justa.
+
+**Qué se esperaba.** Que QGIS (GDAL) leyera los mismos valores y el mismo NoData que la tabla, y que los huecos de pendiente de las cinco parcelas incompletas tuvieran la forma y el tamaño que dicen las tablas.
+
+**Qué se encontró (verificado, por lectura de Jass en pantalla).**
+- **AGC_005 (completa, 5 celdas):** las 5 celdas coinciden. Elevación idéntica; pendiente igual hasta el redondeo de QGIS a 6 decimales (diferencia real máxima ≈ 5e-7°).
+- **Celdas con NoData (6):** coinciden las 6. AGC_044 (elevación con dato, pendiente sin dato), AGC_164 (ambas sin dato; elevación con dato y pendiente sin dato; control con ambas), AGC_023 (control con ambas y una con pendiente sin dato). QGIS muestra «sin datos», nunca -9999.
+- **Vista de las 5 parcelas incompletas (pendiente):** el patrón coincide en las cinco. AGC_164: oeste vacío, este con dato. AGC_023: parte suroeste con dato. AGC_170: casi todo vacío. AGC_044: un hueco pequeño en el este. AGC_020: huecos del lado este en dos columnas, con el escalón inferior de la tabla.
+- **Comprobación a ojo de la cobertura de pendiente**, midiendo sobre las capturas la fracción del polígono que cae sobre celdas sin dato (error de unos puntos porcentuales, no es una medición): AGC_023 ≈ 29 % con dato (tabla 28.6 %); AGC_170 ≈ 2 % (tabla 2.1 %); AGC_044 ≈ 2 % sin dato (tabla 1.97 %); AGC_020 ≈ 35 % sin dato (tabla 34.75 %).
+
+**Incidencias del procedimiento (no del método).**
+- Mis tablas de guía traían las pendientes **truncadas** a 6 decimales, no redondeadas; las diferencias de 0.000001 con QGIS eran de esa tabla, no de los datos.
+- En el QGIS de Jass la caja «Coordenada» se escribe en orden **Y,X** (norte primero).
+- Una de las capturas era AGC_120 (se tecleó 120 por 020); se repitió con AGC_020.
+
+**Qué demuestra.** La lectura de celdas y de NoData no depende de `rasterio`/Python; la fila y la columna de `relieve_celdas.csv` corresponden a la celda correcta del mapa; el NoData de pendiente con elevación válida existe en los TIFF originales; y el tamaño de los huecos de las cinco parcelas incompletas es el que reportan las tablas.
+
+**Qué no demuestra.** Solo se revisaron 11 celdas en 3 parcelas, más la vista de 5. No valida la ponderación por área (la cubren el cálculo independiente y las pruebas), ni el método Horn de la pendiente, ni el hueco de elevación de las parcelas (la vista fue solo de la capa de pendiente). La causa del NoData sigue sin demostrarse (la costura entre mapas por estado es una sospecha). No se guardaron capturas en el repositorio; la evidencia es la lectura de Jass.
+
+**Lo que sigue.** Paso 7: registro en `uso_ia.csv`, PR con la plantilla y reproducción por Dani.
+
+### 9 de octubre de 2026 — La publicación comprueba que las tablas corresponden a la fuente
+
+**Qué se hizo.** Una segunda auditoría de Codex señaló que `publicar` calculaba la procedencia (huellas de los TIFF y del shapefile) con el dataset del momento, pero publicaba tablas extraídas antes, sin comprobar que vinieran de ese mismo dataset. Codex lo reprodujo: extraer, cambiar un valor del TIFF conservando cuadrícula y cobertura, y publicar las tablas viejas; la publicación aprobaba y guardaba la huella del TIFF nuevo. Solo `--reproducir` lo detectaba después. El asistente lo confirmó leyendo el código y corrigió `publicar`.
+
+**Cambio.** Tras los controles internos y antes de crear el destino, `publicar` repite la extracción en una carpeta temporal y la compara con las tablas a publicar (misma tolerancia que `--reproducir`). Las huellas de las fuentes se toman antes y después y deben coincidir; la procedencia publicada es la tomada antes de comparar.
+
+**Comprobación.** 2 pruebas nuevas: la del caso de Codex (falla con el código anterior y pasa con el nuevo) y otra que confirma que la huella publicada es la del archivo usado. Suite completa: 128 pruebas OK en el entorno del asistente. `--verificar registro/t05` sigue aprobando.
+
+**Qué no cambia.** `--verificar` sin `--reproducir` sigue sin leer el dataset, a propósito: así se puede verificar la integridad sin los datos originales. Publicar tarda una extracción más (segundos).
+
+**Consecuencia.** Cambia otra vez la huella del script: hay que regenerar `procedencia.json` y `manifest.json` en Docker; las tablas y `controles.json` no deberían cambiar.
+
+**Propuesta de cierre del script.** Después de este cambio se congela `scripts/t05_relieve.py`. Un hallazgo posterior obliga a corregir y regenerar solo si cambia valores publicados o permite publicar algo falso; lo demás se anota como pendiente.
