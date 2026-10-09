@@ -1,5 +1,7 @@
 # T04 · Entrega mensual al equipo y correcciones de revisión
 
+**Actualización del 8 de octubre:** la referencia T02 y los metadatos de conciliación fueron revalidados sobre la T02 corregida integrada en dev. Véase [actualización de referencia y evidencia](t04_referencia_t02.md). El CSV climático permanece idéntico; la nueva publicación/revisión sigue pendiente. El apartado del 7 de octubre que sigue conserva la historia de la entrega inicial.
+
 7 de octubre de 2026. Rama de Dani: `daniela-dev`. Esta actualización incorpora las correcciones de los puntos 1–4 al PR 6 con destino `dev`, con publicación autorizada por Dani el 7 de octubre. Permanece pendiente la nueva revisión de Jass. No se integró `dev` en esta rama. Jass informó una validación independiente del cálculo; esta revisión resuelve entrega, trazabilidad y conciliación, y requiere su revisión de los cambios nuevos. No marca T04 cerrada.
 
 ## Archivos compartidos
@@ -27,7 +29,7 @@ Para analizar, leer IDs como texto y unir por `(id_parcela, periodo, variable)`.
 
 ## Conciliación T02 sin una integración prematura
 
-Referencia leída desde el commit `eef8d95ae47d45d877d5a32f769ad01dec2c92fc`, bajo `analisis/auditoria_catalogo_y_etiquetas/`. Se guardan SHA-256 del catálogo, soporte, huellas de entradas y dos scripts de definición. Coinciden las huellas del catálogo original y las cinco piezas del Shapefile con el maestro usado por T04. El resultado se obtiene de nuevo en cada extracción, antes de publicar su carpeta: no se deja «conciliada» como un texto fijo.
+La entrega original del 7 de octubre leyó la referencia `eef8d95ae47d45d877d5a32f769ad01dec2c92fc`. La corrección actual identifica T02 en `11d947098d8d6e56902a7f09a2c75953f09fdb21`, con los cinco archivos verificados también en dev `9d5861c`. Ambas se obtienen bajo `analisis/auditoria_catalogo_y_etiquetas/`. Se guardan SHA-256 del catálogo, soporte, huellas de entradas y dos scripts de definición. Coinciden las huellas del catálogo original y las cinco piezas del Shapefile con el maestro usado por T04. El resultado se obtiene de nuevo en cada extracción, antes de publicar su carpeta: no se deja «conciliada» como un texto fijo.
 
 Si las tablas T02 originales están presentes localmente, se leen sus columnas espaciales y se comprueban contra las huellas y referencia filtrada. Si cambia esa revisión, el extractor se detiene para identificar/revisar una referencia nueva. Si falta la referencia, registra `no_disponible` y no permite preparar la entrega compacta como conciliada. Esto no equivale a aprobar todos los aspectos de T02.
 
@@ -59,3 +61,17 @@ Las tablas compactas, procedencia, conciliación y controles se reprodujeron con
 La evidencia local de esta revisión está en `reports/t04_revision_jass_20261007/`; no se sube. Las ejecuciones del 6 de octubre se conservan intactas. La validación independiente de Jass informada por Dani es evidencia de la revisión previa; las pruebas/evidencia nuevas se registran aparte y no se atribuyen a Jass.
 
 Pendiente: revisión de esta entrega; confirmación temporal donde no consta; discutir responsabilidad, reglas y documento de las ventanas del punto 5. No se agregaron ventanas, no se usaron etiquetas para ajustar y no se modificaron particiones ni modelos.
+
+## Compatibilidad T02 y procedencia · actualización del 9 de octubre
+
+La referencia espacial v2 comprueba dos tablas T02: catálogo y soporte por
+parcela. Las huellas de construir_catalogo.py, diagnosticar_soporte.py y
+huellas_archivos_leidos.csv se conservan aparte como procedencia de la revisión
+identificada. Un cambio sólo en esos auxiliares no invalida la compatibilidad.
+Cambios en tablas u originales siguen requiriendo revisión y revalidación.
+
+El lector conserva compatibilidad con referencias v1 completas. Esta migración
+no modifica las 28,368 filas ni controles y documenta el cambio por separado,
+sin sustituir el código histórico de extracción. Véase t04_referencia_t02.md.
+La entrega compacta sigue usando t04_entrega_compacta_v1: columnas, unidades y
+corte permanecen iguales. T07 se adapta al mismo contrato de dos tablas.

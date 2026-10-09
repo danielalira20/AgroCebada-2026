@@ -13,6 +13,11 @@ from pyproj import Geod
 from shapely.geometry import box
 from shapely.geometry.polygon import orient
 
+try:
+    from .t02_contrato import DATOS_T02, PROCEDENCIA_T02, separar_huellas
+except ImportError:  # Entrada directa del extractor.
+    from t02_contrato import DATOS_T02, PROCEDENCIA_T02, separar_huellas
+
 GEOD = Geod(ellps="WGS84")
 CAMPOS = ("id_parcela", "area_ha_origen", "area_ha_geodesica", "centroide_lon",
           "centroide_lat", "celdas_clima_tocadas", "celda_clima_principal",
@@ -46,12 +51,10 @@ def referencia_desde_tablas(carpeta, revision, entradas):
     for i in cat:
         if float(cat[i]["area_ha_origen"]) != float(sop[i]["area_ha_origen"]):
             raise ValueError(f"Área de origen distinta entre tablas T02: {i}")
-    rutas = ("tablas/catalogo_parcelas.csv", "tablas/soporte_por_parcela.csv",
-             "tablas/huellas_archivos_leidos.csv", "scripts/construir_catalogo.py",
-             "scripts/diagnosticar_soporte.py")
-    return {"schema": "t04_referencia_t02_v1", "revision": revision,
+    return {"schema": "t04_referencia_t02_v2", "revision": revision,
             "ruta_en_repo": "analisis/auditoria_catalogo_y_etiquetas",
-            "archivos_sha256": {p: sha(carpeta/p) for p in rutas},
+            "archivos_sha256": {p: sha(carpeta/p) for p in sorted(DATOS_T02)},
+            "procedencia_t02_sha256": {p: sha(carpeta/p) for p in sorted(PROCEDENCIA_T02)},
             "entradas_sha256": entradas,
             "definiciones": {"area": "Geod WGS84, vértices originales; ha con 6 decimales",
                 "centroide": "planar en lon/lat originales; 7 decimales",
@@ -74,8 +77,8 @@ def conciliar(parcelas, mapas, soportes, centroides, manifest, referencia, repo)
     if not referencia.exists():
         return {"estado": "no_disponible", "motivo": "Falta la referencia identificada de T02"}
     ref = json.loads(referencia.read_text(encoding="utf-8"))
-    if ref.get("schema") != "t04_referencia_t02_v1":
-        raise ValueError("Esquema de referencia T02 desconocido")
+    datos_t02, procedencia_t02 = separar_huellas(
+        ref.get("archivos_sha256"), ref.get("procedencia_t02_sha256"), ref.get("schema", "desconocido"))
     filas = ref["parcelas"]
     ids = [r["id_parcela"] for r in filas]
     if len(set(ids)) != len(ids) or set(ids) != {p["id_parcela"] for p in parcelas}:
@@ -86,9 +89,9 @@ def conciliar(parcelas, mapas, soportes, centroides, manifest, referencia, repo)
         raise ValueError("Huellas de entradas T02/T04 diferentes")
     # Si las tablas reales ya están en la rama, su identidad también se comprueba.
     canonical = Path(repo)/ref["ruta_en_repo"]
-    presentes = [(canonical/p).exists() for p in ref["archivos_sha256"]]
+    presentes = [(canonical/p).exists() for p in datos_t02]
     if any(presentes):
-        if not all(presentes) or any(sha(canonical/p) != h for p, h in ref["archivos_sha256"].items()):
+        if not all(presentes) or any(sha(canonical/p) != h for p, h in datos_t02.items()):
             raise ValueError("T02 local cambió: identificar/revisar la nueva referencia antes de conciliar")
         cat = leer_tabla(canonical/"tablas/catalogo_parcelas.csv", CAMPOS[:5])
         sop = leer_tabla(canonical/"tablas/soporte_por_parcela.csv", ("id_parcela", *CAMPOS[5:]))
@@ -142,7 +145,9 @@ def conciliar(parcelas, mapas, soportes, centroides, manifest, referencia, repo)
         mayor = max(detalle, key=lambda r: abs(r[campo]))
         maximos[campo] = {"valor_absoluto": abs(mayor[campo]), "id_parcela": mayor["id_parcela"]}
     return {"estado": "conciliada_con_referencia_identificada", "revision_t02": ref["revision"],
-            "referencia_sha256": sha(referencia), "archivos_t02_sha256": ref["archivos_sha256"],
+            "referencia_sha256": sha(referencia), "archivos_t02_sha256": datos_t02,
+            "schema_referencia_t02": ref["schema"], "procedencia_t02_sha256": procedencia_t02,
+            "politica_compatibilidad_t02": "tablas_identicas_procedencia_no_bloqueante",
             "origen": "tablas locales verificadas" if all(presentes) else "referencia espacial filtrada de tablas identificadas",
             "ids_verificados": len(ids), "areas_origen_iguales": len(ids), "celdas_principales_iguales": len(ids),
             "numero_celdas_igual": len(ids), "fracciones_iguales_a_4_decimales": len(ids),

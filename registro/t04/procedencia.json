@@ -5392,7 +5392,7 @@
     "PROJ": "9.8.1",
     "GDAL": "3.10.3"
   },
-  "requirements_sha256": "09c6d169fce6985995a19dde4ad05a77af9d01154a89ea8eefbf325233e66389",
+  "requirements_sha256": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
   "python": "3.12.15",
   "soportes": [
     {
@@ -7759,5 +7759,23 @@
       "soporte_id": "5c1fa5d077c544e74a864448e98a8e31ec610ed511d9daaef0c482649de1555f",
       "geometria_sha256": "bdd58059b0d8350b36e8a49b5000eef6e0962e11ff5dd799ee3b788a75a79d08"
     }
-  ]
+  ],
+  "actualizacion_referencia_t02": {
+    "codigo_conciliacion_sha256": {
+      "t02_contrato.py": "ae484660f58cbd49a36829d2e3b61a4db92ab7baf9dcb8971168c769348eace8",
+      "t04_t02.py": "962f92589779a60ff1bb060a7a227a30ac053ef84af1a1f6fdea5f70ff7b6a8d"
+    },
+    "detalle_y_maximos_espaciales_identicos": true,
+    "entrega_anterior_revision_git": "842f4c459fe85120867d8c9fd27e05fe049d3fb1",
+    "extraccion_original_preservada": true,
+    "identidades_soporte_verificadas": 394,
+    "manifest_anterior_sha256": "0e00444924653ddea337d47b1da113dc3b0cf41ff26ad38c4febc6988ce9863d",
+    "motivo": "Separar dos tablas de compatibilidad y tres archivos de procedencia; sin recalcular clima",
+    "parcelas_reconciliadas": 197,
+    "referencia_anterior_sha256": "8b84ad9f7dc93ac77a9693574f7251878bf70c41d1957a4514cdc260dfb8790f",
+    "referencia_nueva_sha256": "63a383c25417af4b5deeb636c3a3758f09a126799983d195709cb5835a5d3572",
+    "revision_codigo_conciliacion": "2ea8b0d5fe79f61940f6860688b162b76f6e1ff7",
+    "schema": "t04_actualizacion_contrato_t02_v1",
+    "valores_climaticos_recalculados": false
+  }
 }

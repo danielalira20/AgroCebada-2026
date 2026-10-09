@@ -270,15 +270,33 @@
   "fuente_archivos_sha256": {
     "clima_parcela_mes.csv": "5618a69b4f109923b049f0c52c8278726ee72068970a2bba91705f63ac227bdf",
     "soportes.json": "e38f958b80a58432a84c54a41240cc404dd2ed0ade8600157d1481e12efa957b",
-    "manifest.json": "cb15b3b4eaf50fae62b124cc75e50a168a794a6fcf1a80e3658346104e2c7a08",
+    "manifest.json": "8033eb53d6cce0e754ad49198d257c3ea4167a25b4855181aaaca51cf662a2ca",
     "controles.json": "5e6b59c7c4ca492b36dda6be8c3591a4c01d7afc6ce5092c52ea5da56a5104b3"
   },
   "codigo_entrega_sha256": "df1679bd39b023b5fd123d2bf000eee95086c4d48b2952a91ceaa69bb16c4c92",
   "archivos_sha256": {
     "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
-    "procedencia.json": "29978dac0966f4f2f96b31ccb7618da7b334a39875ea81d7507e5d062ef712ad",
-    "conciliacion_t02.json": "755d72adfba975115f646e13d9b5cab4ecde07c4e13582d6b04a6bc6cb57feff",
+    "procedencia.json": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+    "conciliacion_t02.json": "de64fa03cbed798b2395b1ab99395ea8597fa2cfe6b1de33ffdacf1d0245e7e2",
     "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce"
   },
-  "cierre_t04": false
+  "cierre_t04": false,
+  "actualizacion_referencia_t02": {
+    "codigo_conciliacion_sha256": {
+      "t02_contrato.py": "ae484660f58cbd49a36829d2e3b61a4db92ab7baf9dcb8971168c769348eace8",
+      "t04_t02.py": "962f92589779a60ff1bb060a7a227a30ac053ef84af1a1f6fdea5f70ff7b6a8d"
+    },
+    "detalle_y_maximos_espaciales_identicos": true,
+    "entrega_anterior_revision_git": "842f4c459fe85120867d8c9fd27e05fe049d3fb1",
+    "extraccion_original_preservada": true,
+    "identidades_soporte_verificadas": 394,
+    "manifest_anterior_sha256": "0e00444924653ddea337d47b1da113dc3b0cf41ff26ad38c4febc6988ce9863d",
+    "motivo": "Separar dos tablas de compatibilidad y tres archivos de procedencia; sin recalcular clima",
+    "parcelas_reconciliadas": 197,
+    "referencia_anterior_sha256": "8b84ad9f7dc93ac77a9693574f7251878bf70c41d1957a4514cdc260dfb8790f",
+    "referencia_nueva_sha256": "63a383c25417af4b5deeb636c3a3758f09a126799983d195709cb5835a5d3572",
+    "revision_codigo_conciliacion": "2ea8b0d5fe79f61940f6860688b162b76f6e1ff7",
+    "schema": "t04_actualizacion_contrato_t02_v1",
+    "valores_climaticos_recalculados": false
+  }
 }
