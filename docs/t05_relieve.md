@@ -132,6 +132,8 @@ El ajuste de un plano por parcela es diagnóstico opcional, no condiciona el cie
 - Las cinco parcelas con cobertura parcial (AGC_020, 023, 044, 164 y 170) se comportan como se espera.
 - Las 59 parcelas reservadas conservan cobertura completa.
 
+**Cotejo mínimo en QGIS** (al final, antes de dar T05 por «Hecha»): con «Identificar», comparar 2–3 celdas de 2–3 parcelas contra `relieve_celdas.csv`, y mirar las cinco parcelas incompletas sobre los TIFF. Es el único control que no pasa por las mismas bibliotecas (`rasterio`, `pyproj`, `shapely`), así que protege de un error común a todas, como un desfase de fila o columna. No se usa «Estadísticas de zona» para comparar promedios: cuenta celdas por su centro y no pondera por área.
+
 **Reproducción.** El script tendrá `--extraer` y `--verificar`, y se distinguen dos controles:
 - **Integridad:** el manifiesto contiene los hashes de los archivos de entrega, exceptuando el propio manifiesto. Comprueba que los archivos publicados no cambiaron.
 - **Reproducción numérica:** una nueva extracción se compara con la publicada con las tolerancias declaradas. La identidad byte a byte solo se exige si se usa el mismo entorno y una serialización determinista; el fin de línea LF ayuda, pero por sí solo no la garantiza.
@@ -152,3 +154,4 @@ La procedencia guarda además las versiones del entorno (Python y bibliotecas us
 3. Ejecución, conciliación con T02 y tabla de casos de borde.
 4. Registros y PR con la plantilla. Agregar `registro/t05/* text eol=lf` a `.gitattributes`.
 5. Ampliación: tabla de sensibilidad.
+6. Cotejo mínimo en QGIS, antes de dar T05 por «Hecha».
