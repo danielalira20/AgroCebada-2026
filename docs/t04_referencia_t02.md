@@ -1,7 +1,8 @@
 # T04 · Actualización de referencia T02 y revalidación
 
 8 de octubre de 2026. Rama local: `t04-actualizar-referencia-t02`.
-Base: `dev` en `11d947098d8d6e56902a7f09a2c75953f09fdb21`, que integra T02 corregida por el PR #9.
+Base de revalidación y referencia T02: `11d947098d8d6e56902a7f09a2c75953f09fdb21`, que integra la T02 corregida por el PR #9.
+Base actual del PR: dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8`, incorporada mediante merge local `9347017`.
 Responsable: Dani. Revisora: Jass. Cambio preparado localmente; publicación y revisión de esta actualización pendientes.
 
 ## Problema que resuelve
@@ -69,4 +70,24 @@ ni Docker. Esa verificación comprueba el paquete; no vuelve a extraer los mapas
 No se cambian valores climáticos, calendario, etiquetas, particiones ni reglas T03.
 No se agregan ventanas, satélite o relieve a T07. El ajuste necesita publicación
 con autorización de Dani y revisión de Jass antes de incorporarlo a dev.
-El PR #10 del protocolo T03 sigue separado de esta corrección.
+El PR #10 de T03 ya está fusionado en la base actual y no forma parte del diff de esta corrección.
+
+## Comprobación tras actualizar dev
+
+La nueva base sólo modifica el protocolo T03 y añade IA014 a uso_ia.csv.
+Los cinco archivos T02 identificados y el código/entradas T04 son idénticos a
+la base revalidada. Se mantiene la referencia a 11d9470: identifica esa revisión
+espacial comprobada y sigue siendo compatible con dev 9d5861c. No se cambia
+una referencia ni se repite la extracción para actualizar sólo el nombre del commit.
+
+El único conflicto del merge fue uso_ia.csv. Se resolvió por ID contra el ancestro,
+conservando IA014 y nuestras entradas T04 sin renumerar ni perder contenido.
+Tras el merge, los seis archivos de referencia/entrega corregidos mantuvieron
+sus huellas. El CSV de 28,368 filas y los controles también coinciden byte a
+byte con dev. Pasaron las 20 pruebas de entrega/conciliación y el verificador
+con Python -S, sin ZIP ni Docker. La revalidación completa de 68 pruebas, piloto
+y 144 mapas se conserva como evidencia previa porque ninguna entrada o función
+de cálculo cambió. Evidencia nueva: reports/t04_t07_sincronizacion_dev_20261008/.
+
+La revisión de Jass sigue pendiente. El PR propuesto apunta a dev y contiene
+sólo los ocho archivos propios de esta corrección; no publica T07 ni originales.

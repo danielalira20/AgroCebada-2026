@@ -29,7 +29,7 @@ Para analizar, leer IDs como texto y unir por `(id_parcela, periodo, variable)`.
 
 ## Conciliación T02 sin una integración prematura
 
-Referencia leída desde el commit `eef8d95ae47d45d877d5a32f769ad01dec2c92fc`, bajo `analisis/auditoria_catalogo_y_etiquetas/`. Se guardan SHA-256 del catálogo, soporte, huellas de entradas y dos scripts de definición. Coinciden las huellas del catálogo original y las cinco piezas del Shapefile con el maestro usado por T04. El resultado se obtiene de nuevo en cada extracción, antes de publicar su carpeta: no se deja «conciliada» como un texto fijo.
+La entrega original del 7 de octubre leyó la referencia `eef8d95ae47d45d877d5a32f769ad01dec2c92fc`. La corrección actual identifica T02 en `11d947098d8d6e56902a7f09a2c75953f09fdb21`, con los cinco archivos verificados también en dev `9d5861c`. Ambas se obtienen bajo `analisis/auditoria_catalogo_y_etiquetas/`. Se guardan SHA-256 del catálogo, soporte, huellas de entradas y dos scripts de definición. Coinciden las huellas del catálogo original y las cinco piezas del Shapefile con el maestro usado por T04. El resultado se obtiene de nuevo en cada extracción, antes de publicar su carpeta: no se deja «conciliada» como un texto fijo.
 
 Si las tablas T02 originales están presentes localmente, se leen sus columnas espaciales y se comprueban contra las huellas y referencia filtrada. Si cambia esa revisión, el extractor se detiene para identificar/revisar una referencia nueva. Si falta la referencia, registra `no_disponible` y no permite preparar la entrega compacta como conciliada. Esto no equivale a aprobar todos los aspectos de T02.
 
