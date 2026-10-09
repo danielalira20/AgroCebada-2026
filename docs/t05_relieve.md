@@ -153,20 +153,30 @@ La procedencia guarda además las versiones del entorno (Python y bibliotecas us
 
 ## Cómo reproducir y verificar
 
-Desde la raíz del repositorio, con el entorno de `requirements.txt` y el dataset original en `data/raw/DATASET_RETO_AGRO_2026/`:
+Desde la raíz del repositorio, con el entorno de `requirements.txt` y una **copia descomprimida** del dataset.
+
+**Los scripts no leen ZIP.** El paquete original de FIRA trae parte de los datos comprimidos (por ejemplo `Parcelas_Reto_AGC_CONJUNTO_70_30.zip` y `Reto_AgroCebada_Topografia_INEGI_CEM4.zip`). T05 busca, bajo la carpeta que se indique con `--dataset`, un único `Parcelas_Reto_AGC_CONJUNTO.shp`, un único `Elevacion_INEGI_CEM4_120m.tif` y un único `Pendiente_INEGI_CEM4_120m_grados.tif`. Si solo hay ZIP, se detiene con `Se esperaba un solo … hay 0`.
+
+Preparación, una sola vez (es la misma que describe el README de T02). El paquete original queda sin tocar en `data/raw/` y la copia descomprimida en `data/DATASET_RETO_AGRO_2026/`; ambas carpetas están fuera de Git:
+
+```bash
+python analisis/auditoria_catalogo_y_etiquetas/scripts/preparar_copia_del_dataset.py --origen data/raw/DATASET_RETO_AGRO_2026 --destino data/DATASET_RETO_AGRO_2026
+```
+
+Los comandos siguientes usan esa copia con `--dataset`. Si `data/raw/DATASET_RETO_AGRO_2026/` ya tiene las carpetas descomprimidas junto a los ZIP, el valor por defecto de `--dataset` también sirve.
 
 ```bash
 python -m unittest discover -s tests -v                                   # pruebas
 python -m scripts.t05_relieve --verificar registro/t05                    # integridad: hashes y estructura
-python -m scripts.t05_relieve --verificar registro/t05 --reproducir       # además, extrae de nuevo y compara con tolerancia
+python -m scripts.t05_relieve --verificar registro/t05 --reproducir --dataset data/DATASET_RETO_AGRO_2026   # además, extrae de nuevo y compara con tolerancia
 ```
 
 Para regenerar la entrega desde cero (las carpetas de salida deben ser nuevas o estar vacías):
 
 ```bash
-python -m scripts.t05_relieve --extraer   --salida data/processed/t05/<ejecucion>
-python -m scripts.t05_relieve --controlar --salida data/processed/t05/<ejecucion>
-python -m scripts.t05_relieve --publicar  --salida data/processed/t05/<ejecucion> --destino registro/t05
+python -m scripts.t05_relieve --extraer   --dataset data/DATASET_RETO_AGRO_2026 --salida data/processed/t05/<ejecucion>
+python -m scripts.t05_relieve --controlar --dataset data/DATASET_RETO_AGRO_2026 --salida data/processed/t05/<ejecucion>
+python -m scripts.t05_relieve --publicar  --dataset data/DATASET_RETO_AGRO_2026 --salida data/processed/t05/<ejecucion> --destino registro/t05
 ```
 
 `--publicar` vuelve a correr los controles antes de copiar. `registro/t05/` contiene `relieve_parcela.csv`, `relieve_celdas.csv`, `controles.json`, `procedencia.json` y `manifest.json`.
