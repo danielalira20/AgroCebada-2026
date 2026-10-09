@@ -8,11 +8,13 @@
     "T02": {
       "estado": "base_dev_identificada",
       "archivos_sha256": {
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+      },
+      "procedencia_sha256": {
         "analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
         "analisis/auditoria_catalogo_y_etiquetas/scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d",
-        "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
-        "analisis/auditoria_catalogo_y_etiquetas/tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86",
-        "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86"
       }
     },
     "T03": {

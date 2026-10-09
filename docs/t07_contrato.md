@@ -85,7 +85,7 @@ Originales inmutables.
 La base dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8` incluye T02 corregida
 (PR #9), T04 mensual (PR #6), T06 (PR #4) y las referencias T08 (PR #8).
 La actualización de referencia T02 de T04 fue revalidada localmente en la rama
-`t04-actualizar-referencia-t02` (`842f4c4`, que conserva la corrección `7b2b4b4`); su publicación/revisión y posterior
+`t04-actualizar-referencia-t02` (`43b7560`, con migración de contrato v2 y corrección `7b2b4b4`); su publicación/revisión y posterior
 incorporación a dev siguen pendientes. T07 no incorpora esa rama sin revisión.
 El [registro de sincronización](t07_sincronizacion.md) conserva la evidencia.
 t07_preparar.py --sin-clima conserva el modo inicial de catálogo y estados de
@@ -125,3 +125,15 @@ Registro arXiv consultado el 7 de octubre de 2026: versión actual v2; sin revis
 o DOI editorial registrado. No se toma el uso de skills como certificación.
 
 [Prevención de fuga en scikit-learn](https://scikit-learn.org/stable/common_pitfalls.html).
+
+## Compatibilidad y procedencia T02 · 9 de octubre
+
+T04 y T07 usan scripts/t02_contrato.py. Sólo catálogo y soporte por parcela
+condicionan la compatibilidad de la referencia; los tres auxiliares se conservan
+como procedencia. El inventario registra sus huellas en la base Git identificada,
+sin exigir que coincidan con las de la ejecución T04 anterior ni ejecutar esos
+scripts. La auditoría verifica esa procedencia archivada y las dos tablas actuales.
+Cambiar una tabla u original continúa bloqueando; cambiar un comentario T02
+permite integrar las mismas cifras y documenta la nueva revisión. Se leen entregas
+v1 completas y v2, rechazando contratos incompletos o huellas inválidas.
+Los scripts T07 que sí se ejecutan mantienen sus propias huellas de código.

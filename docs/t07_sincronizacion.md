@@ -1,5 +1,24 @@
 # T07 · Sincronización con dev y preparación del catálogo
 
+## Actualización vigente · contrato T02 v2, 9 de octubre
+
+Base dev identificada sigue 9d5861c. T04 local `43b7560` migra la referencia y
+sus metadatos, pendiente de publicar y revisar. T07 comparte el código de contrato
+sin fusionar esa entrega ni marcarla aceptada. Las dos tablas son bloqueantes;
+los tres auxiliares quedan identificados como procedencia archivada.
+
+Pasaron 132 pruebas. Ambas entregas se reprodujeron dos veces: ocho archivos
+satélite y once completos, con idénticas cifras, calidad, roles y diccionarios.
+Sólo cambia la identidad de las entradas y del código en inventario/manifiesto.
+Los 1,182 contrastes climáticos independientes mantienen máximo 1.02e-13.
+La tabla compartida permanece 197 × 52; el clima completo sólo en borrador local.
+
+Bitácoras T07: 25 decisiones y 20 entradas IA, sin pérdidas ni IDs duplicados.
+Evidencia: reports/t04_contrato_tablas_20261009/. La rama remota t05-relieve
+apareció en la consulta del 9 de octubre; no se ha revisado ni integrado en esta
+base ni en T07. La actualización anterior se conserva debajo como historia.
+
+
 ## Actualización vigente · dev 9d5861c
 
 8 de octubre de 2026, posterior a la fusión del PR #10. Base actual:

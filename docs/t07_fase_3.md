@@ -20,11 +20,12 @@ aparte de la comprobación numérica y nunca se deduce de que el cálculo termin
 
 La base actual de catálogo + T06 es dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8`.
 La actualización T04 está en la rama local `t04-actualizar-referencia-t02`,
-commit `842f4c459fe85120867d8c9fd27e05fe049d3fb1`, pendiente de publicación/revisión e incorporación a dev.
+commit `43b75608c281b125edf895990354763cc80a9be2`, pendiente de publicación/revisión e incorporación a dev.
 El borrador climático y la evidencia de la ejecución inicial se conservan sin
 reescribir en reports/t07_fase3_20261008/: identifican base `11d9470` y copia
-T04 `7b2b4b4`. Sus cinco archivos de entrada T04 son idénticos a los de la
-corrección actual. Ese borrador sigue siendo histórico y pendiente de aceptación.
+T04 `7b2b4b4`. El CSV climático y los controles siguen idénticos; la referencia
+y los metadatos se migraron el 9 de octubre al contrato de dos tablas.
+Ese borrador anterior permanece histórico y pendiente de aceptación.
 Dani autorizó expresamente preparar este borrador con datos reales para revisión.
 No se integra la rama T04 ni se modifica su estado para presentarla como aceptada.
 
@@ -89,7 +90,7 @@ Se preservan las 138 etiquetas originales y las 59 ausentes, sin imputarlas.
 
 | Comprobación | Resultado |
 |---|---|
-| Pruebas | 124 aprobadas en implementación inicial; 16 de compatibilidad tras actualizar dev |
+| Pruebas | 124 en implementación inicial; 16 de compatibilidad del 8-oct; 132 tras migración del 9-oct |
 | Unión | 197 IDs; 8,668 valores satelitales conservados literalmente |
 | Cobertura T06 | 1,182 controles conciliados con su tabla independiente |
 | Clima | 28,368 registros leídos; 1,182 agregaciones contrastadas con Decimal |
@@ -152,13 +153,13 @@ Para revisar el borrador real T04, sin fusionar su rama:
 
 ```sh
 .venv/bin/python scripts/t07_preparar_insumos.py \
-  --revision-t04 842f4c459fe85120867d8c9fd27e05fe049d3fb1 \
+  --revision-t04 43b75608c281b125edf895990354763cc80a9be2 \
   --estado-t04 en_revision --salida reports/t07_revision_nueva/entrada_t04
 
 .venv/bin/python scripts/t07_integrar.py \
   --base-dev 9d5861c81713f2022d9fb9d1952c1feeb236a2f8 \
   --clima reports/t07_revision_nueva/entrada_t04 \
-  --revision-t04 842f4c459fe85120867d8c9fd27e05fe049d3fb1 \
+  --revision-t04 43b75608c281b125edf895990354763cc80a9be2 \
   --para-revision --salida reports/t07_revision_nueva/completa
 
 .venv/bin/python scripts/t07_verificar.py \
@@ -190,3 +191,22 @@ hito para evaluar datos externos es la primera evaluación T09 frente a T08,
 con una carencia e hipótesis explícitas y los mismos controles de evaluación.
 No se añadieron ahora sensores, suelo o clima externo ni se promete mejora de
 predicción. Antes de congelar T16 se revisará nuevamente esa decisión.
+
+## Comprobación posterior · contrato T02 v2, 9 de octubre
+
+Se adaptó la integración y el verificador al contrato común de dos tablas y
+procedencia separada. Pasaron 132 pruebas (ocho nuevas: cuatro T04 y cuatro T07).
+Incluyen integrar tras comentarios T02 en una base nueva, leer v1/v2 con las mismas
+cifras y detectar alteraciones de procedencia archivada aun actualizando el
+manifiesto. Los bloqueos de datos cambiados y fuente T04 en revisión se conservan.
+
+Se reprodujeron dos veces las dos entregas con la fuente T04 v2: ocho archivos
+satélite y once del borrador completo. Sólo inventario y manifiesto cambian respecto
+a la fase 3 anterior. Las tablas, calidad, diccionarios, roles y controles son
+idénticos byte a byte; 1,182 contrastes Decimal mantienen máximo 1.02e-13.
+
+La versión actual de registro/t07 es catálogo + T06, 197 × 52, sin clima ni relieve.
+El borrador completo nuevo, 197 × 58, está sólo en
+reports/t04_contrato_tablas_20261009/t07/completa/, con fuente en_revision,
+clima_aceptado=false y cierre_t07=false. La evidencia previa no se sobrescribe.
+Esta migración no cambia ventanas, particiones, unidades, métodos o modelos.

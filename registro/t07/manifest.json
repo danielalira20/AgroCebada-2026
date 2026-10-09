@@ -1,14 +1,15 @@
 {
   "schema": "t07_integracion_bloques_v1",
   "codigo_sha256": {
-    "scripts/t07_integrar.py": "83f18f573cc2e53914f1debc3f4d28e97291943212296d86b93031a988dfbac6",
+    "scripts/t07_integrar.py": "0a24c3ccf610efe9bd1645dea8fe1047cf37813d2102843a56b79bc885206e05",
     "scripts/t07_satelite.py": "c6835712d9956a25cd3950afd5ed00bc8c620fe2d9090651e32ccb9cd107805c",
-    "scripts/t07_preparar.py": "35751326766ab64c956dea6f982c5cccde981edfe07e5abc17a424efa3794d3f",
+    "scripts/t07_preparar.py": "bc5446ea1c3b0705a8809535305e65b8f6fabff4887da9068e7dce1cf36ac3ce",
     "scripts/t07_fuentes.py": "65823be11b72a0e0ebf024e7197e6e512b6c86b8f62b95f023e747e295874e2c",
     "scripts/t07_ventanas.py": "5a9ecce92746b27ff847ec18d609975d4708b273b1137567f2773a67c49b1017",
     "scripts/t07_diccionario.py": "fb71c4855ba3c65c04eafc07077b98a21c97cacf132575fa77707554367260e4",
     "scripts/t07_preparar_insumos.py": "c2099ba4ebb12dd7830039bbbaba22381abbb871f14a8ad3421f1d0e626dbe44",
-    "scripts/t07_verificar.py": "ffb58446fa995f55e37be93dcc4205d37346b355da96000ebcdfb3eda99a31d1"
+    "scripts/t07_verificar.py": "b9a2781b6f3c668f6b68fe768f398ba81e1a08404a1d99527e07205a35739a94",
+    "scripts/t02_contrato.py": "ae484660f58cbd49a36829d2e3b61a4db92ab7baf9dcb8971168c769348eace8"
   },
   "entradas": {
     "base_dev": "9d5861c81713f2022d9fb9d1952c1feeb236a2f8",
@@ -20,7 +21,7 @@
     "contrato_columnas.json": "f1c66cc7bfb0faac73ce7f1db7cb19da19708e523a89756451d67df77aabd329",
     "controles.json": "80000bee79ec98150581c1b89e6ec4e76a65ab0bfe3fdfbd5116dfecfc1d2db5",
     "diccionario_columnas.csv": "03be7050d56b611c8ae88ac45979d21950041e70663fd9c91c166bb2f087d09a",
-    "inventario_fuentes.json": "27da3cf6cf3a81fea2ae28c2caf8c3bfa6a4f10dfddde4d6d5c93233619ff2a9",
+    "inventario_fuentes.json": "b3ede5c44bd27715e55bff9e09db81a39cd2917a263f0853cdb7b87502fcab79",
     "tabla_comun.csv": "5295279b6ecbc12e778d7c6b7d31b54805c68342953b0db231ab4804e76c4ed6"
   },
   "estado_entrega": "integracion_por_bloques_para_revision",
