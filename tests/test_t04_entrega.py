@@ -9,6 +9,7 @@ import unittest
 from tests import test_extraer_clima as fixture_extractor
 from scripts.t04_control import preparar_centroides
 from scripts.t04_t02 import conciliar, area_t02, sha as sha_t02
+from scripts.t02_contrato import LEGADO_T02
 from scripts.preparar_entrega_clima import (COLUMNAS, UNIDADES, posterior, validar_filas,
                                           verificar, guardar_json, sha, preparar)
 
@@ -123,7 +124,7 @@ class ConciliacionTests(unittest.TestCase):
         self.centroides = preparar_centroides(self.parcelas, self.mapas)
         g = self.parcelas[0]["geometria"]
         self.manifest = {"catalogo": {"sha256": "cat"}, "geometrias": {"miembros": [{"archivo": "g.shp", "sha256": "geo"}]}}
-        self.ref = {"schema": "t04_referencia_t02_v1", "revision": "revision_identificada", "ruta_en_repo": "t02", "archivos_sha256": {"tablas/catalogo_parcelas.csv": "huella"},
+        self.ref = {"schema": "t04_referencia_t02_v1", "revision": "revision_identificada", "ruta_en_repo": "t02", "archivos_sha256": {n: "0"*64 for n in LEGADO_T02},
                     "entradas_sha256": {"ID_area_rendimiento_70_30_Reto_AgroCebada.csv": "cat", "g.shp": "geo"},
                     "parcelas": [{"id_parcela": "A", "area_ha_origen": "7.44", "area_ha_geodesica": str(round(area_t02(g)/10000, 6)),
                     "centroide_lon": str(round(g.centroid.x, 7)), "centroide_lat": str(round(g.centroid.y, 7)),
