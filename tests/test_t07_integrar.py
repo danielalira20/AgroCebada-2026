@@ -24,8 +24,12 @@ class Integracion(unittest.TestCase):
         for n in fuentes:
             p = cls.root / n; p.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(RAIZ/n, p)
         cls.clima = cls.root/'registro/t04'
-        # La referencia se identifica para este Git efímero, sin cambiar el repositorio real.
+        # Se construye deliberadamente una referencia v1 para comprobar también su migración
+        # a v2. La fuente real ya puede ser v2: no mezclar sus tres huellas separadas con
+        # las cinco huellas conjuntas de esta fixture. El repositorio real no se modifica.
         c = json.loads((cls.clima/'conciliacion_t02.json').read_text())
+        c.pop('procedencia_t02_sha256', None)
+        c['schema_referencia_t02'] = 't04_referencia_t02_v1'
         c['archivos_t02_sha256'] = {n: sha(cls.root/T02/n) for n in T02_ARCHIVOS}
         (cls.clima/'conciliacion_t02.json').write_text(json.dumps(c))
         m = json.loads((cls.clima/'manifest.json').read_text())

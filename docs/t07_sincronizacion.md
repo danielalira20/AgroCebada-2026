@@ -119,3 +119,30 @@ publicación, revisión de Jass e incorporación a dev; luego se actualizará T0
 T07 conserva catálogo y código de ventanas preparado. Aún no integra valores
 climáticos, variables satelitales o relieve. Las siguientes fases trabajarán con
 las entregas reales; T05 no aparece en la base identificada. El PR #10 de T03 está cerrado sin merge en la consulta posterior del 8 de octubre. No se entrenan modelos ni cambian reglas de selección.
+
+
+## Base común tras integrar T04 y T05 · 9 de octubre de 2026
+
+Este estado sustituye los pendientes históricos anteriores. El PR #11 de T04
+está fusionado y el PR #12 de T05 se fusionó con autorización de Dani. La base
+común es dev `8d6f543d4b907a92cc00658905f238479e4e2e76`: incluye T02 corregida,
+T03 actualizado, T04 con contrato T02 v2, T05, T06 y T08. La rama de trabajo
+sigue siendo `t07-tabla-comun`; incorporó dev mediante `216a60c`.
+
+Los dos conflictos de bitácoras se conciliaron por ID, conservando íntegros
+los registros de ambas ramas. T05 fue reproducida en Mac ARM64: 197 parcelas,
+2,253 celdas y controles aprobados. Sus tablas no cambiaron respecto de la
+revisión previa. La evidencia local está en `reports/merge_t05_dev_20261009/`.
+
+La sincronización reveló un problema en la preparación de las pruebas T07:
+se copiaba la conciliación real, ahora v2, y se insertaban las cinco huellas
+conjuntas de v1 sin retirar las tres de procedencia v2. El contrato rechazaba
+correctamente esa mezcla. La fixture construye ahora explícitamente v1; el
+contraste existente comprueba después su migración a v2. No se relajó el
+contrato ni se modificaron los datos reales para hacer pasar las pruebas.
+
+La tabla compartida T07 conserva catálogo + T06 (197 filas y 52 columnas).
+Los borradores climáticos anteriores se conservan con su procedencia histórica.
+Tener T04 y T05 en la base permite la siguiente integración, pero este merge
+no agrega todavía clima o relieve a `registro/t07/` ni cierra T07. No se
+entrenaron modelos ni se cambiaron corte, ventanas o particiones.
