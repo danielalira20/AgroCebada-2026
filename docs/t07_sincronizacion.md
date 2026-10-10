@@ -146,3 +146,23 @@ Los borradores climáticos anteriores se conservan con su procedencia histórica
 Tener T04 y T05 en la base permite la siguiente integración, pero este merge
 no agrega todavía clima o relieve a `registro/t07/` ni cierra T07. No se
 entrenaron modelos ni se cambiaron corte, ventanas o particiones.
+
+
+## Integración completa local · 10 de octubre de 2026
+
+Desde la base común `8d6f543d4b907a92cc00658905f238479e4e2e76`, T07 integra
+clima T04 aceptado y relieve T05 junto a catálogo y satélite: 197 × 60,
+138 etiquetas originales y 59 ausentes. Se conservan ambas ventanas candidatas
+y D020; la pendiente bajo cobertura 0.5 sigue vacía en dos parcelas, con su
+original en calidad. No se entrenó modelo ni modificaron las particiones.
+
+Se prepararon dos ejecuciones con doce archivos idénticos; pasaron 220 pruebas,
+1,182 contrastes climáticos y 394 de relieve mediante Decimal. Las fuentes,
+QGIS y particiones siguen intactas. La tabla previa de 52 columnas y el clima
+del borrador anterior conservan sus cifras literalmente. La evidencia histórica
+no se sobrescribe. Ver [contrato y revisión completa](t07_fase_4_5.md).
+
+Las bitácoras añaden IDs T07 únicos y preservan todas las entradas anteriores.
+Estos cambios permanecen locales en `t07-tabla-comun`, pendientes de autorización
+para push y PR hacia `dev`; no se publica por autorizar su implementación.
+T07 continúa con `cierre_t07=false` hasta la revisión independiente de Jass.

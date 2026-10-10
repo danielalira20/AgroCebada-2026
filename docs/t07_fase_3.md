@@ -1,5 +1,10 @@
 # T07 · Integración del clima y del satélite por ventanas
 
+**Registro histórico de las etapas del 8–9 de octubre.** Desde el 10 de octubre,
+la entrega compartida incorpora clima aceptado y relieve: 197 × 60, pendiente
+de revisión T07 por Jass. Ver [fases 4–5 y reproducción vigente](t07_fase_4_5.md).
+Los borradores descritos aquí conservan su base y estado de aquella ejecución.
+
 8 de octubre de 2026. Responsable: Dani. Revisora: Jass. Rama: `t07-tabla-comun`.
 Estado: implementación y comprobaciones locales completas; aceptación humana y
 relieve T05 pendientes. No se entrenó ni seleccionó un modelo.
@@ -205,7 +210,7 @@ satélite y once del borrador completo. Sólo inventario y manifiesto cambian re
 a la fase 3 anterior. Las tablas, calidad, diccionarios, roles y controles son
 idénticos byte a byte; 1,182 contrastes Decimal mantienen máximo 1.02e-13.
 
-La versión actual de registro/t07 es catálogo + T06, 197 × 52, sin clima ni relieve.
+En la migración del 9 de octubre, registro/t07 era catálogo + T06, 197 × 52, sin clima ni relieve.
 El borrador completo nuevo, 197 × 58, está sólo en
 reports/t04_contrato_tablas_20261009/t07/completa/, con fuente en_revision,
 clima_aceptado=false y cierre_t07=false. La evidencia previa no se sobrescribe.

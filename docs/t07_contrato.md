@@ -1,7 +1,10 @@
 # T07 · Contrato común y fases 0–2
 
-Responsable: Dani. Revisora: Jass. Estado al 8 de octubre: catálogo + T06 integrados; clima real preparado sólo para revisión local.
-Ver [fase 3](t07_fase_3.md) para entrega, controles y pendientes actuales.
+Responsable: Dani. Revisora: Jass. Estado al 10 de octubre: catálogo, clima,
+satélite y relieve integrados; comprobación computacional completa y revisión
+independiente de Jass pendiente. Ver [fases 4–5](t07_fase_4_5.md) para la entrega
+actual. Las [fases 0–2](t07_fases_0_2.md) y [fase 3](t07_fase_3.md) conservan
+los antecedentes y sus evidencias históricas.
 Acuerdo de Dani del 7 de octubre de 2026. T07 avanza por bloques según el plan
 unificado corregido; el cálculo técnico no cierra tareas de otros integrantes.
 
@@ -15,7 +18,7 @@ predictores. El clima mensual necesita agregación temporal explícita.
 
 Identificar cada fuente, validar claves y unidades y preparar catálogo base y
 ventanas candidatas sin aprender transformaciones de los rendimientos.
-Fases 0–2 no integran todavía las variables de T06 ni el relieve de T05.
+Las fases 0–2 prepararon el contrato; las fases posteriores integran T06 y T05.
 
 ## Universo y columnas
 
@@ -72,36 +75,41 @@ como reconstrucción retrospectiva mientras no exista evidencia de disponibilida
 - diccionario_columnas.csv: definición, unidad, función, agregación y vacío.
 - controles.json y manifest.json: comprobaciones y huellas para reproducir.
 
-Ahora registro/t07/ contiene catálogo + T06, con diccionario, calidad, roles,
-inventario, controles y manifiesto. Las ventanas climáticas reales se calcularon
-sólo como borrador local en reports/ por autorización expresa de Dani el
-8 de octubre. Se incorporarán al registro tras revisar la actualización de
-referencia T02 de T04. No se crean filas de relleno ni valores simulados.
-La evidencia provisional anterior permanece sólo en reports/, ignorado.
-Originales inmutables.
+Ahora `registro/t07/` contiene la entrega completa de catálogo + T04 + T06 +
+T05: 197 filas, 60 columnas y doce archivos con diccionario, calidad por bloque,
+roles, inventario, controles y manifiesto. El clima procede del PR11 aceptado y
+el relieve del PR12 revisado y fusionado. Sus borradores anteriores permanecen
+históricos en `reports/`, ignorados por Git; no se reescriben sus revisiones.
+La preparación computacional no cierra la revisión humana de T07.
 
 ## Dependencias y estado
 
-La base dev `9d5861c81713f2022d9fb9d1952c1feeb236a2f8` incluye T02 corregida
-(PR #9), T04 mensual (PR #6), T06 (PR #4) y las referencias T08 (PR #8).
-La actualización de referencia T02 de T04 fue revalidada localmente en la rama
-`t04-actualizar-referencia-t02` (`43b7560`, con migración de contrato v2 y corrección `7b2b4b4`); su publicación/revisión y posterior
-incorporación a dev siguen pendientes. T07 no incorpora esa rama sin revisión.
-El [registro de sincronización](t07_sincronizacion.md) conserva la evidencia.
-t07_preparar.py --sin-clima conserva el modo inicial de catálogo y estados de
-bloques. t07_integrar.py --sin-clima añade T06 al catálogo. Ambos registran
-T04 pendiente, sin generar clima. El modo climático normal rechaza una fuente
-marcada en_revision y referencias T02 incompatibles.
-El PR #10 de T03 está fusionado en esta base. El protocolo ya recoge D019: se
-reportan todas y sin_respaldo; se decide en sin_respaldo frente a
-media_mun__resp_grupo. T07 identifica ese protocolo sin modificarlo, recalcular
-T08 ni elegir un modelo. El corte y las ventanas permanecen iguales.
-T05 no entregada se registra como pendiente, sin inventar relieve.
-Archivo faltante, NoData y bloque pendiente son situaciones distintas.
-La fase 2 está calculada y verificada en borrador real local; su aceptación e
-integración compartida siguen pendientes. t07_integrar.py --para-revision
-permite esa revisión sólo en reports/; el modo normal conserva el bloqueo de
-fuentes en_revision. Véase la fase 3.
+La base `dev` identificada es `8d6f543d4b907a92cc00658905f238479e4e2e76`,
+con T02 corregida, T03 alineado a D019, T04 (PR11), T05 (PR12), T06 y T08.
+La [sincronización](t07_sincronizacion.md) conserva el historial de integración.
+T07 no recalcula métricas T08 ni modifica T03: se reportan todas y
+sin_respaldo; se decide en sin_respaldo frente a media_mun__resp_grupo.
+Corte y ventanas permanecen candidatos al 31 de octubre de 2025.
+
+El modo completo usa `t07_integrar.py --con-relieve` con una copia T04
+identificada en Git. Los modos previos `--sin-clima` o sin relieve siguen
+sirviendo para ejecutar integraciones parciales con los bloques ausentes
+explícitos. Una fuente climática `en_revision` exige `--para-revision` y salida
+local `reports/`; no se declara aceptada para saltar ese control.
+
+Relieve conserva `elevacion_media_m` y `pendiente_media_t10_grados` como
+candidatas. D020 deja vacía la pendiente bajo cobertura válida 0.5, sin retirar
+parcelas ni imputar: AGC_023 y AGC_170. La pendiente original y la calidad
+permanecen en `calidad_relieve.csv`. Se identifican las cinco tablas/metadatos
+T05 y la entrada D020; los auxiliares T05 se conservan como procedencia archivada.
+No se reproyecta ni reextraen los originales para hacer esta unión.
+
+La tabla contiene 35 candidatas, 18 columnas de calidad, cinco metadatos, un
+objetivo y una columna de auditoría; no son 60 entradas automáticas del modelo.
+La revisión independiente de Jass sigue pendiente y `cierre_t07=false`.
+Archivo faltante, NoData, bloque no integrado y revisión pendiente son
+situaciones distintas. La reproducción y el contraste independiente de las
+fases 4–5 documentan los criterios y la evidencia actual.
 
 ## Guías y datos externos
 

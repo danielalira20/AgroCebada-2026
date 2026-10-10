@@ -1,9 +1,10 @@
 # T07 · Catálogo sincronizado y bloques pendientes
 
 Documento histórico de fases 0–2 sobre base 11d9470. Para el estado vigente,
-ver [sincronización actual](t07_sincronizacion.md) y [fase 3](t07_fase_3.md).
-Catálogo + T06 ya integrados; ventanas reales sólo en borrador local para
-revisión. Los estados y comandos siguientes describen la etapa anterior.
+ver [sincronización](t07_sincronizacion.md) y [entrega completa de fases 4–5](t07_fase_4_5.md).
+Desde el 10 de octubre, catálogo, clima, satélite y relieve están integrados;
+la revisión de T07 por Jass sigue pendiente. Los estados y comandos siguientes
+describen la etapa anterior.
 
 Responsable: Dani. Revisora: Jass. Estado actualizado el 8 de octubre de 2026.
 
