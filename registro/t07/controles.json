@@ -2,10 +2,14 @@
   "parcelas": 197,
   "etiquetas_originales": 138,
   "etiquetas_ausentes": 59,
-  "columnas_tabla_comun": 52,
+  "columnas_tabla_comun": 60,
   "filas_por_tabla": {
     "catalogo_base.csv": 197,
     "calidad_satelite.csv": 1182,
+    "clima_ventanas.csv": 394,
+    "clima_variables.csv": 197,
+    "calidad_ventanas.csv": 1182,
+    "calidad_relieve.csv": 197,
     "tabla_comun.csv": 197
   },
   "valores_satelitales_verificados": 8668,
@@ -111,11 +115,11 @@
       "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
     }
   ],
-  "diccionario_columnas": 75,
+  "diccionario_columnas": 135,
   "roles_tabla_comun": {
     "metadato": 5,
     "objetivo": 1,
-    "predictor_candidato": 27,
+    "predictor_candidato": 35,
     "solo_auditoria": 1,
     "calidad": 18
   },
@@ -123,5 +127,29 @@
   "aprende_del_rendimiento": false,
   "usa_meses_posteriores_al_corte": false,
   "cierre_t07": false,
-  "estado_entrega": "integracion_por_bloques_para_revision"
+  "estado_entrega": "integracion_por_bloques_para_revision",
+  "relieve": {
+    "parcelas": 197,
+    "candidatas_verificadas": 394,
+    "estados_elevacion": {
+      "cobertura_completa": 193,
+      "cobertura_parcial": 4
+    },
+    "estados_pendiente": {
+      "cobertura_completa": 192,
+      "cobertura_parcial": 5
+    },
+    "pendiente_t10_ausente": [
+      "AGC_023",
+      "AGC_170"
+    ],
+    "elevacion_ausente": [],
+    "reservadas_incompletas": [],
+    "parcelas_con_avisos": 29
+  },
+  "filas_mensuales_verificadas": 28368,
+  "estados_ventanas": {
+    "completa": 1182
+  },
+  "resumenes_climaticos_completos": 1182
 }

@@ -1,6 +1,6 @@
 {
   "schema": "t07_inventario_v2",
-  "base_dev": "9d5861c81713f2022d9fb9d1952c1feeb236a2f8",
+  "base_dev": "8d6f543d4b907a92cc00658905f238479e4e2e76",
   "corte_observacional": "2025-10-31",
   "alcance": "Reconstrucción retrospectiva; fecha observada no acredita disponibilidad histórica",
   "cierre_t07": false,
@@ -25,14 +25,59 @@
       "reglas_evaluacion_no_modificadas": true
     },
     "T04": {
-      "estado": "pendiente_integracion_revisada",
-      "integrado_en_t07": false,
-      "valores_generados": false
+      "estado": "aceptada",
+      "integrado_en_t07": true,
+      "valores_generados": true,
+      "revision_git": "8d6f543d4b907a92cc00658905f238479e4e2e76",
+      "archivos_sha256": {
+        "manifest.json": "593fdb6f586180e5b2a51d15c10c4fec1c874221bef3a73691d42f4fbd3d66a6",
+        "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
+        "procedencia.json": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+        "conciliacion_t02.json": "de64fa03cbed798b2395b1ab99395ea8597fa2cfe6b1de33ffdacf1d0245e7e2",
+        "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce"
+      },
+      "referencia_t02": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+      "conciliacion": "compatible_con_base_identificada",
+      "sha256_paquete_original": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+      "disponibilidad_historica": "no documentada",
+      "versiones_producto": "sin número documentado; CHIRPS y CHIRTS-ERA5 según metadatos",
+      "destino": "entrega_con_fuente_aceptada"
     },
     "T05": {
-      "estado": "sin_entrega_identificada_en_esta_base",
-      "integrado": false,
-      "valores_generados": false
+      "estado": "fuente_revisada_integrada",
+      "integrado_en_t07": true,
+      "archivos_sha256": {
+        "registro/t05/manifest.json": "f517a528b6d429ec5df15cbf95b3d2152ddfe92a507e3f5fa7993d57f1d481d8",
+        "registro/t05/relieve_parcela.csv": "ca9ff1225f47166dd1a09d85a865b55e3f5c6d5bc8e1b80b1169d42482a82bd4",
+        "registro/t05/relieve_celdas.csv": "065501e0fc087d798efa308b86851bf84ea966051ad7bd012f0b20cdcc89b5d3",
+        "registro/t05/procedencia.json": "c0d7146a3f80bac759d928bbc8c59fe6a8ebfd4a8736ecebf59ee52e4c00984f",
+        "registro/t05/controles.json": "df7b3b16efd7d063163f23978d539bcb4e1efba6ee39f22f025f4ebd24b6482d"
+      },
+      "procedencia_sha256": {
+        "docs/t05_relieve.md": "701cd47188f65e85067778aab1443c205afbdeeb4a472e2c2b47c8a31d00b369",
+        "scripts/t05_relieve.py": "954aba39adf3f84163db4df1bcd7f6929fc3bd559fef302699f4135e41fcec32"
+      },
+      "fuente": "registro/t05",
+      "candidatas": [
+        "elevacion_media_m",
+        "pendiente_media_t10_grados"
+      ],
+      "calidad": "calidad_relieve.csv",
+      "decision": "D020",
+      "decision_sha256": "20a8dc879eff0e3947f0823042cd8786b1cf801f6c18b68bf6887b15ee76c453",
+      "piso_pendiente": 0.5,
+      "unidades": {
+        "elevacion": "m s.n.m.",
+        "pendiente": "grados"
+      },
+      "crs": "EPSG:6372",
+      "resolucion_m": [
+        120.0,
+        120.0
+      ],
+      "metodo_area": "plana_crs_raster_v1",
+      "no_reextrae_geometrias": true,
+      "revision_humana_fuente": "PR12 revisado por Dani y fusionado en dev; T07 pendiente Jass"
     },
     "T06": {
       "estado": "integrado_en_base_dev_aceptacion_no_inferida",

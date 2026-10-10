@@ -14,6 +14,12 @@
     ],
     "predictor_candidato": [
       "municipio",
+      "prec_acumulada_mm_abr_oct",
+      "tmin_media_c_abr_oct",
+      "tmax_media_c_abr_oct",
+      "prec_acumulada_mm_jun_oct",
+      "tmin_media_c_jun_oct",
+      "tmax_media_c_jun_oct",
       "pl_ndvi_max_abr_oct",
       "pl_ndvi_integral_abr_oct",
       "pl_lai2_max_abr_oct",
@@ -39,7 +45,9 @@
       "s2_ndwi_en_maximo_jun_oct",
       "s2_ndvi_std_en_maximo_jun_oct",
       "ls_vi6t_mediana_abr_oct",
-      "ls_vi6t_mediana_jun_oct"
+      "ls_vi6t_mediana_jun_oct",
+      "elevacion_media_m",
+      "pendiente_media_t10_grados"
     ],
     "solo_auditoria": [
       "cultivo_origen"
