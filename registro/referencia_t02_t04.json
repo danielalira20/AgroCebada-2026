@@ -1,13 +1,10 @@
 {
-  "schema": "t04_referencia_t02_v1",
-  "revision": "eef8d95ae47d45d877d5a32f769ad01dec2c92fc",
+  "schema": "t04_referencia_t02_v2",
+  "revision": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
   "ruta_en_repo": "analisis/auditoria_catalogo_y_etiquetas",
   "archivos_sha256": {
     "tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
-    "tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
-    "tablas/huellas_archivos_leidos.csv": "4c91d2c89b8cb784653078f919ba292ac5e710b00e150fdb54704f178ebc9726",
-    "scripts/construir_catalogo.py": "e21c423015a1554bd1debcf78e29b1ae59b8e6388d5dcf7bbbb8f87e500549aa",
-    "scripts/diagnosticar_soporte.py": "0cbe2b49fdd766bc637f2217f108b78b3e8807f17a46bf2aec5e923b888728eb"
+    "tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
   },
   "entradas_sha256": {
     "ID_area_rendimiento_70_30_Reto_AgroCebada.csv": "ec07b7ede0ae692109d91b3e941b1a353fe7f89410507db9bfbe6d7c112590ef",
@@ -1993,5 +1990,10 @@
       "celda_clima_principal": "30_33",
       "fraccion_en_celda_principal": "1.0"
     }
-  ]
+  ],
+  "procedencia_t02_sha256": {
+    "scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
+    "scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d",
+    "tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86"
+  }
 }

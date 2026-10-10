@@ -1,0 +1,6 @@
+registro/t04/*.json text eol=lf
+registro/t04/*.csv -text
+registro/t05/* text eol=lf
+
+scripts/t05_relieve.py text eol=lf
+tests/test_t05_relieve.py text eol=lf

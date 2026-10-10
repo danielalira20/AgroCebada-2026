@@ -1,0 +1,25 @@
+{
+  "areas_plana_frente_a_fisica": {
+    "max_diferencia_cobertura": 3.174900938307523e-05,
+    "max_diferencia_elevacion_media_m": 6.331282293103868e-05,
+    "max_diferencia_pendiente_media_grados": 6.675708362102739e-06
+  },
+  "avisos": [],
+  "conciliacion_t02": {
+    "discrepancias": [],
+    "ids_solo_en_t02": [],
+    "ids_solo_en_t05": [],
+    "max_diferencia": 4.736622593054518e-05,
+    "tolerancia": 5.0001000000000005e-05
+  },
+  "ids_coinciden_con_catalogo": true,
+  "parcelas": 197,
+  "reservadas": {
+    "incompletas": [],
+    "reservadas": 59
+  },
+  "resultado": "aprobado",
+  "tablas": {
+    "max_diferencia_area_relativa": 2.7903410033451166e-12
+  }
+}
