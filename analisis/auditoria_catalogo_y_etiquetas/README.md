@@ -162,7 +162,7 @@ Los scripts solo leen el dataset. Además leen dos archivos del repositorio: `an
 - **Los avisos de soporte son hechos con umbral declarado, no una calificación.** No se propone un semáforo: cuánto pesa cada aviso lo decide el equipo.
 - **Señalar una parcela como extrema o frágil no es excluirla.** Ninguna tiene un error comprobado.
 - **La comparación con T03 cubrió solo su tabla de soporte,** no sus particiones ni su protocolo.
-- **Copia de trabajo:** el original de esta carpeta se mantiene en la computadora de Jass. Los cambios se hacen ahí y se vuelven a copiar aquí.
+- **Dónde se trabaja:** desde el 8 de octubre de 2026 el original es esta carpeta del repositorio. Los cambios se hacen aquí, en una rama y con PR. La copia que Jass conservaba en su computadora quedó solo como respaldo, puede estar desactualizada y no se edita.
 
 ## Límites principales
 

@@ -14,3 +14,4 @@ reports
 *.parquet
 *.joblib
 __pycache__
+context
