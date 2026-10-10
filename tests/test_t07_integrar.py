@@ -21,6 +21,8 @@ class Integracion(unittest.TestCase):
         fuentes = [f'{T02}/{n}' for n in T02_ARCHIVOS] + list(T06_ARCHIVOS)
         fuentes += ['docs/T03_protocolo_evaluacion.md'] + [f'scripts/{n}' for n in CODIGO]
         fuentes += [f'registro/t04/{n}' for n in T04_ARCHIVOS]
+        from scripts.t07_relieve import ARCHIVOS, AUXILIARES
+        fuentes += list(ARCHIVOS) + list(AUXILIARES) + ['registro/decisiones.csv']
         for n in fuentes:
             p = cls.root / n; p.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(RAIZ/n, p)
         cls.clima = cls.root/'registro/t04'
@@ -165,6 +167,42 @@ class Integracion(unittest.TestCase):
             self.assertEqual(verificar(posterior,self.clima,self.root)['contrastes_climaticos'],1182)
         finally:
             for n,v in originales.items():(self.clima/n).write_bytes(v)
+
+    def test_integracion_relieve_completa_y_contraste_independiente(self):
+        from scripts.t07_verificar import verificar
+        a=self.root/'completa_relieve';b=self.root/'completa_relieve_b'
+        for destino in (a,b):
+            control=integrar(self.rev,destino,self.clima,self.rev,raiz=self.root,relieve=True)
+            self.assertEqual(control['columnas_tabla_comun'],60)
+            self.assertEqual(control['relieve']['pendiente_t10_ausente'],['AGC_023','AGC_170'])
+        self.assertEqual({p.name:sha(p) for p in a.iterdir()},{p.name:sha(p) for p in b.iterdir()})
+        self.assertEqual(len(list(a.iterdir())),12)
+        _,dic=leer_csv(a/'diccionario_columnas.csv');self.assertEqual(len(dic),135)
+        resultado=verificar(a,self.clima,self.root)
+        self.assertEqual(resultado['relieve']['medias_recalculadas'],394)
+        self.assertEqual(resultado['contrastes_climaticos'],1182)
+        self.assertFalse(resultado['cierre_t07'])
+
+    def test_entrega_relieve_corrupta_detectada_aun_con_nueva_huella(self):
+        from scripts.t07_verificar import verificar
+        from scripts.t07_fuentes import guardar_csv
+        a=self.root/'corrupta_relieve'
+        integrar(self.rev,a,self.clima,self.rev,raiz=self.root,relieve=True)
+        campos,filas=leer_csv(a/'calidad_relieve.csv');filas[0]['cobertura_espacial']='0'
+        guardar_csv(a/'calidad_relieve.csv',campos,filas)
+        m=json.loads((a/'manifest.json').read_text())
+        m['archivos_sha256']['calidad_relieve.csv']=sha(a/'calidad_relieve.csv')
+        (a/'manifest.json').write_text(json.dumps(m))
+        with self.assertRaisesRegex(ValueError,'calidad alterada'):verificar(a,self.clima,self.root)
+
+    def test_relieve_fuente_alterada_no_publica(self):
+        p=self.root/'registro/t05/relieve_parcela.csv';original=p.read_bytes()
+        try:
+            p.write_bytes(original+b'alteracion\n')
+            with self.assertRaisesRegex(ValueError,'Fuente local distinta'):
+                integrar(self.rev,self.root/'relieve_alterado',self.clima,self.rev,raiz=self.root,relieve=True)
+            self.assertFalse((self.root/'relieve_alterado').exists())
+        finally:p.write_bytes(original)
 
     def test_parametros_incompletos(self):
         with self.assertRaisesRegex(ValueError,'conjuntamente'):

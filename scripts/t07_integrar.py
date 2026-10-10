@@ -13,12 +13,13 @@ from scripts.t07_fuentes import BASE, leer_csv, leer_entrega, sha, validar_catal
 from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
 from scripts.t07_diccionario import diccionario, CAMPOS
 from scripts.t07_preparar import RAIZ, T02, DATOS_T02, revision, comprobar_fuente, comprobar_copia, compatibilidad_t02, procedencia_t02
+from scripts.t07_relieve import leer as leer_relieve, incorporar as unir_relieve, diccionario as diccionario_relieve, controles as controles_relieve, CALIDAD as CALIDAD_REL
 from scripts.t07_satelite import validar, unir, diccionario_satelite, diccionario_calidad, CALIDAD as CALIDAD_SAT, CORTE, META
 
 T06_ARCHIVOS = ("registro/t06/variables_satelitales.csv", "registro/t06/variables_satelitales_diccionario.csv",
                 "registro/t06/cobertura_ventana.csv", "docs/T06_satelite.md", "scripts/t06_satelite.py")
 CODIGO = ("t07_integrar.py", "t07_satelite.py", "t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py",
-          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py", "t02_contrato.py")
+          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py", "t02_contrato.py", "t07_relieve.py", "t07_auditar_relieve.py")
 
 
 def comprobar_protocolo(texto):
@@ -31,7 +32,7 @@ def comprobar_protocolo(texto):
         raise ValueError("Corte/ventanas T03 cambió o no se reconoce; revisar contrato T07")
 
 
-def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=False, raiz=RAIZ):
+def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=False, raiz=RAIZ, relieve=False):
     raiz, salida = Path(raiz).resolve(), Path(salida).resolve()
     clima = Path(clima).resolve() if clima is not None else None
     if ((clima is None) != (revision_t04 is None)) or (para_revision and clima is None):
@@ -65,7 +66,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
             'T03': dict(estado='protocolo_base_identificado_corte_provisional', archivos_sha256={protocolo: ht03},
                         reglas_evaluacion_no_modificadas=True),
             'T04': dict(estado='pendiente_integracion_revisada', integrado_en_t07=False, valores_generados=False),
-            'T05': dict(estado='sin_entrega_identificada_en_esta_base', integrado=False, valores_generados=False),
+            'T05': dict(estado='no_integrado_en_esta_ejecucion', integrado_en_t07=False, valores_generados=False),
             'T06': dict(estado='integrado_en_base_dev_aceptacion_no_inferida', integrado_en_t07=True,
                         archivos_sha256=ht06, columnas=44, conciliaciones_cobertura=len(calidad_sat))})
     ancha = None
@@ -86,11 +87,18 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
             sha256_paquete_original=pro['sha256_paquete'], disponibilidad_historica=m['disponibilidad_historica_fira'],
             versiones_producto=m['versiones_producto_fira'], destino='borrador_local' if para_revision else 'entrega_con_fuente_aceptada')
     campos, comun = unir(catalogo, columnas, sat, ancha)
+    terreno = None
+    if relieve:
+        terreno, calidad_rel, inv_rel = leer_relieve(raiz, base, catalogo)
+        campos, comun = unir_relieve(campos, comun, terreno)
+        tablas['calidad_relieve.csv'] = (CALIDAD_REL, calidad_rel)
+        inventario['bloques']['T05'] = inv_rel
     tablas['tabla_comun.csv'] = (campos, comun)
     # La tabla ancha conserva roles: calidad no se convierte en predictor por estar cerca del objetivo.
     definiciones += [dict(r, archivo='tabla_comun.csv') for r in definiciones
                      if r['archivo'] == 'catalogo_base.csv' or (r['archivo'] == 'clima_variables.csv' and r['columna'] != 'id_parcela')]
     definiciones += diccionario_satelite(dic_sat)
+    if relieve: definiciones += diccionario_relieve()
     pares = {(r['archivo'], r['columna']) for r in definiciones}
     esperados = {(n, c) for n, (cab, _) in tablas.items() for c in cab}
     if pares != esperados or len(pares) != len(definiciones):
@@ -119,6 +127,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
         roles_tabla_comun={k: len(v) for k, v in roles.items()}, etiquetas_sin_transformar=True,
         aprende_del_rendimiento=False, usa_meses_posteriores_al_corte=False,
         cierre_t07=False, estado_entrega='borrador_local_para_revision' if para_revision else 'integracion_por_bloques_para_revision')
+    if relieve: controles['relieve'] = controles_relieve(terreno, catalogo)
     if clima is not None:
         controles.update(filas_mensuales_verificadas=len(indice),
                          estados_ventanas=dict(Counter(r['estado'] for r in calidad)),
@@ -137,6 +146,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
             archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},
             estado_entrega=controles['estado_entrega'], clima_integrado=clima is not None,
             clima_aceptado=clima is not None and origen['estado_revision_declarado'] == 'aceptada',
+            relieve_integrado=relieve,
             metodo_temperatura='ponderado_por_dias_naturales', metodo_lluvia='suma_de_medias_espaciales_mensuales',
             cierre_t07=False))
         temp.rename(salida)
@@ -151,6 +161,7 @@ def main():
     p.add_argument('--base-dev', required=True)
     p.add_argument('--salida', required=True, type=Path)
     p.add_argument('--sin-clima', action='store_true')
+    p.add_argument('--con-relieve', action='store_true', help='Incorporar la entrega revisada T05 de la base identificada')
     p.add_argument('--clima', type=Path)
     p.add_argument('--revision-t04')
     p.add_argument('--para-revision', action='store_true', help='T04 aún no aceptada; sólo salida local reports/')
@@ -158,7 +169,7 @@ def main():
     if a.sin_clima and (a.clima or a.revision_t04 or a.para_revision): p.error('--sin-clima no admite fuente T04')
     if not a.sin_clima and not (a.clima and a.revision_t04): p.error('Indicar --sin-clima o --clima y --revision-t04')
     try:
-        c = integrar(a.base_dev, a.salida, a.clima, a.revision_t04, a.para_revision)
+        c = integrar(a.base_dev, a.salida, a.clima, a.revision_t04, a.para_revision, relieve=a.con_relieve)
     except (ValueError, KeyError, OSError, subprocess.CalledProcessError) as e:
         p.exit(1, f'T07 detenida: {e}\n')
     print(f"T07: {c['parcelas']} parcelas, {c['columnas_tabla_comun']} columnas; {c['estado_entrega']}; cierre pendiente.")

@@ -1,6 +1,10 @@
 """Contraste independiente T07: Decimal/calendario y conservación literal de fuentes."""
 import argparse
 import calendar
+import csv
+import hashlib
+import io
+import json
 from collections import Counter
 from datetime import date
 from decimal import Decimal, localcontext
@@ -9,7 +13,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.t07_fuentes import BASE, leer_csv, leer_json, sha
-from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia, procedencia_t02, compatibilidad_t02
+from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia, procedencia_t02, compatibilidad_t02, git
 from scripts.t02_contrato import separar_huellas
 
 # Se explicitan aquí para no reutilizar el agregador ni sus constantes de meses.
@@ -152,18 +156,54 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     else:
         exigir(clima is None, 'Entrada T04 no utilizada: no atribuirle esta entrega')
         exigir(not any(p.name.startswith('clima_') or p.name=='calidad_ventanas.csv' for p in entrega.iterdir()), 'Tablas climáticas de relleno')
+    auditoria_relieve=None
+    relieve_integrado=m.get('relieve_integrado',False)
+    exigir(type(relieve_integrado) is bool, 'Bandera relieve incompatible')
+    if relieve_integrado:
+        from scripts.t07_auditar_relieve import auditar
+        bloque=inv['bloques']['T05']
+        archivos={'registro/t05/'+n for n in ('manifest.json','relieve_parcela.csv','relieve_celdas.csv','procedencia.json','controles.json')}
+        exigir(set(bloque['archivos_sha256'])==archivos, 'Fuentes T05 incompletas')
+        for n,h in bloque['archivos_sha256'].items(): comprobar_fuente(n,inv['base_dev'],h,raiz)
+        aux=('docs/t05_relieve.md','scripts/t05_relieve.py')
+        exigir(bloque['procedencia_sha256']=={n:hashlib.sha256(git('show',f"{inv['base_dev']}:{n}",raiz=raiz)).hexdigest() for n in aux}, 'Procedencia T05 distinta de la base')
+        def d020(texto):
+            filas=[r for r in csv.DictReader(io.StringIO(texto)) if r['id']=='D020']
+            exigir(len(filas)==1, 'D020 ausente o duplicada')
+            return filas[0]
+        decision=d020(git('show',f"{inv['base_dev']}:registro/decisiones.csv",raiz=raiz).decode())
+        exigir(decision==d020((raiz/'registro/decisiones.csv').read_text()), 'D020 alterada')
+        huella=hashlib.sha256(json.dumps(decision,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        exigir(bloque['decision_sha256']==huella and bloque['piso_pendiente']==0.5 and bloque['decision']=='D020', 'Referencia D020 incompatible')
+        exigir(bloque['unidades']=={'elevacion':'m s.n.m.','pendiente':'grados'} and bloque['crs']=='EPSG:6372', 'Unidades/CRS T05 distintos')
+        _,resumen=leer_csv(raiz/'registro/t05/relieve_parcela.csv')
+        _,celdas=leer_csv(raiz/'registro/t05/relieve_celdas.csv')
+        _,calidad_relieve=leer_csv(entrega/'calidad_relieve.csv')
+        auditoria_relieve=auditar(tabla,calidad_relieve,resumen,celdas)
+        for c in ('elevacion_media_m','pendiente_media_t10_grados'):
+            exigir(dc[c]['funcion']=='predictor_candidato', 'Rol relieve incompatible')
+        for d in dic:
+            if d['archivo']=='calidad_relieve.csv':
+                exigir(d['funcion']==('metadato' if d['columna']=='id_parcela' else 'solo_auditoria'), 'Calidad relieve usada como predictor')
+        exigir('pendiente_media_grados' not in cab, 'Pendiente sin filtro D020 presentada como candidata')
+    else:
+        exigir(not (entrega/'calidad_relieve.csv').exists() and not set(cab)&{'elevacion_media_m','pendiente_media_t10_grados'}, 'Relieve generado sin atribución')
+    clima_cols=[f'{col}_{w}' for w in PERIODOS for col in VARIABLES.values()] if m['clima_integrado'] else []
+    relieve_cols=['elevacion_media_m','pendiente_media_t10_grados'] if relieve_integrado else []
+    exigir(cab==[*BASE,*clima_cols,*satcols,*relieve_cols], 'Columnas comunes fuera del contrato de bloques')
     control=leer_json(entrega/'controles.json')
     exigir(control['parcelas']==197 and control['etiquetas_originales']==138 and control['etiquetas_ausentes']==59, 'Conteo declarado distinto')
     exigir(sum(r['rendimiento_t_ha']!='' for r in tabla)==138, '138 etiquetas no preservadas')
     exigir(control['columnas_tabla_comun']==len(cab), 'Columnas declaradas distintas')
     exigir(control['estados_calidad_satelite']==dict(Counter(r['estado'] for r in calidad_sat)), 'Estados satelitales declarados distintos')
+    if auditoria_relieve: exigir(control['relieve']==auditoria_relieve['controles'], 'Controles relieve distintos')
     if estados: exigir(control['estados_ventanas']==dict(Counter(estados)), 'Estados climáticos declarados distintos')
     exigir(m['cierre_t07'] is False and control['cierre_t07'] is False, 'Revisión humana no puede inferirse del cálculo')
     return dict(resultado='verificado', parcelas=197, etiquetas_originales=138, etiquetas_ausentes=59,
                 valores_satelitales_literales=len(satcols)*197, controles_satelitales=1182,
                 contrastes_climaticos=len(errores), diferencia_maxima_decimal=str(max(errores,default=Decimal(0))),
                 tolerancia_decimal=str(TOLERANCIA), estados_climaticos=dict(Counter(estados)),
-                estado_entrega=m['estado_entrega'], cierre_t07=False)
+                estado_entrega=m['estado_entrega'], relieve=auditoria_relieve, cierre_t07=False)
 
 
 def main():
@@ -172,7 +212,6 @@ def main():
     a=p.parse_args()
     try: resultado=verificar(a.entrega,a.clima)
     except (ValueError,KeyError,OSError) as e:p.exit(1,f'T07 no verificada: {e}\n')
-    import json
     print(json.dumps(resultado,ensure_ascii=False,indent=2))
 
 
