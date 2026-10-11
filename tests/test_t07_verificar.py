@@ -86,6 +86,27 @@ class Verificacion(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'Grupo de registro debe conservarse'):
                 verificar(out, self.clima, self.root)
 
+    def test_area_t10_declarada_no_es_entrada_automatica_t09(self):
+        contrato=json.loads((self.original/'contrato_columnas.json').read_text())
+        area=contrato['area_t10']
+        self.assertEqual(area['candidata']['columna'],'area_ha_origen')
+        self.assertEqual(area['candidata']['unidad'],'ha')
+        self.assertFalse(area['predictor_automatico_t09'])
+        self.assertIn('area_ha_origen',contrato['columnas_por_funcion']['metadato'])
+        self.assertNotIn('area_ha_origen',contrato['columnas_por_funcion']['predictor_candidato'])
+        self.assertEqual({r['columna'] for r in area['alternativas_solo_auditoria']},
+                         {'area_ha_geodesica','area_parcela_6372_m2'})
+
+    def test_area_candidata_alterada_detectada_aun_con_huella(self):
+        out=self.copia('area_contrato_alterado')
+        p=out/'contrato_columnas.json';c=json.loads(p.read_text())
+        c['area_t10']['candidata']['columna']='area_ha_geodesica'
+        p.write_text(json.dumps(c),encoding='utf-8')
+        m=json.loads((out/'manifest.json').read_text());m['archivos_sha256'][p.name]=sha(p)
+        (out/'manifest.json').write_text(json.dumps(m),encoding='utf-8')
+        with self.assertRaisesRegex(ValueError,'Contrato del área T10'):
+            verificar(out,self.clima,self.root)
+
     def test_comentario_local_en_script_t02_no_invalida_entrega(self):
         p=self.root/'analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py'
         antes=p.read_bytes()

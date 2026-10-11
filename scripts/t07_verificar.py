@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.t07_fuentes import BASE, leer_csv, leer_json, sha
 from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia, procedencia_t02, compatibilidad_t02, git
 from scripts.t02_contrato import separar_huellas
-from scripts.t07_diccionario import GRUPO_REGISTRO
+from scripts.t07_diccionario import GRUPO_REGISTRO, AREA_T10
 
 # Se explicitan aquí para no reutilizar el agregador ni sus constantes de meses.
 PERIODOS = {'abr_oct': tuple(f'2025-{m:02d}' for m in range(4,11)),
@@ -107,6 +107,7 @@ def verificar(entrega, clima=None, raiz=RAIZ):
         exigir(dc[d['columna']]['definicion']==d['definicion'], 'Definición T06 alterada')
     contrato=leer_json(entrega/'contrato_columnas.json')
     exigir(contrato.get('schema')=='t07_columnas_por_funcion_v2' and contrato.get('tabla')=='tabla_comun.csv', 'Versión del contrato T07 incompatible')
+    exigir(contrato.get('area_t10')==AREA_T10 and dc['area_ha_origen']['funcion']=='metadato', 'Contrato del área T10 incompatible')
     exigir(contrato.get('grupo_registro')==GRUPO_REGISTRO, 'Uso del grupo de registro incompatible con T03/D019')
     roles={}
     for c in cab: roles.setdefault(dc[c]['funcion'],[]).append(c)

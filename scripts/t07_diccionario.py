@@ -2,6 +2,19 @@
 from scripts.t07_fuentes import BASE
 from scripts.t07_ventanas import LARGA, ANCHA, CALIDAD, VARIABLES
 
+AREA_T10 = dict(
+    candidata=dict(columna='area_ha_origen', archivo='tabla_comun.csv', unidad='ha',
+        fuente='analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv',
+        criterio='Superficie declarada original del dataset; no sustituir por un área calculada'),
+    rol_en_t07='metadato', frente_candidato='T10', predictor_automatico_t09=False,
+    alternativas_solo_auditoria=[
+        dict(columna='area_ha_geodesica', unidad='ha',
+             fuente='analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv'),
+        dict(columna='area_parcela_6372_m2', unidad='m²', fuente='calidad_relieve.csv',
+             disponible_solo_con_relieve=True)],
+    alternativa_en_modelo_requiere_experimento_explicito=True,
+    rendimiento_por_area_no_es_produccion_confirmada=True)
+
 GRUPO_REGISTRO = dict(
     columna='cultivo_origen', equivalencia_t03='grupo_registro',
     funcion='referencia_y_evaluacion',
@@ -19,7 +32,7 @@ def diccionario():
         "id_parcela": ("Clave única original de parcela; equivalencia ID_POLIGONO", "sin unidad", "metadato"),
         "campania": ("Campaña de la etiqueta: 2025; no crea observaciones para otros años", "año", "metadato"),
         "rendimiento_t_ha": ("Rendimiento original; texto conservado sin redondear, ajustar o imputar", "t/ha", "objetivo"),
-        "area_ha_origen": ("Superficie declarada de origen; no es superficie geodésica recalculada", "ha", "metadato"),
+        "area_ha_origen": ("Superficie declarada original en ha: candidata explícita de T10; metadato en T07, no entrada automática T09; no sustituir por área geodésica o plana", "ha", "metadato"),
         "municipio": ("Municipio declarado; uso sujeto al escenario de evaluación T03", "categoría", "predictor_candidato"),
         "estado": ("Estado declarado de la parcela", "categoría", "metadato"),
         "cultivo_origen": ("Grupo de registro original (grupo_registro en T03); respaldo calculado sólo con el entrenamiento y desgloses de error; no predictor automático ni estrato interno", "categoría", "referencia_y_evaluacion"),
