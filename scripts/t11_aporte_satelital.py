@@ -1,10 +1,12 @@
-"""T11: aporte del frente satelital sobre la referencia territorial (D006, D019, O2, O4).
+"""T11: aporte del frente satelital sobre la referencia territorial (D006, D019, D021, D022, O2, O4).
+
+v2 (D022, revisión de Dani al PR #15): la selección interna recalcula referencia y residuo dentro de
+cada partición interna; estrato `otros` de T03 §5; desgloses y sensibilidad de T03 §4 bis.
 
 Uso:
     python scripts/t11_aporte_satelital.py
 """
 import time
-import warnings
 from pathlib import Path
 
 import numpy as np
@@ -16,16 +18,18 @@ from sklearn.preprocessing import StandardScaler
 RAIZ = Path(__file__).resolve().parents[1]
 TABLA = RAIZ / "registro" / "t07" / "tabla_comun.csv"
 PARTICIONES = RAIZ / "registro" / "t03" / "particiones.csv"
+CALIDAD = RAIZ / "registro" / "t07" / "calidad_parcelas.csv"
 OOF_T08 = RAIZ / "registro" / "t03" / "predicciones_oof_referencias_media_mun__resp_grupo.csv"
 SALIDA = RAIZ / "registro" / "t11"
 ESCENARIOS = {"A": "particion_principal", "B": "particion_espacial"}
 
-# Modelo (decisión registrada antes de correr): Ridge sobre el residuo de la referencia,
-# α elegido por selección interna de T03 (4 particiones estratificadas por municipio, semilla 0).
+# Modelo (D021): Ridge sobre el residuo de la referencia; α elegido por selección interna de T03 §5
+# (4 particiones, semilla 0, estrato = municipio con ≥4 etiquetas en el entrenamiento, si no `otros`).
+# Criterio de α: error cuadrático (D021). Empate: el α más grande (modelo más simple, T03 §4).
 ALFAS = [0.1, 1, 3, 10, 30, 100, 300, 1000, 10000]
 N_INTERNAS = 4
 SEMILLA_INTERNA = 0
-VERSION = "T11-v1"
+VERSION = "T11-v2"
 
 # Comparación emparejada (mismos valores que T08)
 N_BOOT = 5000
@@ -156,19 +160,36 @@ def transformar(tr, te, cfg):
     return esc.transform(xtr), esc.transform(xte)
 
 
-def elegir_alfa(tr, residuo, cfg):
-    """Selección interna: 4 particiones estratificadas por municipio dentro del entrenamiento."""
+def estrato_interno(tr):
+    """T03 §5: municipio si tiene al menos 4 etiquetas en este entrenamiento; si no, `otros`."""
+    n = tr.municipio.map(tr.municipio.value_counts())
+    return tr.municipio.where(n >= N_INTERNAS, "otros")
+
+
+def particiones_internas(tr):
+    """Las 4 particiones internas, con referencia y residuo calculados SÓLO con su parte de entrenamiento.
+    No dependen de la config, así que se calculan una vez por entrenamiento externo."""
     skf = StratifiedKFold(N_INTERNAS, shuffle=True, random_state=SEMILLA_INTERNA)
+    internas = []
+    for i_a, i_b in skf.split(tr, estrato_interno(tr)):
+        a, b = tr.iloc[i_a], tr.iloc[i_b]
+        residuo_a = a.real.values - referencia_sin_la_fila(a)  # O4 dentro de la parte interna
+        ref_b, _ = referencia_municipal(a, b)                    # referencia de validación, sólo con `a`
+        internas.append((a, b, residuo_a, ref_b))
+    return internas
+
+
+def elegir_alfa(internas, cfg):
+    """Selección interna sin fuga: se predice el rendimiento de `b` como ref_b + Ridge(residuo de `a`)."""
     errores = np.zeros(len(ALFAS))
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)  # municipios con menos de 4 parcelas
-        for i_tr, i_va in skf.split(tr, tr.municipio):
-            a, b = tr.iloc[i_tr], tr.iloc[i_va]
-            xa, xb = transformar(a, b, cfg)
-            for j, alfa in enumerate(ALFAS):
-                pred = Ridge(alpha=alfa).fit(xa, residuo[i_tr]).predict(xb)
-                errores[j] += ((pred - residuo[i_va]) ** 2).sum()
-    return ALFAS[int(np.argmin(errores))]
+    for a, b, residuo_a, ref_b in internas:
+        xa, xb = transformar(a, b, cfg)
+        for j, alfa in enumerate(ALFAS):
+            pred = ref_b + Ridge(alpha=alfa).fit(xa, residuo_a).predict(xb)
+            errores[j] += ((pred - b.real.values) ** 2).sum()
+    errores = np.round(errores, 6)
+    candidatos = [j for j in range(len(ALFAS)) if errores[j] == errores.min()]
+    return ALFAS[max(candidatos)]  # empate: el α más grande
 
 
 def evaluar_todo(d):
@@ -180,11 +201,12 @@ def evaluar_todo(d):
                 tr, te = dr[dr[col] != k], dr[dr[col] == k]
                 ref_te, fuente = referencia_municipal(tr, te)
                 residuo = tr.real.values - referencia_sin_la_fila(tr)  # O4
+                internas = particiones_internas(tr)
                 base = dict(ID_POLIGONO=te.ID_POLIGONO.values, repeticion=rep, particion=k,
                             escenario=esc, real=te.real.values, referencia=ref_te, fuente=fuente)
                 preds.append(pd.DataFrame({**base, "config": 0, "alfa": np.nan, "prediccion": ref_te}))
                 for n, cfg in CONFIGS.items():
-                    alfa = elegir_alfa(tr, residuo, cfg)
+                    alfa = elegir_alfa(internas, cfg)
                     xtr, xte = transformar(tr, te, cfg)
                     modelo = Ridge(alpha=alfa).fit(xtr, residuo)
                     preds.append(pd.DataFrame({**base, "config": n, "alfa": alfa,
@@ -285,6 +307,58 @@ def comparaciones(oof, celda):
     return pd.DataFrame(filas)
 
 
+# ---------------------------------------------------------------- desgloses y sensibilidad (T03 §4 y §4 bis)
+def unir_calidad(oof):
+    cal = pd.read_csv(CALIDAD, dtype={"escalon_etiqueta_municipio": str})
+    out = oof.merge(cal, left_on="ID_POLIGONO", right_on="id_parcela", how="left", validate="many_to_one")
+    assert len(out) == len(oof) and out.contorno_categoria.notna().all()
+    out["contorno"] = np.where(out.contorno_categoria == "A", "A", "B o C")
+    out["escalon"] = out.escalon_etiqueta_municipio.fillna("sin escalón")
+    return out
+
+
+def desgloses(oof, part):
+    """Error por municipio, grupo, contorno, angosta, escalón de la etiqueta y vecindad.
+    Se calcula juntando las 5 repeticiones (cada parcela aparece una vez por repetición)."""
+    d = unir_calidad(oof)
+    p = part.drop_duplicates("ID_POLIGONO").set_index("ID_POLIGONO")
+    d["municipio"] = d.ID_POLIGONO.map(p.municipio)
+    d["grupo_registro"] = d.ID_POLIGONO.map(p.grupo_registro)
+    d["e"] = d.prediccion - d.real
+    paso = pd.to_numeric(d.escalon_etiqueta_municipio, errors="coerce")
+    d["bajo_resolucion"] = np.where(paso.notna(), d.e.abs() < paso / 2, np.nan)
+    ejes = {"municipio": "municipio", "grupo_registro": "grupo_registro", "contorno": "contorno",
+            "angosta_o_muy_pequena": "contorno_angosta_o_muy_pequena", "escalon_etiqueta": "escalon",
+            "vecina_etiquetada_menos_20m": "vecina_etiquetada_menos_20m"}
+    filas = []
+    for sub, mask in [("todas", d.fuente.notna()), ("sin_respaldo", d.fuente == "municipio")]:
+        for nombre, col in ejes.items():
+            for (esc, cfg, cat), g in d[mask].groupby(["escenario", "config", col]):
+                filas.append(dict(subconjunto=sub, escenario=esc, config=cfg, desglose=nombre, categoria=cat,
+                                  n_parcelas=g.ID_POLIGONO.nunique(), n_predicciones=len(g),
+                                  MAE=g.e.abs().mean(), RMSE=np.sqrt((g.e ** 2).mean()), sesgo=g.e.mean(),
+                                  prop_error_menor_medio_escalon=g.bajo_resolucion.mean()))
+    r = pd.DataFrame(filas)
+    r["poco_informativo"] = r.n_parcelas < 5
+    return r
+
+
+def sensibilidad_sin_alerta(oof):
+    """T03 §4 bis: repetir las métricas sin las 24 etiquetadas con alerta de contorno (B, C o angosta)
+    y ver si se mantiene el orden de los candidatos. Mide estabilidad; no decide."""
+    d = unir_calidad(oof)
+    sin = d[d.alerta_contorno_t03_bis != "si"]
+    print(f"  parcelas sin alerta: {sin.ID_POLIGONO.nunique()} de {d.ID_POLIGONO.nunique()}")
+    con, sin_ = resumir(oof), resumir(sin)
+    m = con.merge(sin_, on=["subconjunto", "escenario", "config"], suffixes=("", "_sin24"))
+    for sufijo in ["", "_sin24"]:
+        for met in ["MAE", "RMSE"]:
+            ref = m[m.config == 0].set_index(["subconjunto", "escenario"])[met + sufijo]
+            m["d" + met + sufijo] = m[met + sufijo] - m.set_index(["subconjunto", "escenario"]).index.map(ref)
+            m["orden_" + met + sufijo] = m.groupby(["subconjunto", "escenario"])[met + sufijo].rank(method="min")
+    return m
+
+
 # ---------------------------------------------------------------- principal
 def main():
     tabla = pd.read_csv(TABLA)
@@ -327,6 +401,18 @@ def main():
     print("\n¿alguna config cumple la regla frente a la referencia (cualquier escenario/subconjunto)?")
     prom = comp[comp.tipo == "promocion"]
     print("  con MAE:", prom.cumple_regla_MAE.any(), "| con RMSE:", prom.cumple_regla_RMSE.any())
+
+    print("\ndesgloses del error (T03 §4 y §4 bis)...")
+    des = desgloses(oof, part)
+    des.to_csv(SALIDA / "desglose_error_t11.csv", index=False)
+    print(f"  {len(des)} filas en desglose_error_t11.csv")
+
+    print("\nsensibilidad sin las 24 parcelas con alerta de contorno (T03 §4 bis):")
+    sens = sensibilidad_sin_alerta(oof)
+    sens.to_csv(SALIDA / "sensibilidad_sin_alerta_t11.csv", index=False)
+    cols = ["escenario", "config", "dRMSE", "dRMSE_sin24", "orden_RMSE", "orden_RMSE_sin24",
+            "dMAE", "dMAE_sin24", "orden_MAE", "orden_MAE_sin24"]
+    print(sens.loc[sens.subconjunto == "sin_respaldo", cols].round(4).to_string(index=False))
 
 
 if __name__ == "__main__":
