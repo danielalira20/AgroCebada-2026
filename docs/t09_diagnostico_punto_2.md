@@ -1,7 +1,9 @@
 # Preparación de T09 · diagnóstico del punto 2 y revisión de Tab 8
 
 Responsable: Dani. Revisión de T09: Migue. Estado: diagnóstico local exploratorio;
-validación en el Docker común y revisión humana pendientes. Fecha: 11-oct-2026.
+reproducción adicional en Docker común aprobada; revisión humana pendiente.
+Ver [comprobación Docker y origen del conteo de siete/nueve](t09_revision_docker_comun.md).
+Fecha: 11-oct-2026.
 Base: `dev` con PR14 y PR16 integrados, commit `cb45807`.
 
 ## Problema que resuelve
@@ -138,7 +140,9 @@ comparar con la media del municipio en las 138 etiquetas. También son siete
 con la media municipal dejando fuera la fila, donde tres municipios únicos
 quedan sin referencia local. Una referencia con respaldo o predicciones fuera
 de entrenamiento es otro cálculo; se necesita precisar cuál originó los nueve.
-Ningún conteo autoriza eliminar parcelas.
+La revisión Docker posterior identificó el antecedente en la propia bitácora de T02:
+AGC_048 usaba otra referencia y AGC_069 queda por debajo del umbral vigente.
+Ver [explicación y evidencia](t09_revision_docker_comun.md). Ningún conteo autoriza eliminar parcelas.
 
 ## 2. Qué dejó el diagnóstico del punto 2
 
@@ -209,8 +213,9 @@ fallaron no tienen manifiesto final y no son evidencia de reproducción exitosa.
 La evidencia válida se conserva en `reports/t09_diagnostico_20261011/`:
 `verificado_1` y `verificado_2` para la doble ejecución numérica, `con_figuras`
 para visualización y `perfil_skill.json` como contraste de las 197 filas sin
-truncamiento. Docker no se inició; la reproducción en el entorno común de Jass
-sigue pendiente y no se declara igualdad entre plataformas.
+truncamiento. En esa primera comprobación local Docker no se inició. La reproducción
+posterior Linux/amd64 está documentada en [su informe](t09_revision_docker_comun.md):
+siete CSV idénticos frente a Mac y el octavo dentro de la tolerancia declarada.
 
 Verificación local: **266 pruebas aprobadas, incluidas 13 nuevas**; dos
 ejecuciones numéricas con sus ocho CSV y manifiesto idénticos; 14 archivos
@@ -222,8 +227,8 @@ copias en memoria, no datos fabricados para completar la entrega.
 ## 4. Qué sigue para T09
 
 1. Migue revisa el alcance del diagnóstico y las aclaraciones de Tab 8 que
-   afectan la interpretación; Jass puede identificar las fuentes de p=0.81 y
-   del conteo de nueve. No bloquean el diagnóstico ya reproducido.
+   afectan la interpretación; Jass puede identificar la fuente de p=0.81.
+   El origen del conteo de nueve ya está documentado en la revisión Docker. No bloquean el diagnóstico ya reproducido.
 2. Acordar la propuesta de territorio/clima/ambos, el cómputo de presupuesto,
    ventanas, penalización y población de puntuación interna. Usar la propuesta
    de diseño existente; este informe no la convierte en decisión aprobada.
