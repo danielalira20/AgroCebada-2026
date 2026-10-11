@@ -3,6 +3,10 @@
 10 de octubre de 2026. Responsable: Dani. Revisora: Jass.
 Rama: `t07-tabla-comun`. Entrega computacional preparada y verificada;
 **pendiente de revisión independiente de Jass**. `cierre_t07=false`.
+Nota de revisión PR14: este informe describe la entrega anterior (135 filas
+de diccionario). Ver [correcciones 1–3](t07_correcciones_pr14.md) para la entrega
+actual, su contrato v2 y 230 pruebas; los puntos 4–5 siguen pendientes.
+
 Este documento sustituye el estado pendiente de clima/relieve de las fases
 anteriores; sus borradores y evidencias históricas se conservan.
 

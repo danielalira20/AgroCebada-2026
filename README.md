@@ -57,7 +57,9 @@ T07 conserva 197 parcelas, 138 etiquetas originales y 59 ausentes.
 catálogo, seis variables climáticas por ventanas, 44 columnas T06 y dos
 candidatas de relieve T05. Conserva 138 etiquetas originales y 59 vacías,
 con calidad separada, diccionario de columnas, contrato de roles y huellas.
-La entrega computacional está verificada y pendiente de revisión de Jass.
+Jass revisó el PR14. Las [correcciones locales 1–3](docs/t07_correcciones_pr14.md)
+atienden compatibilidad Windows, grupo de referencia/evaluación y calidad
+climática por ventana. Los puntos 4–5 y el cierre de revisión siguen pendientes.
 Consultar el [contrato](docs/t07_contrato.md), los
 [antecedentes de fases 0–2](docs/t07_fases_0_2.md), la
 [integración inicial por ventanas](docs/t07_fase_3.md) y la

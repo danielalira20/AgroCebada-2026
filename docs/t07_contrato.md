@@ -2,7 +2,9 @@
 
 Responsable: Dani. Revisora: Jass. Estado al 10 de octubre: catálogo, clima,
 satélite y relieve integrados; comprobación computacional completa y revisión
-independiente de Jass pendiente. Ver [fases 4–5](t07_fase_4_5.md) para la entrega
+independiente de Jass con observaciones recibidas. Las correcciones locales
+1–3 se describen en [revisión del PR14](t07_correcciones_pr14.md); 4–5 siguen
+pendientes. Ver [fases 4–5](t07_fase_4_5.md) para la entrega
 actual. Las [fases 0–2](t07_fases_0_2.md) y [fase 3](t07_fase_3.md) conservan
 los antecedentes y sus evidencias históricas.
 Acuerdo de Dani del 7 de octubre de 2026. T07 avanza por bloques según el plan
@@ -27,10 +29,12 @@ Las fases 0–2 prepararon el contrato; las fases posteriores integran T06 y T05
 - La tabla por parcela conserva una fila por ID; el clima por mes y los controles
   por ventana/variable siguen separados. No son nuevas etiquetas.
 - Un ID duplicado, ajeno o vacío produce error; no se une por posición.
-- Roles: objetivo, predictor_candidato, calidad, metadato, solo_auditoria.
+- Roles: objetivo, predictor_candidato, calidad, metadato,
+  referencia_y_evaluacion y solo_auditoria.
   Una columna candidata requiere el diseño de su experimento para utilizarse.
 - IDs, rutas, huellas y CONJUNTO no son predictores. El grupo de registro
-  conserva su procedencia; usarlo requiere el contraste explícito de T03.
+  se conserva para el respaldo de referencia y los desgloses conforme a T03,
+  con referencia aprendida sólo en entrenamiento; no es predictor automático.
 - T07 no imputa etiquetas/entradas, escala, centra por municipio, selecciona
   variables por rendimiento ni cambia particiones. Eso corresponde al modelo,
   dentro de cada entrenamiento, conforme a T03.
@@ -105,8 +109,9 @@ T05 y la entrada D020; los auxiliares T05 se conservan como procedencia archivad
 No se reproyecta ni reextraen los originales para hacer esta unión.
 
 La tabla contiene 35 candidatas, 18 columnas de calidad, cinco metadatos, un
-objetivo y una columna de auditoría; no son 60 entradas automáticas del modelo.
-La revisión independiente de Jass sigue pendiente y `cierre_t07=false`.
+objetivo y una de referencia/evaluación; no son 60 entradas automáticas del modelo.
+Jass revisó el PR14: se atendieron localmente los puntos 1–3; los puntos 4–5
+siguen pendientes. El cierre humano continúa pendiente y `cierre_t07=false`.
 Archivo faltante, NoData, bloque no integrado y revisión pendiente son
 situaciones distintas. La reproducción y el contraste independiente de las
 fases 4–5 documentan los criterios y la evidencia actual.
@@ -145,3 +150,8 @@ Cambiar una tabla u original continúa bloqueando; cambiar un comentario T02
 permite integrar las mismas cifras y documenta la nueva revisión. Se leen entregas
 v1 completas y v2, rechazando contratos incompletos o huellas inválidas.
 Los scripts T07 que sí se ejecutan mantienen sus propias huellas de código.
+
+La calidad climática actual tiene 21 columnas y el diccionario 143 filas.
+El [detalle de correcciones](t07_correcciones_pr14.md) especifica el contrato v2,
+las nuevas columnas y las reglas de vacío. Los conteos anteriores en fases 0–5
+describen la entrega previa a estas correcciones.
