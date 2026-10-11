@@ -1,0 +1,57 @@
+{
+  "schema": "t07_fichas_atributos_v1",
+  "alcance": "Punto 1: documentación de las 60 columnas de tabla_comun; no incluye análisis estadístico ni selección de atributos",
+  "estado": "complemento_local_para_revision_Jass",
+  "fuentes_sha256": {
+    "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
+    "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a",
+    "docs/t04_version_disponibilidad.md": "c56bd22226acf3daff71e85e0fc013d000da242db713495c1f7ec218490bfebc",
+    "docs/t05_relieve.md": "701cd47188f65e85067778aab1443c205afbdeeb4a472e2c2b47c8a31d00b369",
+    "registro/t04/manifest.json": "593fdb6f586180e5b2a51d15c10c4fec1c874221bef3a73691d42f4fbd3d66a6",
+    "registro/t05/procedencia.json": "c0d7146a3f80bac759d928bbc8c59fe6a8ebfd4a8736ecebf59ee52e4c00984f",
+    "registro/t06/variables_satelitales_diccionario.csv": "7eb336bdb87ae6e8dfe96f5b03c27691c47d846108635fb476ae467e3e356528",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
+    "registro/t07/calidad_ventanas.csv": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/clima_variables.csv": "1c5da038dfe3df979ac823e196ddd5d9989f833002c5845ecc9544c0d5f42a7b",
+    "registro/t07/clima_ventanas.csv": "57a77dbb4c9e396ad22f34e486e860dbc82877c1ed64adc02fc15135898a9a0d",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/controles.json": "1ed3e0ec3d25c6cc3827870be546961e53c99c71f58ef45dc6f6ec55d26176b5",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/inventario_fuentes.json": "27ca7935420522401fe8181aef673717e7c1d95585d7b65924650a09c32a86a8",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "scripts/t06_satelite.py": "01b2b46a27df19a8cc93ca7f6f76789c61aeabe508707224c0e4425c14e73c28"
+  },
+  "codigo_sha256": {
+    "scripts/t07_fichas_atributos.py": "6de1899806ebbca34012d192b8830754a79b414224a857ba85f59885723d087a"
+  },
+  "archivos_sha256": {
+    "fichas_atributos.csv": "1e5fda719728a026dbfef19ef9d1cfec1ff26d35c40eeecbf0fa224488ad8483",
+    "pendientes_documentales.csv": "b4a093950bc68e949bf7128a16a8a856becd747ba5ca761b872cb27faa77b64b"
+  },
+  "fichas": 60,
+  "roles": {
+    "metadato": 5,
+    "objetivo": 1,
+    "predictor_candidato": 35,
+    "referencia_y_evaluacion": 1,
+    "calidad": 18
+  },
+  "unidades_pendientes": [
+    "pl_lai2_max_abr_oct",
+    "pl_lai2_max_jun_oct",
+    "ls_vi6t_mediana_abr_oct",
+    "ls_vi6t_mediana_jun_oct"
+  ],
+  "pendientes_documentales": 8,
+  "lee_valores_para_analisis": false,
+  "selecciona_atributos": false,
+  "entrena": false,
+  "disponibilidad_operacional_certificada": false,
+  "origen_estado_entrega": "integracion_por_bloques_para_revision",
+  "cierre_en_manifest_original": false,
+  "aclaracion_estado": "Estado del cálculo original conservado; merge/revisión GitHub se documentan aparte y no se infieren de una ejecución."
+}
