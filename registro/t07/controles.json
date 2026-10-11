@@ -6,11 +6,31 @@
   "filas_por_tabla": {
     "catalogo_base.csv": 197,
     "calidad_satelite.csv": 1182,
+    "calidad_parcelas.csv": 197,
     "clima_ventanas.csv": 394,
     "clima_variables.csv": 197,
     "calidad_ventanas.csv": 1182,
     "calidad_relieve.csv": 197,
     "tabla_comun.csv": 197
+  },
+  "calidad_parcelas": {
+    "parcelas": 197,
+    "categorias_contorno": {
+      "A": 175,
+      "B": 12,
+      "C": 10
+    },
+    "etiquetadas_con_alerta_contorno": 24,
+    "vecina_etiquetada_en_etiquetadas": 70,
+    "vecina_etiquetada_en_reservadas": 24,
+    "escalon_ausente": [
+      "AGC_047",
+      "AGC_048",
+      "AGC_120",
+      "AGC_164"
+    ],
+    "pares_cercanos": 87,
+    "universo_vecindad": "catálogo completo; sólo para desgloses"
   },
   "valores_satelitales_verificados": 8668,
   "conciliaciones_cobertura": 1182,
@@ -115,7 +135,7 @@
       "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
     }
   ],
-  "diccionario_columnas": 143,
+  "diccionario_columnas": 150,
   "roles_tabla_comun": {
     "metadato": 5,
     "objetivo": 1,

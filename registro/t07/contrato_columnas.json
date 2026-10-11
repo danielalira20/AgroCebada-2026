@@ -86,6 +86,54 @@
     "normalizar_texto_original": false,
     "estratificacion_interna_t03": "municipio u otros; no cultivo_origen"
   },
+  "area_t10": {
+    "candidata": {
+      "columna": "area_ha_origen",
+      "archivo": "tabla_comun.csv",
+      "unidad": "ha",
+      "fuente": "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv",
+      "criterio": "Superficie declarada original del dataset; no sustituir por un área calculada"
+    },
+    "rol_en_t07": "metadato",
+    "frente_candidato": "T10",
+    "predictor_automatico_t09": false,
+    "alternativas_solo_auditoria": [
+      {
+        "columna": "area_ha_geodesica",
+        "unidad": "ha",
+        "fuente": "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv"
+      },
+      {
+        "columna": "area_parcela_6372_m2",
+        "unidad": "m²",
+        "fuente": "calidad_relieve.csv",
+        "disponible_solo_con_relieve": true
+      }
+    ],
+    "alternativa_en_modelo_requiere_experimento_explicito": true,
+    "rendimiento_por_area_no_es_produccion_confirmada": true
+  },
+  "calidad_t03_bis": {
+    "archivo": "calidad_parcelas.csv",
+    "clave": "id_parcela",
+    "union": "uno_a_uno",
+    "columnas": [
+      "id_parcela",
+      "contorno_categoria",
+      "contorno_angosta_o_muy_pequena",
+      "alerta_contorno_t03_bis",
+      "escalon_etiqueta_municipio",
+      "vecina_etiquetada_menos_20m",
+      "numero_vecinas_etiquetadas_menos_20m"
+    ],
+    "predictor_automatico": false,
+    "poblacion_vecindad": "138 etiquetas presentes en el catálogo completo; excluye la propia parcela",
+    "vecindad": "pertenencia a pares_de_parcelas_cercanas.csv (orillas <20 m antes del redondeo)",
+    "distancia_publicada_no_redefine_umbral": true,
+    "escalon": "caracterización municipal T02 del catálogo completo; sólo auditoría, no predictor",
+    "vecindad_como_predictor_requeriria_recalculo_solo_con_entrenamiento": true,
+    "alerta_contorno": "B o C o angosta/muy pequeña; sensibilidad secundaria T03, no exclusión principal"
+  },
   "experimentos_definidos": false,
   "todas_las_columnas_no_equivalen_a_entradas_del_modelo": true,
   "unidades_fisicas_pendientes": [

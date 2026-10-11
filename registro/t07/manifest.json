@@ -1,33 +1,35 @@
 {
   "schema": "t07_integracion_bloques_v2",
   "codigo_sha256": {
-    "scripts/t07_integrar.py": "bae64ea78a0de9a909effacb49398aea13be90cf64c9b47cdd54ded1d3ead7b7",
+    "scripts/t07_integrar.py": "023d86766ae72872396a05182e22b7a62d855cd12f8fdc16c92931ccd5701419",
     "scripts/t07_satelite.py": "c6835712d9956a25cd3950afd5ed00bc8c620fe2d9090651e32ccb9cd107805c",
     "scripts/t07_preparar.py": "67f51b3c616cb22f4e44b9d73d7164388de01c1f10de64570fe53576975acac0",
     "scripts/t07_fuentes.py": "c8935b4f03d1b82789e009057f1e3cb00bff2d2d4fed509c7253acffd6e9510f",
     "scripts/t07_ventanas.py": "f0bea8f8fb66a69508d68ca382515610477648eae7382dad698a07624c5c901c",
-    "scripts/t07_diccionario.py": "350cb38be11d15e4ed40fc9a3483fb32577472271710a102b187afa043b80703",
+    "scripts/t07_diccionario.py": "e1f08e71782a1b8848d22ef9e7fbe71f1068b51fd3da69e5251b4925b59544c1",
     "scripts/t07_preparar_insumos.py": "c2099ba4ebb12dd7830039bbbaba22381abbb871f14a8ad3421f1d0e626dbe44",
-    "scripts/t07_verificar.py": "e5aacdbd5043e1f58d229d9b47f828650524488c5e7a788b9b48226d8aff5b08",
+    "scripts/t07_verificar.py": "c3e731fe0a7e285d67519747a6e189c65110df5553e929c47efb9d41cd101dba",
     "scripts/t02_contrato.py": "ae484660f58cbd49a36829d2e3b61a4db92ab7baf9dcb8971168c769348eace8",
     "scripts/t07_relieve.py": "c2ea0b83459c6c883afeb7914905e925e7ce407ca3daaf53175ff242dd4bbb50",
-    "scripts/t07_auditar_relieve.py": "10fb597bfedc60c90bd97438c383ba1c21cf26ae60b69675dd3fd1e20eb6ed8c"
+    "scripts/t07_auditar_relieve.py": "10fb597bfedc60c90bd97438c383ba1c21cf26ae60b69675dd3fd1e20eb6ed8c",
+    "scripts/t07_calidad_parcelas.py": "c165cb8d16bbebdd81b702b8936bee6eca3416f598bb7ad350d35e4a24b19a37"
   },
   "entradas": {
     "base_dev": "8d6f543d4b907a92cc00658905f238479e4e2e76",
     "revision_t04": "8d6f543d4b907a92cc00658905f238479e4e2e76"
   },
   "archivos_sha256": {
+    "calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
     "calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
     "calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
     "calidad_ventanas.csv": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
     "catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
     "clima_variables.csv": "1c5da038dfe3df979ac823e196ddd5d9989f833002c5845ecc9544c0d5f42a7b",
     "clima_ventanas.csv": "57a77dbb4c9e396ad22f34e486e860dbc82877c1ed64adc02fc15135898a9a0d",
-    "contrato_columnas.json": "318e0a5c981ed68b88886799d623f38fca111f2c5b0d3e445b4d684f5509b6ca",
-    "controles.json": "3dadb7ff9b4437f39e31d3a57050912711c4790f51ab89ab677ff9a2db1b9587",
-    "diccionario_columnas.csv": "bfdb3750b9572c7b8c717279b33aa5e8ad25dc7d8922749277386aaa3197f925",
-    "inventario_fuentes.json": "36c5b236e1e8a4b0a2bd86d2afa9078a8214a24eb8315e55dc9277dc3c9f5709",
+    "contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "controles.json": "1ed3e0ec3d25c6cc3827870be546961e53c99c71f58ef45dc6f6ec55d26176b5",
+    "diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "inventario_fuentes.json": "27ca7935420522401fe8181aef673717e7c1d95585d7b65924650a09c32a86a8",
     "tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5"
   },
   "estado_entrega": "integracion_por_bloques_para_revision",
