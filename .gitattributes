@@ -4,3 +4,6 @@ registro/t05/* text eol=lf
 
 scripts/t05_relieve.py text eol=lf
 tests/test_t05_relieve.py text eol=lf
+
+# T07: derivadas y manifiestos conservan sus huellas en macOS, Linux y Windows.
+registro/t07/* text eol=lf

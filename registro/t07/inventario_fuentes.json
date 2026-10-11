@@ -1,0 +1,100 @@
+{
+  "schema": "t07_inventario_v2",
+  "base_dev": "8d6f543d4b907a92cc00658905f238479e4e2e76",
+  "corte_observacional": "2025-10-31",
+  "alcance": "Reconstrucción retrospectiva; fecha observada no acredita disponibilidad histórica",
+  "cierre_t07": false,
+  "bloques": {
+    "T02": {
+      "estado": "base_dev_identificada",
+      "archivos_sha256": {
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+      },
+      "procedencia_sha256": {
+        "analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py": "acd377945c545132d607dc725636d3b7cd5aea74d1c154005b0bf10ac98ca899",
+        "analisis/auditoria_catalogo_y_etiquetas/scripts/diagnosticar_soporte.py": "f240b4e48494b287b9d15d184f82e62c329195de87a6c5ba66b0109ebb13b14d",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/huellas_archivos_leidos.csv": "bdd0d49336ff630efb13148d0a4b58d10c6c11e93edc7eaeb561a51aa93d1a86"
+      },
+      "fuentes_calidad_t03_bis_sha256": {
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv": "70db27a146653fa0253d734956fabe5a1c21a436484176d0f3da3a1ec650b4ec",
+        "analisis/auditoria_catalogo_y_etiquetas/tablas/precision_etiqueta_por_municipio.csv": "e439dffeeecb09d0dcde5766ea8bf401284a43e9951d7f0dc697e0e5074a4295"
+      }
+    },
+    "T03": {
+      "estado": "protocolo_base_identificado_corte_provisional",
+      "archivos_sha256": {
+        "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9"
+      },
+      "reglas_evaluacion_no_modificadas": true
+    },
+    "T04": {
+      "estado": "aceptada",
+      "integrado_en_t07": true,
+      "valores_generados": true,
+      "revision_git": "8d6f543d4b907a92cc00658905f238479e4e2e76",
+      "archivos_sha256": {
+        "manifest.json": "593fdb6f586180e5b2a51d15c10c4fec1c874221bef3a73691d42f4fbd3d66a6",
+        "clima_parcela_mes.csv": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
+        "procedencia.json": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+        "conciliacion_t02.json": "de64fa03cbed798b2395b1ab99395ea8597fa2cfe6b1de33ffdacf1d0245e7e2",
+        "controles.json": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce"
+      },
+      "referencia_t02": "11d947098d8d6e56902a7f09a2c75953f09fdb21",
+      "conciliacion": "compatible_con_base_identificada",
+      "sha256_paquete_original": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+      "disponibilidad_historica": "no documentada",
+      "versiones_producto": "sin número documentado; CHIRPS y CHIRTS-ERA5 según metadatos",
+      "destino": "entrega_con_fuente_aceptada"
+    },
+    "T05": {
+      "estado": "fuente_revisada_integrada",
+      "integrado_en_t07": true,
+      "archivos_sha256": {
+        "registro/t05/manifest.json": "f517a528b6d429ec5df15cbf95b3d2152ddfe92a507e3f5fa7993d57f1d481d8",
+        "registro/t05/relieve_parcela.csv": "ca9ff1225f47166dd1a09d85a865b55e3f5c6d5bc8e1b80b1169d42482a82bd4",
+        "registro/t05/relieve_celdas.csv": "065501e0fc087d798efa308b86851bf84ea966051ad7bd012f0b20cdcc89b5d3",
+        "registro/t05/procedencia.json": "c0d7146a3f80bac759d928bbc8c59fe6a8ebfd4a8736ecebf59ee52e4c00984f",
+        "registro/t05/controles.json": "df7b3b16efd7d063163f23978d539bcb4e1efba6ee39f22f025f4ebd24b6482d"
+      },
+      "procedencia_sha256": {
+        "docs/t05_relieve.md": "701cd47188f65e85067778aab1443c205afbdeeb4a472e2c2b47c8a31d00b369",
+        "scripts/t05_relieve.py": "954aba39adf3f84163db4df1bcd7f6929fc3bd559fef302699f4135e41fcec32"
+      },
+      "fuente": "registro/t05",
+      "candidatas": [
+        "elevacion_media_m",
+        "pendiente_media_t10_grados"
+      ],
+      "calidad": "calidad_relieve.csv",
+      "decision": "D020",
+      "decision_sha256": "20a8dc879eff0e3947f0823042cd8786b1cf801f6c18b68bf6887b15ee76c453",
+      "piso_pendiente": 0.5,
+      "unidades": {
+        "elevacion": "m s.n.m.",
+        "pendiente": "grados"
+      },
+      "crs": "EPSG:6372",
+      "resolucion_m": [
+        120.0,
+        120.0
+      ],
+      "metodo_area": "plana_crs_raster_v1",
+      "no_reextrae_geometrias": true,
+      "revision_humana_fuente": "PR12 revisado por Dani y fusionado en dev; T07 pendiente Jass"
+    },
+    "T06": {
+      "estado": "integrado_en_base_dev_aceptacion_no_inferida",
+      "integrado_en_t07": true,
+      "archivos_sha256": {
+        "registro/t06/variables_satelitales.csv": "8e38ad80e7befb7b82261353914862e17d98be0425dd755a12c001191dfe17eb",
+        "registro/t06/variables_satelitales_diccionario.csv": "7eb336bdb87ae6e8dfe96f5b03c27691c47d846108635fb476ae467e3e356528",
+        "registro/t06/cobertura_ventana.csv": "8223ab0ce13f080926d651dd23017d3fbab2cb84407a1c252cc41a0be53a0bb1",
+        "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a",
+        "scripts/t06_satelite.py": "01b2b46a27df19a8cc93ca7f6f76789c61aeabe508707224c0e4425c14e73c28"
+      },
+      "columnas": 44,
+      "conciliaciones_cobertura": 1182
+    }
+  }
+}

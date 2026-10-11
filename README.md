@@ -49,3 +49,23 @@ Guardar el paquete original de FIRA fuera del repositorio o bajo `data/raw/` loc
 Cada experimento deberá registrar entradas, versión, corte temporal, particiones, variables, parámetros, predicciones fuera de entrenamiento y resultados, incluso si no mejora. Los acuerdos y el uso de IA se anotan en `registro/`. Las tareas del documento se trasladarán a GitHub Issues con su ID, responsable, revisor, dependencia y evidencia.
 
 La primera referencia global y municipal puede construirse tras T02–T03 sin esperar todos los bloques de clima y satélite. Las 59 etiquetas reservadas permanecen vacías en entrenamiento y validación.
+
+## T07: catálogo y ventanas climáticas
+
+T07 conserva 197 parcelas, 138 etiquetas originales y 59 ausentes.
+`registro/t07/` contiene la tabla común completa de 197 filas y 60 columnas:
+catálogo, seis variables climáticas por ventanas, 44 columnas T06 y dos
+candidatas de relieve T05. Conserva 138 etiquetas originales y 59 vacías,
+con calidad separada, diccionario de columnas, contrato de roles y huellas.
+Jass revisó el PR14. Las [correcciones locales 1–5](docs/t07_correcciones_pr14.md)
+atienden compatibilidad Windows, grupo de referencia/evaluación y calidad
+climática por ventana, área candidata de T10 y calidad por parcela para T03 bis.
+Los cinco puntos están comprobados localmente; la nueva revisión de Jass y
+el cierre humano siguen pendientes.
+Consultar el [contrato](docs/t07_contrato.md), los
+[antecedentes de fases 0–2](docs/t07_fases_0_2.md), la
+[integración inicial por ventanas](docs/t07_fase_3.md) y la
+[entrega completa y pasos de reproducción](docs/t07_fase_4_5.md).
+Los borradores anteriores permanecen en `reports/` con su procedencia histórica.
+T07 permanece en revisión; las columnas candidatas no son entradas automáticas
+de un modelo.
