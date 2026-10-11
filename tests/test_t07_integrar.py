@@ -5,6 +5,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from scripts.t07_fuentes import leer_csv, sha
 from scripts.t07_integrar import integrar, comprobar_protocolo, T06_ARCHIVOS, CODIGO
@@ -203,6 +204,24 @@ class Integracion(unittest.TestCase):
                 integrar(self.rev,self.root/'relieve_alterado',self.clima,self.rev,raiz=self.root,relieve=True)
             self.assertFalse((self.root/'relieve_alterado').exists())
         finally:p.write_bytes(original)
+
+    def test_d020_utf8_explicito_con_predeterminado_windows(self):
+        from scripts.t07_verificar import verificar
+        original = Path.read_text
+        decision = (self.root/'registro/decisiones.csv').resolve()
+        lecturas = []
+
+        def windows(ruta, *args, **kw):
+            if ruta.resolve() == decision:
+                lecturas.append(kw.get('encoding'))
+                kw = {**kw, 'encoding': kw.get('encoding') or 'cp1252'}
+            return original(ruta, *args, **kw)
+
+        with patch.object(Path, 'read_text', windows):
+            salida = self.root/'d020_windows'
+            integrar(self.rev, salida, self.clima, self.rev, raiz=self.root, relieve=True)
+            self.assertEqual(verificar(salida, self.clima, self.root)['resultado'], 'verificado')
+        self.assertEqual(lecturas, ['utf-8', 'utf-8'])
 
     def test_parametros_incompletos(self):
         with self.assertRaisesRegex(ValueError,'conjuntamente'):

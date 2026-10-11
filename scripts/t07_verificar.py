@@ -172,7 +172,7 @@ def verificar(entrega, clima=None, raiz=RAIZ):
             exigir(len(filas)==1, 'D020 ausente o duplicada')
             return filas[0]
         decision=d020(git('show',f"{inv['base_dev']}:registro/decisiones.csv",raiz=raiz).decode())
-        exigir(decision==d020((raiz/'registro/decisiones.csv').read_text()), 'D020 alterada')
+        exigir(decision==d020((raiz/'registro/decisiones.csv').read_text(encoding='utf-8')), 'D020 alterada')
         huella=hashlib.sha256(json.dumps(decision,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
         exigir(bloque['decision_sha256']==huella and bloque['piso_pendiente']==0.5 and bloque['decision']=='D020', 'Referencia D020 incompatible')
         exigir(bloque['unidades']=={'elevacion':'m s.n.m.','pendiente':'grados'} and bloque['crs']=='EPSG:6372', 'Unidades/CRS T05 distintos')

@@ -102,7 +102,7 @@ def leer(raiz, base, catalogo):
         raise ValueError('Conteos/controles T05 incompatibles')
     indice, calidad = validar(cols, filas, catalogo)
     archivada = decision_d020(git('show', f'{base}:registro/decisiones.csv', raiz=raiz).decode())
-    if decision_d020((raiz/'registro/decisiones.csv').read_text()) != archivada:
+    if decision_d020((raiz/'registro/decisiones.csv').read_text(encoding='utf-8')) != archivada:
         raise ValueError('Decisión D020 distinta de la base identificada')
     audit = {p: hashlib.sha256(git('show', f'{base}:{p}', raiz=raiz)).hexdigest() for p in AUXILIARES}
     inventario = dict(estado='fuente_revisada_integrada', integrado_en_t07=True,
