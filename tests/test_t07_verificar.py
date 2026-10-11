@@ -107,6 +107,30 @@ class Verificacion(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Contrato del área T10'):
             verificar(out,self.clima,self.root)
 
+    def test_calidad_parcelas_real_y_ausencias(self):
+        r=verificar(self.original,self.clima,self.root)['calidad_parcelas']
+        self.assertEqual((r['etiquetadas_con_alerta_contorno'],r['vecina_etiquetada_en_etiquetadas'],r['vecina_etiquetada_en_reservadas']),(24,70,24))
+        self.assertEqual(r['escalon_ausente'],['AGC_047','AGC_048','AGC_120','AGC_164'])
+
+    def test_calidad_parcelas_alterada_aun_con_huella(self):
+        for c,v in [('contorno_categoria','C'),('contorno_angosta_o_muy_pequena','si'),
+                    ('alerta_contorno_t03_bis','si'),('escalon_etiqueta_municipio','999'),
+                    ('vecina_etiquetada_menos_20m','invalido'),('numero_vecinas_etiquetadas_menos_20m','999')]:
+            out=self.copia('calidad_parcela_'+c)
+            self.editar(out,'calidad_parcelas.csv',lambda f:f[0].update({c:v}))
+            with self.subTest(campo=c),self.assertRaisesRegex(ValueError,'Contorno|Alerta|Escalón|Vecindad'):
+                verificar(out,self.clima,self.root)
+
+    def test_calidad_parcelas_no_es_predictor(self):
+        out=self.copia('calidad_parcela_rol')
+        def cambiar(f):
+            for d in f:
+                if d['archivo']=='calidad_parcelas.csv' and d['columna']=='escalon_etiqueta_municipio':
+                    d['funcion']='predictor_candidato'
+        self.editar(out,'diccionario_columnas.csv',cambiar)
+        with self.assertRaisesRegex(ValueError,'Calidad de parcelas usada como predictor'):
+            verificar(out,self.clima,self.root)
+
     def test_comentario_local_en_script_t02_no_invalida_entrega(self):
         p=self.root/'analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py'
         antes=p.read_bytes()

@@ -14,12 +14,13 @@ from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
 from scripts.t07_diccionario import diccionario, CAMPOS, GRUPO_REGISTRO, AREA_T10
 from scripts.t07_preparar import RAIZ, T02, DATOS_T02, revision, comprobar_fuente, comprobar_copia, compatibilidad_t02, procedencia_t02
 from scripts.t07_relieve import leer as leer_relieve, incorporar as unir_relieve, diccionario as diccionario_relieve, controles as controles_relieve, CALIDAD as CALIDAD_REL
+from scripts.t07_calidad_parcelas import leer as leer_calidad_parcelas, diccionario as diccionario_parcelas, COLUMNAS as CALIDAD_PARCELAS, CONTRATO as CONTRATO_CALIDAD
 from scripts.t07_satelite import validar, unir, diccionario_satelite, diccionario_calidad, CALIDAD as CALIDAD_SAT, CORTE, META
 
 T06_ARCHIVOS = ("registro/t06/variables_satelitales.csv", "registro/t06/variables_satelitales_diccionario.csv",
                 "registro/t06/cobertura_ventana.csv", "docs/T06_satelite.md", "scripts/t06_satelite.py")
 CODIGO = ("t07_integrar.py", "t07_satelite.py", "t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py",
-          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py", "t02_contrato.py", "t07_relieve.py", "t07_auditar_relieve.py")
+          "t07_diccionario.py", "t07_preparar_insumos.py", "t07_verificar.py", "t02_contrato.py", "t07_relieve.py", "t07_auditar_relieve.py", "t07_calidad_parcelas.py")
 
 
 def comprobar_protocolo(texto):
@@ -48,6 +49,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
     _, filas = leer_csv(raiz / T02 / 'tablas/catalogo_parcelas.csv')
     catalogo = validar_catalogo(filas)
     ids = [r['id_parcela'] for r in catalogo]
+    calidad_parcelas,control_parcelas,huellas_calidad=leer_calidad_parcelas(raiz,base,filas)
     protocolo = 'docs/T03_protocolo_evaluacion.md'
     ht03 = comprobar_fuente(protocolo, base, raiz=raiz)
     comprobar_protocolo((raiz / protocolo).read_text(encoding='utf-8'))
@@ -56,13 +58,15 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
     _, dic_sat = leer_csv(raiz / T06_ARCHIVOS[1])
     _, cov = leer_csv(raiz / T06_ARCHIVOS[2])
     sat, calidad_sat, equivalencias = validar(columnas, filas_sat, dic_sat, cov, catalogo)
-    tablas = {'catalogo_base.csv': (BASE, catalogo), 'calidad_satelite.csv': (CALIDAD_SAT, calidad_sat)}
+    tablas = {'catalogo_base.csv': (BASE, catalogo), 'calidad_satelite.csv': (CALIDAD_SAT, calidad_sat),
+              'calidad_parcelas.csv': (CALIDAD_PARCELAS, calidad_parcelas)}
     definiciones = [r for r in diccionario() if r['archivo'] == 'catalogo_base.csv']
-    definiciones += diccionario_calidad()
+    definiciones += diccionario_calidad() + diccionario_parcelas()
     inventario = dict(schema='t07_inventario_v2', base_dev=base, corte_observacional=CORTE.isoformat(),
         alcance='Reconstrucción retrospectiva; fecha observada no acredita disponibilidad histórica',
         cierre_t07=False, bloques={
-            'T02': dict(estado='base_dev_identificada', archivos_sha256=ht02, procedencia_sha256=procedencia_t02(base, raiz)),
+            'T02': dict(estado='base_dev_identificada', archivos_sha256=ht02, procedencia_sha256=procedencia_t02(base, raiz),
+                        fuentes_calidad_t03_bis_sha256=huellas_calidad),
             'T03': dict(estado='protocolo_base_identificado_corte_provisional', archivos_sha256={protocolo: ht03},
                         reglas_evaluacion_no_modificadas=True),
             'T04': dict(estado='pendiente_integracion_revisada', integrado_en_t07=False, valores_generados=False),
@@ -111,7 +115,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
             roles.setdefault(r['funcion'], []).append(r['columna'])
             if 'no documentada' in r['unidad']: unidades_pendientes.append(r['columna'])
     contrato = dict(schema='t07_columnas_por_funcion_v2', tabla='tabla_comun.csv',
-                    columnas_por_funcion=roles, grupo_registro=GRUPO_REGISTRO, area_t10=AREA_T10, experimentos_definidos=False,
+                    columnas_por_funcion=roles, grupo_registro=GRUPO_REGISTRO, area_t10=AREA_T10, calidad_t03_bis=CONTRATO_CALIDAD, experimentos_definidos=False,
                     todas_las_columnas_no_equivalen_a_entradas_del_modelo=True,
                     unidades_fisicas_pendientes=unidades_pendientes,
                     ventanas={w: dict(inicio=p[0]+'-01', fin=CORTE.isoformat(), meses=len(p),
@@ -120,6 +124,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
     controles = dict(parcelas=len(ids), etiquetas_originales=sum(r['rendimiento_t_ha'] != '' for r in comun),
         etiquetas_ausentes=sum(r['rendimiento_t_ha'] == '' for r in comun), columnas_tabla_comun=len(campos),
         filas_por_tabla={n: len(r) for n, (_, r) in tablas.items()},
+        calidad_parcelas=control_parcelas,
         valores_satelitales_verificados=len(ids)*len(META), conciliaciones_cobertura=len(calidad_sat),
         ausencias_satelitales=sum(r[c] == '' for r in comun for c in META),
         ausencias_por_columna_satelite={c: sum(r[c] == '' for r in comun) for c in columnas if c != 'ID_POLIGONO'},

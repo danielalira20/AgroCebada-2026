@@ -16,6 +16,7 @@ from scripts.t07_fuentes import BASE, leer_csv, leer_json, sha
 from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia, procedencia_t02, compatibilidad_t02, git
 from scripts.t02_contrato import separar_huellas
 from scripts.t07_diccionario import GRUPO_REGISTRO, AREA_T10
+from scripts.t07_calidad_parcelas import FUENTES as FUENTES_CALIDAD, COLUMNAS as COLUMNAS_CALIDAD, CONTRATO as CONTRATO_CALIDAD
 
 # Se explicitan aquí para no reutilizar el agregador ni sus constantes de meses.
 PERIODOS = {'abr_oct': tuple(f'2025-{m:02d}' for m in range(4,11)),
@@ -51,6 +52,9 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     for n,h in datos.items(): comprobar_fuente(prefijo+n,inv['base_dev'],h,raiz)
     exigir({prefijo+n:h for n,h in audit.items()}==procedencia_t02(inv['base_dev'],raiz),
            'Procedencia T02 distinta de la revisión archivada')
+    huellas_calidad=t02.get('fuentes_calidad_t03_bis_sha256',{})
+    exigir(set(huellas_calidad)==set(FUENTES_CALIDAD), 'Fuentes calidad T03 bis incompletas')
+    for n,h in huellas_calidad.items(): comprobar_fuente(n,inv['base_dev'],h,raiz)
     for bloque in ('T03','T06'):
         for n,h in inv['bloques'][bloque]['archivos_sha256'].items():
             comprobar_fuente(n,inv['base_dev'],h,raiz)
@@ -112,6 +116,42 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     roles={}
     for c in cab: roles.setdefault(dc[c]['funcion'],[]).append(c)
     exigir({k:set(v) for k,v in roles.items()}=={k:set(v) for k,v in contrato['columnas_por_funcion'].items()}, 'Roles del contrato contradictorios')
+    exigir(contrato.get('calidad_t03_bis')==CONTRATO_CALIDAD, 'Contrato calidad T03 bis incompatible')
+    campos_calidad,cp=leer_csv(entrega/'calidad_parcelas.csv')
+    pc=indexar(cp,('id_parcela',))
+    exigir(tuple(campos_calidad)==COLUMNAS_CALIDAD and len(pc)==197 and set(pc)==set(comun), 'Calidad de parcelas incompleta/ajena')
+    _, soporte_calidad=leer_csv(raiz/T02/'tablas/soporte_por_parcela.csv')
+    sc=indexar(soporte_calidad,('id_parcela',))
+    _, pares_cercanos=leer_csv(raiz/FUENTES_CALIDAD[0])
+    _, precision=leer_csv(raiz/FUENTES_CALIDAD[1])
+    municipal=[x for x in precision if x['agrupacion']=='municipio']
+    pasos={x['grupo']:x['paso_comun'] for x in municipal}
+    exigir(len(pasos)==len(municipal), 'Precisión municipal duplicada')
+    conocidas={pid for pid,x in fuente.items() if x['rendimiento_t_ha']!=''}
+    cercanas={pid:set() for pid in fuente}; vistos=set()
+    for par in pares_cercanos:
+        a,b=par['id_parcela_a'],par['id_parcela_b']; pareja=frozenset((a,b))
+        exigir(a in fuente and b in fuente and a!=b and pareja not in vistos, 'Par de calidad incompatible')
+        vistos.add(pareja)
+        exigir(par['ambas_conocidas']==('si' if a in conocidas and b in conocidas else 'no'), 'Etiquetas de par contradictorias')
+        # La pertenencia publicada corresponde al umbral previo al redondeo.
+        if b in conocidas: cercanas[a].add(b)
+        if a in conocidas: cercanas[b].add(a)
+    for pid,x in fuente.items():
+        q=pc[(pid,)];sup=sc[(pid,)]
+        for c in ('contorno_categoria','contorno_angosta_o_muy_pequena'):
+            exigir(q[c]==x[c], 'Contorno de parcela alterado')
+        alerta='si' if x['contorno_categoria'] in ('B','C') or x['contorno_angosta_o_muy_pequena']=='si' else 'no'
+        exigir(q['alerta_contorno_t03_bis']==alerta, 'Alerta de contorno contradictoria')
+        exigir(sup['municipio']==x['municipio'] and q['escalon_etiqueta_municipio']==sup['escalon_etiqueta_municipio']==pasos[x['municipio']], 'Escalón municipal alterado/imputado')
+        exigir(q['vecina_etiquetada_menos_20m']==('si' if cercanas[pid] else 'no') and q['numero_vecinas_etiquetadas_menos_20m']==str(len(cercanas[pid])), 'Vecindad etiquetada contradictoria')
+    exigir(all(d['funcion']==('metadato' if d['columna']=='id_parcela' else 'solo_auditoria') for d in dic if d['archivo']=='calidad_parcelas.csv'), 'Calidad de parcelas usada como predictor')
+    control_parcelas=dict(parcelas=197,categorias_contorno=dict(Counter(x['contorno_categoria'] for x in origen_cat)),
+        etiquetadas_con_alerta_contorno=sum(pid in conocidas and pc[(pid,)]['alerta_contorno_t03_bis']=='si' for pid in fuente),
+        vecina_etiquetada_en_etiquetadas=sum(bool(cercanas[pid]) for pid in conocidas),
+        vecina_etiquetada_en_reservadas=sum(bool(cercanas[pid]) for pid in fuente if pid not in conocidas),
+        escalon_ausente=sorted(pid for pid in fuente if sc[(pid,)]['escalon_etiqueta_municipio']==''),
+        pares_cercanos=len(pares_cercanos),universo_vecindad='catálogo completo; sólo para desgloses')
     errores=[]; errores_centroide=[]; estados=[]
     if m['clima_integrado']:
         exigir(clima is not None, 'Contraste climático requiere la copia T04 original')
@@ -237,6 +277,7 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     control=leer_json(entrega/'controles.json')
     exigir(control['parcelas']==197 and control['etiquetas_originales']==138 and control['etiquetas_ausentes']==59, 'Conteo declarado distinto')
     exigir(sum(r['rendimiento_t_ha']!='' for r in tabla)==138, '138 etiquetas no preservadas')
+    exigir(control.get('calidad_parcelas')==control_parcelas, 'Controles de calidad de parcelas distintos')
     exigir(control['columnas_tabla_comun']==len(cab), 'Columnas declaradas distintas')
     exigir(control['estados_calidad_satelite']==dict(Counter(r['estado'] for r in calidad_sat)), 'Estados satelitales declarados distintos')
     if auditoria_relieve: exigir(control['relieve']==auditoria_relieve['controles'], 'Controles relieve distintos')
@@ -255,7 +296,7 @@ def verificar(entrega, clima=None, raiz=RAIZ):
                 tolerancia_decimal=str(TOLERANCIA), contrastes_centroide=len(errores_centroide),
                 diferencia_maxima_decimal_centroide=str(max(errores_centroide,default=Decimal(0))),
                 estados_climaticos=dict(Counter(estados)),
-                estado_entrega=m['estado_entrega'], relieve=auditoria_relieve, cierre_t07=False)
+                calidad_parcelas=control_parcelas, estado_entrega=m['estado_entrega'], relieve=auditoria_relieve, cierre_t07=False)
 
 
 def main():

@@ -24,6 +24,8 @@ class Integracion(unittest.TestCase):
         fuentes += [f'registro/t04/{n}' for n in T04_ARCHIVOS]
         from scripts.t07_relieve import ARCHIVOS, AUXILIARES
         fuentes += list(ARCHIVOS) + list(AUXILIARES) + ['registro/decisiones.csv']
+        from scripts.t07_calidad_parcelas import FUENTES
+        fuentes += list(FUENTES)
         for n in fuentes:
             p = cls.root / n; p.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(RAIZ/n, p)
         cls.clima = cls.root/'registro/t04'
@@ -65,8 +67,8 @@ class Integracion(unittest.TestCase):
         self.assertEqual(c['resumenes_climaticos_completos'],1182)
         self.assertEqual({p.name:sha(p) for p in a.iterdir()}, {p.name:sha(p) for p in b.iterdir()})
         _, d=leer_csv(a/'diccionario_columnas.csv')
-        self.assertEqual(len(d),117)
-        self.assertEqual(len({(r['archivo'],r['columna']) for r in d}),117)
+        self.assertEqual(len(d),124)
+        self.assertEqual(len({(r['archivo'],r['columna']) for r in d}),124)
         ident=[r for r in d if r['archivo']=='tabla_comun.csv' and r['columna']=='id_parcela']
         self.assertEqual(len(ident),1)
         self.assertTrue(all(r['funcion']=='metadato' for r in ident))
@@ -177,8 +179,8 @@ class Integracion(unittest.TestCase):
             self.assertEqual(control['columnas_tabla_comun'],60)
             self.assertEqual(control['relieve']['pendiente_t10_ausente'],['AGC_023','AGC_170'])
         self.assertEqual({p.name:sha(p) for p in a.iterdir()},{p.name:sha(p) for p in b.iterdir()})
-        self.assertEqual(len(list(a.iterdir())),12)
-        _,dic=leer_csv(a/'diccionario_columnas.csv');self.assertEqual(len(dic),143)
+        self.assertEqual(len(list(a.iterdir())),13)
+        _,dic=leer_csv(a/'diccionario_columnas.csv');self.assertEqual(len(dic),150)
         resultado=verificar(a,self.clima,self.root)
         self.assertEqual(resultado['relieve']['medias_recalculadas'],394)
         self.assertEqual(resultado['contrastes_climaticos'],1182)
