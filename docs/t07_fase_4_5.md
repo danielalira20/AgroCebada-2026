@@ -4,8 +4,9 @@
 Rama: `t07-tabla-comun`. Entrega computacional preparada y verificada;
 **pendiente de revisión independiente de Jass**. `cierre_t07=false`.
 Nota de revisión PR14: este informe describe la entrega anterior (135 filas
-de diccionario). Ver [correcciones 1–3](t07_correcciones_pr14.md) para la entrega
-actual, su contrato v2 y 230 pruebas; los puntos 4–5 siguen pendientes.
+de diccionario). Ver [correcciones 1–5](t07_correcciones_pr14.md) para la entrega
+actual, su contrato v2, 150 filas de diccionario, 13 archivos y 240 pruebas.
+Los cinco puntos están atendidos localmente; la nueva revisión sigue pendiente.
 
 Este documento sustituye el estado pendiente de clima/relieve de las fases
 anteriores; sus borradores y evidencias históricas se conservan.
