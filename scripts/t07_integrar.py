@@ -11,7 +11,7 @@ import tempfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.t07_fuentes import BASE, leer_csv, leer_entrega, sha, validar_catalogo, guardar_csv, guardar_json
 from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
-from scripts.t07_diccionario import diccionario, CAMPOS
+from scripts.t07_diccionario import diccionario, CAMPOS, GRUPO_REGISTRO
 from scripts.t07_preparar import RAIZ, T02, DATOS_T02, revision, comprobar_fuente, comprobar_copia, compatibilidad_t02, procedencia_t02
 from scripts.t07_relieve import leer as leer_relieve, incorporar as unir_relieve, diccionario as diccionario_relieve, controles as controles_relieve, CALIDAD as CALIDAD_REL
 from scripts.t07_satelite import validar, unir, diccionario_satelite, diccionario_calidad, CALIDAD as CALIDAD_SAT, CORTE, META
@@ -110,7 +110,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
             roles.setdefault(r['funcion'], []).append(r['columna'])
             if 'no documentada' in r['unidad']: unidades_pendientes.append(r['columna'])
     contrato = dict(schema='t07_columnas_por_funcion_v1', tabla='tabla_comun.csv',
-                    columnas_por_funcion=roles, experimentos_definidos=False,
+                    columnas_por_funcion=roles, grupo_registro=GRUPO_REGISTRO, experimentos_definidos=False,
                     todas_las_columnas_no_equivalen_a_entradas_del_modelo=True,
                     unidades_fisicas_pendientes=unidades_pendientes,
                     ventanas={w: dict(inicio=p[0]+'-01', fin=CORTE.isoformat(), meses=len(p),

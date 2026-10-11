@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.t07_fuentes import BASE, leer_csv, leer_json, sha
 from scripts.t07_preparar import RAIZ, T02, comprobar_fuente, comprobar_copia, procedencia_t02, compatibilidad_t02, git
 from scripts.t02_contrato import separar_huellas
+from scripts.t07_diccionario import GRUPO_REGISTRO
 
 # Se explicitan aquí para no reutilizar el agregador ni sus constantes de meses.
 PERIODOS = {'abr_oct': tuple(f'2025-{m:02d}' for m in range(4,11)),
@@ -100,11 +101,12 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     dc={r['columna']:r for r in dic if r['archivo']=='tabla_comun.csv'}
     exigir(dc['rendimiento_t_ha']['funcion']=='objetivo', 'Objetivo mal clasificado')
     for c in ('id_parcela','campania','conjunto_origen'): exigir(dc[c]['funcion']=='metadato', 'Identidad/conjunto no debe ser predictor')
-    exigir(dc['cultivo_origen']['funcion']=='solo_auditoria', 'Cultivo sin experimento explícito')
+    exigir(dc['cultivo_origen']['funcion']=='referencia_y_evaluacion', 'Grupo de registro debe conservarse para referencia y evaluación, no predictor automático')
     for d in dsat:
         exigir(dc[d['columna']]['funcion']==('calidad' if d['tipo']=='calidad' else 'predictor_candidato'), 'Rol T06 cambiado')
         exigir(dc[d['columna']]['definicion']==d['definicion'], 'Definición T06 alterada')
     contrato=leer_json(entrega/'contrato_columnas.json')
+    exigir(contrato.get('grupo_registro')==GRUPO_REGISTRO, 'Uso del grupo de registro incompatible con T03/D019')
     roles={}
     for c in cab: roles.setdefault(dc[c]['funcion'],[]).append(c)
     exigir({k:set(v) for k,v in roles.items()}=={k:set(v) for k,v in contrato['columnas_por_funcion'].items()}, 'Roles del contrato contradictorios')

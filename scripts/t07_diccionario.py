@@ -2,6 +2,14 @@
 from scripts.t07_fuentes import BASE
 from scripts.t07_ventanas import LARGA, ANCHA, CALIDAD, VARIABLES
 
+GRUPO_REGISTRO = dict(
+    columna='cultivo_origen', equivalencia_t03='grupo_registro',
+    funcion='referencia_y_evaluacion',
+    usos=['respaldo_por_grupo_T03_D019', 'desgloses_de_error_por_grupo'],
+    referencia_aprendida_solo_en_entrenamiento=True,
+    predictor_automatico=False, normalizar_texto_original=False,
+    estratificacion_interna_t03='municipio u otros; no cultivo_origen')
+
 CAMPOS = ("archivo", "columna", "definicion", "unidad", "funcion", "producto",
           "periodo", "agregacion", "significado_vacio", "procedencia")
 
@@ -14,7 +22,7 @@ def diccionario():
         "area_ha_origen": ("Superficie declarada de origen; no es superficie geodésica recalculada", "ha", "metadato"),
         "municipio": ("Municipio declarado; uso sujeto al escenario de evaluación T03", "categoría", "predictor_candidato"),
         "estado": ("Estado declarado de la parcela", "categoría", "metadato"),
-        "cultivo_origen": ("Texto original Cultivo; su contraste requiere el experimento explícito T03", "categoría", "solo_auditoria"),
+        "cultivo_origen": ("Grupo de registro original (grupo_registro en T03); respaldo calculado sólo con el entrenamiento y desgloses de error; no predictor automático ni estrato interno", "categoría", "referencia_y_evaluacion"),
         "conjunto_origen": ("ENTRENAMIENTO o PREDICCION; procedencia, nunca predictor", "categoría", "metadato"),
         "ventana": ("Ventana calendario candidata abr_oct o jun_oct; no fecha de cultivo confirmada", "categoría", "metadato"),
         "inicio": ("Primer día calendario incluido", "fecha ISO", "metadato"),

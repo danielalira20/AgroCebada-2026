@@ -64,6 +64,28 @@ class Verificacion(unittest.TestCase):
         self.editar(out,'diccionario_columnas.csv',cambiar)
         with self.assertRaisesRegex(ValueError,'no debe ser predictor'):verificar(out,self.clima,self.root)
 
+    def test_grupo_conservado_para_referencia_y_evaluacion(self):
+        _, filas = leer_csv(self.original/'tabla_comun.csv')
+        _, fuente = leer_csv(self.root/'analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv')
+        self.assertEqual({r['id_parcela']: r['cultivo_origen'] for r in filas},
+                         {r['id_parcela']: r['cultivo_origen'] for r in fuente})
+        contrato = json.loads((self.original/'contrato_columnas.json').read_text())
+        self.assertEqual(contrato['columnas_por_funcion']['referencia_y_evaluacion'], ['cultivo_origen'])
+        self.assertNotIn('cultivo_origen', contrato['columnas_por_funcion']['predictor_candidato'])
+        self.assertFalse(contrato['grupo_registro']['normalizar_texto_original'])
+        self.assertTrue(contrato['grupo_registro']['referencia_aprendida_solo_en_entrenamiento'])
+
+    def test_grupo_no_puede_descartarse_ni_ser_predictor_automatico(self):
+        for rol in ('solo_auditoria', 'predictor_candidato'):
+            out = self.copia('grupo_'+rol)
+            def cambiar(filas):
+                for r in filas:
+                    if r['archivo']=='tabla_comun.csv' and r['columna']=='cultivo_origen':
+                        r['funcion'] = rol
+            self.editar(out, 'diccionario_columnas.csv', cambiar)
+            with self.assertRaisesRegex(ValueError, 'Grupo de registro debe conservarse'):
+                verificar(out, self.clima, self.root)
+
     def test_comentario_local_en_script_t02_no_invalida_entrega(self):
         p=self.root/'analisis/auditoria_catalogo_y_etiquetas/scripts/construir_catalogo.py'
         antes=p.read_bytes()
