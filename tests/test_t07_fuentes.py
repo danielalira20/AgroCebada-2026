@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 import tempfile
 import unittest
-from scripts.t07_fuentes import leer_csv, leer_json, validar_catalogo, validar_mensuales
+from scripts.t07_fuentes import leer_csv, leer_json, validar_catalogo, validar_mensuales, soporte_lluvia_t02
 
 
 def parcela(pid="AGC_001", y="3.5", grupo="ENTRENAMIENTO"):
@@ -54,6 +54,14 @@ class Fuentes(unittest.TestCase):
     def test_prec_cero_real_y_temperatura_negativa(self):
         self.assertEqual(len(validar_mensuales([mes(media="0"), mes(variable="Tmin", media="-2")],
                                                {"AGC_001"}, "2025-10-31")), 2)
+
+    def test_soporte_lluvia_claves_y_conteos_estrictos(self):
+        r = dict(id_parcela='AGC_001', celdas_clima_tocadas='2')
+        self.assertEqual(soporte_lluvia_t02([r], {'AGC_001'}), {'AGC_001': 2})
+        for filas in ([r,r], [], [{**r,'id_parcela':'OTRA'}],
+                      [{**r,'celdas_clima_tocadas':'0'}], [{**r,'celdas_clima_tocadas':'2.5'}]):
+            with self.subTest(filas=filas), self.assertRaises(ValueError):
+                soporte_lluvia_t02(filas, {'AGC_001'})
 
     def test_csv_y_json_estrictos(self):
         with tempfile.TemporaryDirectory() as t:

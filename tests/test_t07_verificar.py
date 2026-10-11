@@ -103,6 +103,26 @@ class Verificacion(unittest.TestCase):
         (out/'manifest.json').write_text(json.dumps(m))
         with self.assertRaisesRegex(ValueError,'Procedencia T02 distinta'):verificar(out,self.clima,self.root)
 
+    def test_sensibilidad_climatica_desde_fuentes_reales(self):
+        _, q = leer_csv(self.original/'calidad_ventanas.csv')
+        lluvia = [r for r in q if r['ventana']=='abr_oct' and r['variable']=='PREC']
+        self.assertEqual(sum(int(r['celdas_lluvia_tocadas_t02'])>1 for r in lluvia), 31)
+        self.assertEqual(sorted(r['id_parcela'] for r in lluvia if r['centroide_dentro_parcela']=='False'),
+                         ['AGC_078','AGC_152','AGC_182'])
+        self.assertTrue(all(r['estado_comparacion_centroide']=='comparable' for r in q))
+        self.assertEqual(verificar(self.original,self.clima,self.root)['contrastes_centroide'],1182)
+
+    def test_sensibilidad_alterada_detectada_aun_con_huella_nueva(self):
+        for campo, valor, mensaje in [('celdas_lluvia_tocadas_t02','99','Conteo de celdas'),
+                ('centroide_dentro_parcela','False','Bandera de centroide'),
+                ('valor_centroide_ventana','999','Agregado del centroide'),
+                ('diferencia_media_menos_centroide','999','Diferencia con centroide'),
+                ('estado_comparacion_centroide','centroide_incompleto','Estado de sensibilidad')]:
+            out=self.copia('sensibilidad_'+campo)
+            self.editar(out,'calidad_ventanas.csv',lambda f:f[0].update({campo:valor}))
+            with self.subTest(campo=campo), self.assertRaisesRegex(ValueError,mensaje):
+                verificar(out,self.clima,self.root)
+
     def test_historia_real_fuera_de_ventanas_no_afecta_ningun_resumen(self):
         _,filas=leer_csv(self.clima/'clima_parcela_mes.csv')
         indice={(r['id_parcela'],r['periodo'],r['variable']):r for r in filas}

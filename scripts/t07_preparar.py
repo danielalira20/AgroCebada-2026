@@ -9,7 +9,7 @@ import sys
 import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.t07_fuentes import BASE, leer_csv, leer_json, leer_entrega, sha, validar_catalogo, guardar_csv, guardar_json
+from scripts.t07_fuentes import BASE, leer_csv, leer_json, leer_entrega, sha, validar_catalogo, guardar_csv, guardar_json, soporte_lluvia_t02
 from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
 from scripts.t07_diccionario import diccionario, CAMPOS
 
@@ -111,7 +111,8 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
         corte_observacional=m["corte_observacional_provisional"],
         alcance="Reconstrucción retrospectiva; corte observado no prueba publicación histórica",
         cierre_t07=False, fases_implementadas=[0, 1, 2])
-    larga, ancha, calidad = agregar(indice, ids)
+    _, soporte = leer_csv(raiz / T02 / 'tablas/soporte_por_parcela.csv')
+    larga, ancha, calidad = agregar(indice, ids, soporte_lluvia_t02(soporte, set(ids)))
     definiciones = diccionario()
     tablas = {"catalogo_base.csv": (BASE, catalogo), "clima_ventanas.csv": (LARGA, larga),
               "clima_variables.csv": (ANCHA, ancha), "calidad_ventanas.csv": (CALIDAD, calidad)}
@@ -135,7 +136,7 @@ def preparar(clima, ref_t04, base_dev, salida, raiz=RAIZ):
         guardar_json(temp / "inventario_fuentes.json", inventario)
         guardar_json(temp / "controles.json", controles)
         codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py", "t02_contrato.py"]
-        guardar_json(temp / "manifest.json", dict(schema="t07_fases_0_2_v1",
+        guardar_json(temp / "manifest.json", dict(schema="t07_fases_0_2_v2",
                      codigo_sha256={f"scripts/{n}": sha(raiz / "scripts" / n) for n in codigo},
                      entradas= dict(base_dev=base, revision_t04=rt04, manifest_t04_sha256=ht04["manifest.json"]),
                      archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},
@@ -191,7 +192,7 @@ def preparar_sin_clima(base_dev, salida, raiz=RAIZ):
         guardar_json(temp / "inventario_fuentes.json", inventario)
         guardar_json(temp / "controles.json", controles)
         codigo = ["t07_preparar.py", "t07_fuentes.py", "t07_ventanas.py", "t07_diccionario.py", "t07_preparar_insumos.py", "t02_contrato.py"]
-        guardar_json(temp / "manifest.json", dict(schema="t07_catalogo_sin_clima_v1",
+        guardar_json(temp / "manifest.json", dict(schema="t07_catalogo_sin_clima_v2",
                      codigo_sha256={f"scripts/{n}": sha(raiz / "scripts" / n) for n in codigo},
                      entradas=dict(base_dev=base), archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},
                      clima="pendiente_integracion_revisada", cierre_t07=False))

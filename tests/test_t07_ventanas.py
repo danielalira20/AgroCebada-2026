@@ -92,6 +92,54 @@ class Ventanas(unittest.TestCase):
         self.assertEqual(c[0]["cobertura_minima"], "")
         self.assertEqual(c[0]["estado"], "incompleta")
 
+    def test_centroide_misma_agregacion_y_bandera_exterior(self):
+        i = historia()
+        for r in i.values():
+            r['valor_centroide'] = '5' if r['variable']=='PREC' else '2'
+            r['centroide_dentro_parcela'] = 'False'
+        _, _, q = agregar(i, ['AGC_001'], {'AGC_001': 3})
+        self.assertEqual(q[0]['celdas_lluvia_tocadas_t02'], 3)
+        self.assertEqual(q[0]['valor_centroide_ventana'], 35)
+        self.assertEqual(q[0]['diferencia_media_menos_centroide'], 35)
+        self.assertEqual(q[0]['centroide_dentro_parcela'], 'False')
+        self.assertEqual(q[0]['estado_comparacion_centroide'], 'comparable')
+        i['AGC_001','2025-05','Tmin']['valor_centroide'] = '12'
+        _, c = agregar_serie(i, 'AGC_001', ('2025-04','2025-05'), 'Tmin')
+        self.assertAlmostEqual(c['valor_centroide_ventana'], 432/61, places=12)
+        self.assertAlmostEqual(c['diferencia_media_menos_centroide'], 10-432/61, places=12)
+
+    def test_centroide_nodata_no_es_cero_ni_comparacion_parcial(self):
+        i = historia()
+        for r in i.values(): r['valor_centroide'] = '0'
+        i['AGC_001','2025-04','PREC']['valor_centroide'] = ''
+        _, c = agregar_serie(i, 'AGC_001', VENTANAS['abr_oct'], 'PREC')
+        self.assertEqual(c['valor_centroide_ventana'], '')
+        self.assertEqual(c['diferencia_media_menos_centroide'], '')
+        self.assertEqual(c['meses_centroide_validos'], 6)
+        self.assertEqual(c['dias_centroide_validos'], 184)
+        self.assertEqual(c['periodos_sin_centroide'], '2025-04')
+        self.assertEqual(c['estado_comparacion_centroide'], 'centroide_incompleto')
+        _, c = agregar_serie(i, 'AGC_001', VENTANAS['jun_oct'], 'PREC')
+        self.assertEqual(c['valor_centroide_ventana'], 0)
+        self.assertEqual(c['diferencia_media_menos_centroide'], 50)
+
+    def test_media_parcial_no_comparable_aun_con_centroide_completo(self):
+        i = historia()
+        for r in i.values(): r['valor_centroide'] = '5'
+        i['AGC_001','2025-04','PREC']['estado'] = 'cobertura_parcial'
+        valor,c = agregar_serie(i, 'AGC_001', VENTANAS['abr_oct'], 'PREC')
+        self.assertEqual(valor, '')
+        self.assertEqual(c['valor_centroide_ventana'], 35)
+        self.assertEqual(c['diferencia_media_menos_centroide'], '')
+        self.assertEqual(c['estado_comparacion_centroide'], 'ventana_no_completa')
+
+    def test_bandera_centroide_inconsistente_y_soporte_ajeno_rechazados(self):
+        i = historia(); i['AGC_001','2025-04','PREC']['centroide_dentro_parcela']='False'
+        with self.assertRaisesRegex(ValueError, 'Bandera de centroide'):
+            agregar_serie(i, 'AGC_001', VENTANAS['abr_oct'], 'PREC')
+        with self.assertRaisesRegex(ValueError, 'IDs de soporte'):
+            agregar(historia(), ['AGC_001'], {'OTRA': 1})
+
     def test_tmin_superior_tmax_rechazada(self):
         i = historia()
         for r in i.values():

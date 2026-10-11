@@ -22,6 +22,9 @@ class Preparacion(unittest.TestCase):
         for n in T02_ARCHIVOS:
             p = cls.root / T02 / n; p.parent.mkdir(parents=True, exist_ok=True)
             if n == 'tablas/catalogo_parcelas.csv': guardar_csv(p, [k for k in BASE if k != 'campania'], catalogo)
+            elif n == 'tablas/soporte_por_parcela.csv':
+                guardar_csv(p, ['id_parcela','celdas_clima_tocadas'],
+                            [dict(id_parcela=r['id_parcela'],celdas_clima_tocadas='1') for r in catalogo])
             else: p.write_text('referencia de prueba\n')
         pro = cls.root / 'docs/T03_protocolo_evaluacion.md'; pro.parent.mkdir(); pro.write_text('protocolo de prueba')
         (cls.root / 'docs/T06_satelite.md').write_text('inventario de prueba')
@@ -120,8 +123,8 @@ class Preparacion(unittest.TestCase):
 
     def test_diccionario_roles_y_ausencias(self):
         d = diccionario(); pares = [(r['archivo'], r['columna']) for r in d]
-        self.assertEqual(len(d), 36)
-        self.assertEqual(len(set(pares)), 36)
+        self.assertEqual(len(d), 44)
+        self.assertEqual(len(set(pares)), 44)
         y = next(r for r in d if r['columna'] == 'rendimiento_t_ha')
         self.assertEqual(y['funcion'], 'objetivo')
         self.assertTrue(all(r['funcion'] != 'predictor_candidato' for r in d if r['columna'] in {'id_parcela','conjunto_origen','rendimiento_t_ha'}))

@@ -37,7 +37,7 @@ def indexar(filas, clave):
 def verificar(entrega, clima=None, raiz=RAIZ):
     raiz, entrega=Path(raiz).resolve(), Path(entrega).resolve()
     m=leer_json(entrega/'manifest.json'); inv=leer_json(entrega/'inventario_fuentes.json')
-    exigir(m['schema']=='t07_integracion_bloques_v1', 'Manifiesto T07 incompatible')
+    exigir(m['schema']=='t07_integracion_bloques_v2', 'Manifiesto T07 incompatible')
     exigir(set(m['archivos_sha256'])=={p.name for p in entrega.iterdir()}-{'manifest.json'}, 'Archivos de salida distintos del manifiesto')
     for n,h in m['archivos_sha256'].items(): exigir(sha(entrega/n)==h, f'Huella de salida distinta: {n}')
     for n,h in m['codigo_sha256'].items(): exigir(sha(raiz/n)==h, f'Código distinto de la ejecución: {n}')
@@ -106,11 +106,12 @@ def verificar(entrega, clima=None, raiz=RAIZ):
         exigir(dc[d['columna']]['funcion']==('calidad' if d['tipo']=='calidad' else 'predictor_candidato'), 'Rol T06 cambiado')
         exigir(dc[d['columna']]['definicion']==d['definicion'], 'Definición T06 alterada')
     contrato=leer_json(entrega/'contrato_columnas.json')
+    exigir(contrato.get('schema')=='t07_columnas_por_funcion_v2' and contrato.get('tabla')=='tabla_comun.csv', 'Versión del contrato T07 incompatible')
     exigir(contrato.get('grupo_registro')==GRUPO_REGISTRO, 'Uso del grupo de registro incompatible con T03/D019')
     roles={}
     for c in cab: roles.setdefault(dc[c]['funcion'],[]).append(c)
     exigir({k:set(v) for k,v in roles.items()}=={k:set(v) for k,v in contrato['columnas_por_funcion'].items()}, 'Roles del contrato contradictorios')
-    errores=[]; estados=[]
+    errores=[]; errores_centroide=[]; estados=[]
     if m['clima_integrado']:
         exigir(clima is not None, 'Contraste climático requiere la copia T04 original')
         estado, ht04=comprobar_copia(Path(clima),m['entradas']['revision_t04'],raiz)
@@ -122,6 +123,16 @@ def verificar(entrega, clima=None, raiz=RAIZ):
         _, larga=leer_csv(entrega/'clima_ventanas.csv'); li=indexar(larga,('id_parcela','ventana'))
         _, ancha=leer_csv(entrega/'clima_variables.csv'); ai=indexar(ancha,('id_parcela',))
         _, calidad=leer_csv(entrega/'calidad_ventanas.csv'); qi=indexar(calidad,('id_parcela','ventana','variable'))
+        _, soporte=leer_csv(raiz/T02/'tablas/soporte_por_parcela.csv')
+        soporte_por_id=indexar(soporte, ('id_parcela',))
+        exigir(set(soporte_por_id)==set(comun), 'Claves de soporte climático T02 distintas')
+        roles_nuevos={'celdas_lluvia_tocadas_t02':'calidad', 'centroide_dentro_parcela':'calidad',
+            'meses_centroide_validos':'calidad', 'dias_centroide_validos':'calidad',
+            'periodos_sin_centroide':'calidad', 'valor_centroide_ventana':'solo_auditoria',
+            'diferencia_media_menos_centroide':'solo_auditoria', 'estado_comparacion_centroide':'calidad'}
+        exigir(all(r['funcion']==roles_nuevos[r['columna']] for r in dic
+                   if r['archivo']=='calidad_ventanas.csv' and r['columna'] in roles_nuevos),
+               'Rol de sensibilidad climática incompatible')
         exigir((len(mi),len(li),len(ai),len(qi))==(28368,394,197,1182), 'Cardinalidad climática distinta')
         for pid in fuente:
             for w,periodos in PERIODOS.items():
@@ -142,6 +153,35 @@ def verificar(entrega, clima=None, raiz=RAIZ):
                     exigir(int(q['dias_esperados'])==sum(dias) and int(q['dias_validos'])==sum(d for x,d in zip(rows,dias) if x['media_ponderada']!=''), 'Días válidos distintos')
                     exigir(abs(Decimal(q['cobertura_minima'])-min(Decimal(x['cobertura_valida']) for x in rows))<=Decimal('1e-15'), 'Cobertura climática distinta')
                     exigir(q['unidad']==('mm' if v=='PREC' else 'grados Celsius'), 'Unidad de ventana incorrecta')
+                    n=soporte_por_id[(pid,)]['celdas_clima_tocadas']
+                    exigir(n.isdigit() and int(n)>0 and q['celdas_lluvia_tocadas_t02']==str(int(n)), 'Conteo de celdas de lluvia T02 distinto')
+                    flags={x['centroide_dentro_parcela'] for x in rows}
+                    exigir(len(flags)==1 and q['centroide_dentro_parcela'] in flags, 'Bandera de centroide climático distinta')
+                    centros_validos=[x['valor_centroide']!='' for x in rows]
+                    faltan_centros=[p for p,x in zip(periodos,rows) if x['valor_centroide']=='']
+                    exigir(int(q['meses_centroide_validos'])==sum(centros_validos) and
+                           int(q['dias_centroide_validos'])==sum(d for ok,d in zip(centros_validos,dias) if ok) and
+                           q['periodos_sin_centroide']==';'.join(faltan_centros), 'Conteos/meses de centroide distintos')
+                    comparable=completos and all(centros_validos)
+                    esperado_estado='ventana_no_completa' if not completos else 'centroide_incompleto' if faltan_centros else 'comparable'
+                    exigir(q['estado_comparacion_centroide']==esperado_estado, 'Estado de sensibilidad al centroide contradictorio')
+                    with localcontext() as ctx:
+                        ctx.prec=40
+                        if all(centros_validos):
+                            cs=[Decimal(x['valor_centroide']) for x in rows]
+                            esperado_centro=sum(cs) if v=='PREC' else sum(x*d for x,d in zip(cs,dias))/sum(dias)
+                            exigir(q['valor_centroide_ventana']!='', 'Centroide completo ausente')
+                            error=abs(Decimal(q['valor_centroide_ventana'])-esperado_centro)
+                            exigir(error<=TOLERANCIA, 'Agregado del centroide distinto (Decimal)')
+                            errores_centroide.append(error)
+                        else: exigir(q['valor_centroide_ventana']=='', 'Centroide incompleto presentado como completo')
+                        if comparable:
+                            ms=[Decimal(x['media_ponderada']) for x in rows]
+                            esperado_media=sum(ms) if v=='PREC' else sum(x*d for x,d in zip(ms,dias))/sum(dias)
+                            exigir(q['diferencia_media_menos_centroide']!='', 'Sensibilidad completa ausente')
+                            exigir(abs(Decimal(q['diferencia_media_menos_centroide'])-(esperado_media-esperado_centro))<=TOLERANCIA,
+                                   'Diferencia con centroide distinta (Decimal)')
+                        else: exigir(q['diferencia_media_menos_centroide']=='', 'Sensibilidad incompleta presentada como completa')
                     valores=[r[col],ai[(pid,)][f'{col}_{w}'],comun[(pid,)][f'{col}_{w}']]
                     if completos:
                         with localcontext() as ctx:
@@ -199,12 +239,21 @@ def verificar(entrega, clima=None, raiz=RAIZ):
     exigir(control['columnas_tabla_comun']==len(cab), 'Columnas declaradas distintas')
     exigir(control['estados_calidad_satelite']==dict(Counter(r['estado'] for r in calidad_sat)), 'Estados satelitales declarados distintos')
     if auditoria_relieve: exigir(control['relieve']==auditoria_relieve['controles'], 'Controles relieve distintos')
-    if estados: exigir(control['estados_ventanas']==dict(Counter(estados)), 'Estados climáticos declarados distintos')
+    if estados:
+        exigir(control['estados_ventanas']==dict(Counter(estados)), 'Estados climáticos declarados distintos')
+        esperado=dict(fuente_conteo_celdas=T02+'/tablas/soporte_por_parcela.csv',
+            cuadricula_del_conteo='lluvia T02; no conteo de temperatura',
+            parcelas_varias_celdas_lluvia=sum(int(r['celdas_clima_tocadas'])>1 for r in soporte),
+            centroides_exteriores=sorted({r['id_parcela'] for r in calidad if r['centroide_dentro_parcela']=='False'}),
+            estados_comparacion=dict(Counter(r['estado_comparacion_centroide'] for r in calidad)))
+        exigir(control['calidad_climatica_espacial']==esperado, 'Control de calidad climática espacial distinto')
     exigir(m['cierre_t07'] is False and control['cierre_t07'] is False, 'Revisión humana no puede inferirse del cálculo')
     return dict(resultado='verificado', parcelas=197, etiquetas_originales=138, etiquetas_ausentes=59,
                 valores_satelitales_literales=len(satcols)*197, controles_satelitales=1182,
                 contrastes_climaticos=len(errores), diferencia_maxima_decimal=str(max(errores,default=Decimal(0))),
-                tolerancia_decimal=str(TOLERANCIA), estados_climaticos=dict(Counter(estados)),
+                tolerancia_decimal=str(TOLERANCIA), contrastes_centroide=len(errores_centroide),
+                diferencia_maxima_decimal_centroide=str(max(errores_centroide,default=Decimal(0))),
+                estados_climaticos=dict(Counter(estados)),
                 estado_entrega=m['estado_entrega'], relieve=auditoria_relieve, cierre_t07=False)
 
 

@@ -9,7 +9,7 @@ import sys
 import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.t07_fuentes import BASE, leer_csv, leer_entrega, sha, validar_catalogo, guardar_csv, guardar_json
+from scripts.t07_fuentes import BASE, leer_csv, leer_entrega, sha, validar_catalogo, guardar_csv, guardar_json, soporte_lluvia_t02
 from scripts.t07_ventanas import agregar, LARGA, ANCHA, CALIDAD, VENTANAS
 from scripts.t07_diccionario import diccionario, CAMPOS, GRUPO_REGISTRO
 from scripts.t07_preparar import RAIZ, T02, DATOS_T02, revision, comprobar_fuente, comprobar_copia, compatibilidad_t02, procedencia_t02
@@ -77,7 +77,8 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
             raise ValueError("T04 pendiente de aceptación: usar --para-revision con salida local en reports/")
         indice, m, pro, con = leer_entrega(clima, ids)
         compatibilidad_t02(con, base, raiz)
-        larga, ancha, calidad = agregar(indice, ids)
+        _, soporte = leer_csv(raiz / T02 / 'tablas/soporte_por_parcela.csv')
+        larga, ancha, calidad = agregar(indice, ids, soporte_lluvia_t02(soporte, set(ids)))
         tablas.update({'clima_ventanas.csv': (LARGA, larga), 'clima_variables.csv': (ANCHA, ancha),
                        'calidad_ventanas.csv': (CALIDAD, calidad)})
         definiciones += [r for r in diccionario() if r['archivo'] != 'catalogo_base.csv']
@@ -109,7 +110,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
         if r['archivo'] == 'tabla_comun.csv':
             roles.setdefault(r['funcion'], []).append(r['columna'])
             if 'no documentada' in r['unidad']: unidades_pendientes.append(r['columna'])
-    contrato = dict(schema='t07_columnas_por_funcion_v1', tabla='tabla_comun.csv',
+    contrato = dict(schema='t07_columnas_por_funcion_v2', tabla='tabla_comun.csv',
                     columnas_por_funcion=roles, grupo_registro=GRUPO_REGISTRO, experimentos_definidos=False,
                     todas_las_columnas_no_equivalen_a_entradas_del_modelo=True,
                     unidades_fisicas_pendientes=unidades_pendientes,
@@ -131,7 +132,13 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
     if clima is not None:
         controles.update(filas_mensuales_verificadas=len(indice),
                          estados_ventanas=dict(Counter(r['estado'] for r in calidad)),
-                         resumenes_climaticos_completos=sum(r['estado'] == 'completa' for r in calidad))
+                         resumenes_climaticos_completos=sum(r['estado'] == 'completa' for r in calidad),
+                         calidad_climatica_espacial=dict(
+                             fuente_conteo_celdas=T02+'/tablas/soporte_por_parcela.csv',
+                             cuadricula_del_conteo='lluvia T02; no conteo de temperatura',
+                             parcelas_varias_celdas_lluvia=sum(n>1 for n in soporte_lluvia_t02(soporte,set(ids)).values()),
+                             centroides_exteriores=sorted({r['id_parcela'] for r in calidad if r['centroide_dentro_parcela']=='False'}),
+                             estados_comparacion=dict(Counter(r['estado_comparacion_centroide'] for r in calidad))))
     salida.parent.mkdir(parents=True, exist_ok=True)
     temp = Path(tempfile.mkdtemp(prefix='.t07-integracion-', dir=salida.parent))
     try:
@@ -140,7 +147,7 @@ def integrar(base_dev, salida, clima=None, revision_t04=None, para_revision=Fals
         guardar_json(temp / 'inventario_fuentes.json', inventario)
         guardar_json(temp / 'contrato_columnas.json', contrato)
         guardar_json(temp / 'controles.json', controles)
-        guardar_json(temp / 'manifest.json', dict(schema='t07_integracion_bloques_v1',
+        guardar_json(temp / 'manifest.json', dict(schema='t07_integracion_bloques_v2',
             codigo_sha256={f'scripts/{n}': sha(raiz / 'scripts' / n) for n in CODIGO},
             entradas=dict(base_dev=base, revision_t04=revision_t04 and rt04),
             archivos_sha256={p.name: sha(p) for p in sorted(temp.iterdir())},

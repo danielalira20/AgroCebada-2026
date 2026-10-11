@@ -180,6 +180,20 @@ def leer_entrega(carpeta, ids):
     return indice, m, pro, con
 
 
+def soporte_lluvia_t02(filas, ids):
+    """Conteo publicado de lluvia por parcela; no atribuirlo a otra cuadrícula."""
+    indice = {}
+    for r in filas:
+        pid = r.get('id_parcela')
+        n = r.get('celdas_clima_tocadas', '')
+        if pid in indice or pid not in ids or not n.isdigit() or int(n) < 1:
+            raise ValueError('Conteo/claves de soporte climático T02 incompatibles')
+        indice[pid] = int(n)
+    if set(indice) != set(ids):
+        raise ValueError('Soporte climático T02 incompleto')
+    return indice
+
+
 def guardar_csv(ruta, campos, filas):
     with Path(ruta).open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=campos, lineterminator="\n")

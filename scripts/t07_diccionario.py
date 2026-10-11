@@ -35,6 +35,14 @@ def diccionario():
         "meses_validos": ("Meses con media finita; incluye cobertura parcial", "meses", "calidad"),
         "dias_validos": ("Días de los meses con media finita; no certifica soporte completo", "días", "calidad"),
         "cobertura_minima": ("Mínimo de cobertura_valida T04 entre meses presentes, incluso NoData=0; no cobertura conjunta", "fracción 0–1", "calidad"),
+        "celdas_lluvia_tocadas_t02": ("Celdas intersectadas en la cuadrícula de lluvia, según T02; atributo de parcela repetido por ventana/variable, no conteo de temperatura ni de celdas válidas", "celdas", "calidad"),
+        "centroide_dentro_parcela": ("Bandera geométrica climática T04; False conserva el centroide exterior sin desplazarlo", "booleano", "calidad"),
+        "meses_centroide_validos": ("Meses presentes con valor finito en el centroide, independientemente de la cobertura parcelaria", "meses", "calidad"),
+        "dias_centroide_validos": ("Días de los meses con valor finito en el centroide; no certifica ventana completa", "días", "calidad"),
+        "periodos_sin_centroide": ("Meses ausentes o cuyo centroide no tiene valor, separados por punto y coma", "YYYY-MM", "calidad"),
+        "valor_centroide_ventana": ("Agregado temporal del valor del centroide: PREC suma, Tmin/Tmax ponderadas por días; sólo con todos los meses", "unidad de la variable indicada en la fila", "solo_auditoria"),
+        "diferencia_media_menos_centroide": ("Media espacial agregada en la ventana menos agregado del centroide con idénticos meses y pesos; sensibilidad espacial, no error de predicción", "unidad de la variable indicada en la fila", "solo_auditoria"),
+        "estado_comparacion_centroide": ("comparable, centroide_incompleto o ventana_no_completa; comparable no afirma que el centroide esté dentro del polígono", "categoría", "calidad"),
         "motivo": ("Causas separadas por punto y coma: mes_ausente, mes_sin_media, cobertura_parcial_sin_extrapolacion", "categoría", "calidad"),
         "periodos_con_problema": ("Meses ausentes, sin media o de cobertura parcial, separados por punto y coma", "YYYY-MM", "calidad"),
     }
@@ -59,12 +67,22 @@ def diccionario():
                 else:
                     d, u, rol = descripcion[columna]
                 producto, agregado = ("catálogo T02", "selección literal") if archivo == "catalogo_base.csv" else ("T04", "control temporal")
+                if columna == 'celdas_lluvia_tocadas_t02':
+                    producto, agregado = 'soporte de lluvia T02', 'selección literal por id_parcela'
+                elif columna in {'valor_centroide_ventana', 'diferencia_media_menos_centroide'}:
+                    agregado = 'PREC suma; Tmin/Tmax sum(valor mensual × días_mes) / días_ventana; comparación sobre iguales meses y pesos'
+
                 vacio = ("Etiqueta no disponible en las 59 parcelas PREDICCION; no se imputa" if columna == "rendimiento_t_ha" else
                          "Sin meses presentes; no equivale a cero" if columna == "cobertura_minima" else
-                         "Ningún problema detectado" if columna in {"motivo", "periodos_con_problema"} else
+                         "Ningún problema detectado" if columna in {"motivo", "periodos_con_problema", "periodos_sin_centroide"} else
+                         "Falta al menos un mes de centroide; nunca equivale a cero" if columna == "valor_centroide_ventana" else
+                         "Ventana principal no completa o centroide incompleto; consultar estado_comparacion_centroide" if columna == "diferencia_media_menos_centroide" else
+                         "Sin meses presentes; no se inventa pertenencia geométrica" if columna == "centroide_dentro_parcela" else
                          "No permitido por el contrato")
             out.append(dict(archivo=archivo, columna=columna, definicion=d, unidad=u, funcion=rol,
                             producto=producto, periodo=w or ("campaña 2025" if archivo == "catalogo_base.csv" else "ventana indicada en cada fila"),
                             agregacion=agregado, significado_vacio=vacio,
-                            procedencia="inventario_fuentes.json; calidad_ventanas.csv" if campo else "inventario_fuentes.json"))
+                            procedencia="analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv; inventario_fuentes.json" if columna == "celdas_lluvia_tocadas_t02" else
+                            "registro/t04/clima_parcela_mes.csv; inventario_fuentes.json" if archivo == "calidad_ventanas.csv" else
+                            "inventario_fuentes.json; calidad_ventanas.csv" if campo else "inventario_fuentes.json"))
     return out
