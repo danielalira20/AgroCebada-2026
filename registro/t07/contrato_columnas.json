@@ -1,5 +1,5 @@
 {
-  "schema": "t07_columnas_por_funcion_v1",
+  "schema": "t07_columnas_por_funcion_v2",
   "tabla": "tabla_comun.csv",
   "columnas_por_funcion": {
     "metadato": [
@@ -49,7 +49,7 @@
       "elevacion_media_m",
       "pendiente_media_t10_grados"
     ],
-    "solo_auditoria": [
+    "referencia_y_evaluacion": [
       "cultivo_origen"
     ],
     "calidad": [
@@ -72,6 +72,19 @@
       "ls_hueco_max_jun_oct",
       "ls_nubosidad_media_jun_oct"
     ]
+  },
+  "grupo_registro": {
+    "columna": "cultivo_origen",
+    "equivalencia_t03": "grupo_registro",
+    "funcion": "referencia_y_evaluacion",
+    "usos": [
+      "respaldo_por_grupo_T03_D019",
+      "desgloses_de_error_por_grupo"
+    ],
+    "referencia_aprendida_solo_en_entrenamiento": true,
+    "predictor_automatico": false,
+    "normalizar_texto_original": false,
+    "estratificacion_interna_t03": "municipio u otros; no cultivo_origen"
   },
   "experimentos_definidos": false,
   "todas_las_columnas_no_equivalen_a_entradas_del_modelo": true,

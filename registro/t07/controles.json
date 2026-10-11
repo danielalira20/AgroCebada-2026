@@ -115,12 +115,12 @@
       "accion": "conservar_ambas; seleccionar_solo_en_experimento_explicito"
     }
   ],
-  "diccionario_columnas": 135,
+  "diccionario_columnas": 143,
   "roles_tabla_comun": {
     "metadato": 5,
     "objetivo": 1,
     "predictor_candidato": 35,
-    "solo_auditoria": 1,
+    "referencia_y_evaluacion": 1,
     "calidad": 18
   },
   "etiquetas_sin_transformar": true,
@@ -151,5 +151,18 @@
   "estados_ventanas": {
     "completa": 1182
   },
-  "resumenes_climaticos_completos": 1182
+  "resumenes_climaticos_completos": 1182,
+  "calidad_climatica_espacial": {
+    "fuente_conteo_celdas": "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv",
+    "cuadricula_del_conteo": "lluvia T02; no conteo de temperatura",
+    "parcelas_varias_celdas_lluvia": 31,
+    "centroides_exteriores": [
+      "AGC_078",
+      "AGC_152",
+      "AGC_182"
+    ],
+    "estados_comparacion": {
+      "comparable": 1182
+    }
+  }
 }
