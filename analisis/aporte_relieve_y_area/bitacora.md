@@ -6,7 +6,7 @@
 
 Responsable: Jass. Revisora: Daf.
 
-**Estado al 12 de octubre de 2026:** evaluación completa corrida (pasos 6 y 7). Ninguna configuración cumple la regla de T03: relieve y área no aportan sobre la referencia territorial con este procedimiento. Diagnóstico exploratorio, informe de cierre y registros hechos (pasos 8 y 9). Falta la reproducción en Docker y el PR (paso 10).
+**Estado al 12 de octubre de 2026:** evaluación completa corrida (pasos 6 y 7). Ninguna configuración cumple la regla de T03: relieve y área no aportan sobre la referencia territorial con este procedimiento. Diagnóstico exploratorio, informe de cierre y registros hechos (pasos 8 y 9). Reproducción comprobada en Linux y en Docker sobre Windows (paso 10). Queda la revisión de Daf.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -40,7 +40,7 @@ Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts
 | 7 | Desgloses por tamaño, cobertura y contorno; sensibilidad sin las 24; revuelto si aplica; predicciones de las 59 | **Hecho** (12 oct) |
 | 8 | Diagnóstico exploratorio con rendimientos (Pearson y gráficos) | **Hecho** (12 oct) |
 | 9 | Informe de cierre y registros (`E_T10_001`–`006`, `IA_T10_001`) | **Hecho** (12 oct) |
-| 10 | Reproducción (dos corridas idénticas, Docker) y borrador del PR para Daf | Pendiente |
+| 10 | Reproducción (dos corridas idénticas, Docker) y borrador del PR para Daf | **Hecho** (12 oct) |
 
 ## Bitácora
 
@@ -181,3 +181,15 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 - `registro/uso_ia.csv`: `IA_T10_001`.
 
 **Al integrar con T11.** La rama de T11 también agrega filas al final de `decisiones.csv`, `experimentos.csv` y `uso_ia.csv`. Git marcará conflicto en esos tres archivos; se resuelve conservando las filas de ambos lados.
+
+### 12 de octubre de 2026 — Reproducción (paso 10)
+
+**Qué se esperaba.** Que la evaluación diera exactamente los mismos archivos al repetirla, en otro momento y en el entorno común del equipo.
+
+**Qué se hizo.**
+1. Segunda corrida en Linux (Python 3.12.14), en una carpeta aparte.
+2. Corrida de Jass en Windows con el entorno común: `.\ejecutar.ps1 python -m scripts.t10_relieve_area --evaluar --salida reports/t10_docker` (Docker, Python 3.12.15, x86_64). Antes, `ejecutar.ps1` comprobó que los datos originales son el paquete de FIRA (166 archivos idénticos al ZIP) y la referencia volvió a coincidir con T08 (1,380 predicciones, diferencia máxima 8.9e-16).
+
+**Qué se comprobó.** En las dos corridas, los 9 archivos de resultados son idénticos byte a byte a los de `registro/t10/`. El manifiesto sólo difiere en el entorno y el tiempo; sus huellas de entradas y de código coinciden.
+
+**Qué no se comprobó.** Una corrida en Mac (ARM). La revisión independiente de Daf.
