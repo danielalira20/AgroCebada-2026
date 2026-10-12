@@ -60,12 +60,15 @@ con calidad separada, diccionario de columnas, contrato de roles y huellas.
 Jass revisó el PR14. Las [correcciones locales 1–5](docs/t07_correcciones_pr14.md)
 atienden compatibilidad Windows, grupo de referencia/evaluación y calidad
 climática por ventana, área candidata de T10 y calidad por parcela para T03 bis.
-Los cinco puntos están comprobados localmente; la nueva revisión de Jass y
-el cierre humano siguen pendientes.
+Las correcciones se integraron en `dev` por el PR14 el 11 de octubre de 2026
+(02:59 UTC). El manifiesto conserva el estado histórico de su ejecución.
+El [complemento de fichas de atributos](docs/t07_fichas_atributos.md), en
+`registro/t07_fichas/`, amplía disponibilidad y requisitos futuros; tiene revisión propia pendiente.
 Consultar el [contrato](docs/t07_contrato.md), los
 [antecedentes de fases 0–2](docs/t07_fases_0_2.md), la
 [integración inicial por ventanas](docs/t07_fase_3.md) y la
 [entrega completa y pasos de reproducción](docs/t07_fase_4_5.md).
 Los borradores anteriores permanecen en `reports/` con su procedencia histórica.
-T07 permanece en revisión; las columnas candidatas no son entradas automáticas
-de un modelo.
+La integración T07 ya está en `dev`; las columnas candidatas no son entradas
+automáticas de un modelo. El nuevo complemento documental no inicia T09 ni el
+diagnóstico estadístico de atributos.
