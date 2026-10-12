@@ -3,7 +3,9 @@
 Uso (desde la raíz del repo):
     python scripts/t14_clima.py --datos RUTA/DATASET_RETO_AGRO_2026 \
         --clima registro/t04/clima_parcela_mes.csv \
-        --particiones registro/t03/particiones.csv --salida RUTA/SALIDA
+        --particiones registro/t03/particiones.csv --salida RUTA/SALIDA \
+        [--catalogo analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv] \
+        [--pares analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv]
 
 Protocolo (T03 y D019):
 - Referencia: media_mun__resp_grupo (media del municipio; respaldo por grupo de registro y luego global).
@@ -12,8 +14,11 @@ Protocolo (T03 y D019):
   referencia calculada dejando fuera esa fila (T03 §5).
 - α de Ridge ∈ ALFAS (6 configuraciones ≤ 8), elegido con 4 particiones internas estratificadas por
   municipio (estrato «otros» si hay < 4 etiquetas). Escalado ajustado dentro de cada entrenamiento.
-- Variables: temporada 2025 con corte al 31 de octubre (sólo meses con posterior_al_corte = False).
-  Etapa temprana = abril–junio y tardía = julio–octubre. PREC se suma; Tmin y Tmax se promedian.
+- Variables: temporada 2025 con corte al 31 de octubre (sólo meses con posterior_al_corte = False),
+  en las dos ventanas candidatas de T03 §6: abril–octubre y junio–octubre. PREC se suma (mm);
+  Tmin y Tmax se promedian ponderando cada mes por sus días (°C).
+- La tabla de clima se valida antes de usarla (columnas, claves únicas, meses, variables, unidades,
+  estados, cobertura y bandera de corte); cualquier inconsistencia detiene el script.
 - Comparación emparejada contra la referencia en los subconjuntos `todas` y `sin_respaldo`;
   la decisión se toma en `sin_respaldo`, con IC95 por bloques de celdas CHIRPS.
 
@@ -22,7 +27,8 @@ Genera en --salida:
     predicciones_oof_t14_<candidato>.csv  formato T03 §7 con columna fuente, escenarios A y B
     metricas_t14.csv                      MAE, RMSE, sesgo y R² por candidato y escenario
     comparacion_emparejada_t14.csv        ΔMAE frente a la referencia, IC95 y regla T03
-    alfas_t14.csv                         α elegido en cada ajuste
+    alfas_t14.csv                         α elegido en cada ajuste (una fila por ajuste)
+    desglose_errores_t14.csv              MAE por municipio, grupo, calidad de contorno y vecinas (T03 §4 bis)
     colinealidad_t14.csv                  correlaciones entre las 6 variables y VIF
     escala_compartida_t14.csv             cuántos valores climáticos distintos hay realmente
     predicciones_59_t14.csv               ajuste con las 138 etiquetas para las 59 reservadas
@@ -42,36 +48,64 @@ from t08_referencias import cargar, metricas, referencia  # noqa: E402
 
 warnings.filterwarnings("ignore", message="The least populated class")
 
-VERSION = "T14-v1"
+VERSION = "T14-v2"
 BASE = "referencia"
 ALFAS = [0.1, 1, 10, 100, 1000, 10000]
 N_INTERNAS = 4
 SEMILLA_INTERNA = 0
 N_BOOT = 5000
 SEMILLA_BOOT = 20261006
-TEMPRANA = ["2025-04", "2025-05", "2025-06"]
-TARDIA = ["2025-07", "2025-08", "2025-09", "2025-10"]
+VENTANAS = {
+    "abr_oct": ["2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10"],
+    "jun_oct": ["2025-06", "2025-07", "2025-08", "2025-09", "2025-10"],
+}
 GRUPOS = {
-    "lluvia": ["prec_temprana", "prec_tardia"],
-    "tmin": ["tmin_temprana", "tmin_tardia"],
-    "tmax": ["tmax_temprana", "tmax_tardia"],
+    "lluvia": ["prec_abr_oct", "prec_jun_oct"],
+    "tmin": ["tmin_abr_oct", "tmin_jun_oct"],
+    "tmax": ["tmax_abr_oct", "tmax_jun_oct"],
 }
 GRUPOS["clima"] = GRUPOS["lluvia"] + GRUPOS["tmin"] + GRUPOS["tmax"]
+UNIDADES = {"PREC": "mm/mes", "Tmax": "grados Celsius", "Tmin": "grados Celsius"}
+ESTADOS = {"cobertura_completa", "cobertura_parcial"}
+COLUMNAS = ["id_parcela", "periodo", "variable", "unidad", "media_ponderada", "estado",
+            "cobertura_valida", "posterior_al_corte"]
 REF = referencia("media", "grupo")
 
 
 # ---------------------------------------------------------------- variables
+def validar_clima(c: pd.DataFrame) -> pd.DataFrame:
+    """Contrato de entrada de T04. Cualquier inconsistencia detiene el script (revisión de Diego)."""
+    faltan = set(COLUMNAS) - set(c.columns)
+    assert not faltan, f"faltan columnas en la tabla de clima: {sorted(faltan)}"
+    assert not c.duplicated(["id_parcela", "periodo", "variable"]).any(), "claves (id, periodo, variable) repetidas"
+    assert set(c.variable) == set(UNIDADES), f"variables inesperadas: {sorted(set(c.variable))}"
+    mal = c[c.unidad != c.variable.map(UNIDADES)]
+    assert mal.empty, f"unidades incorrectas: {mal[['variable', 'unidad']].drop_duplicates().values.tolist()}"
+    assert set(c.estado) <= ESTADOS, f"estados no permitidos: {sorted(set(c.estado) - ESTADOS)}"
+    assert c.cobertura_valida.between(0, 1).all(), "cobertura_valida fuera de [0, 1]"
+    corte = c.posterior_al_corte.astype(str).str.lower()
+    assert corte.isin(["true", "false"]).all(), "posterior_al_corte con valores distintos de True/False"
+    assert c.periodo.str.fullmatch(r"\d{4}-\d{2}").all(), "periodo con formato distinto de AAAA-MM"
+    fin_mes = pd.to_datetime(c.periodo + "-01") + pd.offsets.MonthEnd(0)
+    assert (corte.eq("true") == (fin_mes > pd.Timestamp("2025-10-31"))).all(), "posterior_al_corte no coincide con el corte"
+    meses = sorted(set().union(*VENTANAS.values()))
+    v = c[c.periodo.isin(meses) & corte.eq("false")]
+    n = v.groupby(["id_parcela", "variable"]).periodo.nunique()
+    assert (n == len(meses)).all() and len(n) == c.id_parcela.nunique() * len(UNIDADES), "faltan meses en la temporada"
+    assert np.isfinite(v.media_ponderada).all() and (v.cobertura_valida > 0).all(), "clima vacío en la temporada"
+    return v
+
+
 def variables_clima(ruta: Path) -> pd.DataFrame:
-    c = pd.read_csv(ruta)
-    c = c[~c.posterior_al_corte.astype(str).str.lower().eq("true")]
+    c = validar_clima(pd.read_csv(ruta))
+    c = c.assign(dias=pd.to_datetime(c.periodo + "-01").dt.days_in_month)
     out = {}
-    for etapa, meses in [("temprana", TEMPRANA), ("tardia", TARDIA)]:
-        n = c[c.periodo.isin(meses)].groupby(["id_parcela", "variable"]).media_ponderada.count().unstack()
-        assert (n == len(meses)).all().all(), f"faltan meses de clima en la etapa {etapa}"
-        x = c[c.periodo.isin(meses)].groupby(["id_parcela", "variable"]).media_ponderada
-        out[f"prec_{etapa}"] = x.sum().unstack()["PREC"]
-        out[f"tmin_{etapa}"] = x.mean().unstack()["Tmin"]
-        out[f"tmax_{etapa}"] = x.mean().unstack()["Tmax"]
+    for nombre, meses in VENTANAS.items():
+        x = c[c.periodo.isin(meses)]
+        out[f"prec_{nombre}"] = x[x.variable == "PREC"].groupby("id_parcela").media_ponderada.sum()
+        for var in ["Tmin", "Tmax"]:
+            t = x[x.variable == var].assign(p=lambda z: z.media_ponderada * z.dias).groupby("id_parcela")
+            out[f"{var.lower()}_{nombre}"] = t.p.sum() / t.dias.sum()
     v = pd.DataFrame(out)[GRUPOS["clima"]]
     v.index.name = "ID_POLIGONO"
     return v
@@ -200,6 +234,40 @@ def colinealidad(v):
     return r
 
 
+def desglose(oof, d, catalogo=None, pares=None):
+    """MAE por grupo a partir de las predicciones fuera del entrenamiento (no reentrena; T03 §4 bis)."""
+    t = d[d.CONJUNTO == "ENTRENAMIENTO"]
+    atr = t[["municipio", "grupo_registro"]].copy()
+    if catalogo is not None:
+        cat = pd.read_csv(catalogo, encoding="utf-8-sig")
+        cat = cat.rename(columns={"id_parcela": "ID_POLIGONO"}).set_index("ID_POLIGONO")
+        for c in ["contorno_categoria", "contorno_angosta_o_muy_pequena"]:
+            if c in cat:
+                atr[c] = cat[c].reindex(atr.index).astype(str)
+        dudosa = pd.Series(False, index=atr.index)
+        if "contorno_categoria" in atr:
+            dudosa |= atr.contorno_categoria.isin(["B", "C"])
+        if "contorno_angosta_o_muy_pequena" in atr:
+            dudosa |= atr.contorno_angosta_o_muy_pequena.str.lower().isin(["sí", "si", "true", "1"])
+        atr["parcela_dudosa_4bis"] = dudosa
+    if pares is not None:
+        pr = pd.read_csv(pares, encoding="utf-8-sig")
+        ids = [c for c in pr.columns if "id" in c.lower()][:2]
+        assert len(ids) == 2, f"no encontré las dos columnas de ID en {pares}"
+        con_vecina = set()
+        for a, b in pr[ids].values:
+            if a in t.index and b in t.index:
+                con_vecina |= {a, b}
+        atr["vecina_etiquetada_20m"] = atr.index.isin(con_vecina)
+    x = oof.assign(ae=(oof.prediccion - oof.real).abs()).join(atr, on="ID_POLIGONO")
+    filas = []
+    for col in atr.columns:
+        for (esc, c, g), z in x.groupby(["escenario", "candidato", col]):
+            filas.append(dict(escenario=esc, candidato=c, atributo=col, grupo=g, MAE=z.ae.mean(),
+                              n_parcelas=z.ID_POLIGONO.nunique(), poco_informativo=z.ID_POLIGONO.nunique() < 5))
+    return pd.DataFrame(filas).round(4)
+
+
 def escala(v, d, celda):
     t = d[d.CONJUNTO == "ENTRENAMIENTO"]
     vt = v.loc[t.index].round(4)
@@ -218,6 +286,8 @@ def main():
     ap.add_argument("--clima", type=Path, required=True)
     ap.add_argument("--particiones", type=Path, required=True)
     ap.add_argument("--salida", type=Path, required=True)
+    ap.add_argument("--catalogo", type=Path, help="catálogo de T02 (calidad de contorno), opcional")
+    ap.add_argument("--pares", type=Path, help="pares de parcelas cercanas de T02, opcional")
     a = ap.parse_args()
     a.salida.mkdir(parents=True, exist_ok=True)
 
@@ -240,7 +310,8 @@ def main():
     for c, x in oof.groupby("candidato"):
         x[cols].to_csv(a.salida / f"predicciones_oof_t14_{c}.csv", index=False)
     oof[oof.candidato != BASE][["candidato", "escenario", "repeticion", "particion", "alfa"]] \
-        .to_csv(a.salida / "alfas_t14.csv", index=False)
+        .drop_duplicates().to_csv(a.salida / "alfas_t14.csv", index=False)
+    desglose(oof, d, a.catalogo, a.pares).to_csv(a.salida / "desglose_errores_t14.csv", index=False)
 
     m = resumir(oof)
     m.to_csv(a.salida / "metricas_t14.csv", index=False)

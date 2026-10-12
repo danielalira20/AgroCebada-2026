@@ -1,7 +1,7 @@
-,prec_temprana,prec_tardia,tmin_temprana,tmin_tardia,tmax_temprana,tmax_tardia,VIF
-prec_temprana,1.0,0.724,-0.622,-0.531,-0.021,0.164,45.2
-prec_tardia,0.724,1.0,0.035,0.099,0.166,-0.083,23.9
-tmin_temprana,-0.622,0.035,1.0,0.96,0.371,-0.159,943.4
-tmin_tardia,-0.531,0.099,0.96,1.0,0.607,0.078,2042.8
-tmax_temprana,-0.021,0.166,0.371,0.607,1.0,0.802,575.7
-tmax_tardia,0.164,-0.083,-0.159,0.078,0.802,1.0,115.4
+,prec_abr_oct,prec_jun_oct,tmin_abr_oct,tmin_jun_oct,tmax_abr_oct,tmax_jun_oct,VIF
+prec_abr_oct,1.0,0.975,-0.216,-0.182,0.043,0.011,225.8
+prec_jun_oct,0.975,1.0,-0.032,-0.004,-0.004,-0.067,214.6
+tmin_abr_oct,-0.216,-0.032,1.0,0.992,0.129,-0.009,5079.7
+tmin_jun_oct,-0.182,-0.004,0.992,1.0,0.245,0.105,6776.0
+tmax_abr_oct,0.043,-0.004,0.129,0.245,1.0,0.987,4576.3
+tmax_jun_oct,0.011,-0.067,-0.009,0.105,0.987,1.0,3336.4
