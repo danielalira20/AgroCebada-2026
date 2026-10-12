@@ -12,13 +12,13 @@
     "registro/t03/predicciones_59_referencias.csv": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56"
   },
   "codigo_sha256": {
-    "scripts/t10_relieve_area.py": "3bba845c506d4bd615c46bea7a23191a72b4d61cf997fe3761909323094d6ec7"
+    "scripts/t10_relieve_area.py": "fbe2a671a545191ad1902ceba376f971dde4b8089868ef2824010bf7e156e926"
   },
   "archivos_sha256": {
     "coeficientes_t10.csv": "e4681d27d088246d84856a640fdc1167cfe0a6f8feabe421b009606506dcc633",
-    "comparacion_emparejada_t10.csv": "b908ff9f27df9e517e5d0aec4374e9622b95f08b4718afb38794e65eb8066b2c",
+    "comparacion_emparejada_t10.csv": "900b9fe50abbb98eef4c4a8fd012327378597e3670557f90bb3fe29791a522c7",
     "control_revuelto_t10.csv": "d75ab7de47a9064d4fb75e73f39bde34074fb077e3f0a6180d996beae78ec826",
-    "desglose_error_t10.csv": "123a4c65b463eff25c4773f6d897e9aacbf15a459ad1b17fedbb599b8551772d",
+    "desglose_error_t10.csv": "4110294d7882d2838616156e1813de3cb7f930fdf65012f0f3f0ab21086a97d6",
     "diagnostico_atributos_t10.csv": "f840efd94439b0c7e40f9490463f34e42fc8692dc8a839c4b6a9b3223e80c995",
     "frecuencia_opciones_t10.csv": "7159c4f1d69fcef967eca881adfb6aa850aa73bfebe8f91d47840c4aa33bfe7b",
     "metricas_t10.csv": "12ebba49da238c4454498c9fcd9a642619a0a7ca235478e22a4da3490c35f7cf",
@@ -35,5 +35,5 @@
     "scikit_learn": "1.9.1"
   },
   "promueve": false,
-  "segundos": 25
+  "segundos": 30
 }
