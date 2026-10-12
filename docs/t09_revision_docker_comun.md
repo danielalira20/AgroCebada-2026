@@ -1,6 +1,8 @@
 # T09 · reproducción del diagnóstico en Docker común
 
 Fecha: 11-oct-2026. Responsable: Dani. Revisión humana: Migue, pendiente.
+Actualización posterior: la carpeta raw actual ya pasó el comprobador común;
+ver [adecuación local y aclaraciones de Tab 8](t09_datos_comunes.md).
 La reproducción local del diagnóstico se completa con una ejecución Linux
 x86_64; no implica aprobación de la configuración Docker ni de un modelo T09.
 
