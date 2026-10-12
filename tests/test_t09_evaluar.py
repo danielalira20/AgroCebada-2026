@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from scripts.t09_entradas import RAIZ, cargar_entradas, contexto_externo
+from scripts.t09_estimadores import MediaTerritorial
 from scripts.t09_evaluar import (aplicabilidad_reservadas, contextos, evaluar_contexto,
                                 preparar_salida, verificar_referencia)
 
@@ -124,6 +125,26 @@ class EvaluacionT09(unittest.TestCase):
     def test_detector_referencia_rechaza_id_omitido(self):
         with self.assertRaises(ValueError):
             verificar_referencia(self.r['oof'])
+
+    def test_referencia_publicada_restaura_precision_exacta_csv(self):
+        filas = []
+        for esc, rep, fold in contextos(self.e):
+            if esc == 'C':
+                continue
+            x, y, z, real = contexto_externo(self.e, esc, rep, fold)
+            r = MediaTerritorial().fit(x, y).predict_with_details(z).reset_index(drop=True)
+            r['ID_POLIGONO'] = r.id_parcela
+            r['real'] = real.to_numpy()
+            r['escenario'], r['repeticion'], r['particion'], r['procedimiento'] = esc, rep, fold, 'T'
+            filas.append(r)
+        calculada = pd.concat(filas, ignore_index=True)
+        aprobado = verificar_referencia(calculada)
+        self.assertEqual(aprobado['diferencia_maxima'], 0)
+        self.assertEqual(aprobado['predicciones'], 1380)
+        corrupta = calculada.copy()
+        corrupta.loc[0, 'prediccion'] += 0.001
+        with self.assertRaises(ValueError):
+            verificar_referencia(corrupta)
 
 
 if __name__ == '__main__':

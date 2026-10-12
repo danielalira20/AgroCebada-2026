@@ -166,7 +166,9 @@ def validar_oof(oof, entradas):
 
 
 def verificar_referencia(oof, raiz=RAIZ):
-    publicada = pd.read_csv(Path(raiz) / 'registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv')
+    # Restaurar los doubles publicados: el parser habitual puede cambiar un último bit.
+    publicada = pd.read_csv(Path(raiz) / 'registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv',
+                            float_precision='round_trip')
     ref = oof[oof.procedimiento.eq('T') & oof.escenario.isin(['A', 'B'])]
     claves = ['escenario', 'repeticion', 'particion', 'ID_POLIGONO']
     m = ref.merge(publicada, on=claves, how='outer', validate='one_to_one',
