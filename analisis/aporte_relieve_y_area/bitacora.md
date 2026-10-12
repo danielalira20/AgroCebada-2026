@@ -193,3 +193,19 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 **Qué se comprobó.** En las dos corridas, los 9 archivos de resultados son idénticos byte a byte a los de `registro/t10/`. El manifiesto sólo difiere en el entorno y el tiempo; sus huellas de entradas y de código coinciden.
 
 **Qué no se comprobó.** Una corrida en Mac (ARM). La revisión independiente de Daf.
+
+### 12 de octubre de 2026 — Correcciones tras la auditoría externa (Codex): decisión y desgloses
+
+**Por qué.** Antes del PR, Jass pidió una auditoría independiente con Codex. Reprodujo todo (266 pruebas, los 9 archivos de resultados idénticos) y señaló tres defectos en el código. Ninguno cambia el resultado de T10, pero los tres son reales y se corrigieron.
+
+**1. El control de revuelto no frenaba la promoción.** El script calculaba si la mejora resistía el revuelto, pero la bandera final no lo usaba: una configuración que fallara el revuelto habría salido como «se promueve». **2. El escenario B podía promover solo.** La bandera no exigía el escenario A, que es el principal según T03 §3.
+- Cambio: la decisión va en dos tiempos. `candidata_a_promover` = principal, frente a la referencia, cumple la regla en `sin_respaldo` **y en A**. `promueve` = candidata **y** supera el control de revuelto. Cada fila guarda `supera_revuelto` y un `motivo` explícito.
+- Pruebas nuevas: ganar sólo en B no promueve; el revuelto frena la promoción (y la permite si se sostiene); sin revuelto no se promueve; el puente y `todas` nunca promueven.
+
+**3. Los desgloses juntaban las 5 repeticiones antes de calcular.** T03 §4 pide métricas por repetición y después su promedio; los desgloses calculaban sobre las predicciones juntas.
+- Cambio: cada grupo se calcula por repetición y se promedia; se agregan `n_repeticiones` y `MAE_sd_rep`. Prueba nueva con un caso calculable a mano.
+- Efecto: en A con `sin_respaldo` (de donde salen todas las cifras de tamaño, cobertura y contorno de esta bitácora y del informe) el MAE es idéntico, porque cada parcela aparece una vez por repetición. Cambian sobre todo los RMSE (máximo 0.086 t/ha: Singuilucan, B, `todas`, config 4, de 0.859 a 0.781) y algunos MAE de B (máximo 0.0012). T11 v2 calcula sus desgloses del mismo modo anterior; se le avisa a Daf.
+
+**Regeneración.** Se corrió la evaluación completa en una carpeta temporal: 8 de los 10 archivos idénticos a los publicados; cambian `comparacion_emparejada_t10.csv` (sólo agrega las 3 columnas nuevas; los valores existentes son idénticos y ninguna fila se promueve) y `desglose_error_t10.csv`. Se copiaron esos dos y el manifiesto, que coincide con los 10 archivos y con el código nuevo.
+
+**Pruebas.** 18 de T10 (5 nuevas) y la suite completa aprueban.
