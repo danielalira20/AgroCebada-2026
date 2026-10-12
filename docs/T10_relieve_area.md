@@ -33,8 +33,8 @@ Todas salen de `registro/t07/tabla_comun.csv` y se unen por `id_parcela`, nunca 
 | `area_ha_origen` | logaritmo natural | Va de 0.35 a 64.3 ha y su desviación estándar (7.4 ha) supera a su media (6.6 ha): unas pocas parcelas grandes dominarían la escala. |
 
 - **No entran:** las áreas alternativas (`area_ha_geodesica`, `area_parcela_6372_m2`; contrato `area_t10`), extremos, coberturas, conteos de celdas o avisos de relieve, ni ninguna columna de clima o satélite.
-- **Las 59 reservadas** tienen las tres variables completas. Su rango cae dentro del de las etiquetadas, salvo la elevación máxima (2,906.0 m frente a 2,904.0 m).
-- **Relación con la ubicación, sin rendimientos (138 etiquetadas):** el municipio explica el 53 % de la variación del área, el 28 % de la elevación y el 13 % de la pendiente. La correlación entre elevación y pendiente es 0.51.
+- **Las 59 reservadas** tienen las tres variables completas. Tres quedan apenas fuera del rango de las etiquetadas, cada una en una sola variable: AGC_088 en elevación (2,906.0 m; máximo etiquetado 2,904.0 m), AGC_153 en pendiente (0.282°; mínimo 0.288°) y AGC_091 en área (0.35 ha; mínimo 0.38 ha). Las tres diferencias son menores que la variación entre parcelas vecinas.
+- **Relación con la ubicación, sin rendimientos (138 etiquetadas; `registro/t10/diagnostico_atributos_t10.csv`):** el municipio explica el 28 % de la variación de la elevación, el 13 % de la pendiente y el 15 % del logaritmo del área (el 53 % del área sin logaritmo: unas pocas parcelas grandes concentradas en pocos municipios dominan esa escala). Correlaciones entre variables: elevación–pendiente 0.51, pendiente–log del área −0.30 y elevación–log del área −0.09.
 
 ## 4. Procedimiento principal
 
