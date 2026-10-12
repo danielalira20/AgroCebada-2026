@@ -1,7 +1,7 @@
 # T10 · Aporte de relieve y área sobre la referencia territorial
 
 - **Responsable:** Jass. **Revisora:** Daf.
-- **Estado (12 de octubre de 2026):** diseño escrito **antes de correr** cualquier configuración (decisión `D_T10_001`). Todavía no hay código ni resultados.
+- **Estado (12 de octubre de 2026):** ejecutado tal como se diseñó; en revisión de Daf. Diseño escrito **antes de correr** (decisión `D_T10_001`). Resultado en la sección 13; informe de cierre en `analisis/aporte_relieve_y_area/informe_relieve_y_area.md`.
 - **Usa:** T03 (particiones, subconjuntos y regla de decisión), T05 (relieve), T07 (tabla común) y T08 (referencia `media_mun__resp_grupo`, D019).
 - **Plan:** «T10 · relieve y área: territorio frente a territorio + relieve/área; sensibilidad a tamaño y cobertura parcial. Entregar predicciones y errores». Anexo de selección de atributos (11 de octubre): «comparar aporte sobre territorio; revisar relación entre relieve, área y ubicación y sensibilidad a calidad».
 
@@ -111,3 +111,37 @@ Error de la referencia y de cada configuración desglosado por:
 - Que el área declarada sea la superficie con la que se calculó el rendimiento (pendiente P06).
 - Qué edición del relieve se usó (pendiente P05; ver la bitácora de T05, entrada del 12 de octubre).
 - Que el resultado se mantenga en otra campaña: hay una sola campaña etiquetada.
+
+## 13. Resultado
+
+**Ninguna configuración cumple la regla de T03; se conserva la referencia `media_mun__resp_grupo`.** No se corrió el control de revuelto porque nada ganó (sección 8).
+
+Procedimiento principal, subconjunto `sin_respaldo` (referencia: A → MAE 0.3205; B → MAE 0.3579):
+
+| Config | ΔMAE A | IC95 celdas A | Reps que mejoran (A) | ΔRMSE A | ΔMAE B | ΔRMSE B |
+|---|---|---|---|---|---|---|
+| 1 elevación | +0.0012 | [−0.0006, +0.0044] | 1/5 | −0.0016 | +0.0006 | +0.0001 |
+| 2 pendiente | +0.0002 | [−0.0038, +0.0057] | 2/5 | −0.0036 | +0.0025 | +0.0007 |
+| 3 área | +0.0014 | [−0.0037, +0.0089] | 2/5 | −0.0026 | +0.0018 | +0.0010 |
+| 4 relieve | +0.0006 | [−0.0033, +0.0068] | 2/5 | −0.0038 | +0.0017 | +0.0003 |
+| 5 relieve + área | +0.0011 | [−0.0062, +0.0103] | 2/5 | −0.0052 | +0.0028 | +0.0003 |
+| 6 centrado | +0.0027 | [−0.0046, +0.0117] | 1/5 | −0.0045 | +0.0022 | +0.0006 |
+
+- Ajustado con las 138 parcelas, el procedimiento elige «referencia sola» en las 6 configuraciones: las predicciones para las 59 coinciden con las de T08.
+- El puente (T11 v2) empeora el MAE entre +0.0097 y +0.0197 en A; el principal es mejor que el puente en las 12 comparaciones de MAE.
+- Con MAE y RMSE intercambiados (si FIRA confirmara RMSE), el principal tampoco llega al umbral (mejor ΔRMSE −0.0052).
+- Desgloses, sensibilidad y exploración con rendimientos: bitácora e informe de cierre.
+
+## 14. Cómo reproducir
+
+Desde la raíz del repositorio, con el entorno de `requirements.txt`. No se necesita el dataset: todas las entradas están en `registro/`.
+
+```bash
+python -m unittest tests.test_t10_relieve_area -v
+python -m scripts.t10_relieve_area --comprobar-referencia
+python -m scripts.t10_relieve_area --diagnostico --salida <carpeta_nueva>
+python -m scripts.t10_relieve_area --evaluar --salida <carpeta_nueva>
+python analisis/aporte_relieve_y_area/scripts/explorar_relacion_con_rendimiento.py
+```
+
+Los modos que escriben nunca sobrescriben: para comparar con lo publicado, usar una carpeta nueva y comparar sus archivos con los de `registro/t10/` (el manifiesto guarda la huella de cada uno). El script exploratorio escribe en `analisis/aporte_relieve_y_area/` y se detiene si sus salidas ya existen.
