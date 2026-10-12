@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from scripts.t10_relieve_area import (
-    ALFAS, AREA, CONFIGS, ELEV, PEND, PROCEDIMIENTOS, REFERENCIA_SOLA, decidir, desempatar, elegir_opcion,
+    ALFAS, AREA, CONFIGS, ELEV, PEND, PROCEDIMIENTOS, REFERENCIA_SOLA, decidir, desempatar, desgloses, elegir_opcion,
     estrato_interno, evaluar, marcar_candidatas, particiones_internas, referencia_municipal,
     referencia_sin_la_fila, revolver_dentro_de_municipio, transformar,
 )
@@ -217,6 +217,26 @@ class Decision(unittest.TestCase):
         self.assertFalse(d.promueve.any())
         self.assertIn("no elegible", d.motivo.iloc[0])
         self.assertIn("informativo", d.motivo.iloc[1])
+
+
+class Desgloses(unittest.TestCase):
+    def test_metricas_por_repeticion_y_despues_promedio(self):
+        """T03 §4: errores (0, 0) en la repetición 1 y (2, 0) en la 2. Por repetición el RMSE es 0 y
+        sqrt(2), y su promedio sqrt(2)/2 ≈ 0.707; juntando todo antes saldría sqrt(4/4) = 1."""
+        ids = ["P1", "P2"]
+        oof = pd.DataFrame(dict(ID_POLIGONO=ids * 2, repeticion=[1, 1, 2, 2], escenario="A",
+                                procedimiento="t10", config=1, fuente="municipio",
+                                real=[3.0, 3.0, 3.0, 3.0], prediccion=[3.0, 3.0, 5.0, 3.0]))
+        part = pd.DataFrame(dict(ID_POLIGONO=ids, municipio="M0", grupo_registro="G1"))
+        atrib = pd.DataFrame(dict(contorno="A", contorno_angosta_o_muy_pequena="no", escalon="0.5",
+                                  escalon_etiqueta_municipio="0.5", vecina_etiquetada_menos_20m="no",
+                                  tramo_area="2 a 5 ha", menor_a_una_celda="no", cobertura_parcial_relieve="no",
+                                  pocas_celdas_validas="no"), index=pd.Index(ids, name="id_parcela"))
+        r = desgloses(oof, part, atrib)
+        fila = r[(r.subconjunto == "todas") & (r.desglose == "municipio")].iloc[0]
+        self.assertAlmostEqual(fila.RMSE, (0 + np.sqrt(2.0)) / 2)
+        self.assertAlmostEqual(fila.MAE, 0.5)
+        self.assertEqual((fila.n_parcelas, fila.n_predicciones, fila.n_repeticiones), (2, 4, 2))
 
 
 if __name__ == "__main__":

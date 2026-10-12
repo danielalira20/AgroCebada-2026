@@ -422,14 +422,19 @@ def desgloses(oof, part, atrib):
     d["e"] = d.prediccion - d.real
     paso = pd.to_numeric(d.escalon_etiqueta_municipio, errors="coerce")
     d["bajo_resolucion"] = np.where(paso.notna(), d.e.abs() < paso / 2, np.nan)
+    # T03 §4: métricas por repetición y después el promedio de las repeticiones (no se juntan antes).
     filas = []
     for sub, mask in subconjuntos(d):
         for nombre, col in EJES.items():
             for (esc, proc, cfg, cat), g in d[mask].groupby(["escenario", "procedimiento", "config", col]):
+                por_rep = pd.DataFrame([dict(MAE=x.e.abs().mean(), RMSE=np.sqrt((x.e ** 2).mean()), sesgo=x.e.mean(),
+                                             prop=x.bajo_resolucion.mean())
+                                        for _, x in g.groupby("repeticion")])
                 filas.append(dict(subconjunto=sub, escenario=esc, procedimiento=proc, config=cfg, desglose=nombre,
                                   categoria=cat, n_parcelas=g.ID_POLIGONO.nunique(), n_predicciones=len(g),
-                                  MAE=g.e.abs().mean(), RMSE=np.sqrt((g.e ** 2).mean()), sesgo=g.e.mean(),
-                                  prop_error_menor_medio_escalon=g.bajo_resolucion.mean()))
+                                  n_repeticiones=len(por_rep), MAE=por_rep.MAE.mean(), RMSE=por_rep.RMSE.mean(),
+                                  sesgo=por_rep.sesgo.mean(), prop_error_menor_medio_escalon=por_rep.prop.mean(),
+                                  MAE_sd_rep=por_rep.MAE.std()))
     r = pd.DataFrame(filas)
     r["poco_informativo"] = r.n_parcelas < 5
     return r
