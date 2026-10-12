@@ -72,3 +72,7 @@ Los borradores anteriores permanecen en `reports/` con su procedencia histórica
 La integración T07 ya está en `dev`; las columnas candidatas no son entradas
 automáticas de un modelo. El nuevo complemento documental no inicia T09 ni el
 diagnóstico estadístico de atributos.
+
+## T09: estimadores antes de la evaluación completa
+
+El [diseño](docs/t09_diseno.md) y la [implementación verificada](docs/t09_estimadores.md) separan referencia territorial, clima solo, municipio + clima y corrección residual. El preflight comprueba entradas y particiones por ID; las pruebas contrastan matemáticas y ausencia de filtraciones. [Estado de componentes](registro/t09/implementacion.json): no es una evaluación completa, elección de ganador ni entrega final de las 59. La revisión independiente sigue pendiente.

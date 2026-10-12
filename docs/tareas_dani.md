@@ -60,3 +60,7 @@ La [revisión temporal](t04_version_disponibilidad.md) diferencia observación, 
 ## Diseño T09 fijado · 11 de octubre de 2026
 
 Dani autorizó cerrar el diseño sin esperar respuesta de Migue. [Diseño v1.0](t09_diseno.md), [razones y evidencia](t09_decisiones.md) y [configuración](../registro/t09/diseno.json): referencia exacta, clima solo, municipio + clima y corrección residual; ventanas/regularización/selección fijadas. La revisión independiente sigue pendiente; la fase de diseño no entrena modelos ni cierra T09. El siguiente paso es preflight y desarrollo de estimadores con controles de fuga, antes de evaluación oficial.
+
+## Estimadores T09 verificados · 12 de octubre de 2026
+
+Rama `t09-territorio-clima`: [implementación y pruebas](t09_estimadores.md) de los cuatro procedimientos del diseño. Pasan 299 pruebas Mac y 59 Docker; fuente/diseño intactos. Las comprobaciones numéricas son controles, no resultados de la evaluación completa. Próximo paso: ejecutor externo y reportes, ejecución según diseño y revisión de Migue. No hay ganador ni entrega definitiva para las 59.
