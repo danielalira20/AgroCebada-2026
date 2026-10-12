@@ -6,7 +6,7 @@
 
 Responsable: Jass. Revisora: Daf.
 
-**Estado al 12 de octubre de 2026:** diseño escrito antes de correr, código y pruebas listos, diagnóstico sin rendimientos hecho. Todavía no se ha corrido ninguna configuración con datos reales.
+**Estado al 12 de octubre de 2026:** evaluación completa corrida (pasos 6 y 7). Ninguna configuración cumple la regla de T03: relieve y área no aportan sobre la referencia territorial con este procedimiento. Faltan el diagnóstico exploratorio, el informe de cierre, los registros y la reproducción.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -34,8 +34,8 @@ Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts
 | 3 | Diseño escrito antes de correr: `docs/T10_relieve_area.md` y `D_T10_001` | **Hecho** (12 oct) |
 | 4 | Código y pruebas sintéticas; comprobar que la referencia reproduce T08 | **Hecho** (12 oct) |
 | 5 | Diagnóstico de atributos sin rendimientos | **Hecho** (12 oct) |
-| 6 | Ejecución: 6 configuraciones × (principal y puente), escenarios A y B; regla de T03 | Pendiente |
-| 7 | Desgloses por tamaño, cobertura y contorno; sensibilidad sin las 24; revuelto si aplica; predicciones de las 59 | Pendiente |
+| 6 | Ejecución: 6 configuraciones × (principal y puente), escenarios A y B; regla de T03 | **Hecho** (12 oct) |
+| 7 | Desgloses por tamaño, cobertura y contorno; sensibilidad sin las 24; revuelto si aplica; predicciones de las 59 | **Hecho** (12 oct) |
 | 8 | Diagnóstico exploratorio con rendimientos (Pearson y gráficos) | Pendiente |
 | 9 | Informe de cierre y registros (`E_T10_001`–`006`, `IA_T10_001`) | Pendiente |
 | 10 | Reproducción (dos corridas idénticas, Docker) y borrador del PR para Daf | Pendiente |
@@ -90,3 +90,55 @@ Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts
 **Reservadas fuera del rango etiquetado.** Tres, cada una en una sola variable y por muy poco: AGC_088 en elevación (2,906.0 m frente a un máximo de 2,904.0 m), AGC_153 en pendiente (0.282° frente a un mínimo de 0.288°) y AGC_091 en área (0.35 ha frente a un mínimo de 0.38 ha). No es una extrapolación relevante; se anota para el aviso de la app (T17). El documento del método decía que sólo había un caso (elevación); se corrigió.
 
 **Qué no dice este diagnóstico.** Nada sobre si las variables ayudan a predecir: eso se mide en el paso 6, con la regla de T03.
+
+### 12 de octubre de 2026 — Evaluación completa (pasos 6 y 7)
+
+**Qué se esperaba.** Saber si alguna de las 6 configuraciones mejora la referencia `media_mun__resp_grupo` según la regla de T03 §4, en el subconjunto `sin_respaldo`, y cómo se comporta el error por tamaño, cobertura y contorno.
+
+**Qué se hizo.** `python -m scripts.t10_relieve_area --evaluar --salida registro/t10` (25 segundos; Linux x86_64, Python 3.12.14). Se corrió primero en una carpeta temporal fuera del repositorio y después se copiaron los archivos a `registro/t10/`; el manifiesto coincide con los 10 archivos. Antes de evaluar, el script volvió a comprobar que la referencia reproduce las 1,380 predicciones de T08.
+
+**Resultado principal (comprobado).** Ninguna configuración cumple la regla, en ningún escenario ni subconjunto. Por eso no se corrió el control de revuelto (`control_revuelto_t10.csv` queda sólo con el encabezado, como fija el diseño).
+
+Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, RMSE 0.5220.
+
+| Config | ΔMAE A | IC95 celdas (sup.) | Reps que mejoran | ΔRMSE A | ΔMAE B | ΔRMSE B |
+|---|---|---|---|---|---|---|
+| 1 elevación | +0.0012 | +0.0044 | 1/5 | −0.0016 | +0.0006 | +0.0001 |
+| 2 pendiente | +0.0002 | +0.0057 | 2/5 | −0.0036 | +0.0025 | +0.0007 |
+| 3 área | +0.0014 | +0.0089 | 2/5 | −0.0026 | +0.0018 | +0.0010 |
+| 4 relieve | +0.0006 | +0.0068 | 2/5 | −0.0038 | +0.0017 | +0.0003 |
+| 5 relieve + área | +0.0011 | +0.0103 | 2/5 | −0.0052 | +0.0028 | +0.0003 |
+| 6 centrado | +0.0027 | +0.0117 | 1/5 | −0.0045 | +0.0022 | +0.0006 |
+
+(Procedimiento principal, `sin_respaldo`. Positivo = peor que la referencia.)
+
+**Cómo leerlo.** Las diferencias en MAE son de milésimas de t/ha y casi todas desfavorables; ningún intervalo queda por debajo de cero. En A el RMSE baja un poco (hasta −0.005 en la configuración 5), señal de que el modelo corrige algunos errores grandes a costa de empeorar ligeramente muchos pequeños; no alcanza la regla, que se decide con MAE. En B (separación espacial) no hay ni eso.
+
+**La selección interna lo confirma por su cuenta.** Ajustado con las 138 parcelas, el procedimiento principal elige «referencia sola» en las 6 configuraciones: sus predicciones para las 59 son idénticas a las de la referencia. En las particiones externas eligió «referencia sola» en 4–6 de 25 ajustes en A y en 13–19 de 25 en B; el resto, α grandes.
+
+**Puente (T11 v2, descriptivo).** Empeora el MAE más que el principal: de +0.010 a +0.020 en A y de +0.005 a +0.017 en B. El principal es mejor que el puente en las 12 comparaciones de MAE; en A el intervalo por celdas queda por debajo de cero en 5 de 6 configuraciones. A cambio, el puente baja algo más el RMSE en A (hasta −0.011, configuración 5). Es la diferencia esperada entre elegir α con error absoluto y con error cuadrático. Evidencia para T11 y T15; no cambia la conclusión de T10.
+
+**Comparaciones descriptivas.** Añadir el área al relieve (5 frente a 4) y centrar por municipio (6 frente a 5) no cambian nada distinguible: todas las diferencias son ≤ 0.002 en MAE y sus intervalos incluyen el cero.
+
+**Sensibilidad por tamaño y cobertura (`desglose_error_t10.csv`; A, `sin_respaldo`, principal; descriptivo).**
+
+| Grupo | Parcelas | MAE referencia | MAE config 5 |
+|---|---|---|---|
+| Menos de 2 ha | 29 | 0.388 | 0.378 |
+| 2 a 5 ha | 41 | 0.277 | 0.274 |
+| Más de 5 ha | 65 | 0.318 | 0.326 |
+| Menor a una celda de 120 m | 13 | 0.450 | 0.435 |
+| Cobertura parcial de relieve | 4 | 0.012 | 0.039 |
+| Contorno B o C | 13 | 0.329 | 0.316 |
+
+- Las parcelas pequeñas son las de mayor error con cualquier procedimiento, y es ahí donde las variables restan algo (−0.01); en las grandes suman (+0.008). Los grupos son pequeños y las diferencias no se probaron formalmente: es una pista, no un resultado.
+- Las 4 parcelas con cobertura parcial (Calpulalpan y Emiliano Zapata) tienen un error casi nulo con la referencia, porque comparten etiqueta con sus vecinas; las variables sólo pueden empeorarlo. Con 4 parcelas no se concluye nada.
+- **Control del pendiente P06.** En los contornos B o C el error baja de 0.329 a 0.316 con la configuración 5, pero también baja con la 4, que no usa el área (0.318). No es la firma de un efecto de medición del área; con 13 parcelas tampoco se descarta.
+
+**Sensibilidad sin las 24 parcelas con alerta de contorno.** Ninguna configuración mejora a la referencia (todas las ΔMAE siguen siendo positivas, de +0.0006 a +0.0042) y la referencia sigue en primer lugar en A y B. El orden entre configuraciones cambia un poco en A, lo esperable con diferencias de milésimas.
+
+**Nota técnica.** Las ΔMAE de `sensibilidad_sin_alerta_t10.csv` (promedio de las métricas de cada repetición) pueden diferir en la cuarta cifra decimal de las de `comparacion_emparejada_t10.csv` (promedio por parcela, como T08), porque en `sin_respaldo` no todas las repeticiones tienen el mismo número de predicciones. La decisión usa la comparación emparejada.
+
+**Conclusión de T10 (para el informe de cierre).** Con este procedimiento, elevación, pendiente y área no aportan información útil sobre la referencia municipal para estimar el rendimiento de estas parcelas. Se conserva la referencia. La pista en parcelas pequeñas queda como hipótesis para T15, no como hallazgo.
+
+**Qué no se comprobó todavía.** La reproducción en otro equipo y en Docker (paso 10). La relación exploratoria con el rendimiento (paso 8).
