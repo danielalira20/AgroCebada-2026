@@ -10,9 +10,9 @@ import numpy as np
 import pandas as pd
 
 from scripts.t10_relieve_area import (
-    ALFAS, AREA, CONFIGS, ELEV, PEND, PROCEDIMIENTOS, REFERENCIA_SOLA, desempatar, elegir_opcion,
-    estrato_interno, evaluar, particiones_internas, referencia_municipal, referencia_sin_la_fila,
-    revolver_dentro_de_municipio, transformar,
+    ALFAS, AREA, CONFIGS, ELEV, PEND, PROCEDIMIENTOS, REFERENCIA_SOLA, decidir, desempatar, elegir_opcion,
+    estrato_interno, evaluar, marcar_candidatas, particiones_internas, referencia_municipal,
+    referencia_sin_la_fila, revolver_dentro_de_municipio, transformar,
 )
 
 
@@ -167,6 +167,56 @@ class Salida(unittest.TestCase):
         a = x.drop_duplicates("ID_POLIGONO").set_index("ID_POLIGONO")
         b = x[x.repeticion == 2].set_index("ID_POLIGONO")
         np.testing.assert_array_equal(a[ELEV].reindex(b.index), b[ELEV])
+
+
+def comparacion(escenario="A", subconjunto="sin_respaldo", cumple=True, elegible=True, candidato=5):
+    """Una fila mínima de comparacion_emparejada para probar la decisión."""
+    return dict(escenario=escenario, subconjunto=subconjunto, cumple_regla_T03=cumple, elegible=elegible,
+                candidato=candidato, procedimiento="t10" if elegible else "puente_t11",
+                tipo="frente_a_referencia", dMAE=-0.02)
+
+
+def revuelto(filas):
+    return pd.DataFrame(filas, columns=["escenario", "config", "dMAE_observado", "revueltos",
+                                        "fraccion_igual_o_mejor", "dMAE_revueltos", "se_sostiene"])
+
+
+class Decision(unittest.TestCase):
+    """D_T10_001 §7–8: sólo A promueve, y sólo si además supera el control de revuelto."""
+
+    def test_ganar_solo_en_b_no_promueve(self):
+        comp = marcar_candidatas(pd.DataFrame([comparacion("A", cumple=False), comparacion("B", cumple=True)]))
+        self.assertEqual(list(comp.candidata_a_promover), [False, False])
+        d = decidir(comp, revuelto([]))
+        self.assertFalse(d.promueve.any())
+        self.assertIn("sólo en B", d.motivo.iloc[1])
+
+    def test_el_revuelto_frena_la_promocion(self):
+        comp = marcar_candidatas(pd.DataFrame([comparacion("A")]))
+        self.assertTrue(comp.candidata_a_promover.iloc[0])
+        no = decidir(comp, revuelto([dict(escenario="A", config=5, dMAE_observado=-0.02, revueltos=20,
+                                          fraccion_igual_o_mejor=0.5, dMAE_revueltos="", se_sostiene=False)]))
+        self.assertFalse(no.promueve.iloc[0])
+        self.assertFalse(bool(no.supera_revuelto.iloc[0]))
+        self.assertIn("no supera", no.motivo.iloc[0])
+        si = decidir(comp, revuelto([dict(escenario="A", config=5, dMAE_observado=-0.02, revueltos=20,
+                                          fraccion_igual_o_mejor=0.0, dMAE_revueltos="", se_sostiene=True)]))
+        self.assertTrue(si.promueve.iloc[0])
+        self.assertIn("supera el control", si.motivo.iloc[0])
+
+    def test_sin_control_de_revuelto_no_promueve(self):
+        d = decidir(marcar_candidatas(pd.DataFrame([comparacion("A")])), revuelto([]))
+        self.assertFalse(d.promueve.iloc[0])
+
+    def test_puente_y_subconjunto_todas_nunca_promueven(self):
+        comp = marcar_candidatas(pd.DataFrame([comparacion("A", elegible=False),
+                                               comparacion("A", subconjunto="todas")]))
+        self.assertFalse(comp.candidata_a_promover.any())
+        d = decidir(comp, revuelto([dict(escenario="A", config=5, dMAE_observado=-0.02, revueltos=20,
+                                         fraccion_igual_o_mejor=0.0, dMAE_revueltos="", se_sostiene=True)]))
+        self.assertFalse(d.promueve.any())
+        self.assertIn("no elegible", d.motivo.iloc[0])
+        self.assertIn("informativo", d.motivo.iloc[1])
 
 
 if __name__ == "__main__":
