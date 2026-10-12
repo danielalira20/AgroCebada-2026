@@ -6,14 +6,14 @@
 
 Responsable: Jass. Revisora: Dani.
 
-**Estado al 9 de octubre de 2026:** método congelado e implementado; extracción real de las 197 parcelas cubierta por 60 pruebas propias de T05 (128 en la suite) y aprobada en los controles sobre datos reales; publicada en `registro/t05/` con manifiesto, procedencia generada en Docker y verificación con reproducción aprobada. Cotejo en QGIS hecho. Faltan el PR y la revisión de Dani.
+**Estado al 12 de octubre de 2026:** T05 cerrada. Revisada y reproducida por Dani en Mac e integrada en `dev` por el PR 12 el 9 de octubre de 2026 (merge `8d6f543`). La extracción, sus controles y el cotejo en QGIS no cambiaron desde entonces. Queda abierto el pendiente documental P05 (edición del relieve); ver la entrada del 12 de octubre.
 
 ## Qué hay (y qué habrá) en esta carpeta
 
 | Archivo | Qué guarda | Estado |
 |---|---|---|
 | `bitacora.md` | Este documento. | Creado |
-| `README.md` | Entrada corta para el equipo. | Se añade al subir la evidencia |
+| `README.md` | Entrada corta para el equipo. | No se creó: la entrada para el equipo es [`docs/t05_relieve.md`](../../docs/t05_relieve.md) |
 | `scripts/calcular_relieve_independiente.py` | Cálculo independiente para conciliar con T05, por otro camino de código. | Creado (paso 5) |
 | `tablas/conciliacion_calculo_independiente.csv` | Comparación parcela por parcela entre T05 y el cálculo independiente. | Creado (paso 5) |
 | `tablas/casos_de_borde.csv` | Las 29 parcelas con algún aviso, con conjunto y municipio. | Creado (paso 5) |
@@ -38,7 +38,7 @@ Dónde vive el resto: código en `scripts/t05_relieve.py`, pruebas en `tests/tes
 | 4 | Ejecución real: `relieve_parcela.csv` y `relieve_celdas.csv` (197 parcelas) | **Hecho** (8 oct) |
 | 5 | Controles sobre datos reales: T02, cálculo independiente, 5 parciales, 59 reservadas completas | **Hecho** (8 oct) |
 | 6 | Procedencia, controles, manifiesto y `--verificar`, con fin de línea LF | **Hecho** (8 oct) |
-| 7 | Registros, PR con la plantilla y reproducción por Dani | **En curso** (9 oct) |
+| 7 | Registros, PR con la plantilla y reproducción por Dani | **Hecho** (9 oct, PR 12) |
 | 8 | Ampliación opcional: tabla de sensibilidad | Pendiente |
 | Final | Cotejo mínimo en QGIS (2–3 celdas de 2–3 parcelas y las 5 parcelas incompletas), **antes** de dar T05 por «Hecha» | **Hecho** (9 oct) |
 
@@ -283,3 +283,23 @@ La comprobación interna de `--publicar` (mismo equipo) no usa el margen de áre
 **Qué no se ha comprobado.** La ejecución real en Mac ARM con el código nuevo (la hará Dani). Con Docker en Mac se puede forzar Intel: `docker run --platform linux/amd64 …`.
 
 **Regla de cierre ampliada.** Un hallazgo posterior obliga a corregir y regenerar si cambia valores publicados, permite publicar algo falso **o impide reproducir una entrega correcta**; lo demás se anota como pendiente.
+
+### 12 de octubre de 2026 — Metadatos internos de los TIFF (pendiente P05)
+
+**Por qué se revisó.** La ficha de T07 deja abierto el pendiente P05 (fecha de adquisición o edición del relieve CEM4 recibido). Antes de usar elevación y pendiente en T10 se buscó si el propio paquete traía esa información.
+
+**Qué se hizo.** Se leyeron con `rasterio` las etiquetas internas de los dos TIFF originales y el `LEEME.txt` de la carpeta de topografía, sin modificar nada.
+
+**Qué se encontró (comprobado).**
+- `Elevacion_INEGI_CEM4_120m.tif`: `fuente = "INEGI CEM, archivos estatales nativos de 120 m (2017)"`; `procesamiento = "Mosaico y transformacion a EPSG:6372; vecino mas cercano; sin agregacion 15m->120m"`; `estados = "Hidalgo, Puebla, Tlaxcala"`.
+- `Pendiente_INEGI_CEM4_120m_grados.tif`: `fuente = "Derivada de Elevacion_INEGI_CEM4_120m.tif"`, `metodo = "Horn 3x3"`, `unidad = "grados"`.
+- El `LEEME.txt` dice «insumos nativos de 120 m» de los estados 13, 21 y 29, sin año.
+
+**Contradicción sin resolver.** El nombre de los archivos dice «CEM4», y la edición CEM 4.0 que describen los antecedentes del proyecto es de 2025 a 15 m. El metadato interno, en cambio, fecha los insumos en 2017 a 120 m nativos. No se confirmó cuál es correcta; no se elige una por cuenta propia.
+
+**Efecto.**
+- En la estimación retrospectiva de 2025 (T10) no cambia nada: el relieve a 120 m casi no varía entre 2017 y 2025, y los valores por parcela ya están verificados.
+- Sí limita afirmar qué edición se usaría para otra campaña (P05 sigue abierto como pendiente documental).
+- `registro/t05/procedencia.json` no registró estas etiquetas. No se regenera la entrega por esto: no cambia ningún valor publicado (regla de cierre ampliada).
+
+**Qué falta.** Confirmar con FIRA, por el canal de consultas del equipo, la edición y fecha de los insumos de topografía.
