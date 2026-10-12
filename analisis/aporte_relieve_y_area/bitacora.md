@@ -6,7 +6,7 @@
 
 Responsable: Jass. Revisora: Daf.
 
-**Estado al 12 de octubre de 2026:** evaluación completa corrida (pasos 6 y 7). Ninguna configuración cumple la regla de T03: relieve y área no aportan sobre la referencia territorial con este procedimiento. Faltan el diagnóstico exploratorio, el informe de cierre, los registros y la reproducción.
+**Estado al 12 de octubre de 2026:** evaluación completa corrida (pasos 6 y 7). Ninguna configuración cumple la regla de T03: relieve y área no aportan sobre la referencia territorial con este procedimiento. Diagnóstico exploratorio, informe de cierre y registros hechos (pasos 8 y 9). Falta la reproducción en Docker y el PR (paso 10).
 
 ## Qué hay (y qué habrá) en esta carpeta
 
@@ -16,7 +16,7 @@ Responsable: Jass. Revisora: Daf.
 | `scripts/explorar_relacion_con_rendimiento.py` | Diagnóstico exploratorio con rendimientos (Pearson y Spearman, global, dentro de municipio y por municipio). No decide nada. | Creado (paso 8) |
 | `tablas/correlaciones_con_rendimiento.csv` | Resultado de ese diagnóstico. | Creado (paso 8) |
 | `figuras/dispersion_relieve_area_rendimiento.png` | Dispersión global y dentro de municipio de las tres variables. | Creado (paso 8) |
-| Informe de cierre | Resultado de T10 en lenguaje sencillo. | Se crea al final |
+| `informe_relieve_y_area.md` | Informe de cierre en lenguaje sencillo, con preguntas y respuestas. | Creado (paso 9) |
 
 Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts/t10_relieve_area.py`, pruebas en `tests/test_t10_relieve_area.py`, resultados en `registro/t10/`. Regla: lo que el equipo ejecuta o consume va en las carpetas del equipo; lo que explica o justifica va aquí.
 
@@ -39,7 +39,7 @@ Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts
 | 6 | Ejecución: 6 configuraciones × (principal y puente), escenarios A y B; regla de T03 | **Hecho** (12 oct) |
 | 7 | Desgloses por tamaño, cobertura y contorno; sensibilidad sin las 24; revuelto si aplica; predicciones de las 59 | **Hecho** (12 oct) |
 | 8 | Diagnóstico exploratorio con rendimientos (Pearson y gráficos) | **Hecho** (12 oct) |
-| 9 | Informe de cierre y registros (`E_T10_001`–`006`, `IA_T10_001`) | Pendiente |
+| 9 | Informe de cierre y registros (`E_T10_001`–`006`, `IA_T10_001`) | **Hecho** (12 oct) |
 | 10 | Reproducción (dos corridas idénticas, Docker) y borrador del PR para Daf | Pendiente |
 
 ## Bitácora
@@ -171,3 +171,13 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 - En la figura, parte de la pendiente de la línea la mueven unas pocas parcelas con error grande (rendimiento 1.5–2.3 t/ha por debajo de su municipio). Eso explica que en la evaluación el RMSE bajara un poco y el MAE no.
 
 **Conclusión del paso.** La descripción es compatible con el resultado de la evaluación: hay una asociación débil y local, no una señal que mejore la estimación de parcelas nuevas. Ninguna cifra de este paso se usa para elegir nada; el valor p no es puerta de entrada (anexo §2.2).
+
+### 12 de octubre de 2026 — Cierre y registros (paso 9)
+
+**Qué se hizo.**
+- `informe_relieve_y_area.md`: resultado en lenguaje sencillo, con una sección de preguntas y respuestas, límites y qué significa para T11, T15, T16, T17 y T19.
+- `docs/T10_relieve_area.md`: estado actualizado y secciones nuevas 13 (resultado) y 14 (cómo reproducir). El diseño (secciones 1–12) no cambió.
+- `registro/experimentos.csv`: `E_T10_001`–`E_T10_006`, una fila por configuración del procedimiento principal, con sus cifras en `sin_respaldo`. El puente no tiene filas propias porque no es elegible; queda descrito en cada fila y en `D_T10_001`.
+- `registro/uso_ia.csv`: `IA_T10_001`.
+
+**Al integrar con T11.** La rama de T11 también agrega filas al final de `decisiones.csv`, `experimentos.csv` y `uso_ia.csv`. Git marcará conflicto en esos tres archivos; se resuelve conservando las filas de ambos lados.
