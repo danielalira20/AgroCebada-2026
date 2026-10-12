@@ -1,13 +1,19 @@
-## Cambio y motivo
+## Problema que resuelve
 
 
-## Tarea y evidencia
+## Solución que implementa
+
+
+## Tarea, alcance y entregables
 
 
 ## Cómo se comprobó
 
 
-## Datos, corte y particiones afectados
+## Datos, unidades, corte y particiones afectados
+
+
+## Limitaciones y pendientes
 
 
 Revisor:
