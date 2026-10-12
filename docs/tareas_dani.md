@@ -56,3 +56,7 @@ Siguiente revisión de Dani/Jass: conciliar con T02 aceptada; inspeccionar AGC_0
 Jass informó validación independiente del cálculo T04. El PR 6 existe con destino dev; las notas del 6 de octubre conservan estados históricos. La [entrega mensual al equipo](t04_entrega_equipo.md) incorpora tabla compacta, conciliación calculada con T02 identificada y diccionario. Las medias originales permanecen idénticas. Dani autorizó publicar estas correcciones en el PR 6 hacia dev el 7 de octubre; la nueva revisión de Jass y el cierre de T04 siguen pendientes.
 
 La [revisión temporal](t04_version_disponibilidad.md) diferencia observación, publicación y edición del producto. No fija ventanas ni cambia T03. Siguiente conversación: punto 5, responsable y reglas de agregación por ventana/documento para T07. T09 no empieza por disponer del CSV: requiere protocolo y experimento acordados.
+
+## Diseño T09 fijado · 11 de octubre de 2026
+
+Dani autorizó cerrar el diseño sin esperar respuesta de Migue. [Diseño v1.0](t09_diseno.md), [razones y evidencia](t09_decisiones.md) y [configuración](../registro/t09/diseno.json): referencia exacta, clima solo, municipio + clima y corrección residual; ventanas/regularización/selección fijadas. La revisión independiente sigue pendiente; la fase de diseño no entrena modelos ni cierra T09. El siguiente paso es preflight y desarrollo de estimadores con controles de fuga, antes de evaluación oficial.

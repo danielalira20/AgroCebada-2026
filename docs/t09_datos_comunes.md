@@ -1,5 +1,7 @@
 # Preparación de T09 · datos locales y aclaraciones de Tab 8
 
+Actualización posterior · 11-oct-2026: el [diseño T09 v1.0](t09_diseno.md) ya está fijado localmente por autorización de Dani; la revisión de Migue sigue pendiente. Se reprodujo la aclaración de Jass: Mann–Whitney de área p=0.814491 y KS p=0.355929 son pruebas distintas. La retirada anterior del 0.81 como resultado KS se conserva como historia; su origen queda explicado en [las decisiones](t09_decisiones.md). No hay nuevos modelos entrenados.
+
 Fecha: 11-oct-2026. Responsable: Dani. Trabajo autorizado: puntos 1 y 3 del
 plan de continuación. El acuerdo experimental con Migue y el entrenamiento
 de T09 siguen pendientes.
