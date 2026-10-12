@@ -1,0 +1,113 @@
+# T10 · Aporte de relieve y área sobre la referencia territorial
+
+- **Responsable:** Jass. **Revisora:** Daf.
+- **Estado (12 de octubre de 2026):** diseño escrito **antes de correr** cualquier configuración (decisión `D_T10_001`). Todavía no hay código ni resultados.
+- **Usa:** T03 (particiones, subconjuntos y regla de decisión), T05 (relieve), T07 (tabla común) y T08 (referencia `media_mun__resp_grupo`, D019).
+- **Plan:** «T10 · relieve y área: territorio frente a territorio + relieve/área; sensibilidad a tamaño y cobertura parcial. Entregar predicciones y errores». Anexo de selección de atributos (11 de octubre): «comparar aporte sobre territorio; revisar relación entre relieve, área y ubicación y sensibilidad a calidad».
+
+## 1. Pregunta
+
+¿Conocer la elevación, la pendiente y el tamaño de una parcela mejora la estimación que da el promedio de su municipio? ¿Esa mejora se sostiene en las parcelas pequeñas y en las de cobertura parcial?
+
+En palabras sencillas: la referencia tasa una casa con el promedio de su colonia. T10 pregunta si conocer los metros y la inclinación del terreno afina el precio o solo añade ruido.
+
+## 2. Lo que ya se vio antes (declaración)
+
+Este diseño **no es ciego**. Durante la comprensión del dataset (antes del plan de tareas) se correlacionaron con el rendimiento, usando las 138 etiquetas y restando el promedio de cada municipio, cientos de resúmenes por parcela, entre ellos relieve y área. Lo más constante, aunque débil, fue la pendiente (+0.26) y el área en logaritmo (−0.25); la prueba de permutación sobre el máximo dio p = 0.22. Además, T02 (`desviacion_por_tamano.csv`) encontró que en Chignahuapan las parcelas de más de 5 ha quedan en promedio 0.23 t/ha bajo la media municipal.
+
+Para que eso no incline el resultado:
+
+- se prueban las tres variables, no solo las dos que parecían relacionadas;
+- cada transformación se justifica sin usar rendimientos (sección 3);
+- todas las configuraciones se reportan, ganen o no;
+- una mejora solo cuenta si cumple la regla de T03 §4 y, además, el control de revuelto (sección 8).
+
+## 3. Entradas
+
+Todas salen de `registro/t07/tabla_comun.csv` y se unen por `id_parcela`, nunca por posición.
+
+| Columna | Transformación | Razón (sin rendimientos) |
+|---|---|---|
+| `elevacion_media_m` | ninguna | Sin faltantes; de 2,497 a 2,906 m s.n.m. |
+| `pendiente_media_t10_grados` | ninguna; los 2 faltantes (AGC_023 y AGC_170, piso D020) se rellenan con la **mediana del entrenamiento** de cada partición | El vacío no significa cero; el relleno se aprende sólo con entrenamiento. |
+| `area_ha_origen` | logaritmo natural | Va de 0.35 a 64.3 ha y su desviación estándar (7.4 ha) supera a su media (6.6 ha): unas pocas parcelas grandes dominarían la escala. |
+
+- **No entran:** las áreas alternativas (`area_ha_geodesica`, `area_parcela_6372_m2`; contrato `area_t10`), extremos, coberturas, conteos de celdas o avisos de relieve, ni ninguna columna de clima o satélite.
+- **Las 59 reservadas** tienen las tres variables completas. Su rango cae dentro del de las etiquetadas, salvo la elevación máxima (2,906.0 m frente a 2,904.0 m).
+- **Relación con la ubicación, sin rendimientos (138 etiquetadas):** el municipio explica el 53 % de la variación del área, el 28 % de la elevación y el 13 % de la pendiente. La correlación entre elevación y pendiente es 0.51.
+
+## 4. Procedimiento principal
+
+1. **Predicción** = referencia `media_mun__resp_grupo` + Ridge ajustado al residuo. El residuo es *rendimiento real − referencia calculada sin esa fila* (O4).
+2. **Comprobación previa:** la referencia de T10 debe reproducir las 1,380 predicciones fuera del entrenamiento de T08 (`registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv`), con las mismas fuentes de respaldo.
+3. **Selección interna (T03 §5):** 4 particiones dentro de cada entrenamiento externo, semilla 0, estrato = municipio con al menos 4 etiquetas en ese entrenamiento; si no, `otros`. Dentro de cada partición interna se recalculan referencia, residuo, relleno, escalado y centrado con su parte de entrenamiento, sin tocar su parte de validación.
+4. **Opciones que compiten en la selección interna:** «referencia sola» (Ridge apagado) y α ∈ {0.1, 1, 3, 10, 30, 100, 300, 1000, 10000}. Incluir la referencia sola atiende O7: una penalización grande no apaga necesariamente las variables.
+5. **Criterio de la selección interna:** error absoluto del rendimiento en la parte de validación, porque la métrica primaria de T03 es el MAE. Empate: gana lo más simple, primero «referencia sola» y después el α más grande.
+6. Con la opción elegida se reajusta en el entrenamiento externo completo y se predice una sola vez su partición de evaluación.
+
+**Diferencias con T11 v2 (D021–D022):** los puntos 4 y 5. Todo lo demás es igual.
+
+## 5. Configuraciones (presupuesto: 6 de 8)
+
+| # | Variables además del territorio |
+|---|---|
+| 1 | Elevación |
+| 2 | Pendiente |
+| 3 | Área (logaritmo) |
+| 4 | Relieve: elevación + pendiente |
+| 5 | Relieve + área |
+| 6 | Relieve + área, cada variable centrada con la media de su municipio en el entrenamiento (si el municipio no está en el entrenamiento, con la media global) |
+
+La configuración 6 separa «cómo es la parcela frente a las de su municipio» de «dónde está». Las 2 configuraciones restantes del presupuesto **no se usan**: no hay otra pregunta que justifique gastarlas, y no se agregan después de ver resultados.
+
+## 6. Procedimiento puente (descriptivo)
+
+Las 6 configuraciones se corren también con el procedimiento exacto de T11 v2 (sin «referencia sola»; α elegido por error cuadrático; empate al α más grande). Sus resultados se guardan con `procedimiento = puente_t11`, junto a los del principal (`procedimiento = t10`), y una tabla compara ambos.
+
+**El puente nunca decide:** no puede promoverse ni cambiar la conclusión de T10, y no consume presupuesto de búsqueda porque ninguna de sus configuraciones es elegible. Sirve para que T15 combine con T11 sin rehacer nada y para medir cuánto cambian los resultados por el procedimiento.
+
+## 7. Evaluación (T03 §4, sin cambios)
+
+- Escenario A (principal) y B (sensibilidad obligatoria), 5 repeticiones, particiones de `registro/t03/particiones.csv`.
+- MAE (primaria), RMSE, sesgo y R², por repetición y después promediados; subconjuntos `todas` y `sin_respaldo`.
+- **Regla de promoción, en `sin_respaldo`:** ΔMAE ≤ −0.01 t/ha frente a la referencia; límite superior de `IC95_celdas` < 0 (bootstrap por celdas CHIRPS, 5,000 réplicas, semilla 20261006); mismo signo en al menos 4 de 5 repeticiones; y el RMSE no empeora más de 0.01 t/ha. Si nada la cumple, se conserva la referencia.
+- **Comparaciones descriptivas (no deciden):** 5 frente a 4 (¿el área añade algo al relieve?) y 6 frente a 5 (¿aporta «dónde está» o «cómo es»?).
+
+## 8. Control de revuelto (sólo si alguna configuración cumple la regla)
+
+Se repite la evaluación completa de esa configuración 20 veces, revolviendo sus variables al azar entre las parcelas etiquetadas de un mismo municipio (semilla 20261012). Se reporta la fracción de revueltos con ΔMAE igual o mejor que el observado. Si esa fracción es mayor que 0.05 (2 o más de 20), la mejora **no se promueve** y se informa como no distinguible del azar.
+
+## 9. Sensibilidad a tamaño y cobertura
+
+Error de la referencia y de cada configuración desglosado por:
+
+- **Tamaño:** menos de 2 ha, 2 a 5 ha y más de 5 ha (los cortes de T02), y la marca de parcela menor a una celda de 120 m (1.44 ha).
+- **Cobertura de relieve:** las 5 etiquetadas con cobertura parcial (AGC_020, 023, 044, 164 y 170) y las que tienen 4 celdas válidas o menos.
+- **Desgloses obligatorios de T03 §4 bis:** municipio, grupo de registro, contorno A frente a B o C, angosta o muy pequeña, escalón de la etiqueta y vecina etiquetada a menos de 20 m; con la marca de grupo poco informativo cuando tenga menos de 5 parcelas.
+- **Sensibilidad sin las 24** parcelas con alerta de contorno.
+
+**Control del pendiente P06:** si el aporte del área se concentra en los contornos B o C, se informa como sospecha de efecto de medición (un error en el área usada como denominador del rendimiento produce una relación negativa aparente), no como señal agronómica.
+
+## 10. Diagnóstico de atributos
+
+- **Sin rendimientos (antes de evaluar):** cuánto explica el municipio a cada variable, correlaciones entre las tres variables y reservadas fuera del rango de las etiquetadas.
+- **Con rendimientos (después de evaluar, exploratorio):** Pearson de cada variable con el rendimiento, global y dentro de municipio, con número de pares y gráficos de puntos. No decide nada (anexo de selección, §2.2).
+- **De la selección:** frecuencia con que se eligió «referencia sola» y cada α, por configuración y escenario. Es descriptiva, no una probabilidad de importancia.
+
+## 11. Entregables
+
+| Qué | Dónde |
+|---|---|
+| Método (este documento) | `docs/T10_relieve_area.md` |
+| Código | `scripts/t10_relieve_area.py` |
+| Pruebas sintéticas: relleno y centrado sólo con entrenamiento, opción «referencia sola», criterio de empate, formato de salida | `tests/test_t10_relieve_area.py` |
+| Predicciones fuera del entrenamiento (formato T03 §7 más `procedimiento`, `alfa` y `referencia`), métricas, comparación emparejada, desgloses, sensibilidad sin las 24, coeficientes y α elegidos, diagnóstico sin rendimientos, predicciones de las 59 ajustadas con las 138 (sólo para T16 y la app) y manifiesto con huellas de entradas | `registro/t10/` |
+| Bitácora, diagnóstico exploratorio con rendimientos, gráficos e informe de cierre | `analisis/aporte_relieve_y_area/` (se crea con la primera evidencia) |
+| Registros | `D_T10_001` en `registro/decisiones.csv`; `E_T10_001`–`E_T10_006` en `registro/experimentos.csv`; `IA_T10_001` en `registro/uso_ia.csv` |
+
+## 12. Qué no afirma T10
+
+- Que el relieve o el área causen más o menos rendimiento.
+- Que el área declarada sea la superficie con la que se calculó el rendimiento (pendiente P06).
+- Qué edición del relieve se usó (pendiente P05; ver la bitácora de T05, entrada del 12 de octubre).
+- Que el resultado se mantenga en otra campaña: hay una sola campaña etiquetada.
