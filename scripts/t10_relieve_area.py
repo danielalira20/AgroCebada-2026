@@ -345,9 +345,47 @@ def comparaciones(oof, celda):
             for f in comparar(x, ("t10", n), ("puente_t11", n), celda):
                 filas.append(dict(escenario=esc, tipo="descriptiva: principal frente a puente", procedimiento="t10",
                                   candidato=n, frente_a="puente_t11", elegible=False, **f))
-    comp = pd.DataFrame(filas)
-    # La regla sólo puede cumplirse en el procedimiento principal, frente a la referencia.
-    comp["promueve"] = comp.elegible & comp.cumple_regla_T03 & (comp.subconjunto == "sin_respaldo")
+    return marcar_candidatas(pd.DataFrame(filas))
+
+
+def marcar_candidatas(comp):
+    """Candidata a promover (antes del revuelto): procedimiento principal frente a la referencia,
+    cumple la regla de T03 en `sin_respaldo` (D019) y en el escenario A, que es el principal
+    (T03 §3). B es sensibilidad: cumplir sólo en B no promueve."""
+    comp = comp.copy()
+    comp["candidata_a_promover"] = (comp.elegible & comp.cumple_regla_T03
+                                    & (comp.subconjunto == "sin_respaldo") & (comp.escenario == "A"))
+    return comp
+
+
+def decidir(comp, revuelto):
+    """Decisión final (D_T10_001 §7–8): se promueve sólo la candidata que además supera el control
+    de revuelto. Cada fila guarda el motivo de la decisión."""
+    comp = comp.copy()
+    sostiene = {(r.escenario, int(r.config)): bool(r.se_sostiene) for r in revuelto.itertuples()}
+    supera, promueve, motivo = [], [], []
+    for r in comp.itertuples():
+        s = sostiene.get((r.escenario, int(r.candidato))) if r.candidata_a_promover else None
+        supera.append(s)
+        promueve.append(bool(r.candidata_a_promover and s is True))
+        if not r.elegible:
+            m = "no elegible: comparación descriptiva o procedimiento puente"
+        elif r.subconjunto != "sin_respaldo":
+            m = "informativo: la regla se aplica en sin_respaldo (D019)"
+        elif not r.cumple_regla_T03:
+            m = "no cumple la regla de T03"
+        elif r.escenario != "A":
+            m = "cumple sólo en B: sensibilidad, no promueve (T03 §3)"
+        elif s is None:
+            m = "candidata sin control de revuelto: no promueve"
+        elif s:
+            m = "cumple la regla en A y supera el control de revuelto"
+        else:
+            m = "cumple la regla en A pero no supera el control de revuelto"
+        motivo.append(m)
+    comp["supera_revuelto"] = pd.array(supera, dtype="boolean")
+    comp["promueve"] = promueve
+    comp["motivo"] = motivo
     return comp
 
 
@@ -435,9 +473,9 @@ def revolver_dentro_de_municipio(d, cols, rng):
 
 
 def control_revuelto(d, comp, celda):
-    """Sólo para configuraciones del principal que promueven (D_T10_001 §8)."""
+    """Sólo para las candidatas a promover del principal (escenario A, sin_respaldo; D_T10_001 §8)."""
     filas = []
-    for _, r in comp[comp.promueve].iterrows():
+    for _, r in comp[comp.candidata_a_promover].iterrows():
         cfg = {r.candidato: CONFIGS[r.candidato]}
         esc = {r.escenario: ESCENARIOS[r.escenario]}
         rng = np.random.RandomState(SEMILLA_REVUELTO)
@@ -581,6 +619,7 @@ def main(argv=None):
     sens = sensibilidad_sin_alerta(oof, atrib)
     freq = frecuencia_opciones(oof)
     rev = control_revuelto(d, comp, celda)
+    comp = decidir(comp, rev)
     p59 = predicciones_59(tabla)
     for nombre, df in [("predicciones_oof_t10.csv", oof), ("coeficientes_t10.csv", coefs),
                        ("metricas_t10.csv", res), ("comparacion_emparejada_t10.csv", comp),
@@ -592,7 +631,7 @@ def main(argv=None):
                         dict(promueve=bool(comp.promueve.any()), segundos=round(time.time() - t0)))
     sel = (comp.tipo == "frente_a_referencia") & (comp.subconjunto == "sin_respaldo")
     print(comp.loc[sel, ["escenario", "procedimiento", "candidato", "dMAE", "IC95_celdas_sup", "reps_que_mejoran",
-                         "dRMSE", "cumple_regla_T03", "promueve"]].round(4).to_string(index=False))
+                         "dRMSE", "cumple_regla_T03", "promueve", "motivo"]].round(4).to_string(index=False))
     print("\n¿alguna configuración del principal se promueve?", bool(comp.promueve.any()))
 
 
