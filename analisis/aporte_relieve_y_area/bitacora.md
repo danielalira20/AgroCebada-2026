@@ -209,3 +209,18 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 **Regeneración.** Se corrió la evaluación completa en una carpeta temporal: 8 de los 10 archivos idénticos a los publicados; cambian `comparacion_emparejada_t10.csv` (sólo agrega las 3 columnas nuevas; los valores existentes son idénticos y ninguna fila se promueve) y `desglose_error_t10.csv`. Se copiaron esos dos y el manifiesto, que coincide con los 10 archivos y con el código nuevo.
 
 **Pruebas.** 18 de T10 (5 nuevas) y la suite completa aprueban.
+
+### 12-oct · Paso 3 de las correcciones: D_T10_002 (unidad de conteo del presupuesto)
+
+- Se registró `D_T10_002` en `registro/decisiones.csv`, fechada y marcada como **posterior a los resultados y a la auditoría externa**. No reescribe `D_T10_001`.
+- Qué aclara: el presupuesto de T03 §5 se cuenta en subconjuntos de variables (6 de 8). El α y la opción «referencia sola» se eligen dentro de cada entrenamiento y no cuentan como configuraciones. La lectura estricta alternativa (6 × 9 = 54 combinaciones) queda escrita.
+- Por qué no cambia nada: ninguna configuración cumplió la regla, así que la decisión de no promover es la misma con cualquier lectura. Se declara que la aclaración no se usó para elegir ni descartar variables.
+- Queda pendiente la confirmación de Migue (él interpreta T03 §5), tanto para esta lectura como para que el puente quede fuera del conteo.
+
+### 12-oct · Paso 4 de las correcciones: informe más prudente y material de apoyo
+
+- **Frases suavizadas en el informe:** resumen («con este procedimiento, estas entradas y esta campaña»); RMSE («con las predicciones actuales tampoco se alcanza el umbral», sin descartar que con RMSE como métrica primaria saliera algo distinto); explicación de la correlación que no ayuda (tres causas compatibles en lugar de una); puente frente a principal (se cambian dos cosas a la vez y sólo se probó con relieve y área); y propuesta para T11 como propuesta, no conclusión.
+- **Agregado:** tabla de las 5 parcelas con cobertura parcial (AGC_020, 023, 044, 164, 170) con cobertura, pendiente imputada, fuente de la referencia y errores en A y B; explica por qué AGC_164 está en `todas` y no en `sin_respaldo`.
+- **Agregado:** ficha de consumo para T16 (qué filas de `predicciones_59_t10.csv` usar y cuáles no).
+- **Aclarado:** la exploración de los 269 resúmenes se reporta desde el contexto local del equipo y no se reproduce en el repositorio.
+- **Bitácora de T05:** «casi no cambia» se reemplazó por «el cálculo usa los mismos TIFF verificados; no se comparó con otra edición».

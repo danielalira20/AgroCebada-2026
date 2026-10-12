@@ -298,7 +298,7 @@ La comprobación interna de `--publicar` (mismo equipo) no usa el margen de áre
 **Contradicción sin resolver.** El nombre de los archivos dice «CEM4», y la edición CEM 4.0 que describen los antecedentes del proyecto es de 2025 a 15 m. El metadato interno, en cambio, fecha los insumos en 2017 a 120 m nativos. No se confirmó cuál es correcta; no se elige una por cuenta propia.
 
 **Efecto.**
-- En la estimación retrospectiva de 2025 (T10) no cambia nada: el relieve a 120 m casi no varía entre 2017 y 2025, y los valores por parcela ya están verificados.
+- Para T10 el cálculo usa los mismos TIFF que ya se verificaron, así que los valores por parcela no cambian. No se comparó con otra edición del relieve, de modo que no se puede afirmar cuánto difiere entre ediciones.
 - Sí limita afirmar qué edición se usaría para otra campaña (P05 sigue abierto como pendiente documental).
 - `registro/t05/procedencia.json` no registró estas etiquetas. No se regenera la entrega por esto: no cambia ningún valor publicado (regla de cierre ampliada).
 
