@@ -70,10 +70,12 @@ Las 6 configuraciones se corren también con el procedimiento exacto de T11 v2 (
 
 - Escenario A (principal) y B (sensibilidad obligatoria), 5 repeticiones, particiones de `registro/t03/particiones.csv`.
 - MAE (primaria), RMSE, sesgo y R², por repetición y después promediados; subconjuntos `todas` y `sin_respaldo`.
-- **Regla de promoción, en `sin_respaldo`:** ΔMAE ≤ −0.01 t/ha frente a la referencia; límite superior de `IC95_celdas` < 0 (bootstrap por celdas CHIRPS, 5,000 réplicas, semilla 20261006); mismo signo en al menos 4 de 5 repeticiones; y el RMSE no empeora más de 0.01 t/ha. Si nada la cumple, se conserva la referencia.
+- **Regla de promoción, en `sin_respaldo` y en el escenario A (el B es sensibilidad y no promueve por sí solo):** ΔMAE ≤ −0.01 t/ha frente a la referencia; límite superior de `IC95_celdas` < 0 (bootstrap por celdas CHIRPS, 5,000 réplicas, semilla 20261006); mismo signo en al menos 4 de 5 repeticiones; y el RMSE no empeora más de 0.01 t/ha. Si nada la cumple, se conserva la referencia.
 - **Comparaciones descriptivas (no deciden):** 5 frente a 4 (¿el área añade algo al relieve?) y 6 frente a 5 (¿aporta «dónde está» o «cómo es»?).
 
 ## 8. Control de revuelto (sólo si alguna configuración cumple la regla)
+
+La decisión va en dos tiempos: una configuración es `candidata_a_promover` si el procedimiento principal cumple la regla de la sección 7 en `sin_respaldo` y en A; `promueve` sólo si además supera este control. El puente y el subconjunto `todas` nunca promueven. Cada fila de `comparacion_emparejada_t10.csv` guarda `candidata_a_promover`, `supera_revuelto` y `motivo`.
 
 Se repite la evaluación completa de esa configuración 20 veces, revolviendo sus variables al azar entre las parcelas etiquetadas de un mismo municipio (semilla 20261012). Se reporta la fracción de revueltos con ΔMAE igual o mejor que el observado. Si esa fracción es mayor que 0.05 (2 o más de 20), la mejora **no se promueve** y se informa como no distinguible del azar.
 
@@ -100,7 +102,7 @@ Error de la referencia y de cada configuración desglosado por:
 |---|---|
 | Método (este documento) | `docs/T10_relieve_area.md` |
 | Código | `scripts/t10_relieve_area.py` |
-| Pruebas sintéticas: relleno y centrado sólo con entrenamiento, opción «referencia sola», criterio de empate, formato de salida | `tests/test_t10_relieve_area.py` |
+| Pruebas sintéticas (18): relleno y centrado sólo con entrenamiento, opción «referencia sola», criterio de empate, formato de salida, lógica de decisión (sólo B, veto del revuelto, puente) y desgloses por repetición | `tests/test_t10_relieve_area.py` |
 | Predicciones fuera del entrenamiento (formato T03 §7 más `procedimiento`, `alfa` y `referencia`), métricas, comparación emparejada, desgloses, sensibilidad sin las 24, coeficientes y α elegidos, diagnóstico sin rendimientos, predicciones de las 59 ajustadas con las 138 (sólo para T16 y la app) y manifiesto con huellas de entradas | `registro/t10/` |
 | Bitácora, diagnóstico exploratorio con rendimientos, gráficos e informe de cierre | `analisis/aporte_relieve_y_area/` (se crea con la primera evidencia) |
 | Registros | `D_T10_001` en `registro/decisiones.csv`; `E_T10_001`–`E_T10_006` en `registro/experimentos.csv`; `IA_T10_001` en `registro/uso_ia.csv` |
@@ -129,8 +131,10 @@ Procedimiento principal, subconjunto `sin_respaldo` (referencia: A → MAE 0.320
 
 - Ajustado con las 138 parcelas, el procedimiento elige «referencia sola» en las 6 configuraciones: las predicciones para las 59 coinciden con las de T08.
 - El puente (T11 v2) empeora el MAE entre +0.0097 y +0.0197 en A; el principal es mejor que el puente en las 12 comparaciones de MAE.
-- Con MAE y RMSE intercambiados (si FIRA confirmara RMSE), el principal tampoco llega al umbral (mejor ΔRMSE −0.0052).
-- Desgloses, sensibilidad y exploración con rendimientos: bitácora e informe de cierre.
+- Con MAE y RMSE intercambiados (si FIRA confirmara RMSE), con las predicciones actuales el principal tampoco llega al umbral (mejor ΔRMSE −0.0052). No se volvió a correr eligiendo el ajuste con error cuadrático.
+- Sobre el conteo del presupuesto de T03 §5 (6 subconjuntos de 8; α y «referencia sola» elegidos dentro del entrenamiento; puente fuera del conteo) hay una aclaración posterior a los resultados en `D_T10_002`, pendiente de confirmación de Migue. Ninguna configuración cumple la regla con cualquiera de las lecturas.
+- Los desgloses se calculan por repetición y luego se promedian (T03 §4); cada fila trae `n_repeticiones` y `MAE_sd_rep`.
+- Desgloses, sensibilidad, tabla de las 5 parcelas con cobertura parcial, ficha de consumo para T16 y exploración con rendimientos: bitácora e informe de cierre.
 
 ## 14. Cómo reproducir
 
