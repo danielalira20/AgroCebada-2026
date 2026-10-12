@@ -13,7 +13,9 @@ Responsable: Jass. Revisora: Daf.
 | Archivo | Qué guarda | Estado |
 |---|---|---|
 | `bitacora.md` | Este documento. | Creado |
-| Diagnóstico exploratorio con rendimientos, gráficos | Pearson de cada variable con el rendimiento, global y dentro de municipio. Exploratorio: no decide nada. | Se crea después de evaluar |
+| `scripts/explorar_relacion_con_rendimiento.py` | Diagnóstico exploratorio con rendimientos (Pearson y Spearman, global, dentro de municipio y por municipio). No decide nada. | Creado (paso 8) |
+| `tablas/correlaciones_con_rendimiento.csv` | Resultado de ese diagnóstico. | Creado (paso 8) |
+| `figuras/dispersion_relieve_area_rendimiento.png` | Dispersión global y dentro de municipio de las tres variables. | Creado (paso 8) |
 | Informe de cierre | Resultado de T10 en lenguaje sencillo. | Se crea al final |
 
 Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts/t10_relieve_area.py`, pruebas en `tests/test_t10_relieve_area.py`, resultados en `registro/t10/`. Regla: lo que el equipo ejecuta o consume va en las carpetas del equipo; lo que explica o justifica va aquí.
@@ -36,7 +38,7 @@ Dónde vive el resto: método en `docs/T10_relieve_area.md`, código en `scripts
 | 5 | Diagnóstico de atributos sin rendimientos | **Hecho** (12 oct) |
 | 6 | Ejecución: 6 configuraciones × (principal y puente), escenarios A y B; regla de T03 | **Hecho** (12 oct) |
 | 7 | Desgloses por tamaño, cobertura y contorno; sensibilidad sin las 24; revuelto si aplica; predicciones de las 59 | **Hecho** (12 oct) |
-| 8 | Diagnóstico exploratorio con rendimientos (Pearson y gráficos) | Pendiente |
+| 8 | Diagnóstico exploratorio con rendimientos (Pearson y gráficos) | **Hecho** (12 oct) |
 | 9 | Informe de cierre y registros (`E_T10_001`–`006`, `IA_T10_001`) | Pendiente |
 | 10 | Reproducción (dos corridas idénticas, Docker) y borrador del PR para Daf | Pendiente |
 
@@ -142,3 +144,30 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 **Conclusión de T10 (para el informe de cierre).** Con este procedimiento, elevación, pendiente y área no aportan información útil sobre la referencia municipal para estimar el rendimiento de estas parcelas. Se conserva la referencia. La pista en parcelas pequeñas queda como hipótesis para T15, no como hallazgo.
 
 **Qué no se comprobó todavía.** La reproducción en otro equipo y en Docker (paso 10). La relación exploratoria con el rendimiento (paso 8).
+
+### 12 de octubre de 2026 — Diagnóstico exploratorio con rendimientos (paso 8)
+
+**Qué se esperaba.** Describir la relación lineal de cada variable con el rendimiento, global y dentro de municipio, como pide el anexo de selección de atributos (§2.2). Es **exploratorio**: se corrió después de la evaluación y no cambia configuraciones, entradas ni la conclusión de T10.
+
+**Qué se hizo.** `python analisis/aporte_relieve_y_area/scripts/explorar_relacion_con_rendimiento.py` con las 138 etiquetadas. «Dentro de municipio» resta a cada variable y al rendimiento la media de su municipio, sólo en los 5 municipios con al menos 5 etiquetas (132 parcelas; 130 en pendiente por los 2 faltantes de D020, que se excluyen del par, no se rellenan).
+
+**Qué se encontró.**
+
+| Variable | r global | r dentro de municipio | r en Chignahuapan (71) | r en Calpulalpan (30) |
+|---|---|---|---|---|
+| Elevación | +0.29 | +0.16 | +0.20 | +0.02 |
+| Pendiente | +0.30 | +0.24 | +0.32 | +0.01 |
+| Log del área | −0.25 | −0.24 | −0.32 | −0.04 |
+
+- Spearman da el mismo signo y magnitud parecida en las tres.
+- La correlación global de la elevación baja a la mitad al restar el municipio: buena parte era «dónde está la parcela».
+- Pendiente y área conservan una relación débil dentro de municipio, pero **casi toda viene de Chignahuapan**. En Calpulalpan, el segundo municipio, es prácticamente cero; en los demás los grupos son demasiado pequeños para leer algo.
+- Coincide con lo visto antes de diseñar T10 (pendiente +0.26 y log del área −0.25 dentro de municipio): la cifra no es nueva, y por eso quedó declarada en `D_T10_001`.
+
+**Por qué una correlación de 0.24 no se convierte en una mejor predicción.**
+- Una correlación de 0.24 explica cerca del 6 % de la variación que deja el municipio. Aun aprovechándola completa, el error bajaría muy poco, y fuera del entrenamiento hay que estimarla con unas 110 parcelas por partición, lo que se come la mayor parte de esa ganancia.
+- Se concentra en un municipio. En el escenario B, donde Chignahuapan queda en bloques completos, no aparece ni siquiera la pequeña baja de RMSE de A.
+- Estas dos variables se señalaron en la exploración original por ser las más altas entre 269 resúmenes. Escoger «la mejor» de muchas infla su correlación con los mismos datos: la cifra de esta tabla es optimista por construcción.
+- En la figura, parte de la pendiente de la línea la mueven unas pocas parcelas con error grande (rendimiento 1.5–2.3 t/ha por debajo de su municipio). Eso explica que en la evaluación el RMSE bajara un poco y el MAE no.
+
+**Conclusión del paso.** La descripción es compatible con el resultado de la evaluación: hay una asociación débil y local, no una señal que mejore la estimación de parcelas nuevas. Ninguna cifra de este paso se usa para elegir nada; el valor p no es puerta de entrada (anexo §2.2).
