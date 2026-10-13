@@ -44,16 +44,31 @@ Para cerrar T01 se necesitan las salidas aprobadas en los cinco equipos, una eje
 
 Para que todo el equipo obtenga los mismos resultados en Mac y Windows, las tareas se ejecutan dentro de la imagen `agrocebada-entorno` con la carpeta del proyecto montada. La imagen tiene Python 3.12.15, las librerías de `requirements.txt`, `git` y lectura de texto en UTF-8. Los datos no van dentro de la imagen: se leen de `data/` local.
 
-**Una sola vez por equipo.** El repositorio fija fin de línea LF en `.gitattributes`. Tras actualizar a esta versión, con todo guardado en commit, volver a descargar los archivos para que queden con LF:
+**Una sola vez por equipo (sólo si ya tenías el repositorio clonado en Windows antes de esta versión).** El repositorio fija fin de línea LF en `.gitattributes`. No cambia ningún archivo del repositorio: sólo decide cómo se descargan en cada equipo. Un clon nuevo ya descarga con LF y no necesita este paso. Si tu copia es anterior, hay que volver a descargar los archivos para que queden con LF. Este paso **borra los cambios locales sin commit**, así que el bloque primero comprueba con `git status --porcelain` que no haya nada sin guardar y, si lo hay, se detiene sin tocar nada (guarda antes con commit o `git stash`):
 
 ```sh
-git pull
-git rm --cached -r . -q
-git reset --hard
-git ls-files --eol | grep "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+# Mac o Git Bash
+if [ -n "$(git status --porcelain)" ]; then
+  echo "Hay cambios sin commit: guárdalos (commit o git stash) antes de continuar"
+else
+  git pull
+  git rm --cached -r . -q
+  git reset --hard
+  git ls-files --eol | grep "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+fi
 ```
 
-En PowerShell, la última línea es `git ls-files --eol | Select-String "w/crlf"`.
+```powershell
+# PowerShell
+if (git status --porcelain) {
+  "Hay cambios sin commit: guárdalos (commit o git stash) antes de continuar"
+} else {
+  git pull
+  git rm --cached -r . -q
+  git reset --hard
+  git ls-files --eol | Select-String "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+}
+```
 
 **Ejecutar.** Desde la raíz del repositorio:
 
