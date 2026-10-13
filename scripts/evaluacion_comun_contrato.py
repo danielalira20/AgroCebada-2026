@@ -192,7 +192,8 @@ def validar_experimento(experimento, entradas):
     allow=set(entradas['roles']['columnas_por_funcion']['predictor_candidato'])-{'municipio'}
     quality=set(entradas['roles']['columnas_por_funcion']['calidad'])
     for p in procs:
-        name=p['candidato'];exigir(name.strip()==name and name and name!='media_mun__resp_grupo','Identificador de candidato inválido')
+        name=p['candidato'];exigir(isinstance(name,str) and name.strip()==name and name and name!='media_mun__resp_grupo','Identificador de candidato inválido')
+        exigir(all(isinstance(p.get(flag,False),bool) for flag in ['area_explicita','calidad_explicita']), 'Autorización de rol requiere booleano explícito')
         opts=p.get('opciones',[]);exigir(1<=len(opts)<=8,'Máximo ocho opciones con variables por procedimiento')
         seen=set()
         for o in opts:
