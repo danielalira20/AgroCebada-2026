@@ -217,6 +217,10 @@ class RidgeClimatico(RegressorMixin, BaseEstimator):
 
 
 def crear_estimador(procedimiento, ventana='jun_oct', lambda_reg=0.1):
+    if procedimiento == 'R_centrado':
+        # Identificador nuevo: el ejecutor y los resultados v1 siguen reproducibles.
+        from scripts.t09_residual_centrado import RidgeResidualCentrado
+        return RidgeResidualCentrado(ventana, lambda_reg)
     if procedimiento == 'T':
         return MediaTerritorial()
     return RidgeClimatico(procedimiento, ventana, lambda_reg)
