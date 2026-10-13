@@ -1,5 +1,7 @@
 # T15 · Comparaciones concretas propuestas antes de ejecutar
 
+> Antecedente histórico comun-v1. Para nuevas comparaciones se propone el [procedimiento centrado v2](evaluacion_comun_centrado_v2.md), con diseño y propuesta separados. Conserva la revisión humana pendiente y no ejecuta T15.
+
 Fecha:13-oct2026. Responsable:Dani; corresponsable:Daf. Revisión metodológica de las extensiones a T03/T16:Migue. **Estado: propuesta escrita y comunicada; conformidad de Daf y revisión de Migue pendientes. Sin evaluación completa T15.**
 
 ## Problema que resuelve
@@ -8,7 +10,7 @@ T09,T10,T11,T14 comparten catálogo y referencia, pero difieren también en sele
 
 ## Solución propuesta
 
-Mantener `comun-v1` (huella `da633adf27c7f1cf2d7760dc2f190abe38d9a912f80a976717fc6213c48f76d3`) y cambiar únicamente el conjunto declarado de atributos. La familia, referencia, divisiones y reglas están en [procedimiento común](evaluacion_comun.md). Se conservarán los procedimientos históricos y se identificará cada resultado nuevo por su registro/código/entorno.
+La propuesta histórica v1 planteaba mantener `comun-v1` (huella `da633adf27c7f1cf2d7760dc2f190abe38d9a912f80a976717fc6213c48f76d3`) y cambiar únicamente el conjunto declarado de atributos. La familia, referencia, divisiones y reglas están en [procedimiento común](evaluacion_comun.md). Se conservarán los procedimientos históricos y se identificará cada resultado nuevo por su registro/código/entorno.
 
 Se conocen resultados anteriores: es un registro previo a **la nueva corrida**, posterior a aquellos resultados. No constituye una validación externa ciega ni una prueba entre campañas. Las OOF del procedimiento ganador elegido entre varios tampoco son una prueba independiente nueva de ese ganador.
 

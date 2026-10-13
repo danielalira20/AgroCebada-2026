@@ -1,5 +1,7 @@
 # Registro para una comparación común
 
+> Antecedente histórico comun-v1. Para nuevas comparaciones se propone el [procedimiento centrado v2](evaluacion_comun_centrado_v2.md), con diseño y propuesta separados. Conserva la revisión humana pendiente y no ejecuta T15.
+
 Cada experimento JSON declara `schema=experimento_comun_v1`, ID único, responsable, hipótesis, estado `registrado_antes_de_ejecutar`, huella del procedimiento y lista de procedimientos. Un estado escrito no prueba por sí mismo el orden temporal: conservar su commit antes de correr y el manifiesto de ejecución posterior. Nunca renombrar una búsqueda retrospectiva como registro previo.
 
 Cada procedimiento declara `candidato` estable y `opciones`. Una opción tiene `columnas`, `ventana` y `lambda_reg`. Cada ventana usa las cuatro λ: 0.01, 0.1, 1, 10; las columnas no cambian entre λ. Se admiten una o dos ventanas por procedimiento, máximo ocho opciones con variables. La referencia sola se añade internamente sin búsqueda y sin contar como variante de atributos. Lo estático usa `estatica`, cuatro opciones y no duplica ventanas.

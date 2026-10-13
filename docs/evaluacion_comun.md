@@ -1,5 +1,7 @@
 # Procedimiento común para comparar bloques · comun-v1
 
+> Antecedente histórico comun-v1. Para nuevas comparaciones se propone el [procedimiento centrado v2](evaluacion_comun_centrado_v2.md), con diseño y propuesta separados. Conserva la revisión humana pendiente y no ejecuta T15.
+
 Responsable: Dani. Revisión metodológica: Daf para T15; Migue para el protocolo T03 y cierre T16. Preparado localmente el 13 de octubre de 2026. **Todavía sin evaluación externa completa de este procedimiento ni ganador final.**
 
 ## Problema que resuelve
@@ -61,7 +63,7 @@ T12 conserva su contraste no lineal como procedimiento distinto. T13/T14 pueden 
 ## Verificador y componentes
 
 - `scripts/evaluacion_comun_contrato.py`: huellas y universo, roles, objetivos, claves, semillas/folds, celdas, metadatos, finitud, calidad D020, OOF y presupuesto del registro. Sólo valida: no corrige ni entrena.
-- `scripts/evaluacion_comun_modelo.py`: referencia, residuos LOO, transformaciones, Ridge, divisiones internas, desempates y selección. `seleccionar_registrado()` valida el registro y obtiene entrenamiento/evaluación del contexto congelado, sin entregar objetivos externos ni los de las 59 al ajuste.
+- `scripts/evaluacion_comun_modelo.py`: referencia, residuos LOO, transformaciones, Ridge, divisiones internas, desempates y selección. `seleccionar_registrado(..., reproduccion_historica=True)` reproduce explícitamente v1 y valida el registro y obtiene entrenamiento/evaluación del contexto congelado, sin entregar objetivos externos ni los de las 59 al ajuste.
 - `scripts/evaluacion_comun_reportes.py`: métricas y contraste emparejado desde OOF validadas. No declara ganador T16.
 - `tests/test_evaluacion_comun.py`: casos reales y cálculos unitarios aislados. Los datos de ejemplo de pruebas no se escriben como una tabla oficial ni se usan en la evaluación del reto.
 

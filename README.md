@@ -75,7 +75,7 @@ diagnóstico estadístico de atributos.
 
 ## Preparación de comparación común T15/T16
 
-El [procedimiento común](docs/evaluacion_comun.md) fija familia, selección interna, regularización y reglas para comparar bloques. El [registro](docs/evaluacion_comun_registro.md) limita búsquedas y explicita atributos/ventanas. [Evidencia técnica](registro/evaluacion_comun/verificacion.json):294 pruebas Mac,41Docker y41conPython optimizado. Está preparado para revisión Daf/Migue; no se ejecutó la evaluación completa nueva ni se eligió ganadorT16.
+El [procedimiento común histórico v1](docs/evaluacion_comun.md) fija familia, selección interna, regularización y reglas para comparar bloques. El [registro](docs/evaluacion_comun_registro.md) limita búsquedas y explicita atributos/ventanas. [Evidencia técnica](registro/evaluacion_comun/verificacion.json):294 pruebas Mac,41Docker y41conPython optimizado. Está preparado para revisión Daf/Migue; no se ejecutó la evaluación completa nueva ni se eligió ganadorT16.
 
 El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,particiones yreferencia sin ajustar estimadores. Mantiene T09/T11/T14 como procedimientos históricos.
 
@@ -85,3 +85,7 @@ El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,par
 [Revisión T10/T11 reproducida](docs/revision_T10_T11_20261013.md) y [propuesta concreta T15](docs/t15_comparaciones_propuestas.md). Solicitudes a Daf y Migue enviadas; conformidad metodológica pendiente. La propuesta JSON no es ejecutable hasta cerrar el acuerdo y registrarlo antes de correr. T09 y los históricos conservan sus ramas y resultados.
 
 [Alternativas para reducir MAE](docs/alternativas_MAE_20261013.md): investigación de modelos, curvas existentes, suelo y clima diario. Hipótesis priorizadas, sin nuevos datos o evaluaciones incorporados.
+
+### Corrección H3 en el procedimiento común · para revisión
+
+La [versión centrada v2](docs/evaluacion_comun_centrado_v2.md) resta centros aprendidos sólo en entrenamiento a todas las variables transformadas, incluido el indicador D020. Conserva datos y búsqueda; la propuesta T15 sigue pendiente y no ejecutable. [Evidencia propia](registro/evaluacion_comun/verificacion_centrado_v2.json): controles matemáticos por bloques, prevención de filtraciones e identidad de versión. Los históricos permanecen identificados como tales.
