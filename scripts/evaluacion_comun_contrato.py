@@ -187,6 +187,11 @@ def validar_experimento(experimento, entradas):
     exigir(experimento.get('sha_procedimiento')==DISENO_SHA,'Experimento usa otro procedimiento')
     exigir(experimento.get('estado')=='registrado_antes_de_ejecutar','Debe registrarse antes de ejecutar')
     exigir(bool(experimento.get('id')) and bool(experimento.get('responsable')) and bool(experimento.get('hipotesis')),'Falta identidad/hipótesis')
+    return validar_opciones_y_presupuesto(experimento, entradas)
+
+
+def validar_opciones_y_presupuesto(experimento, entradas):
+    """Valida estructura; no acredita versión, aprobación ni registro previo."""
     procs=experimento.get('procedimientos',[]);exigir(1<=len(procs)<=8,'Presupuesto: 1–8 procedimientos por experimento')
     exigir(len({p['candidato'] for p in procs})==len(procs),'Candidatos duplicados')
     allow=set(entradas['roles']['columnas_por_funcion']['predictor_candidato'])-{'municipio'}

@@ -196,8 +196,9 @@ def preparar_contexto(entradas,escenario,repeticion,particion):
     return table.loc[ids_train].copy(),y,table.loc[ids_test].copy()
 
 
-def seleccionar_registrado(entradas,experimento,candidato,escenario,repeticion,particion):
-    """Entrada pública para T15: registro validado y ajuste sólo dentro del contexto externo."""
+def seleccionar_registrado(entradas,experimento,candidato,escenario,repeticion,particion,*,reproduccion_historica=False):
+    """Reproducción explícita comun-v1. Nueva T15 usa evaluacion_comun_centrado."""
+    exigir(reproduccion_historica is True, "comun-v1 histórico: usar comun-centrado-v2 para nueva T15; reproducción requiere opción explícita")
     from scripts.evaluacion_comun_contrato import validar_experimento
     validar_experimento(experimento,entradas)
     procs=[p for p in experimento['procedimientos'] if p['candidato']==candidato]
