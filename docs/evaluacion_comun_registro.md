@@ -4,7 +4,7 @@ Cada experimento JSON declara `schema=experimento_comun_v1`, ID único, responsa
 
 Cada procedimiento declara `candidato` estable y `opciones`. Una opción tiene `columnas`, `ventana` y `lambda_reg`. Cada ventana usa las cuatro λ: 0.01, 0.1, 1, 10; las columnas no cambian entre λ. Se admiten una o dos ventanas por procedimiento, máximo ocho opciones con variables. La referencia sola se añade internamente sin búsqueda y sin contar como variante de atributos. Lo estático usa `estatica`, cuatro opciones y no duplica ventanas.
 
-No se proporciona un registro listo para ejecutar T15 hasta completar la revisión T10 y fijar las combinaciones con Daf. Las plantillas aisladas de los tests no son experimentos del reto.
+La revisión T10/T11 ya está documentada en [revisión del13-oct](revision_T10_T11_20261013.md). Hay una [propuesta concreta T15](t15_comparaciones_propuestas.md), con ocho procedimientos y18contrastes, comunicada a Daf y Migue. Su JSON conserva estado pendiente y el contrato lo rechaza como ejecutable; faltan las respuestas verificables y el registro definitivo previo a correr. Las plantillas aisladas de los tests no son experimentos del reto.
 
 - `area_explicita=true` autoriza el área declarada, que el núcleo transforma con log natural.
 - `calidad_explicita=true` autoriza los indicadores de observación de T07. Declarar cómo se separan de señal espectral en las comparaciones.

@@ -78,3 +78,8 @@ diagnóstico estadístico de atributos.
 El [procedimiento común](docs/evaluacion_comun.md) fija familia, selección interna, regularización y reglas para comparar bloques. El [registro](docs/evaluacion_comun_registro.md) limita búsquedas y explicita atributos/ventanas. [Evidencia técnica](registro/evaluacion_comun/verificacion.json):294 pruebas Mac,41Docker y41conPython optimizado. Está preparado para revisión Daf/Migue; no se ejecutó la evaluación completa nueva ni se eligió ganadorT16.
 
 El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,particiones yreferencia sin ajustar estimadores. Mantiene T09/T11/T14 como procedimientos históricos.
+
+
+## Revisión y coordinación para T15 · 13 de octubre
+
+[Revisión T10/T11 reproducida](docs/revision_T10_T11_20261013.md) y [propuesta concreta T15](docs/t15_comparaciones_propuestas.md). Solicitudes a Daf y Migue enviadas; conformidad metodológica pendiente. La propuesta JSON no es ejecutable hasta cerrar el acuerdo y registrarlo antes de correr. T09 y los históricos conservan sus ramas y resultados.

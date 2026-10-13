@@ -102,3 +102,8 @@ Se comprueba matemáticamente un contexto real y cinco grupos de atributos (clim
 [Validación cruzada, scikit-learn](https://scikit-learn.org/stable/modules/cross_validation.html), [prevención de filtraciones](https://scikit-learn.org/stable/common_pitfalls.html), [Ridge y su objetivo](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html). Estas fuentes sustentan la separación entrenamiento/selección/evaluación, transformaciones dentro de folds y comportamiento de la penalización; no determinan un λ óptimo para Agrocebada.
 
 Skills utilizadas: scikit-learn y pensamiento crítico científico. Atribución: Kassis, T., Agarwal, V., He, Y., Patel, D., & Brueckner, A. M. (2026). *Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents*. [DOI](https://doi.org/10.48550/arXiv.2609.00065), registro actual v2 consultado el 13-oct-2026. No constituyen evidencia de mejora del rendimiento.
+
+
+## Actualización de coordinación · 13 de octubre de2026
+
+La revisión T10 y actualización T11 está en [informe reproducido](revision_T10_T11_20261013.md). A solicitud explícita de Dani se enviaron las propuestas completas a Daf y Migue en los enlaces de [comparaciones T15](t15_comparaciones_propuestas.md). Se preparó una lista de ocho procedimientos; sigue pendiente de acuerdo humano. Esta actualización no cambia la huella ni las reglas de `comun-v1`, no fusiona los otros PR y no ejecuta la evaluación completa.
