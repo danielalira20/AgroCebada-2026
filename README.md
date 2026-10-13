@@ -72,3 +72,9 @@ Los borradores anteriores permanecen en `reports/` con su procedencia histórica
 La integración T07 ya está en `dev`; las columnas candidatas no son entradas
 automáticas de un modelo. El nuevo complemento documental no inicia T09 ni el
 diagnóstico estadístico de atributos.
+
+## Preparación de comparación común T15/T16
+
+El [procedimiento común](docs/evaluacion_comun.md) fija familia, selección interna, regularización y reglas para comparar bloques. El [registro](docs/evaluacion_comun_registro.md) limita búsquedas y explicita atributos/ventanas. [Evidencia técnica](registro/evaluacion_comun/verificacion.json):294 pruebas Mac,41Docker y41conPython optimizado. Está preparado para revisión Daf/Migue; no se ejecutó la evaluación completa nueva ni se eligió ganadorT16.
+
+El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,particiones yreferencia sin ajustar estimadores. Mantiene T09/T11/T14 como procedimientos históricos.
