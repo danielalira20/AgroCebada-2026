@@ -73,6 +73,8 @@ La integración T07 ya está en `dev`; las columnas candidatas no son entradas
 automáticas de un modelo. El nuevo complemento documental no inicia T09 ni el
 diagnóstico estadístico de atributos.
 
-## T09: estimadores antes de la evaluación completa
+## T09: evaluación climática para revisión
 
-El [diseño](docs/t09_diseno.md) y la [implementación verificada](docs/t09_estimadores.md) separan referencia territorial, clima solo, municipio + clima y corrección residual. El preflight comprueba entradas y particiones por ID; las pruebas contrastan matemáticas y ausencia de filtraciones. [Estado de componentes](registro/t09/implementacion.json): no es una evaluación completa, elección de ganador ni entrega final de las 59. La revisión independiente sigue pendiente.
+El [diseño](docs/t09_diseno.md) y los [componentes verificados](docs/t09_estimadores.md) se ejecutaron con las 138 etiquetas de 2025. El [informe con gráficas](docs/t09_evaluacion.md) compara referencia territorial, clima solo, municipio + clima y corrección residual en A/B/C. Ningún procedimiento climático cumple la promoción en A; T sigue como base para T15. [Estado y evidencia](registro/t09/evaluacion.json), OOF principales y tablas compactas están en `registro/t09/`; el diccionario explica unidades y vacíos.
+
+Dos ejecuciones Docker reproducen exactamente 15 CSV y 3 JSON; los verificadores independientes reconstruyen métricas y matrices. Pasan 324 pruebas Mac y 84 controles Docker. La revisión de Migue sigue pendiente; T16/T18 aún deben elegir y ajustar el procedimiento final para las 59. No se evaluaron sus etiquetas ni se generó una entrega definitiva. Docker se detuvo al terminar.

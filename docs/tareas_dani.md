@@ -64,3 +64,7 @@ Dani autorizó cerrar el diseño sin esperar respuesta de Migue. [Diseño v1.0](
 ## Estimadores T09 verificados · 12 de octubre de 2026
 
 Rama `t09-territorio-clima`: [implementación y pruebas](t09_estimadores.md) de los cuatro procedimientos del diseño. Pasan 299 pruebas Mac y 59 Docker; fuente/diseño intactos. Las comprobaciones numéricas son controles, no resultados de la evaluación completa. Próximo paso: ejecutor externo y reportes, ejecución según diseño y revisión de Migue. No hay ganador ni entrega definitiva para las 59.
+
+## Evaluación completa T09 · 12 de octubre de 2026
+
+La [entrega T09](t09_evaluacion.md) y [estado verificable](../registro/t09/evaluacion.json) comparan los cuatro procedimientos en A/B/C: 59 contextos, 6,018 ajustes por corrida, 6,072 OOF principales. Ningún candidato climático cumple la regla en A/sin_respaldo; T se conserva como base para T15. Dos Docker idénticos, 324 pruebas Mac/84 controles Docker, verificadores independientes y fuentes intactas. Implementación y evaluación listas para revisión de Migue; T09 no se marca Hecha. T16 elige el procedimiento global y T18 genera las 59 definitivas. Rama t09-territorio-clima; publicación pendiente de autorización para el lote completo.
