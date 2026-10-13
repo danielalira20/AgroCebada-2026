@@ -83,3 +83,5 @@ El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,par
 ## Revisión y coordinación para T15 · 13 de octubre
 
 [Revisión T10/T11 reproducida](docs/revision_T10_T11_20261013.md) y [propuesta concreta T15](docs/t15_comparaciones_propuestas.md). Solicitudes a Daf y Migue enviadas; conformidad metodológica pendiente. La propuesta JSON no es ejecutable hasta cerrar el acuerdo y registrarlo antes de correr. T09 y los históricos conservan sus ramas y resultados.
+
+[Alternativas para reducir MAE](docs/alternativas_MAE_20261013.md): investigación de modelos, curvas existentes, suelo y clima diario. Hipótesis priorizadas, sin nuevos datos o evaluaciones incorporados.
