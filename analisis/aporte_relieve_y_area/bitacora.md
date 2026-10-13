@@ -231,7 +231,7 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 
 **Cambios.** Se matizó el estado inicial del método, se retiró «sin cambios» del título de la sección 7 y se añadió una nota fechada que abarca las secciones 7–8 y los desgloses de la sección 9. La nota identifica las correcciones posteriores, los dos CSV y el manifiesto actualizados en la corrección anterior, y la decisión de no promover antes y después. Se agregó `IA_T10_002` a `registro/uso_ia.csv` y se enlazó desde el método. Se conserva `IA_T10_001`, incluido su conteo histórico de 266 pruebas.
 
-**Autoría y evidencia.** Codex detectó los tres defectos descritos en la entrada «Correcciones tras la auditoría externa (Codex): decisión y desgloses» y después revisó las correcciones incorporadas por Jass. En la revisión del commit `7899584`, previa a esta edición documental, ejecutó las 18 pruebas de T10 (OK), comprobó las 1,380 predicciones de referencia (diferencia máxima 8.88e-16, mismas fuentes y respaldos A: 15 / B: 31) y verificó todas las huellas de entradas, código y resultados del manifiesto. En esa revisión no volvió a ejecutar la evaluación completa ni la suite general. La implementación de Codex en esta intervención se limita al método, esta bitácora y el registro de uso de IA.
+**Autoría y evidencia.** Codex detectó los tres defectos descritos en la entrada «Correcciones tras la auditoría externa (Codex): decisión y desgloses» y después revisó las correcciones, que habían sido implementadas con Claude y aprobadas por Jass (`IA_T10_005`). En la revisión del commit `7899584`, previa a esta edición documental, ejecutó las 18 pruebas de T10 (OK), comprobó las 1,380 predicciones de referencia (diferencia máxima 8.88e-16, mismas fuentes y respaldos A: 15 / B: 31) y verificó todas las huellas de entradas, código y resultados del manifiesto. En esa revisión no volvió a ejecutar la evaluación completa ni la suite general. La implementación de Codex en esta intervención se limita al método, esta bitácora y el registro de uso de IA.
 
 **Estado de revisión.** Cambios documentales autorizados por Jass; revisión de estos cambios y aprobación de Daf pendientes. La autorización para implementar no se registra como aprobación final del PR.
 
@@ -244,3 +244,23 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 **Efecto verificado.** Sólo cambiaron las columnas `MAE_sd_rep` y, donde corresponde, `MAE_sd_rep_sin24` de `metricas_t10.csv`, `desglose_error_t10.csv` y `sensibilidad_sin_alerta_t10.csv`. Todas las demás columnas de esos archivos son exactamente iguales. Los otros siete CSV, incluidas las predicciones OOF, las 59 reservadas y la comparación emparejada, son idénticos byte a byte. Se actualizaron los tres CSV y el manifiesto con las huellas del código y los resultados regenerados. Ninguna configuración se promueve. No se ejecutó la suite general en esta intervención.
 
 **Registro.** `IA_T10_003`; revisión humana de este cambio pendiente. Los puntos 2 y 3 se conservaron por separado en un parche local para permitir commits independientes.
+
+### 12 de octubre de 2026 — Mitigaciones 5, 7 y 8 del PR (Codex)
+
+**Alcance autorizado.** Jass pidió implementar 5, 7 y 8 y excluyó expresamente el punto 6. Se conservaron las decisiones y el texto sobre presupuesto.
+
+**Punto 5.** Se retiró el conteo fijo de 240 del README y de los comentarios de ambos ejecutores. Los registros históricos (266 y los posteriores) se mantienen. La suite completa se ejecutó con `python -B -m unittest discover -s tests` en Docker/Linux, sobre una copia temporal de los archivos del commit `5545bf5` creada con `git archive HEAD`: 272 pruebas, OK, en 28.102 segundos. La copia excluyó los cambios locales de T07. El método registra la fecha y versión de ese conteo. Para actualizar la descripción del PR, sustituir el total vigente por 272 (19 de T10) y retirar el marcador «Completar»; esta intervención no publicó cambios en GitHub.
+
+**Punto 7.** D021 y D022 se verificaron en `bfa525d003c535349ff586ebea4a51e2487a513e`, referencia local disponible de T11 que no está integrada en el `dev` local consultado. Se añadieron enlaces por commit al método, código y decisiones de T11; `D_T10_003` complementa las referencias sin reescribir D_T10_001/002. La comparación histórica acredita sólo 100/100 elecciones de alfa para las configuraciones 1 y 3; no acredita equivalencia completa ni las configuraciones con pendiente. Se acotaron las afirmaciones de equivalencia del método. La fijación de hoy no identifica retrospectivamente la revisión exacta de aquella comparación.
+
+**Punto 8.** Se creó `docs/T10_seguimiento_T17.md`, enlazada desde el método y el informe, con las tres parcelas, límites observados, alcance actual y criterios verificables para T17. Como aclaración posterior, la frase histórica «No es una extrapolación relevante» deja de ser una conclusión vigente: hoy las variables no afectan las predicciones porque se usa referencia sola; eso no permite anticipar el comportamiento de otro modelo. T17 debe decidir y revisar su política; esta intervención no implementa recortes, sustituciones ni avisos en la app.
+
+**Estado.** `IA_T10_004`. Cambios documentales locales, pendientes de revisión humana; sin cambios de modelo o resultados numéricos.
+
+### 13 de octubre de 2026 — Registro de IA: quién hizo las correcciones
+
+**Hallazgo.** Al auditar la rama se vio que `IA_T10_002` atribuía a Jass las correcciones de código posteriores a la auditoría de Codex, y que ninguna fila de `registro/uso_ia.csv` las asignaba a Claude. `IA_T10_001` cubre sólo hasta el paso 10.
+
+**Corrección.** Se agregó `IA_T10_005` (Claude): veto del revuelto y promoción sólo en A, desgloses por repetición, `D_T10_002`, informe más prudente con la tabla de cobertura parcial y la ficha para T16, y regeneración de los resultados afectados; cada paso con aprobación de Jass. Se ajustó la frase de `IA_T10_002` y de la entrada «Trazabilidad del PR» para que digan que Codex revisó esas correcciones y no que las incorporó Jass. `IA_T10_003` e `IA_T10_004` quedan como están: son cambios hechos con Codex.
+
+**Efecto.** Sólo cambia el registro de autoría. Ningún resultado, script ni prueba se modifica.

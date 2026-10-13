@@ -33,7 +33,7 @@ Todas salen de `registro/t07/tabla_comun.csv` y se unen por `id_parcela`, nunca 
 | `area_ha_origen` | logaritmo natural | Va de 0.35 a 64.3 ha y su desviación estándar (7.4 ha) supera a su media (6.6 ha): unas pocas parcelas grandes dominarían la escala. |
 
 - **No entran:** las áreas alternativas (`area_ha_geodesica`, `area_parcela_6372_m2`; contrato `area_t10`), extremos, coberturas, conteos de celdas o avisos de relieve, ni ninguna columna de clima o satélite.
-- **Las 59 reservadas** tienen las tres variables completas. Tres quedan apenas fuera del rango de las etiquetadas, cada una en una sola variable: AGC_088 en elevación (2,906.0 m; máximo etiquetado 2,904.0 m), AGC_153 en pendiente (0.282°; mínimo 0.288°) y AGC_091 en área (0.35 ha; mínimo 0.38 ha). Las tres diferencias son menores que la variación entre parcelas vecinas.
+- **Las 59 reservadas** tienen las tres variables completas. Tres quedan apenas fuera del rango de las etiquetadas, cada una en una sola variable: AGC_088 en elevación (2,906.0 m; máximo etiquetado 2,904.0 m), AGC_153 en pendiente (0.282°; mínimo 0.288°) y AGC_091 en área (0.35 ha; mínimo 0.38 ha). Estos valores no alteran las predicciones finales de T10 porque las seis configuraciones eligen «referencia sola»; esto no demuestra que la extrapolación sea inocua para otro modelo. El pendiente y sus criterios de aceptación para T17 están en [T10_seguimiento_T17.md](T10_seguimiento_T17.md).
 - **Relación con la ubicación, sin rendimientos (138 etiquetadas; `registro/t10/diagnostico_atributos_t10.csv`):** el municipio explica el 28 % de la variación de la elevación, el 13 % de la pendiente y el 15 % del logaritmo del área (el 53 % del área sin logaritmo: unas pocas parcelas grandes concentradas en pocos municipios dominan esa escala). Correlaciones entre variables: elevación–pendiente 0.51, pendiente–log del área −0.30 y elevación–log del área −0.09.
 
 ## 4. Procedimiento principal
@@ -45,7 +45,9 @@ Todas salen de `registro/t07/tabla_comun.csv` y se unen por `id_parcela`, nunca 
 5. **Criterio de la selección interna:** error absoluto del rendimiento en la parte de validación, porque la métrica primaria de T03 es el MAE. Empate: gana lo más simple, primero «referencia sola» y después el α más grande.
 6. Con la opción elegida se reajusta en el entrenamiento externo completo y se predice una sola vez su partición de evaluación.
 
-**Diferencias con T11 v2 (D021–D022):** los puntos 4 y 5. Todo lo demás es igual.
+**Relación con T11 v2 (D021–D022):** el principal cambia las opciones y el criterio de los puntos 4 y 5. T10 también incorpora imputación para las pendientes faltantes; T11 no admite faltantes. La comprobación empírica del puente alcanzó 100/100 elecciones de α en las configuraciones 1 y 3; no se verificó equivalencia en las configuraciones con pendiente ni equivalencia completa de predicciones.
+
+**Referencia documental fijada el 12 de octubre de 2026 (punto 7 del PR):** D021 y D022 se consultaron en el commit `bfa525d003c535349ff586ebea4a51e2487a513e` de `t11-aporte-satelital`: [decisiones de T11](https://github.com/danielalira20/AgroCebada-2026/blob/bfa525d003c535349ff586ebea4a51e2487a513e/registro/decisiones.csv), [método](https://github.com/danielalira20/AgroCebada-2026/blob/bfa525d003c535349ff586ebea4a51e2487a513e/docs/T11_aporte_satelital.md) y [código](https://github.com/danielalira20/AgroCebada-2026/blob/bfa525d003c535349ff586ebea4a51e2487a513e/scripts/t11_aporte_satelital.py). Son referencias externas a esta rama; ese commit no está integrado en la referencia local de `dev` consultada. Esta fijación documental posterior permite resolver las citas de `D_T10_001` y `D_T10_002` sin esperar la fusión de T11; no identifica retrospectivamente el commit usado en la comprobación original de α ni acredita cambios posteriores de T11. Al integrar, conservar las decisiones de ambas tareas. Véase `D_T10_003`.
 
 ## 5. Configuraciones (presupuesto: 6 de 8)
 
@@ -62,7 +64,7 @@ La configuración 6 separa «cómo es la parcela frente a las de su municipio» 
 
 ## 6. Procedimiento puente (descriptivo)
 
-Las 6 configuraciones se corren también con el procedimiento exacto de T11 v2 (sin «referencia sola»; α elegido por error cuadrático; empate al α más grande). Sus resultados se guardan con `procedimiento = puente_t11`, junto a los del principal (`procedimiento = t10`), y una tabla compara ambos.
+Las 6 configuraciones se corren también con un puente basado en T11 v2 (sin «referencia sola»; α elegido por error cuadrático; empate al α más grande), con la imputación de T10 y el alcance de equivalencia descrito en la sección 4. Sus resultados se guardan con `procedimiento = puente_t11`, junto a los del principal (`procedimiento = t10`), y una tabla compara ambos.
 
 **El puente nunca decide:** no puede promoverse ni cambiar la conclusión de T10, y no consume presupuesto de búsqueda porque ninguna de sus configuraciones es elegible. Sirve para que T15 combine con T11 sin rehacer nada y para medir cuánto cambian los resultados por el procedimiento.
 
@@ -108,7 +110,7 @@ Error de la referencia y de cada configuración desglosado por:
 | Pruebas sintéticas (19): relleno y centrado sólo con entrenamiento, opción «referencia sola», criterio de empate, formato de salida, lógica de decisión (sólo B, veto del revuelto, puente) y desgloses por repetición; dispersión con `ddof=0` | `tests/test_t10_relieve_area.py` |
 | Predicciones fuera del entrenamiento (formato T03 §7 más `procedimiento`, `alfa` y `referencia`), métricas, comparación emparejada, desgloses, sensibilidad sin las 24, coeficientes y α elegidos, diagnóstico sin rendimientos, predicciones de las 59 ajustadas con las 138 (sólo para T16 y la app) y manifiesto con huellas de entradas | `registro/t10/` |
 | Bitácora, diagnóstico exploratorio con rendimientos, gráficos e informe de cierre | `analisis/aporte_relieve_y_area/` (se crea con la primera evidencia) |
-| Registros | `D_T10_001` en `registro/decisiones.csv`; `E_T10_001`–`E_T10_006` en `registro/experimentos.csv`; `IA_T10_001`–`IA_T10_003` en `registro/uso_ia.csv` |
+| Registros | `D_T10_001`–`D_T10_003` en `registro/decisiones.csv`; `E_T10_001`–`E_T10_006` en `registro/experimentos.csv`; `IA_T10_001`–`IA_T10_005` en `registro/uso_ia.csv` |
 
 ## 12. Qué no afirma T10
 
@@ -140,6 +142,8 @@ Procedimiento principal, subconjunto `sin_respaldo` (referencia: A → MAE 0.320
 - Desgloses, sensibilidad, tabla de las 5 parcelas con cobertura parcial, ficha de consumo para T16 y exploración con rendimientos: bitácora e informe de cierre.
 
 ## 14. Cómo reproducir
+
+**Conteo comprobado el 12 de octubre de 2026:** 272 pruebas en la suite completa (`python -m unittest discover -s tests`), incluidas 19 de T10, todas aprobadas en Docker/Linux sobre una copia temporal del commit `5545bf5`. Se excluyeron los cambios locales de T07; el conteo es específico de esa versión. Los conteos anteriores se conservan como historia.
 
 Desde la raíz del repositorio, con el entorno de `requirements.txt`. No se necesita el dataset: todas las entradas están en `registro/`.
 

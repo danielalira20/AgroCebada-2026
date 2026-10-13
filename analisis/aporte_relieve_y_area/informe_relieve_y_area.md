@@ -99,7 +99,7 @@ Son las etiquetadas con aviso `cobertura_parcial` en `registro/t07/calidad_relie
 - **Qué no usar:** las filas de `puente_t11`. Son descriptivas, nunca decidieron nada y empeoran el error en validación.
 - **Filas `t10` con `config` 1 a 6:** en las 6 combinaciones el procedimiento eligió «referencia sola» (`opcion`), por lo que repiten la referencia. Se publican sólo para auditar.
 - **Los 59 IDs:** son las parcelas reservadas sin rendimiento; el `ID_POLIGONO` va en la columna `ID_POLIGONO`.
-- **Aviso para la app:** AGC_088 (elevación), AGC_153 (pendiente) y AGC_091 (área) quedan apenas fuera del rango de las etiquetadas.
+- **Pendiente para T17:** AGC_088 (elevación), AGC_153 (pendiente) y AGC_091 (área) quedan fuera del rango de las etiquetadas. La referencia finalmente elegida no usa estas variables; esto no garantiza el comportamiento de un modelo futuro. Casos, alcance y criterios de aceptación en [la ficha de seguimiento](../../docs/T10_seguimiento_T17.md).
 - **Estas predicciones se ajustaron con las 138 etiquetadas;** no hay forma de evaluarlas hasta que FIRA publique los valores reales.
 
 ## Dónde está todo
