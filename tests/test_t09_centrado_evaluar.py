@@ -17,7 +17,7 @@ from scripts.t09_seleccion import particiones_internas, _clave
 from scripts.t09_centrado_evaluar import (contrato, seleccionar, evaluar_contexto,
                                         preparar_salida, reportes, mismos_valores, CLAVE, ARCH_DISENO, ARCH_REGISTRO)
 from scripts.t09_evaluar import _filas
-from scripts.t09_centrado_verificar import matriz
+from scripts.t09_centrado_verificar import matriz, cargar_tabla_independiente
 from scripts.t09_verificar_matrices import prepare
 
 
@@ -153,6 +153,11 @@ class ControlesAmpliados(unittest.TestCase):
         cambiado=h.prediccion.copy();cambiado.iloc[0]=np.nextafter(cambiado.iloc[0],np.inf)
         self.assertFalse(mismos_valores(nuevo.prediccion,cambiado))
         self.assertFalse(mismos_valores(nuevo.sin_respaldo,h.sin_respaldo.astype(str)))
+
+    def test_auditor_une_celdas_T03_por_ID_y_no_las_supone_en_T07(self):
+        known,held,parts=cargar_tabla_independiente(RAIZ)
+        self.assertEqual((len(known),len(held),len(parts)),(138,59,690))
+        pd.testing.assert_series_equal(known.celda_chirps,self.e['X'].celda_chirps,check_names=False)
 
 
 if __name__=='__main__':unittest.main()

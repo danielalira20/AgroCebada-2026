@@ -77,12 +77,23 @@ def internas(train,esc):
 def clave(r):return round(r['MAE'],6),-r['lambda_reg'],0 if r['ventana']=='jun_oct' else 1
 
 
-def auditar_matrices(repo,folder):
+def cargar_tabla_independiente(repo):
     tab=pd.read_csv(repo/'registro/t07/tabla_comun.csv').set_index('id_parcela',drop=False).sort_index()
-    known=tab[tab.conjunto_origen.eq('ENTRENAMIENTO')]
-    held=tab[tab.conjunto_origen.eq('PREDICCION')]
-    require(len(known)==138 and len(held)==59 and held.rendimiento_t_ha.isna().all(),'Poblaciones 138/59 cambiadas')
+    known=tab[tab.conjunto_origen.eq('ENTRENAMIENTO')].copy()
+    held=tab[tab.conjunto_origen.eq('PREDICCION')].copy()
     parts=pd.read_csv(repo/'registro/t03/particiones.csv')
+    require(len(parts)==690 and parts.groupby('ID_POLIGONO').celda_chirps.nunique().eq(1).all(),
+            'Celdas T03 ausentes o cambiantes entre repeticiones')
+    cells=parts.drop_duplicates('ID_POLIGONO').set_index('ID_POLIGONO').celda_chirps
+    require(set(cells.index)==set(known.index) and cells.notna().all(),'Celdas T03 no cubren exactamente las138')
+    # T07 no tiene esta columna: viene de T03 y se une explícitamente por ID.
+    known['celda_chirps']=cells.reindex(known.index)
+    return known,held,parts
+
+
+def auditar_matrices(repo,folder):
+    known,held,parts=cargar_tabla_independiente(repo)
+    require(len(known)==138 and len(held)==59 and held.rendimiento_t_ha.isna().all(),'Poblaciones 138/59 cambiadas')
     contexts=json.loads((folder/'contextos.json').read_text())
     states=json.loads((folder/'estados.json').read_text())
     read=lambda name:pd.read_csv(folder/(name+'.csv'),float_precision='round_trip')
