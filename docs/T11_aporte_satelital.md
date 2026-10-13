@@ -1,6 +1,6 @@
 # T11 · Aporte satelital
 
-Revisa: Migue (aprobado en el PR #15) · Versión: T11-v2.1 · Diseño: D021 (antes de correr v1), D022 (corrección tras la revisión de Dani, antes de correr v2) y D023 (ajustes tras las revisiones de Migue y Dani, antes de correr v2.1)
+Responsable: Daf · Revisa: Migue (aprobado en el PR #15) · Versión: T11-v2.1 · Diseño: D021 (antes de correr v1), D022 (corrección tras la revisión de Dani, antes de correr v2) y D023 (ajustes tras las revisiones de Migue y Dani, antes de correr v2.1)
 
 ## Problema que resuelve
 
@@ -11,6 +11,7 @@ Revisa: Migue (aprobado en el PR #15) · Versión: T11-v2.1 · Diseño: D021 (an
 ```bash
 python scripts/t11_aporte_satelital.py                   # ≈1.5 min, escribe en registro/t11/
 python -m unittest tests.test_t11_aporte_satelital -v    # pruebas con los datos del repositorio
+python scripts/t11_diagnostico_nubosidad.py              # diagnóstico sin etiquetas de la O2
 ```
 
 Entradas: `registro/t07/tabla_comun.csv`, `registro/t03/particiones.csv`, `registro/t07/calidad_parcelas.csv` y, sólo para verificar, `registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv`.
@@ -93,7 +94,11 @@ El detalle completo (IC95 por celdas y por parcelas, repeticiones, ΔR²) está 
 - **A:** ninguna aporta. Calidad sola: +0.0010; espectral sobre calidad (6 vs. 1): −0.0010; calidad sobre espectral (6 vs. 5): −0.0008.
 - **B:** sumar calidad a Planet tiende a mejorar (6 vs. 5: ΔRMSE −0.0070, ΔMAE −0.0073), pero con IC95 [−0.0335, +0.0042]. Es una tendencia, no evidencia.
 
-No se atribuye mejora a ninguna fuente, y ninguna comparación demuestra causalidad. Como las parcelas son de temporal (FIRA, 2ª sesión, P1), la nubosidad podría reflejar lluvia más que la calidad de la observación. Conviene revisarlo cuando exista T09.
+No se atribuye mejora a ninguna fuente, y ninguna comparación demuestra causalidad.
+
+Como las parcelas son de temporal (FIRA, 2ª sesión, P1), se revisó sin usar el rendimiento si la calidad de Planet refleja lluvia (`scripts/t11_diagnostico_nubosidad.py`, `registro/t11/diagnostico_nubosidad_lluvia.csv`). En general sí hay relación entre zonas (nubosidad frente a lluvia acumulada abr_oct: Pearson +0.42; capturas: −0.38, en las 197 parcelas), pero dentro de cada municipio casi desaparece (+0.10 y −0.06; Spearman cercano a 0), igual en las 138 y en las 59. La relación es sobre todo geográfica y ya la absorbe la referencia municipal, lo que es coherente con que la configuración 1 no aporte. Límite: la lluvia de CHIRPS (celdas de unos 5 km) varía poco dentro de un municipio.
+
+El contraste satélite frente a clima que el plan asigna a T11 "después de T09" lo cubren los contrastes CP−C y CP−P de T15, con el procedimiento común; no se duplica aquí.
 
 ## Ventanas (D005) · observaciones, no conclusiones
 
@@ -147,4 +152,4 @@ Estas ocho variantes no demostraron una mejora suficiente sobre la referencia te
 
 ## Archivos
 
-`registro/t11/`: `predicciones_oof_t11.csv` (con `candidato`, `fuente` y el α elegido en cada entrenamiento), `metricas_t11.csv`, `comparacion_emparejada_t11.csv`, `coeficientes_t11.csv`, `desglose_error_t11.csv` y `sensibilidad_sin_alerta_t11.csv`.
+`registro/t11/`: `predicciones_oof_t11.csv` (con `candidato`, `fuente` y el α elegido en cada entrenamiento), `metricas_t11.csv`, `comparacion_emparejada_t11.csv`, `coeficientes_t11.csv`, `desglose_error_t11.csv`, `sensibilidad_sin_alerta_t11.csv` y `diagnostico_nubosidad_lluvia.csv`.
