@@ -77,7 +77,7 @@ Windows (PowerShell):  .\ejecutar.ps1 [--amd64] [comando]
 Mac o Git Bash:        ./ejecutar.sh  [--amd64] [comando]
 ```
 
-Cada llamada construye la imagen (con caché), comprueba los datos con `scripts/comprobar_datos.py` y ejecuta el comando. Sin comando corre las pruebas (`python -m unittest discover -s tests`). La comprobación exige que `data/raw/DataSet.zip` tenga la huella registrada por T04 y que cada archivo extraído en `data/raw/DATASET_RETO_AGRO_2026` sea idéntico a su original del ZIP; si no, se detiene. Si Windows bloquea scripts: `powershell -ExecutionPolicy Bypass -File .\ejecutar.ps1 …`.
+Cada llamada construye la imagen (con caché), comprueba los datos con `scripts/comprobar_datos.py` y ejecuta el comando. Sin comando corre las pruebas (`python -m unittest discover -s tests`). La comprobación exige que `data/raw/DataSet.zip` tenga la huella registrada por T04 y que cada archivo extraído en `data/raw/DATASET_RETO_AGRO_2026` sea idéntico a su original del ZIP; si no, se detiene. **Sin datos locales** (ni el ZIP ni la carpeta extraída) no se detiene: imprime `AVISO: datos originales NO comprobados` y continúa, porque las pruebas y las tareas que sólo leen `registro/` no los necesitan; las tareas que sí leen el dataset fallarán por su cuenta. Si hay carpeta extraída pero falta el ZIP, sí se detiene, porque esos datos no se pueden verificar. Si Windows bloquea scripts: `powershell -ExecutionPolicy Bypass -File .\ejecutar.ps1 …`.
 
 `--amd64` fija la plataforma `linux/amd64`. En Mac con chip Apple corre emulado (con Colima: `colima start --vm-type vz --vz-rosetta`). Se usa para comparar resultados byte a byte entre equipos y para T18 y T21. En el trabajo diario puede omitirse: entre procesadores ARM y x86 algunos decimales difieren en la última cifra (del orden de 1e-15), dentro de las tolerancias de los verificadores.
 
@@ -100,7 +100,7 @@ T02 requiere la copia `data/DATASET_RETO_AGRO_2026` (ver `analisis/auditoria_cat
 
 La regeneración completa de T04 desde los mapas (`scripts/extraer_clima.py --completa` y `preparar_entrega_clima.py`) reproduce los valores con diferencias de hasta 1e-13 en `media_ponderada` y 4e-16 en `cobertura_valida`: la entrega publicada se generó en un procesador ARM. Su procedencia registra además el código de la extracción original. El verificador de T04 y la tabla de T07 usan la entrega publicada.
 
-**Reglas del equipo.** Toda revisión de PR se reproduce con estos scripts. En Windows no se ejecutan tareas con Python nativo: algunas lecturas dependen de la codificación del sistema y sólo Docker garantiza UTF-8. T18 y T21 se ejecutan con `--amd64`.
+**Reglas del equipo (propuestas en la decisión `D_ENT_001` de `registro/decisiones.csv`; quedan vigentes cuando se apruebe este PR).** Toda revisión de PR que reproduzca resultados se corre con estos scripts. En Windows no se ejecutan tareas con Python nativo: algunas lecturas dependen de la codificación del sistema y sólo Docker garantiza UTF-8. T18 y T21 se ejecutan con `--amd64`. Alternativas descartadas y condiciones para reabrir están en la decisión.
 
 ## Datos y trabajo en equipo
 
