@@ -1,11 +1,12 @@
 # T07 · Contrato común y fases 0–2
 
-Responsable: Dani. Revisora: Jass. Estado al 10 de octubre: catálogo, clima,
-satélite y relieve integrados; comprobación computacional completa y revisión
-independiente de Jass con observaciones recibidas. Las correcciones locales
-1–5 se describen en [revisión del PR14](t07_correcciones_pr14.md); su nueva
-revisión y el cierre humano siguen pendientes. Ver [fases 4–5](t07_fase_4_5.md) para la entrega
-actual. Las [fases 0–2](t07_fases_0_2.md) y [fase 3](t07_fase_3.md) conservan
+Responsable: Dani. Revisora: Jass. Actualización al 11 de octubre: la integración
+de catálogo, clima, satélite y relieve, incluidas las correcciones 1–5, fue
+fusionada en `dev` por el [PR14](https://github.com/danielalira20/AgroCebada-2026/pull/14).
+El manifiesto conserva el estado histórico del cálculo; no se reescribe una
+evidencia de ejecución para simular una aprobación automática. El nuevo
+[complemento de fichas](t07_fichas_atributos.md) tiene revisión propia pendiente.
+Ver [correcciones del PR14](t07_correcciones_pr14.md) y [fases 4–5](t07_fase_4_5.md). Las [fases 0–2](t07_fases_0_2.md) y [fase 3](t07_fase_3.md) conservan
 los antecedentes y sus evidencias históricas.
 Acuerdo de Dani del 7 de octubre de 2026. T07 avanza por bloques según el plan
 unificado corregido; el cálculo técnico no cierra tareas de otros integrantes.
@@ -110,7 +111,9 @@ No se reproyecta ni reextraen los originales para hacer esta unión.
 
 La tabla contiene 35 candidatas, 18 columnas de calidad, cinco metadatos, un
 objetivo y una de referencia/evaluación; no son 60 entradas automáticas del modelo.
-Jass revisó el PR14: se atendieron localmente los cinco puntos. El cierre humano continúa pendiente y `cierre_t07=false`.
+El PR14 con los cinco puntos fue fusionado en `dev`. `cierre_t07=false` describe
+el estado guardado por la ejecución original, cuyo programa no infiere revisión
+humana. La fecha/commit del merge y el alcance nuevo se registran en las fichas.
 Archivo faltante, NoData, bloque no integrado y revisión pendiente son
 situaciones distintas. La reproducción y el contraste independiente de las
 fases 4–5 documentan los criterios y la evidencia actual.
@@ -172,3 +175,11 @@ se conservan vacíos. La vecindad excluye la propia parcela y respeta los pares
 seleccionados antes de redondear distancias. Las dos fuentes adicionales se
 verifican por huellas propias, sin ampliar la referencia climática T04 ni
 reextraer mapas. El detalle de reglas y consumo está en las correcciones del PR14.
+
+## Complemento documental de atributos · punto 1
+
+`registro/t07_fichas/` reúne 60 fichas y pendientes por fuente. Hereda literalmente
+las definiciones y roles de la entrega, añade disponibilidad y requisitos de
+otra campaña y distingue periodo resumido de insumos necesarios. No modifica
+los 13 archivos de `registro/t07/`, T03 ni la extracción. Ver
+[alcance, hallazgos, reproducción y siguiente punto](t07_fichas_atributos.md).
