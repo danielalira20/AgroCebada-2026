@@ -15,7 +15,8 @@ from scripts.t09_estimadores import CLIMA, columnas_clima, crear_estimador
 from scripts.t09_evaluar import contextos
 from scripts.t09_seleccion import particiones_internas, _clave
 from scripts.t09_centrado_evaluar import (contrato, seleccionar, evaluar_contexto,
-                                        preparar_salida, reportes, ARCH_DISENO, ARCH_REGISTRO)
+                                        preparar_salida, reportes, mismos_valores, CLAVE, ARCH_DISENO, ARCH_REGISTRO)
+from scripts.t09_evaluar import _filas
 from scripts.t09_centrado_verificar import matriz
 from scripts.t09_verificar_matrices import prepare
 
@@ -138,6 +139,20 @@ class ControlesAmpliados(unittest.TestCase):
         with self.assertRaises(ValueError):reportes(x,self.cfg)
         x['celda_chirps']='c1';x['sin_respaldo']='True'
         with self.assertRaises(ValueError):reportes(x,self.cfg)
+
+    def test_referencia_csv_compara_textos_exactos_sin_falso_fallo_por_tipo(self):
+        tr,y,te,yt=contexto_externo(self.e,'A',1,0)
+        d=crear_estimador('T').fit(tr,y).predict_with_details(te)
+        nuevo=_filas(d,te,yt,d,'A',1,0,'T','seleccionada','',np.nan,len(tr)).set_index(CLAVE).sort_index()
+        historico=pd.read_csv(RAIZ/'registro/t09/predicciones_oof.csv',float_precision='round_trip')
+        h=historico[historico.procedimiento.eq('T')&historico.escenario.eq('A')&historico.repeticion.eq(1)&historico.particion.eq(0)].set_index(CLAVE).sort_index()
+        for col in ['real','prediccion','fuente','sin_respaldo','n_entrenamiento','celda_chirps']:
+            self.assertTrue(mismos_valores(nuevo[col],h[col]))
+        alterado=h.fuente.copy();alterado.iloc[0]='fuente incorrecta'
+        self.assertFalse(mismos_valores(nuevo.fuente,alterado))
+        cambiado=h.prediccion.copy();cambiado.iloc[0]=np.nextafter(cambiado.iloc[0],np.inf)
+        self.assertFalse(mismos_valores(nuevo.prediccion,cambiado))
+        self.assertFalse(mismos_valores(nuevo.sin_respaldo,h.sin_respaldo.astype(str)))
 
 
 if __name__=='__main__':unittest.main()

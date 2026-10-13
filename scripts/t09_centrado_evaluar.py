@@ -28,6 +28,11 @@ CODIGO = ('scripts/t09_centrado_evaluar.py', 'scripts/t09_residual_centrado.py',
 CLAVE = ['escenario', 'repeticion', 'particion', 'id_parcela']
 
 
+def mismos_valores(a,b):
+    """Igualdad exacta por ID; object y StringDtype pueden representar igual texto."""
+    return a.index.equals(b.index) and np.array_equal(a.to_numpy(),b.to_numpy())
+
+
 def contrato(raiz=RAIZ):
     raiz = Path(raiz)
     if sha(raiz/ARCH_DISENO) != DISENO or sha(raiz/ARCH_REGISTRO) != REGISTRO:
@@ -122,7 +127,7 @@ def integrar_historicos(oof, e, raiz):
     if not t.index.equals(antiguo.index) or len(t)!=1518:
         raise ValueError('Referencia histórica con contextos incompletos')
     for col in ['real','prediccion','fuente','sin_respaldo','n_entrenamiento','celda_chirps']:
-        if not t[col].equals(antiguo[col]):
+        if not mismos_valores(t[col],antiguo[col]):
             raise ValueError('Contexto/máscara/referencia histórica incompatible: '+col)
     for (esc,rep,proc,variante),g in oof.groupby(['escenario','repeticion','procedimiento','variante']):
         if len(g)!=138 or set(g.id_parcela)!=set(e['X'].index):
@@ -135,7 +140,7 @@ def integrar_historicos(oof, e, raiz):
         g=old[old.procedimiento.eq(proc)].set_index(CLAVE).sort_index()
         if not g.index.equals(t.index): raise ValueError('Comparador histórico incompleto')
         for c in ['real','fuente_referencia','sin_respaldo','n_entrenamiento','celda_chirps']:
-            if not g[c].equals(t[c]): raise ValueError('Comparador incompatible: '+c)
+            if not mismos_valores(g[c],t[c]): raise ValueError('Comparador incompatible: '+c)
     return pd.concat([oof,old[old.procedimiento.isin(['R','TC'])]],ignore_index=True)
 
 
