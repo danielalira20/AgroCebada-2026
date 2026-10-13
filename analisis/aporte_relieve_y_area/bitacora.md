@@ -224,3 +224,23 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 - **Agregado:** ficha de consumo para T16 (qué filas de `predicciones_59_t10.csv` usar y cuáles no).
 - **Aclarado:** la exploración de los 269 resúmenes se reporta desde el contexto local del equipo y no se reproduce en el repositorio.
 - **Bitácora de T05:** «casi no cambia» se reemplazó por «el cálculo usa los mismos TIFF verificados; no se comparó con otra edición».
+
+### 12 de octubre de 2026 — Trazabilidad del PR: puntos 2 y 3 (Codex)
+
+**Solicitud y alcance.** Tras la revisión de Daf, Jass autorizó implementar los puntos 2 y 3: marcar lo editado después de los resultados y registrar la auditoría con Codex. Jass decidió conservar el entorno en el PR. Esta intervención es documental.
+
+**Cambios.** Se matizó el estado inicial del método, se retiró «sin cambios» del título de la sección 7 y se añadió una nota fechada que abarca las secciones 7–8 y los desgloses de la sección 9. La nota identifica las correcciones posteriores, los dos CSV y el manifiesto actualizados en la corrección anterior, y la decisión de no promover antes y después. Se agregó `IA_T10_002` a `registro/uso_ia.csv` y se enlazó desde el método. Se conserva `IA_T10_001`, incluido su conteo histórico de 266 pruebas.
+
+**Autoría y evidencia.** Codex detectó los tres defectos descritos en la entrada «Correcciones tras la auditoría externa (Codex): decisión y desgloses» y después revisó las correcciones incorporadas por Jass. En la revisión del commit `7899584`, previa a esta edición documental, ejecutó las 18 pruebas de T10 (OK), comprobó las 1,380 predicciones de referencia (diferencia máxima 8.88e-16, mismas fuentes y respaldos A: 15 / B: 31) y verificó todas las huellas de entradas, código y resultados del manifiesto. En esa revisión no volvió a ejecutar la evaluación completa ni la suite general. La implementación de Codex en esta intervención se limita al método, esta bitácora y el registro de uso de IA.
+
+**Estado de revisión.** Cambios documentales autorizados por Jass; revisión de estos cambios y aprobación de Daf pendientes. La autorización para implementar no se registra como aprobación final del PR.
+
+### 12 de octubre de 2026 — Punto 4 del PR: dispersión comparable con T08 (Codex)
+
+**Cambio autorizado por Jass.** Se alineó `MAE_sd_rep` con T08 usando `ddof=0` en el resumen general y en los desgloses. La sensibilidad usa ese mismo resumen, por lo que también se actualiza `MAE_sd_rep_sin24`. El cálculo anterior usaba `ddof=1`; con cinco repeticiones, la nueva dispersión equivale a la anterior multiplicada por sqrt(4/5). Esta columna describe dispersión entre repeticiones; no estima un error estándar ni un intervalo de confianza.
+
+**Pruebas y reproducción.** Pasaron 19 pruebas de T10. Se añadió un caso con MAE por repetición 0, 1, 2, 3 y 4 (desviación sqrt(2)) y se comprobó que una sola repetición da cero; la prueba de desgloses también verifica la dispersión de los MAE 0 y 1 (0.5). Se ejecutaron diagnóstico y evaluación completos en una carpeta nueva. La referencia reprodujo las 1,380 predicciones de T08, con diferencia máxima 8.88e-16 y respaldos A: 15 / B: 31.
+
+**Efecto verificado.** Sólo cambiaron las columnas `MAE_sd_rep` y, donde corresponde, `MAE_sd_rep_sin24` de `metricas_t10.csv`, `desglose_error_t10.csv` y `sensibilidad_sin_alerta_t10.csv`. Todas las demás columnas de esos archivos son exactamente iguales. Los otros siete CSV, incluidas las predicciones OOF, las 59 reservadas y la comparación emparejada, son idénticos byte a byte. Se actualizaron los tres CSV y el manifiesto con las huellas del código y los resultados regenerados. Ninguna configuración se promueve. No se ejecutó la suite general en esta intervención.
+
+**Registro.** `IA_T10_003`; revisión humana de este cambio pendiente. Los puntos 2 y 3 se conservaron por separado en un parche local para permitir commits independientes.

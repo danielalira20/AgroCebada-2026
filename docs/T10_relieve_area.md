@@ -1,7 +1,7 @@
 # T10 · Aporte de relieve y área sobre la referencia territorial
 
 - **Responsable:** Jass. **Revisora:** Daf.
-- **Estado (12 de octubre de 2026):** ejecutado tal como se diseñó; en revisión de Daf. Diseño escrito **antes de correr** (decisión `D_T10_001`). Resultado en la sección 13; informe de cierre en `analisis/aporte_relieve_y_area/informe_relieve_y_area.md`.
+- **Estado (12 de octubre de 2026):** ejecutado; en revisión de Daf. Diseño escrito **antes de correr** (decisión `D_T10_001`), con correcciones de implementación y aclaraciones documentadas **después de los resultados y de la auditoría con Codex** (nota en la sección 7 y decisión `D_T10_002`). Resultado en la sección 13; informe de cierre en `analisis/aporte_relieve_y_area/informe_relieve_y_area.md`.
 - **Usa:** T03 (particiones, subconjuntos y regla de decisión), T05 (relieve), T07 (tabla común) y T08 (referencia `media_mun__resp_grupo`, D019).
 - **Plan:** «T10 · relieve y área: territorio frente a territorio + relieve/área; sensibilidad a tamaño y cobertura parcial. Entregar predicciones y errores». Anexo de selección de atributos (11 de octubre): «comparar aporte sobre territorio; revisar relación entre relieve, área y ubicación y sensibilidad a calidad».
 
@@ -66,10 +66,13 @@ Las 6 configuraciones se corren también con el procedimiento exacto de T11 v2 (
 
 **El puente nunca decide:** no puede promoverse ni cambiar la conclusión de T10, y no consume presupuesto de búsqueda porque ninguna de sus configuraciones es elegible. Sirve para que T15 combine con T11 sin rehacer nada y para medir cuánto cambian los resultados por el procedimiento.
 
-## 7. Evaluación (T03 §4, sin cambios)
+## 7. Evaluación (T03 §4)
+
+**Nota de trazabilidad — 12 de octubre de 2026, posterior a los resultados.** Las secciones 7–8 se editaron después de la auditoría con Codex para hacer explícita la promoción sólo en A y la decisión en dos tiempos (`candidata_a_promover` y `promueve`, condicionada a superar el control de revuelto). En esa misma corrección se ajustaron los desgloses de la sección 9 para calcular las métricas por repetición y después promediarlas. Son correcciones de la implementación para cumplir T03 y el diseño registrado en `D_T10_001`; esta redacción actual no debe interpretarse como la versión íntegra anterior a la evaluación. Tras volver a evaluar, se actualizaron `comparacion_emparejada_t10.csv`, `desglose_error_t10.csv` y `manifest.json`; las predicciones no cambiaron y ninguna configuración promovía antes ni después. Véanse `D_T10_002` e `IA_T10_002`, y la entrada «Correcciones tras la auditoría externa (Codex): decisión y desgloses» en [la bitácora](../analisis/aporte_relieve_y_area/bitacora.md).
 
 - Escenario A (principal) y B (sensibilidad obligatoria), 5 repeticiones, particiones de `registro/t03/particiones.csv`.
 - MAE (primaria), RMSE, sesgo y R², por repetición y después promediados; subconjuntos `todas` y `sin_respaldo`.
+- `MAE_sd_rep` es la desviación estándar de los MAE por repetición con divisor N (`ddof=0`), igual que T08; también se aplica a los desgloses y a `MAE_sd_rep_sin24` en la sensibilidad. Describe dispersión entre repeticiones, no un error estándar ni un intervalo de confianza. Se alineó el 12 de octubre de 2026 tras el comentario 4 del PR; antes T10 usaba `ddof=1`. Las predicciones y la decisión de promoción permanecen idénticas.
 - **Regla de promoción, en `sin_respaldo` y en el escenario A (el B es sensibilidad y no promueve por sí solo):** ΔMAE ≤ −0.01 t/ha frente a la referencia; límite superior de `IC95_celdas` < 0 (bootstrap por celdas CHIRPS, 5,000 réplicas, semilla 20261006); mismo signo en al menos 4 de 5 repeticiones; y el RMSE no empeora más de 0.01 t/ha. Si nada la cumple, se conserva la referencia.
 - **Comparaciones descriptivas (no deciden):** 5 frente a 4 (¿el área añade algo al relieve?) y 6 frente a 5 (¿aporta «dónde está» o «cómo es»?).
 
@@ -102,10 +105,10 @@ Error de la referencia y de cada configuración desglosado por:
 |---|---|
 | Método (este documento) | `docs/T10_relieve_area.md` |
 | Código | `scripts/t10_relieve_area.py` |
-| Pruebas sintéticas (18): relleno y centrado sólo con entrenamiento, opción «referencia sola», criterio de empate, formato de salida, lógica de decisión (sólo B, veto del revuelto, puente) y desgloses por repetición | `tests/test_t10_relieve_area.py` |
+| Pruebas sintéticas (19): relleno y centrado sólo con entrenamiento, opción «referencia sola», criterio de empate, formato de salida, lógica de decisión (sólo B, veto del revuelto, puente) y desgloses por repetición; dispersión con `ddof=0` | `tests/test_t10_relieve_area.py` |
 | Predicciones fuera del entrenamiento (formato T03 §7 más `procedimiento`, `alfa` y `referencia`), métricas, comparación emparejada, desgloses, sensibilidad sin las 24, coeficientes y α elegidos, diagnóstico sin rendimientos, predicciones de las 59 ajustadas con las 138 (sólo para T16 y la app) y manifiesto con huellas de entradas | `registro/t10/` |
 | Bitácora, diagnóstico exploratorio con rendimientos, gráficos e informe de cierre | `analisis/aporte_relieve_y_area/` (se crea con la primera evidencia) |
-| Registros | `D_T10_001` en `registro/decisiones.csv`; `E_T10_001`–`E_T10_006` en `registro/experimentos.csv`; `IA_T10_001` en `registro/uso_ia.csv` |
+| Registros | `D_T10_001` en `registro/decisiones.csv`; `E_T10_001`–`E_T10_006` en `registro/experimentos.csv`; `IA_T10_001`–`IA_T10_003` en `registro/uso_ia.csv` |
 
 ## 12. Qué no afirma T10
 
