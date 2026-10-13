@@ -286,6 +286,7 @@ def subconjuntos(x):
 
 
 def resumir(oof):
+    """Promedios por repetición; MAE_sd_rep usa ddof=0, igual que T08."""
     filas = []
     for sub, mask in subconjuntos(oof):
         for (esc, proc, cfg, rep), g in oof[mask].groupby(["escenario", "procedimiento", "config", "repeticion"]):
@@ -294,7 +295,7 @@ def resumir(oof):
     por_rep = pd.DataFrame(filas)
     return (por_rep.groupby(["subconjunto", "escenario", "procedimiento", "config"])
             .agg(n=("n", "mean"), MAE=("MAE", "mean"), RMSE=("RMSE", "mean"), sesgo=("sesgo", "mean"),
-                 R2=("R2", "mean"), MAE_sd_rep=("MAE", "std")).reset_index())
+                 R2=("R2", "mean"), MAE_sd_rep=("MAE", lambda x: x.std(ddof=0))).reset_index())
 
 
 def comparar(x, cand, base, celda):
@@ -434,7 +435,7 @@ def desgloses(oof, part, atrib):
                                   categoria=cat, n_parcelas=g.ID_POLIGONO.nunique(), n_predicciones=len(g),
                                   n_repeticiones=len(por_rep), MAE=por_rep.MAE.mean(), RMSE=por_rep.RMSE.mean(),
                                   sesgo=por_rep.sesgo.mean(), prop_error_menor_medio_escalon=por_rep.prop.mean(),
-                                  MAE_sd_rep=por_rep.MAE.std()))
+                                  MAE_sd_rep=por_rep.MAE.std(ddof=0)))
     r = pd.DataFrame(filas)
     r["poco_informativo"] = r.n_parcelas < 5
     return r

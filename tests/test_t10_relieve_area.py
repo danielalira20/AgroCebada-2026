@@ -12,7 +12,7 @@ import pandas as pd
 from scripts.t10_relieve_area import (
     ALFAS, AREA, CONFIGS, ELEV, PEND, PROCEDIMIENTOS, REFERENCIA_SOLA, decidir, desempatar, desgloses, elegir_opcion,
     estrato_interno, evaluar, marcar_candidatas, particiones_internas, referencia_municipal,
-    referencia_sin_la_fila, revolver_dentro_de_municipio, transformar,
+    referencia_sin_la_fila, resumir, revolver_dentro_de_municipio, transformar,
 )
 
 
@@ -236,8 +236,22 @@ class Desgloses(unittest.TestCase):
         fila = r[(r.subconjunto == "todas") & (r.desglose == "municipio")].iloc[0]
         self.assertAlmostEqual(fila.RMSE, (0 + np.sqrt(2.0)) / 2)
         self.assertAlmostEqual(fila.MAE, 0.5)
+        self.assertAlmostEqual(fila.MAE_sd_rep, 0.5)  # MAE por repetición: 0 y 1; ddof=0.
         self.assertEqual((fila.n_parcelas, fila.n_predicciones, fila.n_repeticiones), (2, 4, 2))
 
+
+class Dispersion(unittest.TestCase):
+    def test_desviacion_poblacional_como_t08(self):
+        # Los MAE de las cinco repeticiones son 0, 1, 2, 3 y 4: desviación sqrt(2).
+        oof = pd.DataFrame(dict(repeticion=np.repeat(np.arange(1, 6), 2), escenario="A",
+                                procedimiento="t10", config=1, fuente="municipio",
+                                real=np.tile([2.0, 4.0], 5),
+                                prediccion=np.tile([2.0, 4.0], 5) + np.repeat(np.arange(5), 2)))
+        r = resumir(oof)
+        np.testing.assert_allclose(r.MAE_sd_rep, np.sqrt(2.0), rtol=0, atol=1e-12)
+        # Una sola repetición tiene dispersión poblacional cero, no NaN.
+        uno = resumir(oof[oof.repeticion == 1])
+        np.testing.assert_array_equal(uno.MAE_sd_rep, 0.0)
 
 if __name__ == "__main__":
     unittest.main()
