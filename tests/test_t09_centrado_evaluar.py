@@ -15,7 +15,7 @@ from scripts.t09_estimadores import CLIMA, columnas_clima, crear_estimador
 from scripts.t09_evaluar import contextos
 from scripts.t09_seleccion import particiones_internas, _clave
 from scripts.t09_centrado_evaluar import (contrato, seleccionar, evaluar_contexto,
-                                        preparar_salida, ARCH_DISENO, ARCH_REGISTRO)
+                                        preparar_salida, reportes, ARCH_DISENO, ARCH_REGISTRO)
 from scripts.t09_centrado_verificar import matriz
 from scripts.t09_verificar_matrices import prepare
 
@@ -130,6 +130,14 @@ class ControlesAmpliados(unittest.TestCase):
                 m=crear_estimador('R_centrado',w,.1).fit(tr,y)
                 np.testing.assert_allclose(beta,m.coef_estandarizados_,atol=1e-10,rtol=0)
                 np.testing.assert_allclose(pred,m.predict(te),atol=1e-9,rtol=0)
+
+    def test_reportes_no_omiten_celda_vacia_ni_aceptan_texto_como_mascara(self):
+        # Casos deliberadamente inválidos; no se calcula ningún reporte oficial.
+        x=pd.DataFrame({'procedimiento':['T','R','TC','R_centrado'],
+                        'celda_chirps':['c1','c1',None,'c1'],'sin_respaldo':[True]*4})
+        with self.assertRaises(ValueError):reportes(x,self.cfg)
+        x['celda_chirps']='c1';x['sin_respaldo']='True'
+        with self.assertRaises(ValueError):reportes(x,self.cfg)
 
 
 if __name__=='__main__':unittest.main()

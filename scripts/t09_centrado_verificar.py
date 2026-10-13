@@ -90,6 +90,8 @@ def auditar_matrices(repo,folder):
     expected=[(s,r,k) for s in ['A','B'] for r in range(1,6) for k in range(5)]+[('C',1,k) for k in range(9)]
     require([(c['escenario'],c['repeticion'],c['particion']) for c in contexts]==expected,'Contextos alterados/duplicados')
     require(len(states)==118 and len(scores)==472 and len(sel)==177 and len(coef)==531 and len(oof)==9108,'Conteos incompletos')
+    require(scores.procedimiento.eq('R_centrado').all() and sel.procedimiento.eq('R_centrado').all()
+            and coef.procedimiento.eq('R_centrado').all(),'Otro procedimiento en ajustes v2')
     require(not oof.duplicated(['escenario','repeticion','id_parcela','procedimiento','variante']).any(),'OOF duplicada')
     require(not (set(oof.id_parcela)&set(held.index)),'Reservadas en evaluación')
     require(set(oof.procedimiento)=={'T','R','TC','R_centrado'},'Procedimientos extra/incompletos')
@@ -134,6 +136,8 @@ def auditar_matrices(repo,folder):
         selected=choice[choice.variante.eq('seleccionada')]
         require(len(selected)==1 and (selected.iloc[0].ventana,selected.iloc[0].lambda_reg)==(best['ventana'],best['lambda_reg']),
                 'Ganador interno distinto de reconstrucción')
+        require(selected.iloc[0].alpha==len(train)*best['lambda_reg'],'Alpha de opción seleccionada')
+        close([best['MAE']],[selected.iloc[0].MAE_interno],'MAE_interno')
         require(sc.seleccionada.sum()==1 and sc[sc.seleccionada].iloc[0].ventana==best['ventana'] and
                 sc[sc.seleccionada].iloc[0].lambda_reg==best['lambda_reg'],'Bandera de opción ganadora distinta')
         for w in ['abr_oct','jun_oct']:
@@ -151,7 +155,7 @@ def auditar_matrices(repo,folder):
                     'Estado fuera del diseño/entrenamiento')
             close(beta,st['coef_estandarizados'],'coeficiente',TOL_COEF)
             close(beta/p['scale'],st['coef_fisicos'],'coeficiente',TOL_COEF)
-            require(st['version_modelo']=='T09-R-centrado-v2' and st['columnas']==p['cols'],
+            require(st['version_modelo']=='T09-R-centrado-v2' and st['procedimiento']=='R_centrado' and st['columnas']==p['cols'],
                     'Estado con versión/columnas distintas')
             close(p['mean'],st['media_escalado'],'centro_escala',TOL_COEF)
             close(p['scale'],st['escala_global'],'centro_escala',TOL_COEF)
@@ -173,6 +177,8 @@ def auditar_matrices(repo,folder):
                 require(set(g.id_parcela)==set(ids) and len(g)==len(ids),'OOF faltante/extra')
                 g=g.set_index('id_parcela').loc[ids]
                 require(g.version.eq('T09-evaluacion-R-centrado-v2').all(),'OOF nueva con versión histórica')
+                require(g.lambda_reg.eq(q['lambda_reg']).all() and g.n_entrenamiento.eq(len(train)).all(),
+                        'OOF con parámetros/denominador distintos')
                 require(g.fuente_centrado.eq(p['sources']).all() and g.fuente.eq(p['sources']).all() and
                         g.sin_respaldo.eq(p['sources']=='municipio').all(),'Respaldo/máscara diferentes de entrenamiento')
                 close(pred,g.prediccion,'prediccion');close(p['reference'],g.referencia,'prediccion')
