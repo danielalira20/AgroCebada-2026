@@ -1,7 +1,10 @@
-"""T11: aporte del frente satelital sobre la referencia territorial (D006, D019, D021, D022, O2, O4).
+"""T11: aporte del frente satelital sobre la referencia territorial (D006, D019, D021, D022, D023, O2, O4).
 
 v2 (D022, revisión de Dani al PR #15): la selección interna recalcula referencia y residuo dentro de
 cada partición interna; estrato `otros` de T03 §5; desgloses y sensibilidad de T03 §4 bis.
+v2.1 (D023, revisiones de Migue y Dani): comparación emparejada promediada primero por parcela (como
+T08); desgloses por repetición y después promedio (T03 §4); controles que detienen el programa;
+columna `candidato` con nombres estables. Las predicciones no cambian.
 
 Uso:
     python scripts/t11_aporte_satelital.py
@@ -29,7 +32,7 @@ ESCENARIOS = {"A": "particion_principal", "B": "particion_espacial"}
 ALFAS = [0.1, 1, 3, 10, 30, 100, 300, 1000, 10000]
 N_INTERNAS = 4
 SEMILLA_INTERNA = 0
-VERSION = "T11-v2"
+VERSION = "T11-v2.1"
 
 # Comparación emparejada (mismos valores que T08)
 N_BOOT = 5000
@@ -52,6 +55,19 @@ CALIDAD_PL = ["pl_capturas_abr_oct", "pl_hueco_max_abr_oct", "pl_nubosidad_media
 def expandir(plantilla, v):
     return [c.format(v=v) for c in plantilla]
 
+
+# Nombres estables para integrar resultados (T15/T16)
+CANDIDATOS = {
+    0: "media_mun__resp_grupo",
+    1: "t11_c1_calidad_planet_abr_oct",
+    2: "t11_c2_s2_jun_oct",
+    3: "t11_c3_s2_abr_oct",
+    4: "t11_c4_planet_jun_oct",
+    5: "t11_c5_planet_abr_oct",
+    6: "t11_c6_planet_abr_oct_calidad",
+    7: "t11_c7_planet_abr_oct_heterogeneidad",
+    8: "t11_c8_planet_abr_oct_centrado",
+}
 
 CONFIGS = {
     1: dict(cols=CALIDAD_PL, centrar=False),
@@ -95,8 +111,19 @@ def preparar(tabla, part):
     d = part.merge(tabla[["id_parcela", "rendimiento_t_ha"] + usadas],
                    left_on="ID_POLIGONO", right_on="id_parcela", how="left", validate="many_to_one")
     d = d.drop(columns="id_parcela").rename(columns={"rendimiento_t_ha": "real"})
-    assert len(d) == 690 and d.real.notna().all()
+    if d.duplicated(["ID_POLIGONO", "repeticion"]).any():
+        raise ValueError("Una parcela aparece más de una vez en la misma repetición de las particiones")
+    if len(d) != 690 or d.real.isna().any():
+        raise ValueError(f"Se esperaban 690 filas con rendimiento; hay {len(d)} y {int(d.real.isna().sum())} sin él")
     return d
+
+
+def separar(dr, col, k):
+    """Entrenamiento y evaluación de una partición externa; se detiene si comparten parcelas."""
+    tr, te = dr[dr[col] != k], dr[dr[col] == k]
+    if set(tr.ID_POLIGONO) & set(te.ID_POLIGONO):
+        raise ValueError(f"Hay parcelas en entrenamiento y evaluación a la vez (partición {k})")
+    return tr, te
 
 
 # ---------------------------------------------------------------- referencia territorial
@@ -124,23 +151,32 @@ def referencia_sin_la_fila(tr):
     return ref
 
 
-def comprobar_referencia(d):
-    """La referencia de T11 debe dar las mismas predicciones fuera de muestra que T08."""
+def referencia_oof(d):
+    """Predicciones fuera de muestra de la referencia, en A y B × 5 repeticiones × 5 particiones."""
     filas = []
     for esc, col in ESCENARIOS.items():
         for rep, dr in d.groupby("repeticion"):
             for k in sorted(dr[col].unique()):
-                tr, te = dr[dr[col] != k], dr[dr[col] == k]
+                tr, te = separar(dr, col, k)
                 ref, fuente = referencia_municipal(tr, te)
                 filas.append(pd.DataFrame({"ID_POLIGONO": te.ID_POLIGONO.values, "repeticion": rep,
                                            "escenario": esc, "ref": ref, "fuente_t11": fuente}))
-    mia = pd.concat(filas, ignore_index=True)
-    t08 = pd.read_csv(OOF_T08)
+    return pd.concat(filas, ignore_index=True)
+
+
+def comprobar_referencia(d, ruta_t08=OOF_T08):
+    """La referencia de T11 debe dar las mismas predicciones fuera de muestra que T08; si no, se detiene."""
+    mia = referencia_oof(d)
+    t08 = pd.read_csv(ruta_t08)
     comp = mia.merge(t08, on=["ID_POLIGONO", "repeticion", "escenario"], validate="one_to_one")
+    dif = (comp.ref - comp.prediccion).abs().max()
+    misma = bool((comp.fuente_t11 == comp.fuente).all())
     print(f"filas comparadas: {len(comp)} (esperadas 1380)")
-    print(f"máxima diferencia con T08: {(comp.ref - comp.prediccion).abs().max():.2e}")
-    print("misma fuente en todas:", (comp.fuente_t11 == comp.fuente).all())
+    print(f"máxima diferencia con T08: {dif:.2e}")
+    print("misma fuente en todas:", misma)
     print("filas con respaldo por escenario:\n", mia[mia.fuente_t11 != "municipio"].groupby("escenario").size())
+    if len(comp) != 1380 or not dif < 1e-9 or not misma:
+        raise ValueError(f"La referencia de T11 no reproduce T08 (filas {len(comp)}, diferencia {dif}, misma fuente {misma})")
 
 
 # ---------------------------------------------------------------- modelo: referencia + Ridge(residuo)
@@ -198,7 +234,7 @@ def evaluar_todo(d):
     for esc, col in ESCENARIOS.items():
         for rep, dr in d.groupby("repeticion"):
             for k in sorted(dr[col].unique()):
-                tr, te = dr[dr[col] != k], dr[dr[col] == k]
+                tr, te = separar(dr, col, k)
                 ref_te, fuente = referencia_municipal(tr, te)
                 residuo = tr.real.values - referencia_sin_la_fila(tr)  # O4
                 internas = particiones_internas(tr)
@@ -216,6 +252,7 @@ def evaluar_todo(d):
                                                "variable": cfg["cols"], "coef": modelo.coef_}))
             print(f"  escenario {esc}, repetición {rep} lista")
     out = pd.concat(preds, ignore_index=True)
+    out["candidato"] = out.config.map(CANDIDATOS)
     out["version"] = VERSION
     return out, pd.concat(coefs, ignore_index=True)
 
@@ -238,8 +275,9 @@ def resumir(oof):
     por_rep = pd.DataFrame(filas)
     res = (por_rep.groupby(["subconjunto", "escenario", "config"])
            .agg(n=("n", "mean"), MAE=("MAE", "mean"), RMSE=("RMSE", "mean"), sesgo=("sesgo", "mean"),
-                R2=("R2", "mean"), RMSE_sd_rep=("RMSE", "std"))
+                R2=("R2", "mean"), RMSE_sd_rep=("RMSE", lambda s: s.std(ddof=0)))
            .reset_index())
+    res.insert(3, "candidato", res.config.map(CANDIDATOS))
     return res
 
 
@@ -283,10 +321,13 @@ def comparar(oof_esc, celda, cand, base, sub):
     mae_c, mae_p = intervalo(pp, "celda", "MAE"), intervalo(pp, "parcela", "MAE")
     rmse_c, rmse_p = intervalo(pp, "celda", "RMSE"), intervalo(pp, "parcela", "RMSE")
 
-    dMAE, dRMSE = d_mae.mean(), d_rmse.mean()
+    # Como T08: ΔMAE = promedio por parcela (cada parcela pesa igual aunque tenga distinto número de
+    # repeticiones elegibles); ΔRMSE y el signo por repetición.
+    dMAE, dRMSE = (pp.ae_c - pp.ae_b).mean(), d_rmse.mean()
     reps_mae, reps_rmse = int((d_mae < 0).sum()), int((d_rmse < 0).sum())
     return dict(
-        subconjunto=sub, candidato=cand, frente_a=base, n_predicciones=len(f), n_celdas=pp.celda.nunique(),
+        subconjunto=sub, config=cand, candidato=CANDIDATOS[cand], frente_a=CANDIDATOS[base],
+        n_predicciones=len(f), n_parcelas=len(pp), n_celdas=pp.celda.nunique(),
         dMAE=dMAE, IC95_celdas_MAE_inf=mae_c[0], IC95_celdas_MAE_sup=mae_c[1],
         IC95_parcelas_MAE_inf=mae_p[0], IC95_parcelas_MAE_sup=mae_p[1], reps_mejoran_MAE=reps_mae,
         dRMSE=dRMSE, IC95_celdas_RMSE_inf=rmse_c[0], IC95_celdas_RMSE_sup=rmse_c[1],
@@ -319,7 +360,7 @@ def unir_calidad(oof):
 
 def desgloses(oof, part):
     """Error por municipio, grupo, contorno, angosta, escalón de la etiqueta y vecindad.
-    Se calcula juntando las 5 repeticiones (cada parcela aparece una vez por repetición)."""
+    T03 §4: métricas por repetición y después promedio de las repeticiones."""
     d = unir_calidad(oof)
     p = part.drop_duplicates("ID_POLIGONO").set_index("ID_POLIGONO")
     d["municipio"] = d.ID_POLIGONO.map(p.municipio)
@@ -333,12 +374,20 @@ def desgloses(oof, part):
     filas = []
     for sub, mask in [("todas", d.fuente.notna()), ("sin_respaldo", d.fuente == "municipio")]:
         for nombre, col in ejes.items():
-            for (esc, cfg, cat), g in d[mask].groupby(["escenario", "config", col]):
+            for (esc, cfg, cat, rep), g in d[mask].groupby(["escenario", "config", col, "repeticion"]):
                 filas.append(dict(subconjunto=sub, escenario=esc, config=cfg, desglose=nombre, categoria=cat,
-                                  n_parcelas=g.ID_POLIGONO.nunique(), n_predicciones=len(g),
+                                  repeticion=rep, ids=frozenset(g.ID_POLIGONO), n_predicciones=len(g),
                                   MAE=g.e.abs().mean(), RMSE=np.sqrt((g.e ** 2).mean()), sesgo=g.e.mean(),
                                   prop_error_menor_medio_escalon=g.bajo_resolucion.mean()))
-    r = pd.DataFrame(filas)
+    por_rep = pd.DataFrame(filas)
+    claves = ["subconjunto", "escenario", "config", "desglose", "categoria"]
+    r = (por_rep.groupby(claves)
+         .agg(n_parcelas=("ids", lambda s: len(frozenset().union(*s))), n_repeticiones=("repeticion", "nunique"),
+              n_predicciones=("n_predicciones", "sum"), MAE=("MAE", "mean"), RMSE=("RMSE", "mean"),
+              sesgo=("sesgo", "mean"), MAE_sd_rep=("MAE", lambda s: s.std(ddof=0)),
+              prop_error_menor_medio_escalon=("prop_error_menor_medio_escalon", "mean"))
+         .reset_index())
+    r.insert(3, "candidato", r.config.map(CANDIDATOS))
     r["poco_informativo"] = r.n_parcelas < 5
     return r
 
@@ -349,7 +398,7 @@ def sensibilidad_sin_alerta(oof):
     d = unir_calidad(oof)
     sin = d[d.alerta_contorno_t03_bis != "si"]
     print(f"  parcelas sin alerta: {sin.ID_POLIGONO.nunique()} de {d.ID_POLIGONO.nunique()}")
-    con, sin_ = resumir(oof), resumir(sin)
+    con, sin_ = resumir(oof), resumir(sin).drop(columns="candidato")
     m = con.merge(sin_, on=["subconjunto", "escenario", "config"], suffixes=("", "_sin24"))
     for sufijo in ["", "_sin24"]:
         for met in ["MAE", "RMSE"]:
@@ -389,7 +438,7 @@ def main():
     celda = d.drop_duplicates("ID_POLIGONO").set_index("ID_POLIGONO").celda_chirps
     comp = comparaciones(oof, celda)
     comp.to_csv(SALIDA / "comparacion_emparejada_t11.csv", index=False)
-    cols = ["escenario", "subconjunto", "candidato", "frente_a", "dRMSE", "IC95_celdas_RMSE_inf",
+    cols = ["escenario", "subconjunto", "config", "dRMSE", "IC95_celdas_RMSE_inf",
             "IC95_celdas_RMSE_sup", "reps_mejoran_RMSE", "dMAE", "IC95_celdas_MAE_sup", "reps_mejoran_MAE",
             "dR2", "cumple_regla_RMSE", "cumple_regla_MAE"]
     print("\nfrente a la referencia, sin_respaldo (aquí se decide, D019):")

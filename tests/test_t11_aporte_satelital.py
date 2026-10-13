@@ -2,8 +2,10 @@
 
 Repite la comprobación de Dani: cambiar una etiqueta de validación interna no debe cambiar
 nada de lo que se entrena en esa partición interna (residuos ni referencia de validación).
+v2.1: los controles detienen el programa ante entradas incorrectas (revisión de Dani).
 """
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -66,6 +68,34 @@ class TestT11ConDatosReales(unittest.TestCase):
                 self.assertTrue((estrato[tr.municipio.isin(presentes)] == "otros").all())
                 self.assertTrue((estrato.value_counts() >= 1).all())
                 self.assertFalse(set(estrato.unique()) & PEQUENOS)
+
+
+    # ---------------------------------------------------------------- controles (v2.1)
+    def test_detiene_parcela_repetida_en_una_repeticion(self):
+        part = pd.read_csv(t11.PARTICIONES)
+        dup = part[part.repeticion == 1].head(1).copy()
+        dup["particion_principal"] = (dup.particion_principal + 1) % 5
+        with self.assertRaises(ValueError):
+            t11.preparar(pd.read_csv(t11.TABLA), pd.concat([part, dup], ignore_index=True))
+
+    def test_detiene_parcela_en_entrenamiento_y_evaluacion(self):
+        dr = self.d[self.d.repeticion == 1]
+        dup = dr.head(1).copy()
+        k = int(dup.particion_principal.iloc[0])
+        dup["particion_principal"] = (k + 1) % 5
+        with self.assertRaises(ValueError):
+            t11.separar(pd.concat([dr, dup]), "particion_principal", k)
+
+    def test_detiene_si_la_referencia_no_reproduce_t08(self):
+        t08 = t11.referencia_oof(self.d).rename(columns={"ref": "prediccion", "fuente_t11": "fuente"})
+        with tempfile.TemporaryDirectory() as tmp:
+            ruta = Path(tmp) / "t08.csv"
+            t08.to_csv(ruta, index=False)
+            t11.comprobar_referencia(self.d, ruta)  # copia fiel: no se detiene
+            t08.loc[0, "prediccion"] += 0.01
+            t08.to_csv(ruta, index=False)
+            with self.assertRaises(ValueError):
+                t11.comprobar_referencia(self.d, ruta)
 
 
 if __name__ == "__main__":
