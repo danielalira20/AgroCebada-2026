@@ -2,7 +2,7 @@
 
 Repositorio de trabajo de Dani, Jass, Migue, Daf y Diego para estimar el rendimiento de cebada de las 59 parcelas reservadas y mostrar los resultados en una aplicación funcional.
 
-La [pestaña «Plan unificado corregido»](https://docs.google.com/document/d/1G2-cyDyIHyaQsGjbdzdvvsU65rnc6Tc4SrnIZAoNynk/edit?tab=t.q0k09ka9rtmy) es la fuente de responsabilidades y decisiones. Las tareas vigentes son T01–T22. Las versiones anteriores sirven como antecedentes.
+La [pestaña «Plan unificado corregido»](https://docs.google.com/document/d/1G2-cyDyIHyaQsGjbdzdvvsU65 rnc6Tc4SrnIZAoNynk/edit?tab=t.q0k09ka9rtmy) es la fuente de responsabilidades y decisiones. Las tareas vigentes son T01–T22. Las versiones anteriores sirven como antecedentes.
 
 ## Estado de trabajo
 
@@ -82,3 +82,8 @@ Dos ejecuciones Docker reproducen exactamente 15 CSV y 3 JSON; los verificadores
 ### T09 · corrección H3, pasos 1 y 2 · 13 de octubre de 2026
 
 El [diseño R centrado v2](docs/t09_R_centrado_v2.md) y su componente de entrenamiento/predicción se prepararon en `t09-centrado-municipal`. La corrección usa desviaciones respecto al centro municipal del entrenamiento, con respaldo de grupo/global, conservando la escala global. `crear_estimador("R_centrado")` identifica la variante nueva; `R` sigue reproduciendo v1. Pasan 41 pruebas de componentes en Mac y Docker. Evaluación completa v2, revisión independiente, publicación y actualización de T15 pendientes. Los resultados originales de `registro/t09/` y sus fuentes permanecen intactos.
+
+
+## T09: reevaluación de R centrado · 13 de octubre de 2026
+
+Los controles y la evaluación completa de R_centrado v2 están verificados técnicamente, pendientes de revisión de Migue. La corrección de H3 no supera la referencia municipal en MAE ni cumple la regla de mejora. Se preservan los resultados v1 y las59 reservadas. Consulta [diseño, resultados, incidencias y reproducción](docs/t09_centrado_evaluacion_v2.md) y la [entrega versionada](registro/t09/centrado_v2/verificacion.json). T15 y la actualización de otros consumidores siguen pendientes; no se modificaron con esta entrega.
