@@ -73,7 +73,7 @@ El nuevo diseño máquina está en `registro/t09/diseno_R_centrado_v2.json`; ref
 
 ## Implementación y comprobaciones de estos pasos
 
-Se implementará en `scripts/t09_residual_centrado.py`, reutilizando validación, referencia y LOO existentes. La fábrica `crear_estimador('R_centrado', ventana, lambda_reg)` construirá esta variante de forma explícita. Los controles esenciales de implementación comprobarán matrices independientes, centros, respaldo y persistencia del ajuste. No se ejecuta aquí la búsqueda externa completa ni se producen predicciones finales de las 59.
+Implementado en `scripts/t09_residual_centrado.py`, reutilizando validación, referencia y LOO existentes. La fábrica `crear_estimador('R_centrado', ventana, lambda_reg)` construye esta variante de forma explícita. Pasan 41 pruebas de componentes tanto en Mac como en Docker Linux/amd64: 33 existentes y 8 nuevas. Los controles esenciales contrastan matrices independientes, centros, respaldo, ausencia de aprendizaje durante predict y persistencia del ajuste. No se ejecuta aquí la búsqueda externa completa ni se producen predicciones finales de las 59.
 
 La validación ampliada, evaluación con búsqueda interna, revisión de variantes de otras tareas, actualización del PR y actualización de T15 corresponden a los pasos siguientes. T10/T11/T14 y la rama `t15-procedimiento-comun` se conservan en este alcance.
 

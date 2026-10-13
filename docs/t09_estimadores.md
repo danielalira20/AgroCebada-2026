@@ -2,6 +2,8 @@
 
 **12 de octubre de 2026 · Dani · Rama `t09-territorio-clima`.**
 
+**Nota del 13 de octubre:** este documento conserva la fase histórica de componentes v1. Su evaluación posterior está en [la entrega v1](t09_evaluacion.md). La corrección H3 se prepara como [R centrado v2](t09_R_centrado_v2.md), con identificador y estado separados; los resultados v1 no se sustituyen.
+
 Estado: implementación y comprobación de componentes aprobadas; revisión humana de Migue pendiente. No se ejecutó la comparación completa T09, no se eligió ganador ni se generó una entrega nueva para las 59. Los ajustes de pruebas usan datos reales para comprobar algoritmos; no son resultados oficiales de los tres experimentos.
 
 ## Problema que resuelve
