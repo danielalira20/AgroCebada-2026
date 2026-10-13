@@ -66,12 +66,14 @@ Cada llamada construye la imagen (con caché), comprueba los datos con `scripts/
 
 `--amd64` fija la plataforma `linux/amd64`. En Mac con chip Apple corre emulado (con Colima: `colima start --vm-type vz --vz-rosetta`). Se usa para comparar resultados byte a byte entre equipos y para T18 y T21. En el trabajo diario puede omitirse: entre procesadores ARM y x86 algunos decimales difieren en la última cifra (del orden de 1e-15), dentro de las tolerancias de los verificadores.
 
+Al registrar una ejecución de pruebas, anotar el commit, el entorno, el total observado y el resultado. Los conteos de las bitácoras y de `registro/uso_ia.csv` describen ejecuciones históricas, no el tamaño permanente de la suite.
+
 **Reproducir cada tarea.** Los comandos van después de `.\ejecutar.ps1` o `./ejecutar.sh`:
 
 | Tarea | Comando | Resultado esperado |
 |---|---|---|
 | T01 | `docker run --rm agrocebada-entorno` | Seis comprobaciones aprobadas |
-| Pruebas | (sin comando) | 240 pruebas OK |
+| Pruebas | (sin comando) | Todas las pruebas descubiertas terminan en `OK`; el total depende del commit |
 | T02 | `bash -c "for s in 'construir_catalogo.py --datos data/DATASET_RETO_AGRO_2026' cruzar_contorno_y_rendimiento.py senalar_parcelas_extremas.py 'diagnosticar_soporte.py --datos data/DATASET_RETO_AGRO_2026' 'comparar_con_soporte_t03.py --datos data/DATASET_RETO_AGRO_2026' comparar_tablas_con_referencia.py; do python analisis/auditoria_catalogo_y_etiquetas/scripts/`$s || exit 1; done"` | «16 iguales … 0 distintas»; `git status` sin cambios |
 | T03 | `python scripts/t03_evaluacion.py --datos data/raw/DATASET_RETO_AGRO_2026` | `git status` sin cambios en `registro/t03` |
 | T04 | `python scripts/preparar_entrega_clima.py --verificar registro/t04` | `"resultado": "aprobado"` |

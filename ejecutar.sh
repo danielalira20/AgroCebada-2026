@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Ejecuta un comando del proyecto dentro del entorno Docker común (Mac, Linux o Git Bash en Windows).
 #
-#   ./ejecutar.sh                         -> 240 pruebas (python -m unittest discover -s tests)
+#   ./ejecutar.sh                         -> suite completa (python -m unittest discover -s tests)
 #   ./ejecutar.sh python -m scripts.t07_verificar --entrega registro/t07 --clima reports/...
 #   ./ejecutar.sh --amd64 ...             -> plataforma fija linux/amd64 (T18, T21 y comparación entre equipos)
 #

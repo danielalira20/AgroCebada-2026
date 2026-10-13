@@ -1,6 +1,6 @@
 # Ejecuta un comando del proyecto dentro del entorno Docker común (PowerShell en Windows).
 #
-#   .\ejecutar.ps1                        -> 240 pruebas (python -m unittest discover -s tests)
+#   .\ejecutar.ps1                        -> suite completa (python -m unittest discover -s tests)
 #   .\ejecutar.ps1 python -m scripts.t07_verificar --entrega registro/t07 --clima reports/...
 #   .\ejecutar.ps1 --amd64 ...            -> plataforma fija linux/amd64 (T18, T21 y comparación entre equipos)
 #
