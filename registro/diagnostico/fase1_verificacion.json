@@ -1,0 +1,141 @@
+{
+  "schema": "agrocebada_diagnostico_fase1_verificacion_v1",
+  "estado": "tecnicamente_verificada_para_revision_humana",
+  "fecha": "2026-10-13",
+  "rama": "t15-diagnostico-fase1",
+  "diseno_commit": "4d2f55e",
+  "diseno_sha256": "8fbec800f8d474e551d0a6e20bfe565beb52e7760671d920b7631a53c2cbbb03",
+  "fase0_commit": "83fd1076a424c48e9e44288bed1c90344d96410e",
+  "codigo_sha256": {
+    "scripts/diagnostico_fase1.py": "595c6a2ba9e73d179b886d31c9323be5d56f7e1a94124a0a04585a3b5a2f1990",
+    "scripts/diagnostico_fase1_figuras.py": "b4f5bf8ae40716df3eb23562cbf498a21963c1d8d0a78fc2be5d83b24fd6625f",
+    "scripts/auditar_diagnostico_fase1.py": "d31994a8f9f60a3e58645e580ccd49e72cf5e1d8582ad833e15a63e072a89660",
+    "tests/test_diagnostico_fase1.py": "e195a15ada299e3bd5f7b2cae4caf139305b6799369e1cfa4d7d9cdd430e9832"
+  },
+  "imagen_docker": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "recursos_motor": {
+    "cpus": 2,
+    "memoria_GB": 2
+  },
+  "pruebas": {
+    "Mac": {
+      "total": 42,
+      "resultado": "OK"
+    },
+    "Docker_optimizado": {
+      "total": 42,
+      "resultado": "OK"
+    },
+    "nuevas_fase1": 19,
+    "conservadas_fase0": 23
+  },
+  "auditoria_mac": {
+    "estado": "aprobado",
+    "fuente_raw": "T08-v1",
+    "anclas_raw_sha256": {
+      "base/registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+      "base/registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5"
+    },
+    "registros_exactos": 1380,
+    "parcelas": 138,
+    "filas_resumen_parcela": 1380,
+    "pares": 276,
+    "comparaciones_numericas": 34240,
+    "diferencia_maxima": 8.881784197001252e-16,
+    "importa_productor": false,
+    "ajustes_modelo": 0,
+    "tolerancia_abs": 1e-12
+  },
+  "auditoria_docker": {
+    "estado": "aprobado",
+    "fuente_raw": "T08-v1",
+    "anclas_raw_sha256": {
+      "base/registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+      "base/registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5"
+    },
+    "registros_exactos": 1380,
+    "parcelas": 138,
+    "filas_resumen_parcela": 1380,
+    "pares": 276,
+    "comparaciones_numericas": 34240,
+    "diferencia_maxima": 8.881784197001252e-16,
+    "importa_productor": false,
+    "ajustes_modelo": 0,
+    "tolerancia_abs": 1e-12
+  },
+  "auditor_independiente_del_productor": true,
+  "comparacion": {
+    "mac_docker_archivos_identicos": {
+      "distribucion_error_absoluto.pdf": true,
+      "distribucion_error_absoluto.png": false,
+      "direccion_por_grupo.csv": true,
+      "contraste_AB_emparejado.csv": true,
+      "errores_por_repeticion.csv": true,
+      "ranking_principal_y_sensibilidad_B.csv": true,
+      "respaldos_separados.csv": true,
+      "error_firmado_frente_prediccion.png": false,
+      "metricas_por_repeticion.csv": true,
+      "manifest.json": false,
+      "error_firmado_frente_prediccion.pdf": true,
+      "resumen_metricas.csv": true,
+      "observado_frente_predicho.png": false,
+      "observado_frente_predicho.pdf": true,
+      "estabilidad_casos_repeticiones.png": false,
+      "estabilidad_casos_repeticiones.pdf": true,
+      "errores_por_parcela.csv": true
+    },
+    "docker_normal_optimizado_archivos_identicos": {
+      "distribucion_error_absoluto.pdf": true,
+      "distribucion_error_absoluto.png": true,
+      "direccion_por_grupo.csv": true,
+      "contraste_AB_emparejado.csv": true,
+      "errores_por_repeticion.csv": true,
+      "ranking_principal_y_sensibilidad_B.csv": true,
+      "respaldos_separados.csv": true,
+      "error_firmado_frente_prediccion.png": true,
+      "metricas_por_repeticion.csv": true,
+      "manifest.json": true,
+      "error_firmado_frente_prediccion.pdf": true,
+      "resumen_metricas.csv": true,
+      "observado_frente_predicho.png": true,
+      "observado_frente_predicho.pdf": true,
+      "estabilidad_casos_repeticiones.png": true,
+      "estabilidad_casos_repeticiones.pdf": true,
+      "errores_por_parcela.csv": true
+    },
+    "png_pixeles_identicos": {
+      "distribucion_error_absoluto.png": true,
+      "error_firmado_frente_prediccion.png": true,
+      "observado_frente_predicho.png": true,
+      "estabilidad_casos_repeticiones.png": true
+    },
+    "figuras_finales_iguales_a_las_inspeccionadas": {
+      "distribucion_error_absoluto.png": true,
+      "error_firmado_frente_prediccion.png": true,
+      "observado_frente_predicho.png": true,
+      "estabilidad_casos_repeticiones.png": true
+    }
+  },
+  "proteccion": {
+    "originales_intactos": 357,
+    "fase0_tablas_intactas": true,
+    "ramas_previas_intactas": true,
+    "push": false
+  },
+  "dict_columnas": {
+    "n_columnas": 81,
+    "sha256": "b345c607fc32c7d98b6be4c5cf7e97930a01cb9f7147037ccea13d9968e05ab8"
+  },
+  "manifest_entrega_sha256": "f97f2b62b8ff0e02bdf3a4d4f8b367d2f29a31ed03b04f08bf582d3b94118a85",
+  "exportacion_canonica": "Docker_linux_amd64",
+  "alcance": "fase1_1.1_1.2_1.3_T08_v1",
+  "fuentes_pendientes_no_aceptadas_por_este_diagnostico": true,
+  "predicciones_y_etiquetas_iguales_a_raw": true,
+  "reentrenamientos": 0,
+  "predicciones_finales_59": 0,
+  "calibracion_posthoc": false,
+  "revision_humana": "pendiente",
+  "push": false,
+  "GoogleDoc_editado": false,
+  "mensajes_a_terceros": false
+}

@@ -1,0 +1,82 @@
+columna,significado,unidad,vacio
+abs_sesgo,Valor absoluto de la media del error firmado; puede ser menor que MAE por cancelación.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+agrupacion,Campo usado para resumen descriptivo: municipio o tramo_real.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+apariciones_top10,"Número de repeticiones elegibles en cuyo ranking de error absoluto el ID aparece entre los primeros min(10,n).",conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+archivo,Ruta relativa del archivo OOF original fijado en fase0.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+candidato,Nombre del estimador histórico: media_mun__resp_grupo.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+caso_fijo,Indica pertenencia a los diez casos fijados antes de fase1.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+casos_fijos_presentes,Número de los diez casos con al menos un registro elegible en esta máscara.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+celda_chirps,Identificador de celda climática conservado en T03; no representa parcela independiente.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+ceros,Número de registros cuyo error firmado es exactamente cero.,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+contribucion_abs,MAE de parcela / suma de MAE de parcelas elegibles en el mismo escenario y población.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+contribucion_abs_casos_fijos,"Suma de contribucion_abs de los diez casos fijados, con el denominador de esta población.",fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+contribucion_cuadratica,MSE de parcela / suma de MSE de parcelas elegibles en el mismo escenario y población.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+contribucion_cuadratica_casos_fijos,Suma de contribucion_cuadratica de los diez casos fijados; no porcentaje de parcelas.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+control_de,ID del caso para el que la parcela fue elegida como control por metadatos en fase0; no reelección por error.,categoría/texto/booleano,No corresponde a caso/control fijo
+delta_abs_B_menos_A,Promedio de abs(error_B)-abs(error_A) únicamente sobre pares de la misma parcela/repetición elegibles en ambos escenarios.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+delta_firmado_B_menos_A,Promedio de error_B-error_A sobre los mismos pares A/B elegibles.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+error_absoluto,"abs(prediccion-real), calculado por registro antes de promediar.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+error_cuadrado,"(prediccion-real)**2, calculado por registro.",(t/ha)^2,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+error_firmado,prediccion-real; positivo sobreestima y negativo subestima.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+error_max,"Máximo error firmado entre repeticiones elegibles; descriptivo, no límite predictivo.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+error_min,"Mínimo error firmado entre repeticiones elegibles; descriptivo, no límite predictivo.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+escenario,"A partición principal o B separación espacial por celda, conservadas en T03.",categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+fraccion_cero,ceros/n_elegibles; igualdad exacta sin nuevo umbral.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fraccion_cero_parcelas,Promedio con igual peso por parcela de sus fracciones de error cero.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fraccion_sobre,"sobre/n_elegibles; usa signos por registro, no sólo de la predicción media.",fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fraccion_sobre_parcelas,Promedio con igual peso por parcela de sus fracciones de sobreestimación.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fraccion_sub,sub/n_elegibles; usa signos por registro.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fraccion_sub_parcelas,Promedio con igual peso por parcela de sus fracciones de subestimación.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fraccion_top10,apariciones_top10/n_elegibles; no frecuencia entre cinco si faltan elegibles.,fracción 0–1,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+fuente,"Tarea de origen de las predicciones, T08 en esta fase.",categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+fuente_referencia,"Nivel realmente utilizado en ese entrenamiento externo: municipio, grupo o global.",categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+grupo,"Valor del municipio o tramo_real del resumen; descriptivo, no clase aprendida.",categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+id_parcela,ID original usado para unión y comprobación; una unidad parcela-campaña.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+mae,Promedio de error absoluto de una parcela en sus repeticiones elegibles.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mae_A_pares,MAE de A sólo en pares comunes de esta parcela/repetición y máscara.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mae_B_pares,MAE de B sólo en esos mismos pares A/B.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mae_media_repeticiones,Media de MAE calculado por separado en cada repetición no vacía; conserva la ponderación de T03.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mae_parcelas,Media de los MAE individuales: cada parcela elegible pesa lo mismo.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mae_registros,Media de todos los errores absolutos por registro; B puede asignar más peso a IDs con más elegibles.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mediana_abs,Mediana de errores absolutos de esta parcela entre repeticiones (R7).,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mediana_mae_parcela,Mediana (R7) de los MAE individuales; no mediana de 690 ejemplos independientes.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+metodo_comun_acreditado,False: histórico T08; estas tablas no son una evaluación nueva del método común T15.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+mse,Media de error cuadrado de una parcela en repeticiones elegibles.,(t/ha)^2,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+mse_parcelas,Media con igual peso por parcela de sus MSE individuales.,(t/ha)^2,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+municipio,Municipio de catálogo T07 fijado; no inferido de la predicción.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+n_elegibles,Número de registros elegibles de esta parcela para esta máscara (0 a 5).,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+n_parcelas,Número de IDs distintos con al menos un registro elegible en el resumen.,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+n_pares,Número de repeticiones de una parcela presentes y elegibles en A y B.,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+n_registros,"Número de filas de predicción OOF: incluye repeticiones, no muestras independientes.",conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+n_repeticiones_no_vacias,Número de repeticiones con al menos un registro para el promedio por repetición.,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+n_repeticiones_previstas,"Cinco repeticiones originales, aunque la máscara sólo admita algunas.",conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+orden_caso_fijo,Posición 1 a 10 del ranking principal fijado en fase0; no se recalcula para B.,conteo/orden,No corresponde a caso/control fijo
+p90_abs,Percentil 90 (R7) de errores absolutos entre repeticiones de esta parcela.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+p90_mae_parcela,Percentil 90 (R7) de los MAE individuales de las parcelas elegibles.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+particion,"Número del fold externo original, 0 a 4.",conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+poblacion,todas; sin_respaldo=municipio; con_respaldo=grupo/global; grupo; global. Máscaras por registro; IDs pueden solaparse.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+prediccion,Predicción OOF histórica sin modificación ni recalibración.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+prediccion_media,"Media de predicciones OOF elegibles; se muestra para contexto, no para calcular MAE.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+rango_error,error_max-error_min entre repeticiones elegibles; no intervalo predictivo.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+rango_mae,Orden descendente de MAE de parcela dentro de escenario/máscara; desempate ID ascendente.,conteo/orden,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+real,"Rendimiento etiquetado original de campaña 2025, preservado exactamente.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+referencia,Media T08 reconstruida en fase0 con entrenamiento externo; puede diferir del float guardado hasta la tolerancia previa 1e-9.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+rep_elegibles,Lista de números de repetición elegibles separados por |.,categoría/texto/booleano,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+rep_pares,"Repeticiones comunes A/B que aportan al contraste, separadas por |.",categoría/texto/booleano,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+repeticion,"Número de repetición T03, 1 a 5, no réplica independiente de la parcela.",conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+rmse,Raíz del MSE de la parcela; no promedio de errores absolutos.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+rmse_parcelas,"Raíz de la media de MSE individuales, con igual peso por parcela.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+sd_error,Desviación estándar poblacional de errores firmados entre repeticiones (ddof=0); no error estándar ni intervalo.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+sesgo,Media de errores firmados de una parcela; signos opuestos pueden cancelarse.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+sesgo_parcelas,Media con igual peso por parcela de sus errores firmados medios.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+sesgo_registros,Media de los errores firmados por registro; ponderación diferente si varían elegibles.,t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+signos_iguales,"Número de pares A/B cuyo signo es igual, incluido cero exacto con cero.",conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+sin_respaldo,True sólo cuando la referencia de ese entrenamiento externo es municipal.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+sobre,Número de registros con prediccion-real>0.,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+sub,Número de registros con prediccion-real<0.,conteo/orden,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+suma_mae_parcelas,"Suma de MAE individuales, denominador de contribuciones absolutas; no MAE.",t/ha,Sin repeticiones elegibles: no se estima; nunca sustituir por cero
+suma_mse_parcelas,"Suma de MSE individuales, denominador de contribuciones cuadráticas.",(t/ha)^2,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+tramo_real,"[floor(real),floor(real)+1) t/ha, intervalos descriptivos de ancho 1 fijados antes del cálculo; no categorías agronómicas.",categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+unidad,t/ha para rendimiento/predicción/error; el error cuadrado usa (t/ha)^2.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+variante,seleccionada de la entrega histórica T08; no búsqueda nueva.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0
+version,T08-v1; preservada de la entrega original.,categoría/texto/booleano,No se admite vacío en registros originales; grupos sin datos se señalan con n=0

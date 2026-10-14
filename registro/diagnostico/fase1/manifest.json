@@ -1,0 +1,72 @@
+{
+  "schema": "agrocebada_diagnostico_fase1_entrega_v1",
+  "estado": "tecnico_para_revision",
+  "diseno_sha256": "8fbec800f8d474e551d0a6e20bfe565beb52e7760671d920b7631a53c2cbbb03",
+  "fase0_manifest_sha256": "e5eb9bd692d00f64b0b59fa611723bff7dcaabf00297bc5c3aed27341984f691",
+  "fuente": "T08",
+  "candidato": "media_mun__resp_grupo",
+  "version": "T08-v1",
+  "registros_oof": 1380,
+  "parcelas": 138,
+  "reservadas_evaluadas": 0,
+  "reentrenamientos": 0,
+  "nuevos_hiperparametros": 0,
+  "figuras_generadas": true,
+  "revision_humana": "pendiente",
+  "top10_ids": [
+    "AGC_171",
+    "AGC_015",
+    "AGC_024",
+    "AGC_034",
+    "AGC_162",
+    "AGC_127",
+    "AGC_049",
+    "AGC_069",
+    "AGC_055",
+    "AGC_026"
+  ],
+  "controles_ids": [
+    "AGC_197",
+    "AGC_124",
+    "AGC_100",
+    "AGC_166",
+    "AGC_189",
+    "AGC_057",
+    "AGC_092",
+    "AGC_139",
+    "AGC_167",
+    "AGC_013"
+  ],
+  "codigo_sha256": {
+    "scripts/diagnostico_fase1.py": "595c6a2ba9e73d179b886d31c9323be5d56f7e1a94124a0a04585a3b5a2f1990",
+    "scripts/diagnostico_fase1_figuras.py": "b4f5bf8ae40716df3eb23562cbf498a21963c1d8d0a78fc2be5d83b24fd6625f"
+  },
+  "n_filas_tablas": {
+    "errores_por_repeticion.csv": 1380,
+    "errores_por_parcela.csv": 1380,
+    "resumen_metricas.csv": 10,
+    "metricas_por_repeticion.csv": 50,
+    "direccion_por_grupo.csv": 130,
+    "respaldos_separados.csv": 828,
+    "ranking_principal_y_sensibilidad_B.csv": 20,
+    "contraste_AB_emparejado.csv": 276
+  },
+  "archivos_sha256": {
+    "contraste_AB_emparejado.csv": "cfb1929bb30884ed65d42173986992c9ffeeac27cf17f562201df268751e6aad",
+    "direccion_por_grupo.csv": "143b71a078d5f6dc04840df2f6a1f80f068fd0c9faa60ec3413f8d2b706ad19f",
+    "distribucion_error_absoluto.pdf": "fad13e9b241e39a3cd88f19cb772b1914bdf957d6fd16eb0091e0579f2ba9912",
+    "distribucion_error_absoluto.png": "6151c39fb12f664cfa91f897ca54c734e8bbe5a512327d8dd17c8670ce50d8c9",
+    "error_firmado_frente_prediccion.pdf": "642d731a6ba9d072327ffa61fa355a7f997520be406f084d3909ee34e6f035ba",
+    "error_firmado_frente_prediccion.png": "61382a5512414f72ac7302975408fcea124d8d15b2b5033c7723846122db2603",
+    "errores_por_parcela.csv": "32866224ac8786667247ed922888545db7278b54a62ec835ab436abdf6d00243",
+    "errores_por_repeticion.csv": "798dc53cb15f2847ed72b95f479c012d1fcef9ccfb48e25069143d6aa52efd11",
+    "estabilidad_casos_repeticiones.pdf": "07adbba0104e4630cd10ff1fd73ca966aaaca0b1f2b3625def57657f0c2853b2",
+    "estabilidad_casos_repeticiones.png": "a2ce1f8cb424bf2596c6dd0d42757aa3a3ca2db99187e5d3059db8fea14321a0",
+    "metricas_por_repeticion.csv": "a2973716d4e2e0544cecdf5ba64915b36756ce074c52253dc059af386f8cebe7",
+    "observado_frente_predicho.pdf": "2dee9f5fdf892c0a8591477f3a9fc500a9ab505238a941679733e2b0ca951600",
+    "observado_frente_predicho.png": "3efdd6d94ecfade68d54da688b4e9e46db537ff4779c929e4fdb0fc78c81561e",
+    "ranking_principal_y_sensibilidad_B.csv": "9dddc300951633dc45a5ab8ec251311b883eeda12406f6e1e37ae95efb85b237",
+    "respaldos_separados.csv": "dda9b6f770d55b797bdb34b53b20be8dcc7107eb608f8472cceb16b89db0b96b",
+    "resumen_metricas.csv": "cf2487f1aaf27a42045ed77a3d8dc7f635ea68b7b49847ea317bab5adbf7d69a"
+  }
+}
