@@ -1,6 +1,6 @@
 # T13 · ¿Qué índice es más importante en la predicción?
 
-Responsable: Daf · Revisa: Dani · Versión: T13-v1 · Diseño: D024 (registrado antes de correr)
+Responsable: Daf · Revisa: Dani · Versiones: T13-v1 y extensión T13e-v1 · Diseño: D024 y D025 (cada una registrada antes de correr)
 
 ## Problema que resuelve
 
@@ -9,8 +9,9 @@ Primera pregunta guía de las bases (bonus): **¿Qué índice es más importante
 ## Cómo se corre
 
 ```bash
-python scripts/t13_indices.py                                   # ≈1 min, escribe en registro/t13/
-python -m unittest discover -s tests -p "test_t1[13]*.py" -v    # pruebas de T11 y T13 (10)
+python scripts/t13_indices.py                                   # cinco índices (D024), ≈1 min
+python scripts/t13_extension_indices.py                         # demás índices (D025), ≈1 min; necesita las series de T06
+python -m unittest discover -s tests -p "test_t1[13]*.py" -v    # pruebas de T11, T13 y extensión (16)
 ```
 
 Entradas: las mismas de T11 (`registro/t07/tabla_comun.csv`, `registro/t03/particiones.csv`, `registro/t07/calidad_parcelas.csv` y, sólo para verificar, las predicciones de la referencia de T08). Versiones: Python 3.12.10 · scikit-learn 1.9.1 · pandas 3.0.6.
@@ -21,6 +22,7 @@ Entradas: las mismas de T11 (`registro/t07/tabla_comun.csv`, `registro/t03/parti
 - **Mismos casos:** 138 parcelas, particiones de T03, escenarios A y B, 5 × 5. Se decide en `sin_respaldo` (D019).
 - **Ventana fija:** abr_oct para todos (las ventanas ya las compara T11).
 - **Una columna por índice**, para que ningún índice gane sólo por tener más variables.
+- **Sin centrar (observación de Dani, H3):** todas las configuraciones de T13 y de su extensión usan los índices sin centrar por municipio, como las configs 1 a 7 de T11. Miden si el índice tal cual mejora a la referencia, no cuánto aporta dentro del municipio. Por eso estas conclusiones no se trasladan a T15 como aporte interno de cada índice. Si el equipo adopta el método centrado de T09, T13 se repite con ese método (nueva decisión, registrada antes de correr).
 
 | # | Candidato | Variables |
 |---|---|---|
@@ -39,7 +41,7 @@ Cada configuración se compara contra la referencia con la regla de T03. Las com
 - **LAI2** = 5.405 · (b8 − b7)/(b8 + b7) − 0.114. Es una transformación lineal de un NDVI de borde rojo (infrarrojo cercano frente a borde rojo); después de escalar, en el modelo equivale a ese índice.
 - **VI6T** = (B3 − ST_B10)/(B3 + ST_B10). Combina la banda verde con la banda térmica de Landsat, así que no es un índice de verdor puro.
 
-**Fuera de T13:** en T06 calculamos las series por captura de los 27 índices del paquete (22 de Sentinel-2, 4 de Planet y 1 de Landsat), pero sólo resumimos por parcela NDVI, NDWI, LAI2 y VI6T (variables compactas aprobadas en D009, `POR_SENSOR` en `scripts/t06_satelite.py`), que son las que llegaron a la tabla común y las que usa el presupuesto de T11 (D006). Esta primera parte de T13 (D024) no incluye los otros 22 (20 de Sentinel-2, más EVI y MSAVI de Planet); se prueban en una extensión aparte, registrada en D025 antes de correr, agrupados por familia para no multiplicar las comparaciones con 138 parcelas. La heterogeneidad (std) ya la probó T11 (config 7).
+**Fuera de T13:** en T06 calculamos las series por captura de los 27 índices del paquete (22 de Sentinel-2, 4 de Planet y 1 de Landsat), pero sólo resumimos por parcela NDVI, NDWI, LAI2 y VI6T (variables compactas aprobadas en D009, `POR_SENSOR` en `scripts/t06_satelite.py`), que son las que llegaron a la tabla común y las que usa el presupuesto de T11 (D006). Esta primera parte de T13 (D024) no incluye los otros 22 (20 de Sentinel-2, más EVI y MSAVI de Planet); se prueban en la extensión (D025, sección más abajo), agrupados por familia para no multiplicar las comparaciones con 138 parcelas. La heterogeneidad (std) ya la probó T11 (config 7).
 
 ## Verificación
 
@@ -118,21 +120,60 @@ Negativo = tener ese índice dentro de la combinación reduce el error.
 
 Sin las 24 parcelas con alerta de contorno (114 de 138), el orden casi no cambia: la referencia sigue primera en A y en B, VI6T y las combinaciones siguen al final, y NDVI S2 sigue siendo el mejor índice en B. En B las combinaciones empeoran más sin esas parcelas (por ejemplo, los cinco: ΔMAE +0.0083 → +0.0127). Detalle en `sensibilidad_sin_alerta_t13.csv`.
 
+## Extensión: los demás índices del paquete (D025)
+
+**Qué se agregó.** Los 22 índices que T06 calculó en sus series pero no resumió (20 de Sentinel-2, EVI y MSAVI de Planet). Se resumen con las funciones de T06 sin cambios: en Sentinel-2, la mediana de las capturas válidas a ±15 días del máximo de NDVI (la regla de `ndwi_en_maximo`); en Planet, el máximo de la curva suavizada (la regla de `lai2_max`). El script reproduce exactamente las cuatro columnas de T06 que ya estaban en la tabla común (diferencia máxima 8.3e-17) y guarda las 197 filas en `variables_indices_extra.csv`, sin rendimiento.
+
+**Redundancia (sin rendimiento).** Seis pares son casi el mismo índice (|Spearman| ≥ 0.99): NDWI–MSI, SAVI–LAI, ENDWI–EMSI, MCRC–DSWI2, NDTI–STI y NDSVI–DSWI3; se dejó uno de cada par. Frente al NDVI de Sentinel-2:
+
+| Familia (diccionario de FIRA) | Índices usados | Spearman con NDVI S2 |
+|---|---|---|
+| Verdor S2 | EVI, SAVI, FAPAR, MRA | 0.91 a 0.92 |
+| Agua y estrés S2 | ENDWI, DSWI4, DSWI5 | 0.84 a 0.89 |
+| Labranza y senescencia S2 | NDTI, NDSVI | 0.71 |
+| Residuos y sequía S2 | CRC, MCRC, SRNDI, NDDI, ENDDI | −0.25 a 0.29 |
+| Verdor Planet | EVI, MSAVI | 0.88 a 0.91 (con NDVI Planet) |
+
+Los 27 índices del paquete se reducen a pocas señales: casi todo repite al NDVI, y el único bloque realmente distinto es el de residuos y sequía. MRA, que el diccionario no define, se agrupó con verdor por su correlación (0.92). Nota: D025 cita 0.94 para MRA y un rango de 0.84 a 0.94 porque en la revisión previa se comparó con el NDVI alrededor del máximo; el script compara con `s2_ndvi_max_abr_oct` (máximo de la curva) y da 0.84 a 0.92. Ningún índice cambia de familia.
+
+**Verificación.** La referencia reproduce T08 (8.9e-16) y el control (NDVI S2 solo) da las mismas 1380 predicciones que `t13_c3` (diferencia 8.9e-16), así que la extensión usa exactamente el mismo estimador.
+
+**Resultados (sin_respaldo).**
+
+| # | Familia | ΔMAE A | ΔRMSE A | ΔMAE B | ΔRMSE B | α = 10 000 |
+|---|---|---|---|---|---|---|
+| 1 | Verdor S2 | +0.0046 | +0.0018 | +0.0069 | +0.0032 | 37/50 |
+| 2 | Agua y estrés S2 | +0.0010 | +0.0004 | +0.0014 | +0.0005 | 48/50 |
+| 3 | Residuos y sequía S2 | +0.0096 | +0.0074 | +0.0152 | +0.0134 | 31/50 |
+| 4 | Labranza y senescencia S2 | +0.0008 | +0.0002 | +0.0027 | +0.0019 | 37/50 |
+| 5 | Verdor Planet | +0.0011 | +0.0004 | +0.0021 | +0.0010 | 45/50 |
+| 6 | NDVI S2 + residuos y sequía | +0.0100 | +0.0084 | +0.0118 | +0.0106 | 37/50 |
+| 7 | NDVI S2 (control) | +0.0013 | +0.0005 | +0.0016 | +0.0004 | 47/50 |
+
+**Ninguna familia cumple la regla de T03**, ni con MAE ni con RMSE, en ningún escenario. Todas tienen más error que la referencia.
+
+- **Residuos y sequía, la única señal distinta, es la que más empeora** (A +0.0096, B +0.0152; IC95 por celdas excluye el cero en los dos). La selección interna le dio peso más veces que a las demás (sólo 31 de 50 entrenamientos con el α máximo), y ese peso no generalizó.
+- **Sumarla al NDVI empeora** (6 frente a 7: ΔMAE +0.0087 en A, IC95 [+0.0043, +0.0123]; +0.0102 en B). No complementa al NDVI.
+- **Agua, labranza y verdor de Planet quedan casi en la referencia** porque la selección interna los apaga (α máximo en 37 a 48 de 50).
+- **Verdor S2 con cuatro índices es peor que el NDVI solo** (+0.0046 frente a +0.0013 en A): más columnas de la misma señal agregan ruido.
+- **Sin las 24 parcelas con alerta**, el orden no cambia en ningún escenario (`sensibilidad_sin_alerta_t13e.csv`).
+
 ## Respuesta a la pregunta guía 1
 
-Con las 138 parcelas etiquetadas, **ningún índice satelital mejoró la predicción respecto al rendimiento promedio del municipio**, así que no hay un índice que sea "el más importante" en el sentido de que mejore el modelo. Lo que sí muestran los datos:
+Probamos los **27 índices del paquete**: los cinco que resumió T06 uno por uno (D024) y los otros 22 agrupados por familia (D025). Con las 138 parcelas etiquetadas, **ningún índice ni familia mejoró la predicción respecto al rendimiento promedio del municipio**, así que no hay un índice que sea "el más importante" en el sentido de que mejore el modelo. Lo que sí muestran los datos:
 
-1. **Los índices de verdor (NDVI de Planet y de Sentinel-2, y LAI2) son los que mejor se comportan**, aunque no mejoran a la referencia. Cuál de los tres queda primero cambia con el escenario y la repetición, porque los tres miden casi lo mismo (correlaciones de 0.85 a 0.90).
-2. **Dentro de una combinación, el NDVI es lo que más pesa:** en el escenario espacial, quitarlo empeora el error en las 5 repeticiones.
-3. **VI6T es el que peor funciona** y su señal va en sentido contrario a la de los índices de verdor.
-4. **La dirección es la esperada:** la parcela más verde que el promedio de su municipio tiende a rendir un poco más. El efecto es tan chico que la selección interna casi siempre lo reduce a cero.
+1. **Los 27 índices contienen pocas señales distintas.** La mayoría repite al NDVI (verdor, agua y estrés, Planet; correlaciones de 0.84 a 0.94), y seis pares son prácticamente el mismo índice.
+2. **Los de verdor, en especial el NDVI, son los que mejor se comportan**, aunque no superan a la referencia. Cuál de ellos queda primero cambia con el escenario y la repetición. Dentro de una combinación, el NDVI es lo que más pesa: en el escenario espacial, quitarlo empeora el error en las 5 repeticiones.
+3. **La dirección es la esperada:** la parcela más verde que el promedio de su municipio tiende a rendir un poco más. El efecto es tan chico que la selección interna casi siempre lo reduce a cero.
+4. **Las señales distintas del NDVI no ayudan.** VI6T y el bloque de residuos y sequía son los que más empeoran el error, y sumar residuos y sequía al NDVI también lo empeora.
 
-En estas parcelas, el rendimiento lo explica sobre todo la zona. El verdor resumido por temporada no agrega información estable con este tamaño de muestra. Es importancia predictiva, no causal.
+En estas parcelas, el rendimiento lo explica sobre todo la zona. Los índices satelitales resumidos por temporada no agregan información estable con este tamaño de muestra. Es importancia predictiva, no causal.
 
 ## Limitaciones
 
-- Esta parte sólo prueba los cinco índices resumidos en T06. Los otros 22 que calculamos en sus series se prueban en la extensión D025; hasta tener ese resultado, la respuesta al bonus 1 cubre sólo estos cinco.
-- Un resumen por índice (máximo o mediana de abr_oct), no la curva completa ni otras ventanas.
+- Los 22 índices de la extensión se probaron por familia, no uno por uno; una familia que no aporta no descarta que un índice suelto aporte, pero probarlos por separado multiplicaría las comparaciones.
+- Un resumen por índice y por regla de T06 (máximo, mediana o valor alrededor del máximo de NDVI en abr_oct), no la curva completa ni otras ventanas. Para residuos y labranza quizá importe más el inicio de la temporada; no había una regla aprobada para eso (D025).
+- La extensión necesita las series de T06 (`data/interim/t06/`, no versionadas); las variables resumidas sí quedan en `variables_indices_extra.csv`.
 - No se verificó si las observaciones estaban publicadas al 31 de octubre (como en T11).
 - La unidad física de LAI2 sigue pendiente (P03); no cambia el resultado porque las variables se escalan.
 - Con índices tan correlacionados, el orden entre los tres de verdor no es estable y no debe leerse como ranking firme.
@@ -141,3 +182,5 @@ En estas parcelas, el rendimiento lo explica sobre todo la zona. El verdor resum
 ## Archivos
 
 `registro/t13/`: `predicciones_oof_t13.csv`, `metricas_t13.csv`, `comparacion_emparejada_t13.csv`, `coeficientes_t13.csv`, `orden_indices_t13.csv`, `orden_indices_por_repeticion_t13.csv`, `redundancia_indices_t13.csv`, `desglose_error_t13.csv` y `sensibilidad_sin_alerta_t13.csv`.
+
+Extensión (D025), en la misma carpeta: `variables_indices_extra.csv`, `redundancia_indices_extra_t13e.csv`, `predicciones_oof_t13e.csv`, `metricas_t13e.csv`, `comparacion_emparejada_t13e.csv`, `coeficientes_t13e.csv`, `desglose_error_t13e.csv` y `sensibilidad_sin_alerta_t13e.csv`.
