@@ -1,0 +1,8 @@
+{
+  "fecha": "2026-10-14",
+  "estado": "descriptivo_posthoc_tras_ver_primeras_fichas_no_experimento_predictivo",
+  "ampliacion": "Comparar NDVI exclusivamente en fechas válidas comunes de los 10 pares congelados, por sensor; RMSE NDVI no es RMSE de rendimiento; no interpolación ni nuevas etiquetas ni reelección controles",
+  "calidad": "Colapsar a1 coberturas que difieran<=1e-9 sólo en asociaciones; conservar valores fuente en calidad; evita correlación por redondeo",
+  "geometria": "Cruce original4326 antes de área geodésica, según T02; la proyección6372 de esquinas sirve sólo como comparación numérica de un método que aquí no se usa",
+  "sin_cambio_regla_seleccion_modelo": true
+}
