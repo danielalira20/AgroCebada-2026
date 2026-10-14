@@ -166,3 +166,7 @@ El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,par
 ### Corrección H3 en el procedimiento común · para revisión
 
 La [versión centrada v2](docs/evaluacion_comun_centrado_v2.md) resta centros aprendidos sólo en entrenamiento a todas las variables transformadas, incluido el indicador D020. Conserva datos y búsqueda; la propuesta T15 sigue pendiente y no ejecutable. [Evidencia propia](registro/evaluacion_comun/verificacion_centrado_v2.json): controles matemáticos por bloques, prevención de filtraciones e identidad de versión. Los históricos permanecen identificados como tales.
+
+## T15 · fase A: coherencia y versiones · 14 de octubre de 2026
+
+La [entrega local de fase A](docs/t15_fase_a_coherencia.md) identifica dev actualizado y conserva los históricos. El [método LOO v3](docs/evaluacion_comun_centrado_loo_v3.md) alinea referencia residual y centro por fila, incluidos respaldos de municipios pequeños, y añade frecuencia explícita de referencia sola. Verificado en Mac y Docker; revisión del nuevo código pendiente. La propuesta sigue no ejecutable: no se ejecutó T15 completo ni se produjeron las 59 finales. T06/T03 conservan pendientes concretos de sus responsables.
