@@ -1,0 +1,88 @@
+id_a,id_b,municipio_a,municipio_b,distancia_orillas_m,ambas_etiquetadas,y_a,y_b,misma_etiqueta,diferencia_abs_etiquetas,escritura_a,escritura_b,productor_o_medicion_compartida_confirmada,duplicado_tecnico_confirmado,lectura
+AGC_002,AGC_016,Chignahuapan,Chignahuapan,7.06,False,4.63,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_002,AGC_136,Chignahuapan,Chignahuapan,2.02,False,4.63,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_003,AGC_081,Singuilucan,Singuilucan,14.46,False,,3.7,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_003,AGC_129,Singuilucan,Singuilucan,5.91,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_005,AGC_159,Chignahuapan,Chignahuapan,12.80,True,5.16,4.77,no,0.39,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_008,AGC_171,Chignahuapan,Chignahuapan,9.54,True,4.55,2.15,no,2.40,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_008,AGC_193,Chignahuapan,Chignahuapan,1.53,True,4.55,4.57,no,0.02,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_009,AGC_064,Cuautepec de Hinojosa,Cuautepec de Hinojosa,8.46,True,4.79,4.51,no,0.28,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_009,AGC_119,Cuautepec de Hinojosa,Cuautepec de Hinojosa,14.17,True,4.79,4.4,no,0.39,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_010,AGC_106,Chignahuapan,Chignahuapan,1.74,True,4.1,4.43,no,0.33,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_012,AGC_072,Chignahuapan,Chignahuapan,5.62,True,4.69,4.55,no,0.14,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_013,AGC_132,Chignahuapan,Chignahuapan,8.73,True,4.01,4.13,no,0.12,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_013,AGC_165,Chignahuapan,Chignahuapan,1.42,True,4.01,4.44,no,0.43,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_014,AGC_043,Chignahuapan,Chignahuapan,3.78,False,4.83,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_014,AGC_116,Chignahuapan,Chignahuapan,0.87,False,4.83,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_018,AGC_045,Chignahuapan,Chignahuapan,3.84,True,4.49,4.1,no,0.39,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_019,AGC_103,Calpulalpan,Calpulalpan,16.48,True,3,3,si,0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_020,AGC_044,Emiliano Zapata,Emiliano Zapata,3.81,True,3.5,3.5,si,0.0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_021,AGC_097,Chignahuapan,Chignahuapan,0.30,True,4.94,4.69,no,0.25,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_022,AGC_096,Chignahuapan,Chignahuapan,5.97,True,4.55,4.59,no,0.04,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_023,AGC_164,Calpulalpan,Apan,7.27,True,3,3,si,0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_023,AGC_170,Calpulalpan,Calpulalpan,5.75,True,3,3,si,0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_024,AGC_171,Chignahuapan,Chignahuapan,0.92,True,3.03,2.15,no,0.88,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_024,AGC_193,Chignahuapan,Chignahuapan,7.56,True,3.03,4.57,no,1.54,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_025,AGC_040,Calpulalpan,Calpulalpan,5.88,False,,3,,,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_028,AGC_181,Chignahuapan,Chignahuapan,4.80,False,,4.51,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_030,AGC_078,Singuilucan,Singuilucan,7.20,False,,3,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_031,AGC_195,Chignahuapan,Chignahuapan,14.53,False,,3.68,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_036,AGC_085,Chignahuapan,Chignahuapan,12.29,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_036,AGC_104,Chignahuapan,Chignahuapan,2.56,False,,4.56,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_036,AGC_177,Chignahuapan,Chignahuapan,13.23,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_037,AGC_071,Calpulalpan,Calpulalpan,6.56,False,3.5,,,,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_038,AGC_042,Singuilucan,Singuilucan,4.26,False,3.3,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_038,AGC_113,Singuilucan,Singuilucan,5.58,False,3.3,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_041,AGC_166,Singuilucan,Singuilucan,7.40,True,2.5,2.5,si,0.0,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_041,AGC_194,Singuilucan,Singuilucan,4.55,True,2.5,3.2,no,0.7,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_043,AGC_105,Chignahuapan,Chignahuapan,14.49,False,,4.41,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_043,AGC_110,Chignahuapan,Chignahuapan,7.06,False,,4.18,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_043,AGC_116,Chignahuapan,Chignahuapan,9.39,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_051,AGC_180,Almoloya,Almoloya,3.61,True,4.45,4.14,no,0.31,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_052,AGC_119,Cuautepec de Hinojosa,Cuautepec de Hinojosa,12.39,False,,4.4,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_052,AGC_149,Cuautepec de Hinojosa,Cuautepec de Hinojosa,12.53,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_053,AGC_117,Calpulalpan,Calpulalpan,1.57,True,3.5,3.5,si,0.0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_056,AGC_094,Chignahuapan,Chignahuapan,0.81,False,5.07,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_057,AGC_142,Chignahuapan,Chignahuapan,6.63,False,4.55,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_060,AGC_127,Chignahuapan,Chignahuapan,6.75,True,4.52,5.57,no,1.05,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_064,AGC_130,Cuautepec de Hinojosa,Cuautepec de Hinojosa,7.05,False,4.51,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_064,AGC_149,Cuautepec de Hinojosa,Cuautepec de Hinojosa,1.48,False,4.51,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_070,AGC_113,Singuilucan,Singuilucan,4.06,False,3.3,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_070,AGC_194,Singuilucan,Singuilucan,10.99,True,3.3,3.2,no,0.1,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_073,AGC_115,Chignahuapan,Chignahuapan,0.85,True,4.3,4.6,no,0.3,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_075,AGC_093,Calpulalpan,Calpulalpan,6.04,False,,,,,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_077,AGC_133,Chignahuapan,Chignahuapan,9.73,True,4.76,3.91,no,0.85,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_078,AGC_121,Singuilucan,Singuilucan,9.49,True,3,3.3,no,0.3,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_082,AGC_128,Almoloya,Almoloya,16.39,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_085,AGC_177,Chignahuapan,Chignahuapan,0.01,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_088,AGC_165,Chignahuapan,Chignahuapan,2.38,False,,4.44,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_088,AGC_190,Chignahuapan,Chignahuapan,7.25,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_089,AGC_148,Singuilucan,Singuilucan,3.69,True,3,3,si,0,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_090,AGC_143,Chignahuapan,Chignahuapan,2.15,False,4.68,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_091,AGC_167,Chignahuapan,Chignahuapan,1.81,False,,4.54,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_096,AGC_197,Chignahuapan,Chignahuapan,14.83,True,4.59,4.52,no,0.07,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_100,AGC_178,Chignahuapan,Chignahuapan,6.10,True,4.5,4.39,no,0.11,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_101,AGC_102,Chignahuapan,Chignahuapan,6.05,True,4.57,4.4,no,0.17,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_101,AGC_158,Chignahuapan,Chignahuapan,8.46,False,4.57,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_101,AGC_197,Chignahuapan,Chignahuapan,4.95,True,4.57,4.52,no,0.05,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_102,AGC_158,Chignahuapan,Chignahuapan,4.86,False,4.4,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_104,AGC_150,Chignahuapan,Chignahuapan,12.37,True,4.56,4.52,no,0.04,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_105,AGC_125,Chignahuapan,Chignahuapan,2.66,True,4.41,4.06,no,0.35,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_106,AGC_110,Chignahuapan,Chignahuapan,1.16,True,4.43,4.18,no,0.25,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_107,AGC_128,Almoloya,Almoloya,10.62,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_109,AGC_161,Chignahuapan,Chignahuapan,0.54,True,4.54,4.46,no,0.08,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_111,AGC_126,Chignahuapan,Chignahuapan,0.06,False,4.72,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_111,AGC_135,Chignahuapan,Chignahuapan,3.17,True,4.72,4.49,no,0.23,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_116,AGC_125,Chignahuapan,Chignahuapan,11.53,False,,4.06,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_123,AGC_145,Calpulalpan,Calpulalpan,4.58,True,2.5,3.5,no,1.0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_124,AGC_179,Chignahuapan,Chignahuapan,10.92,True,5.05,4.55,no,0.50,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_126,AGC_135,Chignahuapan,Chignahuapan,0.10,False,,4.49,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_128,AGC_146,Almoloya,Almoloya,11.38,False,,4.58,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_130,AGC_149,Cuautepec de Hinojosa,Cuautepec de Hinojosa,4.01,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_132,AGC_165,Chignahuapan,Chignahuapan,12.24,True,4.13,4.44,no,0.31,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_134,AGC_180,Almoloya,Almoloya,19.08,True,4.52,4.14,no,0.38,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_146,AGC_184,Almoloya,Almoloya,3.31,True,4.58,4.47,no,0.11,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_157,AGC_163,Calpulalpan,Calpulalpan,6.07,True,3,3,si,0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_164,AGC_170,Apan,Calpulalpan,9.54,True,3,3,si,0,Cebada,Cebada,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_171,AGC_193,Chignahuapan,Chignahuapan,6.13,True,2.15,4.57,no,2.42,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y
+AGC_175,AGC_188,Chignahuapan,Chignahuapan,2.26,False,,,,,CEBADA,CEBADA,False,False,igualdad_no_prueba_misma_medicion_nunca_deduplicar_por_y

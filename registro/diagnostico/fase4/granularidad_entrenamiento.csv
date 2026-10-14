@@ -1,0 +1,451 @@
+escenario,repeticion,particion,municipio,n_entreno_municipal,n_valores_distintos,paso_compatible_solo_entreno,constante_entreno,nivel_evidencia,n_evaluacion_municipal,firma_IDs_entreno,etiquetas_evaluacion_usadas
+A,1,0,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,5aa21e3c35b8b0b96d5152c72017e1082b430c2fa4f04b9dacf607873b736a83,False
+A,1,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,1,0,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,57b04fa589682ff703c693aa4fa62ef922de66e56ed5b838e6a738627f4b9442,False
+A,1,0,Chignahuapan,56,45,0.01,False,malla_escrita_no_precision,15,2c7b39300f88f44f387ed11997ef29df3cd7b963c27a8de6f9d69c5164517993,False
+A,1,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+A,1,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,1,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,1,0,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,07ede264c73ce10058b5665477b55d097d1a3775227ad42657211a13d0e519e0,False
+A,1,0,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,1,1,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,94049a774ef2908984f7278b24f025b69d7d4a347df6e239734246f2fb669dc4,False
+A,1,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,1,1,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,122d118f70842f635196dba6569a31335b11cb251eecdcbdb3d1bcfca33810e3,False
+A,1,1,Chignahuapan,57,46,0.01,False,malla_escrita_no_precision,14,ff1a7d75384300d1046c64278945d9c775ece8a9422831a66691c255711eb143,False
+A,1,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,4ced801456750b923ea86039e5d7c8bc5973a4f01ca88e2b58ca5d037efed781,False
+A,1,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,1,1,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,1,1,Singuilucan,12,6,0.1,False,malla_escrita_no_precision,4,f92c3c318de9de15cf9f01c12d9dbd619d55f95bbd3e74dfc8e62ecdfb0ba98d,False
+A,1,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,1,2,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,a20442c47eba7f11b1459a5e049d1b22af989c3d33be87334ee6974522229035,False
+A,1,2,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,1,2,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,34cc386437660738bfbe4f9da83850276af8c260ae7bc0ce15b18ff61d7dc1ed,False
+A,1,2,Chignahuapan,57,43,0.01,False,malla_escrita_no_precision,14,97909fd480d3d4c63f914ac025555006564a17079971268c599bbb95468db30a,False
+A,1,2,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,66113ab89a34f66f575a14fe5caf20872e0b58cf9e52189451b2c86c744ba131,False
+A,1,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,4b149b6140dae4d039e62b04f761caa363e3d9211e59727e2893c4db36981e49,False
+A,1,2,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,1,2,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,f8f6173b49aa190bdb70cba032edb0440b456f5925533b52e1a3dd44a8e96ef1,False
+A,1,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,1,3,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,6c45266e229426c35e1e24924c424982edebbf4666eb9f62ff928da3688426bd,False
+A,1,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,1,3,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,0c2cfe2771f5e7596972667ebc3d12e2034ca25869371122c5e668e85f26c38f,False
+A,1,3,Chignahuapan,57,48,0.01,False,malla_escrita_no_precision,14,655462c0029532fbf5a55e71998df2b1f0e45b21ed2bcfa8263b3bc7b483c2a7,False
+A,1,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+A,1,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,3b9f0b98d45d86dad5b3aa24ce5345c69bcbb6d6f4c71f41872b1f5f40c694fe,False
+A,1,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,1,3,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,e5c69e694d40759960d132dd029b113a993fc86d27f34610aad599d2595e02db,False
+A,1,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,1,4,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,55c5ad3fc2e63327e8983ea54f384053dee0a7237823b13de3525e53858122d3,False
+A,1,4,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,1,4,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,2f90a7ac75b6e66975d8be254d31e83e6d0663ed35f3c496cc96b05085af6f31,False
+A,1,4,Chignahuapan,57,42,0.01,False,malla_escrita_no_precision,14,f56c58e8afe2919b7a77cc1fa91db5053830e730668cb80191bb648f575ce117,False
+A,1,4,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e8ac5e632efda43650cdba119ed8709a4a7558a03b634ea4fcd74a86251f0945,False
+A,1,4,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+A,1,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,1,4,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,3d0883ae86e64f94cebe7fa61e0cb523cbaab013452e5b43acb8b2cfe53b4f0d,False
+A,1,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,2,0,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,6a24db5a84829c548120aa19ea450985db7556d7fd653e8a1101f32d073172b6,False
+A,2,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,2,0,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,591422974343c3b95ce207035a21e0191fb0021bfddee1c87b841c1bdad239ee,False
+A,2,0,Chignahuapan,56,43,0.01,False,malla_escrita_no_precision,15,869cc58fd94be0839721b850c2f9a177a14fdd8e04e8cabf90ee38a4b15a3d20,False
+A,2,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,66113ab89a34f66f575a14fe5caf20872e0b58cf9e52189451b2c86c744ba131,False
+A,2,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,2,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,2,0,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,4da9e2c3b46916cfe4d19293f354778bfa8ff350d19dff7a425ea37076896d60,False
+A,2,0,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,2,1,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,62065587502e4c9e98a32ef417ca5ffffb3503724e00f567ba571bb282969eed,False
+A,2,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,2,1,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,5a3a00761e9bfc07cca3ef9bc5bd74f50d3f47acce03b0b2e2e31cfe3053e9e0,False
+A,2,1,Chignahuapan,57,47,0.01,False,malla_escrita_no_precision,14,cd485838543d1e3a041b1ff88cd1641e8a83130946f71403e5197aaa9e0ef142,False
+A,2,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,4ced801456750b923ea86039e5d7c8bc5973a4f01ca88e2b58ca5d037efed781,False
+A,2,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,2,1,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,2,1,Singuilucan,12,6,0.1,False,malla_escrita_no_precision,4,a8629e75e28d44570365a7a29880639ce7835eed819001f42f8dea923b67f3e1,False
+A,2,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,2,2,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,4c86b72fcc7ba6f0ca1d409cf2b15d50da794e9d1e27153f08240461e21f6dcd,False
+A,2,2,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,2,2,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,8cb6cb91fc42c52673ac43bc8a4d44e8398a8f647714fd9f59e567e5e9141a00,False
+A,2,2,Chignahuapan,57,43,0.01,False,malla_escrita_no_precision,14,3fc5ad03dffc6a9eebb41794dd7c191a3af0b983d8b35d6672d2c52e97b7b0c6,False
+A,2,2,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+A,2,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+A,2,2,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,2,2,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,b42afb2346d3efb9752da059dda7af3db13c889e5ae4254922b9281bde1cf80f,False
+A,2,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,2,3,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,979c63a4a31713047e2191367417d9353c47ea64b94dfd2aaac21846ebe1f5ba,False
+A,2,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,2,3,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,9946a1e680790425132d1c12c9eff9a3daa7147d5edd45615a55746dbb5ceccc,False
+A,2,3,Chignahuapan,57,45,0.01,False,malla_escrita_no_precision,14,dc2ce5d4226bd2c8aaaec7250257ffd8eb6639ddb8270b4773667b13d3f3ee59,False
+A,2,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e8ac5e632efda43650cdba119ed8709a4a7558a03b634ea4fcd74a86251f0945,False
+A,2,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,3b9f0b98d45d86dad5b3aa24ce5345c69bcbb6d6f4c71f41872b1f5f40c694fe,False
+A,2,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,2,3,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,a84e58dbe091e19d154454c18b6e8fca0929c39b245967ae4ea9a6d8186d68ef,False
+A,2,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,2,4,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,558b079cc9c23cc3962e9bc26e4567544d3c7d0da772ef906a5bffcf92081491,False
+A,2,4,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,2,4,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,c33d71ca0fa53be460eb713a1da56abfdab11bd9e4650a4a9fb9da39377f787f,False
+A,2,4,Chignahuapan,57,46,0.01,False,malla_escrita_no_precision,14,da92b1d1fe055554826500e9c0cb4be13266cdd0ef086117ad5e78b2aad74e6e,False
+A,2,4,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+A,2,4,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,4b149b6140dae4d039e62b04f761caa363e3d9211e59727e2893c4db36981e49,False
+A,2,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,2,4,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,2d521cadd74c38dbf68bca0c5484628d66fd63733534ecacf322503cb0ba2326,False
+A,2,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,3,0,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,47a28ad9340f0f9ae130703fe17ae086ceee3fba5fa435cd66a72eceada3cf74,False
+A,3,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,3,0,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,7da08c88056d6007232be89444c6c88eec6cec10dd825edc61d633344cc0c7db,False
+A,3,0,Chignahuapan,56,44,0.01,False,malla_escrita_no_precision,15,0f308fd5e02d6939d396a3b198eb14945a4b60c967448ada3375c745a5c7caac,False
+A,3,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+A,3,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,3,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,3,0,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,a0501109798fbd2f87da35cc03dbd3a95bb19540d9aec0270c0047613a126399,False
+A,3,0,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,3,1,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,ad9d7bf5a08da7ddbc5b14d7eb752c293ce8d42de777137a987cfe0dc784f5d2,False
+A,3,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,3,1,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,28cbc7002a56989a8f64abe325a5f78ee4501dea64b0dbaad885fc9fb5332c04,False
+A,3,1,Chignahuapan,57,44,0.01,False,malla_escrita_no_precision,14,48c134504d9fa3116f1db041f9b78c0e30f19df596f37cfe6d991429fa2121e1,False
+A,3,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,4ced801456750b923ea86039e5d7c8bc5973a4f01ca88e2b58ca5d037efed781,False
+A,3,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,3,1,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,3,1,Singuilucan,12,5,0.1,False,malla_escrita_no_precision,4,0b81f43a9bb1ff1bd85482a336e3bf4ff1574d1abb5a5c948a82d48644184a4f,False
+A,3,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,3,2,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,5cb1bd4d3c02bb65b703f3c650f968fd8fe802e0ae0b66ce59be5b22a6f0ea59,False
+A,3,2,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,3,2,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,c6e697f71fa1cb540176e6ec423de9f9378941d7e29a30149ed2196b09f463a4,False
+A,3,2,Chignahuapan,57,45,0.01,False,malla_escrita_no_precision,14,bdfdc8314b4921c225b7b61c49d8e65c8f6cb803f3a061dd907931a8c87f92bf,False
+A,3,2,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e8ac5e632efda43650cdba119ed8709a4a7558a03b634ea4fcd74a86251f0945,False
+A,3,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+A,3,2,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,3,2,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,a6c508eed2ffd51118c73415aa2996c92e920fe9d3c63a2d7640355f438df9a1,False
+A,3,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,3,3,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,4206edeadde91bc81c0436281a75a113b544ba8fb6300de4144c35802da9b6ee,False
+A,3,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,3,3,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,59e4be207facf6cd98ed39d2954597ccb1784a32d812a31898d3e2f3a94b52da,False
+A,3,3,Chignahuapan,57,48,0.01,False,malla_escrita_no_precision,14,c1e937326715afd1a5044dd856b36a01129f69c06f76463838ace70b01210480,False
+A,3,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,66113ab89a34f66f575a14fe5caf20872e0b58cf9e52189451b2c86c744ba131,False
+A,3,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,3b9f0b98d45d86dad5b3aa24ce5345c69bcbb6d6f4c71f41872b1f5f40c694fe,False
+A,3,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,3,3,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,1223171c1295374d9c2c6adf0bff9657a409da82558cb57b500a1385c2485b42,False
+A,3,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,3,4,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,53e3f6e834174d48b295cbbf1b4f79b8a6b899547eaa5547da7fc9a05a0382c7,False
+A,3,4,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,3,4,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,d462f6181f0bc5018ea2c3361f85ad035cd77134a5e4b7d7bf9fb7f6d6164edc,False
+A,3,4,Chignahuapan,57,43,0.01,False,malla_escrita_no_precision,14,ad9c531f096fcf1a6c78d983016e8dbef372ad4dd8b685d74c1596c97d299b88,False
+A,3,4,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+A,3,4,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,4b149b6140dae4d039e62b04f761caa363e3d9211e59727e2893c4db36981e49,False
+A,3,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,3,4,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,ca0f6c7954c584c6d133d03d0024903cb49f7aee2f5558aee689d0f3c91ac544,False
+A,3,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,4,0,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,979c63a4a31713047e2191367417d9353c47ea64b94dfd2aaac21846ebe1f5ba,False
+A,4,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,4,0,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,a99cec3a46d18f53d34a21f7e22bef86c34ea8e78a88b9a065113193e1138024,False
+A,4,0,Chignahuapan,56,44,0.01,False,malla_escrita_no_precision,15,c35624390c4d2e62520b485230a350f27a0142e534479650ccca34caa226d7dd,False
+A,4,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+A,4,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,4,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,4,0,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,980b0f60ea4a3eadb86869102785a2759e04dbe2b51e3e43678e532abb96ad1f,False
+A,4,0,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,4,1,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,a2d98009edabd500386488b2c802eb784c97469739fad0f87331ef3648aa235f,False
+A,4,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,4,1,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,ff455203361a04692d5aa2df3f2ae6999108e08a8787073ad4119614aa67cf06,False
+A,4,1,Chignahuapan,57,44,0.01,False,malla_escrita_no_precision,14,f13d07815b336ac141d3a62a809e2ba5d7cce4f78db7a303bb3443194770c1d2,False
+A,4,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e8ac5e632efda43650cdba119ed8709a4a7558a03b634ea4fcd74a86251f0945,False
+A,4,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,4,1,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,4,1,Singuilucan,12,7,0.1,False,malla_escrita_no_precision,4,04d6d9e28e80f485b496e8d1cc87a406179f752b7df4af1a2a2699f8cb367941,False
+A,4,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,4,2,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,6680adea27ccb6eb86a4793085e2f2594954f6cf0f002fbf852a94d75bd29faa,False
+A,4,2,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,4,2,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,4e376ed009c15bf5e5d32c78c649375d27524dd303ff8f7a7fdd2407ed6e7d9f,False
+A,4,2,Chignahuapan,57,46,0.01,False,malla_escrita_no_precision,14,959b81aeaf691fef60a5fc582db5b1a55e9952660fa090abcaaac8cbc4977948,False
+A,4,2,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,4ced801456750b923ea86039e5d7c8bc5973a4f01ca88e2b58ca5d037efed781,False
+A,4,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,4b149b6140dae4d039e62b04f761caa363e3d9211e59727e2893c4db36981e49,False
+A,4,2,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,4,2,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,de6a91397b25ac28afb152e46d0d1e3f4c3445074e8d5175baf7933ee130d8a9,False
+A,4,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,4,3,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,71be5ef5de8b3e23ab8c75d4aaa3fad46b71a3b8a70106b8858df2089853d642,False
+A,4,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,4,3,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,9f40875e8c1072ac5d5b3b61a8ead28223b678a561104b9e1766578017a3319e,False
+A,4,3,Chignahuapan,57,45,0.01,False,malla_escrita_no_precision,14,2ed35ba64ba2983ffa8b95ec516b385c1ea4ad45c6e3847bd8588f6733c0cbee,False
+A,4,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+A,4,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+A,4,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,4,3,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,984a6ddebb090140c65c02b04667bcb1e303c11e2354c5a6ef5d553f58065ed0,False
+A,4,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,4,4,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,97f4267c2a6499d8e901f27baebc02acae0d3522bf7014c4b8947a551e698d15,False
+A,4,4,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,4,4,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,6775be433bcb57cc35aabf1849cc687dad8412e5181e3c9b1a06e0b692ec6c4f,False
+A,4,4,Chignahuapan,57,46,0.01,False,malla_escrita_no_precision,14,5cc3485d32a1a0bcf36cf618e5b4fcd72d5408fc1759baeb3d4657b13f2375f5,False
+A,4,4,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,66113ab89a34f66f575a14fe5caf20872e0b58cf9e52189451b2c86c744ba131,False
+A,4,4,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,3b9f0b98d45d86dad5b3aa24ce5345c69bcbb6d6f4c71f41872b1f5f40c694fe,False
+A,4,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,4,4,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,a5578268a0948d2ccff7f6d5444a241a90e75ddc789a56a85a9313be314a8e60,False
+A,4,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,5,0,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,5aa21e3c35b8b0b96d5152c72017e1082b430c2fa4f04b9dacf607873b736a83,False
+A,5,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,5,0,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,004a06dbbf353e4576fed91656bce82cc121c4792e0120a489bfe1ce7264fd2e,False
+A,5,0,Chignahuapan,56,42,0.01,False,malla_escrita_no_precision,15,db8c35f6a1f83f5c08003285a99400a0f5a003cad5d6a8fc007f01c02341383d,False
+A,5,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+A,5,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,5,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,5,0,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,ec385e819bedc7cf55fec9c181f4d23c4360c75ac2681119cdf7ba309e0fe71b,False
+A,5,0,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,5,1,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,bf2ccd015dc9768b21d67bc6498d056865a865186a185cb93b9c276c14beb8d0,False
+A,5,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,5,1,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,421b5fb1268f3c4d682757a4f112da5c63352cb4d254dabae6e60358b6a4306c,False
+A,5,1,Chignahuapan,57,46,0.01,False,malla_escrita_no_precision,14,b6c88bf2a0e85d4c7431f8cc709dc2cec754fdca676f92743a1e4e40c2f673e8,False
+A,5,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,4ced801456750b923ea86039e5d7c8bc5973a4f01ca88e2b58ca5d037efed781,False
+A,5,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+A,5,1,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,5,1,Singuilucan,12,7,0.1,False,malla_escrita_no_precision,4,e890190fa014eacd8b5e5885de921173c8814aebad2b19f4da9380dc77c57cb9,False
+A,5,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,5,2,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,94049a774ef2908984f7278b24f025b69d7d4a347df6e239734246f2fb669dc4,False
+A,5,2,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+A,5,2,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,4edef718d43295bf6c6df708b9d66887c4d7f80d7eea21b4e65a5f8deea4d1a1,False
+A,5,2,Chignahuapan,57,45,0.01,False,malla_escrita_no_precision,14,c531a584f6813ac0a84ca0f2bddeb0a505e2f229d4abda90e44541dde68cedbc,False
+A,5,2,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+A,5,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,3b9f0b98d45d86dad5b3aa24ce5345c69bcbb6d6f4c71f41872b1f5f40c694fe,False
+A,5,2,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,5,2,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,909c4ae1f339d87e9c5dcc396c3b0c5e5c36eb82ea2e2fdf0f16f1937e22b8c3,False
+A,5,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,5,3,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,5d133c3497fd546b31fe7b28281e406060ff486b9f0631638578ce3f28d81813,False
+A,5,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,5,3,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,d7ed438a0cd1c78284c3ad29699c63b5c4266cc220a1a9a15dcda374fb7e9c8d,False
+A,5,3,Chignahuapan,57,46,0.01,False,malla_escrita_no_precision,14,316c9987e51c960a7200f56467de5e3b975cafd82e3c81ce7acba9a28b9e6f82,False
+A,5,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e8ac5e632efda43650cdba119ed8709a4a7558a03b634ea4fcd74a86251f0945,False
+A,5,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,4b149b6140dae4d039e62b04f761caa363e3d9211e59727e2893c4db36981e49,False
+A,5,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,5,3,Singuilucan,13,6,0.1,False,malla_escrita_no_precision,3,aabc99c703a4be47df74fae606ec69864aa527731cdff063e7620ad7cb6e4e11,False
+A,5,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+A,5,4,Almoloya,8,8,0.01,False,malla_escrita_no_precision,2,5e4c3fb8c1b1c0b3a779c02ffe1f35f1ca369d68b70a446c29d66c1207e85fea,False
+A,5,4,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+A,5,4,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,f87cf314a7c80800fa1556d4ef0155cb390ff1d3ccf10a429fb8677a32c7eeaa,False
+A,5,4,Chignahuapan,57,45,0.01,False,malla_escrita_no_precision,14,6b9557a018fe045cf6c448d3a6b054f22563c7b702b0dbf456165dcf41aa7d9b,False
+A,5,4,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,66113ab89a34f66f575a14fe5caf20872e0b58cf9e52189451b2c86c744ba131,False
+A,5,4,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+A,5,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+A,5,4,Singuilucan,13,7,0.1,False,malla_escrita_no_precision,3,48f66450386c990099a2a59f87562e6daab37be5b25c54906656f77228903718,False
+A,5,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,1,0,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,1,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,1,0,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,1,0,Chignahuapan,37,31,0.01,False,malla_escrita_no_precision,34,a831c5236cd854e216dfef8e9635fffedcfa95efcb840ef8fa6aa47140535870,False
+B,1,0,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,1,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,1,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,1,0,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,1,0,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,1,1,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,1,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,1,1,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,1,1,Chignahuapan,38,32,0.01,False,malla_escrita_no_precision,33,2686e25b209558f2b8fee31467e53d431e312a4afe715cda5db377febe7d05bc,False
+B,1,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+B,1,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,1,1,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,1,1,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,1,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,1,2,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,eb868c46605a980a58379d008992959c514b83ea7700a8246b908ec702beaede,False
+B,1,2,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,1,2,Calpulalpan,12,3,0.5,False,malla_escrita_no_precision,18,8df022fd0c5a7d12a1acfcbbb31d4a2d97c9ddaa98de62281a0ecaf043771888,False
+B,1,2,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,1,2,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,1,2,Emiliano Zapata,1,1,,True,constante_no_identifica_resolucion,2,ab8131d0b0c1c64a5b04146fb14b7660e25381644c5d3af7a10eafee7468ea0d,False
+B,1,2,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,1,2,Singuilucan,15,7,0.1,False,malla_escrita_no_precision,1,3a407826f18c726901b23c802ca5cb592ce5eb36eb0588ff3e72be49c86ad2e1,False
+B,1,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,1,3,Almoloya,3,3,0.01,False,malla_escrita_no_precision,7,c08ce43f5e12684dd5c7489f569ff8f032ef8c26f1de028f090c22b7d49b81b0,False
+B,1,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,1,3,Calpulalpan,22,3,0.5,False,malla_escrita_no_precision,8,dbeeaeba2cdf66959e72e64521e42fa9d051f8a6a41e65d49f30fd2d5f2b6543,False
+B,1,3,Chignahuapan,67,51,0.01,False,malla_escrita_no_precision,4,14beccbf6144023bd05a469ca16b8a4e8c43134d144a01be7ec6e1dcab4b8d85,False
+B,1,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+B,1,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+B,1,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,1,3,Singuilucan,14,6,0.1,False,malla_escrita_no_precision,2,784e6d1e4e9494d74d16c2e2853eaa1df7390071a6eec63138122d9c6187bcf0,False
+B,1,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,1,4,Almoloya,9,8,0.01,False,malla_escrita_no_precision,1,531be5a444dca7ad258f022792178cdbc2aadfd4a8e80fddef2ea661e590fa61,False
+B,1,4,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,1,4,Calpulalpan,26,3,0.5,False,malla_escrita_no_precision,4,cc2693f61b189ab77815bab65f3e71e33bd444fd1fe3552a7a14887d6e55f96a,False
+B,1,4,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,1,4,Cuautepec de Hinojosa,2,2,,False,menos3_no_asignar_paso,3,3757691120fb65638c95b5fca0958efc7b620aecde6edf430cc67f440fae47a4,False
+B,1,4,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,1,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,1,4,Singuilucan,3,2,0.5,False,malla_escrita_no_precision,13,b6695e82f830a8dfe02b97b51b72fa1d00dd0c095339ae62860ef39111b5a680,False
+B,1,4,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,2,0,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,2,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,2,0,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,2,0,Chignahuapan,38,32,0.01,False,malla_escrita_no_precision,33,2686e25b209558f2b8fee31467e53d431e312a4afe715cda5db377febe7d05bc,False
+B,2,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+B,2,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,2,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,2,0,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,2,0,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,2,1,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,2,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,2,1,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,2,1,Chignahuapan,37,31,0.01,False,malla_escrita_no_precision,34,a831c5236cd854e216dfef8e9635fffedcfa95efcb840ef8fa6aa47140535870,False
+B,2,1,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,2,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,2,1,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,2,1,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,2,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,2,2,Almoloya,8,7,0.01,False,malla_escrita_no_precision,2,97f4267c2a6499d8e901f27baebc02acae0d3522bf7014c4b8947a551e698d15,False
+B,2,2,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,2,2,Calpulalpan,13,3,0.5,False,malla_escrita_no_precision,17,57ff05b17c5b23f4919010b0aa1a3d2f8f6f2ee4fb2a7763060cec1f85c721fe,False
+B,2,2,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,2,2,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,2,2,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,2,2,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,2,2,Singuilucan,14,6,0.1,False,malla_escrita_no_precision,2,784e6d1e4e9494d74d16c2e2853eaa1df7390071a6eec63138122d9c6187bcf0,False
+B,2,2,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,2,3,Almoloya,2,2,,False,menos3_no_asignar_paso,8,9b3ec0609842c40c5455ccdaddf7c9d6c791d805f740fa219f887d8ce09068b8,False
+B,2,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,2,3,Calpulalpan,20,3,0.5,False,malla_escrita_no_precision,10,51773f8d2e8458853cc9374066590552c584d842fe0fe56105f4ee24749f5612,False
+B,2,3,Chignahuapan,68,52,0.01,False,malla_escrita_no_precision,3,82395d378ca1bc9bbbcffce9251247272269d26c364d031aff3e91d6c455fd7e,False
+B,2,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+B,2,3,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+B,2,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,2,3,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,2,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,2,4,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,2,4,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,2,4,Calpulalpan,27,3,0.5,False,malla_escrita_no_precision,3,a959a3c25df136dc28fd7fe3743ae61985327b713c2f01b14ad6e972ab155358,False
+B,2,4,Chignahuapan,70,53,0.01,False,malla_escrita_no_precision,1,4566a5e8cc69616a91eca725c461d7ef6e42162b17510c185815983392371381,False
+B,2,4,Cuautepec de Hinojosa,2,2,,False,menos3_no_asignar_paso,3,3757691120fb65638c95b5fca0958efc7b620aecde6edf430cc67f440fae47a4,False
+B,2,4,Emiliano Zapata,1,1,,True,constante_no_identifica_resolucion,2,ab8131d0b0c1c64a5b04146fb14b7660e25381644c5d3af7a10eafee7468ea0d,False
+B,2,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,2,4,Singuilucan,2,1,,True,constante_no_identifica_resolucion,14,e9fbf3775f43e5b6e667156792c9bd984b267ab75beb9da5dd53841691ce76e4,False
+B,2,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,3,0,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,3,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,3,0,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,3,0,Chignahuapan,37,31,0.01,False,malla_escrita_no_precision,34,a831c5236cd854e216dfef8e9635fffedcfa95efcb840ef8fa6aa47140535870,False
+B,3,0,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,3,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,3,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,3,0,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,3,0,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,3,1,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,3,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,3,1,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,3,1,Chignahuapan,38,32,0.01,False,malla_escrita_no_precision,33,2686e25b209558f2b8fee31467e53d431e312a4afe715cda5db377febe7d05bc,False
+B,3,1,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+B,3,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,3,1,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,3,1,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,3,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,3,2,Almoloya,9,8,0.01,False,malla_escrita_no_precision,1,71d97b55d409700df195907ba57c62a25599ff285f8cd45df67e8be6e4f3dcd4,False
+B,3,2,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,3,2,Calpulalpan,14,3,0.5,False,malla_escrita_no_precision,16,f1de4636b4a2199c724bc561d4610d3b5d3b74821c6312c4c26d0ae0e6880397,False
+B,3,2,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,3,2,Cuautepec de Hinojosa,2,2,,False,menos3_no_asignar_paso,3,3757691120fb65638c95b5fca0958efc7b620aecde6edf430cc67f440fae47a4,False
+B,3,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+B,3,2,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,3,2,Singuilucan,15,7,0.1,False,malla_escrita_no_precision,1,3a407826f18c726901b23c802ca5cb592ce5eb36eb0588ff3e72be49c86ad2e1,False
+B,3,2,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,3,3,Almoloya,1,1,,True,constante_no_identifica_resolucion,9,fec8c25032906f379ae1a7ca97379372e281649400405b3900ad12c9bfb49961,False
+B,3,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,3,3,Calpulalpan,22,3,0.5,False,malla_escrita_no_precision,8,dbeeaeba2cdf66959e72e64521e42fa9d051f8a6a41e65d49f30fd2d5f2b6543,False
+B,3,3,Chignahuapan,68,52,0.01,False,malla_escrita_no_precision,3,82395d378ca1bc9bbbcffce9251247272269d26c364d031aff3e91d6c455fd7e,False
+B,3,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+B,3,3,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,3,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,3,3,Singuilucan,14,6,0.1,False,malla_escrita_no_precision,2,784e6d1e4e9494d74d16c2e2853eaa1df7390071a6eec63138122d9c6187bcf0,False
+B,3,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,3,4,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,3,4,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,3,4,Calpulalpan,24,3,0.5,False,malla_escrita_no_precision,6,abe6c184adc7236095a72e032f29289d808533f2030ec73e071d782fd109fa77,False
+B,3,4,Chignahuapan,70,53,0.01,False,malla_escrita_no_precision,1,4566a5e8cc69616a91eca725c461d7ef6e42162b17510c185815983392371381,False
+B,3,4,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,3,4,Emiliano Zapata,1,1,,True,constante_no_identifica_resolucion,2,ab8131d0b0c1c64a5b04146fb14b7660e25381644c5d3af7a10eafee7468ea0d,False
+B,3,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,3,4,Singuilucan,3,2,0.5,False,malla_escrita_no_precision,13,b6695e82f830a8dfe02b97b51b72fa1d00dd0c095339ae62860ef39111b5a680,False
+B,3,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,4,0,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,4,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,4,0,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,4,0,Chignahuapan,38,32,0.01,False,malla_escrita_no_precision,33,2686e25b209558f2b8fee31467e53d431e312a4afe715cda5db377febe7d05bc,False
+B,4,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+B,4,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,4,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,4,0,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,4,0,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,4,1,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,4,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,4,1,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,4,1,Chignahuapan,37,31,0.01,False,malla_escrita_no_precision,34,a831c5236cd854e216dfef8e9635fffedcfa95efcb840ef8fa6aa47140535870,False
+B,4,1,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,4,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,4,1,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,4,1,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,4,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,4,2,Almoloya,7,6,0.01,False,malla_escrita_no_precision,3,dc3a04ae3dd1a374d9797d9f0d4308ed815874aed6fdcee63c49baac31a52895,False
+B,4,2,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,4,2,Calpulalpan,13,3,0.5,False,malla_escrita_no_precision,17,4f1063d67b1f6478d5f241597c368c229d6548dd6f6ed3169dad05ef57ce76b4,False
+B,4,2,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,4,2,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+B,4,2,Emiliano Zapata,1,1,,True,constante_no_identifica_resolucion,2,ab8131d0b0c1c64a5b04146fb14b7660e25381644c5d3af7a10eafee7468ea0d,False
+B,4,2,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,4,2,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,4,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,4,3,Almoloya,3,3,0.01,False,malla_escrita_no_precision,7,c08ce43f5e12684dd5c7489f569ff8f032ef8c26f1de028f090c22b7d49b81b0,False
+B,4,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,4,3,Calpulalpan,19,3,0.5,False,malla_escrita_no_precision,11,6ded61fc97c29e0e1117ef8e17e93a67b29028319338d0e3df1999dcd5d7719b,False
+B,4,3,Chignahuapan,67,51,0.01,False,malla_escrita_no_precision,4,14beccbf6144023bd05a469ca16b8a4e8c43134d144a01be7ec6e1dcab4b8d85,False
+B,4,3,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,4,3,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,4,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,4,3,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,4,3,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,4,4,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,4,4,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,4,4,Calpulalpan,28,3,0.5,False,malla_escrita_no_precision,2,8050faff5888ce2b45d170d5527b47984117c1b6b5f2189a818dd46c9e4ffcad,False
+B,4,4,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,4,4,Cuautepec de Hinojosa,2,2,,False,menos3_no_asignar_paso,3,3757691120fb65638c95b5fca0958efc7b620aecde6edf430cc67f440fae47a4,False
+B,4,4,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+B,4,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,4,4,Singuilucan,0,0,,False,sin_municipio_entreno,16,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,4,4,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,5,0,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,5,0,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,5,0,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,5,0,Chignahuapan,38,32,0.01,False,malla_escrita_no_precision,33,2686e25b209558f2b8fee31467e53d431e312a4afe715cda5db377febe7d05bc,False
+B,5,0,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,0df48ad171a1debf7d73de9bc35c0d29a7f792861a5aa58a2c1d2729945e5c1a,False
+B,5,0,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,5,0,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,5,0,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,5,0,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,5,1,Almoloya,10,9,0.01,False,malla_escrita_no_precision,0,6a339ddf494e4e48160b93593e29e03266576de552f72712cfa6065a8e2aa0e7,False
+B,5,1,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,5,1,Calpulalpan,30,3,0.5,False,malla_escrita_no_precision,0,99f46c72dd456cada9d6c105ea4854b66cf29d471ddd7b59047952b0258ff651,False
+B,5,1,Chignahuapan,37,31,0.01,False,malla_escrita_no_precision,34,a831c5236cd854e216dfef8e9635fffedcfa95efcb840ef8fa6aa47140535870,False
+B,5,1,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,5,1,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,5,1,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,5,1,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,5,1,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,5,2,Almoloya,9,8,0.01,False,malla_escrita_no_precision,1,71d97b55d409700df195907ba57c62a25599ff285f8cd45df67e8be6e4f3dcd4,False
+B,5,2,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,5,2,Calpulalpan,14,3,0.5,False,malla_escrita_no_precision,16,7fe24b4d480df12fab76ead3231bb9a017a23f4ec24f6b26269b5a03f00e41bc,False
+B,5,2,Chignahuapan,70,53,0.01,False,malla_escrita_no_precision,1,4566a5e8cc69616a91eca725c461d7ef6e42162b17510c185815983392371381,False
+B,5,2,Cuautepec de Hinojosa,2,2,,False,menos3_no_asignar_paso,3,3757691120fb65638c95b5fca0958efc7b620aecde6edf430cc67f440fae47a4,False
+B,5,2,Emiliano Zapata,2,1,,True,constante_no_identifica_resolucion,1,ec07737ca6d1e73375bb732dd7bc215d8405a8d8d458b9a858a9da78f56d3d56,False
+B,5,2,Nanacamilpa de Mariano Arista,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,5,2,Singuilucan,15,7,0.1,False,malla_escrita_no_precision,1,3a407826f18c726901b23c802ca5cb592ce5eb36eb0588ff3e72be49c86ad2e1,False
+B,5,2,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,5,3,Almoloya,2,2,,False,menos3_no_asignar_paso,8,5c63f9bbd623866ac3fbe7fe40f037a97d0eedd2be0099afec50a5bc11701441,False
+B,5,3,Apan,1,1,,True,constante_no_identifica_resolucion,0,91da53493d5328887be2013f6df47c102a4e7dcd6173c62da6e76a622e72e809,False
+B,5,3,Calpulalpan,19,3,0.5,False,malla_escrita_no_precision,11,6ded61fc97c29e0e1117ef8e17e93a67b29028319338d0e3df1999dcd5d7719b,False
+B,5,3,Chignahuapan,68,52,0.01,False,malla_escrita_no_precision,3,82395d378ca1bc9bbbcffce9251247272269d26c364d031aff3e91d6c455fd7e,False
+B,5,3,Cuautepec de Hinojosa,4,4,0.01,False,malla_escrita_no_precision,1,e84919bb94f4afa2a27e914fee9ba100a0c48dd123e52e972ec8123a63381466,False
+B,5,3,Emiliano Zapata,3,1,0.5,True,constante_no_identifica_resolucion,0,6c1219a80b98abcaee4f3e13b4602b5736ff4ec5012f1ffba06c2e633b3e6d44,False
+B,5,3,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,5,3,Singuilucan,16,7,0.1,False,malla_escrita_no_precision,0,5df95dbb7b78af406cb38496aab903322da7cae77ef9c1f656570f159dbc5f7c,False
+B,5,3,Tepeapulco,1,1,,True,constante_no_identifica_resolucion,0,209cf5d590b0cff01b685eda5d084edcd2163126ade66321e68bfaa70b99337e,False
+B,5,4,Almoloya,9,8,0.01,False,malla_escrita_no_precision,1,089ce5d4e62351c1bdc56af8a61ef8e1838b3585447cb78eff66a91d3757b409,False
+B,5,4,Apan,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False
+B,5,4,Calpulalpan,27,3,0.5,False,malla_escrita_no_precision,3,6cfa616f4c79dbe8ed8e6839e3755c32e5b2a12026499440c0fb24f3ce1c67c9,False
+B,5,4,Chignahuapan,71,54,0.01,False,malla_escrita_no_precision,0,850cb9a0b015fb8b4d70ef873d8738a46ab8e4ead9f853b6b5899788e91068bb,False
+B,5,4,Cuautepec de Hinojosa,5,5,0.01,False,malla_escrita_no_precision,0,32aca412f4a547f88f729fdd0a3b41d0846e03c4fe8fff6c18e8d3c30879f3a0,False
+B,5,4,Emiliano Zapata,1,1,,True,constante_no_identifica_resolucion,2,ab8131d0b0c1c64a5b04146fb14b7660e25381644c5d3af7a10eafee7468ea0d,False
+B,5,4,Nanacamilpa de Mariano Arista,1,1,,True,constante_no_identifica_resolucion,0,90bd3a1464365a8cb63f40b936106d3612df0425be94e841764486e3e0266f00,False
+B,5,4,Singuilucan,1,1,,True,constante_no_identifica_resolucion,15,cb779fb28466a9e29989c11e92ad883f192ebd324cc11cf91544bd1dbe67d207,False
+B,5,4,Tepeapulco,0,0,,False,sin_municipio_entreno,1,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,False

@@ -1,0 +1,35 @@
+{
+  "schema": "agrocebada_diagnostico_fase4_entrega_v1",
+  "estado": "tecnico_para_revision",
+  "diseno_sha256": "adcdc9e167b6c6121ace5113794418a91be6e58c87f21feac4683b8cd02682ee",
+  "codigo_sha256": {
+    "scripts/diagnostico_fase4.py": "d53b8de3ec62772951fc6d7888f1785eaa2da2b6408bbba1b3e6ec4611e15f17"
+  },
+  "ledger_sha256": "199fed965f34033e94716c8c0edaef189ac94e186ec5a28e8325496269fbdea0",
+  "OOF_etiquetas_comprobadas": 71208,
+  "parcelas": 197,
+  "etiquetadas": 138,
+  "reservadas": 59,
+  "modelos_nuevos": 0,
+  "etiquetas_editadas": 0,
+  "predicciones_editadas": 0,
+  "revision_humana": "pendiente",
+  "n_filas_tablas": {
+    "conciliacion_etiquetas.csv": 197,
+    "granularidad_municipal.csv": 9,
+    "granularidad_entrenamiento.csv": 450,
+    "error_por_granularidad.csv": 30,
+    "sensibilidad_area_nominal.csv": 276,
+    "etiquetas_contexto.csv": 138,
+    "pares_y_etiquetas.csv": 87
+  },
+  "archivos_sha256": {
+    "conciliacion_etiquetas.csv": "2a08f3d0b7f427f37b3ad4a59ef2252710e9e7325b8ff4e7b0a2597f3983c286",
+    "error_por_granularidad.csv": "71065afa88c173093c83b1f61d2060fabaef3946fb2d9974291a53afa7e1f8df",
+    "etiquetas_contexto.csv": "2f4b3e3664a8d1f1e255924d36b69cbf3cfc8303088f0c16edc03ba98159658e",
+    "granularidad_entrenamiento.csv": "85d78fc3863efe882cb55a2228965e3c3b27cb42c4e9252c99fb924c5caf1ad4",
+    "granularidad_municipal.csv": "6c819f4b3b3833c8900f061332f663c94e4c53c7b208620468d1b7fd087f7735",
+    "pares_y_etiquetas.csv": "2e81e99476a7113859cdaea53a5cdbb85a29bf6ab2d1150d06a416ebfde60264",
+    "sensibilidad_area_nominal.csv": "467aed7b1fe4204d2be7d590ae0945fe296885760cfda696470a96a134d8b2b2"
+  }
+}

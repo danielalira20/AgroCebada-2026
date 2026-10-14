@@ -1,0 +1,9 @@
+{
+  "fuente_suelo": "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
+  "resolucion_nominal_m": 250,
+  "celda_nominal_ha": 6.25,
+  "parcelas197_area_declarada_menor6_25ha": 118,
+  "etiquetadas138_area_menor6_25ha": 82,
+  "suelo_extraido": false,
+  "limite": "Un polígono menor que celda no implica que sólo toque una; se desconocen máscara y variación real de suelo. No añadir valor regional como medición parcelaria."
+}

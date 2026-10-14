@@ -1,0 +1,75 @@
+{
+  "schema": "agrocebada_diagnostico_fase4_evidencia_v1",
+  "fecha": "2026-10-14",
+  "estado": "tecnico_para_revision_independiente",
+  "revision_humana": "pendiente",
+  "numerica": {
+    "manifest_sha256": "ce09cc10daee6865c6dbaef4888267b696405687fc801c2409e979734fc19a65",
+    "archivos": {
+      "conciliacion_etiquetas.csv": "2a08f3d0b7f427f37b3ad4a59ef2252710e9e7325b8ff4e7b0a2597f3983c286",
+      "error_por_granularidad.csv": "71065afa88c173093c83b1f61d2060fabaef3946fb2d9974291a53afa7e1f8df",
+      "etiquetas_contexto.csv": "2f4b3e3664a8d1f1e255924d36b69cbf3cfc8303088f0c16edc03ba98159658e",
+      "granularidad_entrenamiento.csv": "85d78fc3863efe882cb55a2228965e3c3b27cb42c4e9252c99fb924c5caf1ad4",
+      "granularidad_municipal.csv": "6c819f4b3b3833c8900f061332f663c94e4c53c7b208620468d1b7fd087f7735",
+      "pares_y_etiquetas.csv": "2e81e99476a7113859cdaea53a5cdbb85a29bf6ab2d1150d06a416ebfde60264",
+      "sensibilidad_area_nominal.csv": "467aed7b1fe4204d2be7d590ae0945fe296885760cfda696470a96a134d8b2b2"
+    }
+  },
+  "interpretacion_redactada_separada": true,
+  "archivo_sha256": {
+    "registro/diagnostico/fase4_diccionario.csv": "42b27fad521ccc7e37076e5d6b994e24a467e707fa9487c13e0dcda80d8412ff",
+    "registro/diagnostico/fase4_hallazgos.csv": "46edb69a1ebe43decd230c4e4260b367f88281d11f4c5a22cf6f9e19a67a874b",
+    "registro/diagnostico/fase4_factores_no_observados.csv": "57d9ff659c88738698bc891a9022829f86c57e2ad33fa75496ad9a0818f2d985",
+    "registro/diagnostico/fase4_preguntas_FIRA.csv": "2fa4a50558461b1bc8ef9a4bba2e25cfc0f16a97fa40a8149da1799c7ba329f5",
+    "registro/diagnostico/fase4_fuentes_contexto.csv": "6f713fd297d744cfcc28a3b6896cb279d1c5f5599b3bdea574854cf1101f89ec",
+    "registro/diagnostico/fase4_fuentes_externas.json": "872556cfc8a874f9eab937ec7ad6d92b82f5ec43629e5e444203a7ed7e2a9ea1",
+    "docs/diagnostico_fase4.md": "0fb6989a403c334561f5d9186c9582aa03868bfc6e654d9bc623afa4f1d412f5"
+  },
+  "codigo_sha256": {
+    "scripts/diagnostico_fase4.py": "d53b8de3ec62772951fc6d7888f1785eaa2da2b6408bbba1b3e6ec4611e15f17",
+    "scripts/auditar_diagnostico_fase4.py": "d7624d808c0e2dd1c8898338d4f4c9956cfa975dde96852aa5ce5a3b8a3129e6",
+    "tests/test_diagnostico_fase4.py": "3117e394dd1c34af8be543de6f1e9d28199f5bae26fca64e20fa3d5dbd20cd4a"
+  },
+  "diseno_sha256": "adcdc9e167b6c6121ace5113794418a91be6e58c87f21feac4683b8cd02682ee",
+  "fuentes_operativas_fijadas_sha256": {
+    "data/raw/DataSet.zip": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07_fichas/pendientes_documentales.csv": "b4a093950bc68e949bf7128a16a8a856becd747ba5ca761b872cb27faa77b64b",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/precision_etiqueta_por_municipio.csv": "e439dffeeecb09d0dcde5766ea8bf401284a43e9951d7f0dc697e0e5074a4295",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/desviacion_municipal_por_parcela.csv": "7382fc375e659bb670a43c1589fcb7d551bb0511a9fb93f686709bedb0d220ae",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv": "70db27a146653fa0253d734956fabe5a1c21a436484176d0f3da3a1ec650b4ec",
+    "registro/diagnostico/fase0/casos_preseleccionados.csv": "d9ad40cddd7c605e6c1ed06c6c5f4641ab0f98e5d1e759f53f62c2bf8f28b407",
+    "registro/diagnostico/fase0/controles_preseleccionados.csv": "986e6f8813dd8f9d77d55486a72bde09c6a7b2ddb01e660f359976338a84e672",
+    "registro/diagnostico/fase1/errores_por_repeticion.csv": "798dc53cb15f2847ed72b95f479c012d1fcef9ccfb48e25069143d6aa52efd11",
+    "registro/diagnostico/fase1/errores_por_parcela.csv": "32866224ac8786667247ed922888545db7278b54a62ec835ab436abdf6d00243",
+    "registro/diagnostico/fase3/manifest.json": "505a911b6685f8284c2647bbd357f0728f30d7629dd9e6d60f4cda6d55f33f3c",
+    "registro/diagnostico/fase3/calidad_por_parcela.csv": "8fae5c0ec075e0fe79ea27ed149a3b3dc7520127176b5d737b4f8eab80822f36",
+    "registro/diagnostico/fase3/curvas_calidad.csv": "f1cf13b696afa58ed3f52388f85ddfc5f6b3dd571a9b91f4853d3f3237035133",
+    "registro/diagnostico/fase3/comparacion_curvas_pares.csv": "3132a068e8d099cd9ee47884156fa7224739fe5c5a15c4fe110a6bba5722cc18",
+    "registro/diagnostico/fase3_observaciones_T06.json": "b718d39405a5678806861e64be3d75dea8efb9890b02cb22305409d5fb320bee",
+    "analisis/auditoria_catalogo_y_etiquetas/informe_catalogo_y_etiquetas.md": "9ab17273ea036c10fae952cacf23418d3125fedc366fd3990dbed6a07636fb05"
+  },
+  "documento_oficial_proporcionado": {
+    "nombre": "Segunda_Sesion_Preguntas_Reto.docx",
+    "fecha": "2026-10-09",
+    "sha256": "b02fff056877e104fe0a8c3b9e7cca8a48a490154cf3a762b6d66d878c40f731"
+  },
+  "transcripcion_oral_separada_sha256": "81523f2e1c408aefa7b7a778ab152608579f11e2fabcd54734db896402c573ab",
+  "contexto_integro_privado_no_compartido": true,
+  "externas_consultadas": [
+    "https://www.fira.gob.mx/Nd/Agrocostos.jsp",
+    "https://www.fira.gob.mx/Files/PremioALIDE2025.pdf",
+    "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_01.html",
+    "https://cienciasagricolas.inifap.gob.mx/index.php/agricolas/article/download/317/547/1917"
+  ],
+  "sin_importacion_datos_externos_al_modelo": true,
+  "preguntas": {
+    "cantidad": 6,
+    "estado": "preparadas_no_enviadas"
+  },
+  "hallazgos": 14,
+  "factores_no_observados": 14
+}
