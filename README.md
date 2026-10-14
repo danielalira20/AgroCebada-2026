@@ -149,3 +149,20 @@ El [diseño R centrado v2](docs/t09_R_centrado_v2.md) y su componente de entrena
 ## T09: reevaluación de R centrado · 13 de octubre de 2026
 
 Los controles y la evaluación completa de R_centrado v2 están verificados técnicamente, pendientes de revisión de Migue. La corrección de H3 no supera la referencia municipal en MAE ni cumple la regla de mejora. Se preservan los resultados v1 y las59 reservadas. Consulta [diseño, resultados, incidencias y reproducción](docs/t09_centrado_evaluacion_v2.md) y la [entrega versionada](registro/t09/centrado_v2/verificacion.json). T15 y la actualización de otros consumidores siguen pendientes; no se modificaron con esta entrega.
+
+## Preparación de comparación común T15/T16
+
+El [procedimiento común histórico v1](docs/evaluacion_comun.md) fija familia, selección interna, regularización y reglas para comparar bloques. El [registro](docs/evaluacion_comun_registro.md) limita búsquedas y explicita atributos/ventanas. [Evidencia técnica](registro/evaluacion_comun/verificacion.json):294 pruebas Mac,41Docker y41conPython optimizado. Está preparado para revisión Daf/Migue; no se ejecutó la evaluación completa nueva ni se eligió ganadorT16.
+
+El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,particiones yreferencia sin ajustar estimadores. Mantiene T09/T11/T14 como procedimientos históricos.
+
+
+## Revisión y coordinación para T15 · 13 de octubre
+
+[Revisión T10/T11 reproducida](docs/revision_T10_T11_20261013.md) y [propuesta concreta T15](docs/t15_comparaciones_propuestas.md). Solicitudes a Daf y Migue enviadas; conformidad metodológica pendiente. La propuesta JSON no es ejecutable hasta cerrar el acuerdo y registrarlo antes de correr. T09 y los históricos conservan sus ramas y resultados.
+
+[Alternativas para reducir MAE](docs/alternativas_MAE_20261013.md): investigación de modelos, curvas existentes, suelo y clima diario. Hipótesis priorizadas, sin nuevos datos o evaluaciones incorporados.
+
+### Corrección H3 en el procedimiento común · para revisión
+
+La [versión centrada v2](docs/evaluacion_comun_centrado_v2.md) resta centros aprendidos sólo en entrenamiento a todas las variables transformadas, incluido el indicador D020. Conserva datos y búsqueda; la propuesta T15 sigue pendiente y no ejecutable. [Evidencia propia](registro/evaluacion_comun/verificacion_centrado_v2.json): controles matemáticos por bloques, prevención de filtraciones e identidad de versión. Los históricos permanecen identificados como tales.
