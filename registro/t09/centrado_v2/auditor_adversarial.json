@@ -1,0 +1,41 @@
+{
+  "estado": "aprobado",
+  "casos": [
+    {
+      "perturbacion": "huella_csv",
+      "rechazada": true,
+      "motivo": "Resultado cambiado: predicciones_oof.csv"
+    },
+    {
+      "perturbacion": "centro_guardado",
+      "rechazada": true,
+      "motivo": "Discrepancia independiente: centro_escala"
+    },
+    {
+      "perturbacion": "parametro_seleccionado",
+      "rechazada": true,
+      "motivo": "Ganador interno distinto de reconstrucción"
+    },
+    {
+      "perturbacion": "MAE_interno",
+      "rechazada": true,
+      "motivo": "Discrepancia independiente: MAE_interno"
+    },
+    {
+      "perturbacion": "celda_vacia",
+      "rechazada": true,
+      "motivo": "Metadato/etiqueta OOF diferente de T07: celda_chirps"
+    },
+    {
+      "perturbacion": "etiqueta_externa",
+      "rechazada": true,
+      "motivo": "Metadato/etiqueta OOF diferente de T07: real"
+    },
+    {
+      "perturbacion": "intervalo_celdas",
+      "rechazada": true,
+      "motivo": "Reporte distinto de reconstrucción"
+    }
+  ],
+  "datos_oficiales_modificados": false
+}

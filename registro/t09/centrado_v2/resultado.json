@@ -1,0 +1,24 @@
+{
+  "version": "T09-evaluacion-R-centrado-v2",
+  "id_experimento": "T09_R_centrado_v2",
+  "diseno_sha256": "ac28ebdd6b2b5c67650f55a6c33ddfc1f24742a0358e9e0f8b819f2cc93fc429",
+  "registro_sha256": "bac0ca3ba04c99cb7269392c7b15464c7745fca0fca2976b4d821c9b23c1922b",
+  "contextos_externos": 59,
+  "fits_ridge_internos": 1888,
+  "fits_ridge_externos": 118,
+  "fits_ridge_totales": 2006,
+  "fits_T_externos": 59,
+  "predicciones_nuevas": 4554,
+  "predicciones_T": 1518,
+  "predicciones_historicas_reutilizadas": 3036,
+  "filas_oof": 9108,
+  "ajuste_final_59": false,
+  "revision_humana": "pendiente_Migue",
+  "T08": {
+    "predicciones": 1380,
+    "diferencia_maxima": 0.0,
+    "fuentes_identicas": true
+  },
+  "previos_conocidos": true,
+  "es_confirmacion_independiente": false
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "agrocebada_t09_figuras_v1",
+  "version": "T09-figuras-v1",
+  "diseno_sha256": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+  "entradas_sha256": {
+    "metricas_resumen.csv": "b19292afefeb221fc942e0822e982ef00729d70e0db75e2d909890c1a9cd8be4",
+    "comparaciones_emparejadas.csv": "cc96d156d164f141b0cee2f806bb69c90096f5994809ceebc89c5d23d3ed31aa",
+    "diferencias_por_parcela.csv": "a5471ba006a581c5a2199940ac595dce80caa055f629ca2c05263b3336e8f46d",
+    "seleccion_interna.csv": "8d0abbe1ae4044f114901bb8a020516b824c3b9e40dd0cbe095822704b271132",
+    "resultado.json": "76fd7f17e6030cab987116f2e528b7d6c630a87b5e8a7f2ac302c6344bab9a17",
+    "procedencia.json": "732783dd296cb36cbdd2684403b29f5797abc1fe94a5ad052b188b50aaf86e02"
+  },
+  "codigo_sha256": "0cd89f69ee2d56f9cd5bf2751dc8463a1520bf88ae63ec51c06faf6c4ab28138",
+  "matplotlib": "3.11.2",
+  "figuras_sha256": {
+    "01_mae_externo.png": "cd1ae5fa5291309a4c8e7623ff400c6d2b64602cdf2d50f4019b0ead0042739c",
+    "01_mae_externo.svg": "696acd05347885b6045806ffe23a81865edfc5cfde7f0732a3557aae718c29c6",
+    "02_diferencia_mae_celdas.png": "09f0cb9ae239d12c734fa6cc9f974447a522351e6b53c6a9134a1b7e5654f660",
+    "02_diferencia_mae_celdas.svg": "78bfa459e33a7ff692e5b0b70a83f5cfa99bddcbcaf8911ecf61f9c16f5b1de5",
+    "03_seleccion_interna.png": "db7131261c58e0cbac7d2d20db5d4370c7d32ce10102ce53f0c9f87f15e61395",
+    "03_seleccion_interna.svg": "689a456abed29dcf27be10a79ee6c4532e95ba7b66938b8b9340f999a5b814c5"
+  },
+  "datos": "evaluacion_externa_real_138_etiquetadas",
+  "variante": "seleccionada",
+  "modelos_ajustados": 0,
+  "decisiones_nuevas": false,
+  "ganador_elegido": false,
+  "reservadas_evaluadas": 0,
+  "mae": "media_de_metricas_por_repeticion; sin barras de incertidumbre",
+  "delta_mae": "media_por_parcela_de_diferencias_medias_en_repeticiones_elegibles",
+  "intervalos": "IC95_percentiles_por_celda_5000_replicas_semilla_20261006",
+  "secundarios": "nominales_no_simultaneos; no intervalos individuales",
+  "selecciones": "conteos_contextos_A25_B25_C9; no importancia ni causalidad",
+  "revision_visual": "pendiente_inspeccion_de_los_tres_PNG"
+}

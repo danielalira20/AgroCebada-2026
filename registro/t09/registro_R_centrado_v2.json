@@ -1,0 +1,55 @@
+{
+  "schema": "agrocebada_t09_centrado_ejecucion_v2",
+  "id": "T09_R_centrado_v2",
+  "fecha_registro": "2026-10-13",
+  "diseno_sha256": "ac28ebdd6b2b5c67650f55a6c33ddfc1f24742a0358e9e0f8b819f2cc93fc429",
+  "autorizacion_Dani": "pasos_3_4_pruebas_y_evaluacion_completa",
+  "revision_humana": "pendiente_Migue",
+  "previos_conocidos": true,
+  "busqueda": {
+    "ventanas": [
+      "abr_oct",
+      "jun_oct"
+    ],
+    "lambda": [
+      0.01,
+      0.1,
+      1,
+      10
+    ],
+    "opciones": 8,
+    "internas": 4,
+    "contextos": 59,
+    "fits_ridge_internos": 1888,
+    "fits_ridge_externos": 118,
+    "fits_ridge_totales": 2006,
+    "fits_referencia_externa": 59
+  },
+  "contrastes": {
+    "seleccionada": [
+      "T",
+      "R",
+      "TC"
+    ],
+    "ventanas_fijas": [
+      "T"
+    ],
+    "promocion": "R_centrado_vs_T_en_A_sin_respaldo",
+    "otros": "diagnosticos_nominales_no_simultaneos"
+  },
+  "no_realizar": [
+    "ajuste_final_59",
+    "eleccion_T16",
+    "T15",
+    "cambio_T03",
+    "push",
+    "merge",
+    "mensajes_externos"
+  ],
+  "historicos_sha256": {
+    "registro/t09/predicciones_oof.csv": "8a55e979f17b2670ba566414c7f02569f9e1c7dab4179e853114fbc313191ae9",
+    "registro/t09/diseno.json": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+    "registro/t09/seleccion_interna.csv": "8d0abbe1ae4044f114901bb8a020516b824c3b9e40dd0cbe095822704b271132",
+    "registro/t09/coeficientes.csv": "5a589cf425eceb59b5daa8e3636eda8e4da145a4763b2ec25fd6483e99511bcc"
+  }
+}

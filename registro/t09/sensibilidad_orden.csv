@@ -1,0 +1,16 @@
+escenario,variante,poblacion,orden_principal,orden_sin_alertas,mantiene_orden,uso,reentrenado
+A,abr_oct,sin_respaldo,T;TC;R;CL,T;TC;R;CL,True,sensibilidad_no_decide,False
+A,abr_oct,todas,T;TC;R;CL,T;TC;R;CL,True,sensibilidad_no_decide,False
+A,jun_oct,sin_respaldo,T;TC;R;CL,T;TC;R;CL,True,sensibilidad_no_decide,False
+A,jun_oct,todas,T;TC;R;CL,T;TC;R;CL,True,sensibilidad_no_decide,False
+A,seleccionada,sin_respaldo,T;TC;R;CL,T;TC;R;CL,True,sensibilidad_no_decide,False
+A,seleccionada,todas,T;TC;R;CL,T;TC;R;CL,True,sensibilidad_no_decide,False
+B,abr_oct,sin_respaldo,T;R;TC;CL,T;R;TC;CL,True,sensibilidad_no_decide,False
+B,abr_oct,todas,T;R;TC;CL,T;R;TC;CL,True,sensibilidad_no_decide,False
+B,jun_oct,sin_respaldo,T;R;TC;CL,T;R;TC;CL,True,sensibilidad_no_decide,False
+B,jun_oct,todas,T;R;TC;CL,T;R;TC;CL,True,sensibilidad_no_decide,False
+B,seleccionada,sin_respaldo,T;R;TC;CL,T;R;TC;CL,True,sensibilidad_no_decide,False
+B,seleccionada,todas,T;R;TC;CL,T;R;TC;CL,True,sensibilidad_no_decide,False
+C,abr_oct,todas,CL;R;T;TC,CL;R;T;TC,True,sensibilidad_no_decide,False
+C,jun_oct,todas,CL;R;T;TC,CL;R;T;TC,True,sensibilidad_no_decide,False
+C,seleccionada,todas,CL;R;T;TC,CL;R;T;TC,True,sensibilidad_no_decide,False

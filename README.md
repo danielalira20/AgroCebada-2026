@@ -134,3 +134,18 @@ Los borradores anteriores permanecen en `reports/` con su procedencia histórica
 La integración T07 ya está en `dev`; las columnas candidatas no son entradas
 automáticas de un modelo. El nuevo complemento documental no inicia T09 ni el
 diagnóstico estadístico de atributos.
+
+## T09: evaluación climática para revisión
+
+El [diseño](docs/t09_diseno.md) y los [componentes verificados](docs/t09_estimadores.md) se ejecutaron con las 138 etiquetas de 2025. El [informe con gráficas](docs/t09_evaluacion.md) compara referencia territorial, clima solo, municipio + clima y corrección residual en A/B/C. Ningún procedimiento climático cumple la promoción en A; T sigue como base para T15. [Estado y evidencia](registro/t09/evaluacion.json), OOF principales y tablas compactas están en `registro/t09/`; el diccionario explica unidades y vacíos.
+
+Dos ejecuciones Docker reproducen exactamente 15 CSV y 3 JSON; los verificadores independientes reconstruyen métricas y matrices. Pasan 324 pruebas Mac y 84 controles Docker. La revisión de Migue sigue pendiente; T16/T18 aún deben elegir y ajustar el procedimiento final para las 59. No se evaluaron sus etiquetas ni se generó una entrega definitiva. Docker se detuvo al terminar.
+
+### T09 · corrección H3, pasos 1 y 2 · 13 de octubre de 2026
+
+El [diseño R centrado v2](docs/t09_R_centrado_v2.md) y su componente de entrenamiento/predicción se prepararon en `t09-centrado-municipal`. La corrección usa desviaciones respecto al centro municipal del entrenamiento, con respaldo de grupo/global, conservando la escala global. `crear_estimador("R_centrado")` identifica la variante nueva; `R` sigue reproduciendo v1. Pasan 41 pruebas de componentes en Mac y Docker. Evaluación completa v2, revisión independiente, publicación y actualización de T15 pendientes. Los resultados originales de `registro/t09/` y sus fuentes permanecen intactos.
+
+
+## T09: reevaluación de R centrado · 13 de octubre de 2026
+
+Los controles y la evaluación completa de R_centrado v2 están verificados técnicamente, pendientes de revisión de Migue. La corrección de H3 no supera la referencia municipal en MAE ni cumple la regla de mejora. Se preservan los resultados v1 y las59 reservadas. Consulta [diseño, resultados, incidencias y reproducción](docs/t09_centrado_evaluacion_v2.md) y la [entrega versionada](registro/t09/centrado_v2/verificacion.json). T15 y la actualización de otros consumidores siguen pendientes; no se modificaron con esta entrega.

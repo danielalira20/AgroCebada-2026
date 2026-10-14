@@ -1,0 +1,60 @@
+id_parcela,municipio,n_etiquetas_municipio,fuente_referencia_prevista,soporte_municipal_escaso,fuera_rango_global,fuera_rango_municipio,clima_completo,modelo_ajustado,significado,perfil_observado_abr_oct,distancia_clima_estandarizada_min_abr_oct,id_perfil_mas_proximo_abr_oct,perfil_observado_jun_oct,distancia_clima_estandarizada_min_jun_oct,id_perfil_mas_proximo_jun_oct
+AGC_003,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_034,True,0,AGC_034
+AGC_011,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_016,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_025,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_004,True,0,AGC_004
+AGC_027,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_004,True,0,AGC_004
+AGC_028,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_029,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_001,True,0,AGC_001
+AGC_030,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_007,True,0,AGC_007
+AGC_031,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_036,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_039,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_019,True,0,AGC_019
+AGC_042,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.0025112780721073136,AGC_194,False,0.0025633713590253173,AGC_194
+AGC_043,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.0022958414014165171,AGC_002,False,0.002193863430001706,AGC_002
+AGC_050,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_019,True,0,AGC_019
+AGC_052,Cuautepec de Hinojosa,5,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_009,True,0,AGC_009
+AGC_061,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_074,True,0,AGC_074
+AGC_063,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_065,Almoloya,10,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.47625922849664076,AGC_051,False,0.44761427905290535,AGC_180
+AGC_071,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_004,True,0,AGC_004
+AGC_075,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_004,True,0,AGC_004
+AGC_076,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_082,Almoloya,10,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.317722406344496,AGC_146,False,0.31842765745791746,AGC_146
+AGC_085,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_086,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_004,True,0,AGC_004
+AGC_087,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_054,True,0,AGC_054
+AGC_088,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_091,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_093,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_004,True,0,AGC_004
+AGC_094,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_095,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_107,Almoloya,10,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_146,True,0,AGC_146
+AGC_113,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_034,True,0,AGC_034
+AGC_116,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_146,True,0,AGC_146
+AGC_118,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_067,True,0,AGC_067
+AGC_120,Nanacamilpa de Mariano Arista,1,municipio,True,,prec_acumulada_mm_abr_oct;tmin_media_c_abr_oct;tmax_media_c_abr_oct;prec_acumulada_mm_jun_oct;tmin_media_c_jun_oct;tmax_media_c_jun_oct,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_054,True,0,AGC_054
+AGC_126,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_128,Almoloya,10,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_146,True,0,AGC_146
+AGC_129,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_034,True,0,AGC_034
+AGC_130,Cuautepec de Hinojosa,5,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_009,True,0,AGC_009
+AGC_136,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_142,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_143,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.00088069314382490695,AGC_002,False,0.00084153315463220623,AGC_002
+AGC_147,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.26931718507115332,AGC_123,False,0.26820379835336383,AGC_123
+AGC_149,Cuautepec de Hinojosa,5,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_009,True,0,AGC_009
+AGC_153,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_154,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_156,Singuilucan,16,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_007,True,0,AGC_007
+AGC_158,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_173,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_019,True,0,AGC_019
+AGC_174,Cuautepec de Hinojosa,5,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.445727958032197,AGC_035,False,0.36757225092281548,AGC_035
+AGC_175,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_177,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_182,Chignahuapan,71,municipio,False,,tmin_media_c_jun_oct,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.012796430109284761,AGC_176,False,0.01264610538964037,AGC_176
+AGC_183,Calpulalpan,30,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.20896729841601469,AGC_141,False,0.1815767523938818,AGC_141
+AGC_186,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_002,True,0,AGC_002
+AGC_188,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_190,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
+AGC_191,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,False,0.0040642677455292242,AGC_002,False,0.0039547619829099403,AGC_002
+AGC_192,Chignahuapan,71,municipio,False,,,True,False,diagnostico_de_entradas_no_error_ni_intervalo,True,0,AGC_005,True,0,AGC_005
