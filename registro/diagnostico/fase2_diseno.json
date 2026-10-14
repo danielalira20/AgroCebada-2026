@@ -1,0 +1,85 @@
+{
+  "schema": "agrocebada_diagnostico_fase2_v1",
+  "fecha_registro": "2026-10-13",
+  "responsable": "Dani",
+  "fase1_commit": "a5497913de9c79c2734963a0d6ea44dd4528d7b9",
+  "estado": "reglas_antes_de_calculo_fase2_resultados_previos_explorados",
+  "fuente_plan": "fase2_tab_t.r7d5h4run1h6_revision_fijada_fase0",
+  "fase0_manifest_sha256": "e5eb9bd692d00f64b0b59fa611723bff7dcaabf00297bc5c3aed27341984f691",
+  "ledger_sha256": "199fed965f34033e94716c8c0edaef189ac94e186ec5a28e8325496269fbdea0",
+  "escenarios": [
+    "A",
+    "B"
+  ],
+  "poblaciones": [
+    "todas",
+    "sin_respaldo"
+  ],
+  "comparacion_principal": [
+    "T08",
+    "T09",
+    "T10",
+    "T11"
+  ],
+  "adicional_plan": [
+    "T14"
+  ],
+  "suplementarias_ya_disponibles": [
+    "T13",
+    "T13e"
+  ],
+  "justificacion_suplementarias": "Fuentes compatibles inventariadas en fase0; se muestran separadas, no son requisito nuevo ni validación de atribución agronómica.",
+  "n_series": 51,
+  "n_registros_AB": 70380,
+  "C": "se_conserva_en_ledger_y_se_declara_fuera_del_contraste_comun_de_fase2",
+  "unidad": "parcela_campania_2025_138_etiquetadas",
+  "casos_controles": "10+10_de_fase0_sin_reseleccion",
+  "identidad_serie": [
+    "fuente",
+    "archivo",
+    "candidato",
+    "variante",
+    "version"
+  ],
+  "metodos": "catalogo_explicito_por_serie_con_centrado_intercepto_y_estatus_fuente; no_son_comun_v2",
+  "duplicados_referencia": "7series_en_sus_versiones_conservadas; no_sumar_su_acuerdo_como_evidencia_independiente",
+  "ponderacion": "MAE_y_delta_primero_promedio_por_parcela_en_registros_elegibles_luego_media_ID; MAE_promedio_repeticiones_adicional_no_cambiar_T03",
+  "error": "prediccion-real_por_registro_antes_de_agregar",
+  "empate_ranking": "ID_ascendente_error_abs_descendente_por_repeticion",
+  "coincidencias": "top10_por_repeticion_de_cada_serie_y_signo_error; familias_por_frente_y_ambito; proporciones_descriptivas_sin_votos_de_modelos_independientes",
+  "diferencias_numericas": "abs(delta)<=1e-9_t_ha_se_trata_como_sin_cambio_numerico; no_es_significacion_estadistica",
+  "desacuerdo": "promedio_abs_pred_menos_pred_en_mismos_contextos; Pearson_de_sesgos_medios_por_ID_sin_p_valor_ni_intervalo_predictivo",
+  "pares_series": "T08_y_44series_no_referencia; referencias_duplicadas_no_inflan_matriz_pares; ninguna_mezcla_ganadora_por_parcela",
+  "soporte": "50folds_reconstruidos_de_particiones_fijadas; excluye_todos_ID_evaluacion; fuente_pool_municipio_grupo_global_y_conteos",
+  "influencia_analitica": "max_abs(mu_sin_etiqueta_j-mu)=(abs(mu-y_j)/(n_pool-1)); entreno_solo; desempate_ID; no_calcular_MAE_mejorado_tras_retirar",
+  "pool_unitario": "media_sin_la_unica_etiqueta_indefinida; registrar_perdida_soporte_sin_reasignar_fuente_ni_dividir_por_cero",
+  "metamorfico_soporte": "cambiar_etiquetas_evaluacion_no_cambia_pool_media_influencia_entrenamiento; el_ID_mas_influyente_no_se_elije_por_error_externo",
+  "interpretacion": "historicos_con_metodos_similares_y_fuentes_compartidas; fallos_compartidos_no_prueban_inevitabilidad; desacuerdo_no_es_incertidumbre_calibrada",
+  "priorizacion": "casos_y_controles_fijados; full138_con_su_mascara; patrones_exploratorios_no_causales; no_reemplazar_casos_por_los_favorables",
+  "salidas": [
+    "catalogo_series.csv",
+    "matriz_procedimientos_por_caso.csv",
+    "resumen_comparaciones.csv",
+    "metricas_por_repeticion.csv",
+    "coincidencias_por_frente.csv",
+    "pares_procedimientos.csv",
+    "sensibilidad_media_referencia.csv",
+    "ficha_soporte_municipal.csv",
+    "figuras_descriptivas",
+    "manifest.json"
+  ],
+  "barreras": [
+    "sin_reentrenamiento_tuning_calibracion_o_nueva_evaluacion_T15",
+    "sin_nuevas_predicciones59",
+    "sin_excluir_etiquetas_o_ID_por_error",
+    "sin_oraculo_de_modelo_por_parcela",
+    "sin_ganador_T16",
+    "sin_editar_tareas_ajenas",
+    "sin_push_merge_mensajes_GoogleDoc"
+  ],
+  "revision_humana": "pendiente",
+  "referencias": [
+    "https://scikit-learn.org/stable/common_pitfalls.html#data-leakage",
+    "https://doi.org/10.48550/arXiv.2609.00065"
+  ]
+}
