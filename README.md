@@ -72,3 +72,7 @@ Los borradores anteriores permanecen en `reports/` con su procedencia histórica
 La integración T07 ya está en `dev`; las columnas candidatas no son entradas
 automáticas de un modelo. El nuevo complemento documental no inicia T09 ni el
 diagnóstico estadístico de atributos.
+
+## Diagnóstico de errores · fase 0 para revisión
+
+La [fase 0](docs/diagnostico_fase0.md) prepara fuentes/compatibilidad, preguntas y selección de casos, y alcance temporal. [Evidencia](registro/diagnostico/fase0_verificacion.json):154 archivos fijados por commit,71,208 predicciones históricas verificadas,10 casos y10 controles;sin nuevos ajustes. Los procedimientos conservan sus versiones y estados. El ledger completo es local y regenerable;la interpretación de fase1 queda pendiente.
