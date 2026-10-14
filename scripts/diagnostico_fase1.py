@@ -174,8 +174,8 @@ def analizar(rows, table, known, cases):
                                   n_repeticiones_no_vacias=len(rep_maes),
                                   suma_mae_parcelas=total_abs, suma_mse_parcelas=total_sq,
                                   casos_fijos_presentes=sum(r['n_elegibles'] > 0 and r['id_parcela'] in fixed for r in local),
-                                  contribucion_abs_casos_fijos=math.fsum(r['contribucion_abs'] for r in local if r['id_parcela'] in fixed and r['contribucion_abs'] != ''),
-                                  contribucion_cuadratica_casos_fijos=math.fsum(r['contribucion_cuadratica'] for r in local if r['id_parcela'] in fixed and r['contribucion_cuadratica'] != '')))
+                                  contribucion_abs_casos_fijos=math.fsum(r['contribucion_abs'] for r in local if r['id_parcela'] in fixed and r['contribucion_abs'] != '') if total_abs else '',
+                                  contribucion_cuadratica_casos_fijos=math.fsum(r['contribucion_cuadratica'] for r in local if r['id_parcela'] in fixed and r['contribucion_cuadratica'] != '') if total_sq else ''))
             for campo in ('municipio', 'tramo_real'):
                 for value in sorted({r[campo] for r in er}):
                     group = [r for r in selected if r[campo] == value]

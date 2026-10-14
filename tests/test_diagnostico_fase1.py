@@ -118,6 +118,12 @@ class DatosReales(unittest.TestCase):
                 self.assertEqual({r['id_parcela'] for r in rr},self.known)
                 self.assertTrue(all(r['mae']=='' for r in rr if not r['n_elegibles']))
 
+    def test_comparticion_sin_denominador_no_es_cero(self):
+        for r in self.t['resumen_metricas.csv']:
+            if not r['n_parcelas']:
+                self.assertEqual(r['contribucion_abs_casos_fijos'], '')
+                self.assertEqual(r['contribucion_cuadratica_casos_fijos'], '')
+
     def test_casos_y_controles_conservados(self):
         rr = self.t['ranking_principal_y_sensibilidad_B.csv']
         self.assertEqual(len(rr),20)
