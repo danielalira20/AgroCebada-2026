@@ -12,7 +12,7 @@ Se consultó el Plan unificado corregido actual y GitHub. Dev incorporó T09 cor
 
 El [inventario](../registro/evaluacion_comun/inventario_fase_a.csv) identifica 13 frentes/versiones. Las once fuentes que guarda el contrato común siguen idénticas, incluida la tabla T07 de 197 IDs, 138 rendimientos conocidos y 59 ausentes. No hace falta reextraer clima/relieve ni regenerar T07 por el centrado.
 
-La integración local tuvo conflictos en README, decisiones y uso de IA. Se conservaron las dos secciones de README y todas las filas de ambos lados por ID; no existía colisión con contenido diferente. Antes de añadir la decisión propia de fase A, quedaron 53 decisiones y49 registros IA. Ningún ID fue renumerado.
+La integración local tuvo conflictos en README, decisiones y uso de IA. Se conservaron las dos secciones de README y todas las filas de ambos lados por ID; no existía colisión con contenido diferente. Antes de añadir la decisión propia de fase A, quedaron 53 decisiones y49 registros IA. Ningún ID fue renumerado. El control final detectó además IA_T07_012 repetida dos veces, con contenido idéntico, ya en dev1a9507d. Se conservó una sola ocurrencia sin cambiar sus campos; quedaron54 decisiones y49 registros IA únicos, incluida la entrada de fase A. Se conserva la [evidencia](../registro/evaluacion_comun/conciliacion_bitacoras_fase_a.json).
 
 Los archivos numéricos principales de T09, T10, T11 y T13 son idénticos a los antecedentes revisados. T14 sí cambió y añade variantes centradas: no se acredita su versión actual a partir de la revisión anterior. No se ejecutó ni modificó su código en esta fase.
 
