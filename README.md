@@ -76,3 +76,4 @@ diagnóstico estadístico de atributos.
 ## Diagnóstico de errores · fase 0 para revisión
 
 La [fase 0](docs/diagnostico_fase0.md) prepara fuentes/compatibilidad, preguntas y selección de casos, y alcance temporal. [Evidencia](registro/diagnostico/fase0_verificacion.json):154 archivos fijados por commit,71,208 predicciones históricas verificadas,10 casos y10 controles;sin nuevos ajustes. Los procedimientos conservan sus versiones y estados. El ledger completo es local y regenerable;La [fase 1](docs/diagnostico_fase1.md) describe magnitud, dirección y persistencia de T08 OOF sobre estas fuentes, con respaldos separados; revisión humana pendiente.
+La [fase 2](docs/diagnostico_fase2.md) cruza 51 series históricas con sus métodos/versiones, errores compartidos y soporte municipal. Conserva 138 parcelas, respaldos y controles fijados; ocho tablas y tres figuras, sin nuevos ajustes ni selección de ganador. Revisión humana pendiente.
