@@ -3,6 +3,7 @@
 **Responsable:** Dani · **Revisa:** Migue · **Fecha:** 12 de octubre de 2026.
 **Estado:** ejecución y verificaciones técnicas completas; revisión humana pendiente.
 **Versión:** T09-evaluacion-v1, diseño congelado `1072e419…`.
+**Actualización del 13 de octubre de 2026:** se añaden la explicación estructural de por qué el clima no mejora a T y aclaraciones sobre el diagnóstico C (sección 3). Es una ampliación de texto: no cambia ninguna cifra ni la conclusión de esta versión. La reevaluación de R centrado por municipio está en [t09_centrado_evaluacion_v2.md](t09_centrado_evaluacion_v2.md).
 
 ## Problema que resuelve
 
@@ -74,9 +75,23 @@ Los contrastes secundarios y de ventanas fijas se conservan completos en las tab
 
 ### Diagnóstico C: municipios no vistos
 
-En C, MAE: T 0.6959, CL 0.5589, TC 0.7027 y R 0.6665. CL funciona mejor que T en esta prueba de municipios sin etiquetas de entrenamiento. Es un resultado útil: el clima puede ayudar a describir diferencias territoriales cuando la referencia local no existe.
+En C, MAE: T 0.6959, CL 0.5589, TC 0.7027 y R 0.6665. CL tiene un MAE menor que T en esta prueba de municipios sin etiquetas de entrenamiento, pero la diferencia no es concluyente: ΔMAE = −0.137 t/ha con IC95 por celdas [−0.250, +0.051], que incluye cero (C tiene una sola repetición, así que no hay consistencia entre repeticiones que evaluar). Es una pista, no una ventaja demostrada: el clima puede ayudar a describir diferencias territoriales cuando la referencia local no existe.
 
-Esto no transforma a CL en el elegido para las 59 actuales ni demuestra desempeño entre años. C cambia soporte y tamaño de entrenamiento; por ejemplo, excluir Chignahuapan retira muchas etiquetas. El resultado se limita a estas entradas, este procedimiento y los municipios de 2025.
+Esto no transforma a CL en el elegido para las 59 actuales ni demuestra desempeño entre años. C cambia soporte y tamaño de entrenamiento; por ejemplo, excluir Chignahuapan retira muchas etiquetas. El resultado se limita a estas entradas, este procedimiento y los municipios de 2025. C es descriptivo: no se usa para elegir procedimiento y las 59 reservadas tienen todas su municipio representado en las etiquetas.
+
+**Cómo leer la referencia T en C.** Sin el municipio en el entrenamiento, T no es «territorio»: sus 138 predicciones usan el respaldo por grupo de procedencia (`Cebada`/`CEBADA`, con medias de 3.03 y 4.27 t/ha). Ese grupo no es una variable agronómica; refleja la procedencia del archivo y cada municipio pertenece a uno solo, de modo que excluir un municipio deja a T con la media de los otros de su grupo. Por eso T es aquí una referencia débil (la media global da MAE 1.067). Además, TC y R-v1 aprenden la pendiente del clima dentro de cada municipio, por lo que «TC y R no ayudan en C» no dice nada sobre el clima como indicador de ubicación; sólo CL lo pone a prueba. La ventaja de R-v1 en C (0.6665) proviene de una componente entre municipios que R-v1 no centraba; al centrarla por municipio (R centrado, v2) el MAE en C es 0.7025.
+
+### Por qué el clima no podía mejorar a T
+
+Con las 138 etiquetas de 2025 y las particiones de T03 se comprobó que la ausencia de mejora es esperable con esta fuente climática, y no sólo un resultado de la rejilla de λ:
+
+- **El municipio ya explica casi todo lo que el clima podría explicar.** El municipio explica el 68.6 % de la variación del rendimiento (R² ajustado 66.7 %). Pasar a la celda CHIRPS, la máxima resolución del clima (5 km), sube el R² a 70.5 % pero baja el R² ajustado a 64.9 %: más grupos, sin señal suficiente para justificarlos.
+- **Una referencia por celda es peor que la municipal.** Como cota de lo que un clima de 5 km puede aportar como indicador de ubicación, la media por celda da MAE 0.3448 en A, frente a 0.3205 de T. En B coincide con T porque la celda de validación no está en el entrenamiento y cae al municipio.
+- **Hay poca variación climática que aprender dentro de cada municipio.** Las 138 etiquetas están en 23 celdas y 9 municipios (Apan, Nanacamilpa y Tepeapulco tienen una sola celda) y sólo hay 43 perfiles climáticos distintos. La varianza dentro de municipio es entre 8 % y 73 % de la total según la variable. Con los λ elegidos, el clima conserva en promedio 0.74–0.76 de 3 grados de libertad efectivos con λ = 1 y 0.11 con λ = 10; por eso TC y R se parecen tanto a T y la corrección típica es de unos 0.02 t/ha frente a un error de 0.32.
+- **El error que queda está dentro de la misma celda.** La desviación estándar del rendimiento dentro de una misma celda y municipio es 0.51 t/ha (0.85 la total); en las dos celdas grandes de Chignahuapan, con 33 y 34 parcelas, es 0.58 y 0.60. Un clima de 5 km no puede distinguir esas parcelas.
+- **Las 59 reservadas no son distinguibles por clima de sus vecinas etiquetadas.** 49 de las 59 tienen un perfil climático idéntico, en ambas ventanas, al de alguna parcela etiquetada.
+
+Lectura: «no mejoró» equivale a «con este clima no podía mejorar», no a un fallo del ajuste. Sigue limitado a estas entradas, una sola campaña y estas etiquetas; no demuestra que otro producto climático o más años no puedan aportar. Para mejorar sobre T hay que buscar información a nivel de parcela (T10, T11), no más variantes del clima de 5 km.
 
 ## 4. Ventanas, calidad y soporte
 
