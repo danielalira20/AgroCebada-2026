@@ -1,3 +1,23 @@
+# Fin de línea común para Mac, Windows y Linux (fase 1 del entorno común).
+# Todo archivo de texto se guarda y se descarga con LF en cualquier sistema,
+# para que las huellas SHA-256 de fuentes y código coincidan entre equipos.
+* text=auto eol=lf
+
+# Binarios: nunca convertir.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.qgz  binary
+*.zip  binary
+*.tif  binary
+*.tiff binary
+*.docx binary
+*.xlsx binary
+*.pptx binary
+*.parquet binary
+
+# Reglas específicas existentes (se conservan; prevalecen sobre las generales).
 registro/t04/*.json text eol=lf
 registro/t04/*.csv -text
 registro/t05/* text eol=lf

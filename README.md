@@ -40,6 +40,53 @@ La imagen ejecuta seis comprobaciones sintéticas: ponderación entre celdas, `N
 
 Para cerrar T01 se necesitan las salidas aprobadas en los cinco equipos, una ejecución Docker en Mac y otra en Windows, acceso comprobado al repositorio para los cinco, capitán registrado y la revisión independiente de Diego. Registrar fallos y soluciones en la tarea T01 antes de marcarla completa.
 
+## Ejecutar con Docker (entorno común)
+
+Para que todo el equipo obtenga los mismos resultados en Mac y Windows, las tareas se ejecutan dentro de la imagen `agrocebada-entorno` con la carpeta del proyecto montada. La imagen tiene Python 3.12.15, las librerías de `requirements.txt`, `git` y lectura de texto en UTF-8. Los datos no van dentro de la imagen: se leen de `data/` local.
+
+**Una sola vez por equipo.** El repositorio fija fin de línea LF en `.gitattributes`. Tras actualizar a esta versión, con todo guardado en commit, volver a descargar los archivos para que queden con LF:
+
+```sh
+git pull
+git rm --cached -r . -q
+git reset --hard
+git ls-files --eol | grep "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+```
+
+En PowerShell, la última línea es `git ls-files --eol | Select-String "w/crlf"`.
+
+**Ejecutar.** Desde la raíz del repositorio:
+
+```text
+Windows (PowerShell):  .\ejecutar.ps1 [--amd64] [comando]
+Mac o Git Bash:        ./ejecutar.sh  [--amd64] [comando]
+```
+
+Cada llamada construye la imagen (con caché), comprueba los datos con `scripts/comprobar_datos.py` y ejecuta el comando. Sin comando corre las pruebas (`python -m unittest discover -s tests`). La comprobación exige que `data/raw/DataSet.zip` tenga la huella registrada por T04 y que cada archivo extraído en `data/raw/DATASET_RETO_AGRO_2026` sea idéntico a su original del ZIP; si no, se detiene. Si Windows bloquea scripts: `powershell -ExecutionPolicy Bypass -File .\ejecutar.ps1 …`.
+
+`--amd64` fija la plataforma `linux/amd64`. En Mac con chip Apple corre emulado (con Colima: `colima start --vm-type vz --vz-rosetta`). Se usa para comparar resultados byte a byte entre equipos y para T18 y T21. En el trabajo diario puede omitirse: entre procesadores ARM y x86 algunos decimales difieren en la última cifra (del orden de 1e-15), dentro de las tolerancias de los verificadores.
+
+Al registrar una ejecución de pruebas, anotar el commit, el entorno, el total observado y el resultado. Los conteos de las bitácoras y de `registro/uso_ia.csv` describen ejecuciones históricas, no el tamaño permanente de la suite.
+
+**Reproducir cada tarea.** Los comandos van después de `.\ejecutar.ps1` o `./ejecutar.sh`:
+
+| Tarea | Comando | Resultado esperado |
+|---|---|---|
+| T01 | `docker run --rm agrocebada-entorno` | Seis comprobaciones aprobadas |
+| Pruebas | (sin comando) | Todas las pruebas descubiertas terminan en `OK`; el total depende del commit |
+| T02 | `bash -c "for s in 'construir_catalogo.py --datos data/DATASET_RETO_AGRO_2026' cruzar_contorno_y_rendimiento.py senalar_parcelas_extremas.py 'diagnosticar_soporte.py --datos data/DATASET_RETO_AGRO_2026' 'comparar_con_soporte_t03.py --datos data/DATASET_RETO_AGRO_2026' comparar_tablas_con_referencia.py; do python analisis/auditoria_catalogo_y_etiquetas/scripts/`$s || exit 1; done"` | «16 iguales … 0 distintas»; `git status` sin cambios |
+| T03 | `python scripts/t03_evaluacion.py --datos data/raw/DATASET_RETO_AGRO_2026` | `git status` sin cambios en `registro/t03` |
+| T04 | `python scripts/preparar_entrega_clima.py --verificar registro/t04` | `"resultado": "aprobado"` |
+| T05 | `python -m scripts.t05_relieve --verificar registro/t05 --reproducir --dataset data/DATASET_RETO_AGRO_2026` | `"reproduccion": "aprobada"` |
+| T06 | `python scripts/t06_satelite.py --datos data/raw/DATASET_RETO_AGRO_2026` | `git status`: sólo cambia la figura PNG (revisar a ojo y restaurar con `git restore registro/t06/figura_curvas_6_parcelas.png`) |
+| T07 | Pasos de [docs/t07_fase_4_5.md](docs/t07_fase_4_5.md) con salida nueva en `reports/` | 13 archivos idénticos a `registro/t07` |
+
+T02 requiere la copia `data/DATASET_RETO_AGRO_2026` (ver `analisis/auditoria_catalogo_y_etiquetas/README.md`). En Mac/Git Bash, en el comando de T02 quitar el acento grave antes de `$s` (en PowerShell evita que se interprete la variable). T03, T02 y T06 sobrescriben sus archivos publicados: después de ejecutarlas, `git status` debe quedar sin cambios (salvo la figura de T06). Si algo cambia, se registra como hallazgo; nunca se hace commit de una salida distinta sólo para que coincida.
+
+La regeneración completa de T04 desde los mapas (`scripts/extraer_clima.py --completa` y `preparar_entrega_clima.py`) reproduce los valores con diferencias de hasta 1e-13 en `media_ponderada` y 4e-16 en `cobertura_valida`: la entrega publicada se generó en un procesador ARM. Su procedencia registra además el código de la extracción original. El verificador de T04 y la tabla de T07 usan la entrega publicada.
+
+**Reglas del equipo.** Toda revisión de PR se reproduce con estos scripts. En Windows no se ejecutan tareas con Python nativo: algunas lecturas dependen de la codificación del sistema y sólo Docker garantiza UTF-8. T18 y T21 se ejecutan con `--amd64`.
+
 ## Datos y trabajo en equipo
 
 El orden inmediato y las responsabilidades de Dani están en [tareas de Dani](docs/tareas_dani.md). T04 empieza con el inventario reproducible del ZIP original mediante `scripts/inventariar_clima.py`; el comando y su alcance están documentados allí. Sus pruebas se ejecutan con `python -m unittest discover -s tests -v` en el entorno local.

@@ -1,0 +1,39 @@
+{
+  "tarea": "T10",
+  "version": "T10-v1",
+  "decision": "D_T10_001",
+  "comando": "python -m scripts.t10_relieve_area --evaluar --salida reports/t10_ddof0_20261012_221121",
+  "entradas_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "registro/t03/predicciones_59_referencias.csv": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56"
+  },
+  "codigo_sha256": {
+    "scripts/t10_relieve_area.py": "25f1f128ea1ccc2cf7e5ee363783f29e6c649e9609b23eaab8e09c03050f4137"
+  },
+  "archivos_sha256": {
+    "coeficientes_t10.csv": "e4681d27d088246d84856a640fdc1167cfe0a6f8feabe421b009606506dcc633",
+    "comparacion_emparejada_t10.csv": "900b9fe50abbb98eef4c4a8fd012327378597e3670557f90bb3fe29791a522c7",
+    "control_revuelto_t10.csv": "d75ab7de47a9064d4fb75e73f39bde34074fb077e3f0a6180d996beae78ec826",
+    "desglose_error_t10.csv": "aa897ee373ffaff6d661342155fae6875fd3866c29a15e46bef29b5087f5ae6e",
+    "diagnostico_atributos_t10.csv": "f840efd94439b0c7e40f9490463f34e42fc8692dc8a839c4b6a9b3223e80c995",
+    "frecuencia_opciones_t10.csv": "7159c4f1d69fcef967eca881adfb6aa850aa73bfebe8f91d47840c4aa33bfe7b",
+    "metricas_t10.csv": "6c26e4a1df431996b9edbd75eceb8e13a522c238e7a5bbf11722df01a980c0f1",
+    "predicciones_59_t10.csv": "75e8b91a75f84ff1c1fc307f0214f303809f624bb656e29137e4813d1551262b",
+    "predicciones_oof_t10.csv": "eca5b6d7469ee6f438b1e6c0e8498cb211bde65129c3d149401afc1da92da45c",
+    "sensibilidad_sin_alerta_t10.csv": "b6443d965daa3246500d25b427a5ffc5429790648ddfd067f0a26580ef369d68"
+  },
+  "entorno": {
+    "python": "3.12.15",
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "numpy": "2.2.6",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1"
+  },
+  "promueve": false,
+  "segundos": 34
+}
