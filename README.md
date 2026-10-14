@@ -44,16 +44,31 @@ Para cerrar T01 se necesitan las salidas aprobadas en los cinco equipos, una eje
 
 Para que todo el equipo obtenga los mismos resultados en Mac y Windows, las tareas se ejecutan dentro de la imagen `agrocebada-entorno` con la carpeta del proyecto montada. La imagen tiene Python 3.12.15, las librerías de `requirements.txt`, `git` y lectura de texto en UTF-8. Los datos no van dentro de la imagen: se leen de `data/` local.
 
-**Una sola vez por equipo.** El repositorio fija fin de línea LF en `.gitattributes`. Tras actualizar a esta versión, con todo guardado en commit, volver a descargar los archivos para que queden con LF:
+**Una sola vez por equipo (sólo si ya tenías el repositorio clonado en Windows antes de esta versión).** El repositorio fija fin de línea LF en `.gitattributes`. No cambia ningún archivo del repositorio: sólo decide cómo se descargan en cada equipo. Un clon nuevo ya descarga con LF y no necesita este paso. Si tu copia es anterior, hay que volver a descargar los archivos para que queden con LF. Este paso **borra los cambios locales sin commit**, así que el bloque primero comprueba con `git status --porcelain` que no haya nada sin guardar y, si lo hay, se detiene sin tocar nada (guarda antes con commit o `git stash`):
 
 ```sh
-git pull
-git rm --cached -r . -q
-git reset --hard
-git ls-files --eol | grep "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+# Mac o Git Bash
+if [ -n "$(git status --porcelain)" ]; then
+  echo "Hay cambios sin commit: guárdalos (commit o git stash) antes de continuar"
+else
+  git pull
+  git rm --cached -r . -q
+  git reset --hard
+  git ls-files --eol | grep "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+fi
 ```
 
-En PowerShell, la última línea es `git ls-files --eol | Select-String "w/crlf"`.
+```powershell
+# PowerShell
+if (git status --porcelain) {
+  "Hay cambios sin commit: guárdalos (commit o git stash) antes de continuar"
+} else {
+  git pull
+  git rm --cached -r . -q
+  git reset --hard
+  git ls-files --eol | Select-String "w/crlf"     # sólo debe aparecer registro/t04/clima_parcela_mes.csv
+}
+```
 
 **Ejecutar.** Desde la raíz del repositorio:
 
@@ -62,7 +77,7 @@ Windows (PowerShell):  .\ejecutar.ps1 [--amd64] [comando]
 Mac o Git Bash:        ./ejecutar.sh  [--amd64] [comando]
 ```
 
-Cada llamada construye la imagen (con caché), comprueba los datos con `scripts/comprobar_datos.py` y ejecuta el comando. Sin comando corre las pruebas (`python -m unittest discover -s tests`). La comprobación exige que `data/raw/DataSet.zip` tenga la huella registrada por T04 y que cada archivo extraído en `data/raw/DATASET_RETO_AGRO_2026` sea idéntico a su original del ZIP; si no, se detiene. Si Windows bloquea scripts: `powershell -ExecutionPolicy Bypass -File .\ejecutar.ps1 …`.
+Cada llamada construye la imagen (con caché), comprueba los datos con `scripts/comprobar_datos.py` y ejecuta el comando. Sin comando corre las pruebas (`python -m unittest discover -s tests`). La comprobación exige que `data/raw/DataSet.zip` tenga la huella registrada por T04 y que cada archivo extraído en `data/raw/DATASET_RETO_AGRO_2026` sea idéntico a su original del ZIP; si no, se detiene. **Sin datos locales** (ni el ZIP ni la carpeta extraída) no se detiene: imprime `AVISO: datos originales NO comprobados` y continúa, porque las pruebas y las tareas que sólo leen `registro/` no los necesitan; las tareas que sí leen el dataset fallarán por su cuenta. Si hay carpeta extraída pero falta el ZIP, sí se detiene, porque esos datos no se pueden verificar. Si Windows bloquea scripts: `powershell -ExecutionPolicy Bypass -File .\ejecutar.ps1 …`.
 
 `--amd64` fija la plataforma `linux/amd64`. En Mac con chip Apple corre emulado (con Colima: `colima start --vm-type vz --vz-rosetta`). Se usa para comparar resultados byte a byte entre equipos y para T18 y T21. En el trabajo diario puede omitirse: entre procesadores ARM y x86 algunos decimales difieren en la última cifra (del orden de 1e-15), dentro de las tolerancias de los verificadores.
 
@@ -85,7 +100,7 @@ T02 requiere la copia `data/DATASET_RETO_AGRO_2026` (ver `analisis/auditoria_cat
 
 La regeneración completa de T04 desde los mapas (`scripts/extraer_clima.py --completa` y `preparar_entrega_clima.py`) reproduce los valores con diferencias de hasta 1e-13 en `media_ponderada` y 4e-16 en `cobertura_valida`: la entrega publicada se generó en un procesador ARM. Su procedencia registra además el código de la extracción original. El verificador de T04 y la tabla de T07 usan la entrega publicada.
 
-**Reglas del equipo.** Toda revisión de PR se reproduce con estos scripts. En Windows no se ejecutan tareas con Python nativo: algunas lecturas dependen de la codificación del sistema y sólo Docker garantiza UTF-8. T18 y T21 se ejecutan con `--amd64`.
+**Reglas del equipo (propuestas en la decisión `D_ENT_001` de `registro/decisiones.csv`; quedan vigentes cuando se apruebe este PR).** Toda revisión de PR que reproduzca resultados se corre con estos scripts. En Windows no se ejecutan tareas con Python nativo: algunas lecturas dependen de la codificación del sistema y sólo Docker garantiza UTF-8. T18 y T21 se ejecutan con `--amd64`. Alternativas descartadas y condiciones para reabrir están en la decisión.
 
 ## Datos y trabajo en equipo
 

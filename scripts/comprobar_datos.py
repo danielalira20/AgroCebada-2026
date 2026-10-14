@@ -7,6 +7,10 @@
    geometrías, lluvia, temperatura y topografía).
 
 Un archivo faltante, distinto o un ZIP distinto detienen la ejecución.
+Si no hay datos locales (ni el ZIP ni la carpeta extraída) la comprobación se
+omite con un aviso y la ejecución continúa: las pruebas y las tareas que sólo
+leen `registro/` no los necesitan. Si hay carpeta extraída pero falta el ZIP,
+se detiene, porque esos datos no se podrían verificar.
 Los archivos adicionales en la carpeta extraída sólo se avisan.
 No modifica ningún archivo.
 
@@ -66,7 +70,11 @@ def comprobar(raiz=RAIZ, solo_zip=False):
     esperado = procedencia["sha256_paquete"]
     paquete = RAIZ_DATOS / "DataSet.zip"
     if not paquete.is_file():
-        raise SystemExit(f"Datos no comprobados: falta {paquete.relative_to(raiz)}")
+        if (RAIZ_DATOS / "DATASET_RETO_AGRO_2026").is_dir():
+            raise SystemExit(f"Datos no comprobados: falta {paquete.relative_to(raiz)} pero existe la carpeta "
+                             "extraída; sin el ZIP no se puede verificar que sea el paquete de FIRA")
+        return dict(resultado="omitida",
+                    motivo=f"no hay datos locales ({paquete.relative_to(raiz)}); las tareas que los lean fallarán")
     obtenido = sha_archivo(paquete)
     if obtenido != esperado:
         raise SystemExit(f"Datos no comprobados: DataSet.zip distinto del paquete identificado por T04\n"
@@ -95,6 +103,8 @@ def main():
     a = p.parse_args()
     r = comprobar(solo_zip=a.solo_zip)
     print(json.dumps(r, ensure_ascii=False, indent=2))
+    if r["resultado"] == "omitida":
+        print("AVISO: datos originales NO comprobados; no reproduce tareas que usen el dataset.", file=sys.stderr)
     if r.get("archivos_adicionales"):
         print("Aviso: hay archivos adicionales en la carpeta extraída; no son del paquete FIRA.", file=sys.stderr)
 
