@@ -1,0 +1,60 @@
+{
+  "fecha": "2026-10-14",
+  "antecedente": {
+    "version": "comun-centrado-v2",
+    "pr": 21,
+    "commit": "e152abbc959796eccddbe9ded7e5645aa463342a",
+    "estado": "OPEN_DRAFT",
+    "revisiones": [
+      {
+        "revisor": "Daf",
+        "login": "daaaf18",
+        "tipo": "COMMENTED",
+        "fecha": "2026-10-14T03:38:31Z",
+        "resultado": "Conformidad de bloques/metodo v2 con dos observaciones: alinear centro sin fila y reportar referencia sola"
+      },
+      {
+        "revisor": "Migue",
+        "login": "nova-cz",
+        "tipo": "COMMENTED",
+        "fecha": "2026-10-14T14:13:50Z",
+        "resultado": "Conformidad de criterios/busqueda, favorece alineacion LOO y reporte de referencia sola; extension T03 por documentar"
+      }
+    ],
+    "aprobaciones_formales_APPROVED": 0
+  },
+  "decision_local": {
+    "version": "comun-centrado-loo-v3",
+    "autorizacion_Dani": "Iniciar fase A del subplan del 14oct2026",
+    "criterio": "Coherencia de pools residuo/centro, no comparacion de MAE externo",
+    "implementacion": "ccc0cb7",
+    "revision_implementacion_v3": "pendiente_Daf_Migue"
+  },
+  "alcance_T06": {
+    "modificado": false,
+    "responsable": "Daf",
+    "incidencia": "AGC114 días sobre mitad, 98 Mac vs99 compartido/Docker; aritmética racional99",
+    "siguiente": "Dias relativos/politica empate y contraste8668. Si tabla compartida identica, no repetir modelos; si cambia variable usada, nueva version/consumidores afectados"
+  },
+  "alcance_T03": {
+    "modificado": false,
+    "responsable": "Migue",
+    "pendiente": "Documentar internas B GroupKFold por celda como extension prospectiva, no reescribir históricos"
+  },
+  "alcance_T14": {
+    "head": "48907a7a3cfcb903d7182e24ffa7b855ced285ea",
+    "estado": "OPEN",
+    "codigo_numerico_cambio": true,
+    "revision_esencial_actual": "no_acreditada_en_fase_A",
+    "observaciones_preliminares": [
+      "Centrado nuevo pero escala después del centrado/intercepto aprendido/alpha absoluto; no equivale a comun-v3",
+      "Lineas291-293 usan divisibilidad de cada valor para denominar precision; compatibilidad de malla no acredita precision de medicion. No afecta el ajuste, sólo interpretación descriptiva."
+    ]
+  },
+  "publicacion": false,
+  "mensajes_enviados": false,
+  "GoogleDoc_modificado": false,
+  "T15_completo": false,
+  "T16_congelado": false,
+  "T18_59": false
+}
