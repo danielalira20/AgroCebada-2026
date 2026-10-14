@@ -1,0 +1,864 @@
+{
+  "schema": "agrocebada_fuentes_diagnostico_fase0_v1",
+  "base_dev": "b93e34b3294cb8e9496f24982f41d257b837e26e",
+  "fecha_snapshot": "2026-10-13",
+  "fuentes": {
+    "base": {
+      "commit": "b93e34b3294cb8e9496f24982f41d257b837e26e",
+      "archivos": [
+        {
+          "ruta": "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv",
+          "sha256": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+          "bytes": 29817
+        },
+        {
+          "ruta": "docs/T03_protocolo_evaluacion.md",
+          "sha256": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
+          "bytes": 18318
+        },
+        {
+          "ruta": "docs/t04_version_disponibilidad.md",
+          "sha256": "c56bd22226acf3daff71e85e0fc013d000da242db713495c1f7ec218490bfebc",
+          "bytes": 5862
+        },
+        {
+          "ruta": "docs/t07_contrato.md",
+          "sha256": "a1876c5962b1687ff09f5417b9d2f152af83aeb948e6afec5b6764e41ff95ea0",
+          "bytes": 10995
+        },
+        {
+          "ruta": "registro/t03/activacion_respaldos.csv",
+          "sha256": "1b43bc3d80c74ca9d8fc2bf87db4e8a81f3c8de2b0c818c9279f45b477c9fb9a",
+          "bytes": 517
+        },
+        {
+          "ruta": "registro/t03/comparacion_emparejada.csv",
+          "sha256": "02070227c4d71041ed02f2630c237c545b217676e9e4d416cd1f6497441faec4",
+          "bytes": 3054
+        },
+        {
+          "ruta": "registro/t03/metricas_por_municipio.csv",
+          "sha256": "98a77cd18cd69b726e6bca62c42653db743208eb73772c86719f42f32f2b6634",
+          "bytes": 3215
+        },
+        {
+          "ruta": "registro/t03/metricas_referencias.csv",
+          "sha256": "7a95246fa3c01e9cc73a88f29e347f4c0e44064357cbc415b3152e4771b22367",
+          "bytes": 964
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t03/predicciones_59_referencias.csv",
+          "sha256": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56",
+          "bytes": 28492
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_media_global.csv",
+          "sha256": "d7853475e4db83414a5a5503566ee75f992f9c7ce7ad3288d1f87d89f2ddf480",
+          "bytes": 87990
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_media_mun__resp_global.csv",
+          "sha256": "3271cefc140095375f9ec0c73a727286dccc7e9df451f8f64fd79f15325c5dc4",
+          "bytes": 101446
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv",
+          "sha256": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+          "bytes": 99978
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_mediana_global.csv",
+          "sha256": "b1bb1cb702cf0f4ba79e2b6e50d91c4705170d4d82411c0f2e252dff9c98f82f",
+          "bytes": 72816
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_mediana_mun__resp_global.csv",
+          "sha256": "9f1519de9574305804581e16518b7ba8a7188342aace13465d0735ddfef4d5bb",
+          "bytes": 91261
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv",
+          "sha256": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+          "bytes": 90028
+        },
+        {
+          "ruta": "registro/t03/predicciones_oof_referencias_mediana_mun_contraida_grupo.csv",
+          "sha256": "b0681b7980b8c128800ade1e590afabdba5475da30d5b47e27316cbaf68520f5",
+          "bytes": 99882
+        },
+        {
+          "ruta": "registro/t03/soporte_parcelas.csv",
+          "sha256": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+          "bytes": 23388
+        },
+        {
+          "ruta": "registro/t03/soporte_resumen.csv",
+          "sha256": "4f781dfa98ccac888509e56cec9cddd04ff8d639977ef62605e4897ca8135052",
+          "bytes": 2473
+        },
+        {
+          "ruta": "registro/t04/clima_parcela_mes.csv",
+          "sha256": "56345562aedbf1d100bbbb4a30940b55576cac9839b774744201e017c1ec8afd",
+          "bytes": 3318106
+        },
+        {
+          "ruta": "registro/t04/conciliacion_t02.json",
+          "sha256": "de64fa03cbed798b2395b1ab99395ea8597fa2cfe6b1de33ffdacf1d0245e7e2",
+          "bytes": 72814
+        },
+        {
+          "ruta": "registro/t04/controles.json",
+          "sha256": "8651bc1776161f5e8f60fbc86737d59882a5d9c1a39581615981cf8626faf3ce",
+          "bytes": 178
+        },
+        {
+          "ruta": "registro/t04/manifest.json",
+          "sha256": "593fdb6f586180e5b2a51d15c10c4fec1c874221bef3a73691d42f4fbd3d66a6",
+          "bytes": 6438
+        },
+        {
+          "ruta": "registro/t04/procedencia.json",
+          "sha256": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+          "bytes": 358043
+        },
+        {
+          "ruta": "registro/t07/calidad_parcelas.csv",
+          "sha256": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+          "bytes": 5213
+        },
+        {
+          "ruta": "registro/t07/calidad_relieve.csv",
+          "sha256": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+          "bytes": 58922
+        },
+        {
+          "ruta": "registro/t07/calidad_satelite.csv",
+          "sha256": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
+          "bytes": 124036
+        },
+        {
+          "ruta": "registro/t07/calidad_ventanas.csv",
+          "sha256": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
+          "bytes": 137851
+        },
+        {
+          "ruta": "registro/t07/catalogo_base.csv",
+          "sha256": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+          "bytes": 12334
+        },
+        {
+          "ruta": "registro/t07/clima_variables.csv",
+          "sha256": "1c5da038dfe3df979ac823e196ddd5d9989f833002c5845ecc9544c0d5f42a7b",
+          "bytes": 23460
+        },
+        {
+          "ruta": "registro/t07/clima_ventanas.csv",
+          "sha256": "57a77dbb4c9e396ad22f34e486e860dbc82877c1ed64adc02fc15135898a9a0d",
+          "bytes": 38374
+        },
+        {
+          "ruta": "registro/t07/contrato_columnas.json",
+          "sha256": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+          "bytes": 5149
+        },
+        {
+          "ruta": "registro/t07/controles.json",
+          "sha256": "1ed3e0ec3d25c6cc3827870be546961e53c99c71f58ef45dc6f6ec55d26176b5",
+          "bytes": 5716
+        },
+        {
+          "ruta": "registro/t07/diccionario_columnas.csv",
+          "sha256": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+          "bytes": 55665
+        },
+        {
+          "ruta": "registro/t07/inventario_fuentes.json",
+          "sha256": "27ca7935420522401fe8181aef673717e7c1d95585d7b65924650a09c32a86a8",
+          "bytes": 5297
+        },
+        {
+          "ruta": "registro/t07/manifest.json",
+          "sha256": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+          "bytes": 2877
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T02/T03/T04/T05/T06/T07/T08",
+      "responsable": "equipo",
+      "estado": "base_dev_integrada",
+      "pr": null,
+      "revision_exacta": null,
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/tree/b93e34b3294cb8e9496f24982f41d257b837e26e"
+    },
+    "t09": {
+      "commit": "1c8d7eb31a0b2a5c751d949b42b07a1a9aa06cda",
+      "archivos": [
+        {
+          "ruta": "docs/t09_R_centrado_v2.md",
+          "sha256": "ed96df0287c13346d7446043c71218d8fd3a110fe4b0c3b8c581aefafd3a20a6",
+          "bytes": 8585
+        },
+        {
+          "ruta": "docs/t09_centrado_evaluacion_v2.md",
+          "sha256": "bb3c1f3c621a1156a2acf477b317943cc082ca47497f0567241fde522bf1ffff",
+          "bytes": 10743
+        },
+        {
+          "ruta": "registro/t09/aplicabilidad_59.csv",
+          "sha256": "834e3d70d34c60dd10fb466998d5fa1de300c27585a1e49b0d98c37c29dd3c7d",
+          "bytes": 8542
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/auditor_adversarial.json",
+          "sha256": "6a07b68a9b12e6b0b18541c445821b8397c2eaeab0dce49f8656da69ffe748b9",
+          "bytes": 1060
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/auditoria_cruzada_mac.json",
+          "sha256": "bfe48d14d588559476d358c6c835a1a0b9ba3097a30de984a5c9945e3748650e",
+          "bytes": 1009
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/auditoria_docker_1.json",
+          "sha256": "db8f6ef3505c7f1f8598abbdde596ab51e58eca30fbb908cef5cdf75aa3a7bd7",
+          "bytes": 1010
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/coeficientes.csv",
+          "sha256": "ecb4252dc9c96e4ecab075f035868ddb79092a5d6794a56d3ede037ac6083b2e",
+          "bytes": 101676
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/comparaciones_emparejadas.csv",
+          "sha256": "1deeee28edf95469636ca066e538c49683c8a9753ea14d50ffdf5e90ed7e68ff",
+          "bytes": 7683
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/contextos.json",
+          "sha256": "5a652ed8cbe25606a0a7d7deb42bca2e1f15ad6536fa7c990f9145661491e840",
+          "bytes": 838253
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/diferencias_por_parcela.csv",
+          "sha256": "a2d33b720b878943337b9928c078b99a7a300b933d5ee7eef073bf98a27b861d",
+          "bytes": 249998
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/estados.json",
+          "sha256": "db5558596ceb8017bc01f1fb164f48cc181342d8acfb383bdd69805c8702a1ea",
+          "bytes": 671913
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/metricas_por_repeticion.csv",
+          "sha256": "630ad4d085a095a68c80bf8fc4301b08a5577157d5f56eea27241b9c0ba0c98d",
+          "bytes": 24002
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/metricas_resumen.csv",
+          "sha256": "bf659134a67af01fe9b73a5c4e7c7106fcba4134e6a574c66d102b26283f9e36",
+          "bytes": 9000
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/predicciones_oof.csv",
+          "sha256": "371ecb0d09ef66b5c1ed9d627b356615a380f00aadb26fefe96f642c06126a13",
+          "bytes": 2445232
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/procedencia.json",
+          "sha256": "a6e75f0d93c3bc69ce21f42e04472799c91b38cdce88f14995db67aa0564c955",
+          "bytes": 6863
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/puntuaciones_internas.csv",
+          "sha256": "e37c19241dd239e7e9e44fd7595f2d2a810953259d8f3baa41cd73496b13ad15",
+          "bytes": 41620
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/resultado.json",
+          "sha256": "8ba32397cbcf74ebae7d31ed091a680a8e4532ccf51b34bf882ee5f3daa3d37d",
+          "bytes": 776
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/seleccion_interna.csv",
+          "sha256": "86720d79655c4e65d969a6956a727ea43bfbfa6b1133ff494936c911c96ffc6c",
+          "bytes": 12618
+        },
+        {
+          "ruta": "registro/t09/centrado_v2/verificacion.json",
+          "sha256": "18c6f4975c6f457bc0eeaf935b943877e9eeec6691e438f841a51de78ca4fb74",
+          "bytes": 7722
+        },
+        {
+          "ruta": "registro/t09/coeficientes.csv",
+          "sha256": "5a589cf425eceb59b5daa8e3636eda8e4da145a4763b2ec25fd6483e99511bcc",
+          "bytes": 298561
+        },
+        {
+          "ruta": "registro/t09/comparaciones_emparejadas.csv",
+          "sha256": "cc96d156d164f141b0cee2f806bb69c90096f5994809ceebc89c5d23d3ed31aa",
+          "bytes": 13196
+        },
+        {
+          "ruta": "registro/t09/desgloses_resumen.csv",
+          "sha256": "a4935ff1dc7c05c62141c75fd7ec9caa0c2cc85073d6e296280253e5e5213ed0",
+          "bytes": 265565
+        },
+        {
+          "ruta": "registro/t09/diccionario_reportes.csv",
+          "sha256": "138a664877c7bd2f25fc2929c93d2dd4ffec1389b73fddd98171e72c9d9d261e",
+          "bytes": 34519
+        },
+        {
+          "ruta": "registro/t09/diferencias_por_parcela.csv",
+          "sha256": "a5471ba006a581c5a2199940ac595dce80caa055f629ca2c05263b3336e8f46d",
+          "bytes": 394620
+        },
+        {
+          "ruta": "registro/t09/diseno.json",
+          "sha256": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+          "bytes": 12708
+        },
+        {
+          "ruta": "registro/t09/diseno_R_centrado_v2.json",
+          "sha256": "ac28ebdd6b2b5c67650f55a6c33ddfc1f24742a0358e9e0f8b819f2cc93fc429",
+          "bytes": 8839
+        },
+        {
+          "ruta": "registro/t09/evaluacion.json",
+          "sha256": "4b80f1a0239d44293b19e713c624af5e463cb174f2b3b51cc04630446db7f8e1",
+          "bytes": 18636
+        },
+        {
+          "ruta": "registro/t09/figuras/01_mae_externo.png",
+          "sha256": "cd1ae5fa5291309a4c8e7623ff400c6d2b64602cdf2d50f4019b0ead0042739c",
+          "bytes": 164117
+        },
+        {
+          "ruta": "registro/t09/figuras/01_mae_externo.svg",
+          "sha256": "696acd05347885b6045806ffe23a81865edfc5cfde7f0732a3557aae718c29c6",
+          "bytes": 23010
+        },
+        {
+          "ruta": "registro/t09/figuras/02_diferencia_mae_celdas.png",
+          "sha256": "09f0cb9ae239d12c734fa6cc9f974447a522351e6b53c6a9134a1b7e5654f660",
+          "bytes": 161129
+        },
+        {
+          "ruta": "registro/t09/figuras/02_diferencia_mae_celdas.svg",
+          "sha256": "78bfa459e33a7ff692e5b0b70a83f5cfa99bddcbcaf8911ecf61f9c16f5b1de5",
+          "bytes": 25222
+        },
+        {
+          "ruta": "registro/t09/figuras/03_seleccion_interna.png",
+          "sha256": "db7131261c58e0cbac7d2d20db5d4370c7d32ce10102ce53f0c9f87f15e61395",
+          "bytes": 271474
+        },
+        {
+          "ruta": "registro/t09/figuras/03_seleccion_interna.svg",
+          "sha256": "689a456abed29dcf27be10a79ee6c4532e95ba7b66938b8b9340f999a5b814c5",
+          "bytes": 76720
+        },
+        {
+          "ruta": "registro/t09/figuras/manifest_figuras.json",
+          "sha256": "576f903b63ad4af5d8be2fe59f4caf89a312b2810c2db8ba36faef8ed1c2f8c6",
+          "bytes": 2152
+        },
+        {
+          "ruta": "registro/t09/figuras/revision_visual.json",
+          "sha256": "7ea3a68706c414480a4eda8cd40e1d088feba93cc54ab354aa7d1d7c14346ebd",
+          "bytes": 874
+        },
+        {
+          "ruta": "registro/t09/implementacion.json",
+          "sha256": "bc6f433ef13ee5d51e69767f0d494c61f6eb3d5a69b38f3f2ca90e0841e06e01",
+          "bytes": 2612
+        },
+        {
+          "ruta": "registro/t09/implementacion_R_centrado_v2.json",
+          "sha256": "1c46c46d46aa345056565daeaff39bc23b790613b0822305e63253ce55f6b2e3",
+          "bytes": 2213
+        },
+        {
+          "ruta": "registro/t09/metricas_por_repeticion.csv",
+          "sha256": "589a6a2ffadf697c6abb7f3050e03a5f07df9f25183b93981a1e23653ae945c5",
+          "bytes": 34901
+        },
+        {
+          "ruta": "registro/t09/metricas_resumen.csv",
+          "sha256": "b19292afefeb221fc942e0822e982ef00729d70e0db75e2d909890c1a9cd8be4",
+          "bytes": 13157
+        },
+        {
+          "ruta": "registro/t09/predicciones_oof.csv",
+          "sha256": "8a55e979f17b2670ba566414c7f02569f9e1c7dab4179e853114fbc313191ae9",
+          "bytes": 1504053
+        },
+        {
+          "ruta": "registro/t09/puntuaciones_internas.csv",
+          "sha256": "9f52ad4e28eb7adbeb4c53f766785be1ee4611b99cec6f6d0378042632b196c0",
+          "bytes": 213035
+        },
+        {
+          "ruta": "registro/t09/registro_R_centrado_v2.json",
+          "sha256": "bac0ca3ba04c99cb7269392c7b15464c7745fca0fca2976b4d821c9b23c1922b",
+          "bytes": 1504
+        },
+        {
+          "ruta": "registro/t09/seleccion_interna.csv",
+          "sha256": "8d0abbe1ae4044f114901bb8a020516b824c3b9e40dd0cbe095822704b271132",
+          "bytes": 70737
+        },
+        {
+          "ruta": "registro/t09/sensibilidad_orden.csv",
+          "sha256": "5599cba651925c47e2117b65df65157c9644e351d7504caffa22e7f6d3dc45ab",
+          "bytes": 1211
+        },
+        {
+          "ruta": "registro/t09/sensibilidad_resumen.csv",
+          "sha256": "4ee2fecfd355f49fa59df1ff740565f9bb7c7f172412593971f5551572b3ed40",
+          "bytes": 14351
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T09",
+      "responsable": "Dani",
+      "estado": "PR_abierto_pendiente_revision",
+      "pr": 18,
+      "revision_exacta": false,
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/18"
+    },
+    "t10": {
+      "commit": "57268aa8ac60d143c0585d501308997cc726f4ce",
+      "archivos": [
+        {
+          "ruta": "docs/T10_relieve_area.md",
+          "sha256": "33c75ddbe191ec978cc4025d17ee1b2055c1c480b3255f9301b7ed3471b29e80",
+          "bytes": 18015
+        },
+        {
+          "ruta": "docs/T10_seguimiento_T17.md",
+          "sha256": "c4920c51f942489fc5838a3995fa1ae994d722834dce87e332295064e34d2b25",
+          "bytes": 3171
+        },
+        {
+          "ruta": "registro/t10/coeficientes_t10.csv",
+          "sha256": "e4681d27d088246d84856a640fdc1167cfe0a6f8feabe421b009606506dcc633",
+          "bytes": 68792
+        },
+        {
+          "ruta": "registro/t10/comparacion_emparejada_t10.csv",
+          "sha256": "900b9fe50abbb98eef4c4a8fd012327378597e3670557f90bb3fe29791a522c7",
+          "bytes": 25444
+        },
+        {
+          "ruta": "registro/t10/control_revuelto_t10.csv",
+          "sha256": "d75ab7de47a9064d4fb75e73f39bde34074fb077e3f0a6180d996beae78ec826",
+          "bytes": 92
+        },
+        {
+          "ruta": "registro/t10/desglose_error_t10.csv",
+          "sha256": "aa897ee373ffaff6d661342155fae6875fd3866c29a15e46bef29b5087f5ae6e",
+          "bytes": 224555
+        },
+        {
+          "ruta": "registro/t10/diagnostico_atributos_t10.csv",
+          "sha256": "f840efd94439b0c7e40f9490463f34e42fc8692dc8a839c4b6a9b3223e80c995",
+          "bytes": 1818
+        },
+        {
+          "ruta": "registro/t10/frecuencia_opciones_t10.csv",
+          "sha256": "7159c4f1d69fcef967eca881adfb6aa850aa73bfebe8f91d47840c4aa33bfe7b",
+          "bytes": 2814
+        },
+        {
+          "ruta": "registro/t10/manifest.json",
+          "sha256": "efa8dc80a9bee65f289444929b3bfc37b625a8be74e043bc88bec65ab0528fd6",
+          "bytes": 2262
+        },
+        {
+          "ruta": "registro/t10/metricas_t10.csv",
+          "sha256": "6c26e4a1df431996b9edbd75eceb8e13a522c238e7a5bbf11722df01a980c0f1",
+          "bytes": 6694
+        },
+        {
+          "ruta": "registro/t10/predicciones_59_t10.csv",
+          "sha256": "75e8b91a75f84ff1c1fc307f0214f303809f624bb656e29137e4813d1551262b",
+          "bytes": 67937
+        },
+        {
+          "ruta": "registro/t10/predicciones_oof_t10.csv",
+          "sha256": "eca5b6d7469ee6f438b1e6c0e8498cb211bde65129c3d149401afc1da92da45c",
+          "bytes": 2138640
+        },
+        {
+          "ruta": "registro/t10/sensibilidad_sin_alerta_t10.csv",
+          "sha256": "b6443d965daa3246500d25b427a5ffc5429790648ddfd067f0a26580ef369d68",
+          "bytes": 17208
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T10",
+      "responsable": "Jass",
+      "estado": "PR_abierto_revision_previa_otro_commit",
+      "pr": 17,
+      "revision_exacta": false,
+      "revision_previa": "d92cb7005d540c4561ae8cde32c858f653a8507c",
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/17"
+    },
+    "t11": {
+      "commit": "39082140d908697f35252ee08ff7e641bd7844dc",
+      "archivos": [
+        {
+          "ruta": "docs/T11_aporte_satelital.md",
+          "sha256": "c10056517832ae713f234974ef5b3f39f155c59a9c2b6bccbca487417eee65ca",
+          "bytes": 14022
+        },
+        {
+          "ruta": "registro/t11/coeficientes_t11.csv",
+          "sha256": "6e170d8b85df0d0a46bc4855d6f5dc10bcd5f4a197c4a7951ded290a2f955351",
+          "bytes": 140579
+        },
+        {
+          "ruta": "registro/t11/comparacion_emparejada_t11.csv",
+          "sha256": "dac70ccdb7393733a3d0e61214d45b6773200970645149c55f6267e9e1a48600",
+          "bytes": 17196
+        },
+        {
+          "ruta": "registro/t11/desglose_error_t11.csv",
+          "sha256": "93e5a10f251a72f0c3e2178e9fb6105894e142966c7716f6e747974d2e46ebd3",
+          "bytes": 116585
+        },
+        {
+          "ruta": "registro/t11/diagnostico_nubosidad_lluvia.csv",
+          "sha256": "0b745888acfb0ca7cba5c718168b63cbd8c8c2cc5e63ac2dfd99974518268829",
+          "bytes": 1762
+        },
+        {
+          "ruta": "registro/t11/metricas_t11.csv",
+          "sha256": "5e7510d4de0b5ee699bd89ccbf0e1d69c32cd80544f527000081936af80d0103",
+          "bytes": 5290
+        },
+        {
+          "ruta": "registro/t11/predicciones_oof_t11.csv",
+          "sha256": "767418d35e476e21ebfcbcf92a00a043dd98d1542c116406dd778e9c4b0c3f4c",
+          "bytes": 1285396
+        },
+        {
+          "ruta": "registro/t11/sensibilidad_sin_alerta_t11.csv",
+          "sha256": "2db07b3093770c5a564277ea094db946fa585f851d5ab6fa3ef04a139d12e0c9",
+          "bytes": 12634
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T11",
+      "responsable": "Daf",
+      "estado": "fusionado_en_dev",
+      "pr": 15,
+      "revision_exacta": false,
+      "nota": "Revisión formal bfa525d; head posterior39082140 tiene nota documental. Fusionado en b93e34b.",
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/15"
+    },
+    "t13": {
+      "commit": "d2aa10b5c770ac1786d2f1f99c7640d01ddeee4a",
+      "archivos": [
+        {
+          "ruta": "docs/T13_indices.md",
+          "sha256": "974b4fcf2d0400ab0ad85ecc4ffd43f59402e882f19d68429f6301ef34cf5c7f",
+          "bytes": 10831
+        },
+        {
+          "ruta": "registro/t13/coeficientes_t13.csv",
+          "sha256": "c5bdc0a20c40373b522be4f913cb48c769e1f8ba0647b1510c20d45ff83c6001",
+          "bytes": 50898
+        },
+        {
+          "ruta": "registro/t13/coeficientes_t13e.csv",
+          "sha256": "a628ce25e9480bdc02df2039028cd56da838d4d1d586e13ebea1d15f9e3b3716",
+          "bytes": 72127
+        },
+        {
+          "ruta": "registro/t13/comparacion_emparejada_t13.csv",
+          "sha256": "1c50345b416475c13050f144b2ac38aae3ef63215b56a27589679d3aac58fc4b",
+          "bytes": 14267
+        },
+        {
+          "ruta": "registro/t13/comparacion_emparejada_t13e.csv",
+          "sha256": "22d2ab7e094e85407dc900df58d2473f798b4c4f3992f7dbe60ba0d1b45ed883",
+          "bytes": 11517
+        },
+        {
+          "ruta": "registro/t13/desglose_error_t13.csv",
+          "sha256": "ceb49230aa856819b6ec6817c3d4103f123dc6197430d35282274209c49348aa",
+          "bytes": 112819
+        },
+        {
+          "ruta": "registro/t13/desglose_error_t13e.csv",
+          "sha256": "88fd0bd40f6c2f3f5516f93eeb4583ecc855d8fe4793aa503a3d0613b17281fc",
+          "bytes": 103276
+        },
+        {
+          "ruta": "registro/t13/metricas_t13.csv",
+          "sha256": "857a318599350d0d834860d6e002603e0ceba26024bc3ed21b28da5dfcbb316b",
+          "bytes": 5076
+        },
+        {
+          "ruta": "registro/t13/metricas_t13e.csv",
+          "sha256": "b42bf42e9f8399f2f48e0c6ba7e2ca86005811dcd71687ed5df5059756701bcb",
+          "bytes": 4681
+        },
+        {
+          "ruta": "registro/t13/orden_indices_por_repeticion_t13.csv",
+          "sha256": "85def194c0a8016662b8086591c02937b1e394a146de4a677853c512b191e804",
+          "bytes": 8554
+        },
+        {
+          "ruta": "registro/t13/orden_indices_t13.csv",
+          "sha256": "d5fe6009d947ca836e170e3273bd67cbc479eecab8f632eaae1e20e0f8b0b15e",
+          "bytes": 1489
+        },
+        {
+          "ruta": "registro/t13/predicciones_oof_t13.csv",
+          "sha256": "729395bf5b04082ff4978792deaca9b7bcf82b470af9d3ceda087c36b5eb72ef",
+          "bytes": 1307523
+        },
+        {
+          "ruta": "registro/t13/predicciones_oof_t13e.csv",
+          "sha256": "7bf16c6f8d6bc4df313c2dda54a6596219c372111bf6b76b552144f205a5743f",
+          "bytes": 1229085
+        },
+        {
+          "ruta": "registro/t13/redundancia_indices_extra_t13e.csv",
+          "sha256": "859ca2f3ac503680cb2204667f3324bd599844f3343a8835e114aedc0169aab4",
+          "bytes": 17881
+        },
+        {
+          "ruta": "registro/t13/redundancia_indices_t13.csv",
+          "sha256": "4ab38ad3678b37e863dbd3d98c06a6f446d1d010baa12c88c30776de2cdac18d",
+          "bytes": 3251
+        },
+        {
+          "ruta": "registro/t13/sensibilidad_sin_alerta_t13.csv",
+          "sha256": "f2ad812773f1f461de5673a3e025290fefcb05b88a05d3fc7658f5cbc4d660cf",
+          "bytes": 12383
+        },
+        {
+          "ruta": "registro/t13/sensibilidad_sin_alerta_t13e.csv",
+          "sha256": "642eb0d10172d8a5b6b9435e2cb77e3a1f427521646000d04cf6728604e92919",
+          "bytes": 11174
+        },
+        {
+          "ruta": "registro/t13/variables_indices_extra.csv",
+          "sha256": "f67dee01d21de0194aa545e04849a13e9c95350cf22f57d62cfea46dc529ac58",
+          "bytes": 38594
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T13/T13e",
+      "responsable": "Daf",
+      "estado": "PR_abierto_pendiente_revision",
+      "pr": 20,
+      "revision_exacta": false,
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/20"
+    },
+    "t14": {
+      "commit": "78324bf5cb4fe8176d2e77f3476877a992939c3c",
+      "archivos": [
+        {
+          "ruta": "docs/T14_clima.md",
+          "sha256": "55ffff65ed8339852523a8117e9d690bbfc506fbc6aeac0c7a2c54057a2dd7e0",
+          "bytes": 11000
+        },
+        {
+          "ruta": "registro/t14/alfas_t14.csv",
+          "sha256": "7078698b99af6317419a866157165632eb2bd1d4d66f402487c97aa9a1a9ae3f",
+          "bytes": 5420
+        },
+        {
+          "ruta": "registro/t14/colinealidad_t14.csv",
+          "sha256": "811f08d6c11863cab7912cfb3972daa9aae4e662b4766f157898b072e28887de",
+          "bytes": 419
+        },
+        {
+          "ruta": "registro/t14/comparacion_emparejada_t14.csv",
+          "sha256": "e2470a5643c8ec23b92e62c16551531ac21546174053ef1d8616e3e69602ca11",
+          "bytes": 1666
+        },
+        {
+          "ruta": "registro/t14/desglose_errores_t14.csv",
+          "sha256": "71831122300eb6cfeedd17200484b5b74d225f02c2ccdf9df24745859343fd15",
+          "bytes": 11220
+        },
+        {
+          "ruta": "registro/t14/escala_compartida_t14.csv",
+          "sha256": "eae4c209502601d1352f755e421b8cb1331776af0668d7afe2cec7ae932ec4f1",
+          "bytes": 186
+        },
+        {
+          "ruta": "registro/t14/metricas_t14.csv",
+          "sha256": "021bca603e595d4a0acc19aed5be00e0f61935961676b1e5a59fa727229b503d",
+          "bytes": 640
+        },
+        {
+          "ruta": "registro/t14/predicciones_59_t14.csv",
+          "sha256": "9b3f530b5dad8a548cba9efabf093959c37a06aeacd11330dd09df5de1ff13d7",
+          "bytes": 18226
+        },
+        {
+          "ruta": "registro/t14/predicciones_oof_t14_ref_mas_clima.csv",
+          "sha256": "6f51a04a464f407d834d086b4045b19678814472119efa079a536763aa8d6876",
+          "bytes": 93430
+        },
+        {
+          "ruta": "registro/t14/predicciones_oof_t14_ref_mas_lluvia.csv",
+          "sha256": "7c0520b6e74cb2c29350728502485db1e87626374c79cc25121175ebd19f8560",
+          "bytes": 94747
+        },
+        {
+          "ruta": "registro/t14/predicciones_oof_t14_ref_mas_tmax.csv",
+          "sha256": "7cc0d60eb4e2871f1883ddd8ed2baf81a78ff639ff6da94977efb1f7f4daa002",
+          "bytes": 92011
+        },
+        {
+          "ruta": "registro/t14/predicciones_oof_t14_ref_mas_tmin.csv",
+          "sha256": "d6bd578418155bcb64d5acbc1bf1549776fa38ba927f43e213d40cb35a3feb21",
+          "bytes": 92027
+        },
+        {
+          "ruta": "registro/t14/predicciones_oof_t14_referencia.csv",
+          "sha256": "f63dd357902b1ce22e8ee971f93afd5d0af0e390f47e43fee95d7581bbe2252e",
+          "bytes": 84798
+        },
+        {
+          "ruta": "registro/t14/variables_clima_t14.csv",
+          "sha256": "78a4d3df4f0ec66793456983cd9d25854912d52d4ce7ef19fa4617782c996ffe",
+          "bytes": 11468
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T14",
+      "responsable": "Migue",
+      "estado": "PR_abierto_pendiente_revision",
+      "pr": 13,
+      "revision_exacta": false,
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/13"
+    },
+    "comun": {
+      "commit": "e152abbc959796eccddbe9ded7e5645aa463342a",
+      "archivos": [
+        {
+          "ruta": "docs/evaluacion_comun_centrado_v2.md",
+          "sha256": "b70e44f6d59a02300d8daf81409cdab6568c5f03846d12ee884874eb52b348a4",
+          "bytes": 9465
+        },
+        {
+          "ruta": "registro/evaluacion_comun/procedimiento.json",
+          "sha256": "da633adf27c7f1cf2d7760dc2f190abe38d9a912f80a976717fc6213c48f76d3",
+          "bytes": 4367
+        },
+        {
+          "ruta": "registro/evaluacion_comun/procedimiento_centrado_v2.json",
+          "sha256": "fb4ba40497b14cc9c9c077a3e993e8d24ca559a2d1cd6ebbce168e12aebd8040",
+          "bytes": 5427
+        },
+        {
+          "ruta": "registro/evaluacion_comun/propuesta_t15_centrado_v2.json",
+          "sha256": "eefebfa582fcc734303d040084aa47d7556aac902b568e90869f2ed7ddb6b818",
+          "bytes": 29293
+        },
+        {
+          "ruta": "registro/evaluacion_comun/propuesta_t15_comparaciones.json",
+          "sha256": "6bfe86ce1bf47ae3587e590c8a7a3fa574560d136430414d242f603eaafcc827",
+          "bytes": 28589
+        },
+        {
+          "ruta": "registro/evaluacion_comun/verificacion.json",
+          "sha256": "be5b4dc86fa33dcfe482e2c71aee4804345f5c05ea691bd130d96390f5979f6f",
+          "bytes": 1760
+        },
+        {
+          "ruta": "registro/evaluacion_comun/verificacion_centrado_v2.json",
+          "sha256": "c87fdd6ae5a16c83c558c493d658c0a917ae7ea36bf084d98deb8f7123705e41",
+          "bytes": 8172
+        },
+        {
+          "ruta": "registro/t03/particiones.csv",
+          "sha256": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+          "bytes": 33793
+        },
+        {
+          "ruta": "registro/t07/tabla_comun.csv",
+          "sha256": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+          "bytes": 114988
+        }
+      ],
+      "tarea": "T15",
+      "responsable": "Dani",
+      "estado": "PR_borrador_pendiente_revision_sin_evaluacion_completa",
+      "pr": 21,
+      "revision_exacta": false,
+      "uso": "diagnostico_historico_sin_acreditar_metodo_comun",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/21"
+    }
+  },
+  "objetivo": "Inspección descriptiva con versiones conservadas; no integración como fuentes aceptadas de un modelo nuevo."
+}
