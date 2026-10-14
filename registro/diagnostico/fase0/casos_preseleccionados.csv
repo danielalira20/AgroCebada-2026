@@ -1,0 +1,11 @@
+orden,id_parcela,fuente,escenario,poblacion,n_repeticiones_elegibles,criterio_media_error_absoluto,municipio
+1,AGC_171,T08,A,sin_respaldo,5,2.366491228070175,Chignahuapan
+2,AGC_015,T08,A,sin_respaldo,5,1.8515701754385963,Chignahuapan
+3,AGC_024,T08,A,sin_respaldo,5,1.4593471177944863,Chignahuapan
+4,AGC_034,T08,A,sin_respaldo,5,1.1774358974358976,Singuilucan
+5,AGC_162,T08,A,sin_respaldo,5,1.1080350877192982,Chignahuapan
+6,AGC_127,T08,A,sin_respaldo,5,1.088491228070176,Chignahuapan
+7,AGC_049,T08,A,sin_respaldo,5,1.0554686716791983,Chignahuapan
+8,AGC_069,T08,A,sin_respaldo,5,1.016436090225564,Chignahuapan
+9,AGC_055,T08,A,sin_respaldo,5,0.9794423558897247,Chignahuapan
+10,AGC_026,T08,A,sin_respaldo,5,0.9421541353383457,Chignahuapan

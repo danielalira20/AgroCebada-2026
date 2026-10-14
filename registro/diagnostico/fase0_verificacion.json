@@ -1,0 +1,82 @@
+{
+  "schema": "verificacion_diagnostico_fase0_v1",
+  "estado": "verificada_tecnicamente_revision_humana_pendiente",
+  "fecha": "2026-10-13",
+  "pruebas": {
+    "Mac_normal": 23,
+    "Docker_optimizado": 23
+  },
+  "pipeline_reproducido": {
+    "Mac": 1,
+    "Docker_normal": 1,
+    "Docker_optimizado": 1,
+    "archivos_identicos_por_bytes": 9
+  },
+  "imagen_docker": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "auditoria_independiente_Mac": {
+    "resultado": "verificado",
+    "filas_crudas_y_normalizadas": 71208,
+    "identidad_predicciones_etiquetas": true,
+    "claves_referencias_mascaras": 1518,
+    "max_diferencia_referencia": 0.0,
+    "casos": 10,
+    "controles": 10,
+    "max_diferencia_criterio_casos": 0.0,
+    "reentrenamientos": 0,
+    "interpretacion_fase1": false
+  },
+  "auditoria_independiente_Docker": {
+    "resultado": "verificado",
+    "filas_crudas_y_normalizadas": 71208,
+    "identidad_predicciones_etiquetas": true,
+    "claves_referencias_mascaras": 1518,
+    "max_diferencia_referencia": 0.0,
+    "casos": 10,
+    "controles": 10,
+    "max_diferencia_criterio_casos": 0.0,
+    "reentrenamientos": 0,
+    "interpretacion_fase1": false
+  },
+  "codigo_sha256": {
+    "scripts/diagnostico_fase0.py": "f66fd61dcc7a413675872e03fbdc7a6ec6c48a4cc32ef9fee10817a2718d117b",
+    "scripts/diagnostico_fuentes.py": "7281b810a51c767bc63d3469e43b638cc1cb54a521a04fa45e6809e917ee673f"
+  },
+  "diseno_sha256": "90f2789e1f385967bfa51beb1d7944f6ced2231f48239aa88af6b93dbbca455f",
+  "fuentes_sha256": "f8cf1e2bc8b088d925acdff9693707d1fd513ad535ec32bc8d145995df55132a",
+  "archivo_ledger": "local_regenerable_no_en_Git",
+  "sha256_ledger": "199fed965f34033e94716c8c0edaef189ac94e186ec5a28e8325496269fbdea0",
+  "registros_verificados": 71208,
+  "fuentes_154_verificadas": true,
+  "mascaras": {
+    "A": {
+      "todas": 690,
+      "sin_respaldo": 675
+    },
+    "B": {
+      "todas": 690,
+      "sin_respaldo": 659
+    },
+    "C": {
+      "todas": 138,
+      "sin_respaldo": 0
+    }
+  },
+  "casos": 10,
+  "controles": 10,
+  "sin_reentrenamientos": true,
+  "sin_nueva_evaluacion_T15": true,
+  "sin_interpretacion_fase1": true,
+  "sin_predicciones_finales_59": true,
+  "incidencias_resueltas": {
+    "repositorio": "Fetch inicial usó nombre t10-relieve-area no existente; descubrí T10/relieve-area y recuperé exactamente los SHA verificados, sin cambios en datos ni ramas ajenas.",
+    "actualizacion_fuentes": "T11 fusionada en devb93; T10nuevohead incorporaT11. Snapshots frescos elegidos por commit y estado; no usar copias anteriores como actuales.",
+    "adaptador_csv_vacio": "Inventario encontró control_revuelto_t10.csv sin filas, control no activado; permitir cero filas sólo en perfil de inventario, OOF obligatorias continúan no vacías.",
+    "adaptador_D020": "Adaptador inicial esperaba token NaN y estado sin_datos; CSV real conserva vacío porque cobertura<0.5 según D020, aunque pendiente física existe. Corregido validando piso/estado fuente, sin rellenar, sin excluir IDs, sin cambiar original."
+  },
+  "limitaciones": [
+    "Compatibilidad OOF no acredita entrenamiento ni equivalencia de métodos",
+    "Disponibilidad histórica de entradas y etiquetas no acreditada",
+    "Datos de una campaña; no valida rendimiento futuro",
+    "Selección exploratoria, no análisis ciego"
+  ]
+}

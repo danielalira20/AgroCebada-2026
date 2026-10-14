@@ -1,0 +1,6 @@
+id,pregunta,evidencia,fase_respuesta,limite,estado
+Q01,¿Qué errores persisten entre repeticiones y escenarios?,"138 parcelas, errores firmados/absolutos, A/B, fuentes de respaldo",1,"Descriptivo, no causal",pregunta_registrada_sin_respuesta_en_fase0
+Q02,¿Qué fallos comparten los procedimientos y qué depende del soporte municipal?,matriz de mismos IDs/contextos con método y versión preservados,2,"Descriptivo, no causal",pregunta_registrada_sin_respuesta_en_fase0
+Q03,¿Qué patrones de calidad coinciden con el error en el conjunto?,"T02/T06/T07, contornos, escala, cobertura, controles comparables",3,Asociación descriptiva no prueba causalidad,pregunta_registrada_sin_respuesta_en_fase0
+Q04,¿Existe evidencia verificable de etiquetas o factores ausentes?,"fuentes FIRA, unidad, redondeo, información de manejo/daños sólo si existe",4,"Descriptivo, no causal",pregunta_registrada_sin_respuesta_en_fase0
+Q05,¿En qué condiciones las 59 se parecen a las etiquetadas y qué limita el uso futuro?,"municipio, perfil de entradas, soporte, calidad, fechas y disponibilidad",5,59 sin etiqueta; una campaña no valida años futuros,pregunta_registrada_sin_respuesta_en_fase0

@@ -1,0 +1,11 @@
+caso,control,estado,diferencias_calidad,diferencia_log_area,diferencia_capturas,seleccion_por_error
+AGC_171,AGC_197,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.009503311262827996,3.0,False
+AGC_015,AGC_124,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.005089069507471344,2.0,False
+AGC_024,AGC_100,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.025473489815422745,2.0,False
+AGC_034,AGC_166,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.17960584101552768,3.0,False
+AGC_162,AGC_189,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.06928268455954956,8.0,False
+AGC_127,AGC_057,mejor_disponible_segun_regla_no_equivalencia_certificada,1,0.3677247801253174,6.0,False
+AGC_049,AGC_092,mejor_disponible_segun_regla_no_equivalencia_certificada,1,0.5538851132264376,10.0,False
+AGC_069,AGC_139,mejor_disponible_segun_regla_no_equivalencia_certificada,0,1.6199092123013958,12.0,False
+AGC_055,AGC_167,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.5853506101042378,17.0,False
+AGC_026,AGC_013,mejor_disponible_segun_regla_no_equivalencia_certificada,0,0.019838342219664185,10.0,False

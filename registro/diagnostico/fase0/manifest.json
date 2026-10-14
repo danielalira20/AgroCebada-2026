@@ -1,0 +1,68 @@
+{
+  "schema": "agrocebada_diagnostico_fase0_entrega_v1",
+  "fase": "0",
+  "subfases": [
+    "0.1",
+    "0.2",
+    "0.3"
+  ],
+  "estado": "verificada_tecnicamente_para_revision",
+  "diseno_sha256": "90f2789e1f385967bfa51beb1d7944f6ced2231f48239aa88af6b93dbbca455f",
+  "fuentes_sha256": "f8cf1e2bc8b088d925acdff9693707d1fd513ad535ec32bc8d145995df55132a",
+  "base_dev": "b93e34b3294cb8e9496f24982f41d257b837e26e",
+  "codigo_sha256": {
+    "scripts/diagnostico_fase0.py": "f66fd61dcc7a413675872e03fbdc7a6ec6c48a4cc32ef9fee10817a2718d117b",
+    "scripts/diagnostico_fuentes.py": "7281b810a51c767bc63d3469e43b638cc1cb54a521a04fa45e6809e917ee673f"
+  },
+  "parcelas_etiquetadas": 138,
+  "parcelas_reservadas_sin_objetivo": 59,
+  "series_historicas": 51,
+  "registros_oof_verificados": 71208,
+  "archivos_fuente_verificados": 154,
+  "mascaras": {
+    "A": {
+      "todas": 690,
+      "sin_respaldo": 675
+    },
+    "B": {
+      "todas": 690,
+      "sin_respaldo": 659
+    },
+    "C": {
+      "todas": 138,
+      "sin_respaldo": 0
+    }
+  },
+  "casos_principales": 10,
+  "controles_disponibles": 10,
+  "reentrenamientos": 0,
+  "modelos_finales_59": 0,
+  "fase1_interpretacion_ejecutada": false,
+  "metodo_comun_acreditado": false,
+  "revision_humana_fase0": "pendiente",
+  "cronologia": "Etiquetas/resultados explorados previamente; reglas fijadas antes de ejecutar esta fase, no análisis ciego",
+  "disponibilidad_historica_fira": "no_documentada",
+  "garantia_campania_futura": false,
+  "publicables": [
+    "inventario_fuentes.csv",
+    "compatibilidad_procedimientos.csv",
+    "mascaras_contextos.csv",
+    "casos_preseleccionados.csv",
+    "controles_preseleccionados.csv",
+    "preguntas_y_entregables.csv",
+    "alcance_temporal.csv",
+    "manifest.json"
+  ],
+  "archivo_local_no_publicable": "normalizadas_oof.csv",
+  "fuentes_errores": [],
+  "archivos_sha256": {
+    "alcance_temporal.csv": "11b7178dfba4d1c295ce72311962e30c62f09a9592a7eb4514f3396c1987caa5",
+    "casos_preseleccionados.csv": "d9ad40cddd7c605e6c1ed06c6c5f4641ab0f98e5d1e759f53f62c2bf8f28b407",
+    "compatibilidad_procedimientos.csv": "869490d52547457441dd43000f09d5fa8c6724c733e2e601159a00e46d32322a",
+    "controles_preseleccionados.csv": "986e6f8813dd8f9d77d55486a72bde09c6a7b2ddb01e660f359976338a84e672",
+    "inventario_fuentes.csv": "372b0edc874e93172e76f679bace56bc94974fb21befaf160339f1e3e4342e34",
+    "mascaras_contextos.csv": "cd0e1575dd4abf350a65ae195f9ac19807eaef1cae239422556aaf2ba2e0089b",
+    "normalizadas_oof.csv": "199fed965f34033e94716c8c0edaef189ac94e186ec5a28e8325496269fbdea0",
+    "preguntas_y_entregables.csv": "4a29294787e041179ee4b4da5c8cb5ebb66ecc153dc75e7e2cab6b06aa77f0b9"
+  }
+}
