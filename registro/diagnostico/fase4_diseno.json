@@ -1,0 +1,88 @@
+{
+  "schema": "agrocebada_diagnostico_fase4_v1",
+  "fecha_registro": "2026-10-14",
+  "responsable": "Dani",
+  "fase3_commit": "fce79e2f5e4e91f30722922febbcd71a3398850b",
+  "estado": "reglas_antes_de_calculos_fase4_etiquetas_y_resultados_previos_ya_explorados",
+  "pregunta": "Q04: evidencia verificable de etiquetas y factores ausentes",
+  "fuente_plan": "F0_tab_t.r7d5h4run1h6_fase4_1_2_3",
+  "fuentes": {
+    "data/raw/DataSet.zip": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07_fichas/pendientes_documentales.csv": "b4a093950bc68e949bf7128a16a8a856becd747ba5ca761b872cb27faa77b64b",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/precision_etiqueta_por_municipio.csv": "e439dffeeecb09d0dcde5766ea8bf401284a43e9951d7f0dc697e0e5074a4295",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/desviacion_municipal_por_parcela.csv": "7382fc375e659bb670a43c1589fcb7d551bb0511a9fb93f686709bedb0d220ae",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv": "70db27a146653fa0253d734956fabe5a1c21a436484176d0f3da3a1ec650b4ec",
+    "registro/diagnostico/fase0/casos_preseleccionados.csv": "d9ad40cddd7c605e6c1ed06c6c5f4641ab0f98e5d1e759f53f62c2bf8f28b407",
+    "registro/diagnostico/fase0/controles_preseleccionados.csv": "986e6f8813dd8f9d77d55486a72bde09c6a7b2ddb01e660f359976338a84e672",
+    "registro/diagnostico/fase1/errores_por_repeticion.csv": "798dc53cb15f2847ed72b95f479c012d1fcef9ccfb48e25069143d6aa52efd11",
+    "registro/diagnostico/fase1/errores_por_parcela.csv": "32866224ac8786667247ed922888545db7278b54a62ec835ab436abdf6d00243",
+    "registro/diagnostico/fase3/manifest.json": "505a911b6685f8284c2647bbd357f0728f30d7629dd9e6d60f4cda6d55f33f3c",
+    "registro/diagnostico/fase3/calidad_por_parcela.csv": "8fae5c0ec075e0fe79ea27ed149a3b3dc7520127176b5d737b4f8eab80822f36",
+    "registro/diagnostico/fase3/curvas_calidad.csv": "f1cf13b696afa58ed3f52388f85ddfc5f6b3dd571a9b91f4853d3f3237035133",
+    "registro/diagnostico/fase3/comparacion_curvas_pares.csv": "3132a068e8d099cd9ee47884156fa7224739fe5c5a15c4fe110a6bba5722cc18",
+    "registro/diagnostico/fase3_observaciones_T06.json": "b718d39405a5678806861e64be3d75dea8efb9890b02cb22305409d5fb320bee",
+    "analisis/auditoria_catalogo_y_etiquetas/informe_catalogo_y_etiquetas.md": "9ab17273ea036c10fae952cacf23418d3125fedc366fd3990dbed6a07636fb05"
+  },
+  "externas": {
+    "documento_oficial": {
+      "nombre": "Segunda_Sesion_Preguntas_Reto.docx",
+      "sha256": "b02fff056877e104fe0a8c3b9e7cca8a48a490154cf3a762b6d66d878c40f731",
+      "fecha_documento": "2026-10-09"
+    },
+    "transcripcion_Dani": {
+      "nombre": "Texto pegado.txt",
+      "sha256": "81523f2e1c408aefa7b7a778ab152608579f11e2fabcd54734db896402c573ab",
+      "valor": "testimonio_no_equivale_a_documento_oficial"
+    },
+    "ledger_F0": {
+      "sha256": "199fed965f34033e94716c8c0edaef189ac94e186ec5a28e8325496269fbdea0",
+      "filas": 71208,
+      "solo_lectura": true
+    }
+  },
+  "unidad": "parcela_campania2025_197_ID_138etiquetadas_59ausentes",
+  "etiquetas": "Decimal_desde_texto_original_misma_clave_ID_ninguna_imputacion_ni_edicion",
+  "geometrias": "atributosDBF_original_solo_identidad_y_area_no_nueva_geometria",
+  "tolerancias": {
+    "igualdad_etiqueta": "Decimal_exacta",
+    "area_CSV_vs_DBF_ha": 1e-09,
+    "redondeo_area_vs_geodesica_ha": 0.005001,
+    "tabla_T02_desviaciones_3dec": 0.00051
+  },
+  "precision": "contar_decimales_literal_y_valoresdistintos; paso_mayor_compatible_en_.5_.1_.01; si_constante_no_se_identifica_resolucion_de_medicion; no_incertidumbre_inventada",
+  "errores": "T08_A_B_poblaciones_todas_y_sin_respaldo_fijas; porID_mediaabsoluta_antes_agrupacion;no_redondeo_predicciones_ni_MAE_corregido",
+  "paso_fuera_muestra": "si_desglosar_escala_fina/gruesa_compatibilidad_solo_entrenamiento_fold; evitar_afirmar_umbral_aprendido_con_eval; convenioT02_poblacioncompleta_solo_descriptivo",
+  "extremos": "umbral_historicoT02_abs(y-media_LOO_municipio)>1; no_seleccion_nueva_modelo; mantener99milésimasAGC069sinllamar_extrema",
+  "area_sensibilidad": "magnitud_algebraica_hipotetica_por_.005ha_si_area_round2dec_y_masa_constante; no_y_corregida_ni_MAE_recalculado_ni_error_area_observado",
+  "factores": "variedadJ/V_solo_contexto_FIRA_sin_ID; fuente_comercializadora_productor_sinID; siembra,humedad,denominador,manejo,rotacion,siniestros_y_suelo_no_documentados_porID; ni_Cebada_mayusculas_ni_ID_numerico_revelan_fuente_variedad",
+  "evidencia": "error_tecnico_confirmado/limitacion_observacion/patron_descriptivo/hipotesis_pendiente/no_explicable_con_entradas_disponibles_con_fuente_comprobacion_grado_responsable_accion",
+  "preguntas": "priorizar_P06_y_casos/controles_fijos; preparar_no_enviar",
+  "innovacion": "describir_granularidad_solo_con_entreno_en50folds_y_separar_escalon_observable_de_exactitud; no_validacion_ni_prediccion_nueva",
+  "salidas": [
+    "conciliacion_etiquetas.csv",
+    "granularidad_municipal.csv",
+    "granularidad_entrenamiento.csv",
+    "error_por_granularidad.csv",
+    "sensibilidad_area_nominal.csv",
+    "etiquetas_contexto.csv",
+    "pares_y_etiquetas.csv",
+    "factores_no_observados.csv",
+    "hallazgos.csv",
+    "preguntas_FIRA.csv",
+    "manifest.json"
+  ],
+  "barreras": [
+    "no_correccion_etiquetas_ni_predicciones",
+    "no_eliminar_parcelas",
+    "no_reentrenar_ni_tuning",
+    "no_inferir_manejo_ni_siniestro",
+    "no_datos_externos_imputados_como_reales",
+    "no_cambiar_tareas_ajenas",
+    "no_push_merge_googleDoc_mensajes"
+  ],
+  "revision_humana": "pendiente"
+}
