@@ -1,0 +1,408 @@
+{
+  "schema": "agrocebada_t09_evaluacion_v1",
+  "version": "T09-evaluacion-v1",
+  "fecha": "2026-10-12",
+  "responsable": "Dani",
+  "revisor": "Migue",
+  "estado": "ejecutada_reproducida_pendiente_revision",
+  "revision_humana": "pendiente",
+  "cierre_t09": false,
+  "base_dev": "cb4580701b2bf28588e56ce3d73e64fbf2b6a738",
+  "diseno_sha256": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+  "pregunta": "Aporte climático adicional frente a territorio en parcelas2025",
+  "poblacion": {
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "campania": 2025,
+    "unidad": "t/ha"
+  },
+  "temporal": {
+    "corte_observado": "2025-10-31",
+    "modo": "estimacion_retrospectiva",
+    "disponibilidad_historica_fira": "no_confirmada",
+    "decimales_exportacion_final": 4,
+    "redondear_antes_de_evaluar": false
+  },
+  "ventanas": {
+    "abr_oct": {
+      "inicio": "2025-04-01",
+      "fin": "2025-10-31",
+      "meses": 7,
+      "dias": 214,
+      "columnas": [
+        "prec_acumulada_mm_abr_oct",
+        "tmin_media_c_abr_oct",
+        "tmax_media_c_abr_oct"
+      ]
+    },
+    "jun_oct": {
+      "inicio": "2025-06-01",
+      "fin": "2025-10-31",
+      "meses": 5,
+      "dias": 153,
+      "columnas": [
+        "prec_acumulada_mm_jun_oct",
+        "tmin_media_c_jun_oct",
+        "tmax_media_c_jun_oct"
+      ]
+    }
+  },
+  "ajustes_por_ejecucion": {
+    "contextos": 59,
+    "internos_climaticos": 5664,
+    "reajustes_externos_climaticos": 354,
+    "total_climaticos": 6018,
+    "internas_por_contexto": 4,
+    "total_particiones_internas": 236
+  },
+  "predicciones": {
+    "principales": 6072,
+    "diagnosticas_ventana_fija": 9108,
+    "total_local": 15180,
+    "no_son_ejemplos_independientes": true,
+    "reservadas_evaluadas": 0,
+    "ajuste_final_59": false
+  },
+  "contraste_principal": {
+    "escenario": "A",
+    "variante": "seleccionada",
+    "poblacion": "sin_respaldo",
+    "candidato": "TC",
+    "frente_a": "T",
+    "contraste": "principal",
+    "n_predicciones": 675,
+    "n_parcelas": 135,
+    "n_repeticiones": 5,
+    "dMAE": 0.0011334204284256058,
+    "dMAE_media_rep": 0.0011334204284256058,
+    "dRMSE": -0.0009245621607044341,
+    "reps_que_mejoran": 2,
+    "parcelas_mejoran": 70,
+    "parcelas_empeoran": 65,
+    "parcelas_empatan": 0,
+    "IC95_celdas_inf": -0.0015330853202517843,
+    "IC95_celdas_sup": 0.004983829150308923,
+    "IC95_parcelas_inf": -0.0014981373571003643,
+    "IC95_parcelas_sup": 0.003768027335348038,
+    "n_celdas": 22,
+    "condicion_dMAE": false,
+    "condicion_IC95": false,
+    "condicion_repeticiones": false,
+    "condicion_dRMSE": true,
+    "aplica_regla_promocion": true,
+    "cumple_regla_promocion": false,
+    "estado_promocion": "no_cumple",
+    "intervalo": "principal_predeclarado"
+  },
+  "candidatos_cumplen_promocion": [],
+  "recomendacion_para_T15": "conservar_T",
+  "ganador_T16": null,
+  "referencia_T08": {
+    "predicciones": 1380,
+    "diferencia_maxima": 0.0,
+    "fuentes_identicas": true
+  },
+  "auditoria_independiente": {
+    "auditoria_independiente": true,
+    "sin_importar_modulos_produccion": true,
+    "sha_diseno": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+    "control_bootstrap_T08": {
+      "comparaciones": 24,
+      "max_diferencia_publicacion_4_decimales": 0.0
+    },
+    "filas_oof": 15180,
+    "filas_principales": 6072,
+    "filas_fijas": 9108,
+    "referencias_T08_exactas": 1380,
+    "reservadas_en_oof": 0,
+    "contextos_completos_disjuntos": 59,
+    "particiones_internas_completas_disjuntas": 236,
+    "grupos_compartidos_B_C": 0,
+    "mascaras_independientes_correctas": true,
+    "filas_reportes_recalculadas": {
+      "metricas_por_repeticion": 252,
+      "metricas_resumen": 60,
+      "sensibilidad_por_repeticion": 252,
+      "sensibilidad_resumen": 60,
+      "desgloses_por_repeticion": 4788,
+      "desgloses_resumen": 1164,
+      "comparaciones_emparejadas": 45
+    },
+    "max_diferencia_reportes": 7.105427357601002e-15,
+    "metricas_recalculadas": 252,
+    "contrastes_recalculados": 45,
+    "selecciones_recalculadas": 531,
+    "evaluacion_T09_verificada": true,
+    "estado": "auditoria_T09_aprobada"
+  },
+  "matematica_independiente": {
+    "estado": "aprobado",
+    "modulos_produccion_importados": 0,
+    "sklearn_usado": false,
+    "ecuacion": "lstsq(A_aug,y_aug); TC=municipal_dummies_unpenalized; CL=global_intercept_unpenalized; R=no_intercept",
+    "reajustes_externos_unicos": 354,
+    "salidas_coeficientes_con_reutilizacion": 531,
+    "predicciones_externas_recalculadas": 15180,
+    "soluciones_internas_recalculadas": 5664,
+    "puntuaciones_internas_recalculadas": 1416,
+    "max_diferencia_coeficientes": 1.9551721353039397e-13,
+    "max_diferencia_predicciones": 1.7053025658242404e-13,
+    "max_diferencia_media_escala": 3.552713678800501e-15,
+    "max_diferencia_MAE_interno": 1.554312234475219e-14,
+    "max_diferencia_MAE_todas_interno": 1.532107773982716e-14,
+    "aplicabilidad59": {
+      "ids": 59,
+      "fuentes_municipales": 59,
+      "soporte_escaso": 1,
+      "fuera_rango_global_al_menos_una_entrada": 0,
+      "fuera_rango_municipio_al_menos_una_entrada": 2,
+      "ajustes_finales_59": 0
+    },
+    "sha_diseno": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+    "fuentes_protegidas_verificadas": 34,
+    "resultados_manifest_verificados": 17,
+    "tolerancias": {
+      "prediccion": 1e-09,
+      "coeficientes_y_escala": 1e-10,
+      "MAE": 1e-09
+    },
+    "MAE_tolerancia_derivada": "abs(MAE_ind-MAE_prod) no excede la media de abs(pred_ind-pred_prod); mismo límite de predicción",
+    "entorno": {
+      "sistema": "Darwin",
+      "arquitectura": "arm64",
+      "numpy": "2.2.6",
+      "pandas": "3.0.6"
+    },
+    "verificacion_matematica_completa": true
+  },
+  "reproduccion": {
+    "docker_repetido_identico": true,
+    "archivos_identicos": 18,
+    "csv_identicos": 15,
+    "json_identicos": 3,
+    "max_diferencia_numerica_Mac_Docker": 3.872457909892546e-13,
+    "rtol_portabilidad": 1e-10,
+    "atol_portabilidad": 1e-12,
+    "seleccion_ids_metadatos_identicos": true,
+    "comparacion_por_archivo": {
+      "aplicabilidad_59.csv": {
+        "filas": 59,
+        "max_diferencia_num": 1.8723737837955667e-14,
+        "byte_identico_Mac_Docker": false
+      },
+      "coeficientes.csv": {
+        "filas": 1593,
+        "max_diferencia_num": 1.687538997430238e-14,
+        "byte_identico_Mac_Docker": false
+      },
+      "comparaciones_emparejadas.csv": {
+        "filas": 45,
+        "max_diferencia_num": 3.0531133177191805e-15,
+        "byte_identico_Mac_Docker": false
+      },
+      "desgloses_por_repeticion.csv": {
+        "filas": 4788,
+        "max_diferencia_num": 3.872457909892546e-13,
+        "byte_identico_Mac_Docker": false
+      },
+      "desgloses_resumen.csv": {
+        "filas": 1164,
+        "max_diferencia_num": 3.872457909892546e-13,
+        "byte_identico_Mac_Docker": false
+      },
+      "diferencias_por_parcela.csv": {
+        "filas": 6156,
+        "max_diferencia_num": 1.865174681370263e-14,
+        "byte_identico_Mac_Docker": false
+      },
+      "metricas_por_repeticion.csv": {
+        "filas": 252,
+        "max_diferencia_num": 5.218048215738236e-15,
+        "byte_identico_Mac_Docker": false
+      },
+      "metricas_resumen.csv": {
+        "filas": 60,
+        "max_diferencia_num": 4.218847493575595e-15,
+        "byte_identico_Mac_Docker": false
+      },
+      "predicciones_oof.csv": {
+        "filas": 15180,
+        "max_diferencia_num": 3.419486915845482e-14,
+        "byte_identico_Mac_Docker": false
+      },
+      "predicciones_oof_seleccionadas.csv": {
+        "filas": 6072,
+        "max_diferencia_num": 3.419486915845482e-14,
+        "byte_identico_Mac_Docker": false
+      },
+      "puntuaciones_internas.csv": {
+        "filas": 1416,
+        "max_diferencia_num": 4.884981308350689e-15,
+        "byte_identico_Mac_Docker": false
+      },
+      "seleccion_interna.csv": {
+        "filas": 531,
+        "max_diferencia_num": 4.052314039881821e-15,
+        "byte_identico_Mac_Docker": false
+      },
+      "sensibilidad_orden.csv": {
+        "filas": 15,
+        "max_diferencia_num": 0,
+        "byte_identico_Mac_Docker": true
+      },
+      "sensibilidad_por_repeticion.csv": {
+        "filas": 252,
+        "max_diferencia_num": 5.551115123125783e-15,
+        "byte_identico_Mac_Docker": false
+      },
+      "sensibilidad_resumen.csv": {
+        "filas": 60,
+        "max_diferencia_num": 4.385380947269368e-15,
+        "byte_identico_Mac_Docker": false
+      }
+    },
+    "fuentes_protegidas": 401,
+    "fuentes_intactas": true,
+    "registro_59_final": false,
+    "duracion_docker_1_segundos": 720.95,
+    "duracion_docker_2_segundos": 867.17,
+    "nota_duracion": "Emulaciónlinuxamd64enAppleSilicon; duraciónvariable no es cambio de resultados"
+  },
+  "calidad_visual": {
+    "estado": "aprobado",
+    "fecha": "2026-10-12",
+    "revision": "inspeccion_visual_de_los_tres_PNG_canonicos_por_Codex",
+    "figuras_png_sha256": {
+      "01_mae_externo.png": "cd1ae5fa5291309a4c8e7623ff400c6d2b64602cdf2d50f4019b0ead0042739c",
+      "02_diferencia_mae_celdas.png": "09f0cb9ae239d12c734fa6cc9f974447a522351e6b53c6a9134a1b7e5654f660",
+      "03_seleccion_interna.png": "db7131261c58e0cbac7d2d20db5d4370c7d32ce10102ce53f0c9f87f15e61395"
+    },
+    "fuente": "Dockerlinuxamd64_evaluacion_20261012_docker_1",
+    "verificaciones": [
+      "sin_solapamientos_ni_recortes",
+      "MAE_eje_inicia_en_cero",
+      "unidades_t_ha",
+      "C_diagnostico_no_decide59",
+      "Delta_por_parcela_no_resta_MAE_promedio_B",
+      "IC95_celdas_no_intervalos_individuales",
+      "frecuencias_no_importancia_causal"
+    ],
+    "revision_humana_Migue": "pendiente",
+    "modelos_ajustados_para_figuras": 0
+  },
+  "pruebas": {
+    "mac_completas": 324,
+    "docker_T09_y_consumidores": 84
+  },
+  "entorno_canonico": {
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "python": "3.12.15",
+    "numpy": "2.2.6",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "hilos": 1
+  },
+  "imagen_docker": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "codigo_sha256": {
+    "scripts/t09_evaluar.py": "9fb008056081cee2ca438820318bd0e2309e678f23be6b05b0af10da248a506c",
+    "scripts/t09_reportes.py": "2a045f60f8a1e2e6f7bf5ff7be90bc34d1d206dade0ffb8858099328c6ee591c",
+    "scripts/t09_entradas.py": "6c951024aec181557ce9d67c7472af3eb6889a9a28f15b3e699ed42025bd8882",
+    "scripts/t09_estimadores.py": "278069993afd3361fdb310b09f9a244186e45213b142b20d5258d493cf395e51",
+    "scripts/t09_seleccion.py": "9309dc2142233b5fbe645ddc49cf5dc88fa5dc0e3eeb7206713c62f17e3e620e"
+  },
+  "fuentes_sha256": {
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
+    "registro/t07/calidad_ventanas.csv": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/clima_variables.csv": "1c5da038dfe3df979ac823e196ddd5d9989f833002c5845ecc9544c0d5f42a7b",
+    "registro/t07/clima_ventanas.csv": "57a77dbb4c9e396ad22f34e486e860dbc82877c1ed64adc02fc15135898a9a0d",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/controles.json": "1ed3e0ec3d25c6cc3827870be546961e53c99c71f58ef45dc6f6ec55d26176b5",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/inventario_fuentes.json": "27ca7935420522401fe8181aef673717e7c1d95585d7b65924650a09c32a86a8",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07_fichas/fichas_atributos.csv": "1e5fda719728a026dbfef19ef9d1cfec1ff26d35c40eeecbf0fa224488ad8483",
+    "registro/t07_fichas/manifest.json": "5587ddbae3524860ec5c1775aecedaec614e37a5d8a02389bf521c37e5283478",
+    "registro/t07_fichas/pendientes_documentales.csv": "b4a093950bc68e949bf7128a16a8a856becd747ba5ca761b872cb27faa77b64b",
+    "registro/t03/activacion_respaldos.csv": "1b43bc3d80c74ca9d8fc2bf87db4e8a81f3c8de2b0c818c9279f45b477c9fb9a",
+    "registro/t03/comparacion_emparejada.csv": "02070227c4d71041ed02f2630c237c545b217676e9e4d416cd1f6497441faec4",
+    "registro/t03/metricas_por_municipio.csv": "98a77cd18cd69b726e6bca62c42653db743208eb73772c86719f42f32f2b6634",
+    "registro/t03/metricas_referencias.csv": "7a95246fa3c01e9cc73a88f29e347f4c0e44064357cbc415b3152e4771b22367",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/predicciones_59_referencias.csv": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56",
+    "registro/t03/predicciones_oof_referencias_media_global.csv": "d7853475e4db83414a5a5503566ee75f992f9c7ce7ad3288d1f87d89f2ddf480",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_global.csv": "3271cefc140095375f9ec0c73a727286dccc7e9df451f8f64fd79f15325c5dc4",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "registro/t03/predicciones_oof_referencias_mediana_global.csv": "b1bb1cb702cf0f4ba79e2b6e50d91c4705170d4d82411c0f2e252dff9c98f82f",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_global.csv": "9f1519de9574305804581e16518b7ba8a7188342aace13465d0735ddfef4d5bb",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+    "registro/t03/predicciones_oof_referencias_mediana_mun_contraida_grupo.csv": "b0681b7980b8c128800ade1e590afabdba5475da30d5b47e27316cbaf68520f5",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/soporte_resumen.csv": "4f781dfa98ccac888509e56cec9cddd04ff8d639977ef62605e4897ca8135052",
+    "data/raw/DataSet.zip": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+    "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
+    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd"
+  },
+  "entrega_compacta": {
+    "oof_compartidas": 6072,
+    "oof_ventanas_fijas": "data/processed/t09/evaluacion_20261012_docker_1/predicciones_oof.csv",
+    "detalle": "Regenerable por scripts/t09_evaluar.py; local, ignorado porGit"
+  },
+  "limitaciones": [
+    "una_campania_etiquetada",
+    "pocos_bloques_espaciales",
+    "dependencia_entre_celdas_vecinas_no_eliminada",
+    "exploracion_previa_con_estas_etiquetas",
+    "disponibilidad_historica_edicion_FIRA_no_confirmada",
+    "intervalos_secundarios_nominales_no_individuales",
+    "politica_interna_B_C_extension_T09_no_unificada_con_otros_frentes"
+  ],
+  "salidas_compartidas_sha256": {
+    "aplicabilidad_59.csv": "834e3d70d34c60dd10fb466998d5fa1de300c27585a1e49b0d98c37c29dd3c7d",
+    "coeficientes.csv": "5a589cf425eceb59b5daa8e3636eda8e4da145a4763b2ec25fd6483e99511bcc",
+    "comparaciones_emparejadas.csv": "cc96d156d164f141b0cee2f806bb69c90096f5994809ceebc89c5d23d3ed31aa",
+    "desgloses_resumen.csv": "a4935ff1dc7c05c62141c75fd7ec9caa0c2cc85073d6e296280253e5e5213ed0",
+    "diccionario_reportes.csv": "138a664877c7bd2f25fc2929c93d2dd4ffec1389b73fddd98171e72c9d9d261e",
+    "diferencias_por_parcela.csv": "a5471ba006a581c5a2199940ac595dce80caa055f629ca2c05263b3336e8f46d",
+    "figuras/01_mae_externo.png": "cd1ae5fa5291309a4c8e7623ff400c6d2b64602cdf2d50f4019b0ead0042739c",
+    "figuras/01_mae_externo.svg": "696acd05347885b6045806ffe23a81865edfc5cfde7f0732a3557aae718c29c6",
+    "figuras/02_diferencia_mae_celdas.png": "09f0cb9ae239d12c734fa6cc9f974447a522351e6b53c6a9134a1b7e5654f660",
+    "figuras/02_diferencia_mae_celdas.svg": "78bfa459e33a7ff692e5b0b70a83f5cfa99bddcbcaf8911ecf61f9c16f5b1de5",
+    "figuras/03_seleccion_interna.png": "db7131261c58e0cbac7d2d20db5d4370c7d32ce10102ce53f0c9f87f15e61395",
+    "figuras/03_seleccion_interna.svg": "689a456abed29dcf27be10a79ee6c4532e95ba7b66938b8b9340f999a5b814c5",
+    "figuras/manifest_figuras.json": "576f903b63ad4af5d8be2fe59f4caf89a312b2810c2db8ba36faef8ed1c2f8c6",
+    "figuras/revision_visual.json": "7ea3a68706c414480a4eda8cd40e1d088feba93cc54ab354aa7d1d7c14346ebd",
+    "metricas_por_repeticion.csv": "589a6a2ffadf697c6abb7f3050e03a5f07df9f25183b93981a1e23653ae945c5",
+    "metricas_resumen.csv": "b19292afefeb221fc942e0822e982ef00729d70e0db75e2d909890c1a9cd8be4",
+    "predicciones_oof.csv": "8a55e979f17b2670ba566414c7f02569f9e1c7dab4179e853114fbc313191ae9",
+    "puntuaciones_internas.csv": "9f52ad4e28eb7adbeb4c53f766785be1ee4611b99cec6f6d0378042632b196c0",
+    "seleccion_interna.csv": "8d0abbe1ae4044f114901bb8a020516b824c3b9e40dd0cbe095822704b271132",
+    "sensibilidad_orden.csv": "5599cba651925c47e2117b65df65157c9644e351d7504caffa22e7f6d3dc45ab",
+    "sensibilidad_resumen.csv": "4ee2fecfd355f49fa59df1ff740565f9bb7c7f172412593971f5551572b3ed40"
+  },
+  "diccionario_filas": 207,
+  "fuentes_protegidas_intactas": true,
+  "docker_detenido": true,
+  "codigo_verificadores_sha256": {
+    "scripts/t09_verificar.py": "cbefe10b03dfdda10626ef8b22e8a2465469620df499a11920517a94fc5b0ea9",
+    "scripts/t09_verificar_matrices.py": "216a94bd04f86f0bd33f44322e68c4b09182d1261dff301d16d81d30548f496c",
+    "scripts/t09_figuras.py": "0cd89f69ee2d56f9cd5bf2751dc8463a1520bf88ae63ec51c06faf6c4ab28138"
+  },
+  "configuracion_docker": {
+    "commit": "87467c7d9833474ff19753d87390efe88cbea82e",
+    "rama_origen": "feature/configracion-docker",
+    "incorporada_en_esta_rama": false,
+    "imagen_etiqueta_local": "agrocebada-diagnostico-comun:amd64",
+    "archivos_sha256": {
+      "Dockerfile": "fa12707e735c0e2c52c2894ebf237cf5e81ed3e2984b7a4a0ba607e841038485",
+      "requirements.txt": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
+      "scripts/verificar_entorno.py": "36b66227900e85c31b917677c5df0ec6271f1d6bf5ba6fcca305ed6daad2d52d"
+    },
+    "nota": "La imagen usada queda identificada; reconstruir desde la misma configuración no garantiza el mismo ID de imagen porque las capas de construcción pueden cambiar."
+  }
+}

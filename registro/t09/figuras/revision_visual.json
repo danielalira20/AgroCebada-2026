@@ -1,0 +1,22 @@
+{
+  "estado": "aprobado",
+  "fecha": "2026-10-12",
+  "revision": "inspeccion_visual_de_los_tres_PNG_canonicos_por_Codex",
+  "figuras_png_sha256": {
+    "01_mae_externo.png": "cd1ae5fa5291309a4c8e7623ff400c6d2b64602cdf2d50f4019b0ead0042739c",
+    "02_diferencia_mae_celdas.png": "09f0cb9ae239d12c734fa6cc9f974447a522351e6b53c6a9134a1b7e5654f660",
+    "03_seleccion_interna.png": "db7131261c58e0cbac7d2d20db5d4370c7d32ce10102ce53f0c9f87f15e61395"
+  },
+  "fuente": "Dockerlinuxamd64_evaluacion_20261012_docker_1",
+  "verificaciones": [
+    "sin_solapamientos_ni_recortes",
+    "MAE_eje_inicia_en_cero",
+    "unidades_t_ha",
+    "C_diagnostico_no_decide59",
+    "Delta_por_parcela_no_resta_MAE_promedio_B",
+    "IC95_celdas_no_intervalos_individuales",
+    "frecuencias_no_importancia_causal"
+  ],
+  "revision_humana_Migue": "pendiente",
+  "modelos_ajustados_para_figuras": 0
+}

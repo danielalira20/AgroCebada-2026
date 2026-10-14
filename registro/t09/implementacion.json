@@ -1,0 +1,76 @@
+{
+  "resultado": "aprobado",
+  "fecha": "2026-10-12",
+  "fase": "estimadores_y_controles",
+  "rama": "t09-territorio-clima",
+  "base_dev": "cb4580701b2bf28588e56ce3d73e64fbf2b6a738",
+  "diseno_sha256": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+  "pruebas_mac": 299,
+  "pruebas_docker": 59,
+  "pruebas_nuevas_estimadores": 33,
+  "referencia_T08": {
+    "contextos": 50,
+    "predicciones": 1380,
+    "max_diferencia": 0.0,
+    "mascaras": {
+      "A": 675,
+      "B": 659
+    }
+  },
+  "independiente": {
+    "ajustes_por_entorno": 72,
+    "max_prediccion_mac": 8.570921750106208e-14,
+    "max_prediccion_docker": 7.771561172376096e-14,
+    "max_LOO": 1.7763568394002505e-15
+  },
+  "portabilidad": {
+    "docker_repetido_identico": true,
+    "coef_mac_docker_max": 4.524158825347513e-15,
+    "rtol": 1e-10,
+    "atol": 1e-12
+  },
+  "fuentes_protegidas": 401,
+  "fuentes_intactas": true,
+  "codigo_sha256": {
+    "scripts/t09_entradas.py": "6c951024aec181557ce9d67c7472af3eb6889a9a28f15b3e699ed42025bd8882",
+    "scripts/t09_estimadores.py": "278069993afd3361fdb310b09f9a244186e45213b142b20d5258d493cf395e51",
+    "scripts/t09_seleccion.py": "9309dc2142233b5fbe645ddc49cf5dc88fa5dc0e3eeb7206713c62f17e3e620e",
+    "tests/test_t09_estimadores.py": "463f046503a38707716fd3ec2f3c0e3df44d544adbd75504b2ac544d4b2c3ef1"
+  },
+  "entorno_docker": {
+    "plataforma": "Linux",
+    "arquitectura": "x86_64",
+    "python": "3.12.15",
+    "numpy": "2.2.6",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1"
+  },
+  "evaluacion_completa": false,
+  "ganador_elegido": false,
+  "predicciones_finales_59": false,
+  "revision_humana": "pendiente",
+  "schema": "agrocebada_t09_componentes_v1",
+  "version": "T09-componentes-v1",
+  "estado": "componentes_verificados_revision_independiente_pendiente",
+  "responsable": "Dani",
+  "revisor": "Migue",
+  "diseño": "registro/t09/diseno.json",
+  "documentacion": "docs/t09_estimadores.md",
+  "fuentes_protegidas_intactas": true,
+  "modelo_ganador": null,
+  "metricas_predictivas_completas": null,
+  "cierre_t09": false,
+  "configuraciones_experimentos_oficiales": 24,
+  "experimentos_oficiales_ejecutados": false,
+  "arquitectura_mac": "arm64",
+  "docker_detenido": true,
+  "config_docker_jass": "87467c7d9833474ff19753d87390efe88cbea82e",
+  "imagen_docker_id": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "evidencia_local": "reports/t09_estimadores_20261012",
+  "fallos_resueltos": [
+    "estado_antiguo_tras_fit_fallido",
+    "mascaras_no_booleanas",
+    "reports_sin_espacio_temporal_en_prueba_Docker"
+  ]
+}

@@ -1,0 +1,208 @@
+archivo,columna,significado,unidad,interpretacion_vacio
+aplicabilidad_59.csv,id_parcela,Identificador de la parcela; nunca predictor.,identificador,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,municipio,Municipio original; categoría territorial.,categoria,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,n_etiquetas_municipio,Etiquetas disponibles del municipio entre las138 actuales.,parcelas,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,fuente_referencia_prevista,"Fuente aplicable por presencia de municipio/grupo, sin ajustar modelo final.",categoria,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,soporte_municipal_escaso,"Menos4etiquetas municipales; descriptivo, no activación automática de respaldo.",booleano,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,fuera_rango_global,Lista de columnas fuera del mínimo/máximo de138entradas; vacío=ninguna.,lista,Ninguna columna fuera de los rangos comprobados; no garantía de soporte conjunto.
+aplicabilidad_59.csv,fuera_rango_municipio,Lista de columnas fuera del mínimo/máximo municipal; vacío=ninguna.,lista,Ninguna columna fuera de los rangos comprobados; no garantía de soporte conjunto.
+aplicabilidad_59.csv,clima_completo,Las seis entradas climáticas reales están presentes y son finitas.,booleano,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,modelo_ajustado,False: el diagnóstico59no ajusta estimadores finales.,booleano,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,significado,Límite de interpretación del diagnóstico de entradas.,texto,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,perfil_observado_abr_oct,Existe combinación exactamente igual de tres entradas entre138; False no implica imposibilidad.,booleano,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,distancia_clima_estandarizada_min_abr_oct,Distancia euclídea mínima escalada con desviación de138entradas; sin umbral calibrado ni probabilidad.,adimensional,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,id_perfil_mas_proximo_abr_oct,ID con menor distancia climática estandarizada; no necesariamente vecino geográfico.,identificador,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,perfil_observado_jun_oct,Existe combinación exactamente igual de tres entradas entre138; False no implica imposibilidad.,booleano,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,distancia_clima_estandarizada_min_jun_oct,Distancia euclídea mínima escalada con desviación de138entradas; sin umbral calibrado ni probabilidad.,adimensional,No previsto; un vacío requiere revisión del contexto.
+aplicabilidad_59.csv,id_perfil_mas_proximo_jun_oct,ID con menor distancia climática estandarizada; no necesariamente vecino geográfico.,identificador,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,repeticion,Repetición externa1..5 A/B; Cusa1. Reutilizan parcelas.,indice,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,particion,Partición externa T03 A/B0..4; Cmunicipio ordenado0..8.,indice,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,ventana,Ventana climática elegida usando sólo entrenamiento.,periodo,T no utiliza ventana ni regularización.
+coeficientes.csv,lambda_reg,IntensidadL2 normalizada; una de0.01/0.1/1/10.,adimensional,T no utiliza ventana ni regularización.
+coeficientes.csv,alpha,Penalización efectiva del Ridge: n_entrenamiento × lambda_reg.,adimensional,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,n_entrenamiento,Número de etiquetas del entrenamiento correspondiente.,parcelas,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,columna,Variableclimática cuyo coeficiente se registra.,nombre,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,coef_estandarizado,Coeficiente para variable escalada; asociación predictiva no causal.,t/ha por unidad estandarizada,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,coef_fisico,Coeficiente estandarizado dividido por escala; no efecto de intervención.,t/ha por mm o grado Celsius segúncolumna,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,media_escalado,Media de variableclimática en su entrenamiento.,unidad de columna,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,escala,Desviación poblacional del entrenamiento; 1 en columna constante.,unidad de columna,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,constante,Columna climática de varianza0 en entrenamiento.,booleano,No previsto; un vacío requiere revisión del contexto.
+coeficientes.csv,interpretacion,Límite descriptivo de coeficientes/asociaciones.,texto,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,candidato,Procedimiento cuyo error se compara; alias de procedimiento en OOF.,categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,frente_a,Procedimiento de referencia del contraste emparejado.,categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,contraste,principal TC/T o secundario; las ventanas fijas son diagnósticas.,categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,n_predicciones,Número de filas elegibles; repeticiones no crean ejemplos nuevos.,filas,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,n_parcelas,IDs únicos; en resumen es unión de repeticiones elegibles.,parcelas,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,n_repeticiones,Número de repeticiones agregadas.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,dMAE,Media porID de diferencias de error absoluto medias en repeticiones elegibles; negativo mejora.,t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,dMAE_media_rep,Media de diferenciasMAE por repetición; puede diferir de dMAEenB.,t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,dRMSE,Media por repetición de RMSEcandidato menos RMSEreferencia.,t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,reps_que_mejoran,Repeticiones con diferenciaMAE negativa.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,parcelas_mejoran,IDs con diferencia media de errorabsoluto negativa.,parcelas,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,parcelas_empeoran,IDs con diferencia media de errorabsoluto positiva.,parcelas,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,parcelas_empatan,IDs con diferencia media de errorabsoluto cero exacto.,parcelas,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,IC95_celdas_inf,Percentil2.5 de diferenciasMAE remuestreando celdas; no intervaloindividual.,t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,IC95_celdas_sup,Percentil97.5 de diferenciasMAE remuestreando celdas; no intervaloindividual.,t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,IC95_parcelas_inf,"Percentil2.5 remuestreando IDs independientes, sólo referencia; ignora cercanía.",t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,IC95_parcelas_sup,"Percentil97.5 remuestreando IDs independientes, sólo referencia; ignora cercanía.",t/ha,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,n_celdas,Número de celdas distintas en el contraste evaluado.,celdas,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,condicion_dMAE,"ΔMAE <= −0.01; valor numérico, no promoción si no_aplica.",booleano,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,condicion_IC95,Límite superiorIC95celdas <0; valor numérico.,booleano,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,condicion_repeticiones,Al menos4repeticiones mejoran; sólo A es promoción.,booleano,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,condicion_dRMSE,Empeoramiento medioRMSE <=0.01.,booleano,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,aplica_regla_promocion,Sólo A/sin_respaldo/seleccionada frenteT; no eligeT16.,booleano,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,cumple_regla_promocion,Conjunción de cuatro condiciones cuandoaplica; vacío si noaplica.,booleano,Noaplica a esa población/escenario/variante/contraste.
+comparaciones_emparejadas.csv,estado_promocion,cumple/no_cumple/no_aplica; no constituye revisiónaprobada.,categoria,No previsto; un vacío requiere revisión del contexto.
+comparaciones_emparejadas.csv,intervalo,Principal predeclarado o nominal secundario no simultáneo.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,sensibilidad,principal o sin_alertas_contorno; conserva mismos ajustes.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,desglose,Criterio: municipio/grupo/contorno/tamaño/escalón/vecindad.,nombre,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,categoria,Valor del grupo dentro del desglose.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,MAE,Error absoluto medio; resumen promedia primero métricas por repetición. En puntuacioneses interno.,t/ha,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,MAE_sd_rep,Desviación poblacional entre métricasMAE de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,RMSE,Raíz de media de errores cuadrados; resumen primero por repetición.,t/ha,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,RMSE_sd_rep,Desviación poblacional entre métricasRMSE de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,sesgo,Media de prediccion menos real; signo positivo sobreestima.,t/ha,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,sesgo_sd_rep,Desviación poblacional entre métricassesgo de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,R2,Coeficiente de determinación; puede ser negativo. Vacío si n<2 o etiquetasconstantes.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+desgloses_resumen.csv,R2_sd_rep,Desviación poblacional entre métricasR2 de repeticiones; no IC.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+desgloses_resumen.csv,n_repeticiones,Número de repeticiones agregadas.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,n_predicciones,Número de filas elegibles; repeticiones no crean ejemplos nuevos.,filas,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,n_parcelas,IDs únicos; en resumen es unión de repeticiones elegibles.,parcelas,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,n_parcelas_min_rep,Menor número de IDs en una repetición del grupo.,parcelas,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,n_R2_definidas,Cuántas repeticiones tienen R² definido en el grupo.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,estado_R2,Razón de definición/indefinición deR²; resumen puede tener definiciónparcial.,categoria,No previsto; un vacío requiere revisión del contexto.
+desgloses_resumen.csv,poco_informativo,Marca n de parcelas únicas menor5; limita interpretación del desglose.,booleano,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,candidato,Procedimiento cuyo error se compara; alias de procedimiento en OOF.,categoria,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,frente_a,Procedimiento de referencia del contraste emparejado.,categoria,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,id_parcela,Identificador de la parcela; nunca predictor.,identificador,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,celda_chirps,Celda del centroide usada por T03 y bootstrap; no predictorCL.,identificador,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,d_error_absoluto,"Diferencia de error absoluto del ID, promediada en sus repeticiones elegibles.",t/ha,No previsto; un vacío requiere revisión del contexto.
+diferencias_por_parcela.csv,n_repeticiones_elegibles,Número de repeticiones que contribuyen al promedio de eseID.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,repeticion,Repetición externa1..5 A/B; Cusa1. Reutilizan parcelas.,indice,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,n_predicciones,Número de filas elegibles; repeticiones no crean ejemplos nuevos.,filas,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,n_parcelas,IDs únicos; en resumen es unión de repeticiones elegibles.,parcelas,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,sensibilidad,principal o sin_alertas_contorno; conserva mismos ajustes.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,MAE,Error absoluto medio; resumen promedia primero métricas por repetición. En puntuacioneses interno.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,RMSE,Raíz de media de errores cuadrados; resumen primero por repetición.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,sesgo,Media de prediccion menos real; signo positivo sobreestima.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,R2,Coeficiente de determinación; puede ser negativo. Vacío si n<2 o etiquetasconstantes.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+metricas_por_repeticion.csv,estado_R2,Razón de definición/indefinición deR²; resumen puede tener definiciónparcial.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_por_repeticion.csv,n_parcelas_union_reps,IDs únicos de la unión de repeticiones en ese grupo/población.,parcelas,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,sensibilidad,principal o sin_alertas_contorno; conserva mismos ajustes.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,MAE,Error absoluto medio; resumen promedia primero métricas por repetición. En puntuacioneses interno.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,MAE_sd_rep,Desviación poblacional entre métricasMAE de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,RMSE,Raíz de media de errores cuadrados; resumen primero por repetición.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,RMSE_sd_rep,Desviación poblacional entre métricasRMSE de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,sesgo,Media de prediccion menos real; signo positivo sobreestima.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,sesgo_sd_rep,Desviación poblacional entre métricassesgo de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,R2,Coeficiente de determinación; puede ser negativo. Vacío si n<2 o etiquetasconstantes.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+metricas_resumen.csv,R2_sd_rep,Desviación poblacional entre métricasR2 de repeticiones; no IC.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+metricas_resumen.csv,n_repeticiones,Número de repeticiones agregadas.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,n_predicciones,Número de filas elegibles; repeticiones no crean ejemplos nuevos.,filas,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,n_parcelas,IDs únicos; en resumen es unión de repeticiones elegibles.,parcelas,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,n_parcelas_min_rep,Menor número de IDs en una repetición del grupo.,parcelas,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,n_R2_definidas,Cuántas repeticiones tienen R² definido en el grupo.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,estado_R2,Razón de definición/indefinición deR²; resumen puede tener definiciónparcial.,categoria,No previsto; un vacío requiere revisión del contexto.
+metricas_resumen.csv,poco_informativo,Marca n de parcelas únicas menor5; limita interpretación del desglose.,booleano,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,id_parcela,Identificador de la parcela; nunca predictor.,identificador,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,municipio,Municipio original; categoría territorial.,categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,cultivo_origen,"Cebada/CEBADA como grupo de registro, no variedad.",categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,celda_chirps,Celda del centroide usada por T03 y bootstrap; no predictorCL.,identificador,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,prediccion,Estimación fuera del entrenamiento para ese contexto.,t/ha,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,referencia,Base territorialT/TC/R o intercepto globalCL aprendido con entrenamiento.,t/ha,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,correccion,"Contribución climática al valor, centrada según procedimiento; T=0.",t/ha,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,fuente,Origen del intercepto/base del procedimiento: municipio/grupo/global.,categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,real,Rendimiento registrado de la parcela etiquetada. Nunca se conoce para59.,t/ha,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,repeticion,Repetición externa1..5 A/B; Cusa1. Reutilizan parcelas.,indice,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,particion,Partición externa T03 A/B0..4; Cmunicipio ordenado0..8.,indice,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,ventana,Ventana climática elegida usando sólo entrenamiento.,periodo,T no utiliza ventana ni regularización.
+predicciones_oof.csv,lambda_reg,IntensidadL2 normalizada; una de0.01/0.1/1/10.,adimensional,T no utiliza ventana ni regularización.
+predicciones_oof.csv,n_entrenamiento,Número de etiquetas del entrenamiento correspondiente.,parcelas,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,fuente_referencia,Fuente de T08 común a todos; define la elegibilidadsin_respaldo.,categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,sin_respaldo,Booleano: municipio tiene etiquetas en entrenamiento externo; no lo decidefuenteCL.,booleano,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,error,"prediccion menos real, signo positivo sobreestima.",t/ha,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,error_absoluto,Valor absoluto del error individual.,t/ha,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,error_cuadrado,Cuadrado del error individual.,(t/ha)^2,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,ID_POLIGONO,Alias de id_parcela para compatibilidad del contrato T03.,identificador,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,candidato,Procedimiento cuyo error se compara; alias de procedimiento en OOF.,categoria,No previsto; un vacío requiere revisión del contexto.
+predicciones_oof.csv,version,Versión del procedimiento/evaluación.,version,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,ventana,Ventana climática elegida usando sólo entrenamiento.,periodo,T no utiliza ventana ni regularización.
+puntuaciones_internas.csv,lambda_reg,IntensidadL2 normalizada; una de0.01/0.1/1/10.,adimensional,T no utiliza ventana ni regularización.
+puntuaciones_internas.csv,MAE,Error absoluto medio; resumen promedia primero métricas por repetición. En puntuacioneses interno.,t/ha,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,MAE_todas,"MAEinterno sobre todas las validaciones; diagnostica respaldo, no reemplaza máscara elegida.",t/ha,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,n_elegibles,Validaciones internas puntuadas por máscara de soporte; C todas.,filas,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,n_validacion,Total de filas de validaciones internas concatenadas.,filas,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,n_ajustes,Ajustes internos de esa opción:4; no filas de observación.,ajustes,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,repeticion,Repetición externa1..5 A/B; Cusa1. Reutilizan parcelas.,indice,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,particion,Partición externa T03 A/B0..4; Cmunicipio ordenado0..8.,indice,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,seleccionada,Opción que ganó internamente entre ocho dentro de ese contexto/procedimiento.,booleano,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,seleccionada_en_ventana,Opciónλ que ganó internamente dentro de su ventana fija.,booleano,No previsto; un vacío requiere revisión del contexto.
+puntuaciones_internas.csv,sha_ids_entrenamiento,HuellaSHA256 de IDs ordenados de entrenamiento; no predictor.,huella,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,repeticion,Repetición externa1..5 A/B; Cusa1. Reutilizan parcelas.,indice,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,particion,Partición externa T03 A/B0..4; Cmunicipio ordenado0..8.,indice,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,ventana,Ventana climática elegida usando sólo entrenamiento.,periodo,T no utiliza ventana ni regularización.
+seleccion_interna.csv,lambda_reg,IntensidadL2 normalizada; una de0.01/0.1/1/10.,adimensional,T no utiliza ventana ni regularización.
+seleccion_interna.csv,alpha,Penalización efectiva del Ridge: n_entrenamiento × lambda_reg.,adimensional,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,MAE_interno,"MAE de validación interna de la configuración elegida, no error externo.",t/ha,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,n_elegibles_internos,Validaciones internas elegibles de la configuración elegida.,filas,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,n_entrenamiento,Número de etiquetas del entrenamiento correspondiente.,parcelas,No previsto; un vacío requiere revisión del contexto.
+seleccion_interna.csv,sha_ids_entrenamiento,HuellaSHA256 de IDs ordenados de entrenamiento; no predictor.,huella,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,orden_principal,Procedimientos ordenados porMAE antes de sensibilidad; desempate sólo gráfico.,lista,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,orden_sin_alertas,Procedimientos ordenados porMAE tras filtrar métricas; no decisiónfinal.,lista,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,mantiene_orden,Coincide el orden de MAE principal con sensibilidad.,booleano,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,uso,Indica que una sensibilidad no decide promoción.,texto,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_orden.csv,reentrenado,False: sensibilidad usa las mismas predicciones.,booleano,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,escenario,A principal; B separación por celda; C municipio excluido.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,variante,"seleccionada internamente, o abr_oct/jun_oct como diagnóstico fijo.",categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,procedimiento,T referencia; CL clima; TC territorio+clima; R corrección climática.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,poblacion,todas o sin_respaldo; C sólo todas.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,sensibilidad,principal o sin_alertas_contorno; conserva mismos ajustes.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,MAE,Error absoluto medio; resumen promedia primero métricas por repetición. En puntuacioneses interno.,t/ha,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,MAE_sd_rep,Desviación poblacional entre métricasMAE de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,RMSE,Raíz de media de errores cuadrados; resumen primero por repetición.,t/ha,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,RMSE_sd_rep,Desviación poblacional entre métricasRMSE de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,sesgo,Media de prediccion menos real; signo positivo sobreestima.,t/ha,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,sesgo_sd_rep,Desviación poblacional entre métricassesgo de repeticiones; no IC.,t/ha,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,R2,Coeficiente de determinación; puede ser negativo. Vacío si n<2 o etiquetasconstantes.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+sensibilidad_resumen.csv,R2_sd_rep,Desviación poblacional entre métricasR2 de repeticiones; no IC.,adimensional,R² indefinido si n<2 o rendimiento constante; consultar estado_R2.
+sensibilidad_resumen.csv,n_repeticiones,Número de repeticiones agregadas.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,n_predicciones,Número de filas elegibles; repeticiones no crean ejemplos nuevos.,filas,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,n_parcelas,IDs únicos; en resumen es unión de repeticiones elegibles.,parcelas,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,n_parcelas_min_rep,Menor número de IDs en una repetición del grupo.,parcelas,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,n_R2_definidas,Cuántas repeticiones tienen R² definido en el grupo.,repeticiones,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,estado_R2,Razón de definición/indefinición deR²; resumen puede tener definiciónparcial.,categoria,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,poco_informativo,Marca n de parcelas únicas menor5; limita interpretación del desglose.,booleano,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,n_alertas_excluidas,"24etiquetas excluidas sólo de métricas de sensibilidad, nunca del ajuste.",parcelas,No previsto; un vacío requiere revisión del contexto.
+sensibilidad_resumen.csv,reentrenado,False: sensibilidad usa las mismas predicciones.,booleano,No previsto; un vacío requiere revisión del contexto.
