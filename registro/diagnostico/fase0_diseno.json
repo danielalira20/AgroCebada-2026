@@ -1,0 +1,145 @@
+{
+  "schema": "agrocebada_diagnostico_fase0_v1",
+  "fecha_registro": "2026-10-13",
+  "estado": "criterios_fijados_antes_de_ejecutar_fase0",
+  "responsable": "Dani",
+  "unidad": "parcela_campania_2025",
+  "n_etiquetadas": 138,
+  "n_reservadas": 59,
+  "fuente_plan": {
+    "document_id": "1G2-cyDyIHyaQsGjbdzdvvsU65rnc6Tc4SrnIZAoNynk",
+    "revision_id": "AHj4eMSFLmYEF7CYIvTbLALD8ve4wa8-06EpI7_LaFiYFnONCEQbNfexjFuh-mfzxisrOSmDarxg51VpNPnrm3xM3StGejRCOuycu4eOPN0",
+    "tab_id": "t.r7d5h4run1h6",
+    "url": "https://docs.google.com/document/d/1G2-cyDyIHyaQsGjbdzdvvsU65rnc6Tc4SrnIZAoNynk"
+  },
+  "antecedentes": {
+    "resultados_y_etiquetas_ya_explorados": true,
+    "analisis_ciego": false,
+    "procedimientos_historicos_no_equivalen_a_comun_v2": true
+  },
+  "referencia": {
+    "candidato": "media_mun__resp_grupo",
+    "version": "T08-v1",
+    "unidad": "t/ha",
+    "cascada": [
+      "municipio",
+      "grupo",
+      "global"
+    ]
+  },
+  "claves": [
+    "fuente",
+    "candidato",
+    "variante",
+    "escenario",
+    "repeticion",
+    "particion",
+    "id_parcela"
+  ],
+  "ranking_principal": {
+    "fase": "0.2_seleccion_previa_sin_interpretacion",
+    "fuente": "T08",
+    "escenario": "A",
+    "poblacion": "sin_respaldo",
+    "n_casos": 10,
+    "estadistico": "promedio_de_error_absoluto_por_parcela_en_registros_elegibles",
+    "desempate": "id_parcela_ascendente",
+    "excluir_reservadas": true,
+    "respaldo_separado": true,
+    "no_promediar_predicciones_antes_del_error": true
+  },
+  "controles": {
+    "n_por_caso": 1,
+    "municipio": "igual_obligatorio",
+    "pool": "etiquetadas_fuera_de_casos_principales",
+    "reutilizar": false,
+    "criterio_ordenado": [
+      "numero_de_discrepancias_en_contorno_categoria_angosta_y_ausencia_de_pendiente",
+      "diferencia_absoluta_log_area",
+      "diferencia_absoluta_pl_capturas_abr_oct",
+      "id_parcela"
+    ],
+    "sin_umbral_de_similitud_inventado": true,
+    "sin_seleccionar_por_error_o_rendimiento": true,
+    "si_no_hay_control": "dejar_ausente_y_declarar",
+    "descripcion": "Mejor control disponible según reglas, no equivalencia certificada."
+  },
+  "preguntas": [
+    {
+      "id": "Q01",
+      "pregunta": "¿Qué errores persisten entre repeticiones y escenarios?",
+      "evidencia": "138 parcelas, errores firmados/absolutos, A/B, fuentes de respaldo",
+      "fase_respuesta": "1"
+    },
+    {
+      "id": "Q02",
+      "pregunta": "¿Qué fallos comparten los procedimientos y qué depende del soporte municipal?",
+      "evidencia": "matriz de mismos IDs/contextos con método y versión preservados",
+      "fase_respuesta": "2"
+    },
+    {
+      "id": "Q03",
+      "pregunta": "¿Qué patrones de calidad coinciden con el error en el conjunto?",
+      "evidencia": "T02/T06/T07, contornos, escala, cobertura, controles comparables",
+      "fase_respuesta": "3",
+      "limite": "Asociación descriptiva no prueba causalidad"
+    },
+    {
+      "id": "Q04",
+      "pregunta": "¿Existe evidencia verificable de etiquetas o factores ausentes?",
+      "evidencia": "fuentes FIRA, unidad, redondeo, información de manejo/daños sólo si existe",
+      "fase_respuesta": "4"
+    },
+    {
+      "id": "Q05",
+      "pregunta": "¿En qué condiciones las 59 se parecen a las etiquetadas y qué limita el uso futuro?",
+      "evidencia": "municipio, perfil de entradas, soporte, calidad, fechas y disponibilidad",
+      "fase_respuesta": "5",
+      "limite": "59 sin etiqueta; una campaña no valida años futuros"
+    }
+  ],
+  "tiempo": {
+    "corte_observacional": "2025-10-31",
+    "instantanea_2025": "reconstruccion_retrospectiva",
+    "fecha_publicacion_no_se_infiere_de_fecha_observacion": true,
+    "disponibilidad_historica_fira": "no_documentada",
+    "pronostico_operacional": "pendiente_evidencia_de_publicacion_y_regla_de_uso",
+    "campania_futura": "requiere_validacion_temporal_con_nuevas_etiquetas",
+    "no_mover_corte_para_mejorar_MAE": true
+  },
+  "salidas_esperadas_posteriores": [
+    "tabla_138_y_ranking_con_respaldos_separados",
+    "matriz_de_procedimientos",
+    "fichas_mapas_curvas_calidad",
+    "tabla_aplicabilidad_59",
+    "registro_hallazgos_intervencion_y_limites"
+  ],
+  "barreras": {
+    "sin_reentrenamiento": true,
+    "sin_nuevas_predicciones_finales_59": true,
+    "sin_modelo_ganador_T16": true,
+    "sin_eliminar_parcelas_por_error": true,
+    "sin_cambios_en_codigos_ajenos": true,
+    "sin_push_sin_nueva_autorizacion": true,
+    "sin_fase1_interpretacion": true
+  },
+  "tolerancias": {
+    "prediccion_referencia_abs": 1e-9,
+    "etiqueta_abs": 0,
+    "valor_de_area_origen_abs": 0
+  },
+  "cierre": "Inventario, claves/etiquetas/referencia/máscaras verificados; reglas/casos/controles y límites temporales guardados; evidencia reproducible; revisión humana separada del cierre técnico",
+  "skills": [
+    "exploratory-data-analysis",
+    "scientific-critical-thinking",
+    "scikit-learn"
+  ],
+  "referencia_skills": {
+    "autores": "Kassis, T.; Agarwal, V.; He, Y.; Patel, D.; Brueckner, A. M.",
+    "titulo": "Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents",
+    "anio": 2026,
+    "version_consultada": "v2",
+    "doi": "https://doi.org/10.48550/arXiv.2609.00065",
+    "fecha_consulta": "2026-10-13"
+  }
+}
