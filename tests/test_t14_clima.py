@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from t14_clima import UNIDADES, validar_clima  # noqa: E402
+from t14_clima import UNIDADES, centros, restar_centro, validar_clima, validar_particiones  # noqa: E402
 
 
 def tabla():
@@ -26,7 +26,7 @@ class ContratoClima(unittest.TestCase):
         self.assertEqual(len(validar_clima(tabla())), 2 * 3 * 7)
 
     def falla(self, c):
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             validar_clima(c)
 
     def test_clave_repetida(self):
@@ -66,6 +66,52 @@ class ContratoClima(unittest.TestCase):
         c = tabla()
         c.loc[(c.periodo == "2025-08") & (c.variable == "Tmin"), "media_ponderada"] = float("nan")
         self.falla(c)
+
+
+def particiones_y_datos():
+    ids = [f"AGC_{i:03d}" for i in range(1, 9)]
+    d = pd.DataFrame({"CONJUNTO": ["ENTRENAMIENTO"] * 6 + ["PREDICCION"] * 2}, index=ids)
+    part = pd.DataFrame([dict(ID_POLIGONO=i, repeticion=r, particion_principal=k % 2, particion_espacial=k % 3,
+                              celda_chirps=f"c{k % 3}") for r in (1, 2) for k, i in enumerate(ids[:6])])
+    return part, d
+
+
+class ContratoParticiones(unittest.TestCase):
+    def test_correctas_pasan(self):
+        part, d = particiones_y_datos()
+        self.assertEqual(len(validar_particiones(part, d)), 6)
+
+    def test_id_repetido(self):
+        part, d = particiones_y_datos()
+        with self.assertRaises(ValueError):
+            validar_particiones(pd.concat([part, part.iloc[[0]]]), d)
+
+    def test_reservada_en_particiones(self):
+        part, d = particiones_y_datos()
+        extra = part.iloc[[0]].assign(ID_POLIGONO="AGC_007")
+        with self.assertRaises(ValueError):
+            validar_particiones(pd.concat([part, extra]), d)
+
+    def test_celda_ausente(self):
+        part, d = particiones_y_datos()
+        part.loc[0, "celda_chirps"] = None
+        with self.assertRaises(ValueError):
+            validar_particiones(part, d)
+
+    def test_celda_inconsistente(self):
+        part, d = particiones_y_datos()
+        part.loc[part.index[-1], "celda_chirps"] = "otra"
+        with self.assertRaises(ValueError):
+            validar_particiones(part, d)
+
+
+class Centrado(unittest.TestCase):
+    def test_media_cero_por_municipio_y_respaldo(self):
+        tr = pd.DataFrame({"municipio": ["a", "a", "b", "b"], "grupo_registro": ["g"] * 4, "x": [1.0, 3.0, 10.0, 14.0]})
+        c = centros(tr, ["x"])
+        self.assertTrue((restar_centro(tr, ["x"], c).groupby(tr.municipio).x.mean().abs() < 1e-12).all())
+        nuevo = pd.DataFrame({"municipio": ["z"], "grupo_registro": ["g"], "x": [7.0]})
+        self.assertAlmostEqual(restar_centro(nuevo, ["x"], c).x.iloc[0], 7.0 - 7.0)   # centro del grupo = 7
 
 
 if __name__ == "__main__":

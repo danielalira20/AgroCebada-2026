@@ -10,7 +10,8 @@ Uso (desde la raíz del repo):
 Protocolo (T03 y D019):
 - Referencia: media_mun__resp_grupo (media del municipio; respaldo por grupo de registro y luego global).
 - Candidatos definidos antes de ver resultados: la referencia sola y la referencia + una corrección Ridge
-  del residuo con lluvia, Tmin, Tmax o las tres. El residuo de cada fila de entrenamiento usa una
+  del residuo con lluvia, Tmin, Tmax o las tres. v3 añade los mismos 4 con las variables centradas por
+  municipio (H3, revisión de Dani): 8 procedimientos en total. El residuo de cada fila de entrenamiento usa una
   referencia calculada dejando fuera esa fila (T03 §5).
 - α de Ridge ∈ ALFAS (6 configuraciones ≤ 8), elegido con 4 particiones internas estratificadas por
   municipio (estrato «otros» si hay < 4 etiquetas). Escalado ajustado dentro de cada entrenamiento.
@@ -28,12 +29,18 @@ Genera en --salida:
     metricas_t14.csv                      MAE, RMSE, sesgo y R² por candidato y escenario
     comparacion_emparejada_t14.csv        ΔMAE frente a la referencia, IC95 y regla T03
     alfas_t14.csv                         α elegido en cada ajuste (una fila por ajuste)
-    desglose_errores_t14.csv              MAE por municipio, grupo, calidad de contorno y vecinas (T03 §4 bis)
+    desglose_errores_t14.csv              MAE por municipio, grupo, precisión de la etiqueta, calidad de contorno
+                                          y vecinas (T03 §4 bis)
+    sensibilidad_sin_dudosas_t14.csv      la comparación emparejada sin las parcelas con alerta de contorno
+
+La carpeta --salida debe ser nueva o estar vacía. Todo se escribe primero en una carpeta temporal y sólo se
+mueve a --salida si la corrida termina bien.
     colinealidad_t14.csv                  correlaciones entre las 6 variables y VIF
     escala_compartida_t14.csv             cuántos valores climáticos distintos hay realmente
     predicciones_59_t14.csv               ajuste con las 138 etiquetas para las 59 reservadas
 """
 import argparse
+import shutil
 import sys
 import warnings
 from pathlib import Path
@@ -48,7 +55,7 @@ from t08_referencias import cargar, metricas, referencia  # noqa: E402
 
 warnings.filterwarnings("ignore", message="The least populated class")
 
-VERSION = "T14-v2"
+VERSION = "T14-v3"
 BASE = "referencia"
 ALFAS = [0.1, 1, 10, 100, 1000, 10000]
 N_INTERNAS = 4
@@ -72,27 +79,33 @@ COLUMNAS = ["id_parcela", "periodo", "variable", "unidad", "media_ponderada", "e
 REF = referencia("media", "grupo")
 
 
+def exigir(condicion, mensaje):
+    """Como assert, pero no se desactiva con `python -O` (revisión de Dani)."""
+    if not condicion:
+        raise ValueError(mensaje)
+
+
 # ---------------------------------------------------------------- variables
 def validar_clima(c: pd.DataFrame) -> pd.DataFrame:
     """Contrato de entrada de T04. Cualquier inconsistencia detiene el script (revisión de Diego)."""
     faltan = set(COLUMNAS) - set(c.columns)
-    assert not faltan, f"faltan columnas en la tabla de clima: {sorted(faltan)}"
-    assert not c.duplicated(["id_parcela", "periodo", "variable"]).any(), "claves (id, periodo, variable) repetidas"
-    assert set(c.variable) == set(UNIDADES), f"variables inesperadas: {sorted(set(c.variable))}"
+    exigir(not faltan, f"faltan columnas en la tabla de clima: {sorted(faltan)}")
+    exigir(not c.duplicated(["id_parcela", "periodo", "variable"]).any(), "claves (id, periodo, variable) repetidas")
+    exigir(set(c.variable) == set(UNIDADES), f"variables inesperadas: {sorted(set(c.variable))}")
     mal = c[c.unidad != c.variable.map(UNIDADES)]
-    assert mal.empty, f"unidades incorrectas: {mal[['variable', 'unidad']].drop_duplicates().values.tolist()}"
-    assert set(c.estado) <= ESTADOS, f"estados no permitidos: {sorted(set(c.estado) - ESTADOS)}"
-    assert c.cobertura_valida.between(0, 1).all(), "cobertura_valida fuera de [0, 1]"
+    exigir(mal.empty, f"unidades incorrectas: {mal[['variable', 'unidad']].drop_duplicates().values.tolist()}")
+    exigir(set(c.estado) <= ESTADOS, f"estados no permitidos: {sorted(set(c.estado) - ESTADOS)}")
+    exigir(c.cobertura_valida.between(0, 1).all(), "cobertura_valida fuera de [0, 1]")
     corte = c.posterior_al_corte.astype(str).str.lower()
-    assert corte.isin(["true", "false"]).all(), "posterior_al_corte con valores distintos de True/False"
-    assert c.periodo.str.fullmatch(r"\d{4}-\d{2}").all(), "periodo con formato distinto de AAAA-MM"
+    exigir(corte.isin(["true", "false"]).all(), "posterior_al_corte con valores distintos de True/False")
+    exigir(c.periodo.str.fullmatch(r"\d{4}-\d{2}").all(), "periodo con formato distinto de AAAA-MM")
     fin_mes = pd.to_datetime(c.periodo + "-01") + pd.offsets.MonthEnd(0)
-    assert (corte.eq("true") == (fin_mes > pd.Timestamp("2025-10-31"))).all(), "posterior_al_corte no coincide con el corte"
+    exigir((corte.eq("true") == (fin_mes > pd.Timestamp("2025-10-31"))).all(), "posterior_al_corte no coincide con el corte")
     meses = sorted(set().union(*VENTANAS.values()))
     v = c[c.periodo.isin(meses) & corte.eq("false")]
     n = v.groupby(["id_parcela", "variable"]).periodo.nunique()
-    assert (n == len(meses)).all() and len(n) == c.id_parcela.nunique() * len(UNIDADES), "faltan meses en la temporada"
-    assert np.isfinite(v.media_ponderada).all() and (v.cobertura_valida > 0).all(), "clima vacío en la temporada"
+    exigir((n == len(meses)).all() and len(n) == c.id_parcela.nunique() * len(UNIDADES), "faltan meses en la temporada")
+    exigir(np.isfinite(v.media_ponderada).all() and (v.cobertura_valida > 0).all(), "clima vacío en la temporada")
     return v
 
 
@@ -123,8 +136,28 @@ def ref_loo(tr):
     return out.fillna((y.sum() - y) / (len(y) - 1)).values
 
 
-def ajustar(tr, cols, alfa):
+def centros(tr, cols):
+    """Promedio de cada variable por municipio, grupo de registro y global, aprendido sólo con `tr`."""
+    return (tr.groupby("municipio")[cols].mean(), tr.groupby("grupo_registro")[cols].mean(), tr[cols].mean())
+
+
+def restar_centro(z, cols, c):
+    """Resta el centro del municipio; si el municipio no está en el entrenamiento, el del grupo y luego el global."""
+    cm, cg, gl = c
+    centro = cm.reindex(z.municipio).set_axis(z.index).fillna(cg.reindex(z.grupo_registro).set_axis(z.index)).fillna(gl)
+    return z[cols] - centro
+
+
+def ajustar(tr, cols, alfa, centrado=False):
+    """Ridge sobre el residuo LOO. Con `centrado`, las variables se expresan respecto al centro municipal del
+    entrenamiento al aprender y al predecir (H3: medir sólo lo que aporta el clima dentro del municipio)."""
     r = tr.real.values - ref_loo(tr)
+    if centrado:
+        c = centros(tr, cols)
+        xtr = restar_centro(tr, cols, c)
+        sd = xtr.std(ddof=0).replace(0, 1)
+        m = Ridge(alpha=alfa).fit(xtr / sd, r)
+        return lambda te: m.predict(restar_centro(te, cols, c) / sd)
     mu, sd = tr[cols].mean(), tr[cols].std(ddof=0).replace(0, 1)
     m = Ridge(alpha=alfa).fit((tr[cols] - mu) / sd, r)
     return lambda te: m.predict((te[cols] - mu) / sd)
@@ -134,30 +167,45 @@ def estratos(tr):
     return tr.municipio.where(tr.municipio.map(tr.municipio.value_counts()) >= N_INTERNAS, "otros")
 
 
-def elegir_alfa(tr, cols):
+def elegir_alfa(tr, cols, centrado=False):
     skf = StratifiedKFold(N_INTERNAS, shuffle=True, random_state=SEMILLA_INTERNA)
     mae = {a: [] for a in ALFAS}
     for i, j in skf.split(tr, estratos(tr)):
         a_tr, a_va = tr.iloc[i], tr.iloc[j]
         base, _ = REF(a_tr, a_va)
         for a in ALFAS:
-            mae[a].append(np.abs(base + ajustar(a_tr, cols, a)(a_va) - a_va.real.values))
+            mae[a].append(np.abs(base + ajustar(a_tr, cols, a, centrado)(a_va) - a_va.real.values))
     mae = {a: np.concatenate(e).mean() for a, e in mae.items()}
     return min(mae, key=lambda a: (round(mae[a], 6), -a))   # empate → más contracción
 
 
-def candidato(cols, alfas):
+def candidato(cols, alfas, centrado=False):
     def predecir(tr, te):
         base, fuente = REF(tr, te)
         if not cols:
             return base, fuente
-        a = elegir_alfa(tr, cols)
+        a = elegir_alfa(tr, cols, centrado)
         alfas.append(a)
-        return base + ajustar(tr, cols, a)(te), fuente
+        return base + ajustar(tr, cols, a, centrado)(te), fuente
     return predecir
 
 
 # ---------------------------------------------------------------- evaluación
+def validar_particiones(part, d):
+    """Rechaza IDs repetidos, IDs faltantes o reservados y celdas ausentes o inconsistentes (revisión de Dani)."""
+    faltan = {"ID_POLIGONO", "repeticion", "particion_principal", "particion_espacial", "celda_chirps"} - set(part.columns)
+    exigir(not faltan, f"faltan columnas en particiones: {sorted(faltan)}")
+    exigir(not part.duplicated(["ID_POLIGONO", "repeticion"]).any(), "ID repetido dentro de una repetición")
+    etiquetadas = set(d.index[d.CONJUNTO == "ENTRENAMIENTO"])
+    for rep, x in part.groupby("repeticion"):
+        exigir(set(x.ID_POLIGONO) == etiquetadas, f"la repetición {rep} no tiene exactamente las 138 etiquetadas")
+    exigir(not part.ID_POLIGONO.isin(d.index[d.CONJUNTO == "PREDICCION"]).any(), "ID reservado en particiones")
+    exigir(part.celda_chirps.notna().all(), "celda CHIRPS ausente")
+    exigir(part.groupby("ID_POLIGONO").celda_chirps.nunique().eq(1).all(), "una parcela tiene más de una celda")
+    exigir(part[["particion_principal", "particion_espacial"]].notna().all().all(), "partición ausente")
+    return part.drop_duplicates("ID_POLIGONO").set_index("ID_POLIGONO").celda_chirps
+
+
 def evaluar(t, part, cands, alfas):
     oof = []
     for nombre, f in cands.items():
@@ -184,9 +232,11 @@ def resumir(oof):
     return pd.DataFrame(filas).sort_values(["escenario", "MAE"]).round(4)
 
 
-def emparejada(oof, celda):
-    """Igual que T08: ΔMAE por parcela frente a BASE, IC95 por celdas (regla) y por parcelas (referencia)."""
+def emparejada(oof, celda, excluir=()):
+    """Igual que T08: ΔMAE por parcela frente a BASE, IC95 por celdas (regla) y por parcelas (referencia).
+    `excluir`: IDs que se quitan de la comparación (sensibilidad de T03 §4 bis)."""
     filas = []
+    oof = oof[~oof.ID_POLIGONO.isin(set(excluir))]
     for esc, x in oof.groupby("escenario"):
         x = x.assign(ae=(x.prediccion - x.real).abs(), se=(x.prediccion - x.real) ** 2)
         base_todas = x[x.candidato == BASE].set_index(["ID_POLIGONO", "repeticion"])
@@ -238,6 +288,9 @@ def desglose(oof, d, catalogo=None, pares=None):
     """MAE por grupo a partir de las predicciones fuera del entrenamiento (no reentrena; T03 §4 bis)."""
     t = d[d.CONJUNTO == "ENTRENAMIENTO"]
     atr = t[["municipio", "grupo_registro"]].copy()
+    # precisión con la que viene registrada la etiqueta (sólo para reportar; nunca es variable del modelo)
+    cent = (t.real * 100).round().astype(int)
+    atr["escalon_etiqueta"] = np.where(cent % 50 == 0, "0.5", np.where(cent % 10 == 0, "0.1", "0.01"))
     if catalogo is not None:
         cat = pd.read_csv(catalogo, encoding="utf-8-sig")
         cat = cat.rename(columns={"id_parcela": "ID_POLIGONO"}).set_index("ID_POLIGONO")
@@ -253,19 +306,23 @@ def desglose(oof, d, catalogo=None, pares=None):
     if pares is not None:
         pr = pd.read_csv(pares, encoding="utf-8-sig")
         ids = [c for c in pr.columns if "id" in c.lower()][:2]
-        assert len(ids) == 2, f"no encontré las dos columnas de ID en {pares}"
+        exigir(len(ids) == 2, f"no encontré las dos columnas de ID en {pares}")
         con_vecina = set()
         for a, b in pr[ids].values:
             if a in t.index and b in t.index:
                 con_vecina |= {a, b}
         atr["vecina_etiquetada_20m"] = atr.index.isin(con_vecina)
     x = oof.assign(ae=(oof.prediccion - oof.real).abs()).join(atr, on="ID_POLIGONO")
+    # subconjunto sin_respaldo: filas cuya referencia usó el municipio (las mismas para todos los candidatos)
+    con_mun = set(map(tuple, oof[(oof.candidato == BASE) & (oof.fuente == "municipio")][["ID_POLIGONO", "repeticion", "escenario"]].values))
+    x["sin_respaldo"] = [k in con_mun for k in map(tuple, x[["ID_POLIGONO", "repeticion", "escenario"]].values)]
     filas = []
-    for col in atr.columns:
-        for (esc, c, g), z in x.groupby(["escenario", "candidato", col]):
-            filas.append(dict(escenario=esc, candidato=c, atributo=col, grupo=g, MAE=z.ae.mean(),
-                              n_parcelas=z.ID_POLIGONO.nunique(), poco_informativo=z.ID_POLIGONO.nunique() < 5))
-    return pd.DataFrame(filas).round(4)
+    for sub, xs in [("todas", x), ("sin_respaldo", x[x.sin_respaldo])]:
+        for col in atr.columns:
+            for (esc, c, g), z in xs.groupby(["escenario", "candidato", col]):
+                filas.append(dict(escenario=esc, subconjunto=sub, candidato=c, atributo=col, grupo=g, MAE=z.ae.mean(),
+                                  n_parcelas=z.ID_POLIGONO.nunique(), poco_informativo=z.ID_POLIGONO.nunique() < 5))
+    return pd.DataFrame(filas).round(4), (set(atr.index[atr.parcela_dudosa_4bis]) if "parcela_dudosa_4bis" in atr else None)
 
 
 def escala(v, d, celda):
@@ -289,21 +346,27 @@ def main():
     ap.add_argument("--catalogo", type=Path, help="catálogo de T02 (calidad de contorno), opcional")
     ap.add_argument("--pares", type=Path, help="pares de parcelas cercanas de T02, opcional")
     a = ap.parse_args()
-    a.salida.mkdir(parents=True, exist_ok=True)
+    exigir(not a.salida.exists() or not any(a.salida.iterdir()),
+           f"{a.salida} ya tiene archivos: usa una carpeta nueva para no mezclar corridas")
+    final, a.salida = a.salida, a.salida.with_name(f".{a.salida.name}.en_proceso")
+    shutil.rmtree(a.salida, ignore_errors=True)
+    a.salida.mkdir(parents=True)
 
     d = cargar(a.datos)
     v = variables_clima(a.clima)
-    assert v.index.is_unique and set(d.index) <= set(v.index) and np.isfinite(v.values).all(), "clima incompleto"
+    exigir(v.index.is_unique and set(d.index) <= set(v.index) and np.isfinite(v.values).all(), "clima incompleto")
     d = d.join(v)
     v.round(4).to_csv(a.salida / "variables_clima_t14.csv")
     part = pd.read_csv(a.particiones)
-    assert not part.ID_POLIGONO.isin(d.index[d.CONJUNTO == "PREDICCION"]).any(), "ID reservado en particiones"
-    celda = part.drop_duplicates("ID_POLIGONO").set_index("ID_POLIGONO").celda_chirps
+    celda = validar_particiones(part, d)
 
-    nombres = {BASE: [], "ref_mas_lluvia": GRUPOS["lluvia"], "ref_mas_tmin": GRUPOS["tmin"],
-               "ref_mas_tmax": GRUPOS["tmax"], "ref_mas_clima": GRUPOS["clima"]}
+    # 8 procedimientos (T03 §5): 4 sin centrar (v2) y los mismos 4 centrados por municipio (H3)
+    nombres = {BASE: ([], False)}
+    for g in ["lluvia", "tmin", "tmax", "clima"]:
+        nombres[f"ref_mas_{g}"] = (GRUPOS[g], False)
+        nombres[f"ref_mas_{g}_centrado"] = (GRUPOS[g], True)
     alfas = {n: [] for n in nombres}
-    cands = {n: candidato(cols, alfas[n]) for n, cols in nombres.items()}
+    cands = {n: candidato(cols, alfas[n], cen) for n, (cols, cen) in nombres.items()}
     t = d[d.CONJUNTO == "ENTRENAMIENTO"]
     oof = evaluar(t, part, cands, alfas)
     cols = ["ID_POLIGONO", "repeticion", "particion", "escenario", "real", "prediccion", "candidato", "version", "fuente"]
@@ -311,12 +374,16 @@ def main():
         x[cols].to_csv(a.salida / f"predicciones_oof_t14_{c}.csv", index=False)
     oof[oof.candidato != BASE][["candidato", "escenario", "repeticion", "particion", "alfa"]] \
         .drop_duplicates().to_csv(a.salida / "alfas_t14.csv", index=False)
-    desglose(oof, d, a.catalogo, a.pares).to_csv(a.salida / "desglose_errores_t14.csv", index=False)
+    des, dudosas = desglose(oof, d, a.catalogo, a.pares)
+    des.to_csv(a.salida / "desglose_errores_t14.csv", index=False)
 
     m = resumir(oof)
     m.to_csv(a.salida / "metricas_t14.csv", index=False)
     e = emparejada(oof, celda)
     e.to_csv(a.salida / "comparacion_emparejada_t14.csv", index=False)
+    if dudosas is not None:
+        sens = emparejada(oof, celda, excluir=dudosas).assign(sin_parcelas_dudosas=len(dudosas))
+        sens.to_csv(a.salida / "sensibilidad_sin_dudosas_t14.csv", index=False)
     colinealidad(v).to_csv(a.salida / "colinealidad_t14.csv")
     escala(v, d, celda).to_csv(a.salida / "escala_compartida_t14.csv", index=False)
 
@@ -324,12 +391,17 @@ def main():
     fin = []
     for n in nombres:
         al = []
-        pred, fuente = candidato(nombres[n], al)(t, p)
+        pred, fuente = candidato(nombres[n][0], al, nombres[n][1])(t, p)
         fin.append(pd.DataFrame(dict(ID_POLIGONO=p.index, candidato=n, prediccion=pred, fuente=fuente,
                                      alfa=al[0] if al else np.nan, version=VERSION)))
     fin = pd.concat(fin, ignore_index=True)
-    assert fin.groupby("candidato").ID_POLIGONO.nunique().eq(59).all() and np.isfinite(fin.prediccion).all()
+    exigir(fin.groupby("candidato").ID_POLIGONO.nunique().eq(59).all() and np.isfinite(fin.prediccion).all(),
+           "las 59 reservadas no tienen predicción finita")
     fin.to_csv(a.salida / "predicciones_59_t14.csv", index=False)
+    if final.exists():
+        final.rmdir()
+    a.salida.rename(final)          # sólo si todo terminó bien; si falla, no queda nada mezclado
+    a.salida = final
 
     pd.set_option("display.width", 200)
     print(m.to_string(index=False), "\n")

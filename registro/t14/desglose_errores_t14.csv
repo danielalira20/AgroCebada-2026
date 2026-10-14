@@ -1,201 +1,775 @@
-escenario,candidato,atributo,grupo,MAE,n_parcelas,poco_informativo
-A,ref_mas_clima,municipio,Almoloya,0.147,10,False
-A,ref_mas_clima,municipio,Apan,0.0207,1,True
-A,ref_mas_clima,municipio,Calpulalpan,0.2879,30,False
-A,ref_mas_clima,municipio,Chignahuapan,0.3803,71,False
-A,ref_mas_clima,municipio,Cuautepec de Hinojosa,0.1584,5,False
-A,ref_mas_clima,municipio,Emiliano Zapata,0.0252,3,True
-A,ref_mas_clima,municipio,Nanacamilpa de Mariano Arista,0.5526,1,True
-A,ref_mas_clima,municipio,Singuilucan,0.3521,16,False
-A,ref_mas_clima,municipio,Tepeapulco,0.2303,1,True
-A,ref_mas_lluvia,municipio,Almoloya,0.1436,10,False
-A,ref_mas_lluvia,municipio,Apan,0.0313,1,True
-A,ref_mas_lluvia,municipio,Calpulalpan,0.2894,30,False
-A,ref_mas_lluvia,municipio,Chignahuapan,0.3796,71,False
-A,ref_mas_lluvia,municipio,Cuautepec de Hinojosa,0.1434,5,False
-A,ref_mas_lluvia,municipio,Emiliano Zapata,0.0056,3,True
-A,ref_mas_lluvia,municipio,Nanacamilpa de Mariano Arista,0.5556,1,True
-A,ref_mas_lluvia,municipio,Singuilucan,0.3485,16,False
-A,ref_mas_lluvia,municipio,Tepeapulco,0.2112,1,True
-A,ref_mas_tmax,municipio,Almoloya,0.1431,10,False
-A,ref_mas_tmax,municipio,Apan,0.0224,1,True
-A,ref_mas_tmax,municipio,Calpulalpan,0.288,30,False
-A,ref_mas_tmax,municipio,Chignahuapan,0.3802,71,False
-A,ref_mas_tmax,municipio,Cuautepec de Hinojosa,0.1606,5,False
-A,ref_mas_tmax,municipio,Emiliano Zapata,0.0325,3,True
-A,ref_mas_tmax,municipio,Nanacamilpa de Mariano Arista,0.5512,1,True
-A,ref_mas_tmax,municipio,Singuilucan,0.3487,16,False
-A,ref_mas_tmax,municipio,Tepeapulco,0.2399,1,True
-A,ref_mas_tmin,municipio,Almoloya,0.1389,10,False
-A,ref_mas_tmin,municipio,Apan,0.0288,1,True
-A,ref_mas_tmin,municipio,Calpulalpan,0.2906,30,False
-A,ref_mas_tmin,municipio,Chignahuapan,0.3808,71,False
-A,ref_mas_tmin,municipio,Cuautepec de Hinojosa,0.1611,5,False
-A,ref_mas_tmin,municipio,Emiliano Zapata,0.0271,3,True
-A,ref_mas_tmin,municipio,Nanacamilpa de Mariano Arista,0.5561,1,True
-A,ref_mas_tmin,municipio,Singuilucan,0.3528,16,False
-A,ref_mas_tmin,municipio,Tepeapulco,0.2449,1,True
-A,referencia,municipio,Almoloya,0.1412,10,False
-A,referencia,municipio,Apan,0.0259,1,True
-A,referencia,municipio,Calpulalpan,0.2869,30,False
-A,referencia,municipio,Chignahuapan,0.3801,71,False
-A,referencia,municipio,Cuautepec de Hinojosa,0.143,5,False
-A,referencia,municipio,Emiliano Zapata,0.0,3,True
-A,referencia,municipio,Nanacamilpa de Mariano Arista,0.5536,1,True
-A,referencia,municipio,Singuilucan,0.3467,16,False
-A,referencia,municipio,Tepeapulco,0.2109,1,True
-B,ref_mas_clima,municipio,Almoloya,0.2211,10,False
-B,ref_mas_clima,municipio,Apan,0.0289,1,True
-B,ref_mas_clima,municipio,Calpulalpan,0.2768,30,False
-B,ref_mas_clima,municipio,Chignahuapan,0.4087,71,False
-B,ref_mas_clima,municipio,Cuautepec de Hinojosa,0.1294,5,False
-B,ref_mas_clima,municipio,Emiliano Zapata,0.0266,3,True
-B,ref_mas_clima,municipio,Nanacamilpa de Mariano Arista,0.5631,1,True
-B,ref_mas_clima,municipio,Singuilucan,0.7363,16,False
-B,ref_mas_clima,municipio,Tepeapulco,0.124,1,True
-B,ref_mas_lluvia,municipio,Almoloya,0.2197,10,False
-B,ref_mas_lluvia,municipio,Apan,0.0507,1,True
-B,ref_mas_lluvia,municipio,Calpulalpan,0.2841,30,False
-B,ref_mas_lluvia,municipio,Chignahuapan,0.4092,71,False
-B,ref_mas_lluvia,municipio,Cuautepec de Hinojosa,0.1259,5,False
-B,ref_mas_lluvia,municipio,Emiliano Zapata,0.0033,3,True
-B,ref_mas_lluvia,municipio,Nanacamilpa de Mariano Arista,0.5584,1,True
-B,ref_mas_lluvia,municipio,Singuilucan,0.7567,16,False
-B,ref_mas_lluvia,municipio,Tepeapulco,0.0983,1,True
-B,ref_mas_tmax,municipio,Almoloya,0.223,10,False
-B,ref_mas_tmax,municipio,Apan,0.0306,1,True
-B,ref_mas_tmax,municipio,Calpulalpan,0.2794,30,False
-B,ref_mas_tmax,municipio,Chignahuapan,0.4085,71,False
-B,ref_mas_tmax,municipio,Cuautepec de Hinojosa,0.1346,5,False
-B,ref_mas_tmax,municipio,Emiliano Zapata,0.0482,3,True
-B,ref_mas_tmax,municipio,Nanacamilpa de Mariano Arista,0.5439,1,True
-B,ref_mas_tmax,municipio,Singuilucan,0.7283,16,False
-B,ref_mas_tmax,municipio,Tepeapulco,0.1299,1,True
-B,ref_mas_tmin,municipio,Almoloya,0.2234,10,False
-B,ref_mas_tmin,municipio,Apan,0.0369,1,True
-B,ref_mas_tmin,municipio,Calpulalpan,0.2788,30,False
-B,ref_mas_tmin,municipio,Chignahuapan,0.4088,71,False
-B,ref_mas_tmin,municipio,Cuautepec de Hinojosa,0.1286,5,False
-B,ref_mas_tmin,municipio,Emiliano Zapata,0.0187,3,True
-B,ref_mas_tmin,municipio,Nanacamilpa de Mariano Arista,0.5765,1,True
-B,ref_mas_tmin,municipio,Singuilucan,0.7284,16,False
-B,ref_mas_tmin,municipio,Tepeapulco,0.1145,1,True
-B,referencia,municipio,Almoloya,0.2174,10,False
-B,referencia,municipio,Apan,0.0354,1,True
-B,referencia,municipio,Calpulalpan,0.2752,30,False
-B,referencia,municipio,Chignahuapan,0.4086,71,False
-B,referencia,municipio,Cuautepec de Hinojosa,0.1285,5,False
-B,referencia,municipio,Emiliano Zapata,0.0,3,True
-B,referencia,municipio,Nanacamilpa de Mariano Arista,0.5636,1,True
-B,referencia,municipio,Singuilucan,0.7282,16,False
-B,referencia,municipio,Tepeapulco,0.1177,1,True
-A,ref_mas_clima,grupo_registro,CEBADA,0.341,103,False
-A,ref_mas_clima,grupo_registro,Cebada,0.2653,35,False
-A,ref_mas_lluvia,grupo_registro,CEBADA,0.3388,103,False
-A,ref_mas_lluvia,grupo_registro,Cebada,0.2653,35,False
-A,ref_mas_tmax,grupo_registro,CEBADA,0.3403,103,False
-A,ref_mas_tmax,grupo_registro,Cebada,0.266,35,False
-A,ref_mas_tmin,grupo_registro,CEBADA,0.341,103,False
-A,ref_mas_tmin,grupo_registro,Cebada,0.2681,35,False
-A,referencia,grupo_registro,CEBADA,0.3385,103,False
-A,referencia,grupo_registro,Cebada,0.2625,35,False
-B,ref_mas_clima,grupo_registro,CEBADA,0.4251,103,False
-B,ref_mas_clima,grupo_registro,Cebada,0.2564,35,False
-B,ref_mas_lluvia,grupo_registro,CEBADA,0.428,103,False
-B,ref_mas_lluvia,grupo_registro,Cebada,0.2612,35,False
-B,ref_mas_tmax,grupo_registro,CEBADA,0.4242,103,False
-B,ref_mas_tmax,grupo_registro,Cebada,0.26,35,False
-B,ref_mas_tmin,grupo_registro,CEBADA,0.424,103,False
-B,ref_mas_tmin,grupo_registro,Cebada,0.2581,35,False
-B,referencia,grupo_registro,CEBADA,0.4233,103,False
-B,referencia,grupo_registro,Cebada,0.253,35,False
-A,ref_mas_clima,contorno_categoria,A,0.321,125,False
-A,ref_mas_clima,contorno_categoria,B,0.2268,8,False
-A,ref_mas_clima,contorno_categoria,C,0.4938,5,False
-A,ref_mas_lluvia,contorno_categoria,A,0.3195,125,False
-A,ref_mas_lluvia,contorno_categoria,B,0.2164,8,False
-A,ref_mas_lluvia,contorno_categoria,C,0.5014,5,False
-A,ref_mas_tmax,contorno_categoria,A,0.3208,125,False
-A,ref_mas_tmax,contorno_categoria,B,0.2271,8,False
-A,ref_mas_tmax,contorno_categoria,C,0.4899,5,False
-A,ref_mas_tmin,contorno_categoria,A,0.3221,125,False
-A,ref_mas_tmin,contorno_categoria,B,0.2272,8,False
-A,ref_mas_tmin,contorno_categoria,C,0.485,5,False
-A,referencia,contorno_categoria,A,0.3183,125,False
-A,referencia,contorno_categoria,B,0.2192,8,False
-A,referencia,contorno_categoria,C,0.5033,5,False
-B,ref_mas_clima,contorno_categoria,A,0.3808,125,False
-B,ref_mas_clima,contorno_categoria,B,0.2683,8,False
-B,ref_mas_clima,contorno_categoria,C,0.6027,5,False
-B,ref_mas_lluvia,contorno_categoria,A,0.3839,125,False
-B,ref_mas_lluvia,contorno_categoria,B,0.2762,8,False
-B,ref_mas_lluvia,contorno_categoria,C,0.6067,5,False
-B,ref_mas_tmax,contorno_categoria,A,0.3809,125,False
-B,ref_mas_tmax,contorno_categoria,B,0.2706,8,False
-B,ref_mas_tmax,contorno_categoria,C,0.6034,5,False
-B,ref_mas_tmin,contorno_categoria,A,0.3799,125,False
-B,ref_mas_tmin,contorno_categoria,B,0.274,8,False
-B,ref_mas_tmin,contorno_categoria,C,0.6048,5,False
-B,referencia,contorno_categoria,A,0.3782,125,False
-B,referencia,contorno_categoria,B,0.2706,8,False
-B,referencia,contorno_categoria,C,0.6023,5,False
-A,ref_mas_clima,contorno_angosta_o_muy_pequena,no,0.3143,125,False
-A,ref_mas_clima,contorno_angosta_o_muy_pequena,si,0.3937,13,False
-A,ref_mas_lluvia,contorno_angosta_o_muy_pequena,no,0.3126,125,False
-A,ref_mas_lluvia,contorno_angosta_o_muy_pequena,si,0.3923,13,False
-A,ref_mas_tmax,contorno_angosta_o_muy_pequena,no,0.3139,125,False
-A,ref_mas_tmax,contorno_angosta_o_muy_pequena,si,0.3943,13,False
-A,ref_mas_tmin,contorno_angosta_o_muy_pequena,no,0.3151,125,False
-A,ref_mas_tmin,contorno_angosta_o_muy_pequena,si,0.394,13,False
-A,referencia,contorno_angosta_o_muy_pequena,no,0.3116,125,False
-A,referencia,contorno_angosta_o_muy_pequena,si,0.3928,13,False
-B,ref_mas_clima,contorno_angosta_o_muy_pequena,no,0.3792,125,False
-B,ref_mas_clima,contorno_angosta_o_muy_pequena,si,0.412,13,False
-B,ref_mas_lluvia,contorno_angosta_o_muy_pequena,no,0.3831,125,False
-B,ref_mas_lluvia,contorno_angosta_o_muy_pequena,si,0.4103,13,False
-B,ref_mas_tmax,contorno_angosta_o_muy_pequena,no,0.3792,125,False
-B,ref_mas_tmax,contorno_angosta_o_muy_pequena,si,0.4149,13,False
-B,ref_mas_tmin,contorno_angosta_o_muy_pequena,no,0.3787,125,False
-B,ref_mas_tmin,contorno_angosta_o_muy_pequena,si,0.4127,13,False
-B,referencia,contorno_angosta_o_muy_pequena,no,0.377,125,False
-B,referencia,contorno_angosta_o_muy_pequena,si,0.4101,13,False
-A,ref_mas_clima,parcela_dudosa_4bis,False,0.3259,114,False
-A,ref_mas_clima,parcela_dudosa_4bis,True,0.3022,24,False
-A,ref_mas_lluvia,parcela_dudosa_4bis,False,0.3244,114,False
-A,ref_mas_lluvia,parcela_dudosa_4bis,True,0.2999,24,False
-A,ref_mas_tmax,parcela_dudosa_4bis,False,0.3256,114,False
-A,ref_mas_tmax,parcela_dudosa_4bis,True,0.3017,24,False
-A,ref_mas_tmin,parcela_dudosa_4bis,False,0.3271,114,False
-A,ref_mas_tmin,parcela_dudosa_4bis,True,0.3007,24,False
-A,referencia,parcela_dudosa_4bis,False,0.323,114,False
-A,referencia,parcela_dudosa_4bis,True,0.3014,24,False
-B,ref_mas_clima,parcela_dudosa_4bis,False,0.3896,114,False
-B,ref_mas_clima,parcela_dudosa_4bis,True,0.3478,24,False
-B,ref_mas_lluvia,parcela_dudosa_4bis,False,0.3931,114,False
-B,ref_mas_lluvia,parcela_dudosa_4bis,True,0.3503,24,False
-B,ref_mas_tmax,parcela_dudosa_4bis,False,0.3894,114,False
-B,ref_mas_tmax,parcela_dudosa_4bis,True,0.3502,24,False
-B,ref_mas_tmin,parcela_dudosa_4bis,False,0.3885,114,False
-B,ref_mas_tmin,parcela_dudosa_4bis,True,0.3505,24,False
-B,referencia,parcela_dudosa_4bis,False,0.3869,114,False
-B,referencia,parcela_dudosa_4bis,True,0.3476,24,False
-A,ref_mas_clima,vecina_etiquetada_20m,False,0.3834,68,False
-A,ref_mas_clima,vecina_etiquetada_20m,True,0.2619,70,False
-A,ref_mas_lluvia,vecina_etiquetada_20m,False,0.3815,68,False
-A,ref_mas_lluvia,vecina_etiquetada_20m,True,0.2606,70,False
-A,ref_mas_tmax,vecina_etiquetada_20m,False,0.3824,68,False
-A,ref_mas_tmax,vecina_etiquetada_20m,True,0.2622,70,False
-A,ref_mas_tmin,vecina_etiquetada_20m,False,0.3851,68,False
-A,ref_mas_tmin,vecina_etiquetada_20m,True,0.2618,70,False
-A,referencia,vecina_etiquetada_20m,False,0.3806,68,False
-A,referencia,vecina_etiquetada_20m,True,0.2596,70,False
-B,ref_mas_clima,vecina_etiquetada_20m,False,0.4394,68,False
-B,ref_mas_clima,vecina_etiquetada_20m,True,0.3268,70,False
-B,ref_mas_lluvia,vecina_etiquetada_20m,False,0.4433,68,False
-B,ref_mas_lluvia,vecina_etiquetada_20m,True,0.3298,70,False
-B,ref_mas_tmax,vecina_etiquetada_20m,False,0.439,68,False
-B,ref_mas_tmax,vecina_etiquetada_20m,True,0.3277,70,False
-B,ref_mas_tmin,vecina_etiquetada_20m,False,0.4401,68,False
-B,ref_mas_tmin,vecina_etiquetada_20m,True,0.3254,70,False
-B,referencia,vecina_etiquetada_20m,False,0.4379,68,False
-B,referencia,vecina_etiquetada_20m,True,0.3239,70,False
+escenario,subconjunto,candidato,atributo,grupo,MAE,n_parcelas,poco_informativo
+A,todas,ref_mas_clima,municipio,Almoloya,0.147,10,False
+A,todas,ref_mas_clima,municipio,Apan,0.0207,1,True
+A,todas,ref_mas_clima,municipio,Calpulalpan,0.2879,30,False
+A,todas,ref_mas_clima,municipio,Chignahuapan,0.3803,71,False
+A,todas,ref_mas_clima,municipio,Cuautepec de Hinojosa,0.1584,5,False
+A,todas,ref_mas_clima,municipio,Emiliano Zapata,0.0252,3,True
+A,todas,ref_mas_clima,municipio,Nanacamilpa de Mariano Arista,0.5526,1,True
+A,todas,ref_mas_clima,municipio,Singuilucan,0.3521,16,False
+A,todas,ref_mas_clima,municipio,Tepeapulco,0.2303,1,True
+A,todas,ref_mas_clima_centrado,municipio,Almoloya,0.1398,10,False
+A,todas,ref_mas_clima_centrado,municipio,Apan,0.0199,1,True
+A,todas,ref_mas_clima_centrado,municipio,Calpulalpan,0.2894,30,False
+A,todas,ref_mas_clima_centrado,municipio,Chignahuapan,0.3816,71,False
+A,todas,ref_mas_clima_centrado,municipio,Cuautepec de Hinojosa,0.1508,5,False
+A,todas,ref_mas_clima_centrado,municipio,Emiliano Zapata,0.0047,3,True
+A,todas,ref_mas_clima_centrado,municipio,Nanacamilpa de Mariano Arista,0.5553,1,True
+A,todas,ref_mas_clima_centrado,municipio,Singuilucan,0.3496,16,False
+A,todas,ref_mas_clima_centrado,municipio,Tepeapulco,0.239,1,True
+A,todas,ref_mas_lluvia,municipio,Almoloya,0.1436,10,False
+A,todas,ref_mas_lluvia,municipio,Apan,0.0313,1,True
+A,todas,ref_mas_lluvia,municipio,Calpulalpan,0.2894,30,False
+A,todas,ref_mas_lluvia,municipio,Chignahuapan,0.3796,71,False
+A,todas,ref_mas_lluvia,municipio,Cuautepec de Hinojosa,0.1434,5,False
+A,todas,ref_mas_lluvia,municipio,Emiliano Zapata,0.0056,3,True
+A,todas,ref_mas_lluvia,municipio,Nanacamilpa de Mariano Arista,0.5556,1,True
+A,todas,ref_mas_lluvia,municipio,Singuilucan,0.3485,16,False
+A,todas,ref_mas_lluvia,municipio,Tepeapulco,0.2112,1,True
+A,todas,ref_mas_lluvia_centrado,municipio,Almoloya,0.1434,10,False
+A,todas,ref_mas_lluvia_centrado,municipio,Apan,0.0254,1,True
+A,todas,ref_mas_lluvia_centrado,municipio,Calpulalpan,0.2907,30,False
+A,todas,ref_mas_lluvia_centrado,municipio,Chignahuapan,0.3804,71,False
+A,todas,ref_mas_lluvia_centrado,municipio,Cuautepec de Hinojosa,0.1436,5,False
+A,todas,ref_mas_lluvia_centrado,municipio,Emiliano Zapata,0.0037,3,True
+A,todas,ref_mas_lluvia_centrado,municipio,Nanacamilpa de Mariano Arista,0.5551,1,True
+A,todas,ref_mas_lluvia_centrado,municipio,Singuilucan,0.3482,16,False
+A,todas,ref_mas_lluvia_centrado,municipio,Tepeapulco,0.2116,1,True
+A,todas,ref_mas_tmax,municipio,Almoloya,0.1431,10,False
+A,todas,ref_mas_tmax,municipio,Apan,0.0224,1,True
+A,todas,ref_mas_tmax,municipio,Calpulalpan,0.288,30,False
+A,todas,ref_mas_tmax,municipio,Chignahuapan,0.3802,71,False
+A,todas,ref_mas_tmax,municipio,Cuautepec de Hinojosa,0.1606,5,False
+A,todas,ref_mas_tmax,municipio,Emiliano Zapata,0.0325,3,True
+A,todas,ref_mas_tmax,municipio,Nanacamilpa de Mariano Arista,0.5512,1,True
+A,todas,ref_mas_tmax,municipio,Singuilucan,0.3487,16,False
+A,todas,ref_mas_tmax,municipio,Tepeapulco,0.2399,1,True
+A,todas,ref_mas_tmax_centrado,municipio,Almoloya,0.1419,10,False
+A,todas,ref_mas_tmax_centrado,municipio,Apan,0.0227,1,True
+A,todas,ref_mas_tmax_centrado,municipio,Calpulalpan,0.291,30,False
+A,todas,ref_mas_tmax_centrado,municipio,Chignahuapan,0.381,71,False
+A,todas,ref_mas_tmax_centrado,municipio,Cuautepec de Hinojosa,0.1605,5,False
+A,todas,ref_mas_tmax_centrado,municipio,Emiliano Zapata,0.0068,3,True
+A,todas,ref_mas_tmax_centrado,municipio,Nanacamilpa de Mariano Arista,0.556,1,True
+A,todas,ref_mas_tmax_centrado,municipio,Singuilucan,0.3489,16,False
+A,todas,ref_mas_tmax_centrado,municipio,Tepeapulco,0.2577,1,True
+A,todas,ref_mas_tmin,municipio,Almoloya,0.1389,10,False
+A,todas,ref_mas_tmin,municipio,Apan,0.0288,1,True
+A,todas,ref_mas_tmin,municipio,Calpulalpan,0.2906,30,False
+A,todas,ref_mas_tmin,municipio,Chignahuapan,0.3808,71,False
+A,todas,ref_mas_tmin,municipio,Cuautepec de Hinojosa,0.1611,5,False
+A,todas,ref_mas_tmin,municipio,Emiliano Zapata,0.0271,3,True
+A,todas,ref_mas_tmin,municipio,Nanacamilpa de Mariano Arista,0.5561,1,True
+A,todas,ref_mas_tmin,municipio,Singuilucan,0.3528,16,False
+A,todas,ref_mas_tmin,municipio,Tepeapulco,0.2449,1,True
+A,todas,ref_mas_tmin_centrado,municipio,Almoloya,0.1425,10,False
+A,todas,ref_mas_tmin_centrado,municipio,Apan,0.0243,1,True
+A,todas,ref_mas_tmin_centrado,municipio,Calpulalpan,0.2886,30,False
+A,todas,ref_mas_tmin_centrado,municipio,Chignahuapan,0.3813,71,False
+A,todas,ref_mas_tmin_centrado,municipio,Cuautepec de Hinojosa,0.1524,5,False
+A,todas,ref_mas_tmin_centrado,municipio,Emiliano Zapata,0.0072,3,True
+A,todas,ref_mas_tmin_centrado,municipio,Nanacamilpa de Mariano Arista,0.5579,1,True
+A,todas,ref_mas_tmin_centrado,municipio,Singuilucan,0.349,16,False
+A,todas,ref_mas_tmin_centrado,municipio,Tepeapulco,0.226,1,True
+A,todas,referencia,municipio,Almoloya,0.1412,10,False
+A,todas,referencia,municipio,Apan,0.0259,1,True
+A,todas,referencia,municipio,Calpulalpan,0.2869,30,False
+A,todas,referencia,municipio,Chignahuapan,0.3801,71,False
+A,todas,referencia,municipio,Cuautepec de Hinojosa,0.143,5,False
+A,todas,referencia,municipio,Emiliano Zapata,0.0,3,True
+A,todas,referencia,municipio,Nanacamilpa de Mariano Arista,0.5536,1,True
+A,todas,referencia,municipio,Singuilucan,0.3467,16,False
+A,todas,referencia,municipio,Tepeapulco,0.2109,1,True
+B,todas,ref_mas_clima,municipio,Almoloya,0.2211,10,False
+B,todas,ref_mas_clima,municipio,Apan,0.0289,1,True
+B,todas,ref_mas_clima,municipio,Calpulalpan,0.2768,30,False
+B,todas,ref_mas_clima,municipio,Chignahuapan,0.4087,71,False
+B,todas,ref_mas_clima,municipio,Cuautepec de Hinojosa,0.1294,5,False
+B,todas,ref_mas_clima,municipio,Emiliano Zapata,0.0266,3,True
+B,todas,ref_mas_clima,municipio,Nanacamilpa de Mariano Arista,0.5631,1,True
+B,todas,ref_mas_clima,municipio,Singuilucan,0.7363,16,False
+B,todas,ref_mas_clima,municipio,Tepeapulco,0.124,1,True
+B,todas,ref_mas_clima_centrado,municipio,Almoloya,0.2329,10,False
+B,todas,ref_mas_clima_centrado,municipio,Apan,0.0322,1,True
+B,todas,ref_mas_clima_centrado,municipio,Calpulalpan,0.2776,30,False
+B,todas,ref_mas_clima_centrado,municipio,Chignahuapan,0.4085,71,False
+B,todas,ref_mas_clima_centrado,municipio,Cuautepec de Hinojosa,0.1314,5,False
+B,todas,ref_mas_clima_centrado,municipio,Emiliano Zapata,0.0128,3,True
+B,todas,ref_mas_clima_centrado,municipio,Nanacamilpa de Mariano Arista,0.5704,1,True
+B,todas,ref_mas_clima_centrado,municipio,Singuilucan,0.7274,16,False
+B,todas,ref_mas_clima_centrado,municipio,Tepeapulco,0.1177,1,True
+B,todas,ref_mas_lluvia,municipio,Almoloya,0.2197,10,False
+B,todas,ref_mas_lluvia,municipio,Apan,0.0507,1,True
+B,todas,ref_mas_lluvia,municipio,Calpulalpan,0.2841,30,False
+B,todas,ref_mas_lluvia,municipio,Chignahuapan,0.4092,71,False
+B,todas,ref_mas_lluvia,municipio,Cuautepec de Hinojosa,0.1259,5,False
+B,todas,ref_mas_lluvia,municipio,Emiliano Zapata,0.0033,3,True
+B,todas,ref_mas_lluvia,municipio,Nanacamilpa de Mariano Arista,0.5584,1,True
+B,todas,ref_mas_lluvia,municipio,Singuilucan,0.7567,16,False
+B,todas,ref_mas_lluvia,municipio,Tepeapulco,0.0983,1,True
+B,todas,ref_mas_lluvia_centrado,municipio,Almoloya,0.2364,10,False
+B,todas,ref_mas_lluvia_centrado,municipio,Apan,0.0616,1,True
+B,todas,ref_mas_lluvia_centrado,municipio,Calpulalpan,0.2908,30,False
+B,todas,ref_mas_lluvia_centrado,municipio,Chignahuapan,0.4091,71,False
+B,todas,ref_mas_lluvia_centrado,municipio,Cuautepec de Hinojosa,0.1254,5,False
+B,todas,ref_mas_lluvia_centrado,municipio,Emiliano Zapata,0.0114,3,True
+B,todas,ref_mas_lluvia_centrado,municipio,Nanacamilpa de Mariano Arista,0.5827,1,True
+B,todas,ref_mas_lluvia_centrado,municipio,Singuilucan,0.7406,16,False
+B,todas,ref_mas_lluvia_centrado,municipio,Tepeapulco,0.0985,1,True
+B,todas,ref_mas_tmax,municipio,Almoloya,0.223,10,False
+B,todas,ref_mas_tmax,municipio,Apan,0.0306,1,True
+B,todas,ref_mas_tmax,municipio,Calpulalpan,0.2794,30,False
+B,todas,ref_mas_tmax,municipio,Chignahuapan,0.4085,71,False
+B,todas,ref_mas_tmax,municipio,Cuautepec de Hinojosa,0.1346,5,False
+B,todas,ref_mas_tmax,municipio,Emiliano Zapata,0.0482,3,True
+B,todas,ref_mas_tmax,municipio,Nanacamilpa de Mariano Arista,0.5439,1,True
+B,todas,ref_mas_tmax,municipio,Singuilucan,0.7283,16,False
+B,todas,ref_mas_tmax,municipio,Tepeapulco,0.1299,1,True
+B,todas,ref_mas_tmax_centrado,municipio,Almoloya,0.2201,10,False
+B,todas,ref_mas_tmax_centrado,municipio,Apan,0.0124,1,True
+B,todas,ref_mas_tmax_centrado,municipio,Calpulalpan,0.2801,30,False
+B,todas,ref_mas_tmax_centrado,municipio,Chignahuapan,0.408,71,False
+B,todas,ref_mas_tmax_centrado,municipio,Cuautepec de Hinojosa,0.1366,5,False
+B,todas,ref_mas_tmax_centrado,municipio,Emiliano Zapata,0.0154,3,True
+B,todas,ref_mas_tmax_centrado,municipio,Nanacamilpa de Mariano Arista,0.5577,1,True
+B,todas,ref_mas_tmax_centrado,municipio,Singuilucan,0.7213,16,False
+B,todas,ref_mas_tmax_centrado,municipio,Tepeapulco,0.1503,1,True
+B,todas,ref_mas_tmin,municipio,Almoloya,0.2234,10,False
+B,todas,ref_mas_tmin,municipio,Apan,0.0369,1,True
+B,todas,ref_mas_tmin,municipio,Calpulalpan,0.2788,30,False
+B,todas,ref_mas_tmin,municipio,Chignahuapan,0.4088,71,False
+B,todas,ref_mas_tmin,municipio,Cuautepec de Hinojosa,0.1286,5,False
+B,todas,ref_mas_tmin,municipio,Emiliano Zapata,0.0187,3,True
+B,todas,ref_mas_tmin,municipio,Nanacamilpa de Mariano Arista,0.5765,1,True
+B,todas,ref_mas_tmin,municipio,Singuilucan,0.7284,16,False
+B,todas,ref_mas_tmin,municipio,Tepeapulco,0.1145,1,True
+B,todas,ref_mas_tmin_centrado,municipio,Almoloya,0.2258,10,False
+B,todas,ref_mas_tmin_centrado,municipio,Apan,0.0142,1,True
+B,todas,ref_mas_tmin_centrado,municipio,Calpulalpan,0.2798,30,False
+B,todas,ref_mas_tmin_centrado,municipio,Chignahuapan,0.4089,71,False
+B,todas,ref_mas_tmin_centrado,municipio,Cuautepec de Hinojosa,0.1265,5,False
+B,todas,ref_mas_tmin_centrado,municipio,Emiliano Zapata,0.0184,3,True
+B,todas,ref_mas_tmin_centrado,municipio,Nanacamilpa de Mariano Arista,0.5729,1,True
+B,todas,ref_mas_tmin_centrado,municipio,Singuilucan,0.7296,16,False
+B,todas,ref_mas_tmin_centrado,municipio,Tepeapulco,0.1703,1,True
+B,todas,referencia,municipio,Almoloya,0.2174,10,False
+B,todas,referencia,municipio,Apan,0.0354,1,True
+B,todas,referencia,municipio,Calpulalpan,0.2752,30,False
+B,todas,referencia,municipio,Chignahuapan,0.4086,71,False
+B,todas,referencia,municipio,Cuautepec de Hinojosa,0.1285,5,False
+B,todas,referencia,municipio,Emiliano Zapata,0.0,3,True
+B,todas,referencia,municipio,Nanacamilpa de Mariano Arista,0.5636,1,True
+B,todas,referencia,municipio,Singuilucan,0.7282,16,False
+B,todas,referencia,municipio,Tepeapulco,0.1177,1,True
+A,todas,ref_mas_clima,grupo_registro,CEBADA,0.341,103,False
+A,todas,ref_mas_clima,grupo_registro,Cebada,0.2653,35,False
+A,todas,ref_mas_clima_centrado,grupo_registro,CEBADA,0.3405,103,False
+A,todas,ref_mas_clima_centrado,grupo_registro,Cebada,0.2649,35,False
+A,todas,ref_mas_lluvia,grupo_registro,CEBADA,0.3388,103,False
+A,todas,ref_mas_lluvia,grupo_registro,Cebada,0.2653,35,False
+A,todas,ref_mas_lluvia_centrado,grupo_registro,CEBADA,0.3392,103,False
+A,todas,ref_mas_lluvia_centrado,grupo_registro,Cebada,0.2661,35,False
+A,todas,ref_mas_tmax,grupo_registro,CEBADA,0.3403,103,False
+A,todas,ref_mas_tmax,grupo_registro,Cebada,0.266,35,False
+A,todas,ref_mas_tmax_centrado,grupo_registro,CEBADA,0.3409,103,False
+A,todas,ref_mas_tmax_centrado,grupo_registro,Cebada,0.2665,35,False
+A,todas,ref_mas_tmin,grupo_registro,CEBADA,0.341,103,False
+A,todas,ref_mas_tmin,grupo_registro,Cebada,0.2681,35,False
+A,todas,ref_mas_tmin_centrado,grupo_registro,CEBADA,0.3405,103,False
+A,todas,ref_mas_tmin_centrado,grupo_registro,Cebada,0.2646,35,False
+A,todas,referencia,grupo_registro,CEBADA,0.3385,103,False
+A,todas,referencia,grupo_registro,Cebada,0.2625,35,False
+B,todas,ref_mas_clima,grupo_registro,CEBADA,0.4251,103,False
+B,todas,ref_mas_clima,grupo_registro,Cebada,0.2564,35,False
+B,todas,ref_mas_clima_centrado,grupo_registro,CEBADA,0.4247,103,False
+B,todas,ref_mas_clima_centrado,grupo_registro,Cebada,0.2562,35,False
+B,todas,ref_mas_lluvia,grupo_registro,CEBADA,0.428,103,False
+B,todas,ref_mas_lluvia,grupo_registro,Cebada,0.2612,35,False
+B,todas,ref_mas_lluvia_centrado,grupo_registro,CEBADA,0.427,103,False
+B,todas,ref_mas_lluvia_centrado,grupo_registro,Cebada,0.2687,35,False
+B,todas,ref_mas_tmax,grupo_registro,CEBADA,0.4242,103,False
+B,todas,ref_mas_tmax,grupo_registro,Cebada,0.26,35,False
+B,todas,ref_mas_tmax_centrado,grupo_registro,CEBADA,0.4227,103,False
+B,todas,ref_mas_tmax_centrado,grupo_registro,Cebada,0.2577,35,False
+B,todas,ref_mas_tmin,grupo_registro,CEBADA,0.424,103,False
+B,todas,ref_mas_tmin,grupo_registro,Cebada,0.2581,35,False
+B,todas,ref_mas_tmin_centrado,grupo_registro,CEBADA,0.4249,103,False
+B,todas,ref_mas_tmin_centrado,grupo_registro,Cebada,0.2582,35,False
+B,todas,referencia,grupo_registro,CEBADA,0.4233,103,False
+B,todas,referencia,grupo_registro,Cebada,0.253,35,False
+A,todas,ref_mas_clima,escalon_etiqueta,0.01,0.3511,80,False
+A,todas,ref_mas_clima,escalon_etiqueta,0.1,0.2527,13,False
+A,todas,ref_mas_clima,escalon_etiqueta,0.5,0.2896,45,False
+A,todas,ref_mas_clima_centrado,escalon_etiqueta,0.01,0.3511,80,False
+A,todas,ref_mas_clima_centrado,escalon_etiqueta,0.1,0.2493,13,False
+A,todas,ref_mas_clima_centrado,escalon_etiqueta,0.5,0.2894,45,False
+A,todas,ref_mas_lluvia,escalon_etiqueta,0.01,0.3485,80,False
+A,todas,ref_mas_lluvia,escalon_etiqueta,0.1,0.2534,13,False
+A,todas,ref_mas_lluvia,escalon_etiqueta,0.5,0.2889,45,False
+A,todas,ref_mas_lluvia_centrado,escalon_etiqueta,0.01,0.3493,80,False
+A,todas,ref_mas_lluvia_centrado,escalon_etiqueta,0.1,0.2473,13,False
+A,todas,ref_mas_lluvia_centrado,escalon_etiqueta,0.5,0.291,45,False
+A,todas,ref_mas_tmax,escalon_etiqueta,0.01,0.3509,80,False
+A,todas,ref_mas_tmax,escalon_etiqueta,0.1,0.2497,13,False
+A,todas,ref_mas_tmax,escalon_etiqueta,0.5,0.2899,45,False
+A,todas,ref_mas_tmax_centrado,escalon_etiqueta,0.01,0.3518,80,False
+A,todas,ref_mas_tmax_centrado,escalon_etiqueta,0.1,0.2495,13,False
+A,todas,ref_mas_tmax_centrado,escalon_etiqueta,0.5,0.2902,45,False
+A,todas,ref_mas_tmin,escalon_etiqueta,0.01,0.351,80,False
+A,todas,ref_mas_tmin,escalon_etiqueta,0.1,0.2541,13,False
+A,todas,ref_mas_tmin,escalon_etiqueta,0.5,0.2917,45,False
+A,todas,ref_mas_tmin_centrado,escalon_etiqueta,0.01,0.3511,80,False
+A,todas,ref_mas_tmin_centrado,escalon_etiqueta,0.1,0.2484,13,False
+A,todas,ref_mas_tmin_centrado,escalon_etiqueta,0.5,0.2892,45,False
+A,todas,referencia,escalon_etiqueta,0.01,0.3485,80,False
+A,todas,referencia,escalon_etiqueta,0.1,0.2473,13,False
+A,todas,referencia,escalon_etiqueta,0.5,0.2881,45,False
+B,todas,ref_mas_clima,escalon_etiqueta,0.01,0.3788,80,False
+B,todas,ref_mas_clima,escalon_etiqueta,0.1,0.527,13,False
+B,todas,ref_mas_clima,escalon_etiqueta,0.5,0.3467,45,False
+B,todas,ref_mas_clima_centrado,escalon_etiqueta,0.01,0.38,80,False
+B,todas,ref_mas_clima_centrado,escalon_etiqueta,0.1,0.524,13,False
+B,todas,ref_mas_clima_centrado,escalon_etiqueta,0.5,0.3444,45,False
+B,todas,ref_mas_lluvia,escalon_etiqueta,0.01,0.3785,80,False
+B,todas,ref_mas_lluvia,escalon_etiqueta,0.1,0.5428,13,False
+B,todas,ref_mas_lluvia,escalon_etiqueta,0.5,0.3532,45,False
+B,todas,ref_mas_lluvia_centrado,escalon_etiqueta,0.01,0.3804,80,False
+B,todas,ref_mas_lluvia_centrado,escalon_etiqueta,0.1,0.5285,13,False
+B,todas,ref_mas_lluvia_centrado,escalon_etiqueta,0.5,0.3574,45,False
+B,todas,ref_mas_tmax,escalon_etiqueta,0.01,0.3792,80,False
+B,todas,ref_mas_tmax,escalon_etiqueta,0.1,0.5201,13,False
+B,todas,ref_mas_tmax,escalon_etiqueta,0.5,0.3487,45,False
+B,todas,ref_mas_tmax_centrado,escalon_etiqueta,0.01,0.3785,80,False
+B,todas,ref_mas_tmax_centrado,escalon_etiqueta,0.1,0.5184,13,False
+B,todas,ref_mas_tmax_centrado,escalon_etiqueta,0.5,0.3454,45,False
+B,todas,ref_mas_tmin,escalon_etiqueta,0.01,0.3788,80,False
+B,todas,ref_mas_tmin,escalon_etiqueta,0.1,0.5198,13,False
+B,todas,ref_mas_tmin,escalon_etiqueta,0.5,0.3476,45,False
+B,todas,ref_mas_tmin_centrado,escalon_etiqueta,0.01,0.3799,80,False
+B,todas,ref_mas_tmin_centrado,escalon_etiqueta,0.1,0.5205,13,False
+B,todas,ref_mas_tmin_centrado,escalon_etiqueta,0.5,0.3477,45,False
+B,todas,referencia,escalon_etiqueta,0.01,0.3778,80,False
+B,todas,referencia,escalon_etiqueta,0.1,0.5191,13,False
+B,todas,referencia,escalon_etiqueta,0.5,0.344,45,False
+A,todas,ref_mas_clima,contorno_categoria,A,0.321,125,False
+A,todas,ref_mas_clima,contorno_categoria,B,0.2268,8,False
+A,todas,ref_mas_clima,contorno_categoria,C,0.4938,5,False
+A,todas,ref_mas_clima_centrado,contorno_categoria,A,0.321,125,False
+A,todas,ref_mas_clima_centrado,contorno_categoria,B,0.2216,8,False
+A,todas,ref_mas_clima_centrado,contorno_categoria,C,0.4905,5,False
+A,todas,ref_mas_lluvia,contorno_categoria,A,0.3195,125,False
+A,todas,ref_mas_lluvia,contorno_categoria,B,0.2164,8,False
+A,todas,ref_mas_lluvia,contorno_categoria,C,0.5014,5,False
+A,todas,ref_mas_lluvia_centrado,contorno_categoria,A,0.3198,125,False
+A,todas,ref_mas_lluvia_centrado,contorno_categoria,B,0.2199,8,False
+A,todas,ref_mas_lluvia_centrado,contorno_categoria,C,0.5048,5,False
+A,todas,ref_mas_tmax,contorno_categoria,A,0.3208,125,False
+A,todas,ref_mas_tmax,contorno_categoria,B,0.2271,8,False
+A,todas,ref_mas_tmax,contorno_categoria,C,0.4899,5,False
+A,todas,ref_mas_tmax_centrado,contorno_categoria,A,0.3213,125,False
+A,todas,ref_mas_tmax_centrado,contorno_categoria,B,0.228,8,False
+A,todas,ref_mas_tmax_centrado,contorno_categoria,C,0.4904,5,False
+A,todas,ref_mas_tmin,contorno_categoria,A,0.3221,125,False
+A,todas,ref_mas_tmin,contorno_categoria,B,0.2272,8,False
+A,todas,ref_mas_tmin,contorno_categoria,C,0.485,5,False
+A,todas,ref_mas_tmin_centrado,contorno_categoria,A,0.3204,125,False
+A,todas,ref_mas_tmin_centrado,contorno_categoria,B,0.2244,8,False
+A,todas,ref_mas_tmin_centrado,contorno_categoria,C,0.4981,5,False
+A,todas,referencia,contorno_categoria,A,0.3183,125,False
+A,todas,referencia,contorno_categoria,B,0.2192,8,False
+A,todas,referencia,contorno_categoria,C,0.5033,5,False
+B,todas,ref_mas_clima,contorno_categoria,A,0.3808,125,False
+B,todas,ref_mas_clima,contorno_categoria,B,0.2683,8,False
+B,todas,ref_mas_clima,contorno_categoria,C,0.6027,5,False
+B,todas,ref_mas_clima_centrado,contorno_categoria,A,0.3799,125,False
+B,todas,ref_mas_clima_centrado,contorno_categoria,B,0.2747,8,False
+B,todas,ref_mas_clima_centrado,contorno_categoria,C,0.6055,5,False
+B,todas,ref_mas_lluvia,contorno_categoria,A,0.3839,125,False
+B,todas,ref_mas_lluvia,contorno_categoria,B,0.2762,8,False
+B,todas,ref_mas_lluvia,contorno_categoria,C,0.6067,5,False
+B,todas,ref_mas_lluvia_centrado,contorno_categoria,A,0.3838,125,False
+B,todas,ref_mas_lluvia_centrado,contorno_categoria,B,0.2932,8,False
+B,todas,ref_mas_lluvia_centrado,contorno_categoria,C,0.6129,5,False
+B,todas,ref_mas_tmax,contorno_categoria,A,0.3809,125,False
+B,todas,ref_mas_tmax,contorno_categoria,B,0.2706,8,False
+B,todas,ref_mas_tmax,contorno_categoria,C,0.6034,5,False
+B,todas,ref_mas_tmax_centrado,contorno_categoria,A,0.3789,125,False
+B,todas,ref_mas_tmax_centrado,contorno_categoria,B,0.2738,8,False
+B,todas,ref_mas_tmax_centrado,contorno_categoria,C,0.6009,5,False
+B,todas,ref_mas_tmin,contorno_categoria,A,0.3799,125,False
+B,todas,ref_mas_tmin,contorno_categoria,B,0.274,8,False
+B,todas,ref_mas_tmin,contorno_categoria,C,0.6048,5,False
+B,todas,ref_mas_tmin_centrado,contorno_categoria,A,0.3807,125,False
+B,todas,ref_mas_tmin_centrado,contorno_categoria,B,0.2722,8,False
+B,todas,ref_mas_tmin_centrado,contorno_categoria,C,0.608,5,False
+B,todas,referencia,contorno_categoria,A,0.3782,125,False
+B,todas,referencia,contorno_categoria,B,0.2706,8,False
+B,todas,referencia,contorno_categoria,C,0.6023,5,False
+A,todas,ref_mas_clima,contorno_angosta_o_muy_pequena,no,0.3143,125,False
+A,todas,ref_mas_clima,contorno_angosta_o_muy_pequena,si,0.3937,13,False
+A,todas,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,no,0.3136,125,False
+A,todas,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,si,0.3955,13,False
+A,todas,ref_mas_lluvia,contorno_angosta_o_muy_pequena,no,0.3126,125,False
+A,todas,ref_mas_lluvia,contorno_angosta_o_muy_pequena,si,0.3923,13,False
+A,todas,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,no,0.3131,125,False
+A,todas,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,si,0.3937,13,False
+A,todas,ref_mas_tmax,contorno_angosta_o_muy_pequena,no,0.3139,125,False
+A,todas,ref_mas_tmax,contorno_angosta_o_muy_pequena,si,0.3943,13,False
+A,todas,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,no,0.3147,125,False
+A,todas,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,si,0.3932,13,False
+A,todas,ref_mas_tmin,contorno_angosta_o_muy_pequena,no,0.3151,125,False
+A,todas,ref_mas_tmin,contorno_angosta_o_muy_pequena,si,0.394,13,False
+A,todas,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,no,0.3136,125,False
+A,todas,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,si,0.3945,13,False
+A,todas,referencia,contorno_angosta_o_muy_pequena,no,0.3116,125,False
+A,todas,referencia,contorno_angosta_o_muy_pequena,si,0.3928,13,False
+B,todas,ref_mas_clima,contorno_angosta_o_muy_pequena,no,0.3792,125,False
+B,todas,ref_mas_clima,contorno_angosta_o_muy_pequena,si,0.412,13,False
+B,todas,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,no,0.3788,125,False
+B,todas,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,si,0.4126,13,False
+B,todas,ref_mas_lluvia,contorno_angosta_o_muy_pequena,no,0.3831,125,False
+B,todas,ref_mas_lluvia,contorno_angosta_o_muy_pequena,si,0.4103,13,False
+B,todas,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,no,0.3843,125,False
+B,todas,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,si,0.4116,13,False
+B,todas,ref_mas_tmax,contorno_angosta_o_muy_pequena,no,0.3792,125,False
+B,todas,ref_mas_tmax,contorno_angosta_o_muy_pequena,si,0.4149,13,False
+B,todas,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,no,0.3775,125,False
+B,todas,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,si,0.4138,13,False
+B,todas,ref_mas_tmin,contorno_angosta_o_muy_pequena,no,0.3787,125,False
+B,todas,ref_mas_tmin,contorno_angosta_o_muy_pequena,si,0.4127,13,False
+B,todas,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,no,0.3796,125,False
+B,todas,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,si,0.412,13,False
+B,todas,referencia,contorno_angosta_o_muy_pequena,no,0.377,125,False
+B,todas,referencia,contorno_angosta_o_muy_pequena,si,0.4101,13,False
+A,todas,ref_mas_clima,parcela_dudosa_4bis,False,0.3259,114,False
+A,todas,ref_mas_clima,parcela_dudosa_4bis,True,0.3022,24,False
+A,todas,ref_mas_clima_centrado,parcela_dudosa_4bis,False,0.3258,114,False
+A,todas,ref_mas_clima_centrado,parcela_dudosa_4bis,True,0.3001,24,False
+A,todas,ref_mas_lluvia,parcela_dudosa_4bis,False,0.3244,114,False
+A,todas,ref_mas_lluvia,parcela_dudosa_4bis,True,0.2999,24,False
+A,todas,ref_mas_lluvia_centrado,parcela_dudosa_4bis,False,0.3246,114,False
+A,todas,ref_mas_lluvia_centrado,parcela_dudosa_4bis,True,0.3021,24,False
+A,todas,ref_mas_tmax,parcela_dudosa_4bis,False,0.3256,114,False
+A,todas,ref_mas_tmax,parcela_dudosa_4bis,True,0.3017,24,False
+A,todas,ref_mas_tmax_centrado,parcela_dudosa_4bis,False,0.3264,114,False
+A,todas,ref_mas_tmax_centrado,parcela_dudosa_4bis,True,0.3013,24,False
+A,todas,ref_mas_tmin,parcela_dudosa_4bis,False,0.3271,114,False
+A,todas,ref_mas_tmin,parcela_dudosa_4bis,True,0.3007,24,False
+A,todas,ref_mas_tmin_centrado,parcela_dudosa_4bis,False,0.3252,114,False
+A,todas,ref_mas_tmin_centrado,parcela_dudosa_4bis,True,0.3024,24,False
+A,todas,referencia,parcela_dudosa_4bis,False,0.323,114,False
+A,todas,referencia,parcela_dudosa_4bis,True,0.3014,24,False
+B,todas,ref_mas_clima,parcela_dudosa_4bis,False,0.3896,114,False
+B,todas,ref_mas_clima,parcela_dudosa_4bis,True,0.3478,24,False
+B,todas,ref_mas_clima_centrado,parcela_dudosa_4bis,False,0.3886,114,False
+B,todas,ref_mas_clima_centrado,parcela_dudosa_4bis,True,0.3507,24,False
+B,todas,ref_mas_lluvia,parcela_dudosa_4bis,False,0.3931,114,False
+B,todas,ref_mas_lluvia,parcela_dudosa_4bis,True,0.3503,24,False
+B,todas,ref_mas_lluvia_centrado,parcela_dudosa_4bis,False,0.393,114,False
+B,todas,ref_mas_lluvia_centrado,parcela_dudosa_4bis,True,0.358,24,False
+B,todas,ref_mas_tmax,parcela_dudosa_4bis,False,0.3894,114,False
+B,todas,ref_mas_tmax,parcela_dudosa_4bis,True,0.3502,24,False
+B,todas,ref_mas_tmax_centrado,parcela_dudosa_4bis,False,0.3874,114,False
+B,todas,ref_mas_tmax_centrado,parcela_dudosa_4bis,True,0.3502,24,False
+B,todas,ref_mas_tmin,parcela_dudosa_4bis,False,0.3885,114,False
+B,todas,ref_mas_tmin,parcela_dudosa_4bis,True,0.3505,24,False
+B,todas,ref_mas_tmin_centrado,parcela_dudosa_4bis,False,0.3895,114,False
+B,todas,ref_mas_tmin_centrado,parcela_dudosa_4bis,True,0.3502,24,False
+B,todas,referencia,parcela_dudosa_4bis,False,0.3869,114,False
+B,todas,referencia,parcela_dudosa_4bis,True,0.3476,24,False
+A,todas,ref_mas_clima,vecina_etiquetada_20m,False,0.3834,68,False
+A,todas,ref_mas_clima,vecina_etiquetada_20m,True,0.2619,70,False
+A,todas,ref_mas_clima_centrado,vecina_etiquetada_20m,False,0.3827,68,False
+A,todas,ref_mas_clima_centrado,vecina_etiquetada_20m,True,0.2618,70,False
+A,todas,ref_mas_lluvia,vecina_etiquetada_20m,False,0.3815,68,False
+A,todas,ref_mas_lluvia,vecina_etiquetada_20m,True,0.2606,70,False
+A,todas,ref_mas_lluvia_centrado,vecina_etiquetada_20m,False,0.3827,68,False
+A,todas,ref_mas_lluvia_centrado,vecina_etiquetada_20m,True,0.2604,70,False
+A,todas,ref_mas_tmax,vecina_etiquetada_20m,False,0.3824,68,False
+A,todas,ref_mas_tmax,vecina_etiquetada_20m,True,0.2622,70,False
+A,todas,ref_mas_tmax_centrado,vecina_etiquetada_20m,False,0.3839,68,False
+A,todas,ref_mas_tmax_centrado,vecina_etiquetada_20m,True,0.262,70,False
+A,todas,ref_mas_tmin,vecina_etiquetada_20m,False,0.3851,68,False
+A,todas,ref_mas_tmin,vecina_etiquetada_20m,True,0.2618,70,False
+A,todas,ref_mas_tmin_centrado,vecina_etiquetada_20m,False,0.3831,68,False
+A,todas,ref_mas_tmin_centrado,vecina_etiquetada_20m,True,0.2611,70,False
+A,todas,referencia,vecina_etiquetada_20m,False,0.3806,68,False
+A,todas,referencia,vecina_etiquetada_20m,True,0.2596,70,False
+B,todas,ref_mas_clima,vecina_etiquetada_20m,False,0.4394,68,False
+B,todas,ref_mas_clima,vecina_etiquetada_20m,True,0.3268,70,False
+B,todas,ref_mas_clima_centrado,vecina_etiquetada_20m,False,0.44,68,False
+B,todas,ref_mas_clima_centrado,vecina_etiquetada_20m,True,0.3256,70,False
+B,todas,ref_mas_lluvia,vecina_etiquetada_20m,False,0.4433,68,False
+B,todas,ref_mas_lluvia,vecina_etiquetada_20m,True,0.3298,70,False
+B,todas,ref_mas_lluvia_centrado,vecina_etiquetada_20m,False,0.4467,68,False
+B,todas,ref_mas_lluvia_centrado,vecina_etiquetada_20m,True,0.3287,70,False
+B,todas,ref_mas_tmax,vecina_etiquetada_20m,False,0.439,68,False
+B,todas,ref_mas_tmax,vecina_etiquetada_20m,True,0.3277,70,False
+B,todas,ref_mas_tmax_centrado,vecina_etiquetada_20m,False,0.4386,68,False
+B,todas,ref_mas_tmax_centrado,vecina_etiquetada_20m,True,0.3248,70,False
+B,todas,ref_mas_tmin,vecina_etiquetada_20m,False,0.4401,68,False
+B,todas,ref_mas_tmin,vecina_etiquetada_20m,True,0.3254,70,False
+B,todas,ref_mas_tmin_centrado,vecina_etiquetada_20m,False,0.4409,68,False
+B,todas,ref_mas_tmin_centrado,vecina_etiquetada_20m,True,0.326,70,False
+B,todas,referencia,vecina_etiquetada_20m,False,0.4379,68,False
+B,todas,referencia,vecina_etiquetada_20m,True,0.3239,70,False
+A,sin_respaldo,ref_mas_clima,municipio,Almoloya,0.147,10,False
+A,sin_respaldo,ref_mas_clima,municipio,Calpulalpan,0.2879,30,False
+A,sin_respaldo,ref_mas_clima,municipio,Chignahuapan,0.3803,71,False
+A,sin_respaldo,ref_mas_clima,municipio,Cuautepec de Hinojosa,0.1584,5,False
+A,sin_respaldo,ref_mas_clima,municipio,Emiliano Zapata,0.0252,3,True
+A,sin_respaldo,ref_mas_clima,municipio,Singuilucan,0.3521,16,False
+A,sin_respaldo,ref_mas_clima_centrado,municipio,Almoloya,0.1398,10,False
+A,sin_respaldo,ref_mas_clima_centrado,municipio,Calpulalpan,0.2894,30,False
+A,sin_respaldo,ref_mas_clima_centrado,municipio,Chignahuapan,0.3816,71,False
+A,sin_respaldo,ref_mas_clima_centrado,municipio,Cuautepec de Hinojosa,0.1508,5,False
+A,sin_respaldo,ref_mas_clima_centrado,municipio,Emiliano Zapata,0.0047,3,True
+A,sin_respaldo,ref_mas_clima_centrado,municipio,Singuilucan,0.3496,16,False
+A,sin_respaldo,ref_mas_lluvia,municipio,Almoloya,0.1436,10,False
+A,sin_respaldo,ref_mas_lluvia,municipio,Calpulalpan,0.2894,30,False
+A,sin_respaldo,ref_mas_lluvia,municipio,Chignahuapan,0.3796,71,False
+A,sin_respaldo,ref_mas_lluvia,municipio,Cuautepec de Hinojosa,0.1434,5,False
+A,sin_respaldo,ref_mas_lluvia,municipio,Emiliano Zapata,0.0056,3,True
+A,sin_respaldo,ref_mas_lluvia,municipio,Singuilucan,0.3485,16,False
+A,sin_respaldo,ref_mas_lluvia_centrado,municipio,Almoloya,0.1434,10,False
+A,sin_respaldo,ref_mas_lluvia_centrado,municipio,Calpulalpan,0.2907,30,False
+A,sin_respaldo,ref_mas_lluvia_centrado,municipio,Chignahuapan,0.3804,71,False
+A,sin_respaldo,ref_mas_lluvia_centrado,municipio,Cuautepec de Hinojosa,0.1436,5,False
+A,sin_respaldo,ref_mas_lluvia_centrado,municipio,Emiliano Zapata,0.0037,3,True
+A,sin_respaldo,ref_mas_lluvia_centrado,municipio,Singuilucan,0.3482,16,False
+A,sin_respaldo,ref_mas_tmax,municipio,Almoloya,0.1431,10,False
+A,sin_respaldo,ref_mas_tmax,municipio,Calpulalpan,0.288,30,False
+A,sin_respaldo,ref_mas_tmax,municipio,Chignahuapan,0.3802,71,False
+A,sin_respaldo,ref_mas_tmax,municipio,Cuautepec de Hinojosa,0.1606,5,False
+A,sin_respaldo,ref_mas_tmax,municipio,Emiliano Zapata,0.0325,3,True
+A,sin_respaldo,ref_mas_tmax,municipio,Singuilucan,0.3487,16,False
+A,sin_respaldo,ref_mas_tmax_centrado,municipio,Almoloya,0.1419,10,False
+A,sin_respaldo,ref_mas_tmax_centrado,municipio,Calpulalpan,0.291,30,False
+A,sin_respaldo,ref_mas_tmax_centrado,municipio,Chignahuapan,0.381,71,False
+A,sin_respaldo,ref_mas_tmax_centrado,municipio,Cuautepec de Hinojosa,0.1605,5,False
+A,sin_respaldo,ref_mas_tmax_centrado,municipio,Emiliano Zapata,0.0068,3,True
+A,sin_respaldo,ref_mas_tmax_centrado,municipio,Singuilucan,0.3489,16,False
+A,sin_respaldo,ref_mas_tmin,municipio,Almoloya,0.1389,10,False
+A,sin_respaldo,ref_mas_tmin,municipio,Calpulalpan,0.2906,30,False
+A,sin_respaldo,ref_mas_tmin,municipio,Chignahuapan,0.3808,71,False
+A,sin_respaldo,ref_mas_tmin,municipio,Cuautepec de Hinojosa,0.1611,5,False
+A,sin_respaldo,ref_mas_tmin,municipio,Emiliano Zapata,0.0271,3,True
+A,sin_respaldo,ref_mas_tmin,municipio,Singuilucan,0.3528,16,False
+A,sin_respaldo,ref_mas_tmin_centrado,municipio,Almoloya,0.1425,10,False
+A,sin_respaldo,ref_mas_tmin_centrado,municipio,Calpulalpan,0.2886,30,False
+A,sin_respaldo,ref_mas_tmin_centrado,municipio,Chignahuapan,0.3813,71,False
+A,sin_respaldo,ref_mas_tmin_centrado,municipio,Cuautepec de Hinojosa,0.1524,5,False
+A,sin_respaldo,ref_mas_tmin_centrado,municipio,Emiliano Zapata,0.0072,3,True
+A,sin_respaldo,ref_mas_tmin_centrado,municipio,Singuilucan,0.349,16,False
+A,sin_respaldo,referencia,municipio,Almoloya,0.1412,10,False
+A,sin_respaldo,referencia,municipio,Calpulalpan,0.2869,30,False
+A,sin_respaldo,referencia,municipio,Chignahuapan,0.3801,71,False
+A,sin_respaldo,referencia,municipio,Cuautepec de Hinojosa,0.143,5,False
+A,sin_respaldo,referencia,municipio,Emiliano Zapata,0.0,3,True
+A,sin_respaldo,referencia,municipio,Singuilucan,0.3467,16,False
+B,sin_respaldo,ref_mas_clima,municipio,Almoloya,0.2211,10,False
+B,sin_respaldo,ref_mas_clima,municipio,Calpulalpan,0.2768,30,False
+B,sin_respaldo,ref_mas_clima,municipio,Chignahuapan,0.4087,71,False
+B,sin_respaldo,ref_mas_clima,municipio,Cuautepec de Hinojosa,0.1294,5,False
+B,sin_respaldo,ref_mas_clima,municipio,Emiliano Zapata,0.0266,3,True
+B,sin_respaldo,ref_mas_clima,municipio,Singuilucan,0.5762,16,False
+B,sin_respaldo,ref_mas_clima_centrado,municipio,Almoloya,0.2329,10,False
+B,sin_respaldo,ref_mas_clima_centrado,municipio,Calpulalpan,0.2776,30,False
+B,sin_respaldo,ref_mas_clima_centrado,municipio,Chignahuapan,0.4085,71,False
+B,sin_respaldo,ref_mas_clima_centrado,municipio,Cuautepec de Hinojosa,0.1314,5,False
+B,sin_respaldo,ref_mas_clima_centrado,municipio,Emiliano Zapata,0.0128,3,True
+B,sin_respaldo,ref_mas_clima_centrado,municipio,Singuilucan,0.5602,16,False
+B,sin_respaldo,ref_mas_lluvia,municipio,Almoloya,0.2197,10,False
+B,sin_respaldo,ref_mas_lluvia,municipio,Calpulalpan,0.2841,30,False
+B,sin_respaldo,ref_mas_lluvia,municipio,Chignahuapan,0.4092,71,False
+B,sin_respaldo,ref_mas_lluvia,municipio,Cuautepec de Hinojosa,0.1259,5,False
+B,sin_respaldo,ref_mas_lluvia,municipio,Emiliano Zapata,0.0033,3,True
+B,sin_respaldo,ref_mas_lluvia,municipio,Singuilucan,0.5965,16,False
+B,sin_respaldo,ref_mas_lluvia_centrado,municipio,Almoloya,0.2364,10,False
+B,sin_respaldo,ref_mas_lluvia_centrado,municipio,Calpulalpan,0.2908,30,False
+B,sin_respaldo,ref_mas_lluvia_centrado,municipio,Chignahuapan,0.4091,71,False
+B,sin_respaldo,ref_mas_lluvia_centrado,municipio,Cuautepec de Hinojosa,0.1254,5,False
+B,sin_respaldo,ref_mas_lluvia_centrado,municipio,Emiliano Zapata,0.0114,3,True
+B,sin_respaldo,ref_mas_lluvia_centrado,municipio,Singuilucan,0.5766,16,False
+B,sin_respaldo,ref_mas_tmax,municipio,Almoloya,0.223,10,False
+B,sin_respaldo,ref_mas_tmax,municipio,Calpulalpan,0.2794,30,False
+B,sin_respaldo,ref_mas_tmax,municipio,Chignahuapan,0.4085,71,False
+B,sin_respaldo,ref_mas_tmax,municipio,Cuautepec de Hinojosa,0.1346,5,False
+B,sin_respaldo,ref_mas_tmax,municipio,Emiliano Zapata,0.0482,3,True
+B,sin_respaldo,ref_mas_tmax,municipio,Singuilucan,0.5608,16,False
+B,sin_respaldo,ref_mas_tmax_centrado,municipio,Almoloya,0.2201,10,False
+B,sin_respaldo,ref_mas_tmax_centrado,municipio,Calpulalpan,0.2801,30,False
+B,sin_respaldo,ref_mas_tmax_centrado,municipio,Chignahuapan,0.408,71,False
+B,sin_respaldo,ref_mas_tmax_centrado,municipio,Cuautepec de Hinojosa,0.1366,5,False
+B,sin_respaldo,ref_mas_tmax_centrado,municipio,Emiliano Zapata,0.0154,3,True
+B,sin_respaldo,ref_mas_tmax_centrado,municipio,Singuilucan,0.5529,16,False
+B,sin_respaldo,ref_mas_tmin,municipio,Almoloya,0.2234,10,False
+B,sin_respaldo,ref_mas_tmin,municipio,Calpulalpan,0.2788,30,False
+B,sin_respaldo,ref_mas_tmin,municipio,Chignahuapan,0.4088,71,False
+B,sin_respaldo,ref_mas_tmin,municipio,Cuautepec de Hinojosa,0.1286,5,False
+B,sin_respaldo,ref_mas_tmin,municipio,Emiliano Zapata,0.0187,3,True
+B,sin_respaldo,ref_mas_tmin,municipio,Singuilucan,0.5627,16,False
+B,sin_respaldo,ref_mas_tmin_centrado,municipio,Almoloya,0.2258,10,False
+B,sin_respaldo,ref_mas_tmin_centrado,municipio,Calpulalpan,0.2798,30,False
+B,sin_respaldo,ref_mas_tmin_centrado,municipio,Chignahuapan,0.4089,71,False
+B,sin_respaldo,ref_mas_tmin_centrado,municipio,Cuautepec de Hinojosa,0.1265,5,False
+B,sin_respaldo,ref_mas_tmin_centrado,municipio,Emiliano Zapata,0.0184,3,True
+B,sin_respaldo,ref_mas_tmin_centrado,municipio,Singuilucan,0.5619,16,False
+B,sin_respaldo,referencia,municipio,Almoloya,0.2174,10,False
+B,sin_respaldo,referencia,municipio,Calpulalpan,0.2752,30,False
+B,sin_respaldo,referencia,municipio,Chignahuapan,0.4086,71,False
+B,sin_respaldo,referencia,municipio,Cuautepec de Hinojosa,0.1285,5,False
+B,sin_respaldo,referencia,municipio,Emiliano Zapata,0.0,3,True
+B,sin_respaldo,referencia,municipio,Singuilucan,0.559,16,False
+A,sin_respaldo,ref_mas_clima,grupo_registro,CEBADA,0.3421,102,False
+A,sin_respaldo,ref_mas_clima,grupo_registro,Cebada,0.264,33,False
+A,sin_respaldo,ref_mas_clima_centrado,grupo_registro,CEBADA,0.3415,102,False
+A,sin_respaldo,ref_mas_clima_centrado,grupo_registro,Cebada,0.2635,33,False
+A,sin_respaldo,ref_mas_lluvia,grupo_registro,CEBADA,0.34,102,False
+A,sin_respaldo,ref_mas_lluvia,grupo_registro,Cebada,0.2636,33,False
+A,sin_respaldo,ref_mas_lluvia_centrado,grupo_registro,CEBADA,0.3405,102,False
+A,sin_respaldo,ref_mas_lluvia_centrado,grupo_registro,Cebada,0.2646,33,False
+A,sin_respaldo,ref_mas_tmax,grupo_registro,CEBADA,0.3413,102,False
+A,sin_respaldo,ref_mas_tmax,grupo_registro,Cebada,0.2648,33,False
+A,sin_respaldo,ref_mas_tmax_centrado,grupo_registro,CEBADA,0.3417,102,False
+A,sin_respaldo,ref_mas_tmax_centrado,grupo_registro,Cebada,0.2651,33,False
+A,sin_respaldo,ref_mas_tmin,grupo_registro,CEBADA,0.342,102,False
+A,sin_respaldo,ref_mas_tmin,grupo_registro,Cebada,0.2666,33,False
+A,sin_respaldo,ref_mas_tmin_centrado,grupo_registro,CEBADA,0.3416,102,False
+A,sin_respaldo,ref_mas_tmin_centrado,grupo_registro,Cebada,0.263,33,False
+A,sin_respaldo,referencia,grupo_registro,CEBADA,0.3398,102,False
+A,sin_respaldo,referencia,grupo_registro,Cebada,0.2609,33,False
+B,sin_respaldo,ref_mas_clima,grupo_registro,CEBADA,0.3973,102,False
+B,sin_respaldo,ref_mas_clima,grupo_registro,Cebada,0.254,33,False
+B,sin_respaldo,ref_mas_clima_centrado,grupo_registro,CEBADA,0.3963,102,False
+B,sin_respaldo,ref_mas_clima_centrado,grupo_registro,Cebada,0.2535,33,False
+B,sin_respaldo,ref_mas_lluvia,grupo_registro,CEBADA,0.3999,102,False
+B,sin_respaldo,ref_mas_lluvia,grupo_registro,Cebada,0.2586,33,False
+B,sin_respaldo,ref_mas_lluvia_centrado,grupo_registro,CEBADA,0.399,102,False
+B,sin_respaldo,ref_mas_lluvia_centrado,grupo_registro,Cebada,0.2654,33,False
+B,sin_respaldo,ref_mas_tmax,grupo_registro,CEBADA,0.3956,102,False
+B,sin_respaldo,ref_mas_tmax,grupo_registro,Cebada,0.2583,33,False
+B,sin_respaldo,ref_mas_tmax_centrado,grupo_registro,CEBADA,0.394,102,False
+B,sin_respaldo,ref_mas_tmax_centrado,grupo_registro,Cebada,0.256,33,False
+B,sin_respaldo,ref_mas_tmin,grupo_registro,CEBADA,0.3958,102,False
+B,sin_respaldo,ref_mas_tmin,grupo_registro,Cebada,0.2552,33,False
+B,sin_respaldo,ref_mas_tmin_centrado,grupo_registro,CEBADA,0.3959,102,False
+B,sin_respaldo,ref_mas_tmin_centrado,grupo_registro,Cebada,0.2561,33,False
+B,sin_respaldo,referencia,grupo_registro,CEBADA,0.3946,102,False
+B,sin_respaldo,referencia,grupo_registro,Cebada,0.2502,33,False
+A,sin_respaldo,ref_mas_clima,escalon_etiqueta,0.01,0.3527,79,False
+A,sin_respaldo,ref_mas_clima,escalon_etiqueta,0.1,0.2527,13,False
+A,sin_respaldo,ref_mas_clima,escalon_etiqueta,0.5,0.2897,43,False
+A,sin_respaldo,ref_mas_clima_centrado,escalon_etiqueta,0.01,0.3525,79,False
+A,sin_respaldo,ref_mas_clima_centrado,escalon_etiqueta,0.1,0.2493,13,False
+A,sin_respaldo,ref_mas_clima_centrado,escalon_etiqueta,0.5,0.2895,43,False
+A,sin_respaldo,ref_mas_lluvia,escalon_etiqueta,0.01,0.3503,79,False
+A,sin_respaldo,ref_mas_lluvia,escalon_etiqueta,0.1,0.2534,13,False
+A,sin_respaldo,ref_mas_lluvia,escalon_etiqueta,0.5,0.2887,43,False
+A,sin_respaldo,ref_mas_lluvia_centrado,escalon_etiqueta,0.01,0.3511,79,False
+A,sin_respaldo,ref_mas_lluvia_centrado,escalon_etiqueta,0.1,0.2473,13,False
+A,sin_respaldo,ref_mas_lluvia_centrado,escalon_etiqueta,0.5,0.291,43,False
+A,sin_respaldo,ref_mas_tmax,escalon_etiqueta,0.01,0.3523,79,False
+A,sin_respaldo,ref_mas_tmax,escalon_etiqueta,0.1,0.2497,13,False
+A,sin_respaldo,ref_mas_tmax,escalon_etiqueta,0.5,0.29,43,False
+A,sin_respaldo,ref_mas_tmax_centrado,escalon_etiqueta,0.01,0.353,79,False
+A,sin_respaldo,ref_mas_tmax_centrado,escalon_etiqueta,0.1,0.2495,13,False
+A,sin_respaldo,ref_mas_tmax_centrado,escalon_etiqueta,0.5,0.2902,43,False
+A,sin_respaldo,ref_mas_tmin,escalon_etiqueta,0.01,0.3523,79,False
+A,sin_respaldo,ref_mas_tmin,escalon_etiqueta,0.1,0.2541,13,False
+A,sin_respaldo,ref_mas_tmin,escalon_etiqueta,0.5,0.2916,43,False
+A,sin_respaldo,ref_mas_tmin_centrado,escalon_etiqueta,0.01,0.3527,79,False
+A,sin_respaldo,ref_mas_tmin_centrado,escalon_etiqueta,0.1,0.2484,13,False
+A,sin_respaldo,ref_mas_tmin_centrado,escalon_etiqueta,0.5,0.2891,43,False
+A,sin_respaldo,referencia,escalon_etiqueta,0.01,0.3502,79,False
+A,sin_respaldo,referencia,escalon_etiqueta,0.1,0.2473,13,False
+A,sin_respaldo,referencia,escalon_etiqueta,0.5,0.288,43,False
+B,sin_respaldo,ref_mas_clima,escalon_etiqueta,0.01,0.3821,79,False
+B,sin_respaldo,ref_mas_clima,escalon_etiqueta,0.1,0.455,13,False
+B,sin_respaldo,ref_mas_clima,escalon_etiqueta,0.5,0.2955,43,False
+B,sin_respaldo,ref_mas_clima_centrado,escalon_etiqueta,0.01,0.3833,79,False
+B,sin_respaldo,ref_mas_clima_centrado,escalon_etiqueta,0.1,0.4488,13,False
+B,sin_respaldo,ref_mas_clima_centrado,escalon_etiqueta,0.5,0.2921,43,False
+B,sin_respaldo,ref_mas_lluvia,escalon_etiqueta,0.01,0.382,79,False
+B,sin_respaldo,ref_mas_lluvia,escalon_etiqueta,0.1,0.4695,13,False
+B,sin_respaldo,ref_mas_lluvia,escalon_etiqueta,0.5,0.3015,43,False
+B,sin_respaldo,ref_mas_lluvia_centrado,escalon_etiqueta,0.01,0.384,79,False
+B,sin_respaldo,ref_mas_lluvia_centrado,escalon_etiqueta,0.1,0.4536,13,False
+B,sin_respaldo,ref_mas_lluvia_centrado,escalon_etiqueta,0.5,0.3053,43,False
+B,sin_respaldo,ref_mas_tmax,escalon_etiqueta,0.01,0.3824,79,False
+B,sin_respaldo,ref_mas_tmax,escalon_etiqueta,0.1,0.4445,13,False
+B,sin_respaldo,ref_mas_tmax,escalon_etiqueta,0.5,0.2973,43,False
+B,sin_respaldo,ref_mas_tmax_centrado,escalon_etiqueta,0.01,0.3814,79,False
+B,sin_respaldo,ref_mas_tmax_centrado,escalon_etiqueta,0.1,0.4431,13,False
+B,sin_respaldo,ref_mas_tmax_centrado,escalon_etiqueta,0.5,0.2939,43,False
+B,sin_respaldo,ref_mas_tmin,escalon_etiqueta,0.01,0.3822,79,False
+B,sin_respaldo,ref_mas_tmin,escalon_etiqueta,0.1,0.4446,13,False
+B,sin_respaldo,ref_mas_tmin,escalon_etiqueta,0.5,0.2955,43,False
+B,sin_respaldo,ref_mas_tmin_centrado,escalon_etiqueta,0.01,0.3825,79,False
+B,sin_respaldo,ref_mas_tmin_centrado,escalon_etiqueta,0.1,0.4442,13,False
+B,sin_respaldo,ref_mas_tmin_centrado,escalon_etiqueta,0.5,0.2959,43,False
+B,sin_respaldo,referencia,escalon_etiqueta,0.01,0.3811,79,False
+B,sin_respaldo,referencia,escalon_etiqueta,0.1,0.442,13,False
+B,sin_respaldo,referencia,escalon_etiqueta,0.5,0.2914,43,False
+A,sin_respaldo,ref_mas_clima,contorno_categoria,A,0.3223,122,False
+A,sin_respaldo,ref_mas_clima,contorno_categoria,B,0.2268,8,False
+A,sin_respaldo,ref_mas_clima,contorno_categoria,C,0.4938,5,False
+A,sin_respaldo,ref_mas_clima_centrado,contorno_categoria,A,0.3222,122,False
+A,sin_respaldo,ref_mas_clima_centrado,contorno_categoria,B,0.2216,8,False
+A,sin_respaldo,ref_mas_clima_centrado,contorno_categoria,C,0.4905,5,False
+A,sin_respaldo,ref_mas_lluvia,contorno_categoria,A,0.3208,122,False
+A,sin_respaldo,ref_mas_lluvia,contorno_categoria,B,0.2164,8,False
+A,sin_respaldo,ref_mas_lluvia,contorno_categoria,C,0.5014,5,False
+A,sin_respaldo,ref_mas_lluvia_centrado,contorno_categoria,A,0.3211,122,False
+A,sin_respaldo,ref_mas_lluvia_centrado,contorno_categoria,B,0.2199,8,False
+A,sin_respaldo,ref_mas_lluvia_centrado,contorno_categoria,C,0.5048,5,False
+A,sin_respaldo,ref_mas_tmax,contorno_categoria,A,0.322,122,False
+A,sin_respaldo,ref_mas_tmax,contorno_categoria,B,0.2271,8,False
+A,sin_respaldo,ref_mas_tmax,contorno_categoria,C,0.4899,5,False
+A,sin_respaldo,ref_mas_tmax_centrado,contorno_categoria,A,0.3224,122,False
+A,sin_respaldo,ref_mas_tmax_centrado,contorno_categoria,B,0.228,8,False
+A,sin_respaldo,ref_mas_tmax_centrado,contorno_categoria,C,0.4904,5,False
+A,sin_respaldo,ref_mas_tmin,contorno_categoria,A,0.3232,122,False
+A,sin_respaldo,ref_mas_tmin,contorno_categoria,B,0.2272,8,False
+A,sin_respaldo,ref_mas_tmin,contorno_categoria,C,0.485,5,False
+A,sin_respaldo,ref_mas_tmin_centrado,contorno_categoria,A,0.3216,122,False
+A,sin_respaldo,ref_mas_tmin_centrado,contorno_categoria,B,0.2244,8,False
+A,sin_respaldo,ref_mas_tmin_centrado,contorno_categoria,C,0.4981,5,False
+A,sin_respaldo,referencia,contorno_categoria,A,0.3196,122,False
+A,sin_respaldo,referencia,contorno_categoria,B,0.2192,8,False
+A,sin_respaldo,referencia,contorno_categoria,C,0.5033,5,False
+B,sin_respaldo,ref_mas_clima,contorno_categoria,A,0.3575,122,False
+B,sin_respaldo,ref_mas_clima,contorno_categoria,B,0.2683,8,False
+B,sin_respaldo,ref_mas_clima,contorno_categoria,C,0.6027,5,False
+B,sin_respaldo,ref_mas_clima_centrado,contorno_categoria,A,0.356,122,False
+B,sin_respaldo,ref_mas_clima_centrado,contorno_categoria,B,0.2747,8,False
+B,sin_respaldo,ref_mas_clima_centrado,contorno_categoria,C,0.6055,5,False
+B,sin_respaldo,ref_mas_lluvia,contorno_categoria,A,0.3603,122,False
+B,sin_respaldo,ref_mas_lluvia,contorno_categoria,B,0.2762,8,False
+B,sin_respaldo,ref_mas_lluvia,contorno_categoria,C,0.6067,5,False
+B,sin_respaldo,ref_mas_lluvia_centrado,contorno_categoria,A,0.36,122,False
+B,sin_respaldo,ref_mas_lluvia_centrado,contorno_categoria,B,0.2932,8,False
+B,sin_respaldo,ref_mas_lluvia_centrado,contorno_categoria,C,0.6129,5,False
+B,sin_respaldo,ref_mas_tmax,contorno_categoria,A,0.3572,122,False
+B,sin_respaldo,ref_mas_tmax,contorno_categoria,B,0.2706,8,False
+B,sin_respaldo,ref_mas_tmax,contorno_categoria,C,0.6034,5,False
+B,sin_respaldo,ref_mas_tmax_centrado,contorno_categoria,A,0.3551,122,False
+B,sin_respaldo,ref_mas_tmax_centrado,contorno_categoria,B,0.2738,8,False
+B,sin_respaldo,ref_mas_tmax_centrado,contorno_categoria,C,0.6009,5,False
+B,sin_respaldo,ref_mas_tmin,contorno_categoria,A,0.3561,122,False
+B,sin_respaldo,ref_mas_tmin,contorno_categoria,B,0.274,8,False
+B,sin_respaldo,ref_mas_tmin,contorno_categoria,C,0.6048,5,False
+B,sin_respaldo,ref_mas_tmin_centrado,contorno_categoria,A,0.3564,122,False
+B,sin_respaldo,ref_mas_tmin_centrado,contorno_categoria,B,0.2722,8,False
+B,sin_respaldo,ref_mas_tmin_centrado,contorno_categoria,C,0.608,5,False
+B,sin_respaldo,referencia,contorno_categoria,A,0.3541,122,False
+B,sin_respaldo,referencia,contorno_categoria,B,0.2706,8,False
+B,sin_respaldo,referencia,contorno_categoria,C,0.6023,5,False
+A,sin_respaldo,ref_mas_clima,contorno_angosta_o_muy_pequena,no,0.3155,122,False
+A,sin_respaldo,ref_mas_clima,contorno_angosta_o_muy_pequena,si,0.3937,13,False
+A,sin_respaldo,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,no,0.3147,122,False
+A,sin_respaldo,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,si,0.3955,13,False
+A,sin_respaldo,ref_mas_lluvia,contorno_angosta_o_muy_pequena,no,0.3138,122,False
+A,sin_respaldo,ref_mas_lluvia,contorno_angosta_o_muy_pequena,si,0.3923,13,False
+A,sin_respaldo,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,no,0.3143,122,False
+A,sin_respaldo,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,si,0.3937,13,False
+A,sin_respaldo,ref_mas_tmax,contorno_angosta_o_muy_pequena,no,0.3149,122,False
+A,sin_respaldo,ref_mas_tmax,contorno_angosta_o_muy_pequena,si,0.3943,13,False
+A,sin_respaldo,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,no,0.3155,122,False
+A,sin_respaldo,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,si,0.3932,13,False
+A,sin_respaldo,ref_mas_tmin,contorno_angosta_o_muy_pequena,no,0.316,122,False
+A,sin_respaldo,ref_mas_tmin,contorno_angosta_o_muy_pequena,si,0.394,13,False
+A,sin_respaldo,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,no,0.3147,122,False
+A,sin_respaldo,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,si,0.3945,13,False
+A,sin_respaldo,referencia,contorno_angosta_o_muy_pequena,no,0.3128,122,False
+A,sin_respaldo,referencia,contorno_angosta_o_muy_pequena,si,0.3928,13,False
+B,sin_respaldo,ref_mas_clima,contorno_angosta_o_muy_pequena,no,0.3559,122,False
+B,sin_respaldo,ref_mas_clima,contorno_angosta_o_muy_pequena,si,0.412,13,False
+B,sin_respaldo,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,no,0.3549,122,False
+B,sin_respaldo,ref_mas_clima_centrado,contorno_angosta_o_muy_pequena,si,0.4126,13,False
+B,sin_respaldo,ref_mas_lluvia,contorno_angosta_o_muy_pequena,no,0.3595,122,False
+B,sin_respaldo,ref_mas_lluvia,contorno_angosta_o_muy_pequena,si,0.4103,13,False
+B,sin_respaldo,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,no,0.3605,122,False
+B,sin_respaldo,ref_mas_lluvia_centrado,contorno_angosta_o_muy_pequena,si,0.4116,13,False
+B,sin_respaldo,ref_mas_tmax,contorno_angosta_o_muy_pequena,no,0.3554,122,False
+B,sin_respaldo,ref_mas_tmax,contorno_angosta_o_muy_pequena,si,0.4149,13,False
+B,sin_respaldo,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,no,0.3535,122,False
+B,sin_respaldo,ref_mas_tmax_centrado,contorno_angosta_o_muy_pequena,si,0.4138,13,False
+B,sin_respaldo,ref_mas_tmin,contorno_angosta_o_muy_pequena,no,0.3549,122,False
+B,sin_respaldo,ref_mas_tmin,contorno_angosta_o_muy_pequena,si,0.4127,13,False
+B,sin_respaldo,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,no,0.3553,122,False
+B,sin_respaldo,ref_mas_tmin_centrado,contorno_angosta_o_muy_pequena,si,0.412,13,False
+B,sin_respaldo,referencia,contorno_angosta_o_muy_pequena,no,0.3528,122,False
+B,sin_respaldo,referencia,contorno_angosta_o_muy_pequena,si,0.4101,13,False
+A,sin_respaldo,ref_mas_clima,parcela_dudosa_4bis,False,0.3275,111,False
+A,sin_respaldo,ref_mas_clima,parcela_dudosa_4bis,True,0.3022,24,False
+A,sin_respaldo,ref_mas_clima_centrado,parcela_dudosa_4bis,False,0.3273,111,False
+A,sin_respaldo,ref_mas_clima_centrado,parcela_dudosa_4bis,True,0.3001,24,False
+A,sin_respaldo,ref_mas_lluvia,parcela_dudosa_4bis,False,0.326,111,False
+A,sin_respaldo,ref_mas_lluvia,parcela_dudosa_4bis,True,0.2999,24,False
+A,sin_respaldo,ref_mas_lluvia_centrado,parcela_dudosa_4bis,False,0.3262,111,False
+A,sin_respaldo,ref_mas_lluvia_centrado,parcela_dudosa_4bis,True,0.3021,24,False
+A,sin_respaldo,ref_mas_tmax,parcela_dudosa_4bis,False,0.3271,111,False
+A,sin_respaldo,ref_mas_tmax,parcela_dudosa_4bis,True,0.3017,24,False
+A,sin_respaldo,ref_mas_tmax_centrado,parcela_dudosa_4bis,False,0.3277,111,False
+A,sin_respaldo,ref_mas_tmax_centrado,parcela_dudosa_4bis,True,0.3013,24,False
+A,sin_respaldo,ref_mas_tmin,parcela_dudosa_4bis,False,0.3285,111,False
+A,sin_respaldo,ref_mas_tmin,parcela_dudosa_4bis,True,0.3007,24,False
+A,sin_respaldo,ref_mas_tmin_centrado,parcela_dudosa_4bis,False,0.3267,111,False
+A,sin_respaldo,ref_mas_tmin_centrado,parcela_dudosa_4bis,True,0.3024,24,False
+A,sin_respaldo,referencia,parcela_dudosa_4bis,False,0.3246,111,False
+A,sin_respaldo,referencia,parcela_dudosa_4bis,True,0.3014,24,False
+B,sin_respaldo,ref_mas_clima,parcela_dudosa_4bis,False,0.3645,111,False
+B,sin_respaldo,ref_mas_clima,parcela_dudosa_4bis,True,0.3478,24,False
+B,sin_respaldo,ref_mas_clima_centrado,parcela_dudosa_4bis,False,0.3628,111,False
+B,sin_respaldo,ref_mas_clima_centrado,parcela_dudosa_4bis,True,0.3507,24,False
+B,sin_respaldo,ref_mas_lluvia,parcela_dudosa_4bis,False,0.3677,111,False
+B,sin_respaldo,ref_mas_lluvia,parcela_dudosa_4bis,True,0.3503,24,False
+B,sin_respaldo,ref_mas_lluvia_centrado,parcela_dudosa_4bis,False,0.3672,111,False
+B,sin_respaldo,ref_mas_lluvia_centrado,parcela_dudosa_4bis,True,0.358,24,False
+B,sin_respaldo,ref_mas_tmax,parcela_dudosa_4bis,False,0.3637,111,False
+B,sin_respaldo,ref_mas_tmax,parcela_dudosa_4bis,True,0.3502,24,False
+B,sin_respaldo,ref_mas_tmax_centrado,parcela_dudosa_4bis,False,0.3615,111,False
+B,sin_respaldo,ref_mas_tmax_centrado,parcela_dudosa_4bis,True,0.3502,24,False
+B,sin_respaldo,ref_mas_tmin,parcela_dudosa_4bis,False,0.3628,111,False
+B,sin_respaldo,ref_mas_tmin,parcela_dudosa_4bis,True,0.3505,24,False
+B,sin_respaldo,ref_mas_tmin_centrado,parcela_dudosa_4bis,False,0.3633,111,False
+B,sin_respaldo,ref_mas_tmin_centrado,parcela_dudosa_4bis,True,0.3502,24,False
+B,sin_respaldo,referencia,parcela_dudosa_4bis,False,0.3608,111,False
+B,sin_respaldo,referencia,parcela_dudosa_4bis,True,0.3476,24,False
+A,sin_respaldo,ref_mas_clima,vecina_etiquetada_20m,False,0.3832,66,False
+A,sin_respaldo,ref_mas_clima,vecina_etiquetada_20m,True,0.2654,69,False
+A,sin_respaldo,ref_mas_clima_centrado,vecina_etiquetada_20m,False,0.3822,66,False
+A,sin_respaldo,ref_mas_clima_centrado,vecina_etiquetada_20m,True,0.2653,69,False
+A,sin_respaldo,ref_mas_lluvia,vecina_etiquetada_20m,False,0.3814,66,False
+A,sin_respaldo,ref_mas_lluvia,vecina_etiquetada_20m,True,0.2639,69,False
+A,sin_respaldo,ref_mas_lluvia_centrado,vecina_etiquetada_20m,False,0.3827,66,False
+A,sin_respaldo,ref_mas_lluvia_centrado,vecina_etiquetada_20m,True,0.2638,69,False
+A,sin_respaldo,ref_mas_tmax,vecina_etiquetada_20m,False,0.382,66,False
+A,sin_respaldo,ref_mas_tmax,vecina_etiquetada_20m,True,0.2657,69,False
+A,sin_respaldo,ref_mas_tmax_centrado,vecina_etiquetada_20m,False,0.3832,66,False
+A,sin_respaldo,ref_mas_tmax_centrado,vecina_etiquetada_20m,True,0.2654,69,False
+A,sin_respaldo,ref_mas_tmin,vecina_etiquetada_20m,False,0.3846,66,False
+A,sin_respaldo,ref_mas_tmin,vecina_etiquetada_20m,True,0.2651,69,False
+A,sin_respaldo,ref_mas_tmin_centrado,vecina_etiquetada_20m,False,0.3829,66,False
+A,sin_respaldo,ref_mas_tmin_centrado,vecina_etiquetada_20m,True,0.2646,69,False
+A,sin_respaldo,referencia,vecina_etiquetada_20m,False,0.3806,66,False
+A,sin_respaldo,referencia,vecina_etiquetada_20m,True,0.263,69,False
+B,sin_respaldo,ref_mas_clima,vecina_etiquetada_20m,False,0.4218,66,False
+B,sin_respaldo,ref_mas_clima,vecina_etiquetada_20m,True,0.3038,69,False
+B,sin_respaldo,ref_mas_clima_centrado,vecina_etiquetada_20m,False,0.4218,66,False
+B,sin_respaldo,ref_mas_clima_centrado,vecina_etiquetada_20m,True,0.302,69,False
+B,sin_respaldo,ref_mas_lluvia,vecina_etiquetada_20m,False,0.4258,66,False
+B,sin_respaldo,ref_mas_lluvia,vecina_etiquetada_20m,True,0.3061,69,False
+B,sin_respaldo,ref_mas_lluvia_centrado,vecina_etiquetada_20m,False,0.4291,66,False
+B,sin_respaldo,ref_mas_lluvia_centrado,vecina_etiquetada_20m,True,0.3048,69,False
+B,sin_respaldo,ref_mas_tmax,vecina_etiquetada_20m,False,0.4209,66,False
+B,sin_respaldo,ref_mas_tmax,vecina_etiquetada_20m,True,0.3042,69,False
+B,sin_respaldo,ref_mas_tmax_centrado,vecina_etiquetada_20m,False,0.4201,66,False
+B,sin_respaldo,ref_mas_tmax_centrado,vecina_etiquetada_20m,True,0.3016,69,False
+B,sin_respaldo,ref_mas_tmin,vecina_etiquetada_20m,False,0.422,66,False
+B,sin_respaldo,ref_mas_tmin,vecina_etiquetada_20m,True,0.3019,69,False
+B,sin_respaldo,ref_mas_tmin_centrado,vecina_etiquetada_20m,False,0.4219,66,False
+B,sin_respaldo,ref_mas_tmin_centrado,vecina_etiquetada_20m,True,0.3026,69,False
+B,sin_respaldo,referencia,vecina_etiquetada_20m,False,0.4195,66,False
+B,sin_respaldo,referencia,vecina_etiquetada_20m,True,0.3,69,False
