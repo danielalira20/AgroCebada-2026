@@ -81,3 +81,8 @@ La [fase 2](docs/diagnostico_fase2.md) cruza 51 series históricas con sus méto
 ## Diagnóstico de errores · fase3
 
 Revisión local de mapas, curvas y calidad de los diez casos y sus controles, empezando por los cuatro fallos compartidos. [Informe](docs/diagnostico_fase3.md), [fichas en PDF](registro/diagnostico/fase3_fichas.pdf), [tablas y fuentes](registro/diagnostico/fase3/manifest.json) y [observación numérica T06](registro/diagnostico/fase3_observaciones_T06.json). Datos originales, particiones y predicciones conservados; no es un nuevo modelo ni una mejora de MAE demostrada.
+
+
+## Diagnóstico de errores · fase 4
+
+La [fase 4](docs/diagnostico_fase4.md) concilia las etiquetas originales, distingue escritura de precisión de medición y revisa factores locales no registrados. Las 197 identidades y las etiquetas de 71,208 evaluaciones históricas coinciden con el original. [Entrega numérica](registro/diagnostico/fase4/manifest.json), [14 hallazgos](registro/diagnostico/fase4_hallazgos.csv), [seis preguntas preparadas para FIRA](registro/diagnostico/fase4_preguntas_FIRA.csv) y [verificación](registro/diagnostico/fase4_verificacion.json). No se enviaron preguntas, corrigieron etiquetas ni entrenaron nuevos modelos; revisión independiente pendiente.
