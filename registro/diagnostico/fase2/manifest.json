@@ -1,0 +1,47 @@
+{
+  "schema": "agrocebada_diagnostico_fase2_entrega_v1",
+  "estado": "tecnico_para_revision",
+  "diseno_sha256": "03cf3cf4cb1eef8e554fad92da3466e1f360179adbbf03f66297e71c443ea93b",
+  "fase0_manifest_sha256": "e5eb9bd692d00f64b0b59fa611723bff7dcaabf00297bc5c3aed27341984f691",
+  "series": 51,
+  "referencias_alias": 7,
+  "candidatos_no_referencia": 44,
+  "registros_AB_verificados": 70380,
+  "C_registros_fuera_contraste": 828,
+  "parcelas": 138,
+  "reservadas_evaluadas": 0,
+  "reentrenamientos": 0,
+  "mezcla_oraculo": false,
+  "revision_humana": "pendiente",
+  "figuras_generadas": true,
+  "codigo_sha256": {
+    "scripts/diagnostico_fase2.py": "b024516c3f208032a4a3e0f49a0db4014bf78895f2c0eee85943fd3541243132",
+    "scripts/diagnostico_fase2_figuras.py": "48ca808d9b9671c0bcd3530cbfd2d8de8dfd9f3edcfec849d435e34c2299ad89"
+  },
+  "n_filas_tablas": {
+    "matriz_procedimientos_por_caso.csv": 28152,
+    "resumen_comparaciones.csv": 204,
+    "metricas_por_repeticion.csv": 1020,
+    "coincidencias_por_frente.csv": 3312,
+    "pares_procedimientos.csv": 3960,
+    "sensibilidad_media_referencia.csv": 1380,
+    "ficha_soporte_municipal.csv": 54,
+    "catalogo_series.csv": 51
+  },
+  "archivos_sha256": {
+    "cambios_A_B.pdf": "1fceec74f36436d860916048b5a28808c0bc23f1aeff1946a3e9850dcb269f86",
+    "cambios_A_B.png": "37912966bb9e2ae11b7248a4ac57d5137d6810bc221ef86919acd471f7d228cf",
+    "catalogo_series.csv": "f9d443ddae7c3f2d716c53e8687484e337035c710699f040f0e8c0a1e5ba17dc",
+    "coincidencias_por_frente.csv": "0ec12c8a50d69267db53b1582ceb7b3650c5dfe011a92a592eecc614e9fc1ef8",
+    "errores_compartidos_casos.pdf": "677c5b6d763d07b9303cac86266ff7df3baf7a2405bbe618b8182caae6d09693",
+    "errores_compartidos_casos.png": "df009a5b2315c26e6f01d3496d36c537bb04d1e83f94fc52a639b9611d84a5a6",
+    "ficha_soporte_municipal.csv": "160626c4d2d40fc0f0d150e0c7e41c38ed7d7221af668507ca3f112cbdd65204",
+    "influencia_referencia_municipal.pdf": "e09f2bf495ee85a9a65fb27d45610dfe73b4eb8a398e8774f646e4b685be62d3",
+    "influencia_referencia_municipal.png": "0559e27a7e35c95ef7081883fb806eb6d465fe58c37b6a39d8cc7162c867bdfe",
+    "matriz_procedimientos_por_caso.csv": "a53bf2593550c16d9e8c3ab49d77bbef18086bf3529a585c91f8d47415551d8e",
+    "metricas_por_repeticion.csv": "79ed63cae58bacff1323f987f81568b5973870e004c643e89b1d48da043174e4",
+    "pares_procedimientos.csv": "3b76ba50b9e4e0273c578285eeb5d787580770d2b96c1e5b76f2ed056bb78b18",
+    "resumen_comparaciones.csv": "d68887da4276706ec25dfc04cecaade7c99603caef2b2179fff13cc59eb57a7b",
+    "sensibilidad_media_referencia.csv": "39d285e072a805b3c46733da5c15f6a31b148a0b04452a594ba0649a8942fc0d"
+  }
+}

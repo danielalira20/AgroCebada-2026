@@ -1,0 +1,147 @@
+{
+  "schema": "agrocebada_diagnostico_fase2_verificacion_v1",
+  "estado": "tecnicamente_verificada_para_revision_humana",
+  "fecha": "2026-10-13",
+  "rama": "t15-diagnostico-fase2",
+  "diseno_commit": "762855a",
+  "diseno_sha256": "03cf3cf4cb1eef8e554fad92da3466e1f360179adbbf03f66297e71c443ea93b",
+  "fuentes_fase0_sin_actualizacion_silenciosa": true,
+  "fase1_commit": "a5497913de9c79c2734963a0d6ea44dd4528d7b9",
+  "codigo_sha256": {
+    "scripts/diagnostico_fase2.py": "b024516c3f208032a4a3e0f49a0db4014bf78895f2c0eee85943fd3541243132",
+    "scripts/diagnostico_fase2_figuras.py": "48ca808d9b9671c0bcd3530cbfd2d8de8dfd9f3edcfec849d435e34c2299ad89",
+    "scripts/auditar_diagnostico_fase2.py": "b54f3f89d19dfcc0a76bfa133bbc53c8e036beb70261103fdbeebb63e69e9e54",
+    "tests/test_diagnostico_fase2.py": "dc3e8a124d657920ce8000cfac3aa0afc3014298ef07e8e99892abb2c061f470"
+  },
+  "imagen_docker": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "recursos_motor": {
+    "CPU": 2,
+    "memoria_GB": 2
+  },
+  "pruebas": {
+    "Mac_normal": {
+      "total": 64,
+      "resultado": "OK"
+    },
+    "Docker_optimizado": {
+      "total": 64,
+      "resultado": "OK"
+    },
+    "nuevas_fase2": 22,
+    "conservadas_fase0_fase1": 42
+  },
+  "auditoria_mac": {
+    "estado": "aprobado",
+    "fuentes_sha256_verificadas": 154,
+    "series": 51,
+    "registros_raw_AB": 70380,
+    "filas_matriz": 28152,
+    "pares": 3960,
+    "soporte_contextos": 1380,
+    "comparaciones_numericas": 494962,
+    "diferencia_maxima": 1.4641066137244252e-15,
+    "tolerancia_abs": 1e-12,
+    "productor_importado": false,
+    "modelos_importados": false,
+    "reentrenamientos": 0,
+    "retiro_explicito_entrenamiento": true
+  },
+  "auditoria_docker": {
+    "estado": "aprobado",
+    "fuentes_sha256_verificadas": 154,
+    "series": 51,
+    "registros_raw_AB": 70380,
+    "filas_matriz": 28152,
+    "pares": 3960,
+    "soporte_contextos": 1380,
+    "comparaciones_numericas": 494962,
+    "diferencia_maxima": 1.4641066137244252e-15,
+    "tolerancia_abs": 1e-12,
+    "productor_importado": false,
+    "modelos_importados": false,
+    "reentrenamientos": 0,
+    "retiro_explicito_entrenamiento": true
+  },
+  "comparacion_archivos_mac_docker": {
+    "matriz_procedimientos_por_caso.csv": true,
+    "catalogo_series.csv": true,
+    "ficha_soporte_municipal.csv": true,
+    "coincidencias_por_frente.csv": true,
+    "cambios_A_B.png": false,
+    "pares_procedimientos.csv": true,
+    "cambios_A_B.pdf": true,
+    "resumen_comparaciones.csv": true,
+    "metricas_por_repeticion.csv": true,
+    "manifest.json": false,
+    "influencia_referencia_municipal.png": false,
+    "errores_compartidos_casos.png": false,
+    "influencia_referencia_municipal.pdf": true,
+    "errores_compartidos_casos.pdf": false,
+    "sensibilidad_media_referencia.csv": true
+  },
+  "comparacion_figuras": {
+    "cambios_A_B.png": {
+      "pixeles_identicos": true,
+      "max_diferencia": 0
+    },
+    "influencia_referencia_municipal.png": {
+      "pixeles_identicos": true,
+      "max_diferencia": 0
+    },
+    "errores_compartidos_casos.png": {
+      "pixeles_identicos": true,
+      "max_diferencia": 0
+    },
+    "PDF_heatmap_renderizado": {
+      "pixeles_identicos": true,
+      "max_diferencia": 0
+    }
+  },
+  "auditor_optimizado_equivalencia": {
+    "Mac_auditor_antes_despues_igual": true,
+    "campos_iguales": [
+      "estado",
+      "fuentes_sha256_verificadas",
+      "series",
+      "registros_raw_AB",
+      "filas_matriz",
+      "pares",
+      "soporte_contextos",
+      "comparaciones_numericas",
+      "diferencia_maxima",
+      "tolerancia_abs",
+      "productor_importado",
+      "modelos_importados",
+      "reentrenamientos",
+      "retiro_explicito_entrenamiento"
+    ],
+    "resultados_sin_cambio": true
+  },
+  "proteccion": {
+    "originales_intactos": 357,
+    "fase1_tablas_figuras_intactas": true,
+    "ramas_previas_intactas": true,
+    "push": false
+  },
+  "diccionario_columnas": {
+    "n": 85,
+    "sha256": "e2f860ce77cfb8459041704c05ae5c5d3fd2144f0e00e10d22304b994eab4c75"
+  },
+  "manifest_entrega_sha256": "ae96dfca95bc286e8b65ec69858bdc703c1791ee93600a7a43bbefc07da4d22b",
+  "exportacion_canonica": "Docker_linux_amd64",
+  "alcance": "2.1_2.2_2.3_historicos",
+  "series": 51,
+  "candidatos_no_referencia": 44,
+  "alias_referencia": 7,
+  "registros_AB": 70380,
+  "C_excluidos_conservados_en_ledger": 828,
+  "mezcla_oraculo": false,
+  "retiro_etiquetas_oficiales": false,
+  "experimentos_nuevos": 0,
+  "reentrenamientos": 0,
+  "predicciones_finales59": 0,
+  "revision_humana": "pendiente",
+  "push": false,
+  "GoogleDoc_editado": false,
+  "mensajes_terceros": false
+}

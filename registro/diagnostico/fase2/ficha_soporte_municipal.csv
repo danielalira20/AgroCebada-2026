@@ -1,0 +1,55 @@
+escenario,municipio,fuente_referencia,etiquetas_municipio_total,n_parcelas,n_registros,n_municipal_min,n_municipal_max,n_pool_min,n_pool_max,referencia_min,referencia_max,influencia_max_abs,pools_unitarios
+A,Almoloya,municipio,10,10,50,8,8,8,8,4.47,4.5825,0.0576785714285715,0
+A,Almoloya,grupo,10,0,0,,,,,,,,0
+A,Almoloya,global,10,0,0,,,,,,,,0
+A,Apan,municipio,1,0,0,,,,,,,,0
+A,Apan,grupo,1,1,5,0,0,27,27,2.9814814814814814,3.0555555555555554,0.02136752136752136,0
+A,Apan,global,1,0,0,,,,,,,,0
+A,Calpulalpan,municipio,30,30,150,24,24,24,24,2.9375,3.0625,0.024456521739130436,0
+A,Calpulalpan,grupo,30,0,0,,,,,,,,0
+A,Calpulalpan,global,30,0,0,,,,,,,,0
+A,Chignahuapan,municipio,71,71,355,56,57,56,57,4.397321428571429,4.546666666666667,0.04225324675324675,0
+A,Chignahuapan,grupo,71,0,0,,,,,,,,0
+A,Chignahuapan,global,71,0,0,,,,,,,,0
+A,Cuautepec de Hinojosa,municipio,5,5,25,4,4,4,4,4.55,4.6475,0.07333333333333325,0
+A,Cuautepec de Hinojosa,grupo,5,0,0,,,,,,,,0
+A,Cuautepec de Hinojosa,global,5,0,0,,,,,,,,0
+A,Emiliano Zapata,municipio,3,3,15,2,2,2,2,3.5,3.5,0.0,0
+A,Emiliano Zapata,grupo,3,0,0,,,,,,,,0
+A,Emiliano Zapata,global,3,0,0,,,,,,,,0
+A,Nanacamilpa de Mariano Arista,municipio,1,0,0,,,,,,,,0
+A,Nanacamilpa de Mariano Arista,grupo,1,1,5,0,0,28,28,3.0357142857142856,3.0892857142857144,0.02182539682539683,0
+A,Nanacamilpa de Mariano Arista,global,1,0,0,,,,,,,,0
+A,Singuilucan,municipio,16,16,80,12,13,12,13,2.9846153846153842,3.216666666666667,0.10075757575757573,0
+A,Singuilucan,grupo,16,0,0,,,,,,,,0
+A,Singuilucan,global,16,0,0,,,,,,,,0
+A,Tepeapulco,municipio,1,0,0,,,,,,,,0
+A,Tepeapulco,grupo,1,1,5,0,0,81,81,4.203580246913581,4.272716049382716,0.028182098765432095,0
+A,Tepeapulco,global,1,0,0,,,,,,,,0
+B,Almoloya,municipio,10,10,50,1,9,1,9,4.295,4.585714285714286,0.1900000000000004,9
+B,Almoloya,grupo,10,0,0,,,,,,,,0
+B,Almoloya,global,10,0,0,,,,,,,,0
+B,Apan,municipio,1,0,0,,,,,,,,0
+B,Apan,grupo,1,1,5,0,0,16,31,3.0,3.125,0.041666666666666664,0
+B,Apan,global,1,0,0,,,,,,,,0
+B,Calpulalpan,municipio,30,30,150,12,28,12,28,2.9642857142857144,3.0416666666666665,0.049242424242424226,0
+B,Calpulalpan,grupo,30,0,0,,,,,,,,0
+B,Calpulalpan,global,30,0,0,,,,,,,,0
+B,Chignahuapan,municipio,71,71,355,37,70,37,70,4.3659459459459455,4.5697368421052635,0.06155405405405404,0
+B,Chignahuapan,grupo,71,0,0,,,,,,,,0
+B,Chignahuapan,global,71,0,0,,,,,,,,0
+B,Cuautepec de Hinojosa,municipio,5,5,25,2,4,2,4,4.577500000000001,4.645,0.07083333333333315,0
+B,Cuautepec de Hinojosa,grupo,5,0,0,,,,,,,,0
+B,Cuautepec de Hinojosa,global,5,0,0,,,,,,,,0
+B,Emiliano Zapata,municipio,3,3,15,1,2,1,2,3.5,3.5,0.0,10
+B,Emiliano Zapata,grupo,3,0,0,,,,,,,,0
+B,Emiliano Zapata,global,3,0,0,,,,,,,,0
+B,Nanacamilpa de Mariano Arista,municipio,1,0,0,,,,,,,,0
+B,Nanacamilpa de Mariano Arista,grupo,1,1,5,0,0,14,17,3.0294117647058822,3.125,0.04395604395604397,0
+B,Nanacamilpa de Mariano Arista,global,1,0,0,,,,,,,,0
+B,Singuilucan,municipio,16,16,64,1,15,1,15,2.5,3.164285714285714,0.16666666666666674,15
+B,Singuilucan,grupo,16,16,16,0,0,84,84,4.486190476190476,4.486190476190476,0.02814687320711417,0
+B,Singuilucan,global,16,0,0,,,,,,,,0
+B,Tepeapulco,municipio,1,0,0,,,,,,,,0
+B,Tepeapulco,grupo,1,1,5,0,0,85,98,4.241648351648352,4.476162790697674,0.02736662106703146,0
+B,Tepeapulco,global,1,0,0,,,,,,,,0
