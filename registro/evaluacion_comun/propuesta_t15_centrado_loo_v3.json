@@ -882,93 +882,93 @@
   ],
   "contrastes_planificados": [
     {
-      "candidato": "comun_centrado_v2_C",
+      "candidato": "comun_centrado_loo_v3_C",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_G",
+      "candidato": "comun_centrado_loo_v3_G",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_P",
+      "candidato": "comun_centrado_loo_v3_P",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_CG",
+      "candidato": "comun_centrado_loo_v3_CG",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_CP",
+      "candidato": "comun_centrado_loo_v3_CP",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_GP",
+      "candidato": "comun_centrado_loo_v3_GP",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_CGP",
+      "candidato": "comun_centrado_loo_v3_CGP",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_S",
+      "candidato": "comun_centrado_loo_v3_S",
       "frente_a": "media_mun__resp_grupo",
       "tipo": "promocion"
     },
     {
-      "candidato": "comun_centrado_v2_CG",
-      "frente_a": "comun_centrado_v2_G",
+      "candidato": "comun_centrado_loo_v3_CG",
+      "frente_a": "comun_centrado_loo_v3_G",
       "tipo": "descriptiva_aporte_condicional_C"
     },
     {
-      "candidato": "comun_centrado_v2_CP",
-      "frente_a": "comun_centrado_v2_P",
+      "candidato": "comun_centrado_loo_v3_CP",
+      "frente_a": "comun_centrado_loo_v3_P",
       "tipo": "descriptiva_aporte_condicional_C"
     },
     {
-      "candidato": "comun_centrado_v2_CGP",
-      "frente_a": "comun_centrado_v2_GP",
+      "candidato": "comun_centrado_loo_v3_CGP",
+      "frente_a": "comun_centrado_loo_v3_GP",
       "tipo": "descriptiva_aporte_condicional_C"
     },
     {
-      "candidato": "comun_centrado_v2_CG",
-      "frente_a": "comun_centrado_v2_C",
+      "candidato": "comun_centrado_loo_v3_CG",
+      "frente_a": "comun_centrado_loo_v3_C",
       "tipo": "descriptiva_aporte_condicional_G"
     },
     {
-      "candidato": "comun_centrado_v2_GP",
-      "frente_a": "comun_centrado_v2_P",
+      "candidato": "comun_centrado_loo_v3_GP",
+      "frente_a": "comun_centrado_loo_v3_P",
       "tipo": "descriptiva_aporte_condicional_G"
     },
     {
-      "candidato": "comun_centrado_v2_CGP",
-      "frente_a": "comun_centrado_v2_CP",
+      "candidato": "comun_centrado_loo_v3_CGP",
+      "frente_a": "comun_centrado_loo_v3_CP",
       "tipo": "descriptiva_aporte_condicional_G"
     },
     {
-      "candidato": "comun_centrado_v2_CP",
-      "frente_a": "comun_centrado_v2_C",
+      "candidato": "comun_centrado_loo_v3_CP",
+      "frente_a": "comun_centrado_loo_v3_C",
       "tipo": "descriptiva_aporte_condicional_P"
     },
     {
-      "candidato": "comun_centrado_v2_GP",
-      "frente_a": "comun_centrado_v2_G",
+      "candidato": "comun_centrado_loo_v3_GP",
+      "frente_a": "comun_centrado_loo_v3_G",
       "tipo": "descriptiva_aporte_condicional_P"
     },
     {
-      "candidato": "comun_centrado_v2_CGP",
-      "frente_a": "comun_centrado_v2_CG",
+      "candidato": "comun_centrado_loo_v3_CGP",
+      "frente_a": "comun_centrado_loo_v3_CG",
       "tipo": "descriptiva_aporte_condicional_P"
     },
     {
-      "candidato": "comun_centrado_v2_S",
-      "frente_a": "comun_centrado_v2_P",
+      "candidato": "comun_centrado_loo_v3_S",
+      "frente_a": "comun_centrado_loo_v3_P",
       "tipo": "descriptiva_sensor"
     }
   ],
