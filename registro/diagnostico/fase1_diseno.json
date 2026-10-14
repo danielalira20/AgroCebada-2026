@@ -1,0 +1,66 @@
+{
+  "schema": "agrocebada_diagnostico_fase1_v1",
+  "fecha_registro": "2026-10-13",
+  "estado": "reglas_antes_de_calculos_fase1_resultados_previamente_explorados",
+  "responsable": "Dani",
+  "fase0_commit": "83fd1076a424c48e9e44288bed1c90344d96410e",
+  "fase0_manifest_sha256": "e5eb9bd692d00f64b0b59fa611723bff7dcaabf00297bc5c3aed27341984f691",
+  "ledger_sha256": "199fed965f34033e94716c8c0edaef189ac94e186ec5a28e8325496269fbdea0",
+  "fuente": "T08",
+  "candidato": "media_mun__resp_grupo",
+  "variante": "seleccionada",
+  "version": "T08-v1",
+  "escenarios": [
+    "A",
+    "B"
+  ],
+  "n_parcelas": 138,
+  "repeticiones": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "poblaciones": [
+    "todas",
+    "sin_respaldo",
+    "con_respaldo",
+    "grupo",
+    "global"
+  ],
+  "unidad_error": "t/ha",
+  "error_firmado": "prediccion-real",
+  "error_absoluto": "abs(prediccion-real)",
+  "error_cuadrado": "(prediccion-real)**2",
+  "ranking": "media_por_parcela_de_errores_absolutos_elegibles_desempate_ID",
+  "casos_y_controles": "fijados_en_fase0_no_reseleccionar",
+  "cuantiles": "interpolacion_lineal_R7_sobre_estadisticos_por_parcela",
+  "ponderacion": "cada_parcela_elegible_pesa_igual_en_resumen_parcelas; adicional_promedio_metricas_por_repeticion_T03_y_agrupado_registros_explicitos",
+  "contribuciones": "media_abs_o_cuadratica_parcela/suma_medias_de_parcelas_en_misma_poblacion_escenario",
+  "sin_elegibles": "n=0_estadisticos_vacios_nunca_cero",
+  "signos": "positivo_sobreestimacion_negativo_subestimacion_cero_exacto; frecuencia_con_denominador_n_elegibles",
+  "persistencia": "conteos_signos_y_top10_por_repeticion_con_mascara; sin_umbral_posthoc_para_etiquetar_fallo",
+  "dispersion": "rango_y_desviacion_poblacional_entre_repeticiones_no_intervalo_predictivo",
+  "rangos_rendimiento": "[floor(real),floor(real)+1)_t_ha; descriptivos_ancho_1_origen_0_no_umbrales_agronomicos",
+  "contraste_B": "A_y_B_emparejados_por_ID_repeticion_y_fuente_municipal_en_ambos_para_pares_sin_respaldo; B_todos_y_B_respaldo_separados",
+  "figuras": "todos_registros_OOF_con_casos_fijos_marcados; ECDF_medias_abs_por_parcela; puntos_y_rangos_estabilidad_sin_intervalos",
+  "limites": [
+    "no_otros_modelos_hasta_fase2",
+    "sin_reentrenar",
+    "sin_tuning",
+    "sin_calibrar_con_etiquetas_externas",
+    "sin_descartar_parcelas",
+    "sin_errores_inventados_59",
+    "sin_causas_confirmadas",
+    "sin_seleccion_ganador",
+    "sin_evaluacion_completa_T15",
+    "sin_push_merge_mensajes_o_Doc"
+  ],
+  "revision_humana": "pendiente",
+  "referencias": [
+    "plan_diagnostico_tab_t.r7d5h4run1h6_revision_de_fase0",
+    "https://www.itl.nist.gov/div898/handbook/eda/section3/eda33q.htm",
+    "https://doi.org/10.48550/arXiv.2609.00065"
+  ]
+}
