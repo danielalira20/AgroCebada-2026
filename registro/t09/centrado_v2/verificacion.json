@@ -1,0 +1,253 @@
+{
+  "schema": "agrocebada_t09_R_centrado_validacion_v2",
+  "fecha": "2026-10-13",
+  "estado": "verificado_tecnicamente_en_revision_Migue",
+  "pasos_3_4_completados": true,
+  "revision_humana_aprobada": false,
+  "diseno_sha256": "ac28ebdd6b2b5c67650f55a6c33ddfc1f24742a0358e9e0f8b819f2cc93fc429",
+  "registro_sha256": "bac0ca3ba04c99cb7269392c7b15464c7745fca0fca2976b4d821c9b23c1922b",
+  "Docker_imagen": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "pruebas": {
+    "Mac_suite_completa": 79,
+    "Docker_base": 76,
+    "Docker_regresiones_adaptador_y_bootstrap": 2,
+    "Docker_suite_nueva_optimizada": 21,
+    "Docker_pruebas_distintas_cubiertas": 79,
+    "auditor_adversarial_Mac_casos_rechazados": 7
+  },
+  "reproduccion": {
+    "estado": "aprobado",
+    "Docker_archivos_byte_identicos": {
+      "coeficientes.csv": true,
+      "comparaciones_emparejadas.csv": true,
+      "contextos.json": true,
+      "diferencias_por_parcela.csv": true,
+      "estados.json": true,
+      "metricas_por_repeticion.csv": true,
+      "metricas_resumen.csv": true,
+      "predicciones_oof.csv": true,
+      "procedencia.json": true,
+      "puntuaciones_internas.csv": true,
+      "resultado.json": true,
+      "seleccion_interna.csv": true
+    },
+    "max_diferencia_CSV_Mac_Docker": 1.9539925233402755e-14,
+    "diferencias_por_CSV": {
+      "coeficientes.csv": 1.2212453270876722e-14,
+      "comparaciones_emparejadas.csv": 1.3183898417423734e-15,
+      "diferencias_por_parcela.csv": 8.43769498715119e-15,
+      "metricas_por_repeticion.csv": 1.2490009027033011e-15,
+      "metricas_resumen.csv": 1.1379786002407855e-15,
+      "predicciones_oof.csv": 1.9539925233402755e-14,
+      "puntuaciones_internas.csv": 2.7200464103316335e-15,
+      "seleccion_interna.csv": 1.4432899320127035e-15
+    },
+    "max_diferencia_estados_Mac_Docker": 4.779510121011299e-14,
+    "contextos_Mac_Docker_identicos": true,
+    "fuentes_y_historicos_preservados": 387,
+    "ramas_preservadas": {
+      "t09-territorio-clima": "7ad99b2d63c6cc90d338b345e82f4d11c23689d0",
+      "t15-procedimiento-comun": "fc3edc1e4e33f280b31854025987045bfd546042"
+    },
+    "tolerancia_prediccion_y_metricas": 1e-09,
+    "tolerancia_coeficientes_y_centros": 1e-10,
+    "selecciones_y_mascaras_Mac_Docker_identicas": true
+  },
+  "resultados": {
+    "metricas": {
+      "A": {
+        "R": {
+          "MAE": 0.3219867688535085,
+          "RMSE": 0.4919252189220934,
+          "R2": 0.6595055205947615,
+          "sesgo": 0.0006288149931479855
+        },
+        "R_centrado": {
+          "MAE": 0.32169106503839556,
+          "RMSE": 0.491666378111832,
+          "R2": 0.65986247104284,
+          "sesgo": 0.00010670355135419893
+        },
+        "T": {
+          "MAE": 0.32048971038707885,
+          "RMSE": 0.4925930953739293,
+          "R2": 0.6585767448496691,
+          "sesgo": 0.0003380913108983445
+        },
+        "TC": {
+          "MAE": 0.3216231308155044,
+          "RMSE": 0.4916685332132249,
+          "R2": 0.6598596508258826,
+          "sesgo": 0.00011390614950995276
+        }
+      },
+      "B": {
+        "R": {
+          "MAE": 0.36327189373925556,
+          "RMSE": 0.5266021333115153,
+          "R2": 0.6040790356646115,
+          "sesgo": -0.05017249791846706
+        },
+        "R_centrado": {
+          "MAE": 0.37146967095251276,
+          "RMSE": 0.5133629447065075,
+          "R2": 0.6237164878411724,
+          "sesgo": -0.10591603345944459
+        },
+        "T": {
+          "MAE": 0.3578674085639142,
+          "RMSE": 0.521985168457037,
+          "R2": 0.6109633862726992,
+          "sesgo": -0.041136279259960544
+        },
+        "TC": {
+          "MAE": 0.3710383456830235,
+          "RMSE": 0.5133238496707816,
+          "R2": 0.623783592734321,
+          "sesgo": -0.10392018007152089
+        }
+      },
+      "C": {
+        "R": {
+          "MAE": 0.6665085461272824,
+          "RMSE": 0.8244072846834896,
+          "R2": 0.055027988334178435,
+          "sesgo": -0.2092801563523501
+        },
+        "R_centrado": {
+          "MAE": 0.7024546818394193,
+          "RMSE": 0.8478253919654589,
+          "R2": 0.000579753957080209,
+          "sesgo": -0.17201363590041913
+        },
+        "T": {
+          "MAE": 0.6959229127995527,
+          "RMSE": 0.8429940970873634,
+          "R2": 0.011937603070008573,
+          "sesgo": -0.17712764437984094
+        },
+        "TC": {
+          "MAE": 0.7027300420951754,
+          "RMSE": 0.8476754379854737,
+          "R2": 0.0009332554954376571,
+          "sesgo": -0.17294270066186407
+        }
+      }
+    },
+    "seleccion": {
+      "A": [
+        {
+          "ventana": "abr_oct",
+          "lambda": 1.0,
+          "contextos": 5
+        },
+        {
+          "ventana": "abr_oct",
+          "lambda": 10.0,
+          "contextos": 10
+        },
+        {
+          "ventana": "jun_oct",
+          "lambda": 1.0,
+          "contextos": 2
+        },
+        {
+          "ventana": "jun_oct",
+          "lambda": 10.0,
+          "contextos": 8
+        }
+      ],
+      "B": [
+        {
+          "ventana": "abr_oct",
+          "lambda": 1.0,
+          "contextos": 4
+        },
+        {
+          "ventana": "abr_oct",
+          "lambda": 10.0,
+          "contextos": 15
+        },
+        {
+          "ventana": "jun_oct",
+          "lambda": 0.01,
+          "contextos": 5
+        },
+        {
+          "ventana": "jun_oct",
+          "lambda": 10.0,
+          "contextos": 1
+        }
+      ],
+      "C": [
+        {
+          "ventana": "abr_oct",
+          "lambda": 0.01,
+          "contextos": 1
+        },
+        {
+          "ventana": "abr_oct",
+          "lambda": 1.0,
+          "contextos": 3
+        },
+        {
+          "ventana": "abr_oct",
+          "lambda": 10.0,
+          "contextos": 4
+        },
+        {
+          "ventana": "jun_oct",
+          "lambda": 0.01,
+          "contextos": 1
+        }
+      ]
+    },
+    "correcciones": {
+      "A": {
+        "media_abs_correccion_t_ha": 0.014077391677950414,
+        "max_abs_correccion_t_ha": 0.17293729085832138
+      },
+      "B": {
+        "media_abs_correccion_t_ha": 0.06895569861285125,
+        "max_abs_correccion_t_ha": 0.2564536891028104
+      },
+      "C": {
+        "media_abs_correccion_t_ha": 0.023247669595453806,
+        "max_abs_correccion_t_ha": 0.3511264485313098
+      }
+    },
+    "max_media_municipal_correccion_train": 4.302114220422482e-17
+  },
+  "incidencias": [
+    {
+      "componente": "adaptador_historicos",
+      "problema": "Series.equals rechaza object frente a str aunque las palabras coincidan",
+      "solucion": "igualdad exacta por ID y valores; rechazar incluso un bit diferente de predicción; regresión Mac/Docker",
+      "afecta_formulas_o_datos": false
+    },
+    {
+      "componente": "auditor_independiente",
+      "problema": "se suponía celda_chirps en T07 pero la fuente es T03",
+      "solucion": "leer celdas congeladas T03 y unir por ID; nueva regresión; auditorías completas aprobadas",
+      "afecta_formulas_o_datos": false
+    }
+  ],
+  "intentos_previos": {
+    "Docker_antes_corregir_adaptador": "59 contextos calculados; guardia detuvo salida; sin entrega",
+    "reproduccion_Docker_interrumpida": "detenida al detectar el mismo fallo antes de completarla",
+    "Mac_control": "completa y verificada",
+    "canonicos_Docker_corregidos": 2
+  },
+  "regla_promocion": "no_cumple",
+  "ajuste_final_59": false,
+  "T15_modificado": false,
+  "codigo_colegas_modificado": false,
+  "push_realizado": false,
+  "pendientes": [
+    "revision_Migue",
+    "auditar_y_versionar_consumidores_otras_tareas",
+    "acordar_actualizacion_T15",
+    "publicar_solo_con_nueva_autorizacion"
+  ],
+  "Docker_detenido_al_cierre": true
+}

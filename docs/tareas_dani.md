@@ -56,3 +56,15 @@ Siguiente revisión de Dani/Jass: conciliar con T02 aceptada; inspeccionar AGC_0
 Jass informó validación independiente del cálculo T04. El PR 6 existe con destino dev; las notas del 6 de octubre conservan estados históricos. La [entrega mensual al equipo](t04_entrega_equipo.md) incorpora tabla compacta, conciliación calculada con T02 identificada y diccionario. Las medias originales permanecen idénticas. Dani autorizó publicar estas correcciones en el PR 6 hacia dev el 7 de octubre; la nueva revisión de Jass y el cierre de T04 siguen pendientes.
 
 La [revisión temporal](t04_version_disponibilidad.md) diferencia observación, publicación y edición del producto. No fija ventanas ni cambia T03. Siguiente conversación: punto 5, responsable y reglas de agregación por ventana/documento para T07. T09 no empieza por disponer del CSV: requiere protocolo y experimento acordados.
+
+## Diseño T09 fijado · 11 de octubre de 2026
+
+Dani autorizó cerrar el diseño sin esperar respuesta de Migue. [Diseño v1.0](t09_diseno.md), [razones y evidencia](t09_decisiones.md) y [configuración](../registro/t09/diseno.json): referencia exacta, clima solo, municipio + clima y corrección residual; ventanas/regularización/selección fijadas. La revisión independiente sigue pendiente; la fase de diseño no entrena modelos ni cierra T09. El siguiente paso es preflight y desarrollo de estimadores con controles de fuga, antes de evaluación oficial.
+
+## Estimadores T09 verificados · 12 de octubre de 2026
+
+Rama `t09-territorio-clima`: [implementación y pruebas](t09_estimadores.md) de los cuatro procedimientos del diseño. Pasan 299 pruebas Mac y 59 Docker; fuente/diseño intactos. Las comprobaciones numéricas son controles, no resultados de la evaluación completa. Próximo paso: ejecutor externo y reportes, ejecución según diseño y revisión de Migue. No hay ganador ni entrega definitiva para las 59.
+
+## Evaluación completa T09 · 12 de octubre de 2026
+
+La [entrega T09](t09_evaluacion.md) y [estado verificable](../registro/t09/evaluacion.json) comparan los cuatro procedimientos en A/B/C: 59 contextos, 6,018 ajustes por corrida, 6,072 OOF principales. Ningún candidato climático cumple la regla en A/sin_respaldo; T se conserva como base para T15. Dos Docker idénticos, 324 pruebas Mac/84 controles Docker, verificadores independientes y fuentes intactas. Implementación y evaluación listas para revisión de Migue; T09 no se marca Hecha. T16 elige el procedimiento global y T18 genera las 59 definitivas. Rama t09-territorio-clima; publicación pendiente de autorización para el lote completo.

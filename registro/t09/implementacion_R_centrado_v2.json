@@ -1,0 +1,49 @@
+{
+  "schema": "agrocebada_t09_R_centrado_implementacion_v2",
+  "version": "T09-R-centrado-v2",
+  "fecha": "2026-10-13",
+  "estado": "pasos_1_2_componentes_verificados_revision_y_evaluacion_completa_pendientes",
+  "base_PR18": "7ad99b2d63c6cc90d338b345e82f4d11c23689d0",
+  "rama": "t09-centrado-municipal",
+  "commits_diseno_e_implementacion": [
+    "33524f5",
+    "f373bb5"
+  ],
+  "revisor_aprobo": false,
+  "codigo_y_diseno_sha256": {
+    "scripts/t09_estimadores.py": "5873e48160e9bd16c0ef4aa5f733d2f06cb07476a48caee457bab7e56c26ef67",
+    "scripts/t09_residual_centrado.py": "fb9633d222b0375f6905938a8cce6efdd5d4d791de75347ab236c7cb18813ffc",
+    "tests/test_t09_residual_centrado.py": "257d3aa90b3ef717156dd77a2b5fcf01fd200a8147b8dd9ee0e43855a3f11e2e",
+    "docs/t09_R_centrado_v2.md": "ed96df0287c13346d7446043c71218d8fd3a110fe4b0c3b8c581aefafd3a20a6",
+    "registro/t09/diseno_R_centrado_v2.json": "ac28ebdd6b2b5c67650f55a6c33ddfc1f24742a0358e9e0f8b819f2cc93fc429"
+  },
+  "validacion_componentes": {
+    "pruebas": {
+      "mac": 41,
+      "docker": 41
+    },
+    "max_diferencia_mac_docker": 4.574118861455645e-14,
+    "campo_max": "/estados/3/centros_Z_municipio/Nanacamilpa de Mariano Arista/2",
+    "campos_numericos_comparados": 823,
+    "ids_metadatos_y_versiones_iguales": true,
+    "max_pred_matrices_independientes": 8.881784197001252e-16,
+    "max_coef_matrices_independientes": 6.38378239159465e-16,
+    "max_media_correccion_municipal_train": 5.088522196198634e-17,
+    "ajustes_centrados_fijos_por_entorno": 8,
+    "contextos_por_entorno": 1,
+    "evaluacion_completa": false,
+    "MAE_nuevo": false
+  },
+  "Docker_imagen": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "fuentes_y_resultados_v1": {
+    "fuentes_protegidas_intactas": 360,
+    "archivos_historicos_t09_intactos": 24,
+    "diseno_v1_intacto": true,
+    "filas_previas_bitacoras_intactas": true
+  },
+  "consumidores_v1": "sin_cambios_usan_R_original",
+  "selector_ejecutor_y_verificador_v2": "pendientes_no_se_ejecutaron",
+  "T15_actualizado": false,
+  "publicacion_autorizada": false,
+  "evidencia_local": "output/agrocebada/t09_h3_pasos_1_2_20261013_del_proyecto_Codex_no_dependencia_operativa"
+}

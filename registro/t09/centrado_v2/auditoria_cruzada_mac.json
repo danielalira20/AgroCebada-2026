@@ -1,0 +1,30 @@
+{
+  "matrices": {
+    "estado": "aprobado",
+    "soluciones_internas": 1888,
+    "reajustes_externos": 118,
+    "predicciones_recalculadas": 6072,
+    "historicas_preservadas": 3036,
+    "max_diferencias": {
+      "prediccion": 8.43769498715119e-15,
+      "coeficiente": 1.1546319456101628e-14,
+      "centro_escala": 4.779510121011299e-14,
+      "MAE_interno": 2.7200464103316335e-15,
+      "media_municipal_train": 2.74037443754308e-16
+    },
+    "importaciones_estimadores_produccion": 0,
+    "uso_sklearn": "solo_particiones",
+    "tolerancia_pred_MAE": 1e-09,
+    "tolerancia_coef_centros": 1e-10
+  },
+  "reportes": {
+    "estado": "aprobado",
+    "metricas_por_repeticion": 168,
+    "metricas_resumen": 40,
+    "contrastes": 25,
+    "diferencias_por_parcela": 3420,
+    "max_diferencia": 2.220446049250313e-16
+  },
+  "verificador_sha256": "00fc58820a701846d466429ed7e9b043e35fd18fd88c8e70c07440b1c712d04a",
+  "auxiliar_numpy_sha256": "216a94bd04f86f0bd33f44322e68c4b09182d1261dff301d16d81d30548f496c"
+}

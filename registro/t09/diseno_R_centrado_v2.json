@@ -1,0 +1,203 @@
+{
+  "schema": "agrocebada_t09_R_centrado_v2",
+  "version": "T09-R-centrado-v2",
+  "fecha": "2026-10-13",
+  "estado": "diseno_fijado_por_Dani_revision_independiente_pendiente",
+  "responsable": "Dani",
+  "revisor_previsto": "Migue",
+  "revisor_aprobo": false,
+  "alcance_autorizado": "pasos_1_2_diseno_e_implementacion_sin_evaluacion_completa",
+  "evaluacion_completa_realizada": false,
+  "registro_experimento": "pendiente_de_preparar_antes_de_ejecutar",
+  "experimento_propuesto": "T09_R_centrado_v2",
+  "antecedente": {
+    "commit": "7ad99b2d63c6cc90d338b345e82f4d11c23689d0",
+    "archivo": "registro/t09/diseno.json",
+    "sha256": "1072e4196df68359fa3728e504f23ec28dd94b637715854a6635d36d4478081f",
+    "resultados_previos_conocidos": true,
+    "cambio_posterior_a_resultados": "revision_H3_no_es_registro_ciego"
+  },
+  "procedimiento": "R_centrado",
+  "referencia": {
+    "referencia": "media_mun__resp_grupo",
+    "configuraciones": 1,
+    "respaldo": [
+      "municipio",
+      "grupo",
+      "global"
+    ],
+    "regularizacion": false
+  },
+  "residuo": "y_menos_T_del_entrenamiento_sin_la_fila",
+  "rehacer_loo_por_entrenamiento_interno": true,
+  "fit_intercept": false,
+  "centrado": {
+    "entrada": "Z_estandarizado_globalmente_solo_entrenamiento",
+    "fit": "restar_media_Z_municipal_solo_entrenamiento",
+    "predict": "restar_centro_Z_guardado",
+    "respaldo": [
+      "municipio",
+      "grupo",
+      "global"
+    ],
+    "media_validacion_o_59": false,
+    "reescalar_desviaciones_intramunicipales": false,
+    "fila_municipio_unico": "D_cero_residuo_LOO_con_respaldo_fila_conservada",
+    "conteo_alpha": "todas_las_filas_del_entrenamiento",
+    "propiedad": "media_correccion_cero_por_municipio_de_entrenamiento_no_impuesta_en_evaluacion"
+  },
+  "ventanas": {
+    "abr_oct": {
+      "inicio": "2025-04-01",
+      "fin": "2025-10-31",
+      "meses": 7,
+      "dias": 214,
+      "columnas": [
+        "prec_acumulada_mm_abr_oct",
+        "tmin_media_c_abr_oct",
+        "tmax_media_c_abr_oct"
+      ]
+    },
+    "jun_oct": {
+      "inicio": "2025-06-01",
+      "fin": "2025-10-31",
+      "meses": 5,
+      "dias": 153,
+      "columnas": [
+        "prec_acumulada_mm_jun_oct",
+        "tmin_media_c_jun_oct",
+        "tmax_media_c_jun_oct"
+      ]
+    }
+  },
+  "regularizacion": {
+    "familia": "Ridge_L2",
+    "objetivo": "perdida_cuadratica_media_mas_lambda_norma_beta_cuadrada",
+    "lambda": [
+      0.01,
+      0.1,
+      1,
+      10
+    ],
+    "alpha": "n_filas_entrenamiento_por_lambda",
+    "solver": "svd",
+    "escalar": "StandardScaler_media_desviacion_poblacional_solo_entrenamiento",
+    "peso_fila": 1,
+    "imputar_clima": false
+  },
+  "configuraciones": 8,
+  "seleccion": {
+    "metrica": "MAE",
+    "concatenar_errores_validaciones": true,
+    "entrenar_todas_las_filas": true,
+    "mascara_puntuar_A_B": "municipio_con_soporte_en_entrenamiento_interno",
+    "mascara_puntuar_C": "todas",
+    "desempate": [
+      "MAE_redondeado_6_decimales",
+      "lambda_mayor",
+      "jun_oct"
+    ],
+    "n_particiones_internas": 4
+  },
+  "escenarios": {
+    "A": {
+      "externas": "T03_particion_principal",
+      "repeticiones": 5,
+      "particiones": 5,
+      "uso": "principal",
+      "internas": "StratifiedKFold",
+      "shuffle": true,
+      "semilla": 0,
+      "estrato": "municipio_si_n_mayor_igual_4_luego_otros"
+    },
+    "B": {
+      "externas": "T03_particion_espacial",
+      "repeticiones": 5,
+      "particiones": 5,
+      "uso": "sensibilidad_obligatoria",
+      "internas": "GroupKFold",
+      "shuffle": false,
+      "grupo": "celda_chirps_centroide",
+      "grupos_compartidos_permitidos": 0
+    },
+    "C": {
+      "externas": "LeaveOneMunicipalityOut",
+      "particiones": 9,
+      "uso": "solo_informe_transferencia_territorial",
+      "internas": "GroupKFold",
+      "shuffle": false,
+      "grupo": "municipio",
+      "grupos_compartidos_permitidos": 0,
+      "sin_respaldo": "no_aplicable"
+    },
+    "ajuste_final_59": {
+      "politica": "A",
+      "entrenamiento": 138,
+      "elegir_parametros_con_59": false
+    }
+  },
+  "evaluacion_heredada": {
+    "regla": {
+      "dMAE_max": -0.01,
+      "limite_IC95_celdas_superior_menor_0": true,
+      "repeticiones_mejora_min": 4,
+      "dRMSE_max": 0.01
+    },
+    "mascara": "fuente_municipio_de_T08_comun_a_candidatos",
+    "bootstrap": {
+      "unidad": "celda_chirps_centroide",
+      "replicas": 5000,
+      "semilla": 20261006,
+      "percentiles": [
+        2.5,
+        97.5
+      ],
+      "intervalos_secundarios": "nominales_no_simultaneos"
+    }
+  },
+  "fuentes_sha256": {
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
+    "registro/t07/calidad_ventanas.csv": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/clima_variables.csv": "1c5da038dfe3df979ac823e196ddd5d9989f833002c5845ecc9544c0d5f42a7b",
+    "registro/t07/clima_ventanas.csv": "57a77dbb4c9e396ad22f34e486e860dbc82877c1ed64adc02fc15135898a9a0d",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/controles.json": "1ed3e0ec3d25c6cc3827870be546961e53c99c71f58ef45dc6f6ec55d26176b5",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/inventario_fuentes.json": "27ca7935420522401fe8181aef673717e7c1d95585d7b65924650a09c32a86a8",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07_fichas/fichas_atributos.csv": "1e5fda719728a026dbfef19ef9d1cfec1ff26d35c40eeecbf0fa224488ad8483",
+    "registro/t07_fichas/manifest.json": "5587ddbae3524860ec5c1775aecedaec614e37a5d8a02389bf521c37e5283478",
+    "registro/t07_fichas/pendientes_documentales.csv": "b4a093950bc68e949bf7128a16a8a856becd747ba5ca761b872cb27faa77b64b",
+    "registro/t03/activacion_respaldos.csv": "1b43bc3d80c74ca9d8fc2bf87db4e8a81f3c8de2b0c818c9279f45b477c9fb9a",
+    "registro/t03/comparacion_emparejada.csv": "02070227c4d71041ed02f2630c237c545b217676e9e4d416cd1f6497441faec4",
+    "registro/t03/metricas_por_municipio.csv": "98a77cd18cd69b726e6bca62c42653db743208eb73772c86719f42f32f2b6634",
+    "registro/t03/metricas_referencias.csv": "7a95246fa3c01e9cc73a88f29e347f4c0e44064357cbc415b3152e4771b22367",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/predicciones_59_referencias.csv": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56",
+    "registro/t03/predicciones_oof_referencias_media_global.csv": "d7853475e4db83414a5a5503566ee75f992f9c7ce7ad3288d1f87d89f2ddf480",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_global.csv": "3271cefc140095375f9ec0c73a727286dccc7e9df451f8f64fd79f15325c5dc4",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "registro/t03/predicciones_oof_referencias_mediana_global.csv": "b1bb1cb702cf0f4ba79e2b6e50d91c4705170d4d82411c0f2e252dff9c98f82f",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_global.csv": "9f1519de9574305804581e16518b7ba8a7188342aace13465d0735ddfef4d5bb",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+    "registro/t03/predicciones_oof_referencias_mediana_mun_contraida_grupo.csv": "b0681b7980b8c128800ade1e590afabdba5475da30d5b47e27316cbaf68520f5",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/soporte_resumen.csv": "4f781dfa98ccac888509e56cec9cddd04ff8d639977ef62605e4897ca8135052",
+    "data/raw/DataSet.zip": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+    "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
+    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd"
+  },
+  "consumidores_v1": "historicos_sin_cambios_no_ejecutan_ni_acreditan_R_centrado",
+  "pasos_pendientes": [
+    "pruebas_ampliadas",
+    "selector_y_ejecutor_versionados",
+    "evaluacion_completa",
+    "revision_independiente",
+    "actualizacion_PR",
+    "actualizacion_procedimiento_T15"
+  ]
+}
