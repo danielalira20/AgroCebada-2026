@@ -8,6 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.colors import TwoSlopeNorm
+from matplotlib.ticker import NullFormatter
 from PIL import Image
 from shapely.affinity import translate
 
@@ -139,7 +140,8 @@ def calidad_error(out,q,e,pairs):
         for role,color,marker in [('resto','.65','o'),('control','#16697a','s'),('caso','#bd3846','^')]:
             ids=[pid for pid in q if ('A','todas',pid) in e and (pid in cases if role=='caso' else pid in controls if role=='control' else pid not in cases|controls)]
             ax.scatter([q[p][col] for p in ids],[float(e[('A','todas',p)]['mae']) for p in ids],s=24,c=color,marker=marker,label=role,alpha=.75)
-        if col in ('area_ha_origen','ancho_rectangulo_m'):ax.set_xscale('log')
+        if col in ('area_ha_origen','ancho_rectangulo_m'):
+            ax.set_xscale('log');ax.xaxis.set_minor_formatter(NullFormatter())
         ax.set_xlabel(label);ax.set_ylabel('MAE medio por ID, t/ha');ax.grid(alpha=.15)
     axes[0,0].legend(fontsize=8)
     fig.suptitle('Calidad frente al error: todas las 138 etiquetas, sin descartar casos\nRelaciones exploratorias; municipio y selección de casos pueden confundirlas',fontsize=13)

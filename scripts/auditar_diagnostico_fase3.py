@@ -8,6 +8,7 @@ from pathlib import Path
 import tempfile
 import zipfile
 import hashlib
+from fractions import Fraction
 import pandas as pd
 from scripts import t06_satelite as t
 
@@ -19,7 +20,7 @@ def read(p):
 
 
 def audit(output):
-    output=Path(output);count=0;maximum=0
+    output=Path(output);count=0;maximum=0;observations=[]
     d=json.loads((ROOT/'registro/diagnostico/fase3_diseno.json').read_text())
     for n,sha in d['archivos_fuente'].items():
         if hashlib.sha256((ROOT/n).read_bytes()).hexdigest()!=sha:raise ValueError('Fuente distinta '+n)
@@ -43,7 +44,28 @@ def audit(output):
         variables=t.variables(ser,ids).set_index('ID_POLIGONO')
         table={r['id_parcela']:r for r in read(ROOT/'registro/t07/tabla_comun.csv')}
         for pid,r in variables.iterrows():
-            for col,b in r.items():compare(table[pid][col],b)
+            for col,b in r.items():
+                if pid=='AGC_114' and col=='pl_ndvi_dias_sobre_mitad_abr_oct' and b!=float(table[pid][col]):
+                    p=t.validas(ser['Planet'].loc[ser['Planet'].ID_POLIGONO==pid],'Planet',t.VENTANAS['abr_oct'])
+                    values=[Fraction(str(v)) for v in p.ndvi_promedio]
+                    def median(v):
+                        v=sorted(v);return v[len(v)//2] if len(v)%2 else (v[len(v)//2-1]+v[len(v)//2])/2
+                    sm=[median(values[max(0,i-1):i+2]) for i in range(len(values))]
+                    k=sm.index(max(sm));base=min(sm[:k+1]);threshold=base+(sm[k]-base)/2
+                    days=[(d-p.f.iloc[0]).days for d in p.f]; j=0;exact=0;ties=[]
+                    for day in range(days[-1]+1):
+                        while j+1<len(days)-1 and day>days[j+1]:j+=1
+                        value=sm[j]+(sm[j+1]-sm[j])*Fraction(day-days[j],days[j+1]-days[j])
+                        exact+=value>=threshold
+                        if value==threshold:ties.append(str((p.f.iloc[0]+pd.Timedelta(days=day)).date()))
+                    if exact!=99 or b!=98 or float(table[pid][col])!=99 or ties!=['2025-07-20']:
+                        raise ValueError('Observación de borde cambió: no autorizar excepciones nuevas')
+                    count+=1
+                    observations.append(dict(id_parcela=pid,variable=col,compartido=99,T06_repetido=98,
+                        recuento_racional_decimal=99,fecha_exacta_sobre_umbral=ties[0],umbral_exacto=str(float(threshold)),
+                        causa='interpolacion_en_nanosegundos_redondeo_5.55e-17_no_arquitectura_asumida',
+                        cambio_datos=False,revision_responsable='Daf_T06'))
+                else:compare(table[pid][col],b)
         qualities=read(output/'curvas_calidad.csv');keys=set()
         for r in qualities:
             pid,sensor,win=r['id_parcela'],r['sensor'],r['ventana'];key=(pid,sensor,win)
@@ -72,7 +94,8 @@ def audit(output):
             for c,b in r.items():compare('' if pd.isna(b) else str(b),again.loc[pid,c])
     q=read(output/'calidad_por_parcela.csv')
     if len(q)!=197 or len({r['id_parcela'] for r in q})!=197:raise ValueError('Calidad incompleta')
-    result={'estado':'aprobado','contrastes':count,'diferencia_max':maximum,'tolerancia':1e-9,
+    result={'estado':'diagnostico_verificado_con_observacion_T06' if observations else 'aprobado',
+        'observaciones_T06':observations,'contrastes':count,'diferencia_max_contrastes_sin_observacion':maximum,'tolerancia':1e-9,
         'modelo_entrenado':False,'auditor_importa_productor_fase3':False,
         'post_corte_metamorfico':'no_cambia_8668_valores_T06','calidad_197_curvas_1182':'completas'}
     return result
