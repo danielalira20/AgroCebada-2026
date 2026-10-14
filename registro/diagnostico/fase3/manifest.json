@@ -1,0 +1,91 @@
+{
+  "schema": "agrocebada_diagnostico_fase3_entrega_v1",
+  "estado": "tecnico_para_revision",
+  "diseno_sha256": "9807621f909e221deda4b2240e4f760877ad6d5c51ae11c4255c0e81079beec7",
+  "parcelas_calidad": 197,
+  "parcelas_etiquetadas": 138,
+  "reservadas_evaluadas": 0,
+  "reentrenamientos": 0,
+  "cambios_originales": 0,
+  "revision_humana": "pendiente",
+  "figuras_generadas": true,
+  "miembros_originales": [
+    {
+      "miembro": "DATASET_RETO_AGRO_2026/Conjunto_datos_BASICO_AgroCebada2026.csv",
+      "sha256": "96d68040d954d0903d761fd8ceed0dcd4a08e3842915a3ca44517d60e8bee4ef",
+      "bytes": 33668409
+    },
+    {
+      "miembro": "DATASET_RETO_AGRO_2026/Conjunto_datos_PRO_AgroCebada.csv",
+      "sha256": "91697f8f8d4ad5e59f766acbce2ef76f3c405eb02b41c1de92d62a07e8321888",
+      "bytes": 5000244
+    }
+  ],
+  "geometria_miembro_sha256": "bb7155e551e1f89fb0dfdb676e10bf0aa2c4b2964188bf7673fa1808717b1d02",
+  "rejilla": {
+    "miembro": "Reto_AgroCebada_CHIRPS_Precipitacion_2022_2025/Precipitacion_mensual/2025/PREC_2025_07.tif",
+    "sha256": "737c46d9781ea3ca42fbb17eaa58db2e042c067a24f6bc730f4dcff3aa68ef9e",
+    "transform": [
+      0.05000000074505806,
+      0.0,
+      -99.94999880716205,
+      0.0,
+      -0.05000000074505806,
+      21.39999957382679
+    ]
+  },
+  "max_diferencia_resumen": 2.842170943040401e-14,
+  "n_filas_tablas": {
+    "calidad_por_parcela.csv": 197,
+    "curvas_calidad.csv": 1182,
+    "conciliacion_resumenes.csv": 11032,
+    "asociaciones_calidad_error.csv": 80,
+    "desgloses_calidad_error.csv": 122,
+    "vecindad_contextos.csv": 174,
+    "pares_casos_controles.csv": 320,
+    "inventario_temporal.csv": 3,
+    "comparacion_curvas_pares.csv": 20
+  },
+  "codigo_sha256": {
+    "scripts/diagnostico_fase3.py": "5f826edc87d7fb1e0ebd11cc478f2afc6aa5d063353213db28a8422a3fbba3fc",
+    "scripts/diagnostico_fase3_figuras.py": "bf39ae448257dcd7ea6adb99777d760e08ae1c345bf4c38e5e1b6c5996d2f307"
+  },
+  "archivos_sha256": {
+    "asociaciones_calidad_error.csv": "442922a0de64ead17ff9638c46f92883a11430121aefc90d4f7f9697caed705b",
+    "calidad_error_138.pdf": "101177057a37e172a3c399fadd29759f3b857d17e04e85f1714f6d5167b1c683",
+    "calidad_error_138.png": "19dd3743bb078693b78d0c94e2152aa0415daac82a66e3120cf72f351c18d4a0",
+    "calidad_por_parcela.csv": "8fae5c0ec075e0fe79ea27ed149a3b3dc7520127176b5d737b4f8eab80822f36",
+    "comparacion_curvas_pares.csv": "3132a068e8d099cd9ee47884156fa7224739fe5c5a15c4fe110a6bba5722cc18",
+    "conciliacion_resumenes.csv": "3f2f4732f39c883c5b19d7ef437319cc0cc2ef5bb6370f525b32b4e172250d6a",
+    "curvas_calidad.csv": "f1cf13b696afa58ed3f52388f85ddfc5f6b3dd571a9b91f4853d3f3237035133",
+    "desgloses_calidad_error.csv": "61258126203feb73bed7fa9b20321a76259fda11de1f9df7dd4620efb0b52ea4",
+    "ficha_01_AGC_171.pdf": "ea4dd0d6f9713418c5d90f158d6932f3c28c150c9a8c8a8561acf9b8287f543a",
+    "ficha_01_AGC_171.png": "183aa4530c44c4d7b5f71fc0ef934c539273c1fbb06194054e227c96185870b1",
+    "ficha_02_AGC_015.pdf": "59a32378ed83d9106ee5d3469ba3061a8d1f70e240674a9337877ad3e564cdd4",
+    "ficha_02_AGC_015.png": "df6217c53c3f20a508191160c9a5dffce8b0021f87181d0bde00cd3489d7cfb0",
+    "ficha_03_AGC_024.pdf": "c6e1cc98137e1c707c4f2fe0d6cd9dfc2368d49c7a37568eea645a849153c3be",
+    "ficha_03_AGC_024.png": "e1bebd7cc70cb18103ef39976f4be44211ede48df88ab1a951b7049d5b603fce",
+    "ficha_04_AGC_034.pdf": "bfb8824b51d03da352403d39e50f154e1af9c3e465decc1f2b70fdbe62919582",
+    "ficha_04_AGC_034.png": "bc9bc5d18e68b3661e7dec05c88ea76a7dff6bedf795264fa4bc145db5652d1e",
+    "ficha_05_AGC_162.pdf": "b3377a24c7c9aed60b222677ffb7cf9a8a8688f160e8310bef78a324169b7acd",
+    "ficha_05_AGC_162.png": "52d70764704c4db300767d948668c4c3847bfed15f14e44f189b539b53f000b5",
+    "ficha_06_AGC_127.pdf": "02099811b3f0a4f96a5f0d10bbabf44e8ca8ab8caa18667b8f77321747373200",
+    "ficha_06_AGC_127.png": "1fe0a2fb53f1ef9debd402c20a5836b4550789b151bf1be367696daf724d7563",
+    "ficha_07_AGC_049.pdf": "b2ac213b42e0b3dd3fa6c17055fe18212fb30ace387a569aeb7953507bb279df",
+    "ficha_07_AGC_049.png": "2fa5a2e7b89312670adb0a793b263103b77bffced38bb5e30eeb455bb7aec8be",
+    "ficha_08_AGC_069.pdf": "647c6c27e4a28770c770a64eb5a526f2997a39f6e55d281cdb71731ce8ed5d35",
+    "ficha_08_AGC_069.png": "ed1d758d54c875ae129904b9076d7ebf4abbbbe18dc78f7b0b3b8f5ad86f3bea",
+    "ficha_09_AGC_055.pdf": "2f4ac7fe6ca1025d0c70ac600d786c70051f1681284fd21e8d90a304f23e995e",
+    "ficha_09_AGC_055.png": "b1b48f4af9c03bc4fb52a6672056557b5e80c889be3eb3342b150f99bc63d1cd",
+    "ficha_10_AGC_026.pdf": "a482d0bcd7a0806c85ec3af4b86c1b6ea4c3310e7fd881e933b13bdb490d775f",
+    "ficha_10_AGC_026.png": "5feeafc69193f9ae40f70658be95587904fca0f11ca69c06a7ede46aae638b6c",
+    "inventario_temporal.csv": "a5cdb083fdf4b65b3c997ba83bc06ee2ad538aeb31e2120a53d8b5ffc8d2e9e6",
+    "mapas_error_A_B.pdf": "d9f62b6b073b88fdc3b16dce654d59b937bdc7908662528414e4f886bf48043c",
+    "mapas_error_A_B.png": "f9a3c978356f214c0720160e09a5f41c14098b52b92e5014ee40b9e76f681307",
+    "pares_casos_controles.csv": "315c4e4d32484bbcb61506a19e68b749fbdf822b311c5f6d64972ab6567452dd",
+    "vecindad_contextos.csv": "2cf26996cd0aebe9b5567d92ee8e2ef623b959498b2dc76390c764cc39c47c34"
+  },
+  "ajuste_visual": "Sólo etiquetas menores de eje logarítmico para evitar solapamiento; 9CSV idénticos a ejecución completa original.",
+  "ejecucion_previa_manifest_sha256": "2001904ae77bccf86c9a6b70e14252cec7581540e5f7187420a3c2b2625ce666",
+  "estilo_figura_corregida": "defaults Matplotlib fijados dentro de función; comprobación aislada pixel idéntica"
+}

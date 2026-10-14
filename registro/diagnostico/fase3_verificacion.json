@@ -1,0 +1,173 @@
+{
+  "estado": "fase3_tecnica_para_revision_con_observacion_T06",
+  "fecha": "2026-10-14",
+  "rama": "t15-diagnostico-fase3",
+  "pruebas_Mac": 90,
+  "pruebas_Linux_optimizado": 90,
+  "pruebas_omitidas": 0,
+  "produccion_independiente_T07": {
+    "contrastes": 11032,
+    "diferencia_max": 2.842170943040401e-14,
+    "tolerancia": 1e-09
+  },
+  "auditor_Mac": {
+    "estado": "diagnostico_verificado_con_observacion_T06",
+    "observaciones_T06": [
+      {
+        "id_parcela": "AGC_114",
+        "variable": "pl_ndvi_dias_sobre_mitad_abr_oct",
+        "compartido": 99,
+        "T06_repetido": 98,
+        "recuento_racional_decimal": 99,
+        "fecha_exacta_sobre_umbral": "2025-07-20",
+        "umbral_exacto": "0.4695",
+        "causa": "interpolacion_en_nanosegundos_redondeo_5.55e-17_no_arquitectura_asumida",
+        "cambio_datos": false,
+        "revision_responsable": "Daf_T06"
+      }
+    ],
+    "contrastes": 27186,
+    "diferencia_max_contrastes_sin_observacion": 7.105427357601002e-15,
+    "tolerancia": 1e-09,
+    "modelo_entrenado": false,
+    "auditor_importa_productor_fase3": false,
+    "post_corte_metamorfico": "no_cambia_8668_valores_T06",
+    "calidad_197_curvas_1182": "completas"
+  },
+  "auditor_Linux": {
+    "estado": "aprobado",
+    "observaciones_T06": [],
+    "contrastes": 27186,
+    "diferencia_max_contrastes_sin_observacion": 0,
+    "tolerancia": 1e-09,
+    "modelo_entrenado": false,
+    "auditor_importa_productor_fase3": false,
+    "post_corte_metamorfico": "no_cambia_8668_valores_T06",
+    "calidad_197_curvas_1182": "completas"
+  },
+  "comparacion": {
+    "estado": "comparacion_aprobada_con_tolerancias_fisicas_documentadas",
+    "celdas_csv_contrastadas": 120169,
+    "diferencias_representacion": 1992,
+    "tablas": {
+      "curvas_calidad.csv": {
+        "bytes_iguales": false,
+        "max_diferencia": 7.105427357601002e-15
+      },
+      "asociaciones_calidad_error.csv": {
+        "bytes_iguales": true,
+        "max_diferencia": 0
+      },
+      "calidad_por_parcela.csv": {
+        "bytes_iguales": false,
+        "max_diferencia": 0.00011565296193793984
+      },
+      "desgloses_calidad_error.csv": {
+        "bytes_iguales": true,
+        "max_diferencia": 0
+      },
+      "inventario_temporal.csv": {
+        "bytes_iguales": true,
+        "max_diferencia": 0
+      },
+      "conciliacion_resumenes.csv": {
+        "bytes_iguales": false,
+        "max_diferencia": 7.105427357601002e-15
+      },
+      "vecindad_contextos.csv": {
+        "bytes_iguales": true,
+        "max_diferencia": 0
+      },
+      "comparacion_curvas_pares.csv": {
+        "bytes_iguales": true,
+        "max_diferencia": 0
+      },
+      "pares_casos_controles.csv": {
+        "bytes_iguales": false,
+        "max_diferencia": 6.656421192019479e-09
+      }
+    },
+    "figuras": [
+      {
+        "archivo": "ficha_04_AGC_034.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "calidad_error_138.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_05_AGC_162.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_08_AGC_069.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_06_AGC_127.png",
+        "pixels_iguales": false
+      },
+      {
+        "archivo": "ficha_10_AGC_026.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_02_AGC_015.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_07_AGC_049.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_09_AGC_055.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_03_AGC_024.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "ficha_01_AGC_171.png",
+        "pixels_iguales": true
+      },
+      {
+        "archivo": "mapas_error_A_B.png",
+        "pixels_iguales": true
+      }
+    ],
+    "tolerancias": "fase3_ampliacion.json; geometrias_no_modelos"
+  },
+  "pixeles_ficha06": {
+    "figura": "ficha_06_AGC_127.png",
+    "pixels_diferentes": 2,
+    "total_pixels": 2592000,
+    "max_delta_canal": 1,
+    "bbox": [
+      1169,
+      932,
+      1171,
+      933
+    ],
+    "causa_a_comprobar": "geometria_y_rasterizacion_entre_entornos"
+  },
+  "calidad_figura_corregida_pixel_identico": true,
+  "originales_protegidos": 357,
+  "originales_cambiados": [],
+  "revision_visual_20_parcelas": "fase3_revision_visual.csv; asistida, no aprobación humana",
+  "PDF": "12paginas; renderizado y revisado",
+  "entrega_manifest_sha256": "505a911b6685f8284c2647bbd357f0728f30d7629dd9e6d60f4cda6d55f33f3c",
+  "Docker": "apagado, colima_stop_finalizó_2026-10-14_07:49:06_Mexico",
+  "push": false,
+  "modelos_nuevos": 0,
+  "resultados_inferencia": 0,
+  "codigo_sha256": {
+    "scripts/diagnostico_fase3.py": "5f826edc87d7fb1e0ebd11cc478f2afc6aa5d063353213db28a8422a3fbba3fc",
+    "scripts/diagnostico_fase3_figuras.py": "bf39ae448257dcd7ea6adb99777d760e08ae1c345bf4c38e5e1b6c5996d2f307",
+    "scripts/auditar_diagnostico_fase3.py": "a9e0f2bad3a1f06ebeefcfca14228460362fe48e367f61f6fcbb8b0954d6dc20",
+    "tests/test_diagnostico_fase3.py": "62a88951003daa6f88ae0f8b3f0f91b970e7ad21a16f52e778ce255547e0f749"
+  },
+  "PDF_sha256": "f51202f8a92e8b7398379b4b8948848bef319a1d2e6e9772ff4a5c59e74227f7",
+  "figura_aislada_defaults_pixel_identico": true
+}

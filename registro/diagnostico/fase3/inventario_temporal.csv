@@ -1,0 +1,4 @@
+sensor,filas_originales,parcelas,primera,ultima,duplicados,posteriores_al_corte,filas_2025,sin_fecha_disponible,sensor_preservado,unidad_ref
+Landsat,48626,197,2022-01-05,2025-12-31,0,1914,10936,48626,True,unidad_fisica_no_documentada
+Sentinel-2,59040,197,2022-01-01,2025-12-31,0,3091,16820,59040,True,sin_unidad
+Planet,47804,197,2025-01-01,2025-12-30,0,7932,47804,47804,True,sin_unidad

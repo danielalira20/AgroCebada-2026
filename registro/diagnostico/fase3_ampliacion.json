@@ -4,5 +4,23 @@
   "ampliacion": "Comparar NDVI exclusivamente en fechas válidas comunes de los 10 pares congelados, por sensor; RMSE NDVI no es RMSE de rendimiento; no interpolación ni nuevas etiquetas ni reelección controles",
   "calidad": "Colapsar a1 coberturas que difieran<=1e-9 sólo en asociaciones; conservar valores fuente en calidad; evita correlación por redondeo",
   "geometria": "Cruce original4326 antes de área geodésica, según T02; la proyección6372 de esquinas sirve sólo como comparación numérica de un método que aquí no se usa",
-  "sin_cambio_regla_seleccion_modelo": true
+  "sin_cambio_regla_seleccion_modelo": true,
+  "tolerancia_Mac_Docker_antes_de_contraste": {
+    "resumenes_indices_y_dias": 1e-09,
+    "coordenadas_y_longitudes_m": 1e-06,
+    "areas_m2": 0.001,
+    "coberturas_fracciones": 1e-09,
+    "geodesica_ha": 1e-07
+  },
+  "revision_tolerancias_geometria_tras_inspeccion": {
+    "fecha": "2026-10-14",
+    "motivo": "La precisión provisional de1micrometro para rectángulos envolventes no representa la precisión espacial de datos raster3/10/120m; GEOS/PROJ de ARM y x86 difieren hasta0.000116m. Se registra ajuste explícito exclusivamente diagnóstico, no MAE, selección ni particiones.",
+    "max_ancho_m": 0.00011565296193793984,
+    "longitudes_m": 0.001,
+    "fracciones_geodesicas": 1e-08,
+    "pixeles_nominales": "propagar_tol_area1e-3m2/divisor9_100_400",
+    "indices_y_dias": 1e-09,
+    "preservar_valores_literal": true,
+    "asociaciones_80_filas": "idénticas_en_ambos_entornos"
+  }
 }

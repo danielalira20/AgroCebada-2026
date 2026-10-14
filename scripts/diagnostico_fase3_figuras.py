@@ -131,6 +131,8 @@ def mapas(out,g,cells,e,table,pairs):
 
 
 def calidad_error(out,q,e,pairs):
+    # Fixed library defaults: same layout alone and after the dossier figures.
+    plt.rcdefaults()
     fields=[('area_ha_origen','Área declarada, ha'),('pl_capturas_validas','Planet: capturas válidas'),
         ('pl_hueco_max_dias','Planet: hueco máximo, días'),('s2_hueco_max_dias','Sentinel-2: hueco máximo, días'),
         ('pl_ndvi_std_en_maximo','Planet: STD NDVI en torno al máximo'),('ancho_rectangulo_m','Ancho rectángulo, m')]

@@ -1,0 +1,30 @@
+{
+  "estado": "requiere_revision_Daf_T06_sin_cambio_datos_aceptados",
+  "fuente": "scripts/t06_satelite.py:463-464",
+  "Mac": [
+    {
+      "id_parcela": "AGC_114",
+      "variable": "pl_ndvi_dias_sobre_mitad_abr_oct",
+      "compartido": 99,
+      "T06_repetido": 98,
+      "recuento_racional_decimal": 99,
+      "fecha_exacta_sobre_umbral": "2025-07-20",
+      "umbral_exacto": "0.4695",
+      "causa": "interpolacion_en_nanosegundos_redondeo_5.55e-17_no_arquitectura_asumida",
+      "cambio_datos": false,
+      "revision_responsable": "Daf_T06"
+    }
+  ],
+  "Linux": {
+    "estado": "aprobado",
+    "observaciones_T06": [],
+    "contrastes": 27186,
+    "diferencia_max_contrastes_sin_observacion": 0,
+    "tolerancia": 1e-09,
+    "modelo_entrenado": false,
+    "auditor_importa_productor_fase3": false,
+    "post_corte_metamorfico": "no_cambia_8668_valores_T06",
+    "calidad_197_curvas_1182": "completas"
+  },
+  "accion_sugerida": "Interpolar en días relativos y regla de igualdad explícita; contrastar8668valores; no reentrenar si datos aceptados se conservan. No editado por esta tarea."
+}
