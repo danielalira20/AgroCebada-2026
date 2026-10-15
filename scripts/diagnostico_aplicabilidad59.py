@@ -417,6 +417,47 @@ def run(root, destination, detail=None):
 
 def dictionary(tables):
     definitions = {
+        'municipio':('Municipio original conciliado con T02; agrupación territorial, no etiqueta de rendimiento.','nombre','no_admitido'),
+        'representacion':('Bloques y ventana cuyas entradas se inspeccionan; no es un modelo nuevo evaluado.','ID_representacion','no_aplica_en_desgloses_geograficos'),
+        'escenario':('A municipal conocido o B separación por celda, evaluación histórica T03.','categoria_A_B','no_admitido'),
+        'repeticion':('Repetición T03 de1 a5; reutiliza las mismas parcelas.','entero1_5','no_admitido'),
+        'particion':('Partición externa T03 de0 a4.','entero0_4','no_admitido'),
+        'n_entrenamiento':('IDs del entrenamiento usado para aprender escala/mediana de X.','parcelas','no_admitido'),
+        'n_municipio':('IDs del mismo municipio disponibles en ese entrenamiento.','parcelas','no_admitido'),
+        'n_etiquetas_municipio':('Etiquetas locales disponibles:138 para reservadas; sólo entrenamiento externo para OOF.','parcelas','no_admitido'),
+        'n_etiquetas_grupo':('IDs del mismo grupo de registro Cebada/CEBADA disponibles en entrenamiento; no interpretación agronómica.','parcelas','no_admitido'),
+        'fuente_referencia':('Nivel municipal, grupo o global aplicable según disponibilidad de IDs; coincide con T08.','categoria','no_admitido'),
+        'n_vecinas20_general':('Parcelas etiquetadas del entrenamiento con distancia entre orillas <20m, cualquier municipio.','parcelas','no_admitido'),
+        'n_vecinas20_municipio':('Vecinas <20m del mismo municipio y entrenamiento; no bandera global T07.','parcelas','no_admitido'),
+        'n_etiquetas_celda_principal':('Etiquetas del entrenamiento cuya celda principal T02 coincide; no todas las intersecciones.','parcelas','no_admitido'),
+        'n_etiquetas_celda_y_municipio':('Etiquetas de entrenamiento con igual municipio y celda principal.','parcelas','no_admitido'),
+        'distancia_orillas_m':('Distancia mínima al polígono etiquetado del entrenamiento en EPSG32614.','m','no_admitido'),
+        'distancia_orillas_municipio_m':('Distancia mínima entre orillas hacia una etiqueta local del entrenamiento.','m','sin_etiquetas_locales'),
+        'distancia_centros_m':('Mínima distancia geodésica WGS84 entre centroides T02 hacia entrenamiento.','m','no_admitido'),
+        'alerta_contorno':('Bandera T03bis/T07 de contorno para inspección; no daño confirmado ni regla de exclusión.','booleano','no_admitido'),
+        'contorno_categoria':('Categoría visual de T02, atlas sin fecha acreditada de2025.','categoria_A_B_C','no_admitido'),
+        'centroide_dentro_parcela':('El centroide utilizado para la comparación de relieve cae dentro de la parcela.','booleano','no_admitido'),
+        'cobertura_elevacion':('Fracción con elevación válida de T05/T07; conservar literal, incluso redondeo próximo a1.','fraccion','no_admitido'),
+        'cobertura_pendiente':('Fracción con pendiente válida de T05/T07; no mide incertidumbre del rendimiento.','fraccion','no_admitido'),
+        'area_ha_origen':('Área declarada original; denominador del rendimiento aún no confirmado.','ha','no_admitido'),
+        'area_ha_geodesica':('Área geodésica de T02, conservada con su redondeo publicado.','ha','no_admitido'),
+        'entradas_candidatas_ausentes':('Unión de faltantes originales de las representaciones indicadas, antes de imputar para distancia.','lista_columnas','ninguna'),
+        'representaciones_fuera_global':('Representaciones con alguna entrada fuera del rango global de entrenamiento, con tolerancias por unidad.','lista','ninguna'),
+        'representaciones_fuera_municipio':('Representaciones con entrada fuera del rango local; n local pequeño limita interpretación.','lista','ninguna'),
+        'clima_completo':('Las seis combinaciones variable/ventana de T07 tienen estado completa.','booleano','no_admitido'),
+        'alcance':('Reconstrucción2025 con disponibilidad histórica de publicación no acreditada; no validación futura.','texto','no_admitido'),
+        'mensaje_soporte':('Mensaje descriptivo propuesto para la app; no predicción ni garantía.','texto','no_admitido'),
+        'motivo_percentil_ausente':('Explica por qué no existe referencia LOO local, incluido municipio con una etiqueta.','texto','percentil_disponible'),
+        'constantes_en_entrenamiento':('Columnas transformadas, incluido indicador D020, con desviación exactamente cero; escala fijada a1.','columnas','no_admitido'),
+        'dimension':('Condición usada para agrupar errores históricos; puede variar por repetición/entrenamiento.','columna','no_admitido'),
+        'categoria':('Valor de la dimensión del grupo; True/False indican sí/no y no_definido ausencia de referencia.','texto','categoria_vacia_legitima'),
+        'subconjunto':('Todas las evaluadas o sin_respaldo: municipio presente en el entrenamiento correspondiente.','categoria','no_admitido'),
+        'n_etiquetas':('Total de parcelas etiquetadas del municipio en el catálogo de138.','parcelas','no_admitido'),
+        'n_reservadas':('Reservadas del municipio; puede ser cero.','parcelas','no_admitido'),
+        'reservadas_vecina20_local':('Reservadas del municipio con al menos una etiquetada local <20m.','parcelas','no_admitido'),
+        'reservadas_celda_nueva':('Reservadas cuya celda principal no aparece entre las138.','parcelas','no_admitido'),
+        'reservadas_fuera_global':('Reservadas con alguna entrada candidata fuera del rango global, no número de modelos fallidos.','parcelas','no_admitido'),
+        'reservadas_con_alerta_contorno':('Reservadas con bandera de revisión de contorno T03bis/T07.','parcelas','no_admitido'),
         'id_parcela':('Identificador original; nunca predictor automático.','ID','no_admitido'),
         'distancia_global':('Distancia RMS estandarizada al vecino de atributos global.','adimensional','no_admitido'),
         'distancia_municipio':('Distancia RMS al vecino de atributos del mismo municipio.','adimensional','sin_etiquetas_locales'),
@@ -441,7 +482,23 @@ def dictionary(tables):
     output = []
     for name, rs in tables.items():
         for c in rs[0]:
-            meaning, unit, empty = definitions.get(c, (c.replace('_',' '), 'ver_nombre_y_diseno', 'no_aplica_o_ninguno_segun_contexto'))
+            meaning, unit, empty = definitions.get(c, (c.replace('_',' '), 'texto', 'no_admitido'))
+            if c.startswith(('vecino_atributos_','conocida_')):
+                meaning='ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.'
+                unit='ID';empty='sin_etiquetas_locales' if ('local' in c or 'municipio' in c) else 'no_admitido'
+            if c.startswith(('pl_','s2_')):
+                meaning='Calidad/observación T06/T07 del sensor '+('Planet' if c.startswith('pl_') else 'Sentinel2')+' en la ventana indicada; no rendimiento.'
+                if 'hueco_max' in c:unit='dias'
+                elif 'meses_sin' in c:unit='meses'
+                elif 'capturas' in c:unit='capturas'
+                elif 'ultima' in c:unit='fecha_ISO';empty='sin_captura_valida'
+                else:unit='booleano'
+            if c.startswith('perfil_clima_exacto'):
+                meaning='Las tres entradas climáticas de la ventana coinciden literalmente con alguna etiquetada; no igualdad de rendimiento.';unit='booleano'
+            if '_igual_T09' in c:
+                meaning='La definición indicada coincide con el diagnóstico T09 publicado.';unit='booleano'
+            if c.startswith('delta_distancia_'):
+                meaning='Valor C menos valor publicado T02/T09; distinguir el redondeo geométrico de la equivalencia sqrt3 del clima.'
             if 'distancia_' in c and c.endswith('_m'): unit = 'm'
             if c.startswith('delta_distancia_clima'): unit = 'adimensional_norma_Euclidea_T09'
             if c.startswith('area_ha'): unit = 'ha'
