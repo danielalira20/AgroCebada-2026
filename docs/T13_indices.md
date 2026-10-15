@@ -1,6 +1,6 @@
 # T13 · ¿Qué índice es más importante en la predicción?
 
-Responsable: Daf · Revisa: Dani · Versiones: T13-v1 y extensión T13e-v1 · Diseño: D024 y D025 (cada una registrada antes de correr)
+Responsable: Daf · Revisa: Dani y Jass · Versiones: T13-v1 y extensión T13e-v1 · Diseño: D024 y D025 (cada una registrada antes de correr) · Control posterior a la revisión de Jass: D026
 
 ## Problema que resuelve
 
@@ -11,6 +11,7 @@ Primera pregunta guía de las bases (bonus): **¿Qué índice es más importante
 ```bash
 python scripts/t13_indices.py                                   # cinco índices (D024), ≈1 min
 python scripts/t13_extension_indices.py                         # demás índices (D025), ≈1 min; necesita las series de T06
+python scripts/t13_control_intercepto.py                        # control «solo intercepto» (D026), ≈30 s
 python -m unittest discover -s tests -p "test_t1[13]*.py" -v    # pruebas de T11, T13 y extensión (16)
 ```
 
@@ -79,8 +80,10 @@ Positivo = más error que la referencia. ΔMAE promediado por parcela y ΔRMSE p
 
 **Ningún índice ni combinación cumple la regla de T03**, ni con MAE ni con RMSE, en ningún escenario ni subconjunto. Las 16 diferencias frente a la referencia son positivas en MAE; en A todas son menores a 0.004 t/ha.
 
+**Parte de esa diferencia no viene de los índices (revisión de Jass, control D026).** El Ridge de T11 ajusta intercepto, y la media de los residuos de entrenamiento no es cero porque las parcelas de municipios con una sola etiqueta usan el respaldo de grupo. Un modelo sin ningún índice, sólo con ese intercepto, ya queda en ΔMAE +0.0006 en A y +0.0010 en B, con 0/5 repeticiones a favor (`control_solo_intercepto_t13.csv`). En A, descontando ese desfase, los índices de verdor quedan entre +0.0003 y +0.0007. Por eso la lectura correcta es que **los índices no mejoran a la referencia**, no que la empeoren claramente.
+
 - **La selección interna casi apaga los índices.** El α más grande de la rejilla (10 000) se eligió en 47 de 50 entrenamientos para NDVI Planet y NDVI S2, y en 44 para NDWI. Con ese α el coeficiente queda cerca de cero y la predicción es prácticamente la referencia. VI6T fue el que menos veces lo eligió (22 de 50): el modelo le dio más peso y por eso empeoró más.
-- **Sumar índices empeora.** Las tres combinaciones (6–8) tienen más error que los mejores índices solos. Con 138 parcelas y señales tan parecidas, más columnas agregan ruido.
+- **Sumar índices no ayuda.** Las tres combinaciones (6–8) tienen más error que los mejores índices solos. Con 138 parcelas y señales tan parecidas, más columnas agregan ruido. En B esta diferencia es menos firme: la selección interna de α no es espacial (ver «Revisión de Jass»).
 
 ## Orden y estabilidad de los cinco índices
 
@@ -95,7 +98,7 @@ Lugar de cada índice en cada repetición, según su MAE (1 = menor error). Deta
 | VI6T Landsat | 4.0 | 1 | 4.8 | 0 | 4 | 0 % / 0 % |
 
 - **En A no hay ganador estable:** en 5 repeticiones hubo 4 índices distintos en primer lugar.
-- **En B**, NDVI S2 fue primero en 4 de 5, pero LAI2, que en A empataba en primer lugar medio, cae a cuarto. El orden cambia con el escenario.
+- **En B**, NDVI S2 fue primero en 4 de 5, pero LAI2, que en A empataba en primer lugar medio, cae a cuarto. El orden cambia con el escenario. Además, en B la selección interna de α usa particiones por municipio y no por celda, así que el orden en B no es firme.
 - **VI6T es consistentemente el peor** (último en 3/5 en A y 4/5 en B) y su coeficiente siempre es negativo.
 - **Dirección:** en los índices de verdor el coeficiente es positivo en la mayoría de los entrenamientos (la parcela más verde que su municipio tiende a rendir algo más). Es una asociación predictiva, no causal, y de tamaño muy chico.
 
@@ -110,7 +113,7 @@ Lugar de cada índice en cada repetición, según su MAE (1 = menor error). Deta
 
 Negativo = tener ese índice dentro de la combinación reduce el error.
 
-- **NDVI:** en B, quitar los dos NDVI empeora la combinación en las 5 repeticiones y el intervalo excluye el cero. Dentro de la combinación, el NDVI es lo que más pesa. En A no se distingue.
+- **NDVI:** en B, quitar los dos NDVI empeora la combinación en las 5 repeticiones y el intervalo excluye el cero; en A no se distingue. **Esto no basta para decir que el NDVI es lo que más pesa** (revisión de Jass): «sin NDVI» quita dos columnas y «sin VI6T» una, LAI2 (casi un NDVI de borde rojo) se queda dentro, y en B la selección de α no es espacial. Con particiones internas por celda y sin intercepto, Jass obtuvo −0.0014 [−0.0034, +0.0003], que ya incluye el cero.
 - **VI6T:** en A tiende a estorbar y en B a ayudar un poco; el signo cambia con el escenario, así que no hay conclusión.
 - En los dos casos, la combinación completa sigue siendo peor que la referencia.
 
@@ -150,7 +153,7 @@ Los 27 índices del paquete se reducen a pocas señales: casi todo repite al NDV
 | 6 | NDVI S2 + residuos y sequía | +0.0100 | +0.0084 | +0.0118 | +0.0106 | 37/50 |
 | 7 | NDVI S2 (control) | +0.0013 | +0.0005 | +0.0016 | +0.0004 | 47/50 |
 
-**Ninguna familia cumple la regla de T03**, ni con MAE ni con RMSE, en ningún escenario. Todas tienen más error que la referencia.
+**Ninguna familia cumple la regla de T03**, ni con MAE ni con RMSE, en ningún escenario. Ninguna mejora a la referencia; recordar que el intercepto solo ya aporta +0.0006 en A y +0.0010 en B (D026).
 
 - **Residuos y sequía, la única señal distinta, es la que más empeora** (A +0.0096, B +0.0152; IC95 por celdas excluye el cero en los dos). La selección interna le dio peso más veces que a las demás (sólo 31 de 50 entrenamientos con el α máximo), y ese peso no generalizó.
 - **Sumarla al NDVI empeora** (6 frente a 7: ΔMAE +0.0087 en A, IC95 [+0.0043, +0.0123]; +0.0102 en B). No complementa al NDVI.
@@ -163,11 +166,22 @@ Los 27 índices del paquete se reducen a pocas señales: casi todo repite al NDV
 Probamos los **27 índices del paquete**: los cinco que resumió T06 uno por uno (D024) y los otros 22 agrupados por familia (D025). Con las 138 parcelas etiquetadas, **ningún índice ni familia mejoró la predicción respecto al rendimiento promedio del municipio**, así que no hay un índice que sea "el más importante" en el sentido de que mejore el modelo. Lo que sí muestran los datos:
 
 1. **Los 27 índices contienen pocas señales distintas.** La mayoría repite al NDVI (verdor, agua y estrés, Planet; correlaciones de 0.84 a 0.94), y seis pares son prácticamente el mismo índice.
-2. **Los de verdor, en especial el NDVI, son los que mejor se comportan**, aunque no superan a la referencia. Cuál de ellos queda primero cambia con el escenario y la repetición. Dentro de una combinación, el NDVI es lo que más pesa: en el escenario espacial, quitarlo empeora el error en las 5 repeticiones.
+2. **Los de verdor son los que mejor se comportan**, aunque no superan a la referencia; en A, descontando el desfase del intercepto, quedan casi en cero. Cuál de ellos queda primero cambia con el escenario y la repetición, así que no se puede nombrar uno solo.
 3. **La dirección es la esperada:** la parcela más verde que el promedio de su municipio tiende a rendir un poco más. El efecto es tan chico que la selección interna casi siempre lo reduce a cero.
-4. **Las señales distintas del NDVI no ayudan.** VI6T y el bloque de residuos y sequía son los que más empeoran el error, y sumar residuos y sequía al NDVI también lo empeora.
+4. **Las señales distintas del NDVI no ayudan.** El bloque de residuos y sequía es el que más empeora el error, y sumarlo al NDVI también lo empeora. VI6T también queda al final, pero se resume con otra regla (mediana de toda la temporada), así que su resultado mezcla el índice con la forma de resumirlo.
 
 En estas parcelas, el rendimiento lo explica sobre todo la zona. Los índices satelitales resumidos por temporada no agregan información estable con este tamaño de muestra. Es importancia predictiva, no causal.
+
+## Revisión de Jass (PR #20)
+
+| Observación | Qué cambia aquí |
+|---|---|
+| 1. El intercepto del Ridge produce un desfase fijo | Control «solo intercepto» (D026): ΔMAE +0.0006 en A y +0.0010 en B. La redacción pasa de «empeoran» a «no mejoran». |
+| 2. En B la selección de α no es espacial | El orden y la ablación en B se presentan como no firmes. |
+| 3. La ablación del NDVI no es simétrica | Se retira la frase «el NDVI es lo que más pesa». |
+| 4. Los índices no se resumen con la misma regla | Se aclara para VI6T en la respuesta y en las limitaciones. |
+
+Las observaciones 1 y 2 se corrigen a la vez con el procedimiento centrado del PR 21 (Ridge sin intercepto e internas por celda en B). Si se adopta, T13 se repite con ese método y con una ablación simétrica, en un PR aparte y con decisión registrada antes de correr.
 
 ## Limitaciones
 
@@ -176,11 +190,15 @@ En estas parcelas, el rendimiento lo explica sobre todo la zona. Los índices sa
 - La extensión necesita las series de T06 (`data/interim/t06/`, no versionadas); las variables resumidas sí quedan en `variables_indices_extra.csv`.
 - No se verificó si las observaciones estaban publicadas al 31 de octubre (como en T11).
 - La unidad física de LAI2 sigue pendiente (P03); no cambia el resultado porque las variables se escalan.
+- Los índices no se resumen todos igual: NDVI y LAI2 con el máximo de la curva, NDWI y los de la extensión de S2 con la mediana alrededor del máximo, y VI6T con la mediana de la temporada (reglas de T06).
+- El Ridge de T11 tiene intercepto y en B elige α con particiones internas por municipio, no por celda (revisión de Jass).
 - Con índices tan correlacionados, el orden entre los tres de verdor no es estable y no debe leerse como ranking firme.
 - En B, el estrato interno `otros` queda con 3 parcelas en algunos entrenamientos (aviso de scikit-learn), igual que en T11.
 
 ## Archivos
 
 `registro/t13/`: `predicciones_oof_t13.csv`, `metricas_t13.csv`, `comparacion_emparejada_t13.csv`, `coeficientes_t13.csv`, `orden_indices_t13.csv`, `orden_indices_por_repeticion_t13.csv`, `redundancia_indices_t13.csv`, `desglose_error_t13.csv` y `sensibilidad_sin_alerta_t13.csv`.
+
+Control (D026): `control_solo_intercepto_t13.csv`.
 
 Extensión (D025), en la misma carpeta: `variables_indices_extra.csv`, `redundancia_indices_extra_t13e.csv`, `predicciones_oof_t13e.csv`, `metricas_t13e.csv`, `comparacion_emparejada_t13e.csv`, `coeficientes_t13e.csv`, `desglose_error_t13e.csv` y `sensibilidad_sin_alerta_t13e.csv`.
