@@ -1,0 +1,14 @@
+columna,significado,unidad,significado_vacio,rol
+id_parcela,"Identificador original de la parcela; unión por ID, nunca posición",identificador,No permitido,identidad
+municipio,Municipio del catálogo original,texto,No permitido,metadato territorial
+conjunto,ENTRENAMIENTO: 138 con etiqueta; PREDICCION: 59 reservadas,categoría,No permitido,auditoría; no predictor
+ventana,abr_oct o jun_oct de 2025; no duplica la muestra independiente,categoría,No permitido,opción de ventana; no predictor automático
+estado_E1,admisible_completo; calculable_truncado_no_admitido; no_calculable,categoría,No permitido,calidad; no predictor automático
+valor_observado_D1,"Contraste original media NDWI posterior menos NDWI en fecha de máximo, conservado literalmente incluso si es parcial",adimensional,D1 no calculable; no imputado,observación original para auditoría
+e1_ndwi_post15_45,Contraste D1 sólo si es calculable y máximo+45 días no supera el corte; cero observado válido,adimensional,No calculable o intervalo nominal truncado; no se rellena,candidato E1 propuesto
+e1_no_utilizable,1 cuando falta E1 admisible; 0 cuando existe; columna fija en el modelo futuro,0/1,No permitido,indicador propuesto; vacío no equivale a NDWI cero
+intervalo_truncado,True si máximo+45 días supera 2025-10-31; False en otro caso,booleano,Sin máximo; no ocurre en estos 394 perfiles,calidad; no predictor automático
+n_fechas_post,Número de fechas distintas válidas NDWI entre +15 y +45 días hasta corte; 0 es un conteo válido,fechas,No permitido,soporte; no predictor automático
+fecha_maximo,Primera fecha del máximo NDVI suavizado usada por D1,fecha ISO,Sin máximo; no ocurre en estos 394 perfiles,auditoría temporal; no predictor automático
+motivo_D1,Motivo original de calculabilidad D1; ok no implica admisible si el intervalo está truncado,categoría,No permitido,calidad; no predictor automático
+conservar_fila,Siempre True; ninguna ausencia E1 elimina una parcela,booleano,No permitido,control de población

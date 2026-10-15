@@ -1,0 +1,102 @@
+{
+  "estado": "contrato_y_clasificacion_verificados_revision_humana_pendiente",
+  "fecha": "2026-10-14T22:49:02.621750-06:00",
+  "contrato_sha256": "356372d65fad12062229b12726f3ce634179e76fe2392fc00d02274435d3b59c",
+  "antecedente_D1_commit": "c918ed5481f9e72bd188b45ef6e32778f266d81a",
+  "metodo_propuesto_PR21_commit": "4afabf081a341f3321fcd58a211d18b43ee5a3b4",
+  "criterios_T03_iguales_a_propuesta_v3": true,
+  "alcance": "Validación documental y clasificación de soporte; sin preprocesamiento aprendido ni estimadores",
+  "pruebas": {
+    "Mac_Python312": 27,
+    "Docker_Linux_amd64_Python312_modo_O": 27
+  },
+  "reproduccion_entre_entornos": {
+    "vista_admisibilidad_propuesta.csv": {
+      "identico_bytes": true,
+      "sha256": "40fa062deb0f1bc44cf165120c1c4c4f816131b672173b44235ff6c29de866bf",
+      "bytes": 50513
+    },
+    "resumen_admisibilidad.csv": {
+      "identico_bytes": true,
+      "sha256": "0b2a88654dae94fed8bffd1e1bb7f9c055f015d828eda6a3971403383d26ca00",
+      "bytes": 368
+    },
+    "manifest.json": {
+      "identico_bytes": true,
+      "sha256": "fe36a69a692d351cb7c2b97af8dc6998a6de49bf1ff5270a815f3cc21a89d036",
+      "bytes": 732
+    }
+  },
+  "revision_separada_de_clasificacion": {
+    "estado": "aprobado",
+    "metodo": "CSV+fechas+Decimal sin importar productor ni modelos",
+    "comparaciones": 5932,
+    "perfiles": 394,
+    "IDs": 197,
+    "fuentes_protegidas_intactas": 58,
+    "valores_observados_preservados_literalmente": 338,
+    "candidatos_admisibles_por_ventana": 151,
+    "ausencias_por_ventana": 46,
+    "filas_eliminadas": 0,
+    "valores_imputados": 0,
+    "etiquetas_leidas": 0
+  },
+  "entorno_Docker": {
+    "imagen": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+    "arquitectura": "amd64",
+    "red": "none",
+    "repo_montado": "solo_lectura",
+    "limite_memoria": "512m",
+    "Python_O": true,
+    "fecha": "2026-10-14T22:48:34.392215-06:00"
+  },
+  "Docker_detenido": {
+    "solicitado_stop": true,
+    "fecha": "2026-10-14T22:48:37.023952-06:00"
+  },
+  "Colima_parado_confirmado": {
+    "fecha": "2026-10-14T22:49:05-06:00",
+    "resultado": "colima is not running"
+  },
+  "codigo_sha256": {
+    "scripts/t15_e1_contrato.py": "bfac541b0633b1917708dd72d66c6f8bf5f9624aee6c29bc077ac7ab0a022af0",
+    "tests/test_t15_e1_contrato.py": "29d128369211a50f19a146084ffba9ab5cd0bd14b17e848d1e86c0d0f90b164b"
+  },
+  "archivos_sha256": {
+    "vista_admisibilidad_propuesta.csv": "40fa062deb0f1bc44cf165120c1c4c4f816131b672173b44235ff6c29de866bf",
+    "diccionario.csv": "167ae99e069b2e23a9e8ce87b3b6dbc9e8358980b836157566f031b9c4e967f5",
+    "contrato_propuesto_v1.json": "356372d65fad12062229b12726f3ce634179e76fe2392fc00d02274435d3b59c",
+    "resumen_admisibilidad.csv": "0b2a88654dae94fed8bffd1e1bb7f9c055f015d828eda6a3971403383d26ca00",
+    "manifest.json": "fe36a69a692d351cb7c2b97af8dc6998a6de49bf1ff5270a815f3cc21a89d036"
+  },
+  "guardia_ejecucion": "Rechaza ejecutar modelos desde este contrato propuesto; no integrado en evaluador",
+  "entregas_T03_T06_T07_D1_protegidas": 58,
+  "salidas": {
+    "perfiles": 394,
+    "IDs": 197,
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "observaciones_D1_por_ventana": 169,
+    "admisibles_por_ventana": 151,
+    "ausencias_candidatas_por_ventana": 46,
+    "filas_eliminadas": 0,
+    "valores_imputados": 0,
+    "transformadores_ajustados": 0,
+    "modelos_ajustados": 0,
+    "predicciones59_nuevas": 0
+  },
+  "pendiente": [
+    "revision_politica_y_presupuesto",
+    "implementacion_y_pruebas_de_preprocesamiento",
+    "registro_aceptado_antes_de_evaluar",
+    "evaluacion_opcional_E1"
+  ],
+  "no_realizado": [
+    "integracion_T07",
+    "edicion_PR21",
+    "publicacion",
+    "entrenamiento",
+    "seleccion",
+    "prediccion59"
+  ]
+}

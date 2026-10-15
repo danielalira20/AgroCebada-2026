@@ -1,0 +1,7 @@
+ventana,conjunto,n_parcelas,admisibles_completos,calculables_truncados_no_admitidos,no_calculables_D1,no_utilizables_como_E1_observado,filas_eliminadas
+abr_oct,todas,197,151,18,28,46,0
+abr_oct,ENTRENAMIENTO,138,106,13,19,32,0
+abr_oct,PREDICCION,59,45,5,9,14,0
+jun_oct,todas,197,151,18,28,46,0
+jun_oct,ENTRENAMIENTO,138,106,13,19,32,0
+jun_oct,PREDICCION,59,45,5,9,14,0
