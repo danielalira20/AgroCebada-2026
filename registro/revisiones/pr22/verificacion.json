@@ -1,0 +1,77 @@
+{
+  "PR": 22,
+  "commit_revisado": "f73f376d81210b7b78e97532759d54b309f7a02f",
+  "PR21_base": "4afabf081a341f3321fcd58a211d18b43ee5a3b4",
+  "particiones_internas": [
+    {
+      "escenario": "A",
+      "metodo": "comun_v3",
+      "ajustes_internos": 100,
+      "n_parcelas_validacion": 2760,
+      "n_parcelas_excluidas_respaldo": 60,
+      "n_parcelas_referencia_municipal": 2700,
+      "n_parcelas_referencia_unica": 30
+    },
+    {
+      "escenario": "B",
+      "metodo": "comun_v3",
+      "ajustes_internos": 100,
+      "n_parcelas_validacion": 2760,
+      "n_parcelas_excluidas_respaldo": 206,
+      "n_parcelas_referencia_municipal": 2554,
+      "n_parcelas_referencia_unica": 360
+    },
+    {
+      "escenario": "B",
+      "metodo": "contraste_estratificado",
+      "ajustes_internos": 100,
+      "n_parcelas_validacion": 2760,
+      "n_parcelas_excluidas_respaldo": 72,
+      "n_parcelas_referencia_municipal": 2688,
+      "n_parcelas_referencia_unica": 28
+    }
+  ],
+  "niveles_referencia_historica": {
+    "A": {
+      "n_parcelas": 135,
+      "n_registros": 675,
+      "repeticiones_validas": {
+        "5": 135
+      },
+      "MAE_por_parcela": 0.32048971038707874,
+      "MAE_por_registro": 0.32048971038707874
+    },
+    "B": {
+      "n_parcelas": 135,
+      "n_registros": 659,
+      "repeticiones_validas": {
+        "5": 119,
+        "4": 16
+      },
+      "MAE_por_parcela": 0.363187374907898,
+      "MAE_por_registro": 0.3584320427284814
+    }
+  },
+  "n_referencias_unicas_externas": {
+    "A": 0,
+    "B": 34
+  },
+  "MAE_referencia_unica_B": 0.19735294117647056,
+  "AGC120_referencia_publicada": "2.5",
+  "AGC120_AGC048_distancia_centros_m": 2598.1379188019173,
+  "AGC120_AGC048_distancia_orillas_m_publicada_C": 1882.99399153288,
+  "C_codigo_agrupa_municipios": true,
+  "referencia_sola_gana_empate": true,
+  "modelos_ajustados": 0,
+  "nuevas_predicciones59": 0,
+  "limites": "No reproduce nuevos ΔMAE/IC de modelos del repo privado de Migue ni aprueba el PR en GitHub.",
+  "fuentes_sha256": {
+    "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+    "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "registro/t03/predicciones_59_referencias.csv": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/diagnostico/aplicabilidad59/perfil_59.csv": "0482f1c6cadd2b8ae1116a8429bf2eb78c3dbc0bd83194455e4614d8b3cc4b34"
+  }
+}

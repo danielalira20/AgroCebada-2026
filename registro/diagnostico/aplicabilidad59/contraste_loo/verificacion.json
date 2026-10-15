@@ -1,0 +1,69 @@
+{
+  "estado": "verificado_tecnicamente_revision_humana_pendiente",
+  "fecha": "2026-10-15T15:25:33.342936-06:00",
+  "PR21_base": "4afabf081a341f3321fcd58a211d18b43ee5a3b4",
+  "PR22_revisado": "f73f376d81210b7b78e97532759d54b309f7a02f",
+  "diseno_previo_commit": "335b69b",
+  "codigo_contraste_commit": "4795820",
+  "codigo_revision_PR22_commit": "7b67286",
+  "pruebas_Mac": 47,
+  "pruebas_Docker": 47,
+  "auditorias_independientes_por_entorno": {
+    "estado": "aprobado",
+    "comparaciones": 42364,
+    "max_delta": 5.684341886080802e-14,
+    "tolerancia": 1e-09,
+    "perfiles": 2955,
+    "parcelas": 197,
+    "espacios_reconstruidos": 2085,
+    "metodo": "statistics_fmean_pstdev_median_cdist_cuantil_ordenado",
+    "importa_productor": false,
+    "modelos_predictivos": 0
+  },
+  "csv_compactos_identicos_bytes": {
+    "comparacion_138_59.csv": "8aaa0f99f18d3536a19a3988aca28db7bcdf5a02ea072738956748c7a7cb92b4",
+    "comparacion_por_municipio.csv": "a469b7b95b05452639d26ea35a6040be509188bee4bcd620e3dbfa63a1e84d63",
+    "perfil_union_197.csv": "101416ce3e27d70d7a9e20147c9ab9db96414a53ed2a445957cf92c37feafa16",
+    "diccionario.csv": "2f457b5336b87ea0cac6f8f010fc3a3339b8d86f04d99ad0a93a70222c803c99"
+  },
+  "comparaciones_Mac_Docker": 56210,
+  "max_delta_atributos": 0.0,
+  "max_delta_global_incluye_distancia_centros_en_m": 3.701643436215818e-10,
+  "tolerancia_numerica_usada": 1e-09,
+  "traza_PR22_identica_bytes": true,
+  "Docker": {
+    "imagen": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+    "plataforma": "linux/amd64",
+    "modo_O": true,
+    "red": "none",
+    "repo": "solo_lectura",
+    "memoria": "512m"
+  },
+  "Docker_detenido": {
+    "iniciado_por_esta_tarea": true,
+    "parada_realizada": true,
+    "fecha": "2026-10-15T15:25:01.706723-06:00"
+  },
+  "parada_Colima_confirmada": "2026-10-15T15:25:35-06:00",
+  "fuentes_originales_vigiladas": 224,
+  "fuentes_datos_y_calculos_anteriores_sin_cambios": true,
+  "bitacoras": "Sólo se añadirán entradas propias; prefijos anteriores se conservarán.",
+  "conciliacion_59": {
+    "perfiles": 885,
+    "comparaciones": 15930,
+    "max_delta_numerico": 4.973799150320701e-14,
+    "tolerancia": 1e-09,
+    "estados_y_conteos_exactos": true
+  },
+  "sin_reentrenar_modelos": true,
+  "sin_cambiar_MAE": true,
+  "sin_predicciones59_nuevas": true,
+  "sin_editar_PR22": true,
+  "sin_publicar": true,
+  "codigo_sha256": {
+    "scripts/aplicabilidad_contraste_loo.py": "92b17eb80d598d61a3c0942dc4cce88399538430107dcace1b3290910a379df9",
+    "scripts/auditar_aplicabilidad_contraste_loo.py": "aacf40fcb53cc797a6462a3aa41f7bbe51c0fb83b5c67ea49417f27a79716667",
+    "scripts/revisar_pr22_particiones.py": "e167c0f2848566ee24728d6fd8621032c7de4dcc323c396715b6a6a022c44c89",
+    "tests/test_aplicabilidad_contraste_loo.py": "146dd2163fb2e3cbc7c75111957984eb1ef23cecd52741971c082ccea09845df"
+  }
+}
