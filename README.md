@@ -1,5 +1,6 @@
 # AgroCebada 2026
 
+- [T15 E1: contrato propuesto de calidad y faltantes, sin modelos](docs/t15_e1_contrato_propuesto.md)
 - [T15 D.1: factibilidad de NDWI posterior al máximo, cobertura y límites](docs/t15_d1_factibilidad_ndwi.md)
 
 Repositorio de trabajo de Dani, Jass, Migue, Daf y Diego para estimar el rendimiento de cebada de las 59 parcelas reservadas y mostrar los resultados en una aplicación funcional.

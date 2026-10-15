@@ -58,7 +58,7 @@ Si se acepta e implementa el experimento, cada entrenamiento interno y externo s
 
 Se usa una mediana global de entrenamiento para evitar inventar una política municipal con grupos de una etiqueta o sin observaciones E1. El coeficiente Ridge conserva α=n·λ contando **todas** las filas de entrenamiento, no sólo las admisibles.
 
-Si un entrenamiento no tiene ningún E1 admisible, no existe una mediana que estimar. La especificación conserva la forma de la matriz con columna técnica neutra e indicador constante, desactiva el aporte de E1 y exige comprobar equivalencia con S para esa misma configuración. Ese cero técnico no se registra como NDWI observado. Constantes y municipios pequeños requieren controles propios.
+Si un entrenamiento no tiene ningún E1 admisible, no existe una mediana que estimar. La especificación conserva la forma de la matriz con columna técnica neutra e indicador constante, desactiva el aporte de E1 y exige comprobar equivalencia con S para esa misma configuración. Ese apagado se guarda como estado del ajuste y afecta a las dos columnas nuevas también al predecir, aunque el lote posterior sí tenga observaciones: no se reactiva E1 sin entrenamiento. Ese cero técnico no se registra como NDWI observado. Constantes y municipios pequeños requieren controles propios.
 
 La imputación no garantiza que la corrección atribuida por el modelo a una fila sin dato sea cero. Por eso se deben reportar esos casos y no presentar sus resultados como sustentados por una observación E1 parcelaria. Garantizar una corrección E1 exactamente apagada por fila requeriría otro estimador con respaldo condicionado; no se promete que la mediana haga eso.
 
@@ -74,7 +74,7 @@ Una ausencia puede señalar calendario o condiciones de observación y, por tant
 | Q, control diagnóstico |S + indicador fijo: 6 columnas|¿Ayuda sólo saber que E1 no es utilizable?|
 | E1 |S + indicador + E1 tratado: 7 columnas|¿Añade algo el valor del contraste además de la calidad?|
 
-Contrastes obligatorios: E1−S, E1−Q, Q−S y E1−referencia territorial. Se reportan en la misma población, con máscaras y diferencias emparejadas por ID. Q es un control, **no un nuevo ganador elegible por observar luego una cifra favorable**. Si no hay evidencia favorable frente a Q, no se atribuye una eventual ganancia al valor NDWI; se declara su ambigüedad.
+Contrastes obligatorios: E1−S, E1−Q, Q−S y E1−referencia territorial. Se reportan en la misma población, con máscaras y diferencias emparejadas por ID. El indicador mezcla ausencia de capturas válidas y calendario del máximo que queda cortado; Q puede recoger ambas cosas, además de diferencias territoriales. Q es un control, **no un nuevo ganador elegible por observar luego una cifra favorable**. Si no hay evidencia favorable frente a Q, no se atribuye una eventual ganancia al valor NDWI; se declara su ambigüedad.
 
 La regla de promoción T03 frente a la referencia y la preferencia por simplicidad se conservan. E1−S informa la mejora incremental; E1−Q informa atribución dentro de estos procedimientos, no causalidad. No se crean p-valores adicionales para escoger una configuración. Todas las comparaciones y sus limitaciones se declaran antes de ejecutarlas.
 
@@ -109,3 +109,21 @@ Daf revisa comparador, calidad y presupuesto; Migue revisa compatibilidad con pr
 - Respaldo por fila a un modelo S separado: alternativa conservadora, pero cambia el estimador y el coste y requiere validar la selección completa. No se implementa como atajo.
 
 **Recomendación:** conservar D.1 íntegra, proponer E1 con intervalo nominal completo, mediana de entrenamiento e indicador fijo, y un control Q que permita interpretar la contribución. Primero revisar contrato/presupuesto; después implementar y verificar el preprocesamiento; sólo entonces evaluar. No hay mejora de MAE nueva por esta ampliación.
+
+
+## Verificación de esta entrega y reproducción
+
+El validador y la clasificación pasan **27 pruebas en Mac y 27 en Docker Linux/amd64** (imagen común, Python 3.12, comprobación Docker con `-O`). La vista, el resumen y el manifiesto son idénticos byte por byte entre entornos. Una revisión separada con CSV, fechas y Decimal, sin importar el clasificador ni leer rendimientos, realizó 5,932 comprobaciones sobre los 394 perfiles y las fuentes protegidas. Los 58 archivos de T03/T06/T07/D.1 vigilados permanecen intactos. Docker se apagó al terminar.
+
+Se conservan literalmente los 169 valores originales por ventana y todos los IDs. La vista propuesta admite 151 por ventana; son los mismos IDs/valores en ambas. Se revisaron ceros observados, vacíos, fechas fuera de corte, truncamiento contradictorio, duplicados, presupuesto oculto, intentos de activar la propuesta y preservación de un destino existente. **Estas pruebas no validan todavía un imputador, el centrado o un modelo E1: no están implementados.**
+
+Entregables compactos: [vista propuesta](../registro/t15_e1/vista_admisibilidad_propuesta.csv), [conteos](../registro/t15_e1/resumen_admisibilidad.csv), [diccionario de las 13 columnas](../registro/t15_e1/diccionario.csv), [procedencia](../registro/t15_e1/manifest.json) y [verificación](../registro/t15_e1/verificacion.json).
+
+Desde la raíz del repositorio, con el entorno del proyecto y un destino nuevo:
+
+```text
+python -m unittest tests.test_t15_e1_contrato -v
+python -m scripts.t15_e1_contrato --salida reports/t15_e1_contrato_revision
+```
+
+El segundo comando sólo clasifica el soporte y escribe derivados; no ejecuta modelos. La revisión separada adicional y los logs completos se conservan como evidencia local; no se anuncian como CI de GitHub. Los criterios de comparación en el contrato se cotejaron con el JSON exacto de v3 del PR #21 y son idénticos.
