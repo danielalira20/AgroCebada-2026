@@ -1,0 +1,354 @@
+{
+  "schema": "diagnostico_aplicabilidad_C_v1",
+  "fecha": "2026-10-14",
+  "responsable": "Dani",
+  "revisores": [
+    "Daf",
+    "Migue"
+  ],
+  "estado": "diseno_local_antes_de_calcular_no_aprobacion_de_modelo",
+  "poblacion": {
+    "total": 197,
+    "etiquetas": 138,
+    "reservadas": 59
+  },
+  "fuentes_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
+    "registro/t07/calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
+    "registro/t07/calidad_ventanas.csv": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
+    "registro/t09/aplicabilidad_59.csv": "834e3d70d34c60dd10fb466998d5fa1de300c27585a1e49b0d98c37c29dd3c7d",
+    "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "registro/t04/procedencia.json": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv": "70db27a146653fa0253d734956fabe5a1c21a436484176d0f3da3a1ec650b4ec"
+  },
+  "paquete_zip_sha256": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+  "representaciones": [
+    {
+      "id": "C__abr_oct",
+      "bloques": [
+        "C"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "prec_acumulada_mm_abr_oct",
+        "tmin_media_c_abr_oct",
+        "tmax_media_c_abr_oct"
+      ]
+    },
+    {
+      "id": "C__jun_oct",
+      "bloques": [
+        "C"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "prec_acumulada_mm_jun_oct",
+        "tmin_media_c_jun_oct",
+        "tmax_media_c_jun_oct"
+      ]
+    },
+    {
+      "id": "G__estatica",
+      "bloques": [
+        "G"
+      ],
+      "ventana": "estatica",
+      "columnas": [
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen"
+      ]
+    },
+    {
+      "id": "P__abr_oct",
+      "bloques": [
+        "P"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "pl_ndvi_max_abr_oct",
+        "pl_ndvi_integral_abr_oct",
+        "pl_lai2_max_abr_oct",
+        "pl_ndvi_dias_sobre_mitad_abr_oct",
+        "pl_ndvi_dia_inicio_abr_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "P__jun_oct",
+      "bloques": [
+        "P"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "pl_ndvi_max_jun_oct",
+        "pl_ndvi_integral_jun_oct",
+        "pl_lai2_max_jun_oct",
+        "pl_ndvi_dias_sobre_mitad_jun_oct",
+        "pl_ndvi_dia_inicio_jun_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "CG__abr_oct",
+      "bloques": [
+        "C",
+        "G"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "prec_acumulada_mm_abr_oct",
+        "tmin_media_c_abr_oct",
+        "tmax_media_c_abr_oct",
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen"
+      ]
+    },
+    {
+      "id": "CG__jun_oct",
+      "bloques": [
+        "C",
+        "G"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "prec_acumulada_mm_jun_oct",
+        "tmin_media_c_jun_oct",
+        "tmax_media_c_jun_oct",
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen"
+      ]
+    },
+    {
+      "id": "CP__abr_oct",
+      "bloques": [
+        "C",
+        "P"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "prec_acumulada_mm_abr_oct",
+        "tmin_media_c_abr_oct",
+        "tmax_media_c_abr_oct",
+        "pl_ndvi_max_abr_oct",
+        "pl_ndvi_integral_abr_oct",
+        "pl_lai2_max_abr_oct",
+        "pl_ndvi_dias_sobre_mitad_abr_oct",
+        "pl_ndvi_dia_inicio_abr_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "CP__jun_oct",
+      "bloques": [
+        "C",
+        "P"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "prec_acumulada_mm_jun_oct",
+        "tmin_media_c_jun_oct",
+        "tmax_media_c_jun_oct",
+        "pl_ndvi_max_jun_oct",
+        "pl_ndvi_integral_jun_oct",
+        "pl_lai2_max_jun_oct",
+        "pl_ndvi_dias_sobre_mitad_jun_oct",
+        "pl_ndvi_dia_inicio_jun_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "GP__abr_oct",
+      "bloques": [
+        "G",
+        "P"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen",
+        "pl_ndvi_max_abr_oct",
+        "pl_ndvi_integral_abr_oct",
+        "pl_lai2_max_abr_oct",
+        "pl_ndvi_dias_sobre_mitad_abr_oct",
+        "pl_ndvi_dia_inicio_abr_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "GP__jun_oct",
+      "bloques": [
+        "G",
+        "P"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen",
+        "pl_ndvi_max_jun_oct",
+        "pl_ndvi_integral_jun_oct",
+        "pl_lai2_max_jun_oct",
+        "pl_ndvi_dias_sobre_mitad_jun_oct",
+        "pl_ndvi_dia_inicio_jun_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "CGP__abr_oct",
+      "bloques": [
+        "C",
+        "G",
+        "P"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "prec_acumulada_mm_abr_oct",
+        "tmin_media_c_abr_oct",
+        "tmax_media_c_abr_oct",
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen",
+        "pl_ndvi_max_abr_oct",
+        "pl_ndvi_integral_abr_oct",
+        "pl_lai2_max_abr_oct",
+        "pl_ndvi_dias_sobre_mitad_abr_oct",
+        "pl_ndvi_dia_inicio_abr_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "CGP__jun_oct",
+      "bloques": [
+        "C",
+        "G",
+        "P"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "prec_acumulada_mm_jun_oct",
+        "tmin_media_c_jun_oct",
+        "tmax_media_c_jun_oct",
+        "elevacion_media_m",
+        "pendiente_media_t10_grados",
+        "area_ha_origen",
+        "pl_ndvi_max_jun_oct",
+        "pl_ndvi_integral_jun_oct",
+        "pl_lai2_max_jun_oct",
+        "pl_ndvi_dias_sobre_mitad_jun_oct",
+        "pl_ndvi_dia_inicio_jun_oct",
+        "pl_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "S__abr_oct",
+      "bloques": [
+        "S"
+      ],
+      "ventana": "abr_oct",
+      "columnas": [
+        "s2_ndvi_max_abr_oct",
+        "s2_ndvi_integral_abr_oct",
+        "s2_ndvi_dias_sobre_mitad_abr_oct",
+        "s2_ndwi_en_maximo_abr_oct",
+        "s2_ndvi_al_corte"
+      ]
+    },
+    {
+      "id": "S__jun_oct",
+      "bloques": [
+        "S"
+      ],
+      "ventana": "jun_oct",
+      "columnas": [
+        "s2_ndvi_max_jun_oct",
+        "s2_ndvi_integral_jun_oct",
+        "s2_ndvi_dias_sobre_mitad_jun_oct",
+        "s2_ndwi_en_maximo_jun_oct",
+        "s2_ndvi_al_corte"
+      ]
+    }
+  ],
+  "n_representaciones_esperadas": 15,
+  "referencia_historica": "media_mun__resp_grupo",
+  "geografia": {
+    "orillas": "EPSG:32614",
+    "centros": "WGS84_geodesica_centroides_T02_7decimales",
+    "radio_vecina_m": 20,
+    "desigualdad": "estrictamente_menor",
+    "celda": "principal_T02_no_todas_las_intersecciones",
+    "matriz_distancias": "geometria_197_sin_rendimientos_cache_una_vez"
+  },
+  "soporte_conjunto": {
+    "escala": "sd_poblacional_solo_entrenamiento",
+    "distancia": "RMS_diferencias_estandarizadas",
+    "area": "log_natural_solo_para_representaciones_G",
+    "faltante_permitido": "pendiente_media_t10_grados",
+    "imputacion": "mediana_entrenamiento_e_indicador_fijo_solo_diagnostico_no_T07",
+    "propio_ID": "excluido_de_cualquier_busqueda_vecinos_y_referencia_distancia",
+    "centros": "no_centrado_residual_es_diagnostico_de_X_no_matriz_del_estimador_v3",
+    "escalas_constantes": "sd_exactamente0_se_sustituye_por1_marcar_columnas",
+    "marginales": "rangos_crudos_no_imputados_global_y_mismo_municipio",
+    "referencia_distancia": "vecino_mas_cercano_mismo_municipio_de_cada_fila_train_excluyendo_su_ID_con_escala_del_entrenamiento_completo",
+    "percentil": "100*numero_distancias_LOO_estrictamente_menores_que_d_menos1e-12_dividido_n",
+    "indicador_p95": "d_mayor_cuantil95_method_higher_mas1e-12_no_probabilidad_ni_rechazo",
+    "referencia_n1": "percentil_y_q95_ausentes_por_falta_de_otra_fila_local",
+    "publicar_n_referencia_siempre": true,
+    "tolerancia_rangos": {
+      "prec_mm": 1e-06,
+      "temperatura_c": 1e-08,
+      "elevacion_m": 1e-06,
+      "pendiente_grados": 1e-08,
+      "area_ha": 1e-10,
+      "indice": 1e-09,
+      "integral": 1e-08,
+      "dias": 0
+    }
+  },
+  "limites": {
+    "no_modelo_nuevo": true,
+    "no_predicciones_nuevas": true,
+    "errores": "solo_predicciones_historicas_T08_ya_existentes",
+    "filtros_y_transformaciones": "reglas_fijas_no_elegidas_por_y_ni_por_las59",
+    "OOF": "50_contextos_reconstruidos_solo_entrenamiento_con_1380_registros_evaluados",
+    "train_59": "138_etiquetadas_sin_valores_de_y_para_soporte",
+    "desgloses": "descriptivos_sin_inferencia_causal_ni_intervalos",
+    "disponibilidad": "observacion_hasta31oct_no_prueba_publicacion_historica",
+    "campania_futura": "sin_validacion_temporal_etiquetada"
+  },
+  "salidas_compactas": [
+    "perfil_59.csv",
+    "entradas_59.csv",
+    "contextos_oof_138.csv",
+    "error_por_soporte.csv",
+    "conciliacion_t02_t09.csv",
+    "resumen_municipio.csv",
+    "diccionario.csv",
+    "resumen.json",
+    "manifest.json"
+  ],
+  "salida_detallada_local": "entradas_oof_138.csv_opcional_en_destino_privado",
+  "verificacion": [
+    "fuentes_hash_197_138_59",
+    "pools_sin_evaluadas",
+    "cambiar_y_no_cambia_soporte",
+    "cambiar_X_evaluada_no_cambia_estados_train",
+    "ceros_empates_no_falso_p95",
+    "singleton_percentil_ausente",
+    "auditor_independiente_distancias_y_rangos",
+    "reproduccion_Docker_comun"
+  ]
+}
