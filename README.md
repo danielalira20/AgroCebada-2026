@@ -1,5 +1,7 @@
 # AgroCebada 2026
 
+- [T15: guía de revisión del PR #21 — método v3, propuesta B y aplicabilidad C](docs/t15_guia_revision_pr21.md)
+
 Repositorio de trabajo de Dani, Jass, Migue, Daf y Diego para estimar el rendimiento de cebada de las 59 parcelas reservadas y mostrar los resultados en una aplicación funcional.
 
 La [pestaña «Plan unificado corregido»](https://docs.google.com/document/d/1G2-cyDyIHyaQsGjbdzdvvsU65rnc6Tc4SrnIZAoNynk/edit?tab=t.q0k09ka9rtmy) es la fuente de responsabilidades y decisiones. Las tareas vigentes son T01–T22. Las versiones anteriores sirven como antecedentes.
