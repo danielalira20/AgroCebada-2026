@@ -101,9 +101,11 @@ Sección de T03 §4 bis, calculada **en `sin_respaldo`** (la población de decis
 
 | Grupo | n | MAE ref. A | Mejor candidato A | Δ A | MAE ref. B | Mejor candidato B | Δ B |
 |---|---|---|---|---|---|---|---|
-| 0.01 | 79 | 0.3502 | lluvia | +0.0001 | 0.3811 | Tmax (centrada) | +0.0003 |
-| 0.1 | 13 | 0.2473 | lluvia (centrada) | +0.0000 | 0.4420 | Tmax (centrada) | +0.0011 |
-| 0.5 | 43 | 0.2880 | lluvia | +0.0007 | 0.2914 | las tres (centradas) | +0.0007 |
+| 0.01 | 86 | 0.3385 | lluvia | -0.0001 | 0.3701 | Tmax (centrada) | +0.0003 |
+| 0.1 | 16 | 0.3467 | lluvia (centrada) | +0.0015 | 0.5590 | Tmax (centrada) | -0.0061 |
+| 0.5 | 33 | 0.2609 | Tmin (centrada) | +0.0021 | 0.2502 | las tres (centradas) | +0.0033 |
+
+Columna `escalon_etiqueta_municipio`: el paso más grueso que comparten todas las etiquetas del municipio (igual que `paso_comun` de T02). Apan, Nanacamilpa y Tepeapulco tienen una sola etiqueta: sin escalón, igual que en T02.
 
 **Parcela dudosa**
 
@@ -123,19 +125,28 @@ Parcela dudosa = contorno B o C, o contorno angosto o muy pequeño (24 parcelas,
 
 - **Municipio:** en los municipios con 10 o más parcelas el mejor candidato cambia el MAE entre −0.0023 y +0.0023, salvo Singuilucan en B (−0.0061 con Tmax centrada; 16 parcelas, el municipio con más error en B). Chignahuapan (71 parcelas) mejora −0.0005 en A y −0.0006 en B; es una diferencia menor que una milésima.
 - **Grupo de registro:** en A el mejor candidato queda peor que la referencia (+0.0002 y +0.0021); en B sólo CEBADA mejora, por −0.0006.
-- **Escalón de la etiqueta:** en ningún escalón (0.5, 0.1 y 0.01) mejora la referencia en A ni en B; la diferencia máxima es +0.0011. El clima tampoco ayuda donde la etiqueta es más gruesa.
+- **Escalón de la etiqueta:** el mejor candidato queda a −0.0001 de la referencia en 0.01 (A) y a +0.0003 (B); en 0.1 y 0.5 es peor en A (+0.0015 y +0.0021) y en 0.5 también en B (+0.0033). La única diferencia mayor a una milésima a favor del clima es 0.1 en B (−0.0061), que es Singuilucan (16 parcelas, el mismo municipio). El clima no ayuda donde la etiqueta es más gruesa.
 - **Parcelas dudosas:** en A la lluvia mejora la referencia por −0.0015 (24 parcelas); en B no mejora (+0.0002). Diferencia de milésimas, elegida después de ver el grupo.
 - **Parcelas vecinas:** el clima no ayuda más en las parcelas con vecina etiquetada (Δ +0.0008 en A y +0.0016 en B), donde la referencia ya acierta mejor (MAE 0.263 y 0.300 frente a 0.381 y 0.420 sin vecina).
 
 ### Sensibilidad sin las 24 parcelas dudosas
 
-`sensibilidad_sin_dudosas_t14.csv` repite la comparación emparejada sin las 24 parcelas dudosas (en `sin_respaldo`, 555 de 675 predicciones en A y 539 de 659 en B). La referencia sigue sin ser superada y ninguna variante cumple la regla. Sin las 24 parcelas dudosas, el orden se mantiene: dentro de las variantes sin centrar y dentro de las centradas el orden es idéntico en A y en B; sólo cruzan un par entre ambos grupos por escenario (en A, Tmax con las tres centradas; en B, lluvia con lluvia centrada), con correlación de rangos 0.97 en A y 0.98 en B.
+`sensibilidad_sin_dudosas_t14.csv` repite la comparación emparejada sin las 24 parcelas dudosas (en `sin_respaldo`, 555 de 675 predicciones en A y 539 de 659 en B). La referencia sigue sin ser superada y ninguna variante cumple la regla. Sin las 24 dudosas, el orden se mantiene casi idéntico, con un cruce por escenario (correlación de rangos 0.97 en A y 0.98 en B): dentro de las variantes sin centrar y dentro de las centradas el orden es idéntico en A y en B; el cruce es un par entre ambos grupos (en A, Tmax con las tres centradas; en B, lluvia con lluvia centrada).
 
 ## Respuesta a la pregunta guía 2
 
-No se puede nombrar una variable climática de mayor peso: lluvia, Tmin y Tmax están muy correlacionadas, el clima varía en sólo 23 celdas y hay una sola temporada. Con este estimador, ninguna mejora la referencia, centrada o no. Como dato descriptivo, la asociación con el rendimiento dentro del municipio fue mayor para Tmax (r ≈ −0.18) que para lluvia y Tmin (−0.05 a −0.09), sin que eso se traduzca en mejor predicción.
+No se puede nombrar una variable climática de mayor peso: lluvia, Tmin y Tmax están muy correlacionadas, el clima varía en sólo 23 celdas y hay una sola temporada. Con este estimador, ninguna mejora la referencia, centrada o no.
 
-Esta asociación es un cálculo descriptivo aparte (correlación de Pearson entre cada variable y el rendimiento, ambos centrados por municipio, con las 138 parcelas); no forma parte del script ni de las tablas de `registro/t14/`.
+Como dato descriptivo (`asociacion_dentro_municipio_t14.csv`: Pearson entre cada variable y el rendimiento, ambos centrados por municipio, 138 parcelas, IC95 por bootstrap de celdas CHIRPS): Tmax es la única variable cuya asociación con el rendimiento dentro del municipio excluye el cero (r = −0.18, IC95 por celdas [−0.25, −0.02]); lluvia y Tmin lo incluyen. Es una asociación débil y descriptiva: no mejora la predicción sobre la referencia.
+
+| Variable | r dentro del municipio | IC95 por celdas |
+|---|---|---|
+| Lluvia abr–oct | −0.055 | [−0.150, +0.186] |
+| Lluvia jun–oct | −0.047 | [−0.149, +0.195] |
+| Tmin abr–oct | −0.047 | [−0.150, +0.062] |
+| Tmin jun–oct | −0.093 | [−0.179, +0.039] |
+| Tmax abr–oct | −0.175 | [−0.247, −0.022] |
+| Tmax jun–oct | −0.177 | [−0.252, −0.028] |
 
 ## Lectura
 
@@ -143,7 +154,7 @@ Esta asociación es un cálculo descriptivo aparte (correlación de Pearson entr
 - **Centrar por municipio no cambia la conclusión.** En A, las variantes sin centrar quedan de +0.0008 (lluvia) a +0.0030 (Tmin) y las centradas de +0.0015 (lluvia) a +0.0025 (Tmax). En B, de +0.0022 (Tmin) a +0.0069 (lluvia) frente a +0.0009 (Tmax centrada) a +0.0073 (lluvia centrada). La mejor en B es Tmax centrada (+0.0009; IC95 [−0.0019, +0.0050]; 2 de 5 repeticiones): no se distingue de la referencia.
 - **Qué variable aporta «más» depende del escenario, y la diferencia no es robusta.** La lluvia es la menos mala en A y la más desfavorable en B (centrada o no); Tmax centrada es la menos mala en B. Con 43 valores climáticos distintos y 23 celdas, esta alternancia no permite nombrar una ganadora. Juntar las tres variables no ayuda.
 - **El propio modelo prefirió quedarse cerca de la referencia.** La contracción eligió α = 10 000 (el techo de la rejilla) en 121 de 200 ajustes en A y 123 de 200 en B; α ≥ 1 000 en 163 y 170 (`alfas_t14.csv`).
-- **El desglose (T03 §4 bis) no cambia la lectura.** Las mejoras que aparecen en algún grupo de las tablas anteriores con 5 o más parcelas son de menos de 0.007 de MAE y no se repiten entre escenarios, salvo Chignahuapan; ninguna alcanza el criterio de T03 §4, y sin las 24 parcelas dudosas el orden se mantiene.
+- **El desglose (T03 §4 bis) no cambia la lectura.** Las mejoras que aparecen en algún grupo de las tablas anteriores con 5 o más parcelas son de menos de 0.007 de MAE y no se repiten entre escenarios, salvo Chignahuapan; ninguna alcanza el criterio de T03 §4, y sin las 24 dudosas el orden se mantiene casi idéntico, con un cruce por escenario.
 
 ### Conclusión
 

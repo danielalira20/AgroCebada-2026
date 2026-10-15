@@ -32,6 +32,7 @@ Genera en --salida:
     desglose_errores_t14.csv              MAE por municipio, grupo, precisión de la etiqueta, calidad de contorno
                                           y vecinas (T03 §4 bis)
     sensibilidad_sin_dudosas_t14.csv      la comparación emparejada sin las parcelas con alerta de contorno
+    asociacion_dentro_municipio_t14.csv   r de cada variable con el rendimiento dentro del municipio, IC95 por celdas
 
 La carpeta --salida debe ser nueva o estar vacía. Todo se escribe primero en una carpeta temporal y sólo se
 mueve a --salida si la corrida termina bien.
@@ -288,9 +289,9 @@ def desglose(oof, d, catalogo=None, pares=None):
     """MAE por grupo a partir de las predicciones fuera del entrenamiento (no reentrena; T03 §4 bis)."""
     t = d[d.CONJUNTO == "ENTRENAMIENTO"]
     atr = t[["municipio", "grupo_registro"]].copy()
-    # precisión con la que viene registrada la etiqueta (sólo para reportar; nunca es variable del modelo)
-    cent = (t.real * 100).round().astype(int)
-    atr["escalon_etiqueta"] = np.where(cent % 50 == 0, "0.5", np.where(cent % 10 == 0, "0.1", "0.01"))
+    # escalón de la etiqueta DEL MUNICIPIO (T03 §4 bis; mismo criterio que paso_comun de T02): el paso más
+    # grueso que comparten todas las etiquetas del municipio. Sólo para reportar; nunca es variable del modelo.
+    atr["escalon_etiqueta_municipio"] = t.municipio.map(escalon_municipal(t))
     if catalogo is not None:
         cat = pd.read_csv(catalogo, encoding="utf-8-sig")
         cat = cat.rename(columns={"id_parcela": "ID_POLIGONO"}).set_index("ID_POLIGONO")
@@ -323,6 +324,37 @@ def desglose(oof, d, catalogo=None, pares=None):
                 filas.append(dict(escenario=esc, subconjunto=sub, candidato=c, atributo=col, grupo=g, MAE=z.ae.mean(),
                                   n_parcelas=z.ID_POLIGONO.nunique(), poco_informativo=z.ID_POLIGONO.nunique() < 5))
     return pd.DataFrame(filas).round(4), (set(atr.index[atr.parcela_dudosa_4bis]) if "parcela_dudosa_4bis" in atr else None)
+
+
+def escalon_municipal(t):
+    """'0.5' si todas las etiquetas del municipio son múltiplos de 0.5, '0.1' si lo son de 0.1, si no '0.01'.
+    Con una sola etiqueta no hay paso común: queda 'sin_escalon', igual que paso_comun vacío en T02."""
+    cent = (t.real * 100).round().astype(int)
+    def paso(c):
+        if len(c) < 2:
+            return "sin_escalon"
+        return "0.5" if (c % 50 == 0).all() else "0.1" if (c % 10 == 0).all() else "0.01"
+    return cent.groupby(t.municipio).apply(paso)
+
+
+def asociacion_dentro(v, d, celda):
+    """Correlación de Pearson entre cada variable y el rendimiento, ambos expresados respecto a la media de su
+    municipio (138 etiquetadas), con IC95 por bootstrap de celdas CHIRPS. Descriptivo: no elige variables."""
+    t = d[d.CONJUNTO == "ENTRENAMIENTO"]
+    y = t.real - t.groupby("municipio").real.transform("mean")
+    c = celda.reindex(t.index).values
+    celdas = pd.unique(c)
+    rng = np.random.RandomState(SEMILLA_BOOT)
+    muestras = [np.concatenate([np.flatnonzero(c == k) for k in rng.choice(celdas, len(celdas))]) for _ in range(N_BOOT)]
+    filas = []
+    for col in v.columns:
+        x = (t[col] - t.groupby("municipio")[col].transform("mean")).values
+        r = np.corrcoef(x, y.values)[0, 1]
+        bs = [np.corrcoef(x[i], y.values[i])[0, 1] for i in muestras]
+        lo, hi = np.nanpercentile(bs, [2.5, 97.5])
+        filas.append(dict(variable=col, r_dentro_municipio=r, IC95_celdas_inf=lo, IC95_celdas_sup=hi,
+                          excluye_cero=bool(lo > 0 or hi < 0), n=len(t)))
+    return pd.DataFrame(filas).round(3)
 
 
 def escala(v, d, celda):
@@ -385,6 +417,7 @@ def main():
         sens = emparejada(oof, celda, excluir=dudosas).assign(sin_parcelas_dudosas=len(dudosas))
         sens.to_csv(a.salida / "sensibilidad_sin_dudosas_t14.csv", index=False)
     colinealidad(v).to_csv(a.salida / "colinealidad_t14.csv")
+    asociacion_dentro(v, d, celda).to_csv(a.salida / "asociacion_dentro_municipio_t14.csv", index=False)
     escala(v, d, celda).to_csv(a.salida / "escala_compartida_t14.csv", index=False)
 
     p = d[d.CONJUNTO == "PREDICCION"]
