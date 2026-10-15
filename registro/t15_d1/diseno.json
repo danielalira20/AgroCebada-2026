@@ -1,0 +1,91 @@
+{
+  "schema": "t15_D1_ndwi_factibilidad_v1",
+  "fecha": "2026-10-14",
+  "responsable": "Dani",
+  "estado": "diseno_previo_sin_resultados_D1",
+  "unidad": "197_IDs_2025_394_perfiles_no_nuevas_etiquetas",
+  "base_dev": "97a8906b243b63f1e7c24ec85f7050642d9a98f5",
+  "PR21_antecedente": {
+    "PR": 21,
+    "commit": "4afabf081a341f3321fcd58a211d18b43ee5a3b4",
+    "sha256": "355f1255e67a5df05c5412595818fa90dabc50c7d91cb5220b72fcba58633866"
+  },
+  "T13_examinada": {
+    "pr": 20,
+    "commit": "50e656bdea1087be9c408cd96885cb7115abaa0e",
+    "archivos_sha256": {
+      "docs/T13_indices.md": "7d9806dc29f12589df08acc3c7623973e4edf62f815b9f98041a6a4431c7ae9a",
+      "scripts/t13_indices.py": "cfb612691a916129f131551bed5788e4d15f5adfbf150af96b8832998c35cb46",
+      "scripts/t13_extension_indices.py": "1228e672ae5703bffb66bdb9402b0ada6dd40949a598d3dc82e70ac45576a7bf"
+    }
+  },
+  "plan_revision": "AHj4eMTEH0zJ9l7nx-DG0RM6DQsT0ZppFdht3zBhDjK1zX5IAcIDVmkmy4yEPU5GDuT5tqjsawv2l2fJ9QY_BVkQXC0mSYhkRy47xN-rps0",
+  "paquete_original_sha256": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+  "fuentes_sha256": {
+    "data/raw/DATASET_RETO_AGRO_2026/Conjunto_datos_BASICO_AgroCebada2026.csv": "96d68040d954d0903d761fd8ceed0dcd4a08e3842915a3ca44517d60e8bee4ef",
+    "data/raw/DATASET_RETO_AGRO_2026/Conjunto_datos_PRO_AgroCebada.csv": "91697f8f8d4ad5e59f766acbce2ef76f3c405eb02b41c1de92d62a07e8321888",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t06/variables_satelitales.csv": "8e38ad80e7befb7b82261353914862e17d98be0425dd755a12c001191dfe17eb",
+    "registro/t06/rasgos_observables.csv": "ed81d205794a0ea9d29ebcc4ca58a6d59801cab14858c0a8c18eeadb1b0fb6c9",
+    "scripts/t06_satelite.py": "01b2b46a27df19a8cc93ca7f6f76789c61aeabe508707224c0e4425c14e73c28",
+    "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a",
+    "docs/Ecuaciones_indices_AgroCebada_FIRA_2026.pdf": "a5a8b71872439a5f98f9106d3b115f36bd35a5cfba34fcb316c34c17989540be"
+  },
+  "sensor": "Sentinel-2",
+  "Planet_NDWI": "ausente_estructural_en_PRO",
+  "ventanas": {
+    "abr_oct": [
+      "2025-04-01",
+      "2025-10-31"
+    ],
+    "jun_oct": [
+      "2025-06-01",
+      "2025-10-31"
+    ]
+  },
+  "nubosidad_max_pct": 5,
+  "min_capturas_NDVI": 5,
+  "suavizado": "mediana_centrada_3_capturas_min_periods_1_extremos_2",
+  "empate": "primera_fecha_maximo_exacto",
+  "NDWI_ancla": "valor_observado_fecha_exacta_maximo_curva_NDVI",
+  "post_dias_inclusivos": [
+    15,
+    45
+  ],
+  "min_fechas_post_distintas": 2,
+  "agregacion_post": "media_aritmetica_observaciones_no_por_dias",
+  "contraste": "media_NDWI_post_menos_NDWI_ancla",
+  "sin_soporte": "vacio_con_motivo_no_imputar",
+  "intervalo_truncado": "conservar_calculo_si_2_fechas_y_ancla_validas_y_marcar_censura_al_corte",
+  "interpolacion_NDWI": false,
+  "seleccion_por_y": false,
+  "y_leida_para_calculos": false,
+  "correlacion_con_y": false,
+  "tuning_y_modelos": false,
+  "evaluacion_T15": false,
+  "predicciones_59": false,
+  "descargas": false,
+  "integracion_T07": false,
+  "publicacion_autorizada": false,
+  "conciliacion_T06_tol": 1e-09,
+  "auditor_independiente_tol": 1e-12,
+  "metadatos_exactos": [
+    "fechas",
+    "conteos",
+    "estados",
+    "IDs"
+  ],
+  "salidas": [
+    "perfil_ndwi_postpico.csv",
+    "resumen_conjunto.csv",
+    "resumen_municipio.csv",
+    "conciliacion_t06.csv",
+    "variacion_sin_y.csv",
+    "diccionario.csv",
+    "resumen.json",
+    "manifest.json",
+    "verificacion.json"
+  ],
+  "revision_visual": "4_fallos_compartidos_171_015_024_034_y_sus_controles_fijos_F0_sin_y"
+}
