@@ -1,0 +1,252 @@
+{
+  "schema": "agrocebada_E1_contrato_propuesto_v1",
+  "version": "E1-contrato-v1",
+  "fecha": "2026-10-14",
+  "estado": "propuesto_para_revision",
+  "ejecutable": false,
+  "inscripcion_experimental_aceptada": false,
+  "responsable": "Dani",
+  "revision_metodologica": [
+    "Daf",
+    "Migue"
+  ],
+  "antecedentes": {
+    "metodo": {
+      "PR": 21,
+      "commit": "4afabf081a341f3321fcd58a211d18b43ee5a3b4",
+      "version": "comun-centrado-loo-v3",
+      "sha256": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+      "estado": "revision_pendiente"
+    },
+    "D1": {
+      "commit": "c918ed5481f9e72bd188b45ef6e32778f266d81a",
+      "estado": "tecnico_verificado_revision_pendiente"
+    },
+    "T13_examinada": {
+      "PR": 20,
+      "commit": "50e656bdea1087be9c408cd96885cb7115abaa0e",
+      "alcance": "dos_scripts_resumen_alrededor_maximo_no_contraste_post15_45"
+    }
+  },
+  "poblacion": {
+    "total": 197,
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "unidad": "parcela_campania_2025",
+    "eliminar_filas_por_E1": false
+  },
+  "fuente": {
+    "perfil": "registro/t15_d1/perfil_ndwi_postpico.csv",
+    "perfil_sha256": "7a0718806754bc80d7d629d8325f1850421141f763e109339438e3288a5a1fc4",
+    "diseno": "registro/t15_d1/diseno.json",
+    "diseno_sha256": "dd939be1f94835308de6bae032aa6fe3ca7ae8e9e5d428b1c4eca835ae3bd7c4",
+    "manifest": "registro/t15_d1/manifest.json",
+    "manifest_sha256": "a484ab9fee12af8c999dd2db20204b3fca41da85b9e47d6a9932c41e052fbdcb",
+    "codigo_D1_sin_modificar": true
+  },
+  "observacion": {
+    "sensor": "Sentinel-2",
+    "NDWI": "(B08-B11)/(B08+B11)_resumen_FIRA",
+    "corte": "2025-10-31",
+    "ventanas": [
+      "abr_oct",
+      "jun_oct"
+    ],
+    "intervalo_dias_inclusivos": [
+      15,
+      45
+    ],
+    "min_fechas_distintas_post": 2,
+    "min_capturas_NDVI": 5,
+    "umbral_nubosidad": 5,
+    "maximo": "primera_fecha_mediana_centrada3_NDVI_T06",
+    "ancla": "NDWI_observado_fecha_exacta_maximo",
+    "post": "media_aritmetica_observaciones_validas",
+    "contraste": "post_menos_ancla",
+    "no_interpolacion": true,
+    "no_extrapolacion": true,
+    "disponibilidad_historica": "no_acreditada_solo_fecha_captura"
+  },
+  "admisibilidad": {
+    "politica_principal": "solo_calculable_e_intervalo_nominal_no_truncado",
+    "completo_no_significa": "ni_diario_ni_cobertura_espacial_completa",
+    "valor_original_D1": "conservar_169_con_18_truncados",
+    "truncados": "conservar_para_auditoria_no_usar_como_E1_observado_principal",
+    "sin_dato": "vacio_no_cero",
+    "cero_observado": "valido",
+    "cambiar_ventana_para_evitar_faltantes": false,
+    "control_orden": "antes_de_cualquier_ajuste_sin_usar_y"
+  },
+  "columnas": {
+    "observadas": [
+      "valor_observado_D1",
+      "n_fechas_post",
+      "fecha_maximo",
+      "intervalo_truncado",
+      "motivo_D1"
+    ],
+    "candidata": "e1_ndwi_post15_45",
+    "indicador_fijo": "e1_no_utilizable",
+    "roles_observadas": "calidad_y_auditoria_no_predictoras_automaticas",
+    "duplicar_E1_por_dos_ventanas": false,
+    "incorporacion_T07": "sidecar_propuesto_no_cambia_maestro_ni_rellena"
+  },
+  "preprocesamiento": {
+    "implementado": false,
+    "aprendizaje": "solo_entrenamiento_del_fit_interno_o_externo",
+    "orden": [
+      "regla_admisibilidad_fija",
+      "indicador_fijo",
+      "mediana_E1_de_observados_admisibles_del_entrenamiento",
+      "escala_global_del_entrenamiento",
+      "centrado_LOO_coherente_en_ajuste",
+      "Ridge_residuo_LOO"
+    ],
+    "mediana": "global_de_filas_admisibles_en_entrenamiento_no_197_ni_59",
+    "indicador": "siempre_una_columna_incluso_sin_faltantes_en_fit",
+    "sin_admisibles_en_fit": "columna_numerica_neutra0_e_indicador_constante1_desactivar_aporte_E1_y_comprobar_puente_S",
+    "constantes": "escala_segura_y_contraste_cero_sin_dividir_por0",
+    "predict": "reutilizar_mediana_escala_centros_guardados_no_reajustar_con_lote",
+    "imputacion_no_es_medicion": true,
+    "imputacion_no_promete_correccion_E1_cero_en_fila_ausente": true,
+    "numero_y_orden_columnas_fijos": true,
+    "referencia_y_centros": "mismos_IDs_y_respaldo_LOO_v3_municipio_grupo_global",
+    "conteo_alpha": "todas_filas_entrenamiento_no_solo_admisibles",
+    "municipio_una_etiqueta": "heredar_politica_v3_sin_imputar_mediana_municipal",
+    "ajuste_final_138": "solo_despues_congelar_T16_no_realizado"
+  },
+  "comparaciones": {
+    "base": "S_cinco_resumenes_del_metodo_comun",
+    "control_calidad": "Q_S_mas_e1_no_utilizable",
+    "candidato": "E1_S_mas_e1_no_utilizable_mas_e1_ndwi_post15_45",
+    "columnas_por_opcion": {
+      "S": 5,
+      "Q": 6,
+      "E1": 7
+    },
+    "contrastes_obligatorios": [
+      "E1_vs_S",
+      "E1_vs_Q",
+      "Q_vs_S",
+      "E1_vs_referencia"
+    ],
+    "Q": "control_diagnostico_no_promocion_automatica",
+    "interpretacion": "si_no_hay_evidencia_frente_Q_no_atribuir_ganancia_a_valor_NDWI",
+    "estadistica": "IC_y_diferencias_emparejadas_con_la_misma_regla_T03_sin_añadir_pvalores_para_escoger",
+    "nueva_regla_promocion": false
+  },
+  "busqueda": {
+    "ventanas": [
+      "abr_oct",
+      "jun_oct"
+    ],
+    "lambda": [
+      0.01,
+      0.1,
+      1,
+      10
+    ],
+    "alpha": "n_entrenamiento*lambda",
+    "opciones_con_variables_por_procedimiento": 8,
+    "referencia_sola": true,
+    "internas_por_contexto": 4,
+    "contextos_externos": 50,
+    "seleccion_y_desempate": "heredar_v3_sin_optimizar_politica_faltantes_por_error_externo"
+  },
+  "presupuesto": {
+    "T15_principal_sin_cambios": {
+      "procedimientos": 8,
+      "opciones": 60,
+      "Ridge_internos_max": 12000,
+      "Ridge_externos_max": 400
+    },
+    "E1_previo_B": {
+      "procedimientos_nuevos": 1,
+      "opciones": 8,
+      "Ridge_internos_max": 1600,
+      "Ridge_externos_max": 50
+    },
+    "E1_mas_control_propuesto": {
+      "procedimientos_nuevos": 2,
+      "opciones": 16,
+      "Ridge_internos_max": 3200,
+      "Ridge_externos_max": 100
+    },
+    "incremento_solo_Q": {
+      "opciones": 8,
+      "Ridge_internos_max": 1600,
+      "Ridge_externos_max": 50
+    },
+    "referencias_internas_compartibles": 200,
+    "referencias_externas_compartibles": 50,
+    "S_reutilizable_solo_si_misma_version_fuentes_y_particiones": true,
+    "aceptado": false,
+    "no_ejecutar_sin_registro_y_revision": true
+  },
+  "criterios_T03": {
+    "principal": "A",
+    "sensibilidad_obligatoria": "B",
+    "subconjunto_decision": "sin_respaldo",
+    "dMAE": "promedio_por_parcela_de_diferencias_de_error_absoluto_en_repeticiones_elegibles",
+    "dRMSE": "promedio_por_repeticion_de_diferencias_RMSE",
+    "bootstrap": "celda_chirps_del_centroide",
+    "replicas": 5000,
+    "semilla": 20261006,
+    "intervalo_percentil": [
+      2.5,
+      97.5
+    ],
+    "promocion": {
+      "dMAE_max": -0.01,
+      "IC95_superior_max_exclusivo": 0,
+      "repeticiones_mejoran_min": 4,
+      "dRMSE_max": 0.01
+    }
+  },
+  "promocion_y_simplicidad": "regla_T03_sobre_A_sin_respaldo_vs_referencia;E1_vs_S_reporta_aporte_incremental_y_simplicidad;Q_solo_control_no_nuevo_ganador",
+  "reportes": [
+    "cobertura_y_ausencias_por_municipio_con_n",
+    "estado_completo_truncado_no_calculable",
+    "errores_todas_y_sin_respaldo_sin_eliminar_NA",
+    "frecuencia_referencia_sola_con_denominador",
+    "n_admisibles_entrenamiento_y_mediana_por_fit",
+    "correccion_y_calidad_de_casos_no_utilizables",
+    "MAE_RMSE_R2_interpretable_sesgo",
+    "coste_y_convergencia",
+    "incertidumbre_de_comparacion_no_intervalo_individual",
+    "validacion_de_disponibilidad_historica_separada"
+  ],
+  "pruebas_requeridas_antes_de_modelos": [
+    "contrato_inactivo_rechaza_ejecucion",
+    "regla_fecha_calidad_fuentes_ids_unicos",
+    "cero_valido_no_faltante",
+    "corte_fuera_de_rango_rechazado",
+    "columna_indicador_siempre_fija",
+    "solo_entrenamiento_en_toda_transformacion",
+    "casos_fit_sin_observados_constantes_n0_n1",
+    "aislamiento_y_externas_y_lote",
+    "puente_S_exactamente_misma_configuracion_v3",
+    "auditor_matricial_independiente",
+    "Mac_Docker_comun"
+  ],
+  "no_ejecutado": [
+    "imputador_escalador_estimador",
+    "evaluacion_T15_o_extension",
+    "T07_integracion",
+    "predicciones_59",
+    "publicacion",
+    "edicion_PR21"
+  ],
+  "limites": [
+    "Diseno_posterior_a_D1_y_a_diagnostico_errores_no_ciego",
+    "No_ajuste_a_etiquetas_externas_ni_59",
+    "No_inferir_estres_cosecha_o_agua_radicular",
+    "Fuentes_datos_y_resultados_D1_intactos",
+    "E1_opcional_no_bloquea_T15_principal"
+  ],
+  "fuentes_metodologicas": [
+    "https://scikit-learn.org/stable/modules/impute.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.impute.MissingIndicator.html",
+    "https://scikit-learn.org/stable/common_pitfalls.html"
+  ]
+}
