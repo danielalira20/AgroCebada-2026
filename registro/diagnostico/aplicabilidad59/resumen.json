@@ -1,0 +1,25 @@
+{
+  "version": "aplicabilidad-C-v1",
+  "n_reservadas": 59,
+  "n_etiquetadas": 138,
+  "n_contextos_externos": 50,
+  "n_contextos_parcela_oof": 1380,
+  "n_entradas59": 885,
+  "n_entradas_oof": 20700,
+  "municipio_representado": 59,
+  "soporte_municipal_menos4": 1,
+  "vecina20_general": 24,
+  "vecina20_municipio": 24,
+  "celda_principal_nueva": 2,
+  "clima_exacto": {
+    "abr_oct": 49,
+    "jun_oct": 49
+  },
+  "fuera_global_algun_bloque": 9,
+  "supera_q95_algun_bloque": 19,
+  "alerta_contorno": 12,
+  "hay_modelo_nuevo": false,
+  "hay_predicciones_nuevas": false,
+  "unidad": "parcela_2025_no_repeticion_ni_fila_de_soporte",
+  "advertencia": "Soporte descriptivo; no probabilidad ni intervalo de rendimiento; no validacion temporal."
+}
