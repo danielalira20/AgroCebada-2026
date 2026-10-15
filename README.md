@@ -1,5 +1,8 @@
 # AgroCebada 2026
 
+- [T15: contexto LOO de alertas en las 138 frente a las 59](docs/t15_observacion_migue_loo.md)
+- [Revisión PR22: protocolo, cifras comprobadas y precisiones pendientes](docs/revision_pr22_protocolo.md)
+
 - [T15: guía de revisión del PR #21 — método v3, propuesta B y aplicabilidad C](docs/t15_guia_revision_pr21.md)
 
 Repositorio de trabajo de Dani, Jass, Migue, Daf y Diego para estimar el rendimiento de cebada de las 59 parcelas reservadas y mostrar los resultados en una aplicación funcional.
