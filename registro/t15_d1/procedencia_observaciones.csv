@@ -1,0 +1,5 @@
+tarea,PR,commit_examinado,archivo,observacion
+T06,4_antecedente,97a8906b243b63f1e7c24ec85f7050642d9a98f5,scripts/t06_satelite.py,Curva NDVI mediana3 y NDWI mediana a +/-15 dias; conciliacion exacta de1182valores; no evaluar su modelo
+T13,20,50e656bdea1087be9c408cd96885cb7115abaa0e,scripts/t13_indices.py,Usa NDWI resumido por T06; no contraste posterior15-45en este script
+T13e,20,50e656bdea1087be9c408cd96885cb7115abaa0e,scripts/t13_extension_indices.py,Resume familias S2 en +/-15dias; no media posterior15-45menosancla exacta
+T15_B,21,4afabf081a341f3321fcd58a211d18b43ee5a3b4,docs/t15_fase_b_documental.md,"E1propuesto; se comprueba factibilidad, no acepta ni ejecuta evaluacion"

@@ -1,0 +1,31 @@
+columna,significado,unidad,vacio
+id_parcela,ID original; no predictor,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+municipio,Metadato territorial original; no rendimiento,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+conjunto,Pertenencia original: ENTRENAMIENTO/PREDICCION; no usa el valor de la etiqueta,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+sensor,Sensor único del contraste: Sentinel-2,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+ventana,"Periodo candidato, no etapa agronómica",categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+n_capturas,"Fechas con NDVI y nube<=5, dentro de la ventana/corte",conteo,No aplicable o soporte insuficiente; nunca cero implícito
+fecha_maximo,Primera fecha del máximo de la mediana centrada de tres capturas,fecha ISO,No aplicable o soporte insuficiente; nunca cero implícito
+ndvi_max,Valor del máximo suavizado; no confirma pico agronómico,índice adimensional,No aplicable o soporte insuficiente; nunca cero implícito
+amplitud_ndvi,Máximo suavizado menos mínimo de curva anterior o igual al máximo,índice adimensional,No aplicable o soporte insuficiente; nunca cero implícito
+n_empates_maximo,Número de fechas empatadas exactamente en el máximo,conteo,No aplicable o soporte insuficiente; nunca cero implícito
+maximo_en_borde,Máximo en primera/última captura válida,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+meseta_45_dias,"Fechas a <=5% de amplitud del máximo separadas por >=45 días, regla T06",días,No aplicable o soporte insuficiente; nunca cero implícito
+ndwi_ancla,NDWI original en fecha exacta del máximo; no mediana ±15,índice adimensional,No aplicable o soporte insuficiente; nunca cero implícito
+ndwi_mediana_mas_menos15,Control de reproducción T06; no un predictor nuevo elegible,índice adimensional,No aplicable o soporte insuficiente; nunca cero implícito
+n_fechas_post,Fechas distintas válidas con NDWI entre +15 y +45 días y <=corte,conteo,No aplicable o soporte insuficiente; nunca cero implícito
+n_fechas_originales_post,"Todas las fechas Sentinel-2 originales del intervalo antes del corte, incluidas inválidas",conteo,No aplicable o soporte insuficiente; nunca cero implícito
+n_post_descartadas_nube,"Fechas originales con nube ausente o fuera de [0,5]; prioridad de esta causa",conteo,No aplicable o soporte insuficiente; nunca cero implícito
+n_post_descartadas_dato,Fechas con nube admisible pero NDVI o NDWI ausente; excluye descartadas por nube,conteo,No aplicable o soporte insuficiente; nunca cero implícito
+fechas_post,Fechas exactas utilizadas separadas por punto y coma,fecha ISO,No aplicable o soporte insuficiente; nunca cero implícito
+primera_post,Primera fecha utilizada en media posterior,fecha ISO,No aplicable o soporte insuficiente; nunca cero implícito
+ultima_post,Última fecha utilizada en media posterior,fecha ISO,No aplicable o soporte insuficiente; nunca cero implícito
+intervalo_truncado,Máximo+45 días posterior al corte; no observa intervalo nominal completo,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+amplitud_temporal_post_dias,Separación entre primera y última fecha posterior; una fecha: cero,días,No aplicable o soporte insuficiente; nunca cero implícito
+hueco_max_post_con_bordes_dias,"Mayor hueco incluyendo bordes [+15,min(+45,corte)]",días,No aplicable o soporte insuficiente; nunca cero implícito
+ndwi_media_post,Media aritmética por observación; un valor diagnóstico puede existir con sólo una fecha,índice adimensional,No aplicable o soporte insuficiente; nunca cero implícito
+contraste_ndwi,"Media posterior menos ancla, sólo si >=5 capturas NDVI, ancla y >=2 fechas post",índice adimensional,No aplicable o soporte insuficiente; nunca cero implícito
+calculable,Cumple soporte mínimo; no es confianza ni elegibilidad del modelo,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+motivo,ok o causa(s) explícitas; no se rellena un vacío,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+faltante_ancla,Ancla sin NDWI; ausente si no se define máximo,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito
+faltante_post,Menos de dos fechas posteriores; ausente si no se define máximo,categoría/booleano,No aplicable o soporte insuficiente; nunca cero implícito

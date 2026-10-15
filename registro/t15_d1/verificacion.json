@@ -1,0 +1,104 @@
+{
+  "resultado": "tecnico_verificado_soporte_parcial",
+  "revision_humana": "pendiente",
+  "version": "t15-D1-NDWI-v1",
+  "base_dev": "97a8906b243b63f1e7c24ec85f7050642d9a98f5",
+  "diseno_commit_previo": "7d1c67d",
+  "codigo_comprobado_commit": "e4789f5",
+  "diseno_sha256": "dd939be1f94835308de6bae032aa6fe3ca7ae8e9e5d428b1c4eca835ae3bd7c4",
+  "pruebas": {
+    "Mac": 30,
+    "Docker_linux_amd64_Python_O": 30
+  },
+  "auditor_independiente": {
+    "resultado": "verificado",
+    "comparaciones": 16954,
+    "max_delta": 1.1102230246251565e-16,
+    "IDs": 197,
+    "perfiles": 394,
+    "usa_productor": false,
+    "metodo": "Fraction_CSV_original_mediana_racional",
+    "modelos_ajustados": 0,
+    "nuevas_predicciones59": 0,
+    "revision_humana": "pendiente",
+    "codigo_auditor_sha256": "9352eeba7be6b8036498bf8d1633c3cafb262b18b00cd02cb136e93704fe4e04",
+    "diseno_sha256": "dd939be1f94835308de6bae032aa6fe3ca7ae8e9e5d428b1c4eca835ae3bd7c4"
+  },
+  "entregas_Mac_Docker_byte_identicas": [
+    "conciliacion_t06.csv",
+    "diccionario.csv",
+    "manifest.json",
+    "perfil_ndwi_postpico.csv",
+    "resumen.json",
+    "resumen_conjunto.csv",
+    "resumen_municipio.csv",
+    "variacion_sin_y.csv"
+  ],
+  "imagen_Docker": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+  "Docker": "apagado_confirmado_2026-10-14_22:27_Mexico",
+  "fuentes_nueve_originales_y_entregas_previas_intactas": true,
+  "CSV_originales_identicos_DataSet_zip": 2,
+  "paquete_original_sha256": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+  "calculos_completos_nominalmente": 151,
+  "calculos_intervalo_truncado": 18,
+  "causas_faltantes": {
+    "todas": {
+      "ausentes": 28,
+      "calendario_insuficiente": 9,
+      "calidad_insuficiente_con_fechas_originales": 19,
+      "censuradas_al_corte": 17
+    },
+    "ENTRENAMIENTO": {
+      "ausentes": 19,
+      "calendario_insuficiente": 6,
+      "calidad_insuficiente_con_fechas_originales": 13,
+      "censuradas_al_corte": 11
+    },
+    "PREDICCION": {
+      "ausentes": 9,
+      "calendario_insuficiente": 3,
+      "calidad_insuficiente_con_fechas_originales": 6,
+      "censuradas_al_corte": 6
+    }
+  },
+  "reservadas_sin_soporte": [
+    "AGC_003",
+    "AGC_043",
+    "AGC_063",
+    "AGC_091",
+    "AGC_094",
+    "AGC_143",
+    "AGC_153",
+    "AGC_156",
+    "AGC_175"
+  ],
+  "perfil_poblacion": {
+    "IDs": 197,
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "perfiles": 394,
+    "calculables_ID": 169,
+    "calculables_etiquetadas": 119,
+    "calculables_reservadas": 50
+  },
+  "revision_visual": {
+    "paneles": 8,
+    "casos_controles_fijados_previamente": true,
+    "valores_negativos_visibles": true,
+    "etiquetas_mostradas": false
+  },
+  "modelos_ajustados": 0,
+  "nuevas_predicciones59": 0,
+  "nuevo_MAE": false,
+  "integracion_T07": false,
+  "descargas_nuevas": false,
+  "push": false,
+  "PR21_modificado": false,
+  "siguientes_fases_D2_E_F_ejecutadas": false,
+  "codigo_sha256": {
+    "scripts/t15_ndwi_factibilidad.py": "212bfc0ee8d70a23ed3eb058b85e59c2451aaaf1c4e18b3bdd042da197dcf99a",
+    "scripts/auditar_t15_ndwi_factibilidad.py": "9352eeba7be6b8036498bf8d1633c3cafb262b18b00cd02cb136e93704fe4e04",
+    "scripts/t15_ndwi_figuras.py": "0ba04b7c6c50d82902e083b103de3156ad32b346d6a713d7c380590f026464da",
+    "tests/test_t15_ndwi_factibilidad.py": "f7460c8e147f12629e6a9fb70e053581a0e045843551a0642d3b10e8323310d3"
+  }
+}

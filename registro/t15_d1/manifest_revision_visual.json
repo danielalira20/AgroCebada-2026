@@ -1,0 +1,21 @@
+{
+  "version": "D1_QA_visual_v1",
+  "fuentes": {
+    "casos_controles_fijos.csv": "8d3c9995c59145a023b8fd60ebe9d23411edf5fa7e8f83f99c37fc9c76cf8904",
+    "perfil_ndwi_postpico.csv": "7a0718806754bc80d7d629d8325f1850421141f763e109339438e3288a5a1fc4"
+  },
+  "codigo_sha256": {
+    "scripts/t15_ndwi_factibilidad.py": "212bfc0ee8d70a23ed3eb058b85e59c2451aaaf1c4e18b3bdd042da197dcf99a",
+    "scripts/auditar_t15_ndwi_factibilidad.py": "9352eeba7be6b8036498bf8d1633c3cafb262b18b00cd02cb136e93704fe4e04",
+    "scripts/t15_ndwi_figuras.py": "0ba04b7c6c50d82902e083b103de3156ad32b346d6a713d7c380590f026464da",
+    "tests/test_t15_ndwi_factibilidad.py": "f7460c8e147f12629e6a9fb70e053581a0e045843551a0642d3b10e8323310d3"
+  },
+  "archivos_sha256": {
+    "cobertura_ndwi_postpico.png": "9636715e772de200327a3c87fda440f746925cee221b25907316dcab1ba8f4e4",
+    "casos_controles_ndwi.png": "ad994630f47350f24a8e82fa16f6e9c1743fa383b8b74911b5bfb3439c4d38c5",
+    "revision_visual_casos_controles.csv": "c9d252a2fd6059e8850d8328d33427e280cc6ab5fde244e043adf81bb41ef090",
+    "procedencia_observaciones.csv": "f9f98adef7874f72a2165bf3c941173382d2638f222c83dd7b9f5138021c726a"
+  },
+  "QA_visual": "8paneles_completos_sin_recorte_de_indices_negativos_y_figura_cobertura_revisados",
+  "sin_y": true
+}

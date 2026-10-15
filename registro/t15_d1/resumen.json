@@ -1,0 +1,18 @@
+{
+  "version": "t15-D1-NDWI-v1",
+  "n_ids": 197,
+  "n_perfiles": 394,
+  "modelos_ajustados": 0,
+  "uso_rendimiento": false,
+  "nuevas_predicciones_59": 0,
+  "sensores_inventario_basico": {
+    "Landsat": 48626,
+    "Sentinel-2": 59040
+  },
+  "Planet_NDWI": "no_proporcionado_en_PRO",
+  "conciliacion_T06_comparaciones": 1182,
+  "max_delta_conciliacion_T06": 0,
+  "perfiles_calculables": 338,
+  "ambas_ventanas_contraste_exacto": 169,
+  "estado": "factibilidad_descriptiva_revision_pendiente_no_promocion"
+}
