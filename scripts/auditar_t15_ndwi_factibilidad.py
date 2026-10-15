@@ -43,6 +43,7 @@ def exact_profile(sequence,start,cutoff=date(2025,10,31)):
     expected=dict(n_capturas=len(seq),fecha_maximo=None,ndvi_max=None,amplitud_ndvi=None,
                   n_empates_maximo=0,maximo_en_borde=None,meseta_45_dias=None,ndwi_ancla=None,
                   ndwi_mediana_mas_menos15=None,n_fechas_post=0,fechas_post="",primera_post=None,
+                  n_fechas_originales_post=None,n_post_descartadas_nube=None,n_post_descartadas_dato=None,
                   ultima_post=None,intervalo_truncado=None,amplitud_temporal_post_dias=None,
                   hueco_max_post_con_bordes_dias=None,ndwi_media_post=None,contraste_ndwi=None,
                   calculable=False,motivo="menos_5_capturas",faltante_ancla=None,faltante_post=None)
@@ -58,6 +59,9 @@ def exact_profile(sequence,start,cutoff=date(2025,10,31)):
     left,right=peak+timedelta(days=15),peak+timedelta(days=45)
     end=min(right,cutoff)
     post=[x for x in seq if left<=x[0]<=end and x[2] is not None]
+    originals=[x for x in sequence if start<=x[0]<=cutoff and left<=x[0]<=end]
+    bad_cloud=sum(x[3] is None or not 0<=x[3]<=5 for x in originals)
+    bad_data=sum(x[3] is not None and 0<=x[3]<=5 and (x[1] is None or x[2] is None) for x in originals)
     avg=sum((x[2] for x in post),F(0))/len(post) if post else None
     gaps=[(post[0][0]-left).days,(end-post[-1][0]).days] if post else []
     for i in range(1,len(post)):gaps.append((post[i][0]-post[i-1][0]).days)
@@ -69,6 +73,8 @@ def exact_profile(sequence,start,cutoff=date(2025,10,31)):
                     meseta_45_dias=(max(plateau)-min(plateau)).days>=45,ndwi_ancla=anchor,
                     ndwi_mediana_mas_menos15=mid(near) if all(v is not None for v in near) else None,
                     n_fechas_post=len(post),fechas_post=";".join(x[0].isoformat() for x in post),
+                    n_fechas_originales_post=len(originals),n_post_descartadas_nube=bad_cloud,
+                    n_post_descartadas_dato=bad_data,
                     primera_post=post[0][0] if post else None,ultima_post=post[-1][0] if post else None,
                     intervalo_truncado=right>cutoff,
                     amplitud_temporal_post_dias=(post[-1][0]-post[0][0]).days if post else None,

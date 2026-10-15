@@ -6,7 +6,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from scripts.t15_ndwi_factibilidad import Obs,profile,catalogue,observations,number,run,validate_design
+from scripts.t15_ndwi_factibilidad import Obs,profile,catalogue,observations,number,run,validate_design,variation
 from scripts.auditar_t15_ndwi_factibilidad import exact_profile
 
 BASE=date(2025,7,1)
@@ -171,6 +171,31 @@ class FactibilidadTest(unittest.TestCase):
         rows=series()
         old=Obs('A',date(2025,5,31),1.,1.,0.)
         self.assertEqual(profile(rows+[old],date(2025,6,1)),profile(rows,date(2025,6,1)))
+
+    def test_causa_soporte_separa_nube_y_dato(self):
+        rows=series()
+        o=rows[6];rows[6]=Obs(o.pid,o.fecha,o.ndvi,o.ndwi,6.)
+        o=rows[7];rows[7]=Obs(o.pid,o.fecha,o.ndvi,None,0.)
+        r=profile(rows,START)
+        self.assertEqual(r['n_fechas_originales_post'],5)
+        self.assertEqual(r['n_post_descartadas_nube'],1)
+        self.assertEqual(r['n_post_descartadas_dato'],1)
+        self.assertEqual(r['n_fechas_post'],3)
+
+    def test_conteos_soporte_no_usan_futuro(self):
+        fin=BASE+timedelta(days=45)
+        r=profile(series(),START,fin)
+        self.assertEqual(r['n_fechas_originales_post'],2)
+        self.assertEqual(r['n_fechas_post'],2)
+
+    def test_variacion_no_depende_del_orden_de_ID(self):
+        rows=[]
+        for mun,delta in [('Z',.3),('A',-.2),('M',.15)]:
+            for i in range(2):
+                r=profile(series(),START)
+                r.update(municipio=mun,ventana='abr_oct',contraste_ndwi=delta+i*.01)
+                rows.append(r)
+        self.assertEqual(variation(rows),variation(list(reversed(rows))))
 
 
 if __name__=='__main__':unittest.main()

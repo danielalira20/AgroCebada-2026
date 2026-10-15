@@ -130,6 +130,7 @@ def profile(rows, ini, fin=CORTE):
     r = dict(n_capturas=len(valid), fecha_maximo=None, ndvi_max=None, amplitud_ndvi=None,
              n_empates_maximo=0, maximo_en_borde=None, meseta_45_dias=None,
              ndwi_ancla=None, ndwi_mediana_mas_menos15=None, n_fechas_post=0,
+             n_fechas_originales_post=None, n_post_descartadas_nube=None, n_post_descartadas_dato=None,
              fechas_post="", primera_post=None, ultima_post=None, intervalo_truncado=None,
              amplitud_temporal_post_dias=None, hueco_max_post_con_bordes_dias=None,
              ndwi_media_post=None, contraste_ndwi=None, calculable=False,
@@ -146,6 +147,11 @@ def profile(rows, ini, fin=CORTE):
     left, right = anchor.fecha + timedelta(days=15), anchor.fecha + timedelta(days=45)
     end = min(right, fin)
     post = [o for o in valid if left <= o.fecha <= end and o.ndwi is not None]
+    originals = [o for o in rows if ini <= o.fecha <= fin and left <= o.fecha <= end]
+    cloud_bad = [o for o in originals if o.nube is None or not 0 <= o.nube <= 5]
+    data_bad = [o for o in originals if o not in cloud_bad and (o.ndvi is None or o.ndwi is None)]
+    if len(originals) != len(post) + len(cloud_bad) + len(data_bad):
+        raise ValueError("Partición de soporte posterior incoherente")
     mean = math.fsum(o.ndwi for o in post)/len(post) if post else None
     gaps = [((post[0].fecha-left).days), ((end-post[-1].fecha).days)] if post else []
     gaps += [(b.fecha-a.fecha).days for a, b in zip(post, post[1:])]
@@ -154,6 +160,8 @@ def profile(rows, ini, fin=CORTE):
              meseta_45_dias=(max(plateau)-min(plateau)).days >= 45,
              ndwi_ancla=anchor.ndwi,
              ndwi_mediana_mas_menos15=median(near) if all(v is not None for v in near) else None,
+             n_fechas_originales_post=len(originals),n_post_descartadas_nube=len(cloud_bad),
+             n_post_descartadas_dato=len(data_bad),
              n_fechas_post=len(post), fechas_post=";".join(o.fecha.isoformat() for o in post),
              primera_post=post[0].fecha if post else None, ultima_post=post[-1].fecha if post else None,
              intervalo_truncado=right > fin,
@@ -200,7 +208,7 @@ def variation(rows):
             mean = math.fsum(values)/len(values) if values else None
             total = math.fsum((v-mean)**2 for v in values) if values else 0
             within = 0.
-            for mun in {r["municipio"] for r in sub}:
+            for mun in sorted({r["municipio"] for r in sub}):
                 v = [r[field] for r in sub if r["municipio"]==mun]
                 m = math.fsum(v)/len(v)
                 within += math.fsum((x-m)**2 for x in v)
@@ -296,6 +304,9 @@ def run(raw_dir, output, root=ROOT):
             "ndwi_ancla":"NDWI original en fecha exacta del máximo; no mediana ±15",
             "ndwi_mediana_mas_menos15":"Control de reproducción T06; no un predictor nuevo elegible",
             "n_fechas_post":"Fechas distintas válidas con NDWI entre +15 y +45 días y <=corte",
+            "n_fechas_originales_post":"Todas las fechas Sentinel-2 originales del intervalo antes del corte, incluidas inválidas",
+            "n_post_descartadas_nube":"Fechas originales con nube ausente o fuera de [0,5]; prioridad de esta causa",
+            "n_post_descartadas_dato":"Fechas con nube admisible pero NDVI o NDWI ausente; excluye descartadas por nube",
             "fechas_post":"Fechas exactas utilizadas separadas por punto y coma",
             "primera_post":"Primera fecha utilizada en media posterior", "ultima_post":"Última fecha utilizada en media posterior",
             "intervalo_truncado":"Máximo+45 días posterior al corte; no observa intervalo nominal completo",
