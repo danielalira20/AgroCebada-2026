@@ -264,3 +264,18 @@ Referencia en `sin_respaldo`: A → MAE 0.3205, RMSE 0.4926; B → MAE 0.3579, R
 **Corrección.** Se agregó `IA_T10_005` (Claude): veto del revuelto y promoción sólo en A, desgloses por repetición, `D_T10_002`, informe más prudente con la tabla de cobertura parcial y la ficha para T16, y regeneración de los resultados afectados; cada paso con aprobación de Jass. Se ajustó la frase de `IA_T10_002` y de la entrada «Trazabilidad del PR» para que digan que Codex revisó esas correcciones y no que las incorporó Jass. `IA_T10_003` e `IA_T10_004` quedan como están: son cambios hechos con Codex.
 
 **Efecto.** Sólo cambia el registro de autoría. Ningún resultado, script ni prueba se modifica.
+
+### 15 de octubre de 2026 — Distinguir configuraciones centradas y sin centrar (observación H3 de Dani)
+
+**Solicitud.** Dani observó el 13 de octubre: «T10: las configuraciones 1–5 están sin centrar; la 6 ya está centrada. Conviene distinguirlas en el informe y revisar cuál utilizaremos para las nuevas comparaciones». El origen es el hallazgo H3: la referencia ya contiene el promedio municipal y las variables sin centrar pueden volver a ajustar diferencias entre municipios.
+
+**Decisión de Jass (`D_T10_004`).** En las comparaciones nuevas, relieve y área entran centrados por municipio con el procedimiento común v3 de T15 (bloque G). Se decidió por la pregunta (aporte dentro del municipio), no por el error: ninguna configuración cumplió la regla. La configuración 6 queda como antecedente: comparte columnas e idea, pero difiere de v3 en cuatro puntos (propia parcela en el promedio, respaldo grupo/global, intercepto y rejilla de penalización).
+
+**Cambios (sólo documentación).**
+- `docs/T10_relieve_area.md`: nota en el estado; columnas «¿Centrada por municipio?» y «Qué mide» en la sección 5; lectura por tipo en la sección 13; sección 15 nueva.
+- `informe_relieve_y_area.md`: fecha de actualización, viñeta en «Qué encontramos», pregunta nueva, línea de T15 en «Para otros frentes» y referencia a `D_T10_004`.
+- `registro/decisiones.csv`: `D_T10_004`. `registro/uso_ia.csv`: `IA_T10_006`.
+
+**Qué no cambió.** Código, pruebas, archivos de `registro/t10/`, manifiesto y predicciones de las 59. No se volvió a correr ninguna evaluación. Se comprobó en `scripts/t10_relieve_area.py` que la configuración 6 centra con la media municipal del entrenamiento (respaldo global) y que el `Ridge` de T10 usa intercepto por defecto. Las características de v3 se tomaron del documento y la propuesta de la rama `t15-centrado-municipal` (commit `4afabf0`).
+
+**Estado.** Pendiente la revisión de Daf y que Dani confirme que esto atiende su observación.

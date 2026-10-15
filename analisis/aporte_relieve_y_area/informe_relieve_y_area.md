@@ -1,6 +1,6 @@
 # Informe de cierre · T10, aporte de relieve y área
 
-- **Responsable:** Jass. **Revisora:** Daf. **Fecha:** 12 de octubre de 2026.
+- **Responsable:** Jass. **Revisora:** Daf. **Fecha:** 12 de octubre de 2026; actualizado el 15 de octubre de 2026 (`D_T10_004`: distinción entre combinaciones centradas y sin centrar).
 - **Método:** [`docs/T10_relieve_area.md`](../../docs/T10_relieve_area.md) y decisión `D_T10_001`, escritos antes de correr.
 - **Resultados:** `registro/t10/`. **Bitácora:** [`bitacora.md`](bitacora.md).
 
@@ -24,6 +24,7 @@ La referencia del equipo estima el rendimiento de una parcela con el promedio de
 ## Qué encontramos
 
 - **Ninguna combinación cumple la regla de T03.** En el escenario principal (A), el error promedio cambia entre +0.0002 y +0.0027 t/ha frente a un error de la referencia de 0.3205 t/ha: es decir, no mejora; en todos los casos el intervalo incluye el cero y a lo sumo 2 de 5 repeticiones mejoran. En el escenario de separación espacial (B) pasa lo mismo.
+- **Hay que distinguir dos tipos de combinación** (aclaración del 15 de octubre). Las combinaciones 1 a 5 usan las variables tal cual; la 6 las compara con el promedio de su municipio («centradas»). Como la referencia ya incluye el municipio, sólo la 6 mide si relieve y área ayudan **dentro** del municipio. Las 1 a 5 responden otra pregunta: si las variables tal cual mejoran la referencia. Con ninguna de las dos lecturas se mejora la referencia.
 - **El procedimiento lo confirma por su cuenta:** ajustado con las 138 parcelas, elige «referencia sola» en las 6 combinaciones. Sus predicciones para las 59 reservadas son idénticas a las de la referencia.
 - **El procedimiento de T11 (puente) sale peor con estas variables:** su error promedio sube entre 0.010 y 0.020 t/ha en A, y el principal le gana en las 12 comparaciones de error promedio. Ojo: el puente y el principal se diferencian en dos cosas a la vez (la opción «referencia sola» y el criterio con que se elige el ajuste), así que esta comparación no dice cuál de las dos pesa más, y sólo se hizo con el bloque de relieve y área.
 - **La relación que sí existe es débil y local.** Dentro de cada municipio, la pendiente y el área se asocian con el rendimiento con r ≈ ±0.24, casi todo en Chignahuapan; en Calpulalpan es prácticamente cero. Explica cerca del 6 % de lo que el municipio no explica, y no alcanza para predecir mejor parcelas nuevas.
@@ -35,6 +36,9 @@ No con este procedimiento. Ninguna de las 6 combinaciones mejora la referencia s
 
 **¿Cuál variable funcionó mejor?**
 Ninguna supera a la referencia. La pendiente sola es la que menos empeora (+0.0002 t/ha en A), una diferencia sin importancia práctica. El área no añade nada sobre el relieve (combinación 5 frente a 4) y comparar cada parcela con su municipio tampoco (combinación 6 frente a 5).
+
+**¿Qué combinaciones están centradas y cuál se usará en las comparaciones nuevas?**
+Sólo la 6 está centrada: a cada variable se le resta el promedio de su municipio, calculado con el entrenamiento. Así la variable deja de decir «esta parcela está en un municipio alto» (eso ya lo sabe la referencia) y pasa a decir «esta parcela está más alta que las de su municipio». Las combinaciones 1 a 5 no están centradas, y una parte de lo que aprenden puede ser volver a contar diferencias entre municipios. En las comparaciones nuevas de T15, relieve y área entrarán centrados con el procedimiento común de T15 (v3), no con el código de T10. La combinación 6 es un antecedente parecido, pero no idéntico: el procedimiento de T15 excluye a la propia parcela al calcular el promedio, usa el promedio del grupo antes que el global cuando falta el municipio, no usa término constante y prueba otra rejilla de penalización. Se eligió centrar por la pregunta que se quiere responder, no por el error. Detalle en la sección 15 del método y en `D_T10_004`.
 
 **¿Cambia en parcelas pequeñas?**
 Hay una pista, no un resultado. Las parcelas de menos de 2 ha son las de mayor error con cualquier procedimiento (0.388 t/ha) y ahí las variables lo bajan un poco (0.378); en las de más de 5 ha lo suben (0.318 → 0.326). Son grupos pequeños y no se probó formalmente. Queda como hipótesis para T15.
@@ -87,7 +91,7 @@ Son las etiquetadas con aviso `cobertura_parcial` en `registro/t07/calidad_relie
 
 ## Para otros frentes
 
-- **T15 (combinaciones):** relieve y área no se justifican como bloque. Si se incluyen, deberían demostrar aporte junto con otros bloques; la pista de parcelas pequeñas es la única hipótesis concreta.
+- **T15 (combinaciones):** relieve y área no se justifican como bloque. Si se incluyen, deberían demostrar aporte junto con otros bloques; la pista de parcelas pequeñas es la única hipótesis concreta. Entran **centrados por municipio** con el procedimiento común v3 (bloque G), no con la combinación 6 de T10 (`D_T10_004`).
 - **T11 (satélite):** con relieve y área, el procedimiento principal de T10 supera al de T11. Con las variables de satélite no se probó; adoptar el principal en T11 es una propuesta para Daf y Dani, no una conclusión.
 - **T16 y T17 (cierre y app):** las predicciones de T10 para las 59 son las de la referencia (ver ficha de consumo más abajo). Para la app sirve el dato de las tres reservadas apenas fuera de rango.
 - **T19 (informe):** este documento y la figura `figuras/dispersion_relieve_area_rendimiento.png` se pueden usar tal cual, aclarando que la figura es exploratoria.
@@ -106,7 +110,7 @@ Son las etiquetadas con aviso `cobertura_parcial` en `registro/t07/calidad_relie
 
 | Qué | Dónde |
 |---|---|
-| Método y diseño | `docs/T10_relieve_area.md`, `D_T10_001` |
+| Método y diseño | `docs/T10_relieve_area.md`, `D_T10_001` (diseño) y `D_T10_004` (centrado, posterior a los resultados) |
 | Código y pruebas | `scripts/t10_relieve_area.py`, `tests/test_t10_relieve_area.py` |
 | Resultados | `registro/t10/` (manifiesto con huellas) |
 | Experimentos | `E_T10_001`–`E_T10_006` en `registro/experimentos.csv` |
