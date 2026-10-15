@@ -170,3 +170,10 @@ La [versión centrada v2](docs/evaluacion_comun_centrado_v2.md) resta centros ap
 ## T15 · fase A: coherencia y versiones · 14 de octubre de 2026
 
 La [entrega local de fase A](docs/t15_fase_a_coherencia.md) identifica dev actualizado y conserva los históricos. El [método LOO v3](docs/evaluacion_comun_centrado_loo_v3.md) alinea referencia residual y centro por fila, incluidos respaldos de municipios pequeños, y añade frecuencia explícita de referencia sola. Verificado en Mac y Docker; revisión del nuevo código pendiente. La propuesta sigue no ejecutable: no se ejecutó T15 completo ni se produjeron las 59 finales. T06/T03 conservan pendientes concretos de sus responsables.
+
+
+## T15: planificación B y aplicabilidad C
+
+[B documental](docs/t15_fase_b_documental.md) conserva las ocho comparaciones y separa las extensiones propuestas; sigue sin habilitar entrenamientos. [C descriptiva](docs/diagnostico_aplicabilidad59.md) entrega soporte de las59 reservadas por territorio, atributos y calidad, con errores históricos T08 como contexto, reproducción Mac/Docker y revisión humana pendiente.
+
+Las tablas compactas están en `registro/diagnostico/aplicabilidad59/`. El detalle OOF se genera localmente en `data/processed/`; las instrucciones del informe conservan destinos nuevos. No son nuevas predicciones ni sustituyen T16/T18.
