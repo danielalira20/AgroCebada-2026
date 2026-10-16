@@ -1,0 +1,5 @@
+Escenario A: ΔMAE -0.0079 | mejoran 86, empeoran 45 | Wilcoxon p=0.012 | P(mediana mejor, celdas)=90% | IC95 [-0.0163, +0.0057]
+   por municipio: {'Almoloya': -0.005, 'Calpulalpan': -0.02, 'Chignahuapan': -0.012, 'Cuautepec de Hinojosa': 0.006, 'Emiliano Zapata': 0.0, 'Singuilucan': 0.027}
+   simulación FIRA (59): la mediana gana 80%, pierde 20% | típico -0.0071 | 90 % entre -0.0199 y +0.0066
+Escenario B: ΔMAE -0.0157 | mejoran 83, empeoran 44 | Wilcoxon p=0.006 | P(mediana mejor, celdas)=73% | IC95 [-0.0449, +0.0207]
+   por municipio: {'Almoloya': -0.024, 'Calpulalpan': -0.009, 'Chignahuapan': -0.039, 'Cuautepec de Hinojosa': 0.004, 'Emiliano Zapata': 0.0, 'Singuilucan': 0.071}

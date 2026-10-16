@@ -1,0 +1,50 @@
+{
+  "base": "cc7d0ae5437490d63408d74b4a3693a7b4494d55",
+  "T15": "6f970d8b9dc40f99905c1afcf28230da1d6a13cd",
+  "T12": "1331e4f90898e3b806c57f87e8fc296c4e1fc88a",
+  "aplicada_a_ramas": false,
+  "archivos": {
+    "registro/decisiones.csv": {
+      "filas_T15": 60,
+      "filas_T12": 61,
+      "filas_conciliadas": 62,
+      "IDs_agregados_de_T12": [
+        "D_T12_001",
+        "D_T12_002"
+      ],
+      "colisiones_semanticas": 0,
+      "filas_previas_preservadas": true,
+      "sha256_propuesta": "98e833ee111575ff5fab2b1dfb9dd093e69817a8cd02398144b1cc092d98d811"
+    },
+    "registro/experimentos.csv": {
+      "filas_T15": 22,
+      "filas_T12": 29,
+      "filas_conciliadas": 30,
+      "IDs_agregados_de_T12": [
+        "E_T12_001",
+        "E_T12_002",
+        "E_T12_003",
+        "E_T12_004",
+        "E_T12_005",
+        "E_T12_006",
+        "E_T12_007",
+        "E_T12_008"
+      ],
+      "colisiones_semanticas": 0,
+      "filas_previas_preservadas": true,
+      "sha256_propuesta": "f34e78f4fb15baf95d8f012ef87fecfcdee04f61268a4ca7ff5ff0e56b383e00"
+    },
+    "registro/uso_ia.csv": {
+      "filas_T15": 57,
+      "filas_T12": 58,
+      "filas_conciliadas": 59,
+      "IDs_agregados_de_T12": [
+        "IA_T12_001",
+        "IA_T12_002"
+      ],
+      "colisiones_semanticas": 0,
+      "filas_previas_preservadas": true,
+      "sha256_propuesta": "55db6e656dfe1cd812f23cb2d8359be59c238819302a107c9d06235916ed1da9"
+    }
+  }
+}

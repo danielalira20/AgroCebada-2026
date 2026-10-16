@@ -1,0 +1,26 @@
+{
+  "PR21_commit": "6f970d8b9dc40f99905c1afcf28230da1d6a13cd",
+  "PR23_commit": "fd4120a3d0efadba6ba2dd488499818f615ba9aa",
+  "PR24_commit": "1331e4f90898e3b806c57f87e8fc296c4e1fc88a",
+  "archivos_recibidos": {
+    "Segunda_Sesion_Preguntas_Reto.docx": "b02fff056877e104fe0a8c3b9e7cca8a48a490154cf3a762b6d66d878c40f731",
+    "Texto pegado.txt": "81523f2e1c408aefa7b7a778ab152608579f11e2fabcd54734db896402c573ab"
+  },
+  "fuentes_publicas": [
+    {
+      "url": "https://www.fira.gob.mx/Nd/Reto%20Agrocebada%20Bases.pdf",
+      "seccion": "CRITERIOS DE EVALUACIÓN: RMSE, MAE, r² u otras definidas por el Comité. No prescribe MAE exclusivo."
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics",
+      "seccion": "3.4.1: funcional y pérdida; mediana condicional/error absoluto, media/error cuadrático. No garantiza una mediana muestral superior fuera de muestra."
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.00065",
+      "version_verificada": "v2; 2-sep-2026",
+      "uso": "Apoyo de procedimiento; no evidencia de mejora."
+    }
+  ],
+  "segunda_sesion_DOCX": "14 preguntas; no contiene una decisión explícita sobre métrica de clasificación final.",
+  "transcripcion_Dani": "Recoge que decidimos la métrica; se distingue de confirmación escrita de MAE exclusivo por el Comité."
+}
