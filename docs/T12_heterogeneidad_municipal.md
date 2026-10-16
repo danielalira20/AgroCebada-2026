@@ -1,7 +1,7 @@
 # T12 · Heterogeneidad municipal y contraste no lineal
 
 - **Implementa:** Jass. **Responsable original de T12:** Diego. **Revisión metodológica:** Migue.
-- **Estado (15 de octubre de 2026):** diseño registrado **antes de correr** (decisión `D_T12_001`, experimentos `E_T12_001` a `E_T12_008`). Código pendiente (paso 2). No hay resultados.
+- **Estado (16 de octubre de 2026):** diseño registrado el 15 de octubre **antes de correr** (decisión `D_T12_001`, experimentos `E_T12_001` a `E_T12_008`). **Cerrado el 16 de octubre: resultado R2, se conserva la referencia** (decisión `D_T12_002`; informe en `analisis/heterogeneidad_municipal/`). Este documento no se reescribió después de ver resultados; solo cambió esta línea.
 - **Usa:** el procedimiento común v3 de T15 (Dani, PR #21, commit `4afabf0`) sin modificarlo; T03 con la extensión §5 bis (D026, Migue); la referencia T08 `media_mun__resp_grupo` (D019); la tabla común T07.
 - **Registro técnico:** `registro/t12/procedimiento_t12.json`. Su huella SHA-256 está en `D_T12_001` y el script la comprueba antes de correr.
 - **Plan:** «T12 · contraste no lineal: un candidato pequeño, mismas entradas y evaluación; búsqueda acotada y fallos registrados. Usa T03, T07–T08. No bloquea app ni T16.»
