@@ -1,0 +1,42 @@
+{
+  "fecha_UTC": "2026-10-16T21:47:37.796860+00:00",
+  "alcance": "Reproducción/auditoría de evidencia existente T08/T12/T15 y PR23; resultados agregados previos ya conocidos, no experimento prospectivo nuevo.",
+  "version_repo": "6f970d8b9dc40f99905c1afcf28230da1d6a13cd",
+  "fuentes_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+    "registro/t15_resultados/predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
+    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd"
+  },
+  "comparacion": "Media vs mediana municipal con mismo respaldo; A/B y todas/sin_respaldo sin cambiar poblaciones; no escoger estadístico por municipio ni retocar OOF.",
+  "metricas": [
+    "MAE_por_parcela",
+    "RMSE_media_repeticiones",
+    "R2_media_repeticiones",
+    "sesgo",
+    "p90",
+    "n_error_mayor_1"
+  ],
+  "incertidumbre": {
+    "principal": "bootstrap celdas CHIRPS 5000, semilla20261006, percentiles2.5/97.5",
+    "reproduccion_PR23": "20000 y simulación histórica literal separadas; no probabilidades de éxito reales de59",
+    "sensibilidad": "sin24 sólo resumen; diagnóstico municipal y dependencia de dos celdas grandes, sin elegir otro ganador"
+  },
+  "regla_sin_modificar": {
+    "dMAE_max": -0.01,
+    "IC95_celdas_superior_menor_que": 0,
+    "repeticiones_mejoran_min": 4,
+    "dRMSE_max": 0.01
+  },
+  "tolerancia_datos_y_metricas": 1e-12,
+  "prohibiciones": [
+    "No export59 final ni aprender con59",
+    "No cambiar T03/T15 ni reemplazar media automáticamente",
+    "No ejecutar exploraciones extra de PR23",
+    "No modificar o publicar ramas ajenas ni mensajes sin autorización",
+    "No E1/Q aún"
+  ]
+}
