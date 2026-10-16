@@ -182,3 +182,7 @@ La [entrega local de fase A](docs/t15_fase_a_coherencia.md) identifica dev actua
 [B documental](docs/t15_fase_b_documental.md) conserva las ocho comparaciones y separa las extensiones propuestas; sigue sin habilitar entrenamientos. [C descriptiva](docs/diagnostico_aplicabilidad59.md) entrega soporte de las59 reservadas por territorio, atributos y calidad, con errores históricos T08 como contexto, reproducción Mac/Docker y revisión humana pendiente.
 
 Las tablas compactas están en `registro/diagnostico/aplicabilidad59/`. El detalle OOF se genera localmente en `data/processed/`; las instrucciones del informe conservan destinos nuevos. No son nuevas predicciones ni sustituyen T16/T18.
+
+## Contrato de comparaciones T15 · 15 de octubre
+
+El [contrato de comparaciones y pruebas](docs/t15_contrato_comparaciones.md) fija las ocho comparaciones, las fuentes y los criterios de v3, añade trazas por ajuste y registra aparte las extensiones. La [verificación técnica](registro/t15_contrato/verificacion.json) conserva la evidencia Mac/Docker. Cierre técnico local para revisión; no se ha ejecutado T15 completa ni se ha seleccionado un ganador.

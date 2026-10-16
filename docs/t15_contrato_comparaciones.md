@@ -106,3 +106,22 @@ python -m unittest tests.test_t15_comparaciones tests.test_evaluacion_comun_cent
 La primera orden no ajusta modelos. La segunda ajusta modelos de comprobación limitados y no publica OOF ni genera las 59 finales. No sobrescribir evidencia anterior; usar destino nuevo. Docker común debe ejecutar las mismas comprobaciones con el repositorio de sólo lectura y detenerse al terminar. Una imagen distinta no constituye otra validación estadística.
 
 Apoyo metodológico: skills scikit-learn y scientific-critical-thinking. Kassis, T.; Agarwal, V.; He, Y.; Patel, D.; Brueckner, A. M. (2026). *Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents*. [Registro vigente](https://arxiv.org/abs/2609.00065). Esta referencia corresponde al procedimiento de trabajo, no a una mejora de rendimiento.
+
+
+## 8. Resultado de la comprobación de este lote
+
+- **46 pruebas aprobadas en cada entorno:** 20 nuevas y 26 del centrado LOO v3. Mac normal y Docker común Linux/amd64 con `python -O`, sin red y repo de sólo lectura. La selección instrumentada coincide exactamente con v3 dentro de cada entorno en G/A, G/B y S/A; no se publicó una evaluación nueva de aporte.
+- Preflight de 50 contextos externos y 200 divisiones internas: salida Mac/Docker idéntica por bytes. Las 138 etiquetas y 59 objetivos ausentes se conservan. No hay celdas compartidas entre entrenamiento y validación de B; las 59 no aparecen en las divisiones.
+- Auditoría separada directamente desde CSV, sin importar productor ni ajustar modelos: 30,400 comprobaciones concordantes. Comprueba también cobertura de internas, elegibles, respaldos y singleton.
+- Ninguna de las 200 internas carece por completo de pendientes observadas. Mínimo observado: 80 en A y 68 en B.
+
+| Escenario | Divisiones internas | Apariciones en validación interna | Apariciones con respaldo | Apariciones con referencia municipal de una etiqueta |
+|---|---:|---:|---:|---:|
+| A |100|2,760|60|30|
+| B |100|2,760|206|360|
+
+Son apariciones en distintas divisiones, no 2,760 parcelas independientes ni cifras nuevas de error. El preflight no ajusta modelos. Las pruebas sí ajustan modelos limitados para contrastar cálculos y selección.
+
+La puerta de pruebas de este lote queda cumplida según [verificación](../registro/t15_contrato/verificacion.json). El JSON de diseño conserva su estado previo a las pruebas como instantánea; esta verificación registra el cumplimiento sin modificar la huella del diseño. Persisten publicación/revisión del complemento LOO y este lote, precisiones de PR22 y registro aceptado anterior a la corrida. SG, E1/Q y cuantílica conservan sus revisiones propias; no bloquean el principal cuando se cierren sus puertas comunes.
+
+No se detectó una discrepancia nueva de cálculo entre el selector trazado y v3. El cambio funcional es la trazabilidad y la detención explícita ante advertencias/fallos. Las estimaciones de MAE/RMSE/R² históricas no cambian en este trabajo. Docker se detuvo al terminar.
