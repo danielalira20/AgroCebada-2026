@@ -1,0 +1,17 @@
+candidato,escenario,version,n_contextos,n_esperados,n_referencia_sola,n_con_correccion,fraccion_referencia_sola,estado
+comun_centrado_loo_v3_C,A,comun-centrado-loo-v3,25,25,9,16,0.36,completo
+comun_centrado_loo_v3_C,B,comun-centrado-loo-v3,25,25,12,13,0.48,completo
+comun_centrado_loo_v3_CG,A,comun-centrado-loo-v3,25,25,5,20,0.2,completo
+comun_centrado_loo_v3_CG,B,comun-centrado-loo-v3,25,25,10,15,0.4,completo
+comun_centrado_loo_v3_CGP,A,comun-centrado-loo-v3,25,25,5,20,0.2,completo
+comun_centrado_loo_v3_CGP,B,comun-centrado-loo-v3,25,25,10,15,0.4,completo
+comun_centrado_loo_v3_CP,A,comun-centrado-loo-v3,25,25,5,20,0.2,completo
+comun_centrado_loo_v3_CP,B,comun-centrado-loo-v3,25,25,10,15,0.4,completo
+comun_centrado_loo_v3_G,A,comun-centrado-loo-v3,25,25,5,20,0.2,completo
+comun_centrado_loo_v3_G,B,comun-centrado-loo-v3,25,25,10,15,0.4,completo
+comun_centrado_loo_v3_GP,A,comun-centrado-loo-v3,25,25,5,20,0.2,completo
+comun_centrado_loo_v3_GP,B,comun-centrado-loo-v3,25,25,10,15,0.4,completo
+comun_centrado_loo_v3_P,A,comun-centrado-loo-v3,25,25,6,19,0.24,completo
+comun_centrado_loo_v3_P,B,comun-centrado-loo-v3,25,25,9,16,0.36,completo
+comun_centrado_loo_v3_S,A,comun-centrado-loo-v3,25,25,3,22,0.12,completo
+comun_centrado_loo_v3_S,B,comun-centrado-loo-v3,25,25,4,21,0.16,completo
