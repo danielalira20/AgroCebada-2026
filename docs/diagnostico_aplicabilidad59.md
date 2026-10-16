@@ -41,24 +41,27 @@ El diseño anterior se registró antes de calcular; las secciones siguientes doc
 
 La entrega C quedó generada y verificada; revisión humana pendiente. Conserva59 IDs sin rendimiento y138 etiquetas originales. No se ejecutaron T15/T18 ni se ajustó un estimador predictivo. Se inspeccionaron15 representaciones de entradas,885 perfiles reservada/representación y1,380 contextos OOF históricos. El detalle local de20,700 perfiles OOF no aumenta el número de parcelas independientes.
 
-| Comprobación | Resultado | Interpretación |
-|---|---:|---|
-| Municipio representado |59/59|Pertinencia territorial parcial de A; no garantía de rendimiento|
-| Clima completo en ambas ventanas |59/59|No equivale a clima disponible históricamente al corte|
-| Entradas candidatas ausentes en reservadas |0/59|D020 sigue existiendo en dos etiquetadas; no se cambia su política|
-| Vecina etiquetada local <20m |24/59|Disponibilidad al usar las138; no independencia ni beneficio probado|
-| Perfil climático literalmente repetido |49/59 por ventana|No son49 rendimientos conocidos ni equivalencia agronómica|
-| Celda climática principal sin etiquetas |2/59|AGC_147 yAGC_174; la definición es celda principal, no toda intersección|
-| Menos de cuatro etiquetas locales |1/59|AGC_120, Nanacamilpa, con una; percentil local no calculable|
-| Alguna entrada fuera del rango global |9/59|Aviso por variable y candidato; magnitudes distintas|
-| Alguna combinación supera su referencia q95 local |19/59|Unión de15 diagnósticos; no son19 errores ni19 probabilidades de fallo|
-| Alerta de contorno T03bis |12/59|Atlas sin fecha2025; no confirma daño ni justifica excluir|
+| Comprobación | Parcelas reservadas | Parcelas etiquetadas, misma regla LOO | Interpretación |
+|---|---:|---:|---|
+|Municipio representado|59/59|—|Pertinencia territorial parcial de A; no garantía de rendimiento|
+|Clima completo en ambas ventanas|59/59|—|No equivale a clima disponible históricamente al corte|
+|Entradas candidatas ausentes en reservadas|0/59|—|D020 sigue existiendo en dos etiquetadas; no se cambia su política|
+|Vecina etiquetada local <20m|24/59|—|Disponibilidad al usar las138; no independencia ni beneficio probado|
+|Perfil climático literalmente repetido|49/59 por ventana|—|No son49 rendimientos conocidos ni equivalencia agronómica|
+|Celda climática principal sin etiquetas|2/59|—|AGC_147 yAGC_174; la definición es celda principal, no toda intersección|
+|Menos de cuatro etiquetas locales|1/59|—|AGC_120, Nanacamilpa, con una; percentil local no calculable|
+|Alguna entrada fuera del rango global|9/59|28/138|Aviso por variable y candidato; magnitudes distintas|
+|Alguna combinación supera su referencia q95 local|19/59 total; 19/58 evaluables|42/138 total; 42/135 evaluables|Unión de15 diagnósticos; no son19 errores ni19 probabilidades de fallo|
+|Alerta de contorno T03bis|12/59|—|Atlas sin fecha2025; no confirma daño ni justifica excluir|
+
+**Complemento del 15 de octubre, observación de Migue en PR21.** La columna LOO deja fuera cada etiquetada antes de calcular sus estadísticas de referencia (otras 137). «—» significa que este complemento no recalculó ese indicador. Los 9 y 19 avisos reservados originales no cambian. El diagnóstico q95 no se define en tres etiquetadas y una reservada: se muestran denominadores totales y evaluables por separado, sin contar los vacíos como negativos. Las frecuencias de los avisos también son apreciables entre las conocidas y no acreditan un riesgo mayor de las 59. Véase [método, resultados y verificación](t15_observacion_migue_loo.md); comparación descriptiva, sin reentrenar modelos.
+
 
 Los19 avisos de combinación y los9 de rango pueden coincidir. La cantidad depende de las representaciones inspeccionadas; no se transforma en un riesgo calibrado. Una parcela puede estar dentro de todos los rangos individuales y tener una combinación poco representada. El diagnóstico no selecciona qué modelo usar por parcela.
 
 ### Distribución territorial
 
-| Municipio | Etiquetadas | Reservadas | Con vecina local <20m | Celda principal nueva | Con alguna entrada fuera del rango global |
+| Municipio | Parcelas etiquetadas | Parcelas reservadas | Parcelas con vecina local <20m | Parcelas con celda principal nueva | Parcelas con alguna entrada fuera del rango global |
 |---|---:|---:|---:|---:|---:|
 |Almoloya|10|4|1|0|1|
 |Apan|1|0|0|0|0|

@@ -1,0 +1,37 @@
+{
+  "version": "aplicabilidad-contraste-LOO-v1",
+  "diseno_sha256": "10565dc17b69e54086cad855f964dbe35ae78f374a95c3484c00d9b694dec801",
+  "fuentes_sha256": {
+    "registro/diagnostico/aplicabilidad59/diseno.json": "9e1d19e196cb0d505e04fd07063b6d21b0c9e062866e8bf697fc3365ee2ac477",
+    "registro/diagnostico/aplicabilidad59/entradas_59.csv": "644b03fb5c837deff14d57941eb649556a2ecdb786c71d82b35bda87e88761e9",
+    "registro/diagnostico/aplicabilidad59/perfil_59.csv": "0482f1c6cadd2b8ae1116a8429bf2eb78c3dbc0bd83194455e4614d8b3cc4b34",
+    "scripts/diagnostico_aplicabilidad59.py": "2bcc3ff6c82e77b012f38c466d4c8c38220cae587e728156a2e9c6f541be9071",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f"
+  },
+  "codigo_sha256": "92b17eb80d598d61a3c0942dc4cce88399538430107dcace1b3290910a379df9",
+  "archivos_sha256": {
+    "comparacion_138_59.csv": "8aaa0f99f18d3536a19a3988aca28db7bcdf5a02ea072738956748c7a7cb92b4",
+    "comparacion_por_municipio.csv": "a469b7b95b05452639d26ea35a6040be509188bee4bcd620e3dbfa63a1e84d63",
+    "diccionario.csv": "2f457b5336b87ea0cac6f8f010fc3a3339b8d86f04d99ad0a93a70222c803c99",
+    "perfil_union_197.csv": "101416ce3e27d70d7a9e20147c9ab9db96414a53ed2a445957cf92c37feafa16"
+  },
+  "parcelas": 197,
+  "etiquetadas": 138,
+  "reservadas": 59,
+  "representaciones": 15,
+  "perfiles": 2955,
+  "espacios_X_ajustados": 2085,
+  "conciliacion_59": {
+    "perfiles": 885,
+    "comparaciones": 15930,
+    "max_delta_numerico": 4.973799150320701e-14,
+    "tolerancia": 1e-09,
+    "estados_y_conteos_exactos": true
+  },
+  "modelos_predictivos": 0,
+  "nuevas_predicciones59": 0,
+  "reglas_modificadas": false,
+  "revision_humana": "pendiente",
+  "detalle_sha256": "e6b47f5e18e0a72f371de13c8ee29991482836ff90cc7c3541f530834ac2724c"
+}

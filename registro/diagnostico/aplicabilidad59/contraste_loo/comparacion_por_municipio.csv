@@ -1,0 +1,19 @@
+﻿municipio,representacion,regla,etiquetadas_n_parcelas_total,etiquetadas_n_parcelas_evaluables,etiquetadas_n_parcelas_con_aviso,etiquetadas_n_parcelas_sin_diagnostico,etiquetadas_proporcion_aviso_observado_sobre_total,etiquetadas_proporcion_aviso_sobre_evaluables,reservadas_n_parcelas_total,reservadas_n_parcelas_evaluables,reservadas_n_parcelas_con_aviso,reservadas_n_parcelas_sin_diagnostico,reservadas_proporcion_aviso_observado_sobre_total,reservadas_proporcion_aviso_sobre_evaluables
+Almoloya,alguna_de_15,fuera_rango_global,10,10,4,0,0.4,0.4,4,4,1,0,0.25,0.25
+Almoloya,alguna_de_15,supera_q95_local,10,10,4,0,0.4,0.4,4,4,2,0,0.5,0.5
+Apan,alguna_de_15,fuera_rango_global,1,1,1,0,1,1,0,0,0,0,,
+Apan,alguna_de_15,supera_q95_local,1,0,0,1,0,,0,0,0,0,,
+Calpulalpan,alguna_de_15,fuera_rango_global,30,30,4,0,0.133333333333333,0.133333333333333,14,14,0,0,0,0
+Calpulalpan,alguna_de_15,supera_q95_local,30,30,7,0,0.233333333333333,0.233333333333333,14,14,3,0,0.214285714285714,0.214285714285714
+Chignahuapan,alguna_de_15,fuera_rango_global,71,71,12,0,0.169014084507042,0.169014084507042,29,29,8,0,0.275862068965517,0.275862068965517
+Chignahuapan,alguna_de_15,supera_q95_local,71,71,21,0,0.295774647887324,0.295774647887324,29,29,10,0,0.344827586206897,0.344827586206897
+Cuautepec de Hinojosa,alguna_de_15,fuera_rango_global,5,5,1,0,0.2,0.2,4,4,0,0,0,0
+Cuautepec de Hinojosa,alguna_de_15,supera_q95_local,5,5,3,0,0.6,0.6,4,4,2,0,0.5,0.5
+Emiliano Zapata,alguna_de_15,fuera_rango_global,3,3,2,0,0.666666666666667,0.666666666666667,0,0,0,0,,
+Emiliano Zapata,alguna_de_15,supera_q95_local,3,3,2,0,0.666666666666667,0.666666666666667,0,0,0,0,,
+Nanacamilpa de Mariano Arista,alguna_de_15,fuera_rango_global,1,1,0,0,0,0,1,1,0,0,0,0
+Nanacamilpa de Mariano Arista,alguna_de_15,supera_q95_local,1,0,0,1,0,,1,0,0,1,0,
+Singuilucan,alguna_de_15,fuera_rango_global,16,16,3,0,0.1875,0.1875,7,7,0,0,0,0
+Singuilucan,alguna_de_15,supera_q95_local,16,16,5,0,0.3125,0.3125,7,7,2,0,0.285714285714286,0.285714285714286
+Tepeapulco,alguna_de_15,fuera_rango_global,1,1,1,0,1,1,0,0,0,0,,
+Tepeapulco,alguna_de_15,supera_q95_local,1,0,0,1,0,,0,0,0,0,,
