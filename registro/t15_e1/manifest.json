@@ -1,0 +1,16 @@
+{
+  "estado": "propuesta_validada_sin_ejecucion",
+  "contrato_sha256": "356372d65fad12062229b12726f3ce634179e76fe2392fc00d02274435d3b59c",
+  "perfil_D1_sha256": "7a0718806754bc80d7d629d8325f1850421141f763e109339438e3288a5a1fc4",
+  "codigo_sha256": "bfac541b0633b1917708dd72d66c6f8bf5f9624aee6c29bc077ac7ab0a022af0",
+  "archivos_sha256": {
+    "vista_admisibilidad_propuesta.csv": "40fa062deb0f1bc44cf165120c1c4c4f816131b672173b44235ff6c29de866bf",
+    "resumen_admisibilidad.csv": "0b2a88654dae94fed8bffd1e1bb7f9c055f015d828eda6a3971403383d26ca00"
+  },
+  "valores_imputados": 0,
+  "transformadores_ajustados": 0,
+  "modelos_ajustados": 0,
+  "nuevas_predicciones59": 0,
+  "integracion_T07": false,
+  "revision_humana": "pendiente"
+}

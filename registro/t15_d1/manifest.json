@@ -1,0 +1,29 @@
+{
+  "version": "t15-D1-NDWI-v1",
+  "diseno_sha256": "dd939be1f94835308de6bae032aa6fe3ca7ae8e9e5d428b1c4eca835ae3bd7c4",
+  "fuentes_sha256": {
+    "data/raw/DATASET_RETO_AGRO_2026/Conjunto_datos_BASICO_AgroCebada2026.csv": "96d68040d954d0903d761fd8ceed0dcd4a08e3842915a3ca44517d60e8bee4ef",
+    "data/raw/DATASET_RETO_AGRO_2026/Conjunto_datos_PRO_AgroCebada.csv": "91697f8f8d4ad5e59f766acbce2ef76f3c405eb02b41c1de92d62a07e8321888",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t06/variables_satelitales.csv": "8e38ad80e7befb7b82261353914862e17d98be0425dd755a12c001191dfe17eb",
+    "registro/t06/rasgos_observables.csv": "ed81d205794a0ea9d29ebcc4ca58a6d59801cab14858c0a8c18eeadb1b0fb6c9",
+    "scripts/t06_satelite.py": "01b2b46a27df19a8cc93ca7f6f76789c61aeabe508707224c0e4425c14e73c28",
+    "docs/T06_satelite.md": "4653123365c6841046740b8828c82cbbaaadc3255e974d2180b3aadab415823a",
+    "docs/Ecuaciones_indices_AgroCebada_FIRA_2026.pdf": "a5a8b71872439a5f98f9106d3b115f36bd35a5cfba34fcb316c34c17989540be"
+  },
+  "archivos_sha256": {
+    "conciliacion_t06.csv": "5d4dc30c80f0cf6d3756b71c47329ad96eb749b8be42be15dee988fe1be9bbad",
+    "diccionario.csv": "7e7a05f1fad28c4f9aa932c4efe8cfa2ca875db3fee09c14d0597830422fb578",
+    "perfil_ndwi_postpico.csv": "7a0718806754bc80d7d629d8325f1850421141f763e109339438e3288a5a1fc4",
+    "resumen.json": "dda25f386ff3b2260c4640e09a6a0feb8632e3fd1efaafaf1f97e73ac65e2aa1",
+    "resumen_conjunto.csv": "7ec3d18683111f15cad58930bb4a2dcde6e991c00386b03038fa93ec489b707d",
+    "resumen_municipio.csv": "0c988b758b051fffe26ddc35907aee42233c2fd30f028119aa30fd9adb9abdd6",
+    "variacion_sin_y.csv": "b51c1a0b0c30ad454cb0f16439c2bbb2abae792cde58c8925792a6ff02c617c0"
+  },
+  "codigo_sha256": {
+    "scripts/t15_ndwi_factibilidad.py": "212bfc0ee8d70a23ed3eb058b85e59c2451aaaf1c4e18b3bdd042da197dcf99a"
+  },
+  "estado": "tecnico_por_verificar_revision_humana_pendiente",
+  "modelos_ajustados": 0
+}

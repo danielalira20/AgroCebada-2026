@@ -1,0 +1,9 @@
+caso,id_parcela,rol,ventana,fecha_maximo,n_fechas_post,contraste_ndwi,intervalo_truncado,motivo,seleccion
+AGC_171,AGC_171,Caso fijo,abr_oct,2025-08-28,3,-0.020000000000000018,False,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_171,AGC_197,Control fijo,abr_oct,2025-08-28,2,-0.048999999999999988,False,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_015,AGC_015,Caso fijo,abr_oct,2025-09-22,3,-0.0266666666666667,True,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_015,AGC_124,Control fijo,abr_oct,2025-09-14,5,-0.0378,False,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_024,AGC_024,Caso fijo,abr_oct,2025-08-28,3,0.0070000000000000062,False,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_024,AGC_100,Control fijo,abr_oct,2025-08-28,1,,False,menos_2_fechas_post,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_034,AGC_034,Caso fijo,abr_oct,2025-08-08,5,-0.082200000000000023,False,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
+AGC_034,AGC_166,Control fijo,abr_oct,2025-07-29,5,-0.096799999999999997,False,ok,fija_F0_antes_D1_no_por_contraste_ni_rendimiento
