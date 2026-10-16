@@ -37,8 +37,8 @@ T12 **no buscó variables nuevas**: usó las que ya había (relieve, área y Pla
 - **Ningún procedimiento cumple la regla de promoción de T03.** En el escenario A (sin respaldo), el candidato principal `t12_het_GP` baja el error promedio de 0.3205 a 0.3195 t/ha (**−0.0009**) y mejora en 4 de las 5 repeticiones. Pero el rango de confianza (IC95) va de −0.0066 a +0.0047: **incluye el cero**, así que no podemos asegurar que sea una mejora real. La regla pedía como mínimo −0.01 con el rango entero por debajo de cero.
 - **El revuelto sí distingue el efecto del azar, pero el efecto es minúsculo.** En las 20 mezclas al azar, el cambio fue siempre cero o positivo (entre 0.0000 y +0.0030); el real, −0.0009, fue mejor que todas (p = 0.0476). Es la señal más fuerte del estudio, y aun así equivale a menos del 0.3 % del error. Con 20 mezclas ese es el valor de p más pequeño posible.
 - **El ajuste por municipio ayuda poco o nada frente a una sola regla.** Frente al control `_GP`: −0.0006 (rango [−0.0021, +0.0011]). Donde sí se nota es en relieve y área solos: `het_G` baja −0.0045 frente a `control_comun_G`. La causa es que la regla común de relieve y área **empeora** a la referencia (+0.0032), y repartirla por municipio solo la repara; `het_G` queda en −0.0014 frente a la referencia, sin significancia.
-- **El modelo no lineal tampoco gana.** `gb_GP` queda en +0.0019 en A y −0.0007 en B frente a la referencia, y en el ajuste final con las 138 parcelas elige no corregir nada.
-- **En el escenario B no hay ninguna mejora.** `het_GP` empeora (+0.0071). La referencia es difícil de superar para zonas climáticas nuevas.
+- **El modelo no lineal tampoco gana.** `gb_GP` queda en +0.0019 en A y prácticamente en cero en B (−0.0007 por parcela, +0.0005 por repetición: el signo depende de cómo se promedie, así que no se lee como mejora), y en el ajuste final con las 138 parcelas elige no corregir nada.
+- **En el escenario B no hay ninguna mejora.** `het_GP` empeora (+0.0071 por parcela; +0.0078 por repetición). La referencia es difícil de superar para zonas climáticas nuevas. B se usa solo como sensibilidad: en sus particiones internas muchas parcelas de validación no tienen referencia municipal propia (según la revisión del PR #22, 206 de 2,760 registros no tienen ninguna y 360 tienen una sola), así que la elección de configuración allí es más ruidosa.
 - **Casi no hay heterogeneidad real.** Los coeficientes que aprende el modelo son muy pequeños (del orden de 0.01 en escala estandarizada) y los de relieve y área tienen el mismo signo en todos los contextos donde existen. Solo Chignahuapan tiene reglas más fuertes que el resto, de más o menos el doble. Por eso las predicciones casi no se mueven de la referencia: como máximo 0.07 t/ha, en promedio 0.02.
 - **Más parcelas podrían ayudar un poco.** Con la mitad de los datos, `het_GP` es peor que la referencia (+0.0016); con tres cuartos, también (+0.0015); con todos, mejor (−0.0009). La curva sigue bajando, aunque despacio.
 - **La media contra la mediana (nota para T16).** Con la mediana municipal como observación de referencia, el error es menor en A (0.3126 contra 0.3205) y en B (0.3398 contra 0.3579). Es lo mismo que ya se había visto en T08 (−0.0079, rango [−0.0163, +0.0058], sin cumplir la regla); T12 lo reproduce, no lo descubre.
@@ -57,6 +57,8 @@ T12 **no buscó variables nuevas**: usó las que ya había (relieve, área y Pla
 ## Tabla de resultados (escenario A, sin respaldo, 135 parcelas)
 
 Error promedio de la referencia: **0.3205** t/ha. `dMAE` = cambio del error promedio frente a la referencia (negativo = mejor). `IC95` = rango en el que probablemente cae la diferencia real; si incluye el cero, no se puede asegurar que haya mejora.
+
+**Unidades.** Todos los `dMAE` y sus IC95 son «por parcela»: primero se promedia el error de cada parcela entre las repeticiones en que fue evaluada, y luego entre parcelas (así lo define T03 §4). En A las tres formas de promediar dan lo mismo (0.3205). En B no: la referencia vale 0.3579 si se promedia el MAE de cada repetición (cifra que se cita en este informe junto con las de la mediana), 0.3584 por registro y 0.3632 por parcela, porque 16 de las 135 parcelas solo se evalúan en 4 repeticiones. No es una mejora ni un empeoramiento, solo una ponderación distinta; por eso en B se compara siempre con la misma forma de promediar.
 
 | Procedimiento | dMAE | IC95 | Repeticiones que mejoran (de 5) | dRMSE |
 |---|---|---|---|---|
@@ -93,10 +95,42 @@ La mejora de `het_GP` se reduce de −0.0009 a −0.0005 (111 parcelas). Parte d
 Tampoco se alcanza el umbral. La mayor baja de RMSE frente a la referencia es 0.0054 t/ha en A y 0.0092 en B (control con mediana), siempre menor que 0.01. No se volvió a elegir la configuración con error cuadrático, así que esto no descarta que saliera algo distinto con RMSE como métrica principal.
 
 **¿Se puede confiar en estos números?**
-Los cálculos, sí: un auditor independiente, con otro código, coincide en las 5,520 predicciones de la familia por municipio que reconstruyó, en las 240 métricas y en las 52 comparaciones (diferencia máxima 1.8e-15), y la corrida repetida en Windows con Docker es idéntica byte a byte. Falta la corrida en Mac (Dani o Daf). Lo que **no** garantiza todo eso es que el modelo sea bueno: solo que los números están bien calculados.
+Los cálculos, sí: un auditor independiente, con otro código, coincide en las 5,520 predicciones de la familia por municipio que reconstruyó, en las 240 métricas y en las 52 comparaciones (diferencia máxima 1.8e-15), y la corrida repetida en Windows con Docker es idéntica byte a byte. Falta la corrida en Mac (Dani o Daf). También se comprobó, el 16 de octubre, que los cambios posteriores de T15 (hasta el commit `cc7d0ae`) no tocan nada de lo que T12 usa: el código común v3 y las 14 entradas fijadas en `manifest.json` son idénticos, así que los resultados no cambian ni hace falta repetir la corrida. Lo que **no** garantiza todo eso es que el modelo sea bueno: solo que los números están bien calculados.
 
 **¿Qué pasa con las 59 parcelas reservadas?**
 Sus predicciones de T12 son **exploratorias**: ajustadas con las 138 etiquetadas, no se pueden evaluar hasta que FIRA publique los valores reales. En el ajuste final, `gb_GP` y el control con mediana eligen no corregir nada (predicciones iguales a su referencia); `het_GP` corrige como máximo 0.071 t/ha. Para la app se siguen usando las de la referencia.
+
+## Qué queda establecido con este estudio
+
+Antes de T12 había una duda abierta: ¿las variables de T10, T11, T14 y T15 no ayudaban porque no sirven, o porque las usábamos de una forma limitada (una sola regla para todos los municipios y en línea recta)? T12 contesta esa duda para relieve, área y Planet. Los resultados que siguen se pueden citar porque están definidos de antemano, auditados y reproducidos.
+
+| Qué podemos afirmar | Con qué números | Qué tan firme |
+|---|---|---|
+| **Darle su propia regla a cada municipio no rescata a estas variables.** | Ninguno de los 8 procedimientos cumple la regla de T03 §4: 0 de 8 en A y 0 de 8 en B. El mejor caso, `het_GP`, queda en −0.0009 con IC95 [−0.0066, +0.0047]. | Firme para estas variables, esta campaña y 138 parcelas. |
+| **Un modelo que no es una línea recta tampoco las rescata.** | `gb_GP`: +0.0019 en A y ≈0 en B frente a la referencia (−0.0007 por parcela, +0.0005 por repetición); en el ajuste final con las 138 elige no corregir nada. | Firme, mismas condiciones. |
+| **Lo que vieron T10, T11, T14 y T15 no se debía a la forma del modelo.** | T10 dejó anotado que un modelo no lineal era tarea de T12. Resultado: ni la regla por municipio ni los árboles cambian la conclusión. | Se descarta esa explicación para relieve, área y Planet; no para otras variables. |
+| **La regla común de relieve y área perjudica a la referencia.** | `control_comun_G`: +0.0032 en A y +0.0092 en B (IC95 [+0.0031, +0.0249], todo por encima de cero). T10 había visto +0.0027. | Bastante firme: coincide con T10 y en B el rango no toca el cero. |
+| **Repartir esa regla por municipio repara la pérdida, pero no gana.** | `het_G` frente a `control_comun_G`: −0.0045 [−0.0083, −0.0011], mejora en 5 de 5 repeticiones. Frente a la referencia queda en −0.0014 [−0.0063, +0.0042]. | Firme como diagnóstico; no como mejora del modelo. |
+| **El promedio municipal es una referencia difícil de superar.** | 8 alternativas probadas con la misma regla, cada una repetida 25 veces por escenario, y ninguna la supera de forma comprobable. | Firme para lo probado. Respalda seguir con ella en la app y en T16. |
+| **La mediana reproduce lo de T08.** | A: 0.3126 contra 0.3205; B: 0.3398 contra 0.3579. Con la corrección encima empeora (+0.0018 en A), así que la ventaja viene de la mediana, no de la corrección. | Consistente con T08, que no cumplió la regla. Hay que probarla en T16 con su propia regla. |
+
+**Una aclaración sobre «lo lineal».** T12 no demuestra que lo lineal sea mejor que lo no lineal. Lo que se confirma es que **lo simple, la referencia, no se supera**. Entre las dos formas de corregir no hay un ganador claro: en A el modelo de árboles queda 0.0022 peor que su control lineal (rango [−0.0013, +0.0063], incluye el cero); en B queda 0.0108 mejor por parcela (0.0097 por repetición; rango [−0.0335, −0.0009]), pero ese control lineal ya estaba +0.0100 peor que la referencia. Es decir, el modelo de árboles solo mejora a un control que ya empeoraba.
+
+**Lo que NO queda establecido.**
+
+- Que el mínimo −0.0009 de `het_GP` sea un efecto real: es una pista, no una prueba.
+- Que la causa del límite sean la variedad, la fecha de siembra o el manejo: es una hipótesis compatible con los datos, no probada.
+- Que más parcelas ayuden: la curva de aprendizaje lo sugiere (`het_GP` solo supera a la referencia con todas las parcelas), pero no se probó.
+- Que otras variables (clima, Sentinel-2, borde rojo, fenología fina) no sirvan: no se probaron en T12.
+- Que el resultado valga para otras campañas, y que salga igual en Mac (pendiente).
+
+**Por qué no fue tiempo perdido.**
+
+1. Cierra una pregunta que T10 y T11 dejaron abierta, con una prueba definida antes de ver resultados.
+2. Deja evidencia que otra persona puede repetir y comprobar: código congelado con huellas, auditor independiente y comparador de reproducciones.
+3. Es un argumento de metodología para el reto: se probó lo razonable, con rigor, y se reporta el resultado negativo con honestidad.
+4. Deja tres insumos concretos: la nota de la mediana para T16, la información sobre relieve y área para T15 (ver más abajo), y la curva de aprendizaje para T18.
+5. Deja herramientas reutilizables (auditor, comparador, controles) para los frentes siguientes.
 
 ## Límites
 
@@ -110,7 +144,7 @@ Sus predicciones de T12 son **exploratorias**: ajustadas con las 138 etiquetadas
 ## Para otros frentes
 
 - **T16 (cierre) y T17 (app):** se mantiene la referencia. Nota para T16: la **mediana** municipal como observación de referencia rindió menos error que la media en A y B (T08 ya lo había visto, sin cumplir la regla); vale la pena una prueba con su propia regla escrita antes. No es decisión de T12.
-- **T15 (combinaciones):** la regla común de **relieve y área empeora** a la referencia en A (+0.0032), y repartirla por municipio solo la repara. Es un argumento para no incluir ese bloque sin otro que lo acompañe.
+- **T15 (combinaciones):** T15 cerró su menú de ocho comparaciones y no se pide cambiarlo. Los tres controles `control_comun_G`, `_P` y `_GP` de T12 usan **exactamente las mismas opciones** (ventana, λ y columnas) que los procedimientos G, P y G+P de ese menú, con el mismo código v3. Dos consecuencias: (1) T15 ya no es ciego para esos tres, porque T12 midió que en A/sin_respaldo dan +0.0032 (G), +0.0025 (P) y −0.0003 (G+P), ninguno cumple la regla, y en B ninguno mejora; conviene decirlo en su registro de exposición previa. (2) Es una comprobación gratis: cuando T15 corra su evaluación completa, esos tres deberían salir idénticos a los de `registro/t12/`; si no, hay un error en uno de los dos lados. La regla común de relieve y área (G) es la que más empeora a la referencia (+0.0032 en A, +0.0092 en B).
 - **T18 (ajuste final con las 138):** en la curva de aprendizaje, la ventaja de `het_GP` aparece solo con todas las parcelas (con la mitad o tres cuartos era peor que la referencia). Si FIRA entrega más parcelas etiquetadas, vale la pena repetir la prueba.
 - **Daf (vecinas, V20) y Migue:** antes de invertir en variables nuevas, conviene un diagnóstico del «techo»: cuánto difieren en rendimiento parcelas vecinas casi iguales en todo lo que medimos. Si difieren mucho, el límite está en lo que no medimos.
 - **T19 (informe del reto):** este documento y los controles se pueden citar tal cual como una prueba hecha con rigor cuyo resultado es negativo.

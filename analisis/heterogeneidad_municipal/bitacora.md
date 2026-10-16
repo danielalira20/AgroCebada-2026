@@ -98,8 +98,26 @@ Dónde vive el resto: método en `docs/T12_heterogeneidad_municipal.md`; código
 
 **Estado.** `IA_T12_002`. Cambios documentales y de registro locales, pendientes de revisión humana; sin cambios de modelo ni de resultados numéricos.
 
+### 16 de octubre de 2026 — Auditoría de los cambios posteriores de T15
+
+**Por qué.** T15 (la rama sobre la que se apoya T12) siguió avanzando después de nuestro punto de partida (`4afabf0`). `D_T12_001` dice que T12 se reabre si `scripts/evaluacion_comun_*` cambia en la revisión del PR #21, así que había que comprobarlo.
+
+**Qué se hizo.** Se bajó `origin/t15-centrado-municipal` (ahora en `cc7d0ae`: 12 commits propios más un merge de `dev` con T14) y se comparó contra `4afabf0`, sin tocar `registro/t12/` ni el código congelado. Se revisó: (a) las huellas de todo lo que fija `manifest.json`; (b) los archivos que T12 importa; (c) los documentos nuevos (contraste LOO de alertas, revisión del PR #22, contrato y ejecutor de T15); (d) si las cifras ajenas coinciden con las nuestras; (e) si la rama se puede fusionar sin choques de IDs.
+
+**Qué se encontró.**
+- **Nada de lo que T12 usa cambió.** Los 14 archivos comunes de código y datos que fija T12 son idénticos (código v3, `tabla_comun`, particiones, soporte, referencias de T03, procedimiento v3). Los 57 archivos cambiados son todos nuevos o documentos; ningún script ni prueba previo fue modificado. La condición de reapertura de `D_T12_001` **no se cumple**. Los resultados, R2 y la reproducción en Windows siguen válidos; no se repitió la corrida porque mismo código y mismas entradas dan las mismas salidas.
+- **Coinciden cifras de terceros.** T14 (Migue) reporta la referencia 0.3192 en A y 0.3801 en B («todas»), igual que `metricas_t12.csv`; la revisión del PR #22 da 0.3205 en A/sin_respaldo y 659 registros en B, iguales a los nuestros. Nuestro desempate coincide con el que el PR #22 pide dejar escrito.
+- **Nuestros tres controles son el menú principal de T15.** `control_comun_G`, `_P` y `_GP` tienen exactamente las mismas opciones que los procedimientos G, P y G+P del contrato de T15. T12 ya midió esas comparaciones (A/sin_respaldo: +0.0032, +0.0025 y −0.0003; ninguna cumple la regla). Consecuencias: T15 ya no es ciego para esos tres, y su corrida completa debería reproducir `registro/t12/` exactamente.
+- **Falta de unidad en B.** Los `dMAE` son por parcela; en B la referencia vale 0.3579 (promedio de MAE por repetición), 0.3584 (por registro) o 0.3632 (por parcela). El signo de `gb_GP` en B cambia según la ponderación (−0.0007 por parcela, +0.0005 por repetición): es cero en la práctica. En A las tres ponderaciones coinciden.
+- **Fusión.** Mi rama y la T15 nueva cambian al final los mismos tres registros (`decisiones.csv`, `experimentos.csv`, `uso_ia.csv`): choques de texto, sin IDs repetidos.
+
+**Qué se decidió.** Dejar los resultados como están. En el informe y el borrador del PR se aclaran las unidades, se describe la coincidencia con el menú de T15 **como información** (T15 cerró su menú y `D_T15_EJECUTOR_001` rechaza alterarlo) y se quita la frase que pedía no incluir el bloque G.
+
+**Límites.** No hubo acceso a GitHub: se revisaron commits, no comentarios de los PR. T15 aún no corrió su evaluación completa. Si T15 cambia más adelante, las compuertas de huellas de `t12_evaluar.py` lo detectan antes de correr.
+
 ## Pendientes
 
 1. Reproducción en Mac (Dani o Daf): `python -m scripts.t12_evaluar --salida reports/t12_repro --confirmo-barreras --procesos 2` y luego `python -m scripts.t12_reproducir --reproduccion reports/t12_repro --etiqueta "Mac"`, con `--amd64` si se quiere comparar contra Linux amd64.
 2. Revisión metodológica de Migue (diseño no ciego, 13 comparaciones, IC nominales).
-3. Abrir el PR con `borrador_pr.md`.
+3. Fusionar `origin/t15-centrado-municipal` en esta rama (conservar las dos partes en los tres registros) y abrir el PR con `borrador_pr.md`.
+4. Avisar a Dani que T12 ya midió G, P y G+P con las mismas opciones que su menú, para su registro de exposición previa y como comprobación cruzada.
