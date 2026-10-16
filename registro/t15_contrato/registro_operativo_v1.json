@@ -1,0 +1,94 @@
+{
+  "schema": "agrocebada_t15_registro_operativo_v1",
+  "version": "T15-operativo-v1",
+  "fecha": "2026-10-15",
+  "contrato_sha256": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+  "estado": "registrado_para_comprobacion_sin_evaluacion_completa",
+  "cierre": {
+    "responsable_humana": "Dani",
+    "apoyo_tecnico": "Codex",
+    "revision_externa_requerida": false,
+    "decision_directa_usuario": "Ya no van a revisar por cuestión de tiempos; ya sólo lo haremos tú y yo. Actualizar PR y terminar ejecutor, comprobar funcionamiento sin evaluación completa.",
+    "aprobacion_Daf_atribuida": false,
+    "aprobacion_Migue_atribuida": false,
+    "limite": "Autorrevisión técnica; no equivale a revisión independiente de los compañeros."
+  },
+  "alcance_actual": [
+    "publicacion_paquete_PR21",
+    "implementar_y_probar_ejecutor",
+    "comprobaciones_limitadas"
+  ],
+  "evaluacion_completa_en_esta_solicitud": false,
+  "confirmacion_futura": "modo_completa_mas_flag_explicito_solo_tras_solicitud_de_Dani",
+  "principal_candidatos": [
+    "comun_centrado_loo_v3_C",
+    "comun_centrado_loo_v3_G",
+    "comun_centrado_loo_v3_P",
+    "comun_centrado_loo_v3_CG",
+    "comun_centrado_loo_v3_CP",
+    "comun_centrado_loo_v3_GP",
+    "comun_centrado_loo_v3_CGP",
+    "comun_centrado_loo_v3_S"
+  ],
+  "criterios": {
+    "principal": "A",
+    "sensibilidad_obligatoria": "B",
+    "subconjunto_decision": "sin_respaldo",
+    "dMAE": "promedio_por_parcela_de_diferencias_de_error_absoluto_en_repeticiones_elegibles",
+    "dRMSE": "promedio_por_repeticion_de_diferencias_RMSE",
+    "bootstrap": "celda_chirps_del_centroide",
+    "replicas": 5000,
+    "semilla": 20261006,
+    "intervalo_percentil": [
+      2.5,
+      97.5
+    ],
+    "promocion": {
+      "dMAE_max": -0.01,
+      "IC95_superior_max_exclusivo": 0,
+      "repeticiones_mejoran_min": 4,
+      "dRMSE_max": 0.01
+    }
+  },
+  "extensiones_activadas": [],
+  "precisiones_T15": {
+    "A": "cuatro_internas_estratificadas_municipio_otros_semilla0",
+    "B": "cuatro_internas_GroupKFold_celda_CHIRPS_sin_shuffle",
+    "C": "fuera_del_principal_si_se_usa_GroupKFold_municipio",
+    "desempate": [
+      "MAE_redondeado_6_decimales",
+      "referencia_sola",
+      "mayor_lambda",
+      "jun_oct",
+      "nombre_opcion"
+    ],
+    "PR22": "Se resuelven localmente para T15 con contrato v3 y este registro; no se modifica ni se declara fusionado el PR22 ajeno."
+  },
+  "exposicion_previa": {
+    "resultados_T08_T14_y_mediana_conocidos": true,
+    "nota_B": "Migue comunicó resultados de Tmax en B el 15oct antes de este cierre. Principal conserva ocho procedimientos/60 opciones. Extensiones nuevas son posteriores a esa exposición; no llamarlas prospectivas ciegas.",
+    "url": "https://github.com/danielalira20/AgroCebada-2026/pull/21#issuecomment-6195698971",
+    "sin_cambiar_semillas_ni_expandir_B_principal": true
+  },
+  "codigo_sha256": {
+    "scripts/t15_ejecutar.py": "b91963554c7a70e48eee82fd6bfed2df5f329dd36dd1f6d6672349190d761397",
+    "scripts/t15_ejecutor_reportes.py": "70e323f3280574cb6a6bbf722a8307ed8b8efa72eb2ef41cbbf0a52ec08aa25f",
+    "scripts/t15_comparaciones_traza.py": "d077ee711e8b3089a770be98987a69015140a706e52d9e95ab897bd31267840a"
+  },
+  "control_calidad_sha256": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+  "salidas_principal": [
+    "predicciones_oof.csv",
+    "selecciones.jsonl",
+    "trazas_ajustes.jsonl",
+    "estados_modelos.jsonl",
+    "metricas_resumen.csv",
+    "metricas_por_repeticion.csv",
+    "contrastes.csv",
+    "desgloses_calidad_y_sin24.csv",
+    "frecuencia_referencia_sola.csv",
+    "informe.md",
+    "manifest.json"
+  ],
+  "errores": "detener_y_persistir_traza_y_manifest_fallido_no_omitir_opciones",
+  "no_hay_ganador_T16_ni_ajuste_final_59": true
+}
