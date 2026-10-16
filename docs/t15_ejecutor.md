@@ -1,5 +1,7 @@
 # T15: ejecutor, reportes y cierre operativo con Dani
 
+> **Actualización del 16-oct:** Dani autorizó posteriormente la evaluación completa y su publicación. Ya se ejecutó sobre el commit `cc7d0ae` sin cambiar este ejecutor: [informe de resultados](t15_resultados.md) y [paquete completo verificable](../registro/t15_resultados/README.md). Los 13,600 ajustes internos y 450 externos corresponden a modelos reales; las 64 pruebas descritas más abajo acreditan el software previo. Se distinguen las dos evidencias. Ninguno de los ocho procedimientos cumple promoción; sin ganador T16 ni predicciones finales de las 59. El texto del 15-oct que sigue describe la preparación anterior a esa autorización.
+
 15 de octubre de 2026. Responsable humana: Dani; apoyo técnico: Codex. Esta instrucción sustituye para este lote la espera de revisión de compañeros: «ya no van a revisar por cuestión de tiempos, ya sólo lo haremos tú y yo». Autoriza actualizar PR21 y terminar/comprobar el ejecutor; no autoriza ejecutar ahora la evaluación completa. No se atribuye aprobación nueva a Daf, Migue o Jass.
 
 ## Problema que resuelve
