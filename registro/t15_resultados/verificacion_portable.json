@@ -1,0 +1,48 @@
+{
+  "resultado": "verificado",
+  "auditor_importa_productor": false,
+  "tolerancias_fijadas_antes_de_ver_resultados": {
+    "referencias_metricas": 1e-12,
+    "matrices_coeficientes": 1e-10,
+    "prediccion_reconstruida": 1e-09
+  },
+  "comprobaciones": 554410,
+  "maximos_observados": {
+    "referencias_metricas": 1.3322676295501878e-15,
+    "prediccion_reconstruida": 6.661338147750939e-15,
+    "matrices_coeficientes": 4.547473508864641e-13
+  },
+  "OOF_verificadas": 12420,
+  "selecciones_verificadas": 400,
+  "trazas_verificadas": {
+    "externa": 450,
+    "interna": 13600
+  },
+  "estados_externos": 450,
+  "Ridge_externos_reconstruidos": 282,
+  "fuentes_ejecucion_fijada_verificadas": true,
+  "entradas_actuales_computacionales_intactas": true,
+  "fuentes_historicas_consultadas_en_Git": 6,
+  "fugas_por_ID_grupo_reservadas_detectadas": 0,
+  "columnas_y_parametros_fuera_registro": 0,
+  "limite": "Verifica datos, trazas, álgebra y reportes; la selección humana previa no es validación externa ciega. No garantiza exactitud de medición en campo ni otra campaña.",
+  "script_auditor_sha256": "76a1ea67130c6edddaa1eb883c1060ec0d523d3322af9d2def915e79bdebef26",
+  "adaptacion_portable_del_auditor_sha256": "35633091dd88ce41ef9a6a930a915af93384df4712351e0b6c6e39af492fa6f5",
+  "entorno_verificacion_portable": {
+    "sistema": "Darwin",
+    "arquitectura": "arm64",
+    "fecha_UTC": "2026-10-16T21:20:16.428779+00:00"
+  },
+  "controles_publicacion": {
+    "originales_byte_identicos": 12,
+    "bitacoras_previas_intactas": true,
+    "IDs_unicos": true,
+    "guardias": {
+      "predicciones_oof.csv": "rechazado",
+      "trazas_ajustes.jsonl.gz": "rechazado",
+      "sobrescribir_salida": "rechazado",
+      "sin_salida_explicita": "rechazado"
+    }
+  },
+  "alcance_portable": "Revisión numérica de la entrega ya calculada, sin ejecutar estimadores del repo ni búsqueda nueva; la corrida original fue Linux/amd64."
+}
