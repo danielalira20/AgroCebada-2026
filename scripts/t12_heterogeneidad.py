@@ -2,6 +2,8 @@
 
 Familia `het` (parte 1): pendiente común más desviación municipal contraída.
 Familia `gb` (parte 2): boosting con pérdida absoluta sobre las mismas entradas.
+Selector (parte 3): elige la opción con las internas de T03/D026 y hereda los municipios
+con pendiente propia del entrenamiento externo.
 Ambas heredan de v3 la referencia, el residuo sin la fila, las transformaciones,
 el escalado y el centro sin la fila; sólo cambia el ajuste final.
 No ejecuta evaluaciones ni ajusta las 59.
@@ -18,7 +20,8 @@ from sklearn.linear_model import Ridge
 
 from scripts import evaluacion_comun_centrado_loo as v3
 from scripts.evaluacion_comun_contrato import exigir, sha
-from scripts.evaluacion_comun_modelo import validar_X, aplicar_referencia
+from scripts import evaluacion_comun_modelo as base
+from scripts.evaluacion_comun_modelo import validar_X, validar_y, aplicar_referencia, divisiones_internas
 
 VERSION = 't12-heterogeneidad-v1'
 RAIZ = v3.RAIZ
@@ -33,6 +36,8 @@ PARAMETROS_GB = dict(loss='absolute_error', max_depth=2, min_samples_leaf=10, le
 # v3 exige un λ de su lista al ajustar. El boosting no lo usa: se fija uno para reutilizar
 # el cálculo de residuos y centros sin cambiarlo, y no interviene en ninguna predicción.
 LAMBDA_NO_USADO = 1.0
+REFERENCIAS = {'media_mun__resp_grupo': 'media', 'mediana_mun__resp_grupo': 'mediana'}
+MAX_OPCIONES = 16
 
 
 def cargar_diseno(raiz=RAIZ):
@@ -56,6 +61,25 @@ def grupos_con_pendiente(X, n_min=N_MIN_PENDIENTE):
     return tuple(sorted(str(m) for m in n[n >= n_min].index))
 
 
+def medianas(X, y):
+    """Como T08 `mediana_mun__resp_grupo`: mediana por municipio, por grupo y global."""
+    X = X.sort_index()
+    y = y.loc[X.index]
+    m = {k: float(np.median(y.loc[g.index].to_numpy(float))) for k, g in X.groupby('municipio')}
+    g = {k: float(np.median(y.loc[v.index].to_numpy(float))) for k, v in X.groupby('cultivo_origen')}
+    return m, g, float(np.median(y.to_numpy(float)))
+
+
+def residuos_loo_mediana(X, y):
+    """Igual que residuos_loo de v3, con la mediana del mismo grupo de IDs sin la fila."""
+    validar_X(X, [])
+    validar_y(X, y)
+    exigir(len(X) > 1, 'LOO requiere más de una fila')
+    pools = v3.pools_sin_fila(X)
+    return np.asarray([float(y.loc[pid]) - float(np.median(y.loc[list(pools[pid][1])].to_numpy(float)))
+                       for pid in X.index])
+
+
 def _validar_grupos(grupos):
     exigir(isinstance(grupos, tuple) and all(isinstance(g, str) and g.strip() == g and g for g in grupos),
            'Lista de municipios con pendiente propia inválida')
@@ -73,12 +97,14 @@ class CorreccionPendienteMunicipal(v3.CorreccionComunCentradaLOO):
     Una tupla: se usa tal cual (las internas heredan la lista del entrenamiento externo).
     """
 
-    def __init__(self, columnas=(), lambda_reg=None, kappa=None, grupos_pendiente=None):
+    def __init__(self, columnas=(), lambda_reg=None, kappa=None, grupos_pendiente=None, referencia='media'):
         super().__init__(columnas, lambda_reg)
         self.kappa = kappa
         self.grupos_pendiente = None if grupos_pendiente is None else tuple(grupos_pendiente)
+        self.referencia = referencia
 
     def _validar_parametros_t12(self):
+        exigir(self.referencia in ('media', 'mediana'), 'Referencia fuera del procedimiento')
         if self.columnas:
             exigir(not isinstance(self.kappa, bool) and self.kappa in KAPPA, 'κ fuera del procedimiento')
         else:
@@ -97,9 +123,14 @@ class CorreccionPendienteMunicipal(v3.CorreccionComunCentradaLOO):
         super().fit(X, y)  # v3: residuos_, escalador_, centros_sin_fila_, alpha_; deja un Ridge común
         try:
             self.grupos_pendiente_ = ()
+            Xs = X.sort_index()
+            exigir(tuple(Xs.index) == self.ids_entrenamiento_, 'Orden de entrenamiento distinto de v3')
+            if self.referencia == 'mediana':
+                # Control E_T12_008: sólo cambia la referencia y, con ella, el residuo sin la fila.
+                self.mun_, self.grupo_, self.global_ = medianas(Xs, y.loc[Xs.index])
+                if self.ridge_ is not None:
+                    self.residuos_ = residuos_loo_mediana(Xs, y.loc[Xs.index])
             if self.ridge_ is not None:
-                Xs = X.sort_index()
-                exigir(tuple(Xs.index) == self.ids_entrenamiento_, 'Orden de entrenamiento distinto de v3')
                 grupos = grupos_con_pendiente(Xs) if self.grupos_pendiente is None else self.grupos_pendiente
                 _validar_grupos(grupos)
                 self.grupos_pendiente_ = grupos
@@ -113,7 +144,8 @@ class CorreccionPendienteMunicipal(v3.CorreccionComunCentradaLOO):
                 p, c = d.shape[1], self.ridge_.coef_
                 self.beta_ = c[:p].copy()
                 self.gamma_ = {g: c[p * (k + 1):p * (k + 2)] / sqrt(self.kappa) for k, g in enumerate(grupos)}
-            self.parametros_fit_ = (tuple(self.columnas), self.lambda_reg, self.kappa, self.grupos_pendiente)
+            self.parametros_fit_ = (tuple(self.columnas), self.lambda_reg, self.kappa, self.grupos_pendiente,
+                                    self.referencia)
         except Exception:
             self._limpiar()
             raise
@@ -121,8 +153,9 @@ class CorreccionPendienteMunicipal(v3.CorreccionComunCentradaLOO):
 
     def _comprobar(self):
         exigir(getattr(self, 'ajustado_', False), 'Modelo sin ajustar')
-        exigir(self.parametros_fit_ == (tuple(self.columnas), self.lambda_reg, self.kappa, self.grupos_pendiente),
-               'Reajustar después de cambiar columnas, λ, κ o municipios')
+        exigir(self.parametros_fit_ == (tuple(self.columnas), self.lambda_reg, self.kappa, self.grupos_pendiente,
+                                        self.referencia),
+               'Reajustar después de cambiar columnas, λ, κ, municipios o referencia')
 
     def predict_with_details(self, X):
         self._comprobar()
@@ -156,7 +189,7 @@ class CorreccionPendienteMunicipal(v3.CorreccionComunCentradaLOO):
         e = copy.deepcopy(super().estado())
         e.update(version=VERSION, sha_diseno_t12=DISENO_SHA, version_base=v3.VERSION,
                  familia='het_pendiente_comun_mas_desviacion_municipal_contraida',
-                 kappa=self.kappa, n_min_pendiente=N_MIN_PENDIENTE,
+                 kappa=self.kappa, n_min_pendiente=N_MIN_PENDIENTE, referencia=self.referencia,
                  grupos_pendiente_heredados=self.grupos_pendiente is not None,
                  grupos_pendiente=list(self.grupos_pendiente_))
         if self.ridge_ is not None:
@@ -273,3 +306,114 @@ def clave_opcion_gb(row):
     """Desempate registrado: MAE a 6 decimales > referencia sola > menos árboles > jun_oct > nombre."""
     return (round(row['MAE'], 6), 0 if row['referencia_sola'] else 1, row.get('n_estimators') or 0,
             0 if row['ventana'] == 'jun_oct' else 1, row['nombre'])
+
+
+
+# ------------------------------------------------------------------ selector (parte 3)
+def opciones_registradas(procedimiento):
+    """Opciones del JSON con su nombre registrado; no se generan opciones nuevas."""
+    familia = procedimiento['familia']
+    exigir(familia in ('het', 'gb', 'comun_v3'), 'Familia desconocida')
+    exigir(procedimiento['referencia'] in REFERENCIAS, 'Referencia desconocida')
+    exigir(familia == 'het' or procedimiento['referencia'] == 'media_mun__resp_grupo',
+           'Sólo het admite la referencia mediana')
+    opciones = [dict(o) for o in procedimiento['opciones']]
+    exigir(len(opciones) == procedimiento['n_opciones_con_variables'], 'Número de opciones distinto del registro')
+    return opciones
+
+
+def _validar_opciones(opciones, familia):
+    exigir(1 <= len(opciones) <= MAX_OPCIONES, 'Número de opciones fuera del procedimiento')
+    nombres = [o.get('nombre') for o in opciones]
+    exigir(all(isinstance(n, str) and n for n in nombres) and len(set(nombres)) == len(nombres) and
+           'referencia_sola' not in nombres, 'Nombre de opción vacío, duplicado o reservado')
+    claves = {'het': {'nombre', 'columnas', 'ventana', 'lambda_reg', 'kappa'},
+              'gb': {'nombre', 'columnas', 'ventana', 'n_estimators'},
+              'comun_v3': {'nombre', 'columnas', 'ventana', 'lambda_reg'}}[familia]
+    for o in opciones:
+        exigir(set(o) == claves and o['columnas'], f'Opción con claves ajenas a la familia {familia}')
+        exigir(o['ventana'] in ('abr_oct', 'jun_oct', 'estatica'), 'Ventana desconocida')
+
+
+def fabrica(familia, opcion, grupos, referencia='media'):
+    """Modelo sin ajustar para una opción; la referencia sola usa la misma referencia de la familia."""
+    cols = tuple(opcion['columnas'])
+    if familia == 'het':
+        if not cols:
+            return CorreccionPendienteMunicipal((), None, None, grupos, referencia)
+        return CorreccionPendienteMunicipal(cols, opcion['lambda_reg'], opcion['kappa'], grupos, referencia)
+    exigir(referencia == 'media', 'Sólo het admite la referencia mediana')
+    if familia == 'gb':
+        return CorreccionBoostingL1(cols, opcion.get('n_estimators') if cols else None, grupos)
+    exigir(familia == 'comun_v3', 'Familia desconocida')
+    return v3.CorreccionComunCentradaLOO(cols, opcion['lambda_reg'] if cols else None)
+
+
+CLAVES = {'het': lambda r: clave_opcion_het(r), 'gb': lambda r: clave_opcion_gb(r),
+          'comun_v3': lambda r: base.clave_opcion(r)}
+
+
+def seleccionar_familia(X, y, opciones, escenario, familia, referencia='media', grupos_pendiente=None):
+    """Selección interna T03 §5 / §5 bis con la referencia sola compitiendo.
+
+    - Internas: A estratificadas por municipio (semilla 0); B por celda CHIRPS (D026).
+    - MAE interno: sólo filas cuyo municipio está en el ajuste interno (población sin_respaldo).
+    - La lista de municipios con pendiente propia sale del entrenamiento que recibe esta función
+      (el externo) y la heredan todos los ajustes internos.
+    Sólo usa X e y del entrenamiento; nunca recibe filas de evaluación externa ni las 59.
+    """
+    validar_X(X, [])
+    validar_y(X, y)
+    exigir(escenario in ('A', 'B'), 'Escenario fuera de T12')
+    exigir(familia in CLAVES, 'Familia desconocida')
+    exigir(referencia in ('media', 'mediana'), 'Referencia desconocida')
+    _validar_opciones(opciones, familia)
+    X = X.sort_index()
+    y = y.loc[X.index]
+    grupos = grupos_con_pendiente(X) if grupos_pendiente is None else tuple(grupos_pendiente)
+    _validar_grupos(grupos)
+    divisiones = divisiones_internas(X, escenario)
+    alternativas = [dict(nombre='referencia_sola', columnas=[], ventana='estatica'), *opciones]
+    puntuaciones = []
+    n_una_etiqueta = 0
+    for k, op in enumerate(alternativas):
+        errores, todos = [], []
+        for split in divisiones:
+            tr, va = X.loc[list(split.entrenamiento)], X.loc[list(split.validacion)]
+            exigir(not set(tr.index) & set(va.index), 'Interna no disjunta')
+            modelo = fabrica(familia, op, grupos, referencia).fit(tr, y.loc[tr.index])
+            err = np.abs(modelo.predict(va) - y.loc[va.index].to_numpy())
+            errores.extend(err[np.asarray(split.elegibles)])
+            todos.extend(err)
+            if k == 0:
+                n_mun = tr.municipio.value_counts()
+                n_una_etiqueta += int(va.municipio.map(n_mun).eq(1).sum())
+        exigir(errores and np.isfinite(errores).all(), 'Opción no evaluable; no saltarla')
+        puntuaciones.append(dict(nombre=op['nombre'], ventana=op['ventana'], lambda_reg=op.get('lambda_reg'),
+                                 kappa=op.get('kappa'), n_estimators=op.get('n_estimators'),
+                                 referencia_sola=not op['columnas'], MAE=float(np.mean(errores)),
+                                 MAE_todas=float(np.mean(todos)), n_elegibles=len(errores),
+                                 n_validacion=len(todos), n_ajustes=len(divisiones)))
+    ganadora = min(puntuaciones, key=CLAVES[familia])
+    elegida = next(o for o in alternativas if o['nombre'] == ganadora['nombre'])
+    return dict(elegida=dict(elegida), puntuaciones=puntuaciones, grupos_pendiente=grupos,
+                internas='estratificada' if escenario == 'A' else 'celda',
+                n_excluidas_respaldo=puntuaciones[0]['n_validacion'] - puntuaciones[0]['n_elegibles'],
+                n_validacion_referencia_una_etiqueta=n_una_etiqueta,
+                n_ajustes=len(alternativas) * len(divisiones), familia=familia, referencia=referencia,
+                version=VERSION)
+
+
+def ajustar_y_predecir(X, y, X_eval, procedimiento, escenario):
+    """Selecciona dentro de X, ajusta con todo X y predice X_eval (evaluación externa o las 59).
+
+    X_eval nunca entra en la selección ni en el ajuste.
+    """
+    familia = procedimiento['familia']
+    referencia = REFERENCIAS[procedimiento['referencia']]
+    exigir(not set(X.index) & set(X_eval.index), 'Evaluación externa dentro del entrenamiento')
+    sel = seleccionar_familia(X, y, opciones_registradas(procedimiento), escenario, familia, referencia)
+    modelo = fabrica(familia, sel['elegida'], sel['grupos_pendiente'], referencia).fit(X, y)
+    detalle = modelo.predict_with_details(X_eval)
+    return dict(seleccion=sel, modelo=modelo, detalle=detalle, candidato=procedimiento['candidato'],
+                version=VERSION, sha_diseno_t12=DISENO_SHA)

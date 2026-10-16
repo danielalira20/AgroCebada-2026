@@ -414,5 +414,219 @@ class Prueba8ReproduciblesYFinitas(unittest.TestCase):
             self.assertTrue(np.isfinite(d.prediccion).all(), type(m).__name__)
 
 
+# ------------------------------------------------------------------ parte 3: selector
+def tabla_celdas(n_por_municipio, pendientes, semilla, prefijo='S', n_celdas=6):
+    X, y = tabla(n_por_municipio, pendientes, semilla=semilla, prefijo=prefijo)
+    X['celda_chirps'] = [f'c{i % n_celdas}' for i in range(len(X))]
+    return X, y
+
+
+def opciones_sinteticas(familia):
+    if familia == 'het':
+        return [dict(nombre=f'{v}_l{l:g}_k{k:g}', columnas=list(COLS), ventana=v, lambda_reg=l, kappa=k)
+                for v in ('abr_oct', 'jun_oct') for l in base.LAMBDA for k in t12.KAPPA]
+    if familia == 'gb':
+        return [dict(nombre=f'{v}_n{n}', columnas=list(COLS), ventana=v, n_estimators=n)
+                for v in ('abr_oct', 'jun_oct') for n in t12.N_ARBOLES]
+    return [dict(nombre=f'abr_oct_l{l:g}', columnas=list(COLS), ventana='abr_oct', lambda_reg=l) for l in base.LAMBDA]
+
+
+class Prueba9Selector(unittest.TestCase):
+    """Selección interna: internas de T03/D026, lista heredada, empates y sin filtración."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.X, cls.y = tabla_celdas({'Norte': 50, 'Sur': 40, 'Medio': 13, 'Uno': 1, 'Dos': 1, 'Tres': 3},
+                                    {'Norte': 0.6, 'Sur': -0.6}, semilla=41)
+
+    def test_comun_v3_reproduce_el_selector_de_dani(self):
+        ops = opciones_sinteticas('comun_v3')
+        for esc in ('A', 'B'):
+            nuestro = t12.seleccionar_familia(self.X, self.y, ops, esc, 'comun_v3')
+            dani = v3.seleccionar(self.X, self.y, ops, esc)
+            with self.subTest(escenario=esc):
+                self.assertEqual(nuestro['elegida']['nombre'], dani['elegida']['nombre'])
+                np.testing.assert_allclose([r['MAE'] for r in nuestro['puntuaciones']],
+                                           [r['MAE'] for r in dani['puntuaciones']], rtol=0, atol=1e-12)
+
+    def test_internas_heredan_la_lista_externa(self):
+        vistos = []
+        original = t12.CorreccionPendienteMunicipal.fit
+
+        def espia(modelo, X, y):
+            vistos.append((modelo.grupos_pendiente, X.municipio.value_counts().get('Medio', 0)))
+            return original(modelo, X, y)
+        with patch.object(t12.CorreccionPendienteMunicipal, 'fit', espia):
+            sel = t12.seleccionar_familia(self.X, self.y, opciones_sinteticas('het'), 'A', 'het')
+        self.assertEqual(sel['grupos_pendiente'], ('Medio', 'Norte', 'Sur'))
+        self.assertEqual(len(vistos), 17 * 4)
+        self.assertTrue(all(g == ('Medio', 'Norte', 'Sur') for g, _ in vistos))
+        # En las internas Medio tiene menos de 12 filas: si se recalculara, perdería su pendiente.
+        self.assertTrue(all(n < t12.N_MIN_PENDIENTE for _, n in vistos))
+
+    def test_elige_correccion_cuando_hay_senal(self):
+        sel = t12.seleccionar_familia(self.X, self.y, opciones_sinteticas('het'), 'A', 'het')
+        self.assertFalse(sel['elegida']['nombre'] == 'referencia_sola')
+        self.assertEqual(sel['n_ajustes'], 17 * 4)
+        ref = next(r for r in sel['puntuaciones'] if r['referencia_sola'])
+        mejor = min(r['MAE'] for r in sel['puntuaciones'])
+        self.assertLess(mejor, ref['MAE'])
+
+    def test_referencia_sola_gana_si_todo_empata(self):
+        y = pd.Series(4.0, index=self.X.index)
+        for familia in ('het', 'gb', 'comun_v3'):
+            with self.subTest(familia=familia):
+                sel = t12.seleccionar_familia(self.X, y, opciones_sinteticas(familia), 'A', familia)
+                self.assertEqual(sel['elegida']['nombre'], 'referencia_sola')
+
+    def test_escenario_B_agrupa_por_celda(self):
+        sel = t12.seleccionar_familia(self.X, self.y, opciones_sinteticas('gb'), 'B', 'gb')
+        self.assertEqual(sel['internas'], 'celda')
+        pocas = self.X.assign(celda_chirps=['c0', 'c1', 'c2'] * (len(self.X) // 3) + ['c0'] * (len(self.X) % 3))
+        with self.assertRaises(ValueError):
+            t12.seleccionar_familia(pocas, self.y, opciones_sinteticas('gb'), 'B', 'gb')
+
+    def test_mae_interno_excluye_respaldos(self):
+        sel = t12.seleccionar_familia(self.X, self.y, opciones_sinteticas('comun_v3'), 'A', 'comun_v3')
+        # 'Uno' y 'Dos' nunca tienen otra fila de su municipio en el ajuste interno.
+        self.assertGreaterEqual(sel['n_excluidas_respaldo'], 2)
+        self.assertEqual(len({(r['n_elegibles'], r['n_validacion']) for r in sel['puntuaciones']}), 1)
+
+    def test_opciones_invalidas(self):
+        het = opciones_sinteticas('het')
+        malas = [het + [dict(het[0], nombre='extra')],  # 17 opciones
+                 [het[0], dict(het[1], nombre=het[0]['nombre'])],
+                 [dict(het[0], nombre='referencia_sola')],
+                 [dict(het[0], n_estimators=50)]]
+        for ops in malas:
+            with self.assertRaises(ValueError):
+                t12.seleccionar_familia(self.X, self.y, ops, 'A', 'het')
+        with self.assertRaises(ValueError):
+            t12.seleccionar_familia(self.X, self.y, opciones_sinteticas('gb'), 'A', 'gb', referencia='mediana')
+
+    def test_evaluacion_externa_nunca_entra(self):
+        Xe, _ = tabla_celdas({'Norte': 10, 'Sur': 10}, {}, semilla=42, prefijo='E')
+        proc = dict(candidato='prueba', familia='het', referencia='media_mun__resp_grupo',
+                    opciones=opciones_sinteticas('het'), n_opciones_con_variables=16)
+        vistos = set()
+        original = t12.CorreccionPendienteMunicipal.fit
+
+        def espia(modelo, X, y):
+            vistos.update(X.index)
+            return original(modelo, X, y)
+        with patch.object(t12.CorreccionPendienteMunicipal, 'fit', espia):
+            r = t12.ajustar_y_predecir(self.X, self.y, Xe, proc, 'A')
+        self.assertFalse(vistos & set(Xe.index))
+        con = t12.ajustar_y_predecir(self.X, self.y, Xe.assign(rendimiento_t_ha=999.0), proc, 'A')
+        np.testing.assert_array_equal(r['detalle'].prediccion, con['detalle'].prediccion)
+        with self.assertRaises(ValueError):
+            t12.ajustar_y_predecir(self.X, self.y, self.X.iloc[:3], proc, 'A')
+
+    def test_modelo_final_conserva_la_lista_y_la_opcion(self):
+        Xe, _ = tabla_celdas({'Norte': 10, 'Sur': 10}, {}, semilla=43, prefijo='E')
+        for familia in ('het', 'gb'):
+            ops = opciones_sinteticas(familia)
+            proc = dict(candidato='prueba', familia=familia, referencia='media_mun__resp_grupo',
+                        opciones=ops, n_opciones_con_variables=len(ops))
+            r = t12.ajustar_y_predecir(self.X, self.y, Xe, proc, 'A')
+            with self.subTest(familia=familia):
+                self.assertNotEqual(r['seleccion']['elegida']['nombre'], 'referencia_sola')
+                self.assertEqual(r['modelo'].grupos_pendiente_, r['seleccion']['grupos_pendiente'])
+                self.assertEqual(r['modelo'].grupos_pendiente_, ('Medio', 'Norte', 'Sur'))
+                self.assertEqual(r['modelo'].columnas, tuple(r['seleccion']['elegida']['columnas']))
+
+    def test_desempate_kappa_dentro_del_selector(self):
+        # Sin municipios con ≥ 12 filas, κ no cambia nada: k1 y k10 empatan exacto y debe ganar κ = 10.
+        X, y = tabla_celdas({'A1': 11, 'A2': 11, 'A3': 11, 'A4': 11}, {m: 0.6 for m in ('A1', 'A2', 'A3', 'A4')},
+                            semilla=44)
+        sel = t12.seleccionar_familia(X, y, opciones_sinteticas('het'), 'A', 'het')
+        self.assertEqual(sel['grupos_pendiente'], ())
+        self.assertNotEqual(sel['elegida']['nombre'], 'referencia_sola')
+        self.assertEqual(sel['elegida']['kappa'], 10.0)
+        pares = {}
+        for r in sel['puntuaciones']:
+            if not r['referencia_sola']:
+                pares.setdefault((r['ventana'], r['lambda_reg']), set()).add(round(r['MAE'], 12))
+        self.assertTrue(all(len(v) == 1 for v in pares.values()))
+
+
+class Prueba10ReferenciaMediana(unittest.TestCase):
+    """Control E_T12_008: sólo cambia la referencia (y el residuo) a la mediana."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.X, cls.y = tabla({'Norte': 21, 'Sur': 14, 'Uno': 1}, {'Norte': 0.4}, semilla=51)
+        cls.y.iloc[0] += 3.0  # un valor extremo para que media y mediana difieran
+
+    def test_referencia_sola_mediana(self):
+        m = t12.CorreccionPendienteMunicipal((), None, None, referencia='mediana').fit(self.X, self.y)
+        Xn = self.X.iloc[:5]
+        esperado = [float(np.median(self.y[self.X.municipio == mu])) for mu in Xn.municipio]
+        np.testing.assert_allclose(m.predict(Xn), esperado, rtol=0, atol=1e-12)
+        self.assertNotAlmostEqual(m.mun_['Norte'], float(self.y[self.X.municipio == 'Norte'].mean()))
+
+    def test_residuo_con_mediana_de_las_demas(self):
+        m = t12.CorreccionPendienteMunicipal(COLS, 0.1, 1.0, referencia='mediana').fit(self.X, self.y)
+        X = self.X.sort_index()
+        for i, pid in enumerate(X.index):
+            otros = [j for j in X.index if j != pid and X.loc[j, 'municipio'] == X.loc[pid, 'municipio']]
+            if not otros:
+                otros = [j for j in X.index if j != pid]
+            self.assertAlmostEqual(m.residuos_[i], self.y[pid] - float(np.median(self.y[otros])), places=12)
+
+    def test_selector_propaga_la_mediana(self):
+        X, y = tabla_celdas({'Norte': 30, 'Sur': 20, 'Este': 8}, {'Norte': 0.5}, semilla=52)
+        y.iloc[0] += 3.0
+        refs = []
+        original = t12.CorreccionPendienteMunicipal.fit
+
+        def espia(modelo, X, y):
+            refs.append(modelo.referencia)
+            return original(modelo, X, y)
+        proc = dict(candidato='t12_control_mediana_het_GP', familia='het', referencia='mediana_mun__resp_grupo',
+                    opciones=opciones_sinteticas('het'), n_opciones_con_variables=16)
+        Xe, _ = tabla_celdas({'Norte': 5, 'Sur': 5}, {}, semilla=53, prefijo='E')
+        with patch.object(t12.CorreccionPendienteMunicipal, 'fit', espia):
+            r = t12.ajustar_y_predecir(X, y, Xe, proc, 'A')
+        self.assertEqual(set(refs), {'mediana'})
+        self.assertEqual(len(refs), 17 * 4 + 1)
+        self.assertEqual(r['modelo'].mun_['Norte'], float(np.median(y[X.municipio == 'Norte'])))
+
+    def test_media_por_defecto_igual_que_antes(self):
+        a = t12.CorreccionPendienteMunicipal(COLS, 0.1, 1.0).fit(self.X, self.y)
+        b = t12.CorreccionPendienteMunicipal(COLS, 0.1, 1.0, referencia='media').fit(self.X, self.y)
+        np.testing.assert_array_equal(a.predict(self.X), b.predict(self.X))
+        c = t12.CorreccionPendienteMunicipal(COLS, 0.1, 1.0, referencia='mediana').fit(self.X, self.y)
+        self.assertGreater(np.max(np.abs(a.predict(self.X) - c.predict(self.X))), 1e-3)
+        with self.assertRaises(ValueError):
+            t12.CorreccionPendienteMunicipal(COLS, 0.1, 1.0, referencia='moda').fit(self.X, self.y)
+
+
+class Prueba11ProcedimientosRegistrados(unittest.TestCase):
+    """Los 8 procedimientos del JSON corren con las entradas reales y etiquetas INVENTADAS."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cfg = t12.cargar_diseno()
+        cls.X138, cls.X59, _ = _entradas_reales_sin_rendimiento()
+        rng = np.random.default_rng(61)
+        z = (cls.X138.elevacion_media_m - cls.X138.elevacion_media_m.mean()) / cls.X138.elevacion_media_m.std()
+        cls.y_falsa = pd.Series(3.5 + 0.3 * z + 0.2 * rng.normal(size=len(cls.X138)), index=cls.X138.index)
+
+    def test_ocho_procedimientos(self):
+        procs = self.cfg['procedimientos']
+        self.assertEqual(len(procs), 8)
+        self.assertEqual(sum(p['promovible'] for p in procs), 1)
+        for p in procs:
+            with self.subTest(candidato=p['candidato']):
+                r = t12.ajustar_y_predecir(self.X138, self.y_falsa, self.X59, p, 'A')
+                self.assertEqual(len(r['detalle']), 59)
+                self.assertTrue(np.isfinite(r['detalle'].prediccion).all())
+                self.assertEqual(len(r['seleccion']['puntuaciones']), p['n_opciones_con_variables'] + 1)
+                if p['familia'] != 'comun_v3':
+                    # Depende sólo de cuántas parcelas hay por municipio, no de rendimientos.
+                    self.assertEqual(r['seleccion']['grupos_pendiente'], ('Calpulalpan', 'Chignahuapan', 'Singuilucan'))
+
+
 if __name__ == '__main__':
     unittest.main()
