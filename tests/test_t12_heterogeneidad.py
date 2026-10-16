@@ -628,5 +628,119 @@ class Prueba11ProcedimientosRegistrados(unittest.TestCase):
                     self.assertEqual(r['seleccion']['grupos_pendiente'], ('Calpulalpan', 'Chignahuapan', 'Singuilucan'))
 
 
+class Prueba12Comprobaciones(unittest.TestCase):
+    """Paso 3: las tres comprobaciones con datos reales pasan, y fallan si se les mete un error.
+
+    Aquí se corren sólo dos contextos (uno A y uno B) para que la prueba sea rápida; la corrida
+    completa de 50 contextos la hace `python -m scripts.t12_heterogeneidad --comprobar`.
+    No se guarda ningún error de predicción.
+    """
+    CTX = (('A', 1, 0), ('B', 1, 0))
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cfg = t12.cargar_diseno()
+        cls.entradas = v3.cargar_entradas(t12.RAIZ)
+
+    def test_referencia_reproduce_t03(self):
+        r = t12.comprobar_referencia(self.entradas, self.CTX)
+        self.assertTrue(r['aprobado'])
+        for nombre, a in r['por_modelo'].items():
+            with self.subTest(modelo=nombre):
+                self.assertGreater(a['filas'], 0)
+                self.assertLess(a['dif_max'], 1e-12)
+                self.assertEqual((a['fuentes_distintas'], a['claves_ausentes']), (0, 0))
+
+    def test_referencia_falla_si_se_usa_la_mediana_como_media(self):
+        original = t12._referencia_sola
+
+        def mala(familia, referencia):
+            return original(familia, 'mediana' if familia == 'het' else referencia)
+        with patch.object(t12, '_referencia_sola', mala):
+            self.assertFalse(t12.comprobar_referencia(self.entradas, self.CTX)['aprobado'])
+
+    def test_controles_reproducen_a_dani(self):
+        r = t12.comprobar_controles(self.entradas, self.cfg, self.CTX)
+        self.assertTrue(r['aprobado'])
+        self.assertEqual(set(r['por_control']), set(t12.CONTROLES))
+        for nombre, c in r['por_control'].items():
+            with self.subTest(control=nombre):
+                self.assertEqual((c['contextos'], c['opcion_distinta'], c['puntajes_con_conteos_distintos']),
+                                 (2, 0, 0))
+                self.assertLess(max(c['dif_puntajes'], c['dif_coeficientes'], c['dif_predicciones']), 1e-12)
+
+    def test_controles_fallan_si_el_selector_usa_el_escenario_equivocado(self):
+        original = t12.seleccionar_familia
+
+        def mala(X, y, opciones, escenario, *a, **k):
+            return original(X, y, opciones, 'B' if escenario == 'A' else 'A', *a, **k)
+        with patch.object(t12, 'seleccionar_familia', mala):
+            self.assertFalse(t12.comprobar_controles(self.entradas, self.cfg, (('A', 1, 0),))['aprobado'])
+
+    def test_controles_fallan_si_el_selector_olvida_excluir_respaldos(self):
+        original = base.divisiones_internas
+
+        def mala(X, escenario):
+            import dataclasses
+            return [dataclasses.replace(d, elegibles=tuple(True for _ in d.elegibles))
+                    for d in original(X, escenario)]
+        with patch.object(t12, 'divisiones_internas', mala):
+            self.assertFalse(t12.comprobar_controles(self.entradas, self.cfg, (('A', 1, 0),))['aprobado'])
+
+    def test_entradas_59_completas(self):
+        r = t12.comprobar_entradas_59(self.entradas, self.cfg)
+        self.assertTrue(r['aprobado'])
+        self.assertEqual(r['n_59'], 59)
+        self.assertEqual(r['faltantes_no_permitidos'], {})
+        self.assertEqual(sum(r['fuente_de_referencia_de_las_59_con_las_138'].values()), 59)
+
+    def test_entradas_59_fallan_con_un_faltante_o_area_cero(self):
+        original = t12.entradas_x
+        for columna, valor in [('pl_ndvi_max_abr_oct', np.nan), ('area_ha_origen', 0.0),
+                               ('elevacion_media_m', np.inf)]:
+            def mala(entradas, columna=columna, valor=valor):
+                X138, y, X59 = original(entradas)
+                X59 = X59.copy()
+                X59.iloc[0, X59.columns.get_loc(columna)] = valor
+                return X138, y, X59
+            with self.subTest(columna=columna), patch.object(t12, 'entradas_x', mala):
+                self.assertFalse(t12.comprobar_entradas_59(self.entradas, self.cfg)['aprobado'])
+
+    def test_pendiente_faltante_si_se_admite(self):
+        original = t12.entradas_x
+
+        def con_faltante(entradas):
+            X138, y, X59 = original(entradas)
+            X59 = X59.copy()
+            X59.iloc[0, X59.columns.get_loc(base.NULLABLE)] = np.nan
+            return X138, y, X59
+        with patch.object(t12, 'entradas_x', con_faltante):
+            self.assertTrue(t12.comprobar_entradas_59(self.entradas, self.cfg)['aprobado'])
+
+    def test_main_no_sobrescribe_y_exige_el_modo(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as d:
+            existente = Path(d) / 'ya_existe.json'
+            existente.write_text('{}')
+            with self.assertRaises(Exception):
+                t12.main(['--comprobar', '--salida', str(existente)])
+            self.assertEqual(existente.read_text(), '{}')
+            with self.assertRaises(Exception):
+                t12.main(['--salida', str(Path(d) / 'nuevo.json')])
+            self.assertFalse((Path(d) / 'nuevo.json').exists())
+
+    def test_main_no_guarda_si_falla(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as d, \
+                patch.object(t12, 'comprobar', lambda raiz=None: dict(resultado='fallido')), \
+                patch('builtins.print'):
+            destino = Path(d) / 'nuevo.json'
+            with self.assertRaises(Exception):
+                t12.main(['--comprobar', '--salida', str(destino)])
+            self.assertFalse(destino.exists())
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -417,3 +417,207 @@ def ajustar_y_predecir(X, y, X_eval, procedimiento, escenario):
     detalle = modelo.predict_with_details(X_eval)
     return dict(seleccion=sel, modelo=modelo, detalle=detalle, candidato=procedimiento['candidato'],
                 version=VERSION, sha_diseno_t12=DISENO_SHA)
+
+
+# ------------------------------------------------------------------ comprobaciones (paso 3)
+# Tres verificaciones con los datos reales que NO calculan ni guardan ningún error de predicción:
+# sólo comparan que este código reproduce lo ya establecido (T08, v3 de Dani) y que las 59 llegan completas.
+TOL = 1e-12
+SALIDA_COMPROBACIONES = 'registro/t12/comprobaciones.json'
+FUENTES_ENTRADA = ('registro/t07/tabla_comun.csv', 'registro/t07/manifest.json',
+                   'registro/t07/contrato_columnas.json', 'registro/t03/particiones.csv',
+                   'registro/t03/soporte_parcelas.csv',
+                   'registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv',
+                   'registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv',
+                   'registro/evaluacion_comun/procedimiento_centrado_loo_v3.json', DISENO)
+CODIGO = ('scripts/t12_heterogeneidad.py', 'scripts/evaluacion_comun_centrado_loo.py',
+          'scripts/evaluacion_comun_centrado.py', 'scripts/evaluacion_comun_modelo.py',
+          'scripts/evaluacion_comun_contrato.py')
+CONTEXTOS = tuple((e, r, f) for e in ('A', 'B') for r in range(1, 6) for f in range(5))
+CONTROLES = ('t12_control_comun_GP', 't12_control_comun_G', 't12_control_comun_P')
+
+
+def entradas_x(entradas):
+    """X de las 138 (con su y) y X de las 59. El rendimiento de las 59 no se lee: se descarta de la tabla."""
+    tabla = pd.DataFrame(list(entradas['tabla'].values())).set_index('id_parcela')
+    conocidos, reservados = sorted(entradas['conocidos']), sorted(entradas['reservados'])
+    exigir(len(conocidos) == 138 and len(reservados) == 59 and not set(conocidos) & set(reservados),
+           'Poblaciones distintas de 138 y 59')
+    y = pd.to_numeric(tabla.loc[conocidos, 'rendimiento_t_ha'], errors='raise')
+    tabla = tabla.drop(columns=['rendimiento_t_ha'])
+    roles = entradas['roles']['columnas_por_funcion']
+    for col in [c for c in roles['predictor_candidato'] if c != 'municipio'] + roles['calidad'] + ['area_ha_origen']:
+        tabla[col] = pd.to_numeric(tabla[col], errors='raise')
+    return tabla.loc[conocidos].copy(), y, tabla.loc[reservados].copy()
+
+
+def _referencia_sola(familia, referencia):
+    return fabrica(familia, dict(nombre='referencia_sola', columnas=[], ventana='estatica'), (), referencia)
+
+
+def comprobar_referencia(entradas, contextos=CONTEXTOS):
+    """1. La referencia reproduce las 1,380 predicciones de T08 fuera del entrenamiento, con sus fuentes.
+
+    Las tres familias usan la misma referencia: se comprueban las tres con la media y het también
+    con la mediana contra la mediana de T08/T03 (control E_T12_008).
+    """
+    raiz = Path(RAIZ)
+    esperado = {}
+    for ref, nombre in (('media', 'media_mun__resp_grupo'), ('mediana', 'mediana_mun__resp_grupo')):
+        d = pd.read_csv(raiz / f'registro/t03/predicciones_oof_referencias_{nombre}.csv')
+        exigir(len(d) == 1380 and not d.duplicated(['escenario', 'repeticion', 'ID_POLIGONO']).any(),
+               'Archivo T03 de referencia incompleto o duplicado')
+        esperado[ref] = d.set_index(['escenario', 'repeticion', 'ID_POLIGONO'])
+    combinaciones = [('het', 'media'), ('gb', 'media'), ('comun_v3', 'media'), ('het', 'mediana')]
+    acum = {c: dict(filas=0, dif_max=0.0, fuentes_distintas=0, claves_ausentes=0) for c in combinaciones}
+    for esc, rep, fold in contextos:
+        tr, y, te = v3.preparar_contexto(entradas, esc, rep, fold)
+        for familia, ref in combinaciones:
+            det = _referencia_sola(familia, ref).fit(tr, y).predict_with_details(te)
+            exp = esperado[ref]
+            claves = [(esc, rep, i) for i in te.index]
+            ausentes = [k for k in claves if k not in exp.index]
+            a = acum[(familia, ref)]
+            a['claves_ausentes'] += len(ausentes)
+            if ausentes:
+                continue
+            e = exp.loc[claves]
+            a['filas'] += len(te)
+            a['dif_max'] = max(a['dif_max'], float(np.max(np.abs(det.prediccion.to_numpy() - e.prediccion.to_numpy()))))
+            a['fuentes_distintas'] += int((det.fuente.to_numpy() != e.fuente.to_numpy()).sum())
+    salida = {f'{f}__{r}': a for (f, r), a in acum.items()}
+    completo = tuple(contextos) == CONTEXTOS  # sólo la corrida completa exige las 1,380 filas
+    aprobado = all((a['filas'] == 1380 or not completo) and a['filas'] > 0 and a['claves_ausentes'] == 0 and
+                   a['fuentes_distintas'] == 0 and a['dif_max'] < TOL for a in acum.values())
+    return dict(aprobado=bool(aprobado), tolerancia=TOL, contextos=len(contextos), por_modelo=salida,
+                nota='Sólo diferencias contra T03; no se calcula ningún error contra la etiqueta.')
+
+
+def _dani(tr, y, opciones, escenario):
+    """Procedimiento v3 de Dani aplicado tal cual: su selector y su modelo."""
+    nombradas = [dict(o, nombre=f"{o['ventana']}__lambda_{o['lambda_reg']:g}") for o in opciones]
+    sel = v3.seleccionar(tr, y, nombradas, escenario)
+    el = sel['elegida']
+    lam = el['lambda_reg'] if el['columnas'] else None
+    return sel, v3.CorreccionComunCentradaLOO(el['columnas'], lam).fit(tr, y)
+
+
+def _clave_puntuacion(p):
+    return 'referencia_sola' if p['referencia_sola'] else (p['ventana'], p['lambda_reg'])
+
+
+def comprobar_controles(entradas, cfg, contextos=CONTEXTOS):
+    """2. t12_control_comun_X reproduce el procedimiento v3 de Dani en los 50 contextos externos.
+
+    Se compara la opción elegida, los puntajes internos (sólo su diferencia), los coeficientes y las
+    predicciones de evaluación. No se guarda ni se calcula ningún error contra la etiqueta.
+    """
+    procs = {p['candidato']: p for p in cfg['procedimientos']}
+    salida = {}
+    for nombre in CONTROLES:
+        proc = procs[nombre]
+        opciones = opciones_registradas(proc)
+        r = dict(contextos=0, opcion_distinta=0, dif_puntajes=0.0, dif_coeficientes=0.0, dif_predicciones=0.0,
+                 puntajes_con_conteos_distintos=0)
+        for esc, rep, fold in contextos:
+            tr, y, te = v3.preparar_contexto(entradas, esc, rep, fold)
+            sel_d, mod_d = _dani(tr, y, opciones, esc)
+            sel_m = seleccionar_familia(tr, y, opciones, esc, 'comun_v3')
+            mod_m = fabrica('comun_v3', sel_m['elegida'], sel_m['grupos_pendiente']).fit(tr, y)
+            el_d, el_m = sel_d['elegida'], sel_m['elegida']
+            mismo = (el_d['columnas'] == el_m['columnas'] and el_d['ventana'] == el_m['ventana'] and
+                     (el_d['columnas'] == [] or el_d['lambda_reg'] == el_m['lambda_reg']))
+            r['opcion_distinta'] += int(not mismo)
+            pd_ = {_clave_puntuacion(p): p for p in sel_d['puntuaciones']}
+            pm_ = {_clave_puntuacion(p): p for p in sel_m['puntuaciones']}
+            exigir(set(pd_) == set(pm_), 'Opciones evaluadas distintas de las de Dani')
+            for k in pd_:
+                r['dif_puntajes'] = max(r['dif_puntajes'], abs(pd_[k]['MAE'] - pm_[k]['MAE']),
+                                        abs(pd_[k]['MAE_todas'] - pm_[k]['MAE_todas']))
+                r['puntajes_con_conteos_distintos'] += int(
+                    (pd_[k]['n_elegibles'], pd_[k]['n_validacion']) != (pm_[k]['n_elegibles'], pm_[k]['n_validacion']))
+            cd, cm = mod_d.estado().get('coeficientes', []), mod_m.estado().get('coeficientes', [])
+            exigir(len(cd) == len(cm), 'Número de coeficientes distinto del de Dani')
+            if cd:
+                r['dif_coeficientes'] = max(r['dif_coeficientes'], float(np.max(np.abs(np.asarray(cd) - np.asarray(cm)))))
+            r['dif_predicciones'] = max(r['dif_predicciones'],
+                                        float(np.max(np.abs(mod_d.predict(te) - mod_m.predict(te)))))
+            r['contextos'] += 1
+        r['aprobado'] = bool(r['contextos'] == len(contextos) and r['opcion_distinta'] == 0 and
+                             r['puntajes_con_conteos_distintos'] == 0 and
+                             max(r['dif_puntajes'], r['dif_coeficientes'], r['dif_predicciones']) < TOL)
+        salida[nombre] = r
+    return dict(aprobado=all(r['aprobado'] for r in salida.values()), tolerancia=TOL, por_control=salida,
+                nota='Sólo diferencias contra el procedimiento v3; no se calcula ningún error contra la etiqueta.')
+
+
+def comprobar_entradas_59(entradas, cfg):
+    """3. Las 59 llegan completas para G y P. No usa etiquetas."""
+    X138, _, X59 = entradas_x(entradas)
+    cols = list(cfg['bloques']['G']['columnas'])
+    for v in cfg['bloques']['P']['columnas_por_ventana'].values():
+        cols += [c for c in v if c not in cols]
+    exigir(all(c in X59.columns for c in cols), 'Falta una columna de G o P en la tabla común')
+    columnas = {}
+    for c in cols:
+        v = X59[c].to_numpy(dtype=float)
+        columnas[c] = dict(faltantes_59=int(np.isnan(v).sum()), infinitos_59=int(np.isinf(v).sum()),
+                           faltantes_138=int(X138[c].isna().sum()))
+    permitidas = {base.NULLABLE}
+    sin_permiso = {c: r['faltantes_59'] for c, r in columnas.items()
+                   if r['faltantes_59'] and c not in permitidas}
+    area_ok = bool((X59.area_ha_origen > 0).all() and np.isfinite(X59.area_ha_origen).all())
+    mun138, cult138 = set(X138.municipio), set(X138.cultivo_origen)
+    fuente = X59.apply(lambda f: 'municipio' if f.municipio in mun138 else
+                       ('grupo' if f.cultivo_origen in cult138 else 'global'), axis=1)
+    aprobado = bool(not sin_permiso and area_ok and all(r['infinitos_59'] == 0 for r in columnas.values())
+                    and X59.municipio.notna().all() and X59.cultivo_origen.notna().all())
+    return dict(aprobado=aprobado, n_59=len(X59), columnas_G_y_P=columnas, faltantes_no_permitidos=sin_permiso,
+                columna_con_faltante_admitido=base.NULLABLE, area_positiva_y_finita=area_ok,
+                fuente_de_referencia_de_las_59_con_las_138=fuente.value_counts().to_dict(),
+                municipios_de_las_59=X59.municipio.value_counts().sort_index().to_dict(),
+                nota='Sólo cuenta valores faltantes; no usa etiquetas.')
+
+
+def comprobar(raiz=RAIZ):
+    """Corre las tres comprobaciones y devuelve el registro completo."""
+    import platform
+    import sklearn
+    cfg = cargar_diseno(raiz)
+    entradas = v3.cargar_entradas(raiz)
+    referencia = comprobar_referencia(entradas)
+    controles = comprobar_controles(entradas, cfg)
+    entradas59 = comprobar_entradas_59(entradas, cfg)
+    ok = referencia['aprobado'] and controles['aprobado'] and entradas59['aprobado']
+    return dict(schema='comprobaciones_t12_v1', version=VERSION, sha_diseno_t12=DISENO_SHA,
+                resultado='aprobado' if ok else 'fallido',
+                alcance='sin errores de predicción contra etiquetas; sin ajuste de las 59',
+                MAE_externo_calculado=False, ajustes_finales_59=0,
+                referencia_T08=referencia, controles_v3=controles, entradas_59=entradas59,
+                entorno=dict(sistema=platform.system(), python=platform.python_version(), numpy=np.__version__,
+                             pandas=pd.__version__, sklearn=sklearn.__version__),
+                fuentes_sha256={f: sha(Path(raiz) / f) for f in FUENTES_ENTRADA},
+                codigo_sha256={f: sha(Path(raiz) / f) for f in CODIGO})
+
+
+def main(argv=None):
+    import argparse
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--raiz', type=Path, default=RAIZ)
+    p.add_argument('--comprobar', action='store_true', help='Paso 3: tres comprobaciones sin mirar resultados')
+    p.add_argument('--salida', type=Path, default=None,
+                   help=f'Archivo nuevo para --comprobar (por defecto {SALIDA_COMPROBACIONES} dentro de --raiz)')
+    args = p.parse_args(argv)
+    exigir(args.comprobar, 'Por ahora sólo existe --comprobar; --evaluar y --controles llegan en los pasos 4 y 5')
+    destino = args.salida or Path(args.raiz) / SALIDA_COMPROBACIONES
+    exigir(not destino.exists(), f'{destino} ya existe: no se sobrescribe')
+    resultado = comprobar(args.raiz)
+    texto = json.dumps(resultado, ensure_ascii=False, indent=2)
+    print(texto)
+    exigir(resultado['resultado'] == 'aprobado', 'Alguna comprobación falló: no se guarda el archivo')
+    destino.write_text(texto + '\n', encoding='utf-8')
+    print(f'Guardado: {destino}')
+
+
+if __name__ == '__main__':
+    main()
