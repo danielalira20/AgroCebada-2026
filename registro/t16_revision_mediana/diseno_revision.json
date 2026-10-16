@@ -9,7 +9,9 @@
     "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
     "registro/t15_resultados/predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
     "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
-    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd"
+    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t15_resultados/manifest.json": "fa89ae95172444242b0a97e39f7923b1604f950c0e2f87b2fd0db1e46c06799f"
   },
   "comparacion": "Media vs mediana municipal con mismo respaldo; A/B y todas/sin_respaldo sin cambiar poblaciones; no escoger estadístico por municipio ni retocar OOF.",
   "metricas": [
@@ -38,5 +40,7 @@
     "No ejecutar exploraciones extra de PR23",
     "No modificar o publicar ramas ajenas ni mensajes sin autorización",
     "No E1/Q aún"
-  ]
+  ],
+  "diseno_previo_sha256": "c59ff62d1ed80457b86b07efa3e3e5e32624ac621b723ba5b8e8e9c7d12ff7f3",
+  "ampliacion_trazabilidad": "Antes de la auditoría se añaden huellas de calidad y manifiesto original para fijar sin24 y procedencia; no cambian métricas, reglas ni tolerancias."
 }
