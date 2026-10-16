@@ -1,8 +1,9 @@
 """T12: heterogeneidad municipal y contraste no lineal sobre común-centrado-LOO-v3.
 
-Parte 1 (paso 2): familia `het`, pendiente común más desviación municipal contraída.
-Hereda de v3 la referencia, el residuo sin la fila, las transformaciones, el
-escalado y el centro sin la fila; sólo cambia el ajuste final de Ridge.
+Familia `het` (parte 1): pendiente común más desviación municipal contraída.
+Familia `gb` (parte 2): boosting con pérdida absoluta sobre las mismas entradas.
+Ambas heredan de v3 la referencia, el residuo sin la fila, las transformaciones,
+el escalado y el centro sin la fila; sólo cambia el ajuste final.
 No ejecuta evaluaciones ni ajusta las 59.
 """
 import copy
@@ -12,6 +13,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import Ridge
 
 from scripts import evaluacion_comun_centrado_loo as v3
@@ -24,6 +26,13 @@ DISENO = 'registro/t12/procedimiento_t12.json'
 DISENO_SHA = 'c0bd784b1bb55dda887294fb597d3e6547485992b5a220a1249ed57c79bf41b9'
 N_MIN_PENDIENTE = 12
 KAPPA = (1.0, 10.0)
+N_ARBOLES = (50, 150)
+SEMILLA_GB = 20261015
+PARAMETROS_GB = dict(loss='absolute_error', max_depth=2, min_samples_leaf=10, learning_rate=0.05,
+                     subsample=0.8, init='zero', random_state=SEMILLA_GB)
+# v3 exige un λ de su lista al ajustar. El boosting no lo usa: se fija uno para reutilizar
+# el cálculo de residuos y centros sin cambiarlo, y no interviene en ninguna predicción.
+LAMBDA_NO_USADO = 1.0
 
 
 def cargar_diseno(raiz=RAIZ):
@@ -33,7 +42,10 @@ def cargar_diseno(raiz=RAIZ):
     cfg = json.loads(ruta.read_text(encoding='utf-8'))
     exigir(cfg['schema'] == 'experimento_t12_heterogeneidad_v1', 'Diseño T12 incompatible')
     exigir(cfg['familias']['het']['N_MIN_PENDIENTE'] == N_MIN_PENDIENTE and
-           tuple(cfg['familias']['het']['kappa']) == KAPPA, 'Constantes del código distintas del diseño')
+           tuple(cfg['familias']['het']['kappa']) == KAPPA, 'Constantes het del código distintas del diseño')
+    gb = cfg['familias']['gb']
+    exigir(gb['parametros_fijos'] == PARAMETROS_GB and tuple(gb['n_estimators']) == N_ARBOLES,
+           'Parámetros gb del código distintos del diseño')
     return cfg
 
 
@@ -157,3 +169,107 @@ def clave_opcion_het(row):
     """Desempate registrado: MAE a 6 decimales > referencia sola > λ mayor > κ mayor > jun_oct > nombre."""
     return (round(row['MAE'], 6), 0 if row['referencia_sola'] else 1, -(row.get('lambda_reg') or 0),
             -(row.get('kappa') or 0), 0 if row['ventana'] == 'jun_oct' else 1, row['nombre'])
+
+
+class CorreccionBoostingL1(v3.CorreccionComunCentradaLOO):
+    """Referencia T08 + boosting con pérdida absoluta sobre el residuo LOO de v3.
+
+    Entradas: las desviaciones D_i de v3 más un indicador 0/1 por municipio con pendiente propia
+    (misma regla de ≥ N_MIN_PENDIENTE filas, o la lista heredada). Objetivo: los r_i de v3.
+    init='zero': no hay término constante, la corrección sólo puede venir de las variables.
+    Sin columnas es la referencia sola.
+    """
+
+    def __init__(self, columnas=(), n_estimators=None, grupos_pendiente=None):
+        super().__init__(columnas, LAMBDA_NO_USADO if columnas else None)
+        self.n_estimators = n_estimators
+        self.grupos_pendiente = None if grupos_pendiente is None else tuple(grupos_pendiente)
+
+    def _validar_parametros_t12(self):
+        if self.columnas:
+            exigir(not isinstance(self.n_estimators, bool) and self.n_estimators in N_ARBOLES,
+                   'n_estimators fuera del procedimiento')
+        else:
+            exigir(self.n_estimators is None, 'La referencia sola no lleva árboles')
+        if self.grupos_pendiente is not None:
+            _validar_grupos(self.grupos_pendiente)
+
+    def _entradas(self, d, municipios):
+        indicadores = [(municipios == g).astype(float)[:, None] for g in self.grupos_pendiente_]
+        return np.hstack([d, *indicadores])
+
+    def fit(self, X, y):
+        self._validar_parametros_t12()
+        super().fit(X, y)  # v3: residuos_, escalador_, centros_sin_fila_
+        try:
+            self.grupos_pendiente_ = ()
+            self.gb_ = None
+            if self.ridge_ is not None:
+                Xs = X.sort_index()
+                exigir(tuple(Xs.index) == self.ids_entrenamiento_, 'Orden de entrenamiento distinto de v3')
+                grupos = grupos_con_pendiente(Xs) if self.grupos_pendiente is None else self.grupos_pendiente
+                _validar_grupos(grupos)
+                self.grupos_pendiente_ = grupos
+                self.ridge_ = None  # el Ridge común de v3 no interviene en esta familia
+                z = self.escalador_.transform(self._valores(Xs))
+                d = z - self.centros_sin_fila_.loc[Xs.index].to_numpy()
+                self.gb_ = GradientBoostingRegressor(n_estimators=self.n_estimators, **PARAMETROS_GB).fit(
+                    self._entradas(d, Xs.municipio.to_numpy()), self.residuos_)
+                exigir(np.isfinite(self.gb_.predict(self._entradas(d, Xs.municipio.to_numpy()))).all(),
+                       'Boosting no finito')
+            self.parametros_fit_ = (tuple(self.columnas), self.n_estimators, self.grupos_pendiente)
+        except Exception:
+            self._limpiar()
+            raise
+        return self
+
+    def _comprobar(self):
+        exigir(getattr(self, 'ajustado_', False), 'Modelo sin ajustar')
+        exigir(self.parametros_fit_ == (tuple(self.columnas), self.n_estimators, self.grupos_pendiente),
+               'Reajustar después de cambiar columnas, árboles o municipios')
+
+    def predict_with_details(self, X):
+        self._comprobar()
+        validar_X(X, self.columnas)
+        base, source = aplicar_referencia(X, self.mun_, self.grupo_, self.global_)
+        correction = np.zeros(len(X))
+        source_center = np.full(len(X), 'no_aplica', dtype=object)
+        if self.gb_ is not None:
+            z = self.escalador_.transform(self._valores(X))
+            center, source_center = self._centros(X)
+            exigir(np.array_equal(source_center, source), 'Centro y referencia con respaldos diferentes')
+            correction = self.gb_.predict(self._entradas(z - center, X.municipio.to_numpy()))
+        prediction = base + correction
+        exigir(np.isfinite(prediction).all(), 'Predicción no finita')
+        return pd.DataFrame(dict(prediccion=prediction, referencia=base, correccion=correction,
+                                 fuente=source, fuente_centrado=source_center), index=X.index)
+
+    def importancias(self):
+        """Importancia por variable (descriptiva, para C5); los indicadores van al final."""
+        self._comprobar()
+        exigir(self.gb_ is not None, 'La referencia sola no tiene importancias')
+        nombres = list(self.nombres_) + [f'municipio={g}' for g in self.grupos_pendiente_]
+        return pd.Series(self.gb_.feature_importances_, index=nombres)
+
+    def estado(self):
+        self._comprobar()
+        e = {'familia': 'gb_boosting_absoluto_sobre_residuo_LOO_v3', 'version': VERSION,
+             'sha_diseno_t12': DISENO_SHA, 'version_base': v3.VERSION,
+             'ids_entrenamiento': list(self.ids_entrenamiento_), 'n': self.n_,
+             'municipio': self.mun_, 'grupo': self.grupo_, 'global': self.global_,
+             'columnas': list(self.columnas), 'n_estimators': self.n_estimators,
+             'parametros_gb': dict(PARAMETROS_GB), 'intercepto': 0.0,
+             'grupos_pendiente_heredados': self.grupos_pendiente is not None,
+             'grupos_pendiente': list(self.grupos_pendiente_)}
+        if self.gb_ is not None:
+            e.update(nombres_transformados=self.nombres_, media=self.escalador_.mean_.tolist(),
+                     escala=self.escalador_.scale_.tolist(),
+                     mediana_pendiente=getattr(self, 'mediana_pendiente_', None),
+                     importancias=self.importancias().to_dict())
+        return e
+
+
+def clave_opcion_gb(row):
+    """Desempate registrado: MAE a 6 decimales > referencia sola > menos árboles > jun_oct > nombre."""
+    return (round(row['MAE'], 6), 0 if row['referencia_sola'] else 1, row.get('n_estimators') or 0,
+            0 if row['ventana'] == 'jun_oct' else 1, row['nombre'])
