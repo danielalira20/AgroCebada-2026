@@ -66,3 +66,16 @@ Se comprueban aislamiento de etiquetas externas, equivalencia con el selector v3
 El [PR21](https://github.com/danielalira20/AgroCebada-2026/pull/21) reúne el complemento LOO, contrato y este ejecutor. La actualización está autorizada por Dani; no implica merge en `dev`. AGENTS.md, skills, originales y reportes locales permanecen fuera del lote publicado. Docker sólo se utiliza durante QA y se apaga al finalizar.
 
 Apoyo de procedimiento: skills scikit-learn y scientific-critical-thinking, citadas en el contrato previo; [Scientific Agent Skills](https://arxiv.org/abs/2609.00065). Su uso no constituye evidencia de mejora de MAE.
+
+
+## Resultado de esta entrega
+
+Pasaron **64 pruebas en Mac y 64 en Docker común Linux/amd64 con Python -O**: 18 del ejecutor y 46 de contrato/v3. La prueba real adicional de S/B está limitada a repetición 1, partición 0. Se guardan 36 ajustes internos y dos externos (uno de referencia y uno seleccionado); no es una estimación del desempeño completo.
+
+La comparación entre entornos verifica 11,575 elementos de selecciones, estados, trazas y predicciones. Diferencia numérica máxima 1.11e-15, dentro del límite 1e-12. Las huellas binarias de 33 estados difieren por redondeo; se contrastaron sus valores completos sin ampliar tolerancia. El preflight es idéntico por bytes. Una reconstrucción matricial separada reproduce las 34 predicciones S/B con diferencia máxima 8.88e-16.
+
+Los reportes de software completan 12,420 claves, 400 selecciones, 36 resúmenes, 180 filas por repetición y 72 contrastes con controles históricos en temporales. Esa prueba no entrenó los ocho procedimientos ni generó un MAE nuevo de T15. Los CSV numéricos de esos controles no se publican como resultados.
+
+Se integró dev 97a8906, que ya contenía T14. Los conflictos eran exclusivamente dos bitácoras: se conservaron nuestras filas y se añadieron D_T14_001 e IA_T14_001/002/003, sin renumerar ni cambiar su contenido. Código, tablas y documento T14 coinciden con dev. Las fuentes de T03/T07 y los estimadores comunes probados no cambian con esa integración. Tras integrar se comprueba otra vez el modo verificar, sin modelos. Docker quedó apagado.
+
+El paquete está preparado para una solicitud posterior de evaluación completa. Este trabajo no la ejecuta ni fusiona PR21 en dev.

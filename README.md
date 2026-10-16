@@ -186,3 +186,7 @@ Las tablas compactas están en `registro/diagnostico/aplicabilidad59/`. El detal
 ## Contrato de comparaciones T15 · 15 de octubre
 
 El [contrato de comparaciones y pruebas](docs/t15_contrato_comparaciones.md) fija las ocho comparaciones, las fuentes y los criterios de v3, añade trazas por ajuste y registra aparte las extensiones. La [verificación técnica](registro/t15_contrato/verificacion.json) conserva la evidencia Mac/Docker. Cierre técnico local para revisión; no se ha ejecutado T15 completa ni se ha seleccionado un ganador.
+
+## Ejecutor T15 y cierre operativo con Dani
+
+El [ejecutor T15](docs/t15_ejecutor.md) completa las selecciones, trazas y reportes del contrato. El [registro operativo](registro/t15_contrato/registro_operativo_v1.json) recoge la decisión de Dani de continuar sin esperar revisiones externas; conserva el método y las ocho comparaciones. La [verificación](registro/t15_contrato/verificacion_ejecutor.json) acredita 64 pruebas en Mac/Docker y comprobaciones limitadas. La evaluación completa requiere una solicitud posterior y confirmación explícita; no se ha ejecutado.
