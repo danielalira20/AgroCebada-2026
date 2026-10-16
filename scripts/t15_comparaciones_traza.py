@@ -73,7 +73,7 @@ def ajustar_y_trazar(entrenamiento, y_entrenamiento, validacion, opcion, elegibl
     return modelo, detalles, traza
 
 
-def seleccionar_con_traza(X, y, opciones, escenario='A'):
+def seleccionar_con_traza(X, y, opciones, escenario='A', *, al_ajuste=None):
     """Igual matemática y desempate que v3; añade IDs/conteos/estado por fit."""
     validar_X(X, [])
     validar_y(X, y)
@@ -92,6 +92,7 @@ def seleccionar_con_traza(X, y, opciones, escenario='A'):
                 _, detalles, traza = ajustar_y_trazar(tr, y.loc[tr.index], va, opcion, division.elegibles)
             except ErrorAjuste as exc:
                 exc.traza.update(escenario=escenario, division_interna=numero)
+                if al_ajuste is not None:al_ajuste(copy.deepcopy(exc.traza))
                 raise
             error = np.abs(detalles.prediccion.to_numpy() - y.loc[va.index].to_numpy())
             mascara = np.asarray(division.elegibles)
@@ -100,6 +101,7 @@ def seleccionar_con_traza(X, y, opciones, escenario='A'):
             traza.update(escenario=escenario, division_interna=numero,
                          MAE=float(error[mascara].mean()), MAE_todas=float(error.mean()))
             trazas.append(traza)
+            if al_ajuste is not None:al_ajuste(copy.deepcopy(traza))
         exigir(errores and np.isfinite(errores).all(), 'Opción no evaluable: no omitir')
         puntuaciones.append(dict(nombre=opcion['nombre'], ventana=opcion['ventana'],
                                   lambda_reg=opcion['lambda_reg'], referencia_sola=not opcion['columnas'],

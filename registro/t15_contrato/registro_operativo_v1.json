@@ -71,7 +71,7 @@
     "sin_cambiar_semillas_ni_expandir_B_principal": true
   },
   "codigo_sha256": {
-    "scripts/t15_ejecutar.py": "b91963554c7a70e48eee82fd6bfed2df5f329dd36dd1f6d6672349190d761397",
+    "scripts/t15_ejecutar.py": "cf338615d70c1786fd3b7e5cdcc3bd27e5288eeed107be24f08c6a5f3f0e8c6d",
     "scripts/t15_ejecutor_reportes.py": "70e323f3280574cb6a6bbf722a8307ed8b8efa72eb2ef41cbbf0a52ec08aa25f",
     "scripts/t15_comparaciones_traza.py": "d077ee711e8b3089a770be98987a69015140a706e52d9e95ab897bd31267840a"
   },
