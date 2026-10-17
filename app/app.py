@@ -63,6 +63,53 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 
 .st-key-glass_top { padding: 10px 16px; }
 
+
+/* espacio inferior en Método y límites */
+.st-key-glass_metodo,
+.st-key-glass_resultados,
+.st-key-glass_fuentes,
+.st-key-glass_limites {
+    padding-bottom: 28px;
+}
+
+/* métricas adaptables en pantallas pequeñas */
+@media (max-width: 600px) {
+    .st-key-glass_resultados .fila {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .st-key-glass_resultados .mini {
+        min-width: 0;
+        padding: 12px;
+    }
+    .st-key-glass_resultados .mini:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Evitar que los textos terminen pegados al borde */
+.st-key-glass_resultados .nota {
+    margin-top: 16px;
+    margin-bottom: 10px;
+    line-height: 1.55;
+}
+
+/* Separación interior de las tarjetas del procedimiento */
+.st-key-glass_metodo .paso {
+    padding: 16px 14px 22px;
+}
+
+/* Dar espacio a las etiquetas de fuentes */
+.st-key-glass_fuentes .etiquetas {
+    margin-bottom: 8px;
+}
+
+/* Separación inferior de las advertencias */
+.st-key-glass_limites .limites {
+    padding-bottom: 8px;
+}
+
 /* QA: espacio y adaptación de la tarjeta informativa */
 .st-key-glass_explica {
     padding: 18px 20px 26px;
