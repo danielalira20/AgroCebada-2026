@@ -1,0 +1,36 @@
+{
+  "resultado": "aprobado",
+  "contrato_sha256": "620b9e497a4d97df02d23162c9c96f1d1f56f980cd0803c73a4b7e22a3b81156",
+  "codigo_sha256": {
+    "scripts/t15_t13_datos.py": "a0d8637f8ba5601fe5970eb979cc377b17173b40bf0c44f488bc2e71e0b2a559",
+    "scripts/t15_t13_ejecutar.py": "26d14ef5c2dbbc98276ccd3b4a1f25c41915fc9eb1a7f12f1e4f4f92282422cb",
+    "scripts/t15_t13_auditar.py": "68c396cd4dedf5af57a88c4a7957ca1472a837a04c70488686f6d0477f6b2f70",
+    "tests/test_t15_t13.py": "ed37094047a47595f3d6452b7dbc2b5a6650146034f2375b84d8cd93a67d89ed"
+  },
+  "tests_Mac": 44,
+  "tests_Linux": 44,
+  "selecciones_iguales": true,
+  "max_diferencia_OOF": 7.105427357601002e-15,
+  "evidencias_sha256": {
+    "auditoria_mac.json": "f4f1b0ad83df5db45d70e9f6cd0a987976108b12fc8f7627d7a3a20ba2585b21",
+    "auditoria_linux.json": "9e6cb9320afcd7cf88133894e3d65e0281262a2930175a9b15df62eaf99171f7",
+    "comparacion_pilotos.json": "1fd8c31580b16a43af41cf91d43fd330b24a96df8f658c14aaf58ff2c0974410",
+    "tests_mac.log": "311a37a8eec108be6c90603a94d01e2de8d5300fc915adc10eef6c91c69c35df",
+    "datos_mac.json": "e0261c4df67d83e1bdd4133c9a4efdddac5693c934285be863238c99410dc402",
+    "datos_linux.json": "e0261c4df67d83e1bdd4133c9a4efdddac5693c934285be863238c99410dc402",
+    "incidencias.json": "cac411504b0d968857ec0f4249cddb85854cb86ee370219d1d31f7c82284f47f",
+    "tests_linux.log": "77c4664f5fd34c661c7fa9f6cdc08eb78faed3c8a4dbb42835a43bc1a42d4456",
+    "piloto_linux/selecciones.jsonl": "b843be524a6a59612e9429df49edddea8293a19d867c159f037e642bbce3f675",
+    "piloto_linux/predicciones_incrementales.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3",
+    "piloto_linux/manifest.json": "d3649494309468dd0d4c5be6af36c0ef8a93ce8f1d4a3730288d06e36b2a0bbd",
+    "piloto_linux/trazas_ajustes.jsonl.gz": "aa538d0324de1eeadc4e45ad17c8d5bc38323d56954b631664cbc440446235c6",
+    "piloto_linux/oof_parcial_prueba.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3",
+    "piloto_mac/selecciones.jsonl": "728d08ba1edc4670f1decfd7f81a6e04ae53f4417f55d729a9f92c85a4ab2a0d",
+    "piloto_mac/predicciones_incrementales.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3",
+    "piloto_mac/manifest.json": "64ce2e00daa5eae6cfc27241aa5e2ccfaa1e897c25c5517cc34d715a2160b06d",
+    "piloto_mac/trazas_ajustes.jsonl.gz": "e343b0ae086e9573e356a29e8c3834ea1778294ae9b863e109ad0f2b886d3b10",
+    "piloto_mac/oof_parcial_prueba.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3",
+    "comparar_entornos.py": "1116ea98c14d974bd5b159f1302dfc5c63b8ac046d0239cf1d9e7f27ccd0a9c8"
+  },
+  "alcance": "Puerta técnica anterior a OOF completa; cierre Dani/Codex autorizado por Dani; sin revisión atribuida a compañeros"
+}

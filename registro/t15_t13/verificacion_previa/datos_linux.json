@@ -1,0 +1,1592 @@
+{
+  "resultado": "aprobado",
+  "parcelas": 197,
+  "comparaciones": 1576,
+  "diferencia_maxima": 0.0,
+  "contrato_sha256": "620b9e497a4d97df02d23162c9c96f1d1f56f980cd0803c73a4b7e22a3b81156",
+  "ZIP_sha256": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+  "miembro_ZIP": "DATASET_RETO_AGRO_2026/Conjunto_datos_BASICO_AgroCebada2026.csv",
+  "CSV_original_sha256": "96d68040d954d0903d761fd8ceed0dcd4a08e3842915a3ca44517d60e8bee4ef",
+  "resumen_sha256": "f67dee01d21de0194aa545e04849a13e9c95350cf22f57d62cfea46dc529ac58",
+  "lee_rendimientos": false,
+  "importa_T06_T13": false,
+  "modelos_ajustados": 0,
+  "QA": [
+    {
+      "id_parcela": "AGC_001",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_002",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_003",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_004",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_005",
+      "capturas_validas": 26,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_006",
+      "capturas_validas": 26,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_007",
+      "capturas_validas": 27,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_008",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_009",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_010",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_011",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_012",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_013",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_014",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_015",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_016",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_017",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_018",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_019",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_020",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_021",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_022",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-05",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_023",
+      "capturas_validas": 37,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_024",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_025",
+      "capturas_validas": 37,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_026",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_027",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_028",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_029",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_030",
+      "capturas_validas": 27,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_031",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_032",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_033",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_034",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_035",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_036",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_037",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-09-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_038",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_039",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_040",
+      "capturas_validas": 38,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_041",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-07-24",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_042",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_043",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_044",
+      "capturas_validas": 36,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-07-24",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_045",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_046",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_047",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_048",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_049",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 1,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_050",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_051",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_052",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_053",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_054",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_055",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_056",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_057",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_058",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_059",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_060",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-27",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_061",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_062",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_063",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-10-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_064",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_065",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_066",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_067",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_068",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_069",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_070",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_071",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_072",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-27",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_073",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_074",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_075",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_076",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_077",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-27",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_078",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_079",
+      "capturas_validas": 26,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_080",
+      "capturas_validas": 25,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_081",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_082",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_083",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-05",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_084",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_085",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_086",
+      "capturas_validas": 36,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_087",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_088",
+      "capturas_validas": 27,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_089",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_090",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_091",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_092",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_093",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_094",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_095",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_096",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_097",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_098",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_099",
+      "capturas_validas": 36,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-09-17",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_100",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_101",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_102",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_103",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_104",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_105",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_106",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_107",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_108",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_109",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_110",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_111",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_112",
+      "capturas_validas": 36,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_113",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_114",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_115",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_116",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_117",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_118",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_119",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_120",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_121",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_122",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-05",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_123",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_124",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_125",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_126",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_127",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_128",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 8,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_129",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_130",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_131",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_132",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_133",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_134",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_135",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_136",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_137",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_138",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_139",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_140",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_141",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_142",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_143",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_144",
+      "capturas_validas": 36,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-07-16",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_145",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-07-24",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_146",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-05",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_147",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-07-24",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_148",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_149",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_150",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_151",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-07-16",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_152",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_153",
+      "capturas_validas": 27,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_154",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-08",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_155",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_156",
+      "capturas_validas": 25,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_157",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_158",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_159",
+      "capturas_validas": 27,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-10-27",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_160",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_161",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_162",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_163",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_164",
+      "capturas_validas": 37,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_165",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_166",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-07-29",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_167",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_168",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-27",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_169",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_170",
+      "capturas_validas": 38,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_171",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_172",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_173",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_174",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_175",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-12",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_176",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_177",
+      "capturas_validas": 29,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_178",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_179",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-10-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_180",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_181",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_182",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-05",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_183",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_184",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-23",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_185",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-07-04",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_186",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 2,
+      "fecha_maximo": "2025-09-22",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_187",
+      "capturas_validas": 34,
+      "capturas_alrededor_maximo": 7,
+      "fecha_maximo": "2025-08-03",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_188",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_189",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 6,
+      "fecha_maximo": "2025-08-13",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_190",
+      "capturas_validas": 28,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_191",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-27",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_192",
+      "capturas_validas": 35,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-09-07",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_193",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 3,
+      "fecha_maximo": "2025-09-02",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_194",
+      "capturas_validas": 33,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-09-14",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_195",
+      "capturas_validas": 31,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-25",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_196",
+      "capturas_validas": 32,
+      "capturas_alrededor_maximo": 5,
+      "fecha_maximo": "2025-08-05",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    },
+    {
+      "id_parcela": "AGC_197",
+      "capturas_validas": 30,
+      "capturas_alrededor_maximo": 4,
+      "fecha_maximo": "2025-08-28",
+      "primera": "2025-04-05",
+      "ultima": "2025-10-27"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "resultado": "aprobado",
+  "ajustes": 84,
+  "selecciones": 4,
+  "OOF": 124,
+  "comprobaciones": 26457,
+  "comprobaciones_metricas_escalares": 0,
+  "diferencia_maxima": 7.105427357601002e-15,
+  "max_corrimiento_H3": 2.8449465006019636e-16,
+  "tolerancia": 1e-12,
+  "importa_productor_sklearn": false,
+  "reconstruye_ecuaciones_normales": true,
+  "manifest_sha256": "d3649494309468dd0d4c5be6af36c0ef8a93ce8f1d4a3730288d06e36b2a0bbd",
+  "auditor_sha256": "68c396cd4dedf5af57a88c4a7957ca1472a837a04c70488686f6d0477f6b2f70"
+}

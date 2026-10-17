@@ -1,0 +1,20 @@
+{
+  "schema": "T15_T13_incidencias_v1",
+  "incidencias": [
+    {
+      "etapa": "pruebas previas Linux, sin evaluación completa",
+      "observacion": "Primer contenedor --rm terminó con salida137; log de pruebas indica Killed durante el cotejo del CSV del ZIP. No se conservó inspect de ese contenedor: OOM no confirmado directamente.",
+      "causa_probable": "Lectura de todo el CSV en una lista de diccionarios; innecesaria para un resumen parcelario y costosa bajo límite768MiB y emulación amd64.",
+      "correccion": "Procesar filas como iterador desde el ZIP y calcular SHA256 del miembro por bloques; conservar sólo observaciones válidas necesarias. No aumentar el límite ni cambiar fórmulas/corte/filtro.",
+      "evidencia": "Pruebas y auditor de datos definitivos Mac/Linux; mismos1576 valores y huellas. Estado del contenedor definitivo se conserva por separado."
+    },
+    {
+      "etapa": "inspección de integración de reportes, antes de OOF completa",
+      "observacion": "El reportador general exige una sola versión y habría rechazado la mediana T08-v1 al compararla con v3.",
+      "correccion": "Reportador dedicado verifica versión por candidato y conserva las filas previas literalmente; prueba real de reportes con tres comparadores y rechazo de reasignación de versión.",
+      "limite": "No se relajaron tolerancias, no se renombraron métodos ni recalcularon comparadores para aparentar versión común."
+    }
+  ],
+  "busqueda_o_criterios_cambiados_por_resultados": false,
+  "evaluacion_completa_usada_para_optimizar_cambios": false
+}

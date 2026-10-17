@@ -1,0 +1,71 @@
+{
+  "schema": "T15_T13_evaluacion_v1",
+  "modo": "prueba",
+  "estado": "piloto_funcional_no_desempeno_global",
+  "evaluacion_completa": false,
+  "contrato_sha256": "620b9e497a4d97df02d23162c9c96f1d1f56f980cd0803c73a4b7e22a3b81156",
+  "codigo_sha256": {
+    "scripts/t15_t13_datos.py": "a0d8637f8ba5601fe5970eb979cc377b17173b40bf0c44f488bc2e71e0b2a559",
+    "scripts/t15_t13_ejecutar.py": "26d14ef5c2dbbc98276ccd3b4a1f25c41915fc9eb1a7f12f1e4f4f92282422cb",
+    "scripts/t15_t13_auditar.py": "68c396cd4dedf5af57a88c4a7957ca1472a837a04c70488686f6d0477f6b2f70",
+    "tests/test_t15_t13.py": "ed37094047a47595f3d6452b7dbc2b5a6650146034f2375b84d8cd93a67d89ed"
+  },
+  "fuentes_sha256": {
+    "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+    "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+    "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+    "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+    "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+    "registro/evaluacion_comun/procedimiento_centrado_loo_v3.json": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+    "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "requirements.txt": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
+    "Dockerfile": "fa12707e735c0e2c52c2894ebf237cf5e81ed3e2984b7a4a0ba607e841038485",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
+    "registro/t15_contrato/contrato_v1.json": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+    "registro/t15_resultados/predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "scripts/t15_ejecutor_reportes.py": "70e323f3280574cb6a6bbf722a8307ed8b8efa72eb2ef41cbbf0a52ec08aa25f",
+    "scripts/t15_comparaciones_traza.py": "d077ee711e8b3089a770be98987a69015140a706e52d9e95ab897bd31267840a",
+    "scripts/t15_comparaciones_contrato.py": "d0de0d138ac907ae06aa346d5bb7742c6b5cf08f533bebcc51313afac2fa7dc5",
+    "scripts/t15_ejecutar.py": "cf338615d70c1786fd3b7e5cdcc3bd27e5288eeed107be24f08c6a5f3f0e8c6d",
+    "scripts/t15_e1_auditar.py": "e2cc1c50af39b53112c7f5329a124a477304f54dff5005c858d13e1c9cdb93da",
+    "registro/t15_t13/fuentes/variables_indices_extra.csv": "f67dee01d21de0194aa545e04849a13e9c95350cf22f57d62cfea46dc529ac58",
+    "registro/t15_t13/fuentes/T13_indices.md": "35d4bbbd594bdc87187ac953c7b04ec9d5c4d0e2151e383b1c806aee9fe6914d",
+    "registro/t15_t13/fuentes/t13_extension_indices.py": "1228e672ae5703bffb66bdb9402b0ada6dd40949a598d3dc82e70ac45576a7bf"
+  },
+  "fuente_commit": "c8dbac8b56b1b51ac7341f00f9b4516b74d10dfe",
+  "entorno": {
+    "python": "3.12.15",
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "librerias": {
+      "numpy": "2.2.6",
+      "pandas": "3.0.6",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    }
+  },
+  "contextos": 2,
+  "ajustes": 84,
+  "OOF_nuevas": 124,
+  "predicciones_finales59": 0,
+  "ganador_T16_congelado": false,
+  "puerta_sha256": null,
+  "tiempo_segundos": 26.750808291,
+  "archivos_sha256": {
+    "selecciones.jsonl": "b843be524a6a59612e9429df49edddea8293a19d867c159f037e642bbce3f675",
+    "predicciones_incrementales.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3",
+    "trazas_ajustes.jsonl.gz": "aa538d0324de1eeadc4e45ad17c8d5bc38323d56954b631664cbc440446235c6",
+    "oof_parcial_prueba.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3"
+  }
+}
