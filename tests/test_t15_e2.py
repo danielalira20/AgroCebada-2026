@@ -143,11 +143,17 @@ class TestE2(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'existente'):e.extract(Path(tmp),Path(tmp))
 
     def test_real_polygon_z_zero_preserves_xy(self):
+        import shapely
         root=Path(__file__).resolve().parents[1]
         c=json.loads((root/'registro/t15_e2/contrato_tecnico_v1.json').read_text())
         result=e.load_plots(root,c)
         self.assertEqual(len(result),197);self.assertFalse(result.has_z.any())
         self.assertTrue(result.is_valid.all());self.assertEqual(result.crs.to_epsg(),32614)
+        original=e.gpd.read_file(root/c['vectores']['directorio_relativo']/'Parcelas_Reto_AGC_CONJUNTO.shp',columns=['ID_POLIGON'])
+        original=original.sort_values('ID_POLIGON')
+        coords=shapely.get_coordinates(original.geometry.force_2d().segmentize(.0001))
+        restored=shapely.get_coordinates(result.to_crs(4326).geometry)
+        np.testing.assert_allclose(coords,restored,atol=5e-13,rtol=0)
 
     def test_vector_z_nonzero_blocks(self):
         import shapely

@@ -120,7 +120,7 @@ def audit(root, delivery, output):
             key=(row['id_parcela'],int(row['fila']),int(row['columna']))
             check(key not in weights,'Peso duplicado')
             weights[key]=tuple(float(row[k]) for k in ['area_interseccion_m2','peso_TPI','peso_exposicion'])
-    checks=0;seen=set();maxwarp=0.;maxarea=0.;sens=[]
+    checks=0;seen=set();maxwarp=0.;maxarea=0.;sens=[];min_margin=math.inf
     shifts=[('E15',15,0),('O15',-15,0),('N15',0,15),('S15',0,-15)]
     from shapely.affinity import translate
     with rasterio.Env(GDAL_CACHEMAX=33554432,GDAL_NUM_THREADS='1',PROJ_NETWORK='OFF'), \
@@ -128,8 +128,11 @@ def audit(root, delivery, output):
                   resampling=Resampling.bilinear,tolerance=1e-12,dtype='float64',nodata=-9999.,warp_mem_limit=32,NUM_THREADS='1') as vrt, \
             rasterio.open(delivery/'dem_utm.tif') as dem, rasterio.open(delivery/'derivadas.tif') as deriv:
         check(dem.transform==deriv.transform==t and dem.shape==deriv.shape==(height,width),'Rejillas mezcladas')
+        footprint=transform(forward.transform,box(*raw.bounds).segmentize(.0001))
         for number,row in enumerate(geo.sort_values('ID_POLIGON').itertuples(),1):
             pid=row.ID_POLIGON;geom=transform(forward.transform,row.geometry.segmentize(.0001))
+            check(footprint.covers(geom.buffer(210)),'Falta margen fuente de 210m')
+            min_margin=min(min_margin,geom.distance(footprint.boundary));checks+=1
             baseline=None
             for label,dx,dy in [('original',0,0)]+shifts:
                 g=translate(geom,dx,dy);cells=scalar_cells(g,t)
@@ -196,6 +199,7 @@ def audit(root, delivery, output):
         controles=788,celdas=len(seen),comprobaciones=checks,max_diferencia_agregados=maxagg.tolist(),
         max_diferencia_derivadas=maxdiff.tolist(),max_diferencia_rewarp_m=maxwarp,
         max_error_relativo_cierre_area=maxarea,sin_rendimientos=True,modelos_ajustados=0,
+        margen_fuente_minimo_m=min_margin,parcelas_con_margen_210m=197,
         codigo_sha256=digest(__file__),productor_sha256=manifest['codigo_sha256'],
         manifest_sha256=digest(delivery/'manifest.json'),contrato_sha256=PIN,
         bibliotecas_compartidas=['GDAL','PROJ','GEOS'],
