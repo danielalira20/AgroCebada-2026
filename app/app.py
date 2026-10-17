@@ -178,7 +178,16 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 /* controles */
 [data-testid="stWidgetLabel"] p { font-size: .74rem; color: var(--tenue); }
 .stApp [data-baseweb="select"] > div { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
-.stDownloadButton button[kind="primary"] { color: #0A110E; font-weight: 600; }
+
+.stDownloadButton button[kind="primary"] {
+    color: #0A110E;
+    font-weight: 600;
+}
+
+/* QA: separar la explicación del botón PDF */
+.st-key-glass_panel .stDownloadButton {
+    margin-top: 14px;
+}
 """
 
 MASCOTA = (AQUI / "assets" / "cebi.svg").read_text(encoding="utf-8") if (AQUI / "assets" / "cebi.svg").exists() else ""
