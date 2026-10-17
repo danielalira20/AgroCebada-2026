@@ -190,5 +190,25 @@ class E2ModeloTests(unittest.TestCase):
             out=Path(tmp)/'r.json';out.write_text('{}')
             with self.assertRaises(ValueError):registro.registrar(ROOT,Path(tmp),Path(tmp),out)
 
+    def test_registration_dangerous_changes_rejected(self):
+        c=self.data['diseno']
+        r=dict(schema='agrocebada_E2_ejecucion_v1',evaluacion_completa_autorizada=False,
+            predicciones_finales59_autorizadas=False,metodo=self.data['antecedente']['metodo'],
+            procedimientos=[dict(modo=n,dimension=d,promocion=p) for n,d,p in [('E2',8,True),('E12',10,True),('E2Q',9,False)]],
+            opciones_base=self.options,presupuesto=c['presupuesto'],decision=c['decision'],
+            poblacion=dict(total=197,etiquetadas=138,reservadas=59,excluir_por_error=False,corte='2025-10-31'),
+            referencia_sola_compite=True,tolerancia_OOF_mismo_CSV=1e-12,contrastes=c['contrastes'],
+            aprendizaje_solo_train=True,H3_centrar_todas_columnas=True)
+        self.assertTrue(registro.validar(r))
+        for case in ['authorize','control','budget','tolerance','H3','family']:
+            bad=copy.deepcopy(r)
+            if case=='authorize':bad['evaluacion_completa_autorizada']=True
+            elif case=='control':bad['procedimientos'][-1]['promocion']=True
+            elif case=='budget':bad['presupuesto']['trazas_sin_cache']=100
+            elif case=='tolerance':bad['tolerancia_OOF_mismo_CSV']=1e-6
+            elif case=='H3':bad['H3_centrar_todas_columnas']=False
+            else:bad['decision']['guardia_familia_E2']['percentiles']=[2.5,97.5]
+            with self.subTest(case=case),self.assertRaises(ValueError):registro.validar(bad)
+
 
 if __name__=='__main__':unittest.main()
