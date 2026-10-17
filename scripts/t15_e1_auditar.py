@@ -3,6 +3,8 @@ import argparse
 import csv
 from collections import defaultdict
 import hashlib
+import gzip
+import io
 import json
 import math
 from pathlib import Path
@@ -18,7 +20,18 @@ def csvread(path):
     with Path(path).open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
 
 
-def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def bytes_artifact(path):
+    path=Path(path)
+    if path.exists():return path.read_bytes()
+    compressed=Path(str(path)+'.gz')
+    if path.suffix=='.jsonl' and compressed.exists():return gzip.decompress(compressed.read_bytes())
+    raise FileNotFoundError(path)
+
+
+def text_artifact(path):return io.StringIO(bytes_artifact(path).decode('utf-8'))
+
+
+def sha(path):return hashlib.sha256(bytes_artifact(path)).hexdigest()
 
 
 class Auditor:
@@ -95,7 +108,7 @@ class Auditor:
         self.check(sha(self.root/'registro/t15_e1_evaluacion/registro_v1.json')==m['registro_sha256'],'Registro distinto')
         for name,h in m['archivos_sha256'].items():self.check(sha(run/name)==h,'Resultado alterado '+name)
         external={};external_hash={};inner=defaultdict(list);seen=set();context_sets={}; traces=0
-        with (run/'trazas_ajustes.jsonl').open() as f:
+        with text_artifact(run/'trazas_ajustes.jsonl') as f:
             for line in f:
                 t=json.loads(line);tr=t['ids_entrenamiento'];va=t['ids_validacion'];traces+=1
                 self.check(t['estado']=='correcto' and not t['advertencias'],'Fit incompleto/advertencia')
@@ -143,7 +156,7 @@ class Auditor:
                     self.close(score['MAE_todas'],np.mean([e for _,e,_ in pairs]),'Puntuación todas')
                 tie=lambda s:(round(s['MAE'],6),0 if s['referencia_sola'] else 1,-(s['lambda_reg'] or 0),0 if s['ventana']=='jun_oct' else 1,s['nombre'])
                 self.check(r['nombre_opcion']==min(r['puntuaciones'],key=tie)['nombre'],'Selección/desempate distinto')
-        with (run/'estados_modelos.jsonl').open() as f:
+        with text_artifact(run/'estados_modelos.jsonl') as f:
             for line in f:
                 r=json.loads(line);state=r['estado_modelo']
                 _,s,beta,tr,va=external[r['candidato'],r['escenario'],r['repeticion'],r['particion']]
@@ -166,6 +179,9 @@ class Auditor:
             key=(r['candidato'],r['escenario'],int(r['repeticion']),r['ID_POLIGONO'])
             self.check(key not in oof_seen,'OOF duplicada');oof_seen.add(key)
             self.check(r['ID_POLIGONO'] in self.known,'59 en OOF')
+            field='particion_principal' if r['escenario']=='A' else 'particion_espacial'
+            self.check(int(r['particion'])==int(self.parts[int(r['repeticion']),r['ID_POLIGONO']][field]),
+                       'Partición OOF alterada')
             if key in old:self.close(r['prediccion'],old[key]['prediccion'],'OOF S/referencia inmutable')
             else:
                 pred,_,_,tr,va=external[r['candidato'],r['escenario'],int(r['repeticion']),int(r['particion'])]
@@ -186,6 +202,38 @@ class Auditor:
                     rms.append(np.sqrt(mse));r2.append(1-mse/np.mean((a[:,0]-a[:,0].mean())**2))
                 self.close(row['RMSE_media_repeticiones'],np.mean(rms),'RMSE reporte')
                 self.close(row['R2_media_repeticiones'],np.mean(r2),'R2 reporte')
+            by={(r['candidato'],r['escenario'],int(r['repeticion']),r['ID_POLIGONO']):r for r in oof}
+            for row in csvread(run/'contrastes.csv'):
+                candidate,base,esc=row['candidato'],row['frente_a'],row['escenario']
+                per_id=defaultdict(list);per_rep=defaultdict(list)
+                for pid in sorted(self.known):
+                    for rep in range(1,6):
+                        a,b=by[candidate,esc,rep,pid],by[base,esc,rep,pid]
+                        if row['subconjunto']=='sin_respaldo' and a['fuente']!='municipio':continue
+                        y=float(a['real']);ea=float(a['prediccion'])-y;eb=float(b['prediccion'])-y
+                        v=np.asarray([abs(ea),abs(eb),ea*ea,eb*eb])
+                        per_id[pid].append(v);per_rep[rep].append(v)
+                means={i:np.mean(v,axis=0) for i,v in per_id.items()}
+                reps={i:np.mean(v,axis=0) for i,v in per_rep.items()}
+                delta=float(np.mean([v[0]-v[1] for v in means.values()]))
+                dreps=[reps[i][0]-reps[i][1] for i in range(1,6)]
+                drmse=float(np.mean([np.sqrt(reps[i][2])-np.sqrt(reps[i][3]) for i in range(1,6)]))
+                cells=defaultdict(list)
+                for pid,v in means.items():cells[self.parts[1,pid]['celda_chirps']].append(v)
+                keys=sorted(cells);sums=np.asarray([np.sum(cells[k],axis=0) for k in keys]);sizes=np.asarray([len(cells[k]) for k in keys])
+                ix=np.random.RandomState(20261006).randint(len(keys),size=(5000,len(keys)))
+                boot=sums[ix].sum(1)/sizes[ix].sum(1)[:,None]
+                ic=np.percentile(boot[:,0]-boot[:,1],[2.5,97.5])
+                self.close(row['dMAE'],delta,'ΔMAE por parcela')
+                self.close(row['dRMSE'],drmse,'ΔRMSE por repetición')
+                self.close(json.loads(row['dMAE_por_repeticion']),dreps,'ΔMAE repeticiones')
+                self.close(json.loads(row['IC95_celdas_MAE']),ic,'IC95 espacial independiente')
+                self.close(json.loads(row['IC95_celdas_RMSE']),np.percentile(np.sqrt(boot[:,2])-np.sqrt(boot[:,3]),[2.5,97.5]),'IC95 RMSE espacial')
+                improves=sum(v<0 for v in dreps)
+                rule=bool(delta<=-.01 and ic[1]<0 and improves>=4 and drmse<=.01)
+                self.check((row['cumple_regla_T03']=='True')==rule,'Regla T03 distinta')
+                eligible=bool(rule and esc=='A' and row['subconjunto']=='sin_respaldo' and row['tipo_contraste']=='promocion')
+                self.check((row['elegible_para_promocion_principal']=='True')==eligible,'Promoción Q/descriptivo indebida')
         result=dict(schema='E1_auditoria_independiente_v1',resultado='aprobado',comprobaciones=self.n,
             tolerancia_absoluta=1e-12,diferencia_maxima=self.max_diff,trazas=traces,OOF=len(oof),
             evaluacion_completa=full,importa_productor_o_sklearn=False,
