@@ -1,0 +1,17 @@
+{
+  "schema": "E2_auditoria_evaluacion_v1",
+  "resultado": "aprobado",
+  "comprobaciones": 9831,
+  "diferencia_maxima": 1.1102230246251565e-15,
+  "tolerancia_absoluta": 1e-12,
+  "trazas": 222,
+  "ajustes_externos": 6,
+  "selecciones": 6,
+  "OOF": 186,
+  "OOF_reutilizadas": 0,
+  "evaluacion_completa": false,
+  "importa_productor_o_sklearn": false,
+  "H3_todos_estados_verificados": true,
+  "codigo_auditor_sha256": "ec9eb87479def3326b8ef2b23b2dafbafc6762995a7e44348a80466b9bed1697",
+  "run_manifest_sha256": "05e3ba8c85488c6815d917bb25c0125eecb7b662553bac970871a74885468a66"
+}

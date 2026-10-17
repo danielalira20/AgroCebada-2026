@@ -1,0 +1,36 @@
+{
+  "schema": "E2_integracion_verificada_v1",
+  "resultado": "aprobado",
+  "fecha_local": "2026-10-17",
+  "registro_sha256": "fc6a5ef56daa000ec9e89361a23a63f2b0779c9fc62d280d626bb4cba2a55bd9",
+  "autorizacion_sha256": "6f286e42ba0bba7bb68da49e11d6e36c0cf408485e6a35924ac78acbc023e36f",
+  "codigo_sha256": {
+    "scripts/t15_e2_ejecutar.py": "0a39946126004c2bbaa85f43b4416021246200ed5e7e1d5b05fcddcca99037ee",
+    "scripts/t15_e2_reportes.py": "f5e292c1dc5c5d71e803c1f0d73fb32cc00decbf25bc71389fc4a51ecf9db06a",
+    "scripts/t15_e2_auditar_evaluacion.py": "ec9eb87479def3326b8ef2b23b2dafbafc6762995a7e44348a80466b9bed1697",
+    "tests/test_t15_e2_ejecutar.py": "e4866f799f55f672a2b39148c6f094a399f238ca0e20a9852fd11c720fc8f17a"
+  },
+  "auditoria_Mac_aprobada": true,
+  "auditoria_Linux_aprobada": true,
+  "pruebas_Mac_Linux_aprobadas": true,
+  "reportes_guardia_comprobados": true,
+  "tests_por_entorno": 95,
+  "pilotos_por_entorno": {
+    "contextos": 2,
+    "trazas": 222,
+    "selecciones": 6,
+    "OOF": 186
+  },
+  "evidencia_sha256": {
+    "registro/t15_e2_evaluacion/previa/auditoria_linux.json": "081d313f43e826779f43b4e9567f25968393085f7ee4e5fa8253e63c802ee1d7",
+    "registro/t15_e2_evaluacion/previa/auditoria_mac.json": "20e0aea8d1de526a3ae0823a51ce038e30c6e9356f15f18f23a887ecee50026f",
+    "registro/t15_e2_evaluacion/previa/comparacion_pilotos.json": "51568683f285ff356718fed089d960df50d714c908af85b2cc287f3281a86201",
+    "registro/t15_e2_evaluacion/previa/manifest_linux.json": "05e3ba8c85488c6815d917bb25c0125eecb7b662553bac970871a74885468a66",
+    "registro/t15_e2_evaluacion/previa/manifest_mac.json": "88df9cb41a668ea9c96308dcfdf61b9b11209dbeaa3483b8a7ec436c42ade0f7",
+    "registro/t15_e2_evaluacion/previa/pruebas_95_linux.log": "e3cbf071e9b47017ee40db4ae171b6d27d3bf7dce38468459c1089eaf1867b40",
+    "registro/t15_e2_evaluacion/previa/pruebas_95_mac.log": "33a30e5fc1ebf049a671c664d3407fcde0e574d3cdd9724c064d77aa53ec0bff"
+  },
+  "exposicion": "Pilotos A/B repetición1 partición0 para comprobar conexión; sin reportes globales ni cambio de reglas por desempeño.",
+  "predicciones_finales59": 0,
+  "autoriza_publicacion": false
+}
