@@ -1,0 +1,7 @@
+candidato,escenario,version,n_contextos,n_esperados,n_referencia_sola,n_con_correccion,fraccion_referencia_sola,estado
+comun_centrado_loo_v3_E12,A,comun-centrado-loo-v3,25,25,4,21,0.16,completo
+comun_centrado_loo_v3_E12,B,comun-centrado-loo-v3,25,25,2,23,0.08,completo
+comun_centrado_loo_v3_E2,A,comun-centrado-loo-v3,25,25,3,22,0.12,completo
+comun_centrado_loo_v3_E2,B,comun-centrado-loo-v3,25,25,6,19,0.24,completo
+comun_centrado_loo_v3_E2Q,A,comun-centrado-loo-v3,25,25,3,22,0.12,completo
+comun_centrado_loo_v3_E2Q,B,comun-centrado-loo-v3,25,25,1,24,0.04,completo

@@ -1,0 +1,81 @@
+{
+  "schema": "E2_evaluacion_entrega_v1",
+  "estado": "evaluacion_completa_auditada_local",
+  "canonico": "Linux_amd64",
+  "manifest_original_sha256": "61cbcbf21e612f763403b90edddc74bd04a7fff9d3c3134db0164905f454fab9",
+  "registro_previo_sha256": "fc6a5ef56daa000ec9e89361a23a63f2b0779c9fc62d280d626bb4cba2a55bd9",
+  "autorizacion_sha256": "6f286e42ba0bba7bb68da49e11d6e36c0cf408485e6a35924ac78acbc023e36f",
+  "fuente_commit": "aeb02a3d719a35a5ecce8ba5f6a3f47c73fe5f4e",
+  "codigo_sha256": {
+    "scripts/t15_e2_ejecutar.py": "0a39946126004c2bbaa85f43b4416021246200ed5e7e1d5b05fcddcca99037ee",
+    "scripts/t15_e2_reportes.py": "f5e292c1dc5c5d71e803c1f0d73fb32cc00decbf25bc71389fc4a51ecf9db06a",
+    "scripts/t15_e2_auditar_evaluacion.py": "ec9eb87479def3326b8ef2b23b2dafbafc6762995a7e44348a80466b9bed1697",
+    "tests/test_t15_e2_ejecutar.py": "e4866f799f55f672a2b39148c6f094a399f238ca0e20a9852fd11c720fc8f17a"
+  },
+  "compresion_sin_perdida": {
+    "estados_modelos.jsonl": {
+      "ruta": "estados_modelos.jsonl.gz",
+      "sha256_descomprimido": "e367102109b37b5613cdf763f6830fc1cb01265a6be36417caeab54b14623c65",
+      "sha256_gzip": "460dd192da0b730c053d17dd3d05f46835730009a3ea05220787f4693afd0767",
+      "bytes_originales": 11854973,
+      "bytes_gzip": 1887903
+    },
+    "trazas_ajustes.jsonl": {
+      "ruta": "trazas_ajustes.jsonl.gz",
+      "sha256_descomprimido": "86beceb48d610b2647c2262377f91301bb8dd65924882f987f1da8bb82eddfeb",
+      "sha256_gzip": "1a47feb3564dd2b8084a5830ae22fe1c5aff8ad5e97fe856481994c14817c63d",
+      "bytes_originales": 26087639,
+      "bytes_gzip": 662912
+    }
+  },
+  "predicciones_finales59": 0,
+  "ganador_T16_congelado": false,
+  "publicado": false,
+  "archivos_sha256": {
+    "README.md": "3a9322789f189b195451069e725006dcee9b157195f71454a48b7454f19baaf9",
+    "auditoria_completa_linux.json": "ec9313aaaa2885ff8d65c2bb49b9a463345459eb088b9512dd3d0ffe7cad61c0",
+    "auditoria_completa_mac.json": "ec9313aaaa2885ff8d65c2bb49b9a463345459eb088b9512dd3d0ffe7cad61c0",
+    "auditoria_desgloses.json": "b0c0ed4961fc9bf7e0c4fd294d91a6bb7e08a7c9621c2cb35bb46f148f688d34",
+    "auditoria_paquete_mac.json": "ec9313aaaa2885ff8d65c2bb49b9a463345459eb088b9512dd3d0ffe7cad61c0",
+    "autorizacion_v1.json": "6f286e42ba0bba7bb68da49e11d6e36c0cf408485e6a35924ac78acbc023e36f",
+    "comprobacion_H3_completa.json": "e6fc00bafc2f32d9d0ed4dc57a2ac7a5708a8508fc5d700f97119f2013464895",
+    "comprobaciones/auditar_desgloses.py": "e4f718e209db3c538d0a60c70fa05ea70a85c2028a74e48c05671b93e18237af",
+    "comprobaciones/comprobar_h3_completa.py": "dea9cf69c8c3dc702c635353af0a5ceec13968f5f644d19ea1ffc088dee60389",
+    "inegi_comparacion.png": "8c5b171ad36efdbebd928901126b21b89bc0f406a62bddc5607b4b505b33254f",
+    "previa/auditoria_linux.json": "081d313f43e826779f43b4e9567f25968393085f7ee4e5fa8253e63c802ee1d7",
+    "previa/auditoria_mac.json": "20e0aea8d1de526a3ae0823a51ce038e30c6e9356f15f18f23a887ecee50026f",
+    "previa/comparacion_pilotos.json": "51568683f285ff356718fed089d960df50d714c908af85b2cc287f3281a86201",
+    "previa/manifest_linux.json": "05e3ba8c85488c6815d917bb25c0125eecb7b662553bac970871a74885468a66",
+    "previa/manifest_mac.json": "88df9cb41a668ea9c96308dcfdf61b9b11209dbeaa3483b8a7ec436c42ade0f7",
+    "previa/pruebas_95_linux.log": "e3cbf071e9b47017ee40db4ae171b6d27d3bf7dce38468459c1089eaf1867b40",
+    "previa/pruebas_95_mac.log": "33a30e5fc1ebf049a671c664d3407fcde0e574d3cdd9724c064d77aa53ec0bff",
+    "puerta_integracion_v1.json": "514386db13ccef9ee4d58151fef96201375d128bbb6727eed3e426e8e7c92e54",
+    "resultados/contrastes.csv": "a7ffcc6280026f7b64bc0333a08eae8110f6d63fea804e3f177add539bba1abe",
+    "resultados/contrastes_E2_con_guardia.csv": "dcc14295a620805f75a0f580c50480f83c1348af6c8ced6e618505175471156b",
+    "resultados/decision_E2.json": "67f07cce27916dd679e32b90a4740c5bd9eb2c3257d59a3ff41fca3b0034b59a",
+    "resultados/desgloses_calidad_y_sin24.csv": "f5eb518008ba2ab6f25920ca80c14fb11b9c8f6d8d712643636f5463c44dce8e",
+    "resultados/estados_modelos.jsonl.gz": "460dd192da0b730c053d17dd3d05f46835730009a3ea05220787f4693afd0767",
+    "resultados/frecuencia_referencia_sola.csv": "2b16ce247b3d3fa808e56fa5c74170306a4894b9ef9c960d0bb8343487d9225b",
+    "resultados/informe.md": "c511b7d14fb5b5d64391b0574a7ca0b6d6e4de0a8efd59d10662334a2985b53e",
+    "resultados/manifest.json": "61cbcbf21e612f763403b90edddc74bd04a7fff9d3c3134db0164905f454fab9",
+    "resultados/metricas_por_repeticion.csv": "ce93baac41fabac3026e96567f0433c0d2af93f160d1f882144c39d7de56d56f",
+    "resultados/metricas_resumen.csv": "237899bd093346d1f3b8749a52b3572657bf2942daf7a209435506ba1f0e9510",
+    "resultados/predicciones_nuevas_incrementales.csv": "52d70d4e6184a11ba5de10489ec4c4d6a6a9ff0edb664da15ee38e5743eb6d96",
+    "resultados/predicciones_oof.csv": "c49fdd12759174d447706a8673ea56638353bfa705e1da511878b16ca8119687",
+    "resultados/selecciones.jsonl": "307265198fa4cbf8e863fffdf7b811c198ef23b58732cf2a6ecb93dd368df914",
+    "resultados/trazas_ajustes.jsonl.gz": "1a47feb3564dd2b8084a5830ae22fe1c5aff8ad5e97fe856481994c14817c63d",
+    "resumen_para_equipo.json": "ea3cef66d904f71816aac6061bb9c4855531501938a2b1de6a79a818533edd3a"
+  },
+  "auditoria_paquete_aprobada": true,
+  "resumen": {
+    "contextos": 50,
+    "trazas": 5550,
+    "selecciones": 150,
+    "OOF": 8280,
+    "OOF_nuevas": 4140,
+    "OOF_reutilizadas": 4140,
+    "metricas_resumen": 24,
+    "contrastes": 28,
+    "desgloses": 504
+  }
+}

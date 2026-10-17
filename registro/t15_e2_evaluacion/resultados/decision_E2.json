@@ -1,0 +1,11 @@
+{
+  "schema": "E2_decision_registrada_v1",
+  "alternativas_elegibles": [],
+  "procedimiento_recomendado_por_regla": "media_mun__resp_grupo",
+  "ganador_T16_congelado": false,
+  "predicciones_finales59": 0,
+  "T03_intacto": true,
+  "E2Q_promovible": false,
+  "guardia_familiar": "IC97.5_adicional_superior_negativo",
+  "interpretacion": "Evidencia retrospectiva de una campaña; no es validación externa ciega ni garantía futura."
+}

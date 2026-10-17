@@ -1,0 +1,9 @@
+{
+  "resultado": "aprobado",
+  "comprobaciones": 7388,
+  "diferencia_maxima": 8.881784197001252e-16,
+  "tolerancia": 1e-12,
+  "desgloses": 504,
+  "frecuencias": 6,
+  "modelos_ajustados": 0
+}
