@@ -1,0 +1,8 @@
+streamlit>=1.50
+pydeck>=0.9
+pandas>=2.0
+numpy>=1.24
+geopandas>=0.14
+pyarrow>=14
+matplotlib>=3.8
+altair>=5
