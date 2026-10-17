@@ -1,4 +1,4 @@
-streamlit>=1.50
+streamlit>=1.56,<1.66      # 1.52+ para la descarga diferida; 1.56+ para las pruebas (AppTest); 1.66 dio errores de WebGL en el mapa
 pydeck>=0.9
 pandas>=2.0
 numpy>=1.24

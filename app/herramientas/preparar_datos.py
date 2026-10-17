@@ -7,34 +7,34 @@ mensual, predicciones de validación de los dos modelos, las 59 oficiales y el s
 Uso (desde app/):  python herramientas/preparar_datos.py
 Volver a correrlo si cambian T08, T03, T04 o el dataset.
 """
-import os
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # para importar agro_datos desde app/
-os.environ["AGRO_SIN_PAQUETE"] = "1"          # leer siempre las fuentes originales
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # para importar agrocebada_app desde app/
 
-import agro_datos as A  # noqa: E402
+from agrocebada_app.backend.datos import lectura  # noqa: E402
+from agrocebada_app.backend.rutas.localizador import rutas  # noqa: E402
+from agrocebada_app.config import PAQ  # noqa: E402
 
 
 def main():
-    r = A.rutas()
+    r = rutas()
     if r["datos"] is None or r["t08"] is None:
         raise SystemExit("No encontré el dataset o T08. Fija AGRO_DATOS y AGRO_T08.")
-    A.PAQ.mkdir(exist_ok=True)
-    d = A.leer_parcelas(r["datos"])
-    d.to_parquet(A.PAQ / "parcelas.parquet")
-    A.leer_series(r["datos"]).to_parquet(A.PAQ / "series.parquet", index=False)
+    PAQ.mkdir(exist_ok=True)
+    d = lectura.leer_parcelas(r["datos"])
+    d.to_parquet(PAQ / "parcelas.parquet")
+    lectura.leer_series(r["datos"]).to_parquet(PAQ / "series.parquet", index=False)
     if r["t04"]:
-        A.leer_clima(r["t04"]).to_parquet(A.PAQ / "clima.parquet", index=False)
-    v = A.leer_validacion(r["t08"])
+        lectura.leer_clima(r["t04"]).to_parquet(PAQ / "clima.parquet", index=False)
+    v = lectura.leer_validacion(r["t08"])
     v[["ID_POLIGONO", "repeticion", "particion", "escenario", "real", "prediccion", "candidato", "fuente"]].to_parquet(
-        A.PAQ / "validacion.parquet", index=False)
-    A.leer_oficial(r["t08"])[["ID_POLIGONO", "candidato", "prediccion"]].to_csv(A.PAQ / "oficial_59.csv", index=False)
+        PAQ / "validacion.parquet", index=False)
+    lectura.leer_oficial(r["t08"])[["ID_POLIGONO", "candidato", "prediccion"]].to_csv(PAQ / "oficial_59.csv", index=False)
     if r["t03"]:
-        A.leer_soporte(r["t03"]).to_parquet(A.PAQ / "soporte.parquet")
-    total = sum(f.stat().st_size for f in A.PAQ.iterdir())
-    print(f"datos_app/ listo: {len(list(A.PAQ.iterdir()))} archivos, {total / 1e6:.1f} MB")
+        lectura.leer_soporte(r["t03"]).to_parquet(PAQ / "soporte.parquet")
+    total = sum(f.stat().st_size for f in PAQ.iterdir())
+    print(f"datos_app/ listo: {len(list(PAQ.iterdir()))} archivos, {total / 1e6:.1f} MB")
 
 
 if __name__ == "__main__":

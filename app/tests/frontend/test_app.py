@@ -70,10 +70,11 @@ print("comparación de parcelas y pestaña «Analizar tus datos» presentes")
 
 # ---- ficha PDF (se arma igual que en la app)
 import numpy as np  # noqa: E402
-import agro_datos as A  # noqa: E402
-import agro_ficha as F  # noqa: E402
-d, S, C = A.parcelas(), A.series(), A.clima()
-pred = A.predecir(d, "media_mun__resp_grupo")
+from agrocebada_app.backend.datos import paquete  # noqa: E402
+from agrocebada_app.backend.ficha_pdf.ficha import ficha_pdf  # noqa: E402
+from agrocebada_app.backend.modelo.estimador import predecir  # noqa: E402
+d, S, C = paquete.parcelas(), paquete.series(), paquete.clima()
+pred = predecir(d, "media_mun__resp_grupo")
 for pid in ["AGC_011", "AGC_120", "AGC_002"]:
     r = d.loc[pid]
     est = r.CONJUNTO == "PREDICCION"
@@ -87,7 +88,7 @@ for pid in ["AGC_011", "AGC_120", "AGC_002"]:
                 produccion=float(pred.prediccion[pid]) * r.AREA_HA if est else None, error=0.3, oof=4.4,
                 nota="nota", aviso="", corte="31 de octubre de 2025")
     c = C[C.id_parcela == pid].assign(mes=lambda x: x.periodo.str[5:].astype(int))
-    pdf = F.ficha_pdf(info, pol, S[S.ID_POLIGONO == pid], c, str(A.AQUI / "assets" / "mascota" / "cebi.png"))
+    pdf = ficha_pdf(info, pol, S[S.ID_POLIGONO == pid], c, str(APP / "assets" / "mascota" / "cebi.png"))
     assert pdf[:5] == b"%PDF-" and len(pdf) > 20000, pid
 print("ficha PDF generada para 3 parcelas")
 print("OK")

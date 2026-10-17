@@ -2,14 +2,31 @@
 
 App en Streamlit que **ejecuta el mismo procedimiento de T08** con las 138 parcelas con rendimiento y estima las 59 reservadas. Las cifras que exporta coinciden exactamente con `predicciones_59_referencias.csv` de T08; la app lo comprueba y lo muestra en pantalla.
 
-## Arrancar (un comando)
+## Arrancar
+
+Desde la carpeta `app/` del repo:
 
 ```bash
-pip install -r entregas/T17_app/requirements.txt
-cd entregas/T17_app && streamlit run app.py
+pip install -r requirements.txt
+python herramientas/preparar_datos.py     # una vez: arma datos_app/ (ver abajo)
+streamlit run app.py
 ```
 
-Se abre en http://localhost:8501.
+Se abre en http://localhost:8501. Si no encuentra el dataset del reto, fija su ruta con `AGRO_DATOS` (en PowerShell: `$env:AGRO_DATOS = "C:\ruta\al\repo\data\raw\DATASET_RETO_AGRO_2026"`).
+
+**Versión de Streamlit:** `requirements.txt` pide `>=1.56,<1.66`. La descarga diferida de la ficha necesita 1.52 o más, las pruebas (`AppTest`) 1.56 o más, y con 1.66 el mapa 3D dio errores de WebGL en el navegador.
+
+### Con Docker
+
+La imagen del repo (`docker build -t agrocebada-entorno .` desde la raíz) trae Python 3.12 pero no Streamlit. Desde la raíz del repo, en PowerShell:
+
+```powershell
+docker run --rm -it -p 8501:8501 `
+  -v "${PWD}:/proyecto" -w /proyecto/app `
+  -e AGRO_DATOS=/proyecto/data/raw/DATASET_RETO_AGRO_2026 `
+  agrocebada-entorno `
+  bash -c "pip install -r requirements.txt && python herramientas/preparar_datos.py && streamlit run app.py --server.address 0.0.0.0"
+```
 
 ## Datos que usa
 
@@ -25,17 +42,34 @@ cd app && python herramientas/preparar_datos.py
 
 `herramientas/preparar_datos.py` (y la app, si no hay `datos_app/`) lee las fuentes originales: el dataset del reto (en la raíz del repo, en `data/` o en `datos/`; o donde diga `AGRO_DATOS`), `registro/t08` (o `entregas/T08`), `registro/t03` (o `entregas/T03`) y `registro/t04/clima_parcela_mes.csv` (o `entregas/T04/...`). Ubica sola la raíz del repo; si las fuentes están en otro lugar, fíjalas con `AGRO_DATOS`, `AGRO_T08`, `AGRO_T03` y `AGRO_T04`. Si `datos_app/` no existe, la app lee directamente esas fuentes (más lento).
 
-| Archivo | Para qué |
-|---|---|
-| `app.py` | La interfaz. |
-| `agro_datos.py` | Lectura de datos y el procedimiento de T08 (sin Streamlit). |
-| `agro_ficha.py` | La ficha de parcela en PDF. |
-| `agro_carga.py` | La carga segura de un dataset propio. |
-| `herramientas/preparar_datos.py` | Arma `datos_app/`. |
-| `herramientas/preparar_elevacion.py` | Arma `datos_estaticos/elevacion_parcelas.csv` (altitud de cada parcela para el relieve). |
-| `tests/frontend/test_app.py`, `tests/backend/test_carga_segura.py` | Pruebas (ver abajo). |
-| `assets/mascota/` | Cebi, la mascota (SVG y PNG). |
-| `datos_estaticos/` | Datos fijos que no se regeneran con cada corrida (altitud de las parcelas). |
+## Estructura de `app/`
+
+```
+app/
+├── app.py                      # punto de entrada (38 líneas): arranca la página y elige la vista
+├── requirements.txt
+├── .streamlit/config.toml
+├── agrocebada_app/             # paquete de la app
+│   ├── config.py               # constantes: modelos, temporada, URLs del mapa, textos fijos
+│   ├── backend/                # sin Streamlit; se prueba en aislado
+│   │   ├── rutas/              #   dónde están el dataset, T08, T03 y T04
+│   │   ├── datos/              #   lectura de las fuentes, del paquete datos_app/ y de la altitud
+│   │   ├── modelo/             #   procedimiento de T08 (estimador) y métricas
+│   │   ├── dominio/            #   avisos, resúmenes, notas, geometría y escala de color
+│   │   ├── carga_segura/       #   revisión de un dataset propio (ZIP o CSV)
+│   │   └── ficha_pdf/          #   la ficha de parcela en PDF
+│   └── frontend/               # todo lo que usa Streamlit, pydeck o altair
+│       ├── tema/               #   CSS, mascota y helpers de HTML
+│       ├── estado/             #   caché de datos, sesión y el Contexto que comparten las vistas
+│       ├── componentes/        #   mapa, gráficas, paneles y botón de la ficha
+│       └── vistas/             #   agricultor, analista (una pestaña por archivo) y datos propios
+├── assets/                     # mascota/ (Cebi, SVG y PNG) y css/tema.css
+├── datos_estaticos/            # altitud de cada parcela (elevacion_parcelas.csv)
+├── herramientas/               # scripts que se corren a mano: preparar_datos.py y preparar_elevacion.py
+└── tests/                      # backend/test_carga_segura.py y frontend/test_app.py
+```
+
+Las dependencias van en un solo sentido: `frontend → backend → config`. Ningún módulo de `backend/` importa Streamlit.
 
 ## Diseño
 

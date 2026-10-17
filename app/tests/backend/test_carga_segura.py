@@ -8,8 +8,11 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))      # app/
-import agro_carga as K  # noqa: E402
-import agro_datos as A  # noqa: E402
+from agrocebada_app.backend import carga_segura as K  # noqa: E402
+from agrocebada_app.backend.datos import paquete  # noqa: E402
+from agrocebada_app.backend.modelo.estimador import predecir  # noqa: E402
+from agrocebada_app.backend.modelo.metricas import validacion_dejando_uno  # noqa: E402
+from agrocebada_app.config import PAQ  # noqa: E402
 
 
 
@@ -34,7 +37,7 @@ def archivos_del_reto():
     """Tabla y shapefile con el mismo formato del reto, armados desde los datos de la app."""
     import tempfile
     from pathlib import Path
-    d = A.parcelas()
+    d = paquete.parcelas()
     tabla = d[["AREA_HA", "real", "CONJUNTO"]].rename(columns={"real": "RENDIMIENTO_T_HA"}).reset_index()
     geo = d[["municipio", "grupo_registro", "Estado", "geometry"]].reset_index().rename(
         columns={"ID_POLIGONO": "ID_POLIGON", "municipio": "Municipio", "grupo_registro": "Cultivo"})
@@ -49,8 +52,8 @@ TABLA, SHPZIP = archivos_del_reto()
 # ---- válidos
 r = K.revisar("reto.zip", zip_de({"ID_area.csv": TABLA, "Parcelas.zip": SHPZIP}))
 assert r.con_mapa and len(r.datos) == 197
-pred = A.predecir(r.datos, "media_mun__resp_grupo")
-of = pd.read_csv(A.PAQ / "oficial_59.csv").query("candidato == 'media_mun__resp_grupo'").set_index("ID_POLIGONO")
+pred = predecir(r.datos, "media_mun__resp_grupo")
+of = pd.read_csv(PAQ / "oficial_59.csv").query("candidato == 'media_mun__resp_grupo'").set_index("ID_POLIGONO")
 assert len(pred) == 59 and np.allclose(pred.prediccion, of.prediccion.reindex(pred.index)), "no coincide con T08"
 print("ZIP del reto: 197 parcelas, las 59 estimaciones idénticas a T08 ✓")
 
@@ -64,9 +67,9 @@ d = r.datos
 simple = pd.DataFrame({"ID_POLIGONO": d.index, "MUNICIPIO": d.municipio.values, "GRUPO": d.grupo_registro.values,
                        "AREA_HA": d.AREA_HA.values, "RENDIMIENTO_T_HA": d.real.values, "CONJUNTO": d.CONJUNTO.values})
 r = K.revisar("simple.csv", simple.to_csv(index=False).encode())
-assert not r.con_mapa and len(A.predecir(r.datos, "media_mun__resp_grupo")) == 59
+assert not r.con_mapa and len(predecir(r.datos, "media_mun__resp_grupo")) == 59
 print("CSV simple: sin mapa, 59 estimaciones ✓")
-v = A.validacion_dejando_uno(r.datos, "media_mun__resp_grupo")
+v = validacion_dejando_uno(r.datos, "media_mun__resp_grupo")
 print(f"validación dejando uno fuera: MAE {v.ae.mean():.3f} t/ha con {len(v)} parcelas ✓")
 
 # ---- rechazos
