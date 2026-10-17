@@ -85,7 +85,26 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
   border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
 .st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
 .st-key-glass_chips, .st-key-glass_filtros { position: absolute; top: 16px; right: 62px; width: 280px; z-index: 5; }
-.st-key-glass_leyenda { position: absolute; bottom: 16px; right: 16px; width: 300px; z-index: 5; padding: 10px 14px; }
+/* Leyenda del mapa: espacio interno y mejor lectura */
+.st-key-glass_leyenda {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 300px;
+    z-index: 5;
+    padding: 12px 16px 18px;
+}
+.st-key-glass_leyenda .ley-nota {
+    margin-top: 8px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+/* Espaciado adicional en pantallas pequeñas */
+@media (max-width: 900px) {
+    .st-key-glass_leyenda {
+        padding-bottom: 24px;
+    }
+}
 @media (max-width: 900px) {
   .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda {
     position: relative; top: auto; left: auto; right: auto; bottom: auto; width: auto; margin-top: 10px; }
