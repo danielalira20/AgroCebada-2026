@@ -66,10 +66,25 @@ def buscar_dataset():
     return None
 
 
+def buscar_con(env, archivo, *candidatas):
+    """Primera carpeta candidata que tenga `archivo`; si ninguna lo tiene, busca dentro de registro/ y entregas/."""
+    if os.environ.get(env):
+        return Path(os.environ[env])
+    r = raiz()
+    for c in candidatas:
+        if (r / c / archivo).exists():
+            return r / c
+    for base in ("registro", "entregas"):
+        if (r / base).is_dir():
+            for f in sorted((r / base).glob(f"*/{archivo}")):
+                return f.parent
+    return None
+
+
 def rutas():
     return {"datos": buscar_dataset(),
-            "t08": buscar("AGRO_T08", "registro/t08", "registro/t03", "entregas/T08"),
-            "t03": buscar("AGRO_T03", "registro/t03", "entregas/T03"),
+            "t08": buscar_con("AGRO_T08", "predicciones_59_referencias.csv", "registro/t08", "registro/t03", "entregas/T08"),
+            "t03": buscar_con("AGRO_T03", "soporte_parcelas.csv", "registro/t03", "entregas/T03"),
             "t04": buscar("AGRO_T04", "registro/t04/clima_parcela_mes.csv", "entregas/T04/clima_parcela_mes.csv")}
 
 

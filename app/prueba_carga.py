@@ -47,8 +47,9 @@ TABLA, SHPZIP = archivos_del_reto()
 r = K.revisar("reto.zip", zip_de({"ID_area.csv": TABLA, "Parcelas.zip": SHPZIP}))
 assert r.con_mapa and len(r.datos) == 197
 pred = A.predecir(r.datos, "media_mun__resp_grupo")
-of = pd.read_csv(A.PAQ / "oficial_59.csv").query("candidato == 'media_mun__resp_grupo'").set_index("ID_POLIGONO")
-assert len(pred) == 59 and np.allclose(pred.prediccion, of.prediccion.reindex(pred.index)), "no coincide con T08"
+of = A.oficial("media_mun__resp_grupo")           # paquete datos_app/ o, si no existe, registro/t08 del repo
+assert of is not None, "no encontré las 59 oficiales de T08 (ni en datos_app/ ni en registro/t08)"
+assert len(pred) == 59 and np.allclose(pred.prediccion, of.reindex(pred.index)), "no coincide con T08"
 print("ZIP del reto: 197 parcelas, las 59 estimaciones idénticas a T08 ✓")
 
 with zipfile.ZipFile(io.BytesIO(SHPZIP)) as z:
