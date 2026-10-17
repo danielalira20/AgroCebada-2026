@@ -1,0 +1,8 @@
+{
+  "resultado": "aprobado",
+  "normal_y_optimizado_identicos": true,
+  "entorno": "Mac_Apple_Silicon",
+  "Docker_iniciado": false,
+  "limite": "Oraculos_y_contrato_no_reproduccion_de_extractor_E2",
+  "contrato_sha256": "d7c30ca6572373a78b78348df64e5fda50556f197bbcce03872d92a0735a2d9c"
+}
