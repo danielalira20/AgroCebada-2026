@@ -49,9 +49,13 @@ def auditar(root=RAIZ):
     original=root/'data/raw/DataSet.zip'
     with zipfile.ZipFile(original) as z:
         files=[p for p in z.namelist() if p.endswith('/Conjunto_datos_BASICO_AgroCebada2026.csv') or p=='Conjunto_datos_BASICO_AgroCebada2026.csv']
-        exigir(len(files)==1,'Básico ambiguo/ausente');raw=z.read(files[0])
-    import hashlib
-    rows=list(csv.DictReader(io.StringIO(raw.decode('utf-8-sig'))));summary=resumir(rows)
+        exigir(len(files)==1,'Básico ambiguo/ausente')
+        with z.open(files[0]) as raw,io.TextIOWrapper(raw,encoding='utf-8-sig',newline='') as stream:
+            summary=resumir(csv.DictReader(stream))
+        import hashlib
+        digest=hashlib.sha256()
+        with z.open(files[0]) as stream:
+            for chunk in iter(lambda:stream.read(1024*1024),b''):digest.update(chunk)
     t={r['id_parcela']:r for r in leer_csv(root/TABLA)[1]}
     common={r['id_parcela']:r for r in leer_csv(root/'registro/t07/tabla_comun.csv')[1]}
     exigir(len(t)==len(summary)==197 and set(t)==set(common)=={r['id_parcela'] for r,_ in summary},'197 IDs requeridos')
@@ -65,7 +69,7 @@ def auditar(root=RAIZ):
             d=abs(row[source]-float(common[row['id_parcela']][target]));maximum=max(maximum,d);n+=1
             exigir(d<=1e-9,'Ancla T07 distinta')
     return dict(resultado='aprobado',parcelas=197,comparaciones=n,diferencia_maxima=maximum,
-        contrato_sha256=SHA,ZIP_sha256=sha(original),miembro_ZIP=files[0],CSV_original_sha256=hashlib.sha256(raw).hexdigest(),
+        contrato_sha256=SHA,ZIP_sha256=sha(original),miembro_ZIP=files[0],CSV_original_sha256=digest.hexdigest(),
         resumen_sha256=sha(root/TABLA),lee_rendimientos=False,importa_T06_T13=False,modelos_ajustados=0,
         QA=[q for _,q in summary])
 

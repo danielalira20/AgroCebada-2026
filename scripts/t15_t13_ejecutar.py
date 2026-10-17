@@ -86,9 +86,49 @@ def contrato_reportes(c):
         contrastes_planificados=[dict(candidato=a,frente_a=b,tipo='promocion' if a=='t15_t13_S_verdor_v1' and b==REF else 'descriptivo') for a,b in c['contrastes']]))
 
 
+def tablas(rows,contexts,ctr,quality,table,out):
+    """Comparadores conservan su versión; no reasignar T08-v1 a núcleo v3."""
+    from scripts.evaluacion_comun_reportes import comparar,metricas
+    validar_oof(rows,contexts)
+    names={p['candidato'] for p in ctr['principal']['procedimientos']}|{REF}
+    exigir({r['candidato'] for r in rows}==names,'Candidatos de reporte incompletos')
+    for r in rows:
+        expected='T08-v1' if r['candidato']=='mediana_mun__resp_grupo' else v3.VERSION
+        exigir(r['version']==expected,'Versión de comparador no acreditada')
+    summaries=[];reps=[];desgloses=[];pairs=[]
+    alerts={i for i in {k[2] for k in contexts} if quality[i]['alerta_contorno_t03_bis']=='si'}
+    exigir(len(alerts)==24,'Sensibilidad sin24 distinta')
+    for candidate in sorted(names):
+        for esc in ['A','B']:
+            for subset in ['todas','sin_respaldo']:
+                g=[r for r in rows if r['candidato']==candidate and r['escenario']==esc and (subset=='todas' or r['fuente']=='municipio')]
+                identity=dict(candidato=candidate,escenario=esc,subconjunto=subset)
+                summaries.append({**identity,**report.resumen_grupo(g)})
+                for rep in range(1,6):
+                    rr=[r for r in g if int(r['repeticion'])==rep]
+                    reps.append({**identity,'repeticion':rep,**metricas([float(r['real']) for r in rr],[float(r['prediccion']) for r in rr])})
+                groups={'municipio':lambda i:table[i]['municipio'],'grupo_registro':lambda i:table[i]['cultivo_origen'],
+                    'contorno_categoria':lambda i:quality[i]['contorno_categoria'],
+                    'contorno_angosta_o_muy_pequena':lambda i:quality[i]['contorno_angosta_o_muy_pequena'],
+                    'escalon_etiqueta_municipio':lambda i:quality[i]['escalon_etiqueta_municipio'] or 'no_documentado',
+                    'vecina_etiquetada_menos_20m':lambda i:quality[i]['vecina_etiquetada_menos_20m']}
+                for kind,fun in groups.items():
+                    for value in sorted({fun(r['ID_POLIGONO']) for r in g}):
+                        desgloses.append({**identity,'desglose':kind,'valor':value,**report.resumen_grupo([r for r in g if fun(r['ID_POLIGONO'])==value])})
+                desgloses.append({**identity,'desglose':'sensibilidad_sin24','valor':'sin24',**report.resumen_grupo([r for r in g if r['ID_POLIGONO'] not in alerts])})
+    for par in ctr['principal']['contrastes_planificados']:
+        for esc in ['A','B']:
+            for subset in ['todas','sin_respaldo']:
+                r=comparar(rows,contexts,par['candidato'],par['frente_a'],esc,subset)
+                r.update(tipo_contraste=par['tipo'],elegible_para_promocion_principal=bool(r['elegible_para_promocion_principal'] and par['tipo']=='promocion'))
+                pairs.append(r)
+    report.csv_guardar(out/'metricas_resumen.csv',summaries);report.csv_guardar(out/'metricas_por_repeticion.csv',reps)
+    report.csv_guardar(out/'desgloses_calidad_y_sin24.csv',desgloses);report.csv_guardar(out/'contrastes.csv',pairs)
+
+
 def generar_reportes(rows,e,c,out):
     table={k[0]:v for k,v in e['tabla'].items()};q={r['id_parcela']:r for r in leer_csv(RAIZ/'registro/t07/calidad_parcelas.csv')[1]}
-    report.producir(rows,e['contextos'],contrato_reportes(c),q,table,out)
+    tablas(rows,e['contextos'],contrato_reportes(c),q,table,out)
     contrasts=leer_csv(out/'contrastes.csv')[1]
     find=lambda b:next(r for r in contrasts if r['escenario']=='A' and r['subconjunto']=='sin_respaldo' and r['candidato']=='t15_t13_S_verdor_v1' and r['frente_a']==b)
     t03=find(REF);control=find('t15_t13_control_S_abr_v1')

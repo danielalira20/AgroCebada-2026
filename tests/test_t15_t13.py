@@ -98,5 +98,26 @@ class T13Comun(unittest.TestCase):
         X,y,q=preparar_contexto(e,'A',1,0)
         self.assertTrue(y.equals(self.y));self.assertTrue(X.equals(self.X.drop(columns=self.c['variables_nuevas'])))
 
+    def test_reportes_admiten_mediana_sin_cambiar_version_original(self):
+        import tempfile
+        from pathlib import Path
+        c,e,side,old=run.cargar()
+        table={k[0]:v for k,v in e['tabla'].items()};quality={r['id_parcela']:r for r in run.leer_csv(run.RAIZ/'registro/t07/calidad_parcelas.csv')[1]}
+        ctr=dict(principal=dict(procedimientos=[dict(candidato=n) for n in c['comparadores_reutilizados'] if n!=run.REF],contrastes_planificados=[dict(candidato='comun_centrado_loo_v3_S',frente_a=run.REF,tipo='descriptivo')]))
+        original=copy.deepcopy(old)
+        with tempfile.TemporaryDirectory() as d:
+            run.tablas(old,e['contextos'],ctr,quality,table,Path(d))
+            self.assertEqual(len(run.leer_csv(Path(d)/'metricas_resumen.csv')[1]),12)
+        self.assertEqual(old,original)
+
+    def test_reportes_rechazan_reetiquetar_version_de_mediana(self):
+        import tempfile
+        from pathlib import Path
+        c,e,side,old=run.cargar()
+        for row in old:
+            if row['candidato']=='mediana_mun__resp_grupo':row['version']='comun-centrado-loo-v3'
+        ctr=dict(principal=dict(procedimientos=[dict(candidato=n) for n in c['comparadores_reutilizados'] if n!=run.REF],contrastes_planificados=[dict(candidato='comun_centrado_loo_v3_S',frente_a=run.REF,tipo='descriptivo')]))
+        with tempfile.TemporaryDirectory() as d,self.assertRaises(ValueError):run.tablas(old,e['contextos'],ctr,{}, {},Path(d))
+
 
 if __name__=='__main__':unittest.main()
