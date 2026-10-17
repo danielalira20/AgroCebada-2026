@@ -1,0 +1,14 @@
+{
+  "schema": "E2_autorizacion_evaluacion_v1",
+  "fecha_local": "2026-10-17",
+  "responsable": "Dani",
+  "registro_previo_sha256": "fc6a5ef56daa000ec9e89361a23a63f2b0779c9fc62d280d626bb4cba2a55bd9",
+  "base_commit": "36abcee489814b7a1bb6968773506a651b376487",
+  "solicitud": "Continuar conectando estos procedimientos al ejecutor completo y sus reportes, comprobar la conexión y entonces evaluar si INEGI reduce el MAE conservando los demás criterios registrados.",
+  "evaluacion_completa_autorizada": true,
+  "predicciones_finales59_autorizadas": false,
+  "cambiar_metodo_tras_resultados": false,
+  "publicacion_autorizada": false,
+  "reemplaza_registro_historico": false,
+  "alcance": "E2/E12/E2Q anidados A/B, dos ventanas, cuatro lambda y referencia sola; mismos datos, poblaciones, contrastes y reglas; evaluación posterior a comprobación Mac/Linux. Sin T16, ajuste final ni CSV reservado."
+}
