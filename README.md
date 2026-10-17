@@ -206,3 +206,9 @@ Principal A/sin_respaldo: referencia MAE 0.320490 t/ha, RMSE medio por repetici�
 El [informe E1/Q](docs/t15_e1_evaluacion.md) y su [entrega completa](registro/t15_e1_evaluacion/README.md) cierran la comparación registrada: MAE principal E1 0.321531 frente a referencia 0.320490 t/ha; no promueve. El control de disponibilidad y la sensibilidad del ancla están separados. Son resultados locales de esta rama, pendientes de publicación; los estados anteriores de planificación se conservan como historia. No cambia la referencia, T03/T07 ni las 59 finales.
 
 La [factibilidad INEGI](docs/t15_inegi_factibilidad.md) confirma acceso y cobertura de las 197 parcelas con el CEM3.0 de 15 m. El original local de unos 29 MB queda ignorado por Git; el registro comparte QA y procedencia. Faltan contrato técnico E2, extracción y evaluación de su aporte, con límites de datum y disponibilidad histórica explícitos.
+
+## T15 · contrato INEGI E2 y alternativas · 16 de octubre de 2026
+
+El [contrato técnico E2](docs/t15_e2_contrato_inegi.md) fija posición topográfica a150m y exposición direccional ponderada por inclinación, pesos físicos, cobertura, pruebas y comparaciones con control de disponibilidad. [Entrega y verificador](registro/t15_e2/README.md):27 comprobaciones analíticas y10 alteraciones peligrosas rechazadas; mismas salidas Mac normal/−O. Es diseño previo: no se extrajeron atributos E2 ni entrenaron modelos.
+
+La [investigación de alternativas](docs/t15_e2_alternativas_fundamentadas.md) contrasta estudios de cebada/cereales con T12/T13 y exploraciones del equipo. Prioriza terminar E2 y después una alternativa compacta de pérdida absoluta; suelo/bandas nuevas requieren piloto y registro propio. No se promete reducciónMAE ni se amplía la cartera al citar un artículo.

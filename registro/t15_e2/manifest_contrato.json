@@ -1,0 +1,21 @@
+{
+  "schema": "E2_contrato_entrega_v1",
+  "fecha": "2026-10-16",
+  "estado": "diseno_verificado_sin_extraccion_ni_entrenamiento",
+  "base": "ce287cd884f378b5b2e8db69b376f16087613aa8",
+  "codigo_verificador_sha256": "6f627105760645bd302a8cd49b837d54c13a843f3bc932b9d0c15b1296173856",
+  "archivos_sha256": {
+    "README.md": "84976fc59b7489ec150ab5332e050160f5a736349ce751621182784d0a93b909",
+    "comparacion_verificaciones.json": "cbb51787afa921d6eaa66f6c0672afc96b19418b816a8944e38e50d0a72ef4a2",
+    "contrato_tecnico_v1.json": "d7c30ca6572373a78b78348df64e5fda50556f197bbcce03872d92a0735a2d9c",
+    "diccionario_propuesto.csv": "ff081bc32f9cc394d1255a007843dbdb38c961c8643f25c641562f82d4153445",
+    "fuentes_alternativas.json": "07fb793150228fb7915ecf04c2e6af3c0bde538b1f56bb7ddd8c30c11fc42339",
+    "preflight_diseno.json": "2e3b29819c4306f1033dab0f8cde017e412ec595ac6124a53af2b377841ba239",
+    "verificacion_diseno.json": "46a9b8fe9c47c5706e9403e062f00c9122d4dfdbe3c51f84078c90e7cd375157"
+  },
+  "modelos_ajustados": 0,
+  "atributos_E2_extraidos": false,
+  "publicado": false,
+  "Docker_iniciado": false,
+  "PDFs_terceros_en_Git": false
+}

@@ -7,7 +7,7 @@
       "titulo": "Modeling the Effects of Soil Variability, Topography, and Management on the Yield of Barley",
       "autores": "Heil; Heinemann; Schmidhalter",
       "url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2018.00146/full",
-      "lectura": "texto_completo_web",
+      "lectura": "resumen_metodo_y_resultados_relevantes_web",
       "unidad": "ensayo_fertilizacion_larga_duracion",
       "uso": "motivacion_suelo_relieve_no_error_transferible"
     },
@@ -18,7 +18,7 @@
       "url": "https://oa.upm.es/96158/",
       "PDF": "https://oa.upm.es/96158/1/10382841.pdf",
       "doi": "10.1016/j.atech.2025.101253",
-      "lectura": "texto_completo15paginas_y_revision_visual_pp4_5",
+      "lectura": "PDF15paginas_recuperado_metodos_pp3_5_leidos_pp4_5_inspeccionadas_visualmente",
       "PDF_sha256": "f6ecba976eff709fb76569d1a3b2540d4b84783563d33dc52a8b362f34e88c73",
       "unidad": "un_campo3_5ha_celdas_rendimiento",
       "hallazgo_metodo": "70_30_estratificado_cuartiles_rendimiento_no_se_documenta_separacion_por_campos",
@@ -38,7 +38,7 @@
       "titulo": "Predicting Crop Yield With Machine Learning: An Extensive Analysis Of Input Modalities And Models On a Field and sub-field Level",
       "url": "https://arxiv.org/html/2308.08948v1",
       "doi": "10.1109/IGARSS52108.2023.10282318",
-      "lectura": "texto_completo_web",
+      "lectura": "metodos_y_resultados_relevantes_web",
       "unidad": "977_campos_varios_cultivos_y_paises_con_mapas_cosechadora",
       "uso": "comparar_complementariedad_no_sumar_todo_ni_pseudoreplicar"
     },
@@ -47,7 +47,7 @@
       "titulo": "Yield forecasting with machine learning and small data: what gains for grains?",
       "url": "https://arxiv.org/abs/2104.13246",
       "texto": "https://arxiv.org/pdf/2104.13246",
-      "lectura": "texto_completo_pdf_web_metodo_anidado_por_ano",
+      "lectura": "metodo_anidado_por_ano_y_benchmarks_PDF_web",
       "unidad": "provincia_ano",
       "uso": "validacion_pertinente_y_referencias_no_error_parcelario"
     },
@@ -97,5 +97,6 @@
   "sin_nuevos_modelos": true,
   "sin_nuevas_etiquetas": true,
   "publicacion_PDFs_terceros": false,
-  "lecturas_incompletas_explicitas": true
+  "lecturas_incompletas_explicitas": true,
+  "alternativa_T13": "Armonizacion_acotada_mismo_metodo_comun_pendiente_segun_documento_PR20_no_repeticion_automatica_de_todo"
 }
