@@ -1,0 +1,427 @@
+{
+  "schema": "agrocebada_E2_CEM3_contrato_v1",
+  "fecha": "2026-10-16",
+  "responsable": "Dani",
+  "base_commit": "ce287cd884f378b5b2e8db69b376f16087613aa8",
+  "estado": "especificacion_tecnica_local_previa_a_atributos_y_OOF",
+  "alcance_autorizado": "contrato_y_revision_bibliografica_no_extraccion_ni_entrenamiento",
+  "ejecutable": false,
+  "publicacion_autorizada": false,
+  "pregunta": "¿La posición topográfica local y la exposición direccional añaden información a S, solas o junto con E1?",
+  "exposicion_previa": [
+    "T08_T15_historicos_y_diagnosticos_conocidos",
+    "E1_Q_completa_conocida_no_promueve",
+    "Fuentes externas y propuestas anteriores conocidas",
+    "No validacion externa ciega ni otra campaña"
+  ],
+  "fuente": {
+    "institucion": "INEGI",
+    "producto": "CEM3.0_cem3_r15",
+    "ruta_relativa": "data/raw/externos/inegi/cem3_r15_region.tif",
+    "sha256": "5f315dd32f7984c0c8f0bdd12f8bc22c014fd097473e2497e30d3be6f648be95",
+    "bytes": 29003701,
+    "CRS_declarado": "EPSG:4326",
+    "nodata": -32768,
+    "tipo": "int16",
+    "unidad_Z": "m_segun_ficha_producto_INEGI2013_no_campo_unidad_TIFF",
+    "datum_vertical": "no_acreditado",
+    "disponibilidad_bytes_al_corte": "no_acreditada_retrospectivo",
+    "CRS_historico_ficha": "ITRF92_epoca1988_GRS80_no_sobrescribir_archivo_actual",
+    "transformacion_vertical": false,
+    "reescribir_CRS_original": false
+  },
+  "vectores": {
+    "directorio_relativo": "data/raw/DATASET_RETO_AGRO_2026/Parcelas_Reto_AGC_CONJUNTO_70_30",
+    "archivos_sha256": {
+      "Parcelas_Reto_AGC_CONJUNTO.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "Parcelas_Reto_AGC_CONJUNTO.shx": "b03e99bc1c619fd9351693091558f549e0b75220f41e1c3b6343dbc41cb7d1f7",
+      "Parcelas_Reto_AGC_CONJUNTO.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "Parcelas_Reto_AGC_CONJUNTO.shp": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29",
+      "Parcelas_Reto_AGC_CONJUNTO.dbf": "9b7d9e06beb70c688c59d4c2e4227ef851596e3382af7d5566b9c669dc35debb"
+    },
+    "clave": "ID_POLIGON",
+    "clave_salida": "id_parcela",
+    "n": 197,
+    "reparacion_automatica": false,
+    "densificar_geografico_max_grados": 0.0001,
+    "CRS_destino": "EPSG:32614",
+    "join": "1_a_1_por_ID_sin_rendimientos"
+  },
+  "rejilla": {
+    "CRS_destino": "EPSG:32614",
+    "resolucion_m": 15,
+    "origen_alineacion_m": [
+      0,
+      0
+    ],
+    "limites": "transform_bounds_densify21_y_floor_min_ceil_max_multiplos15",
+    "transform_planeada": [
+      15,
+      0,
+      536595,
+      0,
+      -15,
+      2211720
+    ],
+    "shape_planeada": [
+      3703,
+      3507
+    ],
+    "norte_arriba": true,
+    "remuestreo": "bilinear_una_vez",
+    "dtype": "float64",
+    "nodata_salida": -9999,
+    "unidad_Z_salida": "m_atribuida_producto",
+    "red_PROJ": false,
+    "si_falta_transformacion": "fallar_sin_ballpark_ni_descargar_rejillas",
+    "hilos": 1,
+    "GDAL_cache_MB": 32,
+    "memoria_VM_MB": 768,
+    "tile": 256,
+    "halo_focal_celdas": 10,
+    "buffer_cobertura_m": 210,
+    "escala_UTM_tolerancia_abs": 0.001,
+    "prohibido_ajustar_rejilla_por_MAE": true,
+    "ballpark_permitido": false
+  },
+  "validez": {
+    "mask": "bilinear_de_0_1_sin_nodata_renormalizado",
+    "soporte_bilinear_min": 0.999999999999,
+    "criterio": "contribuyentes_con_peso_positivo_validos",
+    "TPI": "centro_y_316_vecinos_validos",
+    "Horn": "9_celdas_validas",
+    "borde": "NoData_sin_rellenar_reflejar_o_compute_edges",
+    "cobertura_parcela_min": 0.99999999,
+    "suma_areas_rel_tol": 1e-08,
+    "puerta": "197_filas_3_atributos_finitos_o_no_evaluar_version",
+    "ausencia": "conservar_ID_vacios_y_motivo_no_imputar_E2_no_eliminar_ID",
+    "constantes": "conservar_columnas_escalado_solo_en_train_no_busqueda_por_variancia"
+  },
+  "TPI": {
+    "radio_m_UTM": 150,
+    "incluir_centro": false,
+    "criterio_vecino": "0 < dr**2+dc**2 <=100",
+    "n_vecinos": 316,
+    "ponderacion_vecindario": "uniforme_celdas_UTM_igual_area",
+    "formula": "z_centro - sum(z_vecinos)/316",
+    "normalizado_por_desviacion": false,
+    "unidad": "m",
+    "recorte_antes_focal": false,
+    "signo": "positivo_mas_alto_que_entorno_negativo_mas_bajo"
+  },
+  "orientacion": {
+    "algoritmo": "Horn_3x3",
+    "layout": "a b c / d e f / g h i_norte_arriba",
+    "p": "((c+2*f+i)-(a+2*d+g))/(8*15)",
+    "q": "((a+2*b+c)-(g+2*h+i))/(8*15)",
+    "q_sentido": "Norte_UTM",
+    "k": "meridional_scale_Proj_get_factors_WGS84_UTM14",
+    "gamma": "radians(meridian_convergence_degrees)",
+    "p_fisico": "k*p",
+    "q_fisico": "k*q",
+    "denominador": "sqrt(1+(k*p)**2+(k*q)**2)",
+    "Este": "(-k*p*cos(gamma)-k*q*sin(gamma))/denominador",
+    "Norte": "(k*p*sin(gamma)-k*q*cos(gamma))/denominador",
+    "equivalencia": "sin(inclinacion)*sin(azimut_verdadero),sin(inclinacion)*cos(azimut_verdadero)",
+    "plano": "ambos_0_observado_no_azimut_Norte_no_faltante",
+    "umbral_pendiente_predictivo": null,
+    "rango_componentes": [
+      -1,
+      1
+    ],
+    "norma_vector_max": 1,
+    "fuente_prevista": "medias_sin_cos_sin_peso_modificadas_antes_de_extraer_E2",
+    "radiacion_o_agua_medida": false,
+    "plano_numerico_diagnostico_grad_max": 1e-12
+  },
+  "agregacion": {
+    "area": "interseccion_exacta_poligono_y_celda_en_EPSG32614",
+    "peso": "area_interseccion/suma_areas_validas",
+    "peso_contacto_borde": 0,
+    "all_touched_como_media": false,
+    "formula": "sum(w_i*atributo_i)",
+    "vector": "media_componentes_no_media_azimut_no_normalizar_resultante_a_unidad",
+    "geometria": "sin_snap_sin_buffer_a_parcelas_sin_unir_vecinas",
+    "NoData": "no_convertir_a_cero_solo_planos_validos_tienen_vector0",
+    "error_tolerancia_vector": 1e-12,
+    "CSV": "UTF8_LF_17g_sin_nan_textual",
+    "canonico": "Docker_Linux_amd64_tolerancias_Mac_no_sustituyen_archivo_canonico",
+    "densificar_max_grados": 0.0001
+  },
+  "columnas_modelo": [
+    "e2_tpi150_media_m",
+    "e2_exposicion_este_media",
+    "e2_exposicion_norte_media"
+  ],
+  "calidad_no_predictiva": [
+    "cobertura_tpi_fraccion",
+    "cobertura_exposicion_fraccion",
+    "n_celdas_interseccion_positiva",
+    "area_parcela_utm_m2",
+    "area_soporte_tpi_m2",
+    "area_soporte_exposicion_m2",
+    "area_fuera_tpi_m2",
+    "area_fuera_exposicion_m2",
+    "fraccion_plano_numerico",
+    "pendiente_media_grados_QA",
+    "norma_resultante_exposicion_QA",
+    "rango_altitud_QA_m"
+  ],
+  "integracion": {
+    "archivo": "registro/t15_e2/atributos_parcela.csv_pendiente_no_fabricar",
+    "T07": "no_sobrescribir",
+    "clave": "id_parcela",
+    "n": 197,
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "agregar_por_ventana": false,
+    "nuevos_ejemplos_etiquetados": 0
+  },
+  "modelo": {
+    "version": "comun-centrado-loo-v3",
+    "fuente_igual": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+    "preparador": "extender_solo_columnas_finitas_E2_y_preparacion_E1_ya_fijada",
+    "dimensiones": {
+      "E2": 8,
+      "E12": 10,
+      "E2Q": 9
+    },
+    "escalado": "solo_entrenamiento_interno_o_externo",
+    "centrado": "mismo_pool_LOO_de_residuo_en_train_y_centros_de_train_en_predict",
+    "sin_intercepto": true,
+    "sin_centrado_en_197": true,
+    "imputacion_E2": false,
+    "politica_E1": "identica_registro_E1_v1",
+    "lambda_reg": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "alpha": "n_todo_entrenamiento*lambda",
+    "ventanas": [
+      "abr_oct",
+      "jun_oct"
+    ],
+    "n_internas": 4,
+    "opciones_con_variables": 8,
+    "referencia_sola_compite": true,
+    "desempate": "identico_v3",
+    "B_interno": "GroupKFold_celda_chirps",
+    "A_interno": "estratificado_municipio_segun_v3",
+    "seleccion_en59": false
+  },
+  "procedimientos": [
+    {
+      "id": "E2",
+      "formula": "S+E2",
+      "promocion": true
+    },
+    {
+      "id": "E12",
+      "formula": "S+E2+E1_valor+E1_bandera",
+      "promocion": true
+    },
+    {
+      "id": "E2Q",
+      "formula": "S+E2+E1_bandera",
+      "promocion": false
+    }
+  ],
+  "contrastes": [
+    {
+      "candidato": "E2",
+      "frente_a": "referencia",
+      "tipo": "promocion"
+    },
+    {
+      "candidato": "E12",
+      "frente_a": "referencia",
+      "tipo": "promocion"
+    },
+    {
+      "candidato": "E2",
+      "frente_a": "S",
+      "tipo": "incremento_E2"
+    },
+    {
+      "candidato": "E12",
+      "frente_a": "E2",
+      "tipo": "incremento_E1_con_relieve"
+    },
+    {
+      "candidato": "E12",
+      "frente_a": "E1",
+      "tipo": "incremento_relieve_con_E1"
+    },
+    {
+      "candidato": "E12",
+      "frente_a": "E2Q",
+      "tipo": "valor_NDWI_vs_disponibilidad_con_relieve"
+    },
+    {
+      "candidato": "E2Q",
+      "frente_a": "E2",
+      "tipo": "control_disponibilidad"
+    }
+  ],
+  "comparadores_reutilizados": [
+    "S",
+    "E1",
+    "referencia"
+  ],
+  "presupuesto": {
+    "nuevos_procedimientos": 3,
+    "contextos": 50,
+    "opciones_con_variables_total": 24,
+    "Ridge_internos": 4800,
+    "referencias_internas_sin_cache": 600,
+    "ajustes_externos": 150,
+    "Ridge_externos_max": 150,
+    "OOF_nuevas": 4140,
+    "OOF_reutilizadas": 4140,
+    "OOF_total": 8280,
+    "contrastes_total": 28,
+    "metricas_resumen": 24,
+    "selecciones": 150,
+    "aclaracion": "Incluye 1600 Ridge internos y50externos adicionales para E2Q; sustituye propuesta anterior de2procedimientos. Sin cache costo explicito; cache puede reducir solo referencias repetidas.",
+    "ajustes_internos_sin_cache": 5400,
+    "trazas_sin_cache": 5550
+  },
+  "decision": {
+    "T03": {
+      "principal": "A",
+      "sensibilidad_obligatoria": "B",
+      "subconjunto_decision": "sin_respaldo",
+      "dMAE": "promedio_por_parcela_de_diferencias_de_error_absoluto_en_repeticiones_elegibles",
+      "dRMSE": "promedio_por_repeticion_de_diferencias_RMSE",
+      "bootstrap": "celda_chirps_del_centroide",
+      "replicas": 5000,
+      "semilla": 20261006,
+      "intervalo_percentil": [
+        2.5,
+        97.5
+      ],
+      "promocion": {
+        "dMAE_max": -0.01,
+        "IC95_superior_max_exclusivo": 0,
+        "repeticiones_mejoran_min": 4,
+        "dRMSE_max": 0.01
+      }
+    },
+    "guardia_familia_E2": {
+      "motivo": "dos_candidatos_promovibles_registrados_antes_de_resultados",
+      "candidatos": [
+        "E2",
+        "E12"
+      ],
+      "alpha_familia": 0.05,
+      "IC_individual_adicional": 0.975,
+      "percentiles": [
+        1.25,
+        98.75
+      ],
+      "replicas": 5000,
+      "semilla": 20261006,
+      "reusar_mismos_indices_espaciales": true,
+      "criterio_extra": "limite_superior_adicional<0",
+      "no_modifica_resultados_historicos": true,
+      "interpretacion": "guardia_Bonferroni_aproximada_bootstrap_no_garantia_FWER_con_pocos_bloques"
+    },
+    "Q_diagnostico_sin_promocion": true,
+    "empate_entre_elegibles": "MAE_redondeado6_luego_E2_mas_simple",
+    "sin_seleccionar_por_B_o_por_los_10_casos": true,
+    "si_ninguno": "conservar_referencia",
+    "T16_no_congelado": true
+  },
+  "QA_antes_de_OOF": [
+    "huellas_y_197IDs",
+    "rejilla_unidades_ejes_datum_red_off",
+    "plano_rampa_bowl_TPI_con_valor_analitico",
+    "signos_cardinales_y_geodesia_9puntos",
+    "offset_Z_invariante",
+    "vector_norma_y_359_1_circular",
+    "pixel_parcial_y_contacto_borde_peso0",
+    "NoData_bilinear_y316vecinos_y9Horn",
+    "tiles_distinto_tamano_mismo_interior",
+    "independiente_197_agregados",
+    "desplazar_geometria_mas_menos15m_E_N_solo_QA_sin_escoger",
+    "Mac_Linux_fuentes_fijas_tolerancias",
+    "puente_S_E1_Q_y_H3_en_contexto_real",
+    "negativos_fuentes_alteradas_y_salida_existente"
+  ],
+  "tolerancias": {
+    "matematica_float64": 1e-12,
+    "TPI_mac_vs_Linux_m": 1e-06,
+    "componentes_mac_vs_Linux": 1e-09,
+    "agregacion_independiente_TPI_m": 1e-06,
+    "agregacion_independiente_componentes": 1e-09,
+    "OOF_mismos_CSV_canonicos": 1e-12,
+    "fuentes_y_IDs": "exacto",
+    "sin_ampliar_tolerancia_por_fallo": true
+  },
+  "puertas_para_ejecutar": {
+    "extractor_implementado_y_probado": false,
+    "QA_197_completa": false,
+    "tabla_canonica_y_huella": false,
+    "modelo_y_auditor_independiente_verificados": false,
+    "registro_operativo_con_fuentes_y_codigo": false,
+    "solicitud_de_evaluacion_completa": false
+  },
+  "fuera_de_alcance": [
+    "TWI_SPI_drenaje",
+    "curvaturas_y_radios_adicionales",
+    "altitud_absoluta_nueva",
+    "suelo_radar_eventos_diarios",
+    "otra_perdida_o_familia_modelo",
+    "cambiar_etiquetas_recortar_extremos",
+    "predicciones_finales59",
+    "ajuste_final138",
+    "T16_o_app",
+    "push_o_mensajes"
+  ],
+  "fuentes_sha256": {
+    "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+    "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+    "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+    "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+    "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+    "registro/evaluacion_comun/procedimiento_centrado_loo_v3.json": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+    "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "requirements.txt": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
+    "Dockerfile": "fa12707e735c0e2c52c2894ebf237cf5e81ed3e2984b7a4a0ba607e841038485",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
+    "registro/t15_e1/contrato_propuesto_v1.json": "356372d65fad12062229b12726f3ce634179e76fe2392fc00d02274435d3b59c",
+    "registro/t15_e1/vista_admisibilidad_propuesta.csv": "40fa062deb0f1bc44cf165120c1c4c4f816131b672173b44235ff6c29de866bf",
+    "registro/t15_d1/perfil_ndwi_postpico.csv": "7a0718806754bc80d7d629d8325f1850421141f763e109339438e3288a5a1fc4",
+    "registro/t15_resultados/predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "registro/t15_resultados/selecciones.jsonl": "4e8b28b4fa1f3256b956d77fde98be3e9462026712754286df199551437950e6",
+    "registro/t15_resultados/manifest.json": "fa89ae95172444242b0a97e39f7923b1604f950c0e2f87b2fd0db1e46c06799f",
+    "registro/t15_resultados/entrega.json": "dbf62d07863462706ba9899a11d3785a024843a82633f67c6c06a55cd09ffd95",
+    "scripts/t15_e1_modelo.py": "ffda475472cd8b389cdad4da47dcb69e618aca4664814562592543ccc2a604c6",
+    "registro/t15_e1_evaluacion/registro_v1.json": "4c05485aa33017fa15ad0fa7b5edde638fdc75c33bd1174e9932046a26520c89",
+    "registro/t15_e1_evaluacion/resultados/predicciones_oof.csv": "33b482548869b9a127d7eafc39aaca95f7ee696ec3ee74a6e16c004efa4bc8d8",
+    "registro/t15_e1_evaluacion/resultados/manifest.json": "eaf23d2c37059b9bf78f01ee6c4306810610bd3898a02718c48ca4e4cdd8c8c7",
+    "registro/t15_e1_evaluacion/entrega.json": "9911f1028f62a1461775bf9636b67b53ea59adfc5bc414f7b39869ac91771bdb",
+    "registro/t15_inegi_factibilidad/procedencia.json": "c3595bbc0a99b1018de79510aa81f596fe2e9f7998548a8781c513384de614d9",
+    "registro/t15_inegi_factibilidad/verificacion_recorte.json": "66f9b38d3b235a77d6cfdf43c1415e5223147aedad531998b07d591a9e94d319"
+  },
+  "salidas_futuras": {
+    "atributos": "id_parcela_y3columnas_E2",
+    "calidad": "id_parcela_y12campos_QA",
+    "sensibilidad": "id_parcela,escenario_desplazamiento,delta_TPI_m,delta_E,delta_N,admisible",
+    "pesos": "local_solo_ID_fila_columna_area_peso_por_atributo",
+    "manifest": "huellas_CRS_unidades_rejilla_pipeline_versiones_algoritmos_mascaras_y_fechas",
+    "no_metadatos_como_predictor": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "E2_preflight_diseno_v1",
+  "sin_raster_reproyectado_ni_atributos_E2": true,
+  "sin_rendimientos": true,
+  "fuente_TIFF_sha256": "5f315dd32f7984c0c8f0bdd12f8bc22c014fd097473e2497e30d3be6f648be95",
+  "CRS_fuente": "EPSG:4326",
+  "CRS_destino": "EPSG:32614",
+  "resolucion_m": 15,
+  "transformacion": "+proj=pipeline +step +proj=unitconvert +xy_in=deg +xy_out=rad +step +proj=utm +zone=14 +ellps=WGS84",
+  "red_PROJ": false,
+  "rejilla_transform_planeada": [
+    15,
+    0,
+    536595,
+    0,
+    -15,
+    2211720
+  ],
+  "shape_planeada": [
+    3703,
+    3507
+  ],
+  "parcelas_con_margen_210m": 197,
+  "n_puntos_geodesicos_de_prueba": 9,
+  "error_maximo_base_orientacion": 2.311727459198415e-09,
+  "tolerancia_base_orientacion": 1e-07,
+  "convergencia_min_max_grados": [
+    0.11641540230775273,
+    0.2916635048767348
+  ],
+  "escala_min_max": [
+    0.9996165515371885,
+    0.9996983472452163
+  ],
+  "GDAL": "3.10.3"
+}
