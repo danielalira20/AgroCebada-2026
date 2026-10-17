@@ -18,5 +18,6 @@
     "adaptador y auditor del modelo",
     "registro código y CSV canónicos",
     "solicitud de evaluación completa"
-  ]
+  ],
+  "aclaracion_Z_vector": "197 PolygonZ,6431 vértices,todos Z=0: retirar sólo dimensión Z constante al leer; X/Y y original intactos; Z no nula bloquea"
 }

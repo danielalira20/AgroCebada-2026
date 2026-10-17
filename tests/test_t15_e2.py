@@ -142,6 +142,30 @@ class TestE2(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(ValueError,'existente'):e.extract(Path(tmp),Path(tmp))
 
+    def test_real_polygon_z_zero_preserves_xy(self):
+        root=Path(__file__).resolve().parents[1]
+        c=json.loads((root/'registro/t15_e2/contrato_tecnico_v1.json').read_text())
+        result=e.load_plots(root,c)
+        self.assertEqual(len(result),197);self.assertFalse(result.has_z.any())
+        self.assertTrue(result.is_valid.all());self.assertEqual(result.crs.to_epsg(),32614)
+
+    def test_vector_z_nonzero_blocks(self):
+        import shapely
+        root=Path(__file__).resolve().parents[1]
+        c=json.loads((root/'registro/t15_e2/contrato_tecnico_v1.json').read_text())
+        g=e.gpd.read_file(root/c['vectores']['directorio_relativo']/'Parcelas_Reto_AGC_CONJUNTO.shp',columns=['ID_POLIGON'])
+        g.loc[0,'geometry']=shapely.force_3d(shapely.force_2d(g.geometry.iloc[0]),z=1.)
+        with patch.object(e.gpd,'read_file',return_value=g):
+            with self.assertRaisesRegex(ValueError,'Z vectorial'):e.load_plots(root,c)
+
+    def test_duplicate_id_blocks(self):
+        root=Path(__file__).resolve().parents[1]
+        c=json.loads((root/'registro/t15_e2/contrato_tecnico_v1.json').read_text())
+        g=e.gpd.read_file(root/c['vectores']['directorio_relativo']/'Parcelas_Reto_AGC_CONJUNTO.shp',columns=['ID_POLIGON'])
+        g.loc[0,'ID_POLIGON']=g.ID_POLIGON.iloc[1]
+        with patch.object(e.gpd,'read_file',return_value=g):
+            with self.assertRaisesRegex(ValueError,'IDs'):e.load_plots(root,c)
+
     def test_csv_no_nan_17digits(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/'a.csv';e.write_csv(p,['id','v'],[dict(id='A',v=math.nan),dict(id='B',v=1.2345678901234567)])

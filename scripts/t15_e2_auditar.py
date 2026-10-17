@@ -18,6 +18,7 @@ import numpy as np
 import geopandas as gpd
 import pyproj
 import rasterio
+import shapely
 from rasterio.transform import Affine
 from rasterio.vrt import WarpedVRT
 from rasterio.enums import Resampling
@@ -102,6 +103,10 @@ def audit(root, delivery, output):
     attrs, qa=table(delivery/'atributos_parcela.csv'),table(delivery/'calidad.csv')
     geo=gpd.read_file(vector/'Parcelas_Reto_AGC_CONJUNTO.shp',columns=['ID_POLIGON'])
     check(geo.crs.to_epsg()==4326 and geo.ID_POLIGON.is_unique and geo.is_valid.all(), 'Geometrías no acreditadas')
+    if geo.has_z.any():
+        zz=shapely.get_coordinates(geo.geometry,include_z=True)[:,2]
+        check(np.isfinite(zz).all() and np.all(zz==0),'Z original no acreditada')
+        geo.geometry=geo.geometry.force_2d()
     check(set(geo.ID_POLIGON)==set(attrs)==set(qa), 'IDs mezclados')
     with (root/'registro/t07/catalogo_base.csv').open() as f:
         check({r['id_parcela'] for r in csv.DictReader(f)}==set(attrs), 'Catálogo diferente')

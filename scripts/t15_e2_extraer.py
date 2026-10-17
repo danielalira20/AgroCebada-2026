@@ -84,7 +84,11 @@ def load_plots(root, c):
         ids = [r['id_parcela'] for r in csv.DictReader(f)]
     require(len(ids) == len(set(ids)) == 197 and set(ids) == set(g.ID_POLIGON), 'No coincide catálogo T07')
     require(g.geometry.notna().all() and (~g.geometry.is_empty).all() and g.is_valid.all(), 'Geometría inválida')
-    require(g.geom_type.isin(['Polygon', 'MultiPolygon']).all() and not g.has_z.any(), 'Geometría no soportada')
+    require(g.geom_type.isin(['Polygon', 'MultiPolygon']).all(), 'Geometría no soportada')
+    if g.has_z.any():
+        z = shapely.get_coordinates(g.geometry, include_z=True)[:, 2]
+        require(np.isfinite(z).all() and np.all(z == 0), 'Z vectorial no nula: requiere revisión')
+        g.geometry = g.geometry.force_2d()  # Original Z is a constant zero placeholder, never an elevation.
     g.geometry = g.geometry.segmentize(.0001)
     g.geometry = g.geometry.map(lambda p: transform_geometry(FWD.transform, p))
     g = g.set_crs(32614, allow_override=True)  # Coordinates were transformed explicitly above.
