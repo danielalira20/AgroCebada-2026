@@ -1,0 +1,7 @@
+variable,r_dentro_municipio,IC95_celdas_inf,IC95_celdas_sup,excluye_cero,n
+prec_abr_oct,-0.055,-0.15,0.186,False,138
+prec_jun_oct,-0.047,-0.149,0.195,False,138
+tmin_abr_oct,-0.047,-0.15,0.062,False,138
+tmin_jun_oct,-0.093,-0.179,0.039,False,138
+tmax_abr_oct,-0.175,-0.247,-0.022,True,138
+tmax_jun_oct,-0.177,-0.252,-0.028,True,138
