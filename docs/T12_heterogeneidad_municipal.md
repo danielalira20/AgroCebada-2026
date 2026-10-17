@@ -1,7 +1,7 @@
 # T12 · Heterogeneidad municipal y contraste no lineal
 
-- **Implementa:** Jass. **Responsable original de T12:** Diego. **Revisión metodológica:** Migue.
-- **Estado (16 de octubre de 2026):** diseño registrado el 15 de octubre **antes de correr** (decisión `D_T12_001`, experimentos `E_T12_001` a `E_T12_008`). **Cerrado el 16 de octubre: resultado R2, se conserva la referencia** (decisión `D_T12_002`; informe en `analisis/heterogeneidad_municipal/`). Este documento no se reescribió después de ver resultados; solo cambió esta línea.
+- **Implementa:** Jass. **Responsable original de T12:** Diego. **Revisión metodológica:** Migue (pendiente).
+- **Estado (16 de octubre de 2026):** diseño registrado el 15 de octubre **antes de correr** (decisión `D_T12_001`, experimentos `E_T12_001` a `E_T12_008`). **Cerrado el 16 de octubre: resultado R2, se conserva la referencia** (decisión `D_T12_002`; informe en `analisis/heterogeneidad_municipal/`). Este documento no se reescribió después de ver resultados; solo cambiaron esta línea, «(pendiente)» en el encabezado y dos notas con fecha (§5.2 y §10) que no reescriben el texto original.
 - **Usa:** el procedimiento común v3 de T15 (Dani, PR #21, commit `4afabf0`) sin modificarlo; T03 con la extensión §5 bis (D026, Migue); la referencia T08 `media_mun__resp_grupo` (D019); la tabla común T07.
 - **Registro técnico:** `registro/t12/procedimiento_t12.json`. Su huella SHA-256 está en `D_T12_001` y el script la comprueba antes de correr.
 - **Plan:** «T12 · contraste no lineal: un candidato pequeño, mismas entradas y evaluación; búsqueda acotada y fallos registrados. Usa T03, T07–T08. No bloquea app ni T16.»
@@ -105,6 +105,7 @@ Es el contraste no lineal: puede capturar interacciones como "más verde y adem�
 - **Entradas:** los mismos `D_i` de v3, más indicadores 0/1 de los municipios con pendiente propia (misma regla de 12 filas).
 - **Objetivo:** los mismos `r_i`.
 - `init='zero'` mantiene la política de no añadir un término constante. Así una mejora no puede venir solo de calibrar.
+  > **Nota posterior a los resultados (16 de octubre de 2026; no reescribe la frase anterior):** la frase anterior es incorrecta para `gb`. `init='zero'` solo fija en cero el punto de partida de las predicciones; después las hojas de los árboles sí pueden aprender un desplazamiento constante, a diferencia del Ridge, que no tiene intercepto. Por eso los árboles tuvieron un poco más de libertad que las demás familias. Se midió el efecto: el desplazamiento medio de `gb_GP` frente a la referencia es +0.0015 t/ha en A y +0.0001 en B, así que no aprendió un sesgo sistemático, y aun con esa libertad no mejora a la referencia. No es una fuga de datos. El comentario equivalente de `scripts/t12_heterogeneidad.py` no se corrige porque el archivo está congelado por su huella.
 - **Opciones:** `n_estimators` ∈ {50, 150} × ventana, más la referencia sola.
 - **Desempate:** MAE, referencia sola, menos árboles, `jun_oct` y nombre.
 
@@ -172,6 +173,8 @@ Es el contraste no lineal: puede capturar interacciones como "más verde y adem�
 4. Dani confirma que `scripts/evaluacion_comun_*` no cambiará en la revisión del PR #21, o el PR ya se integró.
 5. Dani y Jass aceptan D026.
 6. Migue revisó este diseño.
+
+> **Nota posterior (16 de octubre de 2026; no reescribe la lista):** La condición 6 de las barreras («Migue revisó este diseño») **no se había cumplido** cuando se corrió con `--confirmo-barreras` el 15 de octubre: Jass confirmó las barreras sin una revisión previa de Migue. Migue todavía no revisó ni el diseño ni los resultados. Los resultados son válidos para el diseño tal como se registró, pero esa revisión puede pedir cambios; hasta entonces hay que leerlos como condicionales a ella.
 
 ## 11. Qué no afirma ni hace
 

@@ -115,9 +115,18 @@ Dónde vive el resto: método en `docs/T12_heterogeneidad_municipal.md`; código
 
 **Límites.** No hubo acceso a GitHub: se revisaron commits, no comentarios de los PR. T15 aún no corrió su evaluación completa. Si T15 cambia más adelante, las compuertas de huellas de `t12_evaluar.py` lo detectan antes de correr.
 
+### 16 de octubre de 2026 (noche) — Observaciones de revisión
+
+**Qué llegó.** Tres observaciones sobre el borrador del PR: (1) acotar las conclusiones, (2) corregir la explicación de los árboles, (3) conciliar el estado de la revisión de Migue. Las tres se revisaron contra nuestros archivos y se aceptaron; ninguna cambia un resultado.
+
+**Qué se cambió.**
+- **Conclusión acotada.** «Se descarta que la forma del modelo sea la causa» pasó a «con estas dos formas de modelo (regla por municipio con Ridge y árboles de profundidad 2) no se logra una mejora suficiente»; no descarta otras formas ni otras variables. Con unas 110 parcelas por entrenamiento, los árboles son una prueba débil de «no lineal».
+- **`init='zero'`.** `init='zero'` solo fija en cero el punto de partida de las predicciones; después las hojas de los árboles sí pueden aprender un desplazamiento constante, a diferencia del Ridge, que no tiene intercepto. Por eso los árboles tuvieron un poco más de libertad que las demás familias. Se midió el efecto: el desplazamiento medio de `gb_GP` frente a la referencia es +0.0015 t/ha en A y +0.0001 en B, así que no aprendió un sesgo sistemático, y aun con esa libertad no mejora a la referencia. No es una fuga de datos. El diseño (§5.2) y el comentario del código decían lo contrario. Como el diseño y el código están fijados antes de correr, **no se reescribieron**: se agregó una nota con fecha en el documento de diseño y se explica en el informe y el PR. El comentario del código queda como está porque cambiarlo cambia la huella y las compuertas se negarían a correr.
+- **Estado de la revisión.** La condición 6 de las barreras («Migue revisó este diseño») **no se había cumplido** cuando se corrió con `--confirmo-barreras` el 15 de octubre: Jass confirmó las barreras sin una revisión previa de Migue. Migue todavía no revisó ni el diseño ni los resultados. Los resultados son válidos para el diseño tal como se registró, pero esa revisión puede pedir cambios; hasta entonces hay que leerlos como condicionales a ella.
+
 ## Pendientes
 
 1. Reproducción en Mac (Dani o Daf): `python -m scripts.t12_evaluar --salida reports/t12_repro --confirmo-barreras --procesos 2` y luego `python -m scripts.t12_reproducir --reproduccion reports/t12_repro --etiqueta "Mac"`, con `--amd64` si se quiere comparar contra Linux amd64.
-2. Revisión metodológica de Migue (diseño no ciego, 13 comparaciones, IC nominales).
+2. Revisión metodológica de Migue: aún no revisó ni el diseño ni los resultados (la barrera 6 se confirmó sin su revisión). Puntos a revisar: diseño no ciego, 13 comparaciones, IC nominales y la corrección de `init='zero'`.
 3. Fusionar `origin/t15-centrado-municipal` en esta rama (conservar las dos partes en los tres registros) y abrir el PR con `borrador_pr.md`.
 4. Avisar a Dani que T12 ya midió G, P y G+P con las mismas opciones que su menú, para su registro de exposición previa y como comprobación cruzada.

@@ -1,12 +1,12 @@
 # Informe de cierre · T12, heterogeneidad municipal y contraste no lineal
 
-- **Implementa:** Jass. **Responsable original de T12:** Diego. **Revisión metodológica:** Migue (pendiente).
+- **Implementa:** Jass. **Responsable original de T12:** Diego. **Revisión metodológica:** Migue, **pendiente** (aún no revisó ni el diseño ni los resultados; ver «Límites»).
 - **Método:** [`docs/T12_heterogeneidad_municipal.md`](../../docs/T12_heterogeneidad_municipal.md) y decisión `D_T12_001`, escritos antes de correr.
 - **Resultados:** `registro/t12/`. **Bitácora:** [`bitacora.md`](bitacora.md). **Fecha:** 16 de octubre de 2026.
 
 ## En una frase
 
-Con este procedimiento, estas entradas y esta campaña, **dejar que cada municipio tenga su propia regla de corrección, o usar un modelo que no sea una línea recta, no mejora de forma comprobable la estimación que da el promedio del municipio**; se conserva la referencia `media_mun__resp_grupo`. Hay un indicio muy pequeño a favor (resultado **R2**, «señal sin umbral»), pero con 138 parcelas no alcanza para cambiar nada.
+Con este procedimiento, estas entradas y esta campaña, **dejar que cada municipio tenga su propia regla de corrección, o usar árboles en lugar de una línea recta (las dos versiones que probamos), no mejora de forma comprobable la estimación que da el promedio del municipio**; se conserva la referencia `media_mun__resp_grupo`. Hay un indicio muy pequeño a favor (resultado **R2**, «señal sin umbral»), pero con 138 parcelas no alcanza para cambiar nada.
 
 ## Qué preguntamos
 
@@ -77,7 +77,7 @@ Error promedio de la referencia: **0.3205** t/ha. `dMAE` = cambio del error prom
 No. Ningún procedimiento cumple la regla del equipo. La referencia `media_mun__resp_grupo` se conserva.
 
 **¿Entonces la idea no sirve?**
-Sirve como diagnóstico, no como modelo. Nos dice que, con relieve, área y Planet, **darle a cada municipio su propia regla no añade información útil**. Eso es un resultado, no un fracaso: descarta una hipótesis razonable con una prueba definida de antemano.
+Sirve como diagnóstico, no como modelo. Nos dice que, con relieve, área y Planet, **darle a cada municipio su propia regla no añade información útil**. Eso es un resultado, no un fracaso: con una prueba definida de antemano, **no encontró apoyo** para una hipótesis razonable. No prueba que otra forma de modelo, más profunda o con más datos, tampoco funcione.
 
 **¿Por qué no mejora?**
 No lo probamos, y varias explicaciones son compatibles con los datos: (a) dentro de un mismo municipio, los rendimientos varían mucho (en Chignahuapan, de 2.15 a 5.59 t/ha entre sus 71 parcelas etiquetadas) y las variables disponibles no explican esa diferencia; (b) lo que sí la explicaría (variedad, fecha de siembra, manejo) no está en nuestros datos; (c) con unas 110 parcelas por entrenamiento, estimar reglas separadas por municipio deja mucho ruido.
@@ -108,7 +108,7 @@ Antes de T12 había una duda abierta: ¿las variables de T10, T11, T14 y T15 no 
 |---|---|---|
 | **Darle su propia regla a cada municipio no rescata a estas variables.** | Ninguno de los 8 procedimientos cumple la regla de T03 §4: 0 de 8 en A y 0 de 8 en B. El mejor caso, `het_GP`, queda en −0.0009 con IC95 [−0.0066, +0.0047]. | Firme para estas variables, esta campaña y 138 parcelas. |
 | **Un modelo que no es una línea recta tampoco las rescata.** | `gb_GP`: +0.0019 en A y ≈0 en B frente a la referencia (−0.0007 por parcela, +0.0005 por repetición); en el ajuste final con las 138 elige no corregir nada. | Firme, mismas condiciones. |
-| **Lo que vieron T10, T11, T14 y T15 no se debía a la forma del modelo.** | T10 dejó anotado que un modelo no lineal era tarea de T12. Resultado: ni la regla por municipio ni los árboles cambian la conclusión. | Se descarta esa explicación para relieve, área y Planet; no para otras variables. |
+| **Con estas dos formas de modelo, lo que vieron T10, T11, T14 y T15 no mejora.** | T10 dejó anotado que un modelo no lineal era tarea de T12. Resultado: ni la regla por municipio (Ridge) ni árboles de profundidad 2 (50 o 150 árboles) logran una mejora suficiente. | Firme solo para esas dos variantes, relieve, área y Planet, 138 parcelas y una campaña. **No** descarta otras formas de modelo (árboles más profundos, más datos) ni otras variables. |
 | **La regla común de relieve y área perjudica a la referencia.** | `control_comun_G`: +0.0032 en A y +0.0092 en B (IC95 [+0.0031, +0.0249], todo por encima de cero). T10 había visto +0.0027. | Bastante firme: coincide con T10 y en B el rango no toca el cero. |
 | **Repartir esa regla por municipio repara la pérdida, pero no gana.** | `het_G` frente a `control_comun_G`: −0.0045 [−0.0083, −0.0011], mejora en 5 de 5 repeticiones. Frente a la referencia queda en −0.0014 [−0.0063, +0.0042]. | Firme como diagnóstico; no como mejora del modelo. |
 | **El promedio municipal es una referencia difícil de superar.** | 8 alternativas probadas con la misma regla, cada una repetida 25 veces por escenario, y ninguna la supera de forma comprobable. | Firme para lo probado. Respalda seguir con ella en la app y en T16. |
@@ -126,7 +126,7 @@ Antes de T12 había una duda abierta: ¿las variables de T10, T11, T14 y T15 no 
 
 **Por qué no fue tiempo perdido.**
 
-1. Cierra una pregunta que T10 y T11 dejaron abierta, con una prueba definida antes de ver resultados.
+1. Responde, de forma acotada, una pregunta que T10 y T11 dejaron abierta, con una prueba definida antes de ver resultados.
 2. Deja evidencia que otra persona puede repetir y comprobar: código congelado con huellas, auditor independiente y comparador de reproducciones.
 3. Es un argumento de metodología para el reto: se probó lo razonable, con rigor, y se reporta el resultado negativo con honestidad.
 4. Deja tres insumos concretos: la nota de la mediana para T16, la información sobre relieve y área para T15 (ver más abajo), y la curva de aprendizaje para T18.
@@ -140,6 +140,9 @@ Antes de T12 había una duda abierta: ¿las variables de T10, T11, T14 y T15 no 
 - **El revuelto usó 20 permutaciones**, lo mínimo para que p ≤ 0.05 sea posible (p = 0.0476). No es una prueba fina.
 - **Solo se probaron dos formas de modelo** (regla por municipio y árboles de decisión) y las variables de relieve, área y Planet. No se probaron variables de clima, Sentinel-2, calidad ni vecinas (eso es de otras tareas).
 - **Corrida en Mac pendiente** (Dani o Daf).
+- **La forma del modelo quedó poco explorada.** Solo se probaron una regla por municipio con Ridge y árboles de profundidad 2 con unas 110 parcelas por entrenamiento, que es una prueba débil de «no lineal». La conclusión se limita a esas dos variantes.
+- **Los árboles tuvieron más libertad que el Ridge.** `init='zero'` solo fija en cero el punto de partida de las predicciones; después las hojas de los árboles sí pueden aprender un desplazamiento constante, a diferencia del Ridge, que no tiene intercepto. Por eso los árboles tuvieron un poco más de libertad que las demás familias. Se midió el efecto: el desplazamiento medio de `gb_GP` frente a la referencia es +0.0015 t/ha en A y +0.0001 en B, así que no aprendió un sesgo sistemático, y aun con esa libertad no mejora a la referencia. No es una fuga de datos. El diseño decía lo contrario (nota con fecha en `docs/T12_heterogeneidad_municipal.md`, §5.2); el comentario equivalente de `scripts/t12_heterogeneidad.py` no se corrige porque el archivo está congelado por su huella.
+- **Estado de la revisión.** La condición 6 de las barreras («Migue revisó este diseño») **no se había cumplido** cuando se corrió con `--confirmo-barreras` el 15 de octubre: Jass confirmó las barreras sin una revisión previa de Migue. Migue todavía no revisó ni el diseño ni los resultados. Los resultados son válidos para el diseño tal como se registró, pero esa revisión puede pedir cambios; hasta entonces hay que leerlos como condicionales a ella.
 
 ## Para otros frentes
 
