@@ -33,3 +33,6 @@ CLAUDE.local.md
 
 # Archivos de contexto locales 
 context/*
+
+# Paquete compacto de la app T17 (se regenera con app/preparar_datos.py)
+app/datos_app/
