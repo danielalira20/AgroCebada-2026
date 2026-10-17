@@ -2,6 +2,7 @@
 
 - **Responsable:** Jass. **Revisora:** Daf.
 - **Estado (12 de octubre de 2026):** ejecutado; en revisión de Daf. Diseño escrito **antes de correr** (decisión `D_T10_001`), con correcciones de implementación y aclaraciones documentadas **después de los resultados y de la auditoría con Codex** (nota en la sección 7 y decisión `D_T10_002`). Resultado en la sección 13; informe de cierre en `analisis/aporte_relieve_y_area/informe_relieve_y_area.md`.
+- **Actualización del 15 de octubre de 2026 (posterior a los resultados, `D_T10_004`):** se distinguen las configuraciones sin centrar (1–5) de la centrada (6) y se fija cómo entran relieve y área en las comparaciones nuevas (sección 15). No cambia ninguna cifra, predicción ni código.
 - **Usa:** T03 (particiones, subconjuntos y regla de decisión), T05 (relieve), T07 (tabla común) y T08 (referencia `media_mun__resp_grupo`, D019).
 - **Plan:** «T10 · relieve y área: territorio frente a territorio + relieve/área; sensibilidad a tamaño y cobertura parcial. Entregar predicciones y errores». Anexo de selección de atributos (11 de octubre): «comparar aporte sobre territorio; revisar relación entre relieve, área y ubicación y sensibilidad a calidad».
 
@@ -51,16 +52,18 @@ Todas salen de `registro/t07/tabla_comun.csv` y se unen por `id_parcela`, nunca 
 
 ## 5. Configuraciones (presupuesto: 6 de 8)
 
-| # | Variables además del territorio |
-|---|---|
-| 1 | Elevación |
-| 2 | Pendiente |
-| 3 | Área (logaritmo) |
-| 4 | Relieve: elevación + pendiente |
-| 5 | Relieve + área |
-| 6 | Relieve + área, cada variable centrada con la media de su municipio en el entrenamiento (si el municipio no está en el entrenamiento, con la media global) |
+| # | Variables además del territorio | ¿Centrada por municipio? | Qué mide |
+|---|---|---|---|
+| 1 | Elevación | No | Si la variable tal cual mejora la referencia. Mezcla «dónde está la parcela» con «cómo es frente a las de su municipio». |
+| 2 | Pendiente | No | Igual que la 1. |
+| 3 | Área (logaritmo) | No | Igual que la 1. |
+| 4 | Relieve: elevación + pendiente | No | Igual que la 1. |
+| 5 | Relieve + área | No | Igual que la 1. |
+| 6 | Relieve + área, cada variable centrada con la media de su municipio en el entrenamiento (si el municipio no está en el entrenamiento, con la media global) | Sí | Si una parcela más alta, más inclinada o más grande que el promedio de su municipio rinde distinto: el aporte dentro del municipio. |
 
 La configuración 6 separa «cómo es la parcela frente a las de su municipio» de «dónde está». Las 2 configuraciones restantes del presupuesto **no se usan**: no hay otra pregunta que justifique gastarlas, y no se agregan después de ver resultados.
+
+**Nota del 15 de octubre de 2026 (`D_T10_004`):** las columnas «¿Centrada por municipio?» y «Qué mide» se añadieron después de los resultados, a partir de la observación H3 de Dani. Las configuraciones corridas no cambian. Ver la sección 15.
 
 ## 6. Procedimiento puente (descriptivo)
 
@@ -134,6 +137,8 @@ Procedimiento principal, subconjunto `sin_respaldo` (referencia: A → MAE 0.320
 | 5 relieve + área | +0.0011 | [−0.0062, +0.0103] | 2/5 | −0.0052 | +0.0028 | +0.0003 |
 | 6 centrado | +0.0027 | [−0.0046, +0.0117] | 1/5 | −0.0045 | +0.0022 | +0.0006 |
 
+**Cómo leer la tabla (aclaración del 15 de octubre de 2026, `D_T10_004`).** La referencia ya contiene el promedio de cada municipio. En las configuraciones 1 a 5 las variables entran sin centrar y, como el municipio explica parte de la elevación, la pendiente y el área (sección 3), una parte de la corrección puede volver a ajustar diferencias entre municipios que la referencia ya incluía. Por eso esas cinco dicen si relieve y área *tal cual* mejoran la referencia, pero no deben leerse como aporte dentro del municipio. Sólo la configuración 6 mide ese aporte interno, y tampoco cumple la regla (ΔMAE A +0.0027; 1 de 5 repeticiones). Ni centrando ni sin centrar, relieve y área mejoran la referencia con este procedimiento. Las cifras de la tabla no cambian.
+
 - Ajustado con las 138 parcelas, el procedimiento elige «referencia sola» en las 6 configuraciones: las predicciones para las 59 coinciden con las de T08.
 - El puente (T11 v2) empeora el MAE entre +0.0097 y +0.0197 en A; el principal es mejor que el puente en las 12 comparaciones de MAE.
 - Con MAE y RMSE intercambiados (si FIRA confirmara RMSE), con las predicciones actuales el principal tampoco llega al umbral (mejor ΔRMSE −0.0052). No se volvió a correr eligiendo el ajuste con error cuadrático.
@@ -156,3 +161,24 @@ python analisis/aporte_relieve_y_area/scripts/explorar_relacion_con_rendimiento.
 ```
 
 Los modos que escriben nunca sobrescriben: para comparar con lo publicado, usar una carpeta nueva y comparar sus archivos con los de `registro/t10/` (el manifiesto guarda la huella de cada uno). El script exploratorio escribe en `analisis/aporte_relieve_y_area/` y se detiene si sus salidas ya existen.
+
+## 15. Uso en comparaciones nuevas
+
+**Escrito el 15 de octubre de 2026, después de los resultados (`D_T10_004`).** Atiende la observación H3 de Dani del 13 de octubre: «las configuraciones 1–5 están sin centrar; la 6 ya está centrada. Conviene distinguirlas en el informe y revisar cuál utilizaremos para las nuevas comparaciones».
+
+**Decisión.** En las comparaciones nuevas (T15), relieve y área entran **centrados por municipio** con el procedimiento común de T15 (versión v3, bloque G: `elevacion_media_m`, `pendiente_media_t10_grados` y el logaritmo de `area_ha_origen`). La razón es la pregunta, no el error: la referencia ya contiene el municipio, así que lo que interesa saber es si una parcela que difiere de las de su municipio rinde distinto. No se eligió mirando qué configuración tuvo menor error: ninguna cumplió la regla.
+
+**La configuración 6 es un antecedente, no el procedimiento de T15.** Usan las mismas tres columnas y la misma idea, pero difieren en:
+
+| Aspecto | T10, configuración 6 | T15 común v3 (bloque G) |
+|---|---|---|
+| Promedio municipal con el que se centra | Incluye a la propia parcela | Excluye a la propia parcela, igual que la referencia del residuo |
+| Municipio sin parcelas en el entrenamiento | Promedio global | Promedio del grupo de registro y, si no hay, global (mismo respaldo que la referencia) |
+| Término constante del Ridge | Sí (`Ridge` con intercepto por defecto) | No |
+| Penalización | 9 valores fijos de α (0.1 a 10000) | 4 valores de λ (0.01, 0.1, 1 y 10) con α = n·λ |
+
+Por eso las cifras de la configuración 6 no se presentan como resultado del bloque G de T15, ni al revés.
+
+**Qué no cambia.** T10 no se vuelve a correr. El código, las pruebas, los archivos de `registro/t10/` y las predicciones de las 59 (iguales a la referencia de T08) quedan como están. La ficha de consumo para T16 del informe de cierre sigue vigente.
+
+**Estado del procedimiento v3.** Está en revisión en el PR #21 (rama `t15-centrado-municipal`, aún no integrada en `dev`). Si la revisión cambia la forma de centrar, se usa la versión aprobada y se actualiza esta sección; la decisión de que relieve y área entren centrados no cambia.
