@@ -1,0 +1,46 @@
+{
+  "schema": "INEGI_recorte_QA_local_v1",
+  "DEM_sha256": "5f315dd32f7984c0c8f0bdd12f8bc22c014fd097473e2497e30d3be6f648be95",
+  "SHP_sha256": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29",
+  "fuentes_vectoriales_sha256": {
+    "Parcelas_Reto_AGC_CONJUNTO.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+    "Parcelas_Reto_AGC_CONJUNTO.shx": "b03e99bc1c619fd9351693091558f549e0b75220f41e1c3b6343dbc41cb7d1f7",
+    "Parcelas_Reto_AGC_CONJUNTO.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+    "Parcelas_Reto_AGC_CONJUNTO.shp": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29",
+    "Parcelas_Reto_AGC_CONJUNTO.dbf": "9b7d9e06beb70c688c59d4c2e4227ef851596e3382af7d5566b9c669dc35debb"
+  },
+  "n_parcelas": 197,
+  "IDs_conciliados_T07": true,
+  "geometrias_validas_sin_reparar": 197,
+  "parcelas_completas_en_recorte": 197,
+  "parcelas_con_margen_175m": 197,
+  "distancia_minima_al_borde_m": 1731.9055292019475,
+  "celdas_regionales_validas": 12967201,
+  "celdas_regionales_totales": 12967201,
+  "minimo_valor": 2319,
+  "maximo_valor": 3440,
+  "celdas_tocadas_min": 27,
+  "celdas_tocadas_mediana": 288.0,
+  "celdas_tocadas_max": 3009,
+  "parcelas_con_valor_constante": 0,
+  "metadatos": {
+    "CRS": "EPSG:4326",
+    "resolucion_angular": [
+      0.000138888889,
+      0.000138888889
+    ],
+    "nodata": -32768.0,
+    "unidad_Z_en_TIFF": null,
+    "bandas": 1,
+    "tipo": "int16",
+    "shape": [
+      3601,
+      3601
+    ]
+  },
+  "atributos_E2_extraidos": false,
+  "rendimientos_utilizados": false,
+  "no_demuestra_mejora_MAE": true,
+  "codigo_sha256": "bc01dad10a6fe889e9f8cae26e5be7b7f1629b5c79a4974f914b0ef04a8af63d",
+  "soporte_csv_sha256": "d48041a1729a103d1c2ff17944c0213776548678b011f133919cdbc30649fea5"
+}

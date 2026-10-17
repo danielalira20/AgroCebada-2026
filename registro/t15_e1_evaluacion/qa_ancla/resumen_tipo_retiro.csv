@@ -1,0 +1,13 @@
+ventana,retiro,conjunto,n_pruebas,ids_con_cambio_ancla,ids_pierden_admisibilidad,ids_ganan_admisibilidad
+abr_oct,ancla,todas,197,197,27,16
+abr_oct,ancla,ENTRENAMIENTO,138,138,21,14
+abr_oct,ancla,PREDICCION,59,59,6,2
+abr_oct,vecinas_inmediatas,todas,393,154,28,14
+abr_oct,vecinas_inmediatas,ENTRENAMIENTO,275,112,21,12
+abr_oct,vecinas_inmediatas,PREDICCION,118,42,7,2
+jun_oct,ancla,todas,197,197,27,16
+jun_oct,ancla,ENTRENAMIENTO,138,138,21,14
+jun_oct,ancla,PREDICCION,59,59,6,2
+jun_oct,vecinas_inmediatas,todas,393,154,28,14
+jun_oct,vecinas_inmediatas,ENTRENAMIENTO,275,112,21,12
+jun_oct,vecinas_inmediatas,PREDICCION,118,42,7,2

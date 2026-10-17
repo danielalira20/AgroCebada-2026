@@ -1,0 +1,15 @@
+{
+  "schema": "E1_QA_ancla_v1",
+  "codigo_sha256": "6f53768d7b73658365f987aa1aa92b578c5150e7039c6a664bf0736f2a15b79f",
+  "raw_sha256": "96d68040d954d0903d761fd8ceed0dcd4a08e3842915a3ca44517d60e8bee4ef",
+  "n_perturbaciones": 1180,
+  "n_perfiles": 394,
+  "usa_rendimientos": false,
+  "modifica_admisibilidad": false,
+  "tratamiento": "sensibilidad_descriptiva_sin_filtrar_por_error",
+  "archivos_sha256": {
+    "perturbaciones.csv": "27cfc49053e10fc376965457cc6956601849d90bf5643a8925794add96f2f13e",
+    "resumen_tipo_retiro.csv": "fc8d727337e740b797593a5d50b692c982113b6696575c83a593e300a6cebc4a",
+    "resumen.csv": "3ec519d60d36a67bb2b401a75ad1b612e1990e26c47bbd95062185b9417ca30c"
+  }
+}

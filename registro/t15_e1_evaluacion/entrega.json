@@ -1,0 +1,87 @@
+{
+  "schema": "E1_Q_entrega_local_v1",
+  "fuente_commit": "a32a59ff0616dda2f558393cc5af27b645bf2868",
+  "estado": "evaluado_no_promueve_revision_humana_pendiente",
+  "publicacion_autorizada": false,
+  "predicciones_finales59": 0,
+  "compresion_sin_perdida": {
+    "trazas_ajustes.jsonl": {
+      "archivo": "resultados/trazas_ajustes.jsonl.gz",
+      "sha256_contenido": "cbdd1489d171830a55cb38ef136347fab2f385c069e67074e1c4874e7fc0fcde",
+      "sha256_gzip": "155f17aee8b169aa2b138bce376c11e7efe42a635eac33abf23604054b10d7f7",
+      "bytes_original": 18446357,
+      "bytes_gzip": 564479
+    },
+    "estados_modelos.jsonl": {
+      "archivo": "resultados/estados_modelos.jsonl.gz",
+      "sha256_contenido": "7541c4b57fcbaed5ce8a9417f405a77f3e617038583d4424510da93ff457254d",
+      "sha256_gzip": "6dca2843f69e4d8560df70814ce3777019747e3085a5f97e21aa842d029340f4",
+      "bytes_original": 6378311,
+      "bytes_gzip": 833312
+    }
+  },
+  "auditor_numerico_sha256": "e2cc1c50af39b53112c7f5329a124a477304f54dff5005c858d13e1c9cdb93da",
+  "auditor_QA_portable_sha256": "bbb2814bf974bc6d3686e356f1b7056d29ce82dd93d20f68c58fdef9b5e6e381",
+  "auditoria_original_QA_adaptada": "Mismas fórmulas; añade rutas explícitas, huella raw y guardias ValueError activas con -O; no son datos nuevos.",
+  "archivos_sha256": {
+    "README.md": "05c7ea90e1901a3c4cd6b653e8015d007ac4444fa1734eacb83f616afbf3abf3",
+    "auditoria_QA_ancla_independiente.json": "b192e042ac46d9cf6b057edd3c97da0a9ef7538b48b3e9c26105d801cb9910f1",
+    "auditoria_QA_ancla_portable.json": "b192e042ac46d9cf6b057edd3c97da0a9ef7538b48b3e9c26105d801cb9910f1",
+    "auditoria_completa_docker.json": "f139a52e2560829224de19454780b90eb11d3768dd1f40e0c7d9d94e0b791040",
+    "auditoria_completa_mac.json": "f139a52e2560829224de19454780b90eb11d3768dd1f40e0c7d9d94e0b791040",
+    "auditoria_prueba_docker_final.json": "aa5a06b89ecec060957d35fc6dda29f2d9d47b0c1902dee6770ae04ba26f7b03",
+    "auditoria_prueba_mac_final.json": "a89c22f31b4f093f3a10bf76ea9c14557de9486a1a7fe9d9bf4279d7be2952a9",
+    "guardias_paquete.json": "984ca4aea9e96d0b8987fea06a55ddde06dfe751d9a728523e1fbb3bc1ae2cbb",
+    "qa_ancla/manifest.json": "1be906c25d5a06b0f1dfc2c516baa7eef4db98fefb1007cf4b2ae5454e429edf",
+    "qa_ancla/perturbaciones.csv": "27cfc49053e10fc376965457cc6956601849d90bf5643a8925794add96f2f13e",
+    "qa_ancla/resumen.csv": "3ec519d60d36a67bb2b401a75ad1b612e1990e26c47bbd95062185b9417ca30c",
+    "qa_ancla/resumen_tipo_retiro.csv": "fc8d727337e740b797593a5d50b692c982113b6696575c83a593e300a6cebc4a",
+    "registro_v1.json": "4c05485aa33017fa15ad0fa7b5edde638fdc75c33bd1174e9932046a26520c89",
+    "resultados/contrastes.csv": "03f826e2ea0803015aefa0834ba146beec32da7f352045e19f16b165ed02db64",
+    "resultados/desgloses_calidad_y_sin24.csv": "b225a41b9ca7374fba22e0f9766f57da3f35d7797b6ab37f7033c624a67ae922",
+    "resultados/estados_modelos.jsonl.gz": "6dca2843f69e4d8560df70814ce3777019747e3085a5f97e21aa842d029340f4",
+    "resultados/frecuencia_referencia_sola.csv": "850b79916845a6baeb125c26599ced850e701f7481265e1e842a276f72bf54e7",
+    "resultados/informe.md": "45be1b78cb341020a8751f3856b18f2b5e5d300b56051a898564aa766a95b73a",
+    "resultados/manifest.json": "eaf23d2c37059b9bf78f01ee6c4306810610bd3898a02718c48ca4e4cdd8c8c7",
+    "resultados/metricas_por_repeticion.csv": "b4ae5cde333604c2be35aa673f63fe391e82d6c44407bbf785ae2dac096ae7fa",
+    "resultados/metricas_resumen.csv": "b42716c5d3753e4cca4ec91fec7aaead9ebb0c933687fb536a5a05bc04f6b122",
+    "resultados/predicciones_nuevas_incrementales.csv": "b43a6b4f7440b04d682767b2a2e9f704a047bc07d9d2fdaba35b6749d2eb0f98",
+    "resultados/predicciones_oof.csv": "33b482548869b9a127d7eafc39aaca95f7ee696ec3ee74a6e16c004efa4bc8d8",
+    "resultados/selecciones.jsonl": "6b109ae33fc85a9cc0cae0bc082baaa0b966f577e74043fd04b3e2ccc2886350",
+    "resultados/trazas_ajustes.jsonl.gz": "155f17aee8b169aa2b138bce376c11e7efe42a635eac33abf23604054b10d7f7",
+    "tests_docker_final.txt": "4588dfb03ce656ca02814683f91eff4c5719a9485596759297e9c0c9b3500772",
+    "tests_mac_final.txt": "ea67e180c8de077dd29a5814ef46ed381a179fa41de604787e8bfebc35a4872d",
+    "verificacion_paquete_docker.json": "f139a52e2560829224de19454780b90eb11d3768dd1f40e0c7d9d94e0b791040",
+    "verificacion_paquete_mac.json": "f139a52e2560829224de19454780b90eb11d3768dd1f40e0c7d9d94e0b791040",
+    "verificacion_previa.json": "333823d8043a02d141646220138b52474460bc24aac15a500c84054eba009b7c"
+  },
+  "verificacion_paquete_comprimido": {
+    "Mac": {
+      "schema": "E1_auditoria_independiente_v1",
+      "resultado": "aprobado",
+      "comprobaciones": 132490,
+      "tolerancia_absoluta": 1e-12,
+      "diferencia_maxima": 7.105427357601002e-15,
+      "trazas": 3700,
+      "OOF": 5520,
+      "evaluacion_completa": true,
+      "importa_productor_o_sklearn": false,
+      "codigo_auditor_sha256": "e2cc1c50af39b53112c7f5329a124a477304f54dff5005c858d13e1c9cdb93da",
+      "run_manifest_sha256": "eaf23d2c37059b9bf78f01ee6c4306810610bd3898a02718c48ca4e4cdd8c8c7"
+    },
+    "Docker_Linux_amd64": {
+      "schema": "E1_auditoria_independiente_v1",
+      "resultado": "aprobado",
+      "comprobaciones": 132490,
+      "tolerancia_absoluta": 1e-12,
+      "diferencia_maxima": 7.105427357601002e-15,
+      "trazas": 3700,
+      "OOF": 5520,
+      "evaluacion_completa": true,
+      "importa_productor_o_sklearn": false,
+      "codigo_auditor_sha256": "e2cc1c50af39b53112c7f5329a124a477304f54dff5005c858d13e1c9cdb93da",
+      "run_manifest_sha256": "eaf23d2c37059b9bf78f01ee6c4306810610bd3898a02718c48ca4e4cdd8c8c7"
+    }
+  },
+  "guardias_alteracion_aprobadas": true
+}

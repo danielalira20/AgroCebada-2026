@@ -1,0 +1,13 @@
+{
+  "schema": "E1_auditoria_independiente_v1",
+  "resultado": "aprobado",
+  "comprobaciones": 132490,
+  "tolerancia_absoluta": 1e-12,
+  "diferencia_maxima": 7.105427357601002e-15,
+  "trazas": 3700,
+  "OOF": 5520,
+  "evaluacion_completa": true,
+  "importa_productor_o_sklearn": false,
+  "codigo_auditor_sha256": "e2cc1c50af39b53112c7f5329a124a477304f54dff5005c858d13e1c9cdb93da",
+  "run_manifest_sha256": "eaf23d2c37059b9bf78f01ee6c4306810610bd3898a02718c48ca4e4cdd8c8c7"
+}

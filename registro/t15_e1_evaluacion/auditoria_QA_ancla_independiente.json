@@ -1,0 +1,11 @@
+{
+  "resultado": "aprobado",
+  "perfiles": 394,
+  "perturbaciones": 1180,
+  "comprobaciones": 12234,
+  "diferencia_maxima": 0.0,
+  "tolerancia_absoluta": 1e-12,
+  "sin_importar_productor": true,
+  "sin_rendimientos": true,
+  "alcance": "fechas_soporte_valores_y_retiros_reconstruidos_desde_raw"
+}

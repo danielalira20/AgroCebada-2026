@@ -1,0 +1,99 @@
+{
+  "schema": "E1_Q_evaluacion_v1",
+  "modo": "completa",
+  "estado": "completa_verificada",
+  "evaluacion_completa": true,
+  "version": "comun-centrado-loo-v3",
+  "extension": "E1-Q-preparacion-v1",
+  "registro_sha256": "4c05485aa33017fa15ad0fa7b5edde638fdc75c33bd1174e9932046a26520c89",
+  "fuente_commit": "a32a59ff0616dda2f558393cc5af27b645bf2868",
+  "codigo_sha256": {
+    "scripts/t15_e1_modelo.py": "ffda475472cd8b389cdad4da47dcb69e618aca4664814562592543ccc2a604c6",
+    "scripts/t15_e1_ejecutar.py": "44a0f35ff6b1120f5a89e109cae2de8c3a7225eee0dece56e972c98e805d733b",
+    "scripts/t15_e1_estabilidad.py": "6f53768d7b73658365f987aa1aa92b578c5150e7039c6a664bf0736f2a15b79f"
+  },
+  "fuentes_sha256": {
+    "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+    "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+    "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+    "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+    "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+    "registro/evaluacion_comun/procedimiento_centrado_loo_v3.json": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+    "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "requirements.txt": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
+    "Dockerfile": "fa12707e735c0e2c52c2894ebf237cf5e81ed3e2984b7a4a0ba607e841038485",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
+    "registro/t15_e1/contrato_propuesto_v1.json": "356372d65fad12062229b12726f3ce634179e76fe2392fc00d02274435d3b59c",
+    "registro/t15_e1/vista_admisibilidad_propuesta.csv": "40fa062deb0f1bc44cf165120c1c4c4f816131b672173b44235ff6c29de866bf",
+    "registro/t15_d1/perfil_ndwi_postpico.csv": "7a0718806754bc80d7d629d8325f1850421141f763e109339438e3288a5a1fc4",
+    "registro/t15_resultados/predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "registro/t15_resultados/selecciones.jsonl": "4e8b28b4fa1f3256b956d77fde98be3e9462026712754286df199551437950e6",
+    "registro/t15_resultados/manifest.json": "fa89ae95172444242b0a97e39f7923b1604f950c0e2f87b2fd0db1e46c06799f",
+    "registro/t15_resultados/entrega.json": "dbf62d07863462706ba9899a11d3785a024843a82633f67c6c06a55cd09ffd95"
+  },
+  "entorno": {
+    "python": "3.12.15",
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "librerias": {
+      "numpy": "2.2.6",
+      "pandas": "3.0.6",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    }
+  },
+  "contadores": {
+    "ajustes_internos": 3600,
+    "Ridge_internos": 3200,
+    "ajustes_externos": 100,
+    "Ridge_externos": 84
+  },
+  "OOF_reutilizadas": 2760,
+  "predicciones_finales59": 0,
+  "ganador_T16_congelado": false,
+  "contextos_ejecutados": 50,
+  "OOF_nuevas": 2760,
+  "reportes": {
+    "integridad": {
+      "candidatos": [
+        "comun_centrado_loo_v3_E1",
+        "comun_centrado_loo_v3_Q",
+        "comun_centrado_loo_v3_S",
+        "media_mun__resp_grupo"
+      ],
+      "predicciones": 5520,
+      "referencia_verificada": true,
+      "integridad_OOF": true,
+      "metodo_comun_acreditado": false
+    },
+    "metricas_resumen": 16,
+    "metricas_por_repeticion": 80,
+    "contrastes": 16,
+    "desgloses": 336,
+    "ganador_T16_congelado": false
+  },
+  "tiempo_segundos": 740.706745547,
+  "archivos_sha256": {
+    "frecuencia_referencia_sola.csv": "850b79916845a6baeb125c26599ced850e701f7481265e1e842a276f72bf54e7",
+    "informe.md": "45be1b78cb341020a8751f3856b18f2b5e5d300b56051a898564aa766a95b73a",
+    "predicciones_oof.csv": "33b482548869b9a127d7eafc39aaca95f7ee696ec3ee74a6e16c004efa4bc8d8",
+    "selecciones.jsonl": "6b109ae33fc85a9cc0cae0bc082baaa0b966f577e74043fd04b3e2ccc2886350",
+    "desgloses_calidad_y_sin24.csv": "b225a41b9ca7374fba22e0f9766f57da3f35d7797b6ab37f7033c624a67ae922",
+    "trazas_ajustes.jsonl": "cbdd1489d171830a55cb38ef136347fab2f385c069e67074e1c4874e7fc0fcde",
+    "estados_modelos.jsonl": "7541c4b57fcbaed5ce8a9417f405a77f3e617038583d4424510da93ff457254d",
+    "metricas_por_repeticion.csv": "b4ae5cde333604c2be35aa673f63fe391e82d6c44407bbf785ae2dac096ae7fa",
+    "contrastes.csv": "03f826e2ea0803015aefa0834ba146beec32da7f352045e19f16b165ed02db64",
+    "predicciones_nuevas_incrementales.csv": "b43a6b4f7440b04d682767b2a2e9f704a047bc07d9d2fdaba35b6749d2eb0f98",
+    "metricas_resumen.csv": "b42716c5d3753e4cca4ec91fec7aaead9ebb0c933687fb536a5a05bc04f6b122"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "E1_previa_verificada",
+  "resultado": "aprobado",
+  "registro_sha256": "4c05485aa33017fa15ad0fa7b5edde638fdc75c33bd1174e9932046a26520c89",
+  "codigo_sha256": {
+    "scripts/t15_e1_modelo.py": "ffda475472cd8b389cdad4da47dcb69e618aca4664814562592543ccc2a604c6",
+    "scripts/t15_e1_ejecutar.py": "44a0f35ff6b1120f5a89e109cae2de8c3a7225eee0dece56e972c98e805d733b",
+    "scripts/t15_e1_estabilidad.py": "6f53768d7b73658365f987aa1aa92b578c5150e7039c6a664bf0736f2a15b79f"
+  },
+  "pruebas_por_entorno": 115,
+  "auditoria_independiente_mac_y_docker": true,
+  "OOF_parcial_comparada": 56,
+  "diferencia_maxima_entre_entornos": 8.881784197001252e-16,
+  "QA_ancla_tres_CSV_identicos": true,
+  "evidencia_sha256": {
+    "tests_mac_final.log": "ea67e180c8de077dd29a5814ef46ed381a179fa41de604787e8bfebc35a4872d",
+    "tests_docker_final.log": "4588dfb03ce656ca02814683f91eff4c5719a9485596759297e9c0c9b3500772",
+    "auditoria_prueba_mac_final.json": "a89c22f31b4f093f3a10bf76ea9c14557de9486a1a7fe9d9bf4279d7be2952a9",
+    "auditoria_prueba_docker_final.json": "aa5a06b89ecec060957d35fc6dda29f2d9d47b0c1902dee6770ae04ba26f7b03"
+  },
+  "no_es_evaluacion_completa": true
+}

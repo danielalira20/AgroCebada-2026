@@ -1,0 +1,13 @@
+{
+  "resultado": "aprobado",
+  "QA_JSON_identico": true,
+  "CSV_identico": true,
+  "entornos": [
+    "Mac_arm64",
+    "Docker_Linux_amd64"
+  ],
+  "diferencia_maxima_conteos_y_metricas": 0,
+  "fuente_DEM_sha256": "5f315dd32f7984c0c8f0bdd12f8bc22c014fd097473e2497e30d3be6f648be95",
+  "codigo_sha256": "bc01dad10a6fe889e9f8cae26e5be7b7f1629b5c79a4974f914b0ef04a8af63d",
+  "no_evaluacion_MAE": true
+}

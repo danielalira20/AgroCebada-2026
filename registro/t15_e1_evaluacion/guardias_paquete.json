@@ -1,0 +1,26 @@
+{
+  "resultado": "aprobado",
+  "Python_optimizado": true,
+  "copias_privadas_solo": true,
+  "casos": [
+    {
+      "caso": "OOF_alterada",
+      "rechazado": true,
+      "motivo": "ValueError: Resultado alterado predicciones_oof.csv",
+      "salida_nueva_creada": false
+    },
+    {
+      "caso": "no_sobrescribir_dictamen",
+      "rechazado": true,
+      "motivo": "ValueError: Destino auditor existente",
+      "salida_nueva_creada": false,
+      "dictamen_previo_preservado": true
+    },
+    {
+      "caso": "gzip_alterado",
+      "rechazado": true,
+      "motivo": "CRC/huella impide aceptar el contenido",
+      "salida_nueva_creada": false
+    }
+  ]
+}
