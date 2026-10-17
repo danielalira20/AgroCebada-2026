@@ -1,0 +1,30 @@
+{
+  "A": {
+    "contextos": 25,
+    "referencia_sola": 21,
+    "contexto_beta_activo": 2,
+    "max_H3_correccion": 6.071532165918825e-17,
+    "n_parcelas_elegibles": 135,
+    "n_OOF_elegibles": 675,
+    "min_prediccion": 2.968654972566781,
+    "max_prediccion": 4.653573131871787,
+    "n_predicciones_negativas": 0,
+    "mejoran_vs_mediana": 21,
+    "empeoran_vs_mediana": 24,
+    "iguales_vs_mediana": 90
+  },
+  "B": {
+    "contextos": 25,
+    "referencia_sola": 8,
+    "contexto_beta_activo": 17,
+    "max_H3_correccion": 4.394632805807911e-17,
+    "n_parcelas_elegibles": 135,
+    "n_OOF_elegibles": 659,
+    "min_prediccion": 2.5,
+    "max_prediccion": 4.700202454865428,
+    "n_predicciones_negativas": 0,
+    "mejoran_vs_mediana": 53,
+    "empeoran_vs_mediana": 69,
+    "iguales_vs_mediana": 13
+  }
+}

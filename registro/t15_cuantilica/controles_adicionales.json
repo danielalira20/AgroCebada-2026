@@ -1,0 +1,9 @@
+{
+  "resultado": "aprobado",
+  "alteraciones_rechazadas": [
+    "gzip_corrupto",
+    "OOF_alterada"
+  ],
+  "respaldo_global_sin_correccion": true,
+  "columna_y_consulta_ignorada": true
+}

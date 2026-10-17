@@ -1,0 +1,26 @@
+{
+  "schema": "T15_cuantilica_puerta_v1",
+  "resultado": "aprobado",
+  "contrato_sha256": "79ea3ffd0287209f01f89325d92ebcd3fd6c324b935885aa20629642075c1840",
+  "codigo_sha256": {
+    "scripts/t15_cuantilica_modelo.py": "139c9aac8d7910fe99f012514f9fd922431cd25cf5509a14b116bcc48994bd66",
+    "scripts/t15_cuantilica_auditar.py": "51a6f7fd482c44cd74e3631d7d9d80ecec6742fbc699e6067cb5151f82249d15",
+    "scripts/t15_cuantilica_ejecutar.py": "48da232da3fd58f2169d95ab805b4000a94740c243558f88f97ea1c37fb1c43d",
+    "tests/test_t15_cuantilica.py": "19d7e845d3b927cbd3d7944ae0bb2c303e91e514aac3a3f8e63fa26d0420ab42"
+  },
+  "tests_mac": 18,
+  "tests_linux": 18,
+  "selecciones_iguales": true,
+  "max_diferencia_predicciones": 2.9309887850104133e-13,
+  "evidencia_sha256": {
+    "auditoria_mac.json": "4f9481c476d5f94ba9e85270f1cee2f7def94606da5ecfc66b7bae6cef81dc8f",
+    "auditoria_linux.json": "c76e6b862f538c94f76bd5c87cb4df2f5f13fee26b034c19c89f0973ef853995",
+    "tests_mac.log": "08e1b58a855f65eab1428b7c3605e245376848e879886fa419e3be15e9340414",
+    "tests_linux.log": "9c8f7386e1254189b19c6aa8ce758c376aa299931feb5d2b2777ba676166449c",
+    "stress_numerico.json": "25db4d5886a9042079b5dd21d4ac0b3a43d3de873c1438a6ba8a21ca0015873a",
+    "piloto_mac/manifest.json": "84d35040744e18406a7a0337591e0b9fdd0d7c5206c5d2e61f6436d9a316e84b",
+    "piloto_linux/manifest.json": "4f806a15051e6ba12795dc145d038ecc646106fc19f478e94237a94700ae7918",
+    "piloto_mac/oof_parcial_prueba.csv": "3de7bc559c73a269f102d9823c34517d4051e49dbf8472069e6d0e6fc5e22f0b",
+    "piloto_linux/oof_parcial_prueba.csv": "5e252ed76b6566e381aab6047c20deba94878430301ae7aacc87a8718be54735"
+  }
+}

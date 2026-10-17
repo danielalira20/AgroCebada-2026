@@ -1,0 +1,24 @@
+{
+  "schema": "T15_cuantilica_incidencia_numerica_v1",
+  "fecha": "2026-10-17",
+  "contexto": "A/repeticion3/particion0/interna2/jun_oct/alpha0.01",
+  "causa": "Primeros dos coeficientes matemáticamente cero devueltos como 1.68563162e-11 y 4.30403936e-11; fijar ambos como igualdades no nulas hizo inviable la cara óptima en el tercer paso lexicográfico.",
+  "diagnostico": "Desactivar presolve o reescalar igualdad objetivo no lo resolvió. Canonicalizar ceros a 1e-9 sí; se conserva objetivo y certificado.",
+  "solucion": "Fijar en cero pendientes con magnitud <=1e-9 al encadenar el desempate; tolerancia existente del solver. Auditor usa otra formulación y mismo concepto de cero.",
+  "cambios_metodologicos": false,
+  "criterios_o_alpha_cambiados": false,
+  "tolerancias_ampliadas": false,
+  "OOF_parcial_Mac_descartada": 276,
+  "ajustes_previos_a_interrupcion": 396,
+  "contextos_completados_Mac": 10,
+  "Docker_interrumpido": {
+    "codigo_salida": 137,
+    "estado": "iniciado",
+    "contextos": 0,
+    "ajustes": 0,
+    "OOF_nuevas": 0
+  },
+  "incidente_de_test": "Una primera prueba aplicaba abs a una lista; se corrigió usando conversión numérica, sin cambio del estimador.",
+  "comprobacion_regresion": "test_regresion_cero_numerico_en_cara_optima; 18 pruebas Mac/Linux y 2000 ajustes sin consultar métricas externas",
+  "interpretacion": "Fallo de optimización secundaria; no evidencia de mala predicción ni cambio H3. Se repite evaluación completa en carpetas nuevas; no se selecciona por el intento interrumpido."
+}

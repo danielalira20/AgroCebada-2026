@@ -1,0 +1,26 @@
+test_H3_correccion_entreno_media_cero (tests.test_t15_cuantilica.CuantilicaTests.test_H3_correccion_entreno_media_cero) ... ok
+test_alpha_fuerte_cero_y_medianas (tests.test_t15_cuantilica.CuantilicaTests.test_alpha_fuerte_cero_y_medianas) ... ok
+test_auditor_detecta_corrimiento_H3 (tests.test_t15_cuantilica.CuantilicaTests.test_auditor_detecta_corrimiento_H3) ... ok
+test_auditor_detecta_intercepto_y_coeficiente_alterado (tests.test_t15_cuantilica.CuantilicaTests.test_auditor_detecta_intercepto_y_coeficiente_alterado) ... ok
+test_auditor_detecta_prediccion_alterada (tests.test_t15_cuantilica.CuantilicaTests.test_auditor_detecta_prediccion_alterada) ... ok
+test_certificado_dual_oraculo_unidimensional (tests.test_t15_cuantilica.CuantilicaTests.test_certificado_dual_oraculo_unidimensional) ... ok
+test_constantes_y_colinealidad_canonica (tests.test_t15_cuantilica.CuantilicaTests.test_constantes_y_colinealidad_canonica) ... ok
+test_ejecutor_rechaza_completa_sin_puerta (tests.test_t15_cuantilica.CuantilicaTests.test_ejecutor_rechaza_completa_sin_puerta) ... ok
+test_estado_prediccion_reproducible_y_protegido (tests.test_t15_cuantilica.CuantilicaTests.test_estado_prediccion_reproducible_y_protegido) ... ok
+test_mediana_par_canonica_y_municipios_libres (tests.test_t15_cuantilica.CuantilicaTests.test_mediana_par_canonica_y_municipios_libres) ... ok
+test_no_factor_n_en_alpha (tests.test_t15_cuantilica.CuantilicaTests.test_no_factor_n_en_alpha) ... ok
+test_orden_filas_y_consulta_independiente (tests.test_t15_cuantilica.CuantilicaTests.test_orden_filas_y_consulta_independiente) ... ok
+test_rechazo_entradas (tests.test_t15_cuantilica.CuantilicaTests.test_rechazo_entradas) ... ok
+test_recupera_pendientes_y_oraculo_independiente (tests.test_t15_cuantilica.CuantilicaTests.test_recupera_pendientes_y_oraculo_independiente) ... ok
+test_regresion_cero_numerico_en_cara_optima (tests.test_t15_cuantilica.CuantilicaTests.test_regresion_cero_numerico_en_cara_optima) ... ok
+test_sin_solapamiento_y_desempate (tests.test_t15_cuantilica.CuantilicaTests.test_sin_solapamiento_y_desempate) ... ok
+test_singleton_y_respaldo_sin_correccion (tests.test_t15_cuantilica.CuantilicaTests.test_singleton_y_respaldo_sin_correccion) ... ok
+test_traslacion_municipal_objetivo_no_penalizada (tests.test_t15_cuantilica.CuantilicaTests.test_traslacion_municipal_objetivo_no_penalizada) ... ok
+test_R2_constante_vacio_no_cero_artificial (tests.test_t15_cuantilica_tablas.TablasTests.test_R2_constante_vacio_no_cero_artificial) ... ok
+test_desigual_numero_repeticiones_no_cambia_peso_por_ID (tests.test_t15_cuantilica_tablas.TablasTests.test_desigual_numero_repeticiones_no_cambia_peso_por_ID) ... ok
+test_errores_no_promedio_de_predicciones (tests.test_t15_cuantilica_tablas.TablasTests.test_errores_no_promedio_de_predicciones) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.627s
+
+OK

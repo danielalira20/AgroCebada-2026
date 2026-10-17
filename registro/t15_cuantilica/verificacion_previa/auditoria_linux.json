@@ -1,0 +1,14 @@
+{
+  "resultado": "aprobado",
+  "ajustes": 74,
+  "ajustes_cuantilicos": 65,
+  "contextos": 2,
+  "OOF_nuevas": 62,
+  "comprobaciones": 8634,
+  "max_diferencia": 9.371535665547714e-13,
+  "recalculo_primal_dual_independiente": true,
+  "selecciones": [
+    "referencia_sola",
+    "jun_oct__alpha_0.001"
+  ]
+}

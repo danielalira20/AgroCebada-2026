@@ -1,0 +1,498 @@
+[
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "A",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -0.009592880337691064,
+    "dMAE_por_repeticion": [
+      -0.011323524310540511,
+      -0.001963791580813945,
+      -0.010804558223676874,
+      -0.005877739439746732,
+      -0.017994788133677164
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.009592880337691045,
+    "dRMSE": -0.0031306722438857017,
+    "IC95_celdas_MAE": [
+      -0.01861873540659302,
+      0.0026974349239994137
+    ],
+    "IC95_celdas_RMSE": [
+      -0.01201881076775238,
+      0.00882318850179699
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "A",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 675,
+    "n_celdas": 22,
+    "dMAE": -0.007951525441282572,
+    "dMAE_por_repeticion": [
+      -0.009895884554217194,
+      -0.0006074052652997319,
+      -0.00843175207746849,
+      -0.004457438110946621,
+      -0.016365147198480645
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.007951525441282536,
+    "dRMSE": -0.0024187345000911465,
+    "IC95_celdas_MAE": [
+      -0.01670407290626822,
+      0.00546733019130904
+    ],
+    "IC95_celdas_RMSE": [
+      -0.011352818227672274,
+      0.009722427422959319
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "B",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -0.012034055475705765,
+    "dMAE_por_repeticion": [
+      -0.007039867196507288,
+      -0.021755907030312716,
+      -0.0034471246190185267,
+      -0.013654893586910244,
+      -0.014272484945779929
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.01203405547570574,
+    "dRMSE": -0.0027328076062651863,
+    "IC95_celdas_MAE": [
+      -0.036984448030119875,
+      0.020315664562449834
+    ],
+    "IC95_celdas_RMSE": [
+      -0.017562134425494775,
+      0.029119005373084844
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "B",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 659,
+    "n_celdas": 22,
+    "dMAE": -0.010501448686815207,
+    "dMAE_por_repeticion": [
+      -0.006854862481650126,
+      -0.01974579642312535,
+      -0.002278341684484597,
+      -0.019979106571453353,
+      -0.014552715573394048
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.012682164546821495,
+    "dRMSE": -0.0053199789515189335,
+    "IC95_celdas_MAE": [
+      -0.03663467321739369,
+      0.024899340884493255
+    ],
+    "IC95_celdas_RMSE": [
+      -0.01787162651565125,
+      0.03602314834299824
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "mediana_mun__resp_grupo",
+    "escenario": "A",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -4.597849505443013e-05,
+    "dMAE_por_repeticion": [
+      -0.0003398091517360369,
+      0.0,
+      0.00010991667646415015,
+      0.0,
+      0.0
+    ],
+    "diferencia_MAE_media_por_repeticion": -4.597849505437735e-05,
+    "dRMSE": -0.000500881668053832,
+    "IC95_celdas_MAE": [
+      -0.0008538318508108892,
+      0.0006521075005703834
+    ],
+    "IC95_celdas_RMSE": [
+      -0.0010908556411616476,
+      -0.00010362460644872144
+    ],
+    "repeticiones_mejoran_MAE": 1,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "mediana_mun__resp_grupo",
+    "escenario": "A",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 675,
+    "n_celdas": 22,
+    "dMAE": -4.700023938897304e-05,
+    "dMAE_por_repeticion": [
+      -0.00034736046621913763,
+      0.0,
+      0.0001123592692744424,
+      0.0,
+      0.0
+    ],
+    "diferencia_MAE_media_por_repeticion": -4.700023938893905e-05,
+    "dRMSE": -0.0005083861587931837,
+    "IC95_celdas_MAE": [
+      -0.0008866456087166408,
+      0.0006719997651154934
+    ],
+    "IC95_celdas_RMSE": [
+      -0.0011330789321851776,
+      -0.00010975220513702758
+    ],
+    "repeticiones_mejoran_MAE": 1,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "mediana_mun__resp_grupo",
+    "escenario": "B",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": 0.005059305498707403,
+    "dMAE_por_repeticion": [
+      0.004706493634000497,
+      0.0034340901220375475,
+      0.004997295809229418,
+      0.007146807596974669,
+      0.005011840331293871
+    ],
+    "diferencia_MAE_media_por_repeticion": 0.005059305498707201,
+    "dRMSE": 3.734913517605687e-05,
+    "IC95_celdas_MAE": [
+      0.0005321856837678565,
+      0.009170628986681955
+    ],
+    "IC95_celdas_RMSE": [
+      -0.006275203578505649,
+      0.006158560733957391
+    ],
+    "repeticiones_mejoran_MAE": 0,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "mediana_mun__resp_grupo",
+    "escenario": "B",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 659,
+    "n_celdas": 22,
+    "dMAE": 0.00520444473960152,
+    "dMAE_por_repeticion": [
+      0.00481108238142286,
+      0.003510403235860715,
+      0.0051083468272122845,
+      0.00828789452422296,
+      0.00512321456087822
+    ],
+    "diferencia_MAE_media_por_repeticion": 0.005368188305919408,
+    "dRMSE": 0.00024069693259550772,
+    "IC95_celdas_MAE": [
+      0.0005799284910621899,
+      0.009611025543146098
+    ],
+    "IC95_celdas_RMSE": [
+      -0.006843913222359729,
+      0.006679299765899543
+    ],
+    "repeticiones_mejoran_MAE": 0,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "comun_centrado_loo_v3_S",
+    "escenario": "A",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -0.010768358335332783,
+    "dMAE_por_repeticion": [
+      -0.008177209984161049,
+      -0.0015631618054431917,
+      -0.009467896977171819,
+      -0.012979637999212645,
+      -0.021653884910674492
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.010768358335332639,
+    "dRMSE": -0.0012476651837343366,
+    "IC95_celdas_MAE": [
+      -0.018596245082348743,
+      5.7631713048530415e-05
+    ],
+    "IC95_celdas_RMSE": [
+      -0.010705533410180403,
+      0.011203503238144627
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "comun_centrado_loo_v3_S",
+    "escenario": "A",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 675,
+    "n_celdas": 22,
+    "dMAE": -0.009131365721851102,
+    "dMAE_por_repeticion": [
+      -0.006811845077632661,
+      0.00029697830209440834,
+      -0.007181453673507643,
+      -0.01167250685146648,
+      -0.02028800130874242
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.00913136572185096,
+    "dRMSE": -0.0005026202425140513,
+    "IC95_celdas_MAE": [
+      -0.016202483275876492,
+      0.0027160749942127783
+    ],
+    "IC95_celdas_RMSE": [
+      -0.00974392536469393,
+      0.011876663084675675
+    ],
+    "repeticiones_mejoran_MAE": 4,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "comun_centrado_loo_v3_S",
+    "escenario": "B",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -0.0020306663641312186,
+    "dMAE_por_repeticion": [
+      0.0025050423718896986,
+      -0.007283830326427487,
+      0.009395700014928232,
+      -0.007188654783774173,
+      -0.007581589097272412
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.002030666364131228,
+    "dRMSE": 0.007893003295837853,
+    "IC95_celdas_MAE": [
+      -0.016344463474031384,
+      0.025171572175406175
+    ],
+    "IC95_celdas_RMSE": [
+      -0.0060910546665376404,
+      0.037704791039350864
+    ],
+    "repeticiones_mejoran_MAE": 3,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "cuantilica_municipal_S_v1",
+    "frente_a": "comun_centrado_loo_v3_S",
+    "escenario": "B",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 659,
+    "n_celdas": 22,
+    "dMAE": 0.000765056561497864,
+    "dMAE_por_repeticion": [
+      0.0032990299411760904,
+      -0.004721903654693549,
+      0.011448032886825055,
+      -0.01234656673964002,
+      -0.007527466084212675
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.0019697747301090198,
+    "dRMSE": 0.006259107523537699,
+    "IC95_celdas_MAE": [
+      -0.015004098140457047,
+      0.03221896887998587
+    ],
+    "IC95_celdas_RMSE": [
+      -0.005647145724579866,
+      0.049158295646377886
+    ],
+    "repeticiones_mejoran_MAE": 3,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "mediana_mun__resp_grupo",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "A",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -0.00954690184263663,
+    "dMAE_por_repeticion": [
+      -0.010983715158804475,
+      -0.001963791580813945,
+      -0.010914474900141025,
+      -0.005877739439746732,
+      -0.017994788133677164
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.009546901842636669,
+    "dRMSE": -0.0026297905758318695,
+    "IC95_celdas_MAE": [
+      -0.018213193080085066,
+      0.002876672112474037
+    ],
+    "IC95_celdas_RMSE": [
+      -0.011786188005187213,
+      0.00977811038523077
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "mediana_mun__resp_grupo",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "A",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 675,
+    "n_celdas": 22,
+    "dMAE": -0.007904525201893602,
+    "dMAE_por_repeticion": [
+      -0.009548524087998056,
+      -0.0006074052652997319,
+      -0.008544111346742933,
+      -0.004457438110946621,
+      -0.016365147198480645
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.007904525201893598,
+    "dRMSE": -0.0019103483412979626,
+    "IC95_celdas_MAE": [
+      -0.016298208044661405,
+      0.005805347110184271
+    ],
+    "IC95_celdas_RMSE": [
+      -0.011096948806431287,
+      0.010583455224247463
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "mediana_mun__resp_grupo",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "B",
+    "subconjunto": "todas",
+    "n_parcelas": 138,
+    "n_predicciones": 690,
+    "n_celdas": 23,
+    "dMAE": -0.017093360974413167,
+    "dMAE_por_repeticion": [
+      -0.011746360830507785,
+      -0.025189997152350263,
+      -0.008444420428247945,
+      -0.020801701183884913,
+      -0.0192843252770738
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.01709336097441294,
+    "dRMSE": -0.0027701567414412432,
+    "IC95_celdas_MAE": [
+      -0.04469351303947601,
+      0.017115150627274263
+    ],
+    "IC95_celdas_RMSE": [
+      -0.02008966542375388,
+      0.028472016993291063
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  },
+  {
+    "candidato": "mediana_mun__resp_grupo",
+    "frente_a": "media_mun__resp_grupo",
+    "escenario": "B",
+    "subconjunto": "sin_respaldo",
+    "n_parcelas": 135,
+    "n_predicciones": 659,
+    "n_celdas": 22,
+    "dMAE": -0.015705893426416723,
+    "dMAE_por_repeticion": [
+      -0.011665944863072986,
+      -0.023256199658986065,
+      -0.007386688511696882,
+      -0.028267001095676314,
+      -0.019675930134272268
+    ],
+    "diferencia_MAE_media_por_repeticion": -0.018050352852740904,
+    "dRMSE": -0.005560675884114441,
+    "IC95_celdas_MAE": [
+      -0.04432476124283601,
+      0.020660963213485782
+    ],
+    "IC95_celdas_RMSE": [
+      -0.020690645848706866,
+      0.03440644089844146
+    ],
+    "repeticiones_mejoran_MAE": 5,
+    "cumple_regla_T03": false,
+    "elegible_para_promocion_principal": false,
+    "interpretacion": "contraste del procedimiento declarado; no acredita otra campaña ni aprobación T16"
+  }
+]

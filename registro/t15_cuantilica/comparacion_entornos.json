@@ -1,0 +1,20 @@
+{
+  "resultado": "aprobado",
+  "selecciones_iguales": true,
+  "selecciones": 50,
+  "estados_y_trazas": 1850,
+  "valores_comparados": 773035,
+  "max_diferencia_OOF_nuevas": 5.527134305793879e-12,
+  "max_diferencia_OOF_historicas": 0.0,
+  "max_diferencia_estados": 8.833467290969566e-11,
+  "max_diferencia_tablas": 2.8987923172962837e-13,
+  "tolerancia_reajuste_cuantilica": 1e-06,
+  "comparadores_historicos_identicos": true,
+  "codigo_sha256": {
+    "scripts/t15_cuantilica_modelo.py": "139c9aac8d7910fe99f012514f9fd922431cd25cf5509a14b116bcc48994bd66",
+    "scripts/t15_cuantilica_auditar.py": "51a6f7fd482c44cd74e3631d7d9d80ecec6742fbc699e6067cb5151f82249d15",
+    "scripts/t15_cuantilica_ejecutar.py": "48da232da3fd58f2169d95ab805b4000a94740c243558f88f97ea1c37fb1c43d",
+    "tests/test_t15_cuantilica.py": "19d7e845d3b927cbd3d7944ae0bb2c303e91e514aac3a3f8e63fa26d0420ab42"
+  },
+  "contrato_sha256": "79ea3ffd0287209f01f89325d92ebcd3fd6c324b935885aa20629642075c1840"
+}

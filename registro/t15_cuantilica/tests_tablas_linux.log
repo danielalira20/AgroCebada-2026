@@ -1,0 +1,8 @@
+test_R2_constante_vacio_no_cero_artificial (test_tablas.TablasTests.test_R2_constante_vacio_no_cero_artificial) ... ok
+test_desigual_numero_repeticiones_no_cambia_peso_por_ID (test_tablas.TablasTests.test_desigual_numero_repeticiones_no_cambia_peso_por_ID) ... ok
+test_errores_no_promedio_de_predicciones (test_tablas.TablasTests.test_errores_no_promedio_de_predicciones) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.008s
+
+OK
