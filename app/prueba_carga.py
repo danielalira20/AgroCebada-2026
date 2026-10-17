@@ -8,6 +8,8 @@ import pandas as pd
 import agro_carga as K
 import agro_datos as A
 
+A.exigir_datos()          # mensaje claro si falta el dataset del reto
+
 
 
 def zip_de(archivos, comprimir=zipfile.ZIP_DEFLATED):

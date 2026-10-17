@@ -523,7 +523,7 @@ st.set_page_config(page_title="AgroCebada · Rendimiento de cebada", page_icon=I
                    initial_sidebar_state="collapsed")
 h(f"<style>{ESTILO}</style>")
 if not A.hay_datos():
-    st.error("No encontré los datos de la app. Corre preparar_datos.py o fija la ruta del dataset con AGRO_DATOS.")
+    st.error(A.FALTA_DATASET)
     st.stop()
 
 d = cargar()

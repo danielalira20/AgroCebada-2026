@@ -3,6 +3,10 @@ from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
 
+import agro_datos as A0
+
+A0.exigir_datos()         # mensaje claro si falta el dataset del reto
+
 
 def nueva(**estado):
     at = AppTest.from_file(str(Path(__file__).with_name("app.py")), default_timeout=300)

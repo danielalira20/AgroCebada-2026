@@ -17,7 +17,7 @@ import agro_datos as A  # noqa: E402
 def main():
     r = A.rutas()
     if r["datos"] is None or r["t08"] is None:
-        raise SystemExit("No encontré el dataset o T08. Fija AGRO_DATOS y AGRO_T08.")
+        raise SystemExit(A.FALTA_DATASET if r["datos"] is None else "No encontré las salidas de T08 en registro/; fija AGRO_T08.")
     A.PAQ.mkdir(exist_ok=True)
     d = A.leer_parcelas(r["datos"])
     d.to_parquet(A.PAQ / "parcelas.parquet")
