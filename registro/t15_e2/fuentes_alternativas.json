@@ -1,0 +1,101 @@
+{
+  "fecha": "2026-10-16",
+  "tipo": "revision_dirigida_no_sistematica",
+  "fuentes_primarias": [
+    {
+      "id": "Heil2018",
+      "titulo": "Modeling the Effects of Soil Variability, Topography, and Management on the Yield of Barley",
+      "autores": "Heil; Heinemann; Schmidhalter",
+      "url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2018.00146/full",
+      "lectura": "texto_completo_web",
+      "unidad": "ensayo_fertilizacion_larga_duracion",
+      "uso": "motivacion_suelo_relieve_no_error_transferible"
+    },
+    {
+      "id": "Ksantini2025",
+      "titulo": "Impact of data spatial resolution on barley yield prediction mapping",
+      "autores": "Ksantini y coautores",
+      "url": "https://oa.upm.es/96158/",
+      "PDF": "https://oa.upm.es/96158/1/10382841.pdf",
+      "doi": "10.1016/j.atech.2025.101253",
+      "lectura": "texto_completo15paginas_y_revision_visual_pp4_5",
+      "PDF_sha256": "f6ecba976eff709fb76569d1a3b2540d4b84783563d33dc52a8b362f34e88c73",
+      "unidad": "un_campo3_5ha_celdas_rendimiento",
+      "hallazgo_metodo": "70_30_estratificado_cuartiles_rendimiento_no_se_documenta_separacion_por_campos",
+      "uso": "escala_y_relieve_motivacion_no_copiar_MAE_ni_rangos"
+    },
+    {
+      "id": "Amin2024",
+      "titulo": "In-season forecasting of within-field grain yield from Sentinel-2 time series data",
+      "url": "https://www.research-collection.ethz.ch/entities/publication/ba04c2b3-548d-4762-bfef-c44d4f5cac72",
+      "doi": "10.1016/j.jag.2023.103636",
+      "lectura": "resumen_publicado_repositorio_autores_PDF_no_recuperado",
+      "unidad": "cereal_dentro_campo_tres_anos",
+      "uso": "pista_curvas_calendario_y_diferenciar_transferencia_anual"
+    },
+    {
+      "id": "Pathak2023",
+      "titulo": "Predicting Crop Yield With Machine Learning: An Extensive Analysis Of Input Modalities And Models On a Field and sub-field Level",
+      "url": "https://arxiv.org/html/2308.08948v1",
+      "doi": "10.1109/IGARSS52108.2023.10282318",
+      "lectura": "texto_completo_web",
+      "unidad": "977_campos_varios_cultivos_y_paises_con_mapas_cosechadora",
+      "uso": "comparar_complementariedad_no_sumar_todo_ni_pseudoreplicar"
+    },
+    {
+      "id": "Meroni2021",
+      "titulo": "Yield forecasting with machine learning and small data: what gains for grains?",
+      "url": "https://arxiv.org/abs/2104.13246",
+      "texto": "https://arxiv.org/pdf/2104.13246",
+      "lectura": "texto_completo_pdf_web_metodo_anidado_por_ano",
+      "unidad": "provincia_ano",
+      "uso": "validacion_pertinente_y_referencias_no_error_parcelario"
+    },
+    {
+      "id": "Ramji2024",
+      "titulo": "Identifying priority survey sites for early-season milkweed conservation",
+      "url": "https://doi.org/10.5061/dryad.2rbnzs7x4",
+      "lectura": "README_metodologia_DEM_ecuaciones",
+      "uso": "antecedente_representacion_sin_slope_por_sin_cos_aspect_no_evidencia_cebada"
+    },
+    {
+      "id": "ISRIC_acceso",
+      "url": "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_02.html",
+      "lectura": "documentacion_oficial_consultada",
+      "uso": "REST_pausada_WCS_WebDAV_no_cobertura_local_acreditada"
+    },
+    {
+      "id": "sklearn_cuantil",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.QuantileRegressor.html",
+      "lectura": "documentacion_oficial",
+      "uso": "objetivo_mediana_condicional_L1_no_transferir_alpha_Ridge"
+    }
+  ],
+  "PRs": [
+    {
+      "headRefOid": "a176d2e5281f5e8679e99b0f7cd800f486fbbe96",
+      "number": 20,
+      "state": "OPEN",
+      "updatedAt": "2026-10-15T16:40:43Z",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/20"
+    },
+    {
+      "headRefOid": "fd4120a3d0efadba6ba2dd488499818f615ba9aa",
+      "number": 23,
+      "state": "OPEN",
+      "updatedAt": "2026-10-15T22:15:33Z",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/23"
+    },
+    {
+      "headRefOid": "1331e4f90898e3b806c57f87e8fc296c4e1fc88a",
+      "number": 24,
+      "state": "OPEN",
+      "updatedAt": "2026-10-16T17:51:29Z",
+      "url": "https://github.com/danielalira20/AgroCebada-2026/pull/24"
+    }
+  ],
+  "sin_nuevos_modelos": true,
+  "sin_nuevas_etiquetas": true,
+  "publicacion_PDFs_terceros": false,
+  "lecturas_incompletas_explicitas": true
+}
