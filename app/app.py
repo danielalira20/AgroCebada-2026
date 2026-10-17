@@ -12,273 +12,35 @@ El mapa 3D pone las parcelas sobre el relieve real (Terrain Tiles de AWS) con im
 Uso (desde esta carpeta):  streamlit run app.py
 """
 import hashlib
-import html
-from pathlib import Path
 
 import altair as alt
 import numpy as np
 import pandas as pd
-import pydeck as pdk
 import streamlit as st
 
 import agro_carga as K
 import agro_datos as A
-import agro_ficha as F
 from agrocebada_app.backend.dominio.avisos import avisos_de
+from agrocebada_app.backend.dominio.geometria import vecinas, zoom_para
 from agrocebada_app.backend.dominio.notas import nota_de
 from agrocebada_app.backend.dominio.resumen import detalles, resumen_parcela
-from agrocebada_app.config import (AYUDA_MAPA, CORTE_TXT, CREDITOS, INDICES, MESES, MODELO_OFICIAL, MODELOS, RELIEVE,
-                                   SATELITE, TOOLTIP)
-
-AQUI = Path(__file__).resolve().parent
-
-ESTILO = """
-:root { --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D; }
-.stApp { background:
-  radial-gradient(1100px 520px at 0% -10%, rgba(155,225,93,.13), transparent 60%),
-  radial-gradient(900px 480px at 100% 0%, rgba(47,224,160,.10), transparent 60%),
-  radial-gradient(900px 600px at 50% 115%, rgba(47,224,160,.07), transparent 60%), #0A110E; }
-header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
-.block-container { padding-top: 1rem; padding-bottom: 2rem; max-width: 1500px; }
-
-/* vidrio */
-[class*="st-key-glass"] { background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)), var(--vidrio);
-  border: 1px solid var(--borde); border-radius: 18px; padding: 14px 16px;
-  box-shadow: 0 14px 34px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.06); }
-/* el desenfoque va sólo en lo que flota sobre el mapa: en las tarjetas encerraría la pantalla completa */
-.st-key-glass_top, .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros,
-.st-key-glass_leyenda { backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%); }
-.st-key-glass_top { padding: 10px 16px; }
-
-/* mapa protagonista con paneles flotantes */
-.st-key-hero { position: relative; gap: 0; }
-.st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
-  border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
-.st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
-.st-key-glass_chips, .st-key-glass_filtros { position: absolute; top: 16px; right: 62px; width: 280px; z-index: 5; }
-.st-key-glass_leyenda { position: absolute; bottom: 16px; right: 16px; width: 300px; z-index: 5; padding: 10px 14px; }
-@media (max-width: 900px) {
-  .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda {
-    position: relative; top: auto; left: auto; right: auto; bottom: auto; width: auto; margin-top: 10px; }
-}
-
-/* texto */
-.marca { display: flex; align-items: center; gap: 12px; }
-.marca-t { font-weight: 800; font-size: 1.15rem; color: #fff; letter-spacing: -.01em; line-height: 1.1; }
-.marca-s { font-size: .76rem; color: var(--tenue); }
-.eyebrow { font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--tenue); font-weight: 600; }
-.big { font-size: 3.1rem; font-weight: 800; letter-spacing: -.035em; line-height: 1; color: #fff; margin: 6px 0 2px; }
-.big small, .kv small { font-size: .95rem; font-weight: 600; color: var(--tenue); margin-left: 6px; letter-spacing: 0; }
-.fila { display: flex; gap: 8px; margin-top: 12px; }
-.mini { flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
-  padding: 8px 10px; }
-.mini span { display: block; font-size: .68rem; color: var(--tenue); }
-.mini b { font-size: 1.02rem; color: #fff; font-weight: 700; }
-.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-.kv { font-size: 1.45rem !important; letter-spacing: -.02em; }
-.nota { font-size: .78rem; color: var(--tenue); margin-top: 10px; line-height: 1.4; }
-.aviso { margin-top: 10px; font-size: .78rem; color: #F5D08A; background: rgba(245,181,68,.12);
-  border: 1px solid rgba(245,181,68,.30); border-radius: 10px; padding: 8px 10px; line-height: 1.35; }
-.chips { display: flex; flex-direction: column; gap: 9px; }
-.chip { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: .78rem;
-  color: var(--tenue); }
-.chip b { color: #fff; font-size: .95rem; font-weight: 700; }
-.ley-bar { height: 8px; border-radius: 6px; background: linear-gradient(90deg, rgb(217,164,65), rgb(140,203,94),
-  rgb(47,224,160)); }
-.ley-txt { display: flex; justify-content: space-between; font-size: .7rem; color: var(--tenue); margin-top: 4px; }
-.ley-nota { font-size: .7rem; color: var(--tenue); margin-top: 4px; }
-.tit { font-weight: 700; font-size: 1.02rem; color: #fff; }
-.sub { font-size: .8rem; color: var(--tenue); margin: 2px 0 8px; }
-.chk { display: inline-flex; gap: 6px; align-items: center; padding: 5px 11px; border-radius: 999px; font-size: .78rem;
-  margin: 0 6px 6px 0; }
-.chk.ok { background: rgba(47,224,160,.12); color: #7EF0C4; border: 1px solid rgba(47,224,160,.30); }
-.chk.mal { background: rgba(255,99,99,.12); color: #FF9C9C; border: 1px solid rgba(255,99,99,.30); }
-.creditos { font-size: .66rem; color: #66796e; margin: 8px 4px 16px; }
-.encontrada { font-size: .8rem; color: #fff; margin-top: 4px; }
-.mascota { display: flex; gap: 14px; align-items: flex-start; }
-.mascota .cebi { flex: 0 0 64px; width: 64px; height: 64px; }
-
-/* Cebi animado: llega, parpadea, mece el brote y da saltitos (sólo CSS) */
-.cebi svg { width: 100%; height: 100%; overflow: visible; }
-.cebi .cebi-todo { transform-box: view-box; transform-origin: 50% 92%; animation: cebi-salto 7s ease-in-out 2.2s infinite; }
-.cebi .cebi-ojos { transform-box: fill-box; transform-origin: center; animation: cebi-parpadeo 4.8s ease-in-out 1.2s infinite; }
-.cebi .cebi-brote { transform-box: view-box; transform-origin: 50% 30%; animation: cebi-brote 2.8s ease-in-out infinite alternate; }
-.cebi .cebi-pie { transform-box: fill-box; transform-origin: center bottom; }
-.marca .cebi { animation: cebi-llega .9s cubic-bezier(.2, .9, .3, 1.25) both; }
-.mascota .cebi { animation: cebi-camina 1.8s ease-out both; }
-.mascota .cebi .cebi-pie-i { animation: cebi-paso .3s ease-in-out 6 alternate; }
-.mascota .cebi .cebi-pie-d { animation: cebi-paso .3s ease-in-out .15s 6 alternate; }
-.mascota .cebi .cebi-torso { animation: cebi-bamboleo .3s ease-in-out 6 alternate; transform-box: view-box;
-  transform-origin: 50% 90%; }
-@keyframes cebi-llega { 0% { opacity: 0; transform: translateY(-22px) scale(.4); } 60% { opacity: 1; }
-  100% { opacity: 1; transform: none; } }
-@keyframes cebi-camina { 0% { opacity: 0; transform: translateX(-70px); } 15% { opacity: 1; }
-  100% { opacity: 1; transform: none; } }
-@keyframes cebi-paso { from { transform: translateY(0); } to { transform: translateY(-28%); } }
-@keyframes cebi-bamboleo { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
-@keyframes cebi-parpadeo { 0%, 88%, 100% { transform: scaleY(1); } 92% { transform: scaleY(.08); } 96% { transform: scaleY(1); } }
-@keyframes cebi-brote { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
-@keyframes cebi-salto { 0%, 82%, 100% { transform: translateY(0) scale(1, 1); } 85% { transform: translateY(0) scale(1.07, .9); }
-  90% { transform: translateY(-12%) scale(.95, 1.06); } 95% { transform: translateY(0) scale(1.05, .94); } }
-@media (prefers-reduced-motion: reduce) { .cebi, .cebi * { animation: none !important; } }
-.pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
-.paso { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 12px; }
-.paso .n { width: 26px; height: 26px; border-radius: 50%; background: rgba(155,225,93,.18); color: var(--acento);
-  display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
-.paso b { display: block; color: #fff; margin: 8px 0 4px; font-size: .92rem; }
-.paso p { margin: 0; font-size: .8rem; color: var(--tenue); line-height: 1.4; }
-.etiquetas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.etiqueta { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); border-radius: 999px;
-  padding: 6px 12px; font-size: .78rem; color: #E7EFE9; }
-.etiqueta span { color: var(--tenue); }
-.limites { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin-top: 8px; }
-.limite { display: flex; gap: 10px; font-size: .82rem; color: #E7EFE9; line-height: 1.4; }
-.limite::before { content: "!"; flex: 0 0 20px; height: 20px; border-radius: 50%; background: rgba(245,181,68,.16);
-  color: #F5B544; font-weight: 800; font-size: .72rem; display: grid; place-items: center; margin-top: 1px; }
-@media (max-width: 900px) { .pasos { grid-template-columns: 1fr 1fr; } .limites { grid-template-columns: 1fr; } }
-
-/* pestañas tipo píldora */
-.stTabs [role="tablist"] { gap: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--borde) !important;
-  padding: 6px; border-radius: 14px; width: fit-content; max-width: 100%; overflow-x: auto; box-shadow: none !important; }
-.stTabs [role="tab"] { height: auto; padding: 8px 16px !important; border-radius: 10px; border: none !important;
-  box-shadow: none !important; }
-.stTabs [role="tab"][aria-selected="true"] { background: rgba(155,225,93,.16); }
-.stTabs [role="tab"]::after, .stTabs [role="tab"]::before, .stTabs [role="tablist"]::after { display: none !important; }
-.stTabs > div { border-bottom: none !important; box-shadow: none !important; }
-
-/* controles */
-[data-testid="stWidgetLabel"] p { font-size: .74rem; color: var(--tenue); }
-.stApp [data-baseweb="select"] > div { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
-.stDownloadButton button[kind="primary"] { color: #0A110E; font-weight: 600; }
-"""
-
-MASCOTA = (AQUI / "assets" / "mascota" / "cebi.svg").read_text(encoding="utf-8") if (AQUI / "assets" / "mascota" / "cebi.svg").exists() else ""
-ICONO = str(AQUI / "assets" / "mascota" / "cebi.png") if (AQUI / "assets" / "mascota" / "cebi.png").exists() else "🌾"
-MARCA = """<div class="marca"><div class="cebi" style="width:44px;height:44px;flex:0 0 44px">""" + MASCOTA + """</div>
-<div><div class="marca-t">AgroCebada</div><div class="marca-s">Rendimiento de cebada · campaña 2025 ·
-información al 31 de octubre de 2025</div></div></div>"""
+from agrocebada_app.backend.ficha_pdf.armado import ContextoFicha
+from agrocebada_app.backend.modelo.estimador import predecir
+from agrocebada_app.backend.modelo.metricas import metricas
+from agrocebada_app.config import AYUDA_MAPA, CREDITOS, INDICES, MESES, MODELO_OFICIAL, MODELOS
+from agrocebada_app.frontend.componentes.descargas.boton_ficha import boton_ficha
+from agrocebada_app.frontend.componentes.graficas.base import grafica_base
+from agrocebada_app.frontend.componentes.graficas.clima import curva_clima
+from agrocebada_app.frontend.componentes.graficas.indices import curva_indice
+from agrocebada_app.frontend.componentes.mapa.interaccion import parcela_clicada
+from agrocebada_app.frontend.componentes.mapa.mapa import mapa
+from agrocebada_app.frontend.componentes.paneles.leyenda import leyenda
+from agrocebada_app.frontend.estado.cache import cargar, clima, elevaciones, oficial, oof, series, soporte
+from agrocebada_app.frontend.tema.estilos import ESTILO, ICONO, MARCA, MASCOTA
+from agrocebada_app.frontend.tema.html import chips, e, h, titulo
 
 
-# ---------------------------------------------------------------- datos (paquete datos_app/ o fuentes del repo)
-@st.cache_data(show_spinner="Leyendo parcelas…")
-def cargar():
-    return A.parcelas()
-
-
-@st.cache_data
-def elevaciones():
-    return A.elevaciones()
-
-
-@st.cache_data(show_spinner="Leyendo series de satélite…")
-def series():
-    return A.series()
-
-
-@st.cache_data
-def clima():
-    return A.clima()
-
-
-@st.cache_data
-def soporte():
-    return A.soporte()
-
-
-@st.cache_data
-def oficial(modelo):
-    return A.oficial(modelo)
-
-
-@st.cache_data
-def oof(modelo, municipios):
-    return A.validacion(modelo, municipios)
-
-
-predecir, metricas = A.predecir, A.metricas
-
-
-def vecinas(d, pid, radio=0.06):
-    """Parcelas a ~6 km de la elegida (distancia en grados, suficiente para encuadrar el mapa)."""
-    r = d.loc[pid]
-    return d.index[np.hypot(d.lon_c - r.lon_c, d.lat_c - r.lat_c) < radio]
-
-
-# ---------------------------------------------------------------- mapa 3D
-def color(v, alfa=235):
-    return list(A.color_rgb(v)) + [alfa]
-
-
-def anillo(geom):
-    g = max(geom.geoms, key=lambda p: p.area) if geom.geom_type == "MultiPolygon" else geom
-    g = g.simplify(0.00003)                      # ~3 m: menos vértices, bordes 3D más limpios
-    return [(round(c[0], 6), round(c[1], 6)) for c in g.exterior.coords]
-
-
-def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, satelite=True, arriba=False,
-         detalle=None, con_relieve=True, clave="mapa", al_clic=None):
-    """Parcelas sobre el relieve real con imagen Sentinel-2. En 3D son bloques (altura y color = t/ha); desde arriba
-    son polígonos de color con borde, como un mapa de cultivos. El zoom se limita alrededor de la vista inicial y la
-    rueda del ratón no hace zoom, para que el scroll mueva la página."""
-    E = elevaciones() if con_relieve else None
-    relieve = E is not None
-    base = 0.0
-    if relieve:
-        base = float(E[resaltar]) if resaltar in E.index else float(E.reindex(list(ids)).median())
-    filas = []
-    for pid in ids:
-        r = d.loc[pid]
-        reservada = r.CONJUNTO == "PREDICCION"
-        v = float(pred.prediccion.get(pid) if reservada else r.real)
-        sel = pid == resaltar
-        # desde arriba el terreno va plano (el relieve no se nota y su brillo taparía la imagen)
-        z = round(float(E.get(pid, base)) - base + 3, 1) if (relieve and not arriba) else 2.0
-        if arriba:                        # de lejos las parcelas son chicas: bordes más finos para que no sean puntos
-            cerca = zoom >= 12
-            linea, ancho = (([255, 255, 255, 255], 2.5 if cerca else 1.0) if (reservada or sel)
-                            else ([255, 255, 255, 120], 1.0 if cerca else 0.0))
-        else:
-            linea, ancho = ([255, 255, 255, 235] if (reservada or sel) else [0, 0, 0, 0]), 1.0
-        filas.append(dict(id=pid, municipio=r.municipio, tipo="estimación" if reservada else "registrado",
-                          detalle=(detalle or {}).get(pid, f"{'Estimación' if reservada else 'Registrado'}: {v:.2f} t/ha"),
-                          valor=round(v, 2), poligono=[[x, y, z] for x, y in anillo(r.geometry)],
-                          color=[255, 122, 69, 240] if sel else color(v, 205 if arriba else 235),
-                          linea=linea, ancho=ancho))
-    capas = []
-    if relieve or satelite:            # sin relieve (datos subidos) la imagen va sobre un terreno plano
-        plano = {"rScaler": 0, "gScaler": 0, "bScaler": 0, "offset": 0}
-        real = {"rScaler": 256, "gScaler": 1, "bScaler": 1 / 256, "offset": -32768 - base}
-        capas.append(pdk.Layer("TerrainLayer", id="relieve-plano" if arriba else "relieve", elevation_data=RELIEVE,
-                               texture=SATELITE if satelite else None, max_zoom=13, color=[44, 56, 50],
-                               elevation_decoder=real if (relieve and not arriba) else plano,
-                               material=relieve and not arriba))
-    capas.append(pdk.Layer("PolygonLayer", filas, id="parcelas", get_polygon="poligono", get_fill_color="color",
-                           get_line_color="linea", get_line_width="ancho", line_width_units=pdk.types.String("pixels"),
-                           extruded=not arriba, wireframe=not arriba, stroked=arriba, get_elevation="valor",
-                           elevation_scale=escala, pickable=True, auto_highlight=True,
-                           highlight_color=[255, 236, 140, 240]))          # amarillo claro al pasar el ratón
-    vista = pdk.View(type="MapView", controller={"scrollZoom": True, "doubleClickZoom": True, "touchZoom": True,
-                                                 "dragRotate": not arriba, "touchRotate": not arriba, "keyboard": True})
-    estado = pdk.ViewState(latitude=centro[1], longitude=centro[0], zoom=zoom, min_zoom=zoom - 1.2, max_zoom=18.5,
-                           pitch=0 if arriba else 58, bearing=0 if arriba else -18, max_pitch=0 if arriba else 72)
-    # La clave sólo cambia con la vista (3D o desde arriba) y el encuadre elegido en los selectores. Un clic en el mapa
-    # no la cambia: el mapa no se vuelve a crear, conserva el zoom y sólo se recolorea la parcela elegida (Streamlit,
-    # además, atenúa las demás).
-    clave = f"{clave}-{'arriba' if arriba else '3d'}"
-    st.pydeck_chart(pdk.Deck(layers=capas, views=[vista], map_provider="carto", map_style="dark", tooltip=TOOLTIP,
-                             initial_view_state=estado), height=altura, key=clave,
-                    on_select=(lambda: al_clic(clave)) if al_clic else "ignore", selection_mode="single-object")
-
-
-def parcela_clicada(clave):
-    """ID de la parcela que se acaba de clicar en el mapa `clave`, o None."""
-    try:
-        objetos = st.session_state[clave].selection.objects.get("parcelas") or []
-        return objetos[0]["id"] if objetos else None
-    except (KeyError, AttributeError, TypeError, IndexError):
-        return None
-
-
+# ---------------------------------------------------------------- selección en el mapa
 def clic_agricultor(clave):
     pid = parcela_clicada(clave)
     if pid in d.index:                  # se cambia la parcela elegida, no el encuadre del mapa
@@ -297,107 +59,7 @@ def primera_reservada(muni):
     return res[0] if res else ids[0]
 
 
-# ---------------------------------------------------------------- piezas de interfaz
-def h(s):
-    st.markdown(s, unsafe_allow_html=True)        # sólo HTML propio; los textos de datos pasan por e()
-
-
-def e(s):
-    return html.escape(str(s))
-
-
-def leyenda():
-    """Selector de vista del mapa y escala de color. Devuelve True si se eligió la vista desde arriba."""
-    arriba = (st.segmented_control("Vista del mapa", ["3D", "Desde arriba"], key="vista_mapa",
-                                   label_visibility="collapsed") or "3D") == "Desde arriba"
-    nota = "Color = t/ha · borde grueso = por estimar" if arriba else "Altura y color = t/ha · borde blanco = por estimar"
-    h("<div class='eyebrow' style='margin-top:4px'>Rendimiento</div><div class='ley-bar' style='margin-top:6px'></div>"
-      "<div class='ley-txt'><span>2.0</span><span>3.8</span><span>5.6 t/ha</span></div>"
-      f"<div class='ley-nota'>{nota}</div>")
-    return arriba
-
-
-def chips(items):
-    h("<div class='chips'>" + "".join(f"<div class='chip'><span>{e(k)}</span><b>{e(v)}</b></div>"
-                                      for k, v in items) + "</div>")
-
-
-def titulo(t, sub=""):
-    h(f"<div class='tit'>{e(t)}</div>" + (f"<div class='sub'>{e(sub)}</div>" if sub else ""))
-
-
-def _grafica(ch, alto):
-    return ch.properties(height=alto, background="transparent").configure_view(strokeWidth=0).configure_axis(
-        gridColor="rgba(255,255,255,0.07)", domainColor="rgba(255,255,255,0.18)", tickColor="rgba(255,255,255,0.18)")
-
-
-def curva_indice(s, pid, col, nombre, alto=240):
-    x = s[(s.ID_POLIGONO == pid) & s[col].notna()][["fecha", "sensor", col]].sort_values("fecha")
-    if x.empty:
-        st.info("No hay capturas despejadas de este índice para la parcela.")
-        return
-    base = alt.Chart(x).encode(
-        x=alt.X("fecha:T", title=None, axis=alt.Axis(format="%d/%m")),
-        y=alt.Y(f"{col}:Q", title=nombre),
-        color=alt.Color("sensor:N", title=None, scale=alt.Scale(domain=["Planet", "Sentinel-2"],
-                                                                range=["#9BE15D", "#5ED1E8"]),
-                        legend=alt.Legend(orient="top")),
-        tooltip=[alt.Tooltip("fecha:T", format="%d/%m/%Y"), "sensor", alt.Tooltip(f"{col}:Q", format=".2f")])
-    st.altair_chart(_grafica(base.mark_line(opacity=0.55, strokeWidth=2) + base.mark_circle(size=34, opacity=0.95),
-                             alto), width="stretch")
-
-
-def curva_clima(c, pid, alto=240):
-    x = c[c.id_parcela == pid]
-    if x.empty:
-        return
-    orden = [MESES[m] for m in range(3, 11)]
-    x = x.assign(mes=pd.to_datetime(x.periodo + "-01").dt.month.map(MESES))
-    eje = alt.X("mes:O", sort=orden, title=None, axis=alt.Axis(labelAngle=0))
-    lluvia = alt.Chart(x).mark_bar(color="#5ED1E8", opacity=0.45, cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
-        x=eje, y=alt.Y("PREC:Q", title="lluvia (mm/mes)"), tooltip=["mes", alt.Tooltip("PREC:Q", format=".0f")])
-    temp = alt.Chart(x.melt(id_vars=["mes"], value_vars=["Tmax", "Tmin"], var_name="variable", value_name="°C")).mark_line(
-        point=True, strokeWidth=2).encode(
-        x=eje, y=alt.Y("°C:Q", title="temperatura (°C)"),
-        color=alt.Color("variable:N", title=None, scale=alt.Scale(domain=["Tmax", "Tmin"], range=["#F5B544", "#7FB2FF"]),
-                        legend=alt.Legend(orient="top")))
-    st.altair_chart(_grafica(alt.layer(lluvia, temp).resolve_scale(y="independent"), alto), width="stretch")
-
-
-@st.cache_data(show_spinner=False)
-def ficha_bytes(pid, modelo):
-    """PDF de una página con la parcela, su cifra, su mapa, su verdor y su clima (se arma al hacer clic)."""
-    r = d.loc[pid]
-    est = r.CONJUNTO == "PREDICCION"
-    p = pred.loc[pid] if est else None
-    info = dict(id=pid, municipio=r.municipio, estado=r.Estado, grupo=r.grupo_registro, area=r.AREA_HA,
-                tipo="estimacion" if est else "registrado", valor=float(p.prediccion) if est else float(r.real),
-                produccion=float(p.prediccion) * r.AREA_HA if est else None,
-                error=float(p.error_tipico) if est and pd.notna(p.error_tipico) else None,
-                oof=float(oof_parcela[pid]) if (not est and pid in oof_parcela.index) else None,
-                nota=nota_de(d, pred, cob_mun, pid), aviso=p.aviso if est else "", corte=CORTE_TXT)
-    pol = [dict(coords=anillo(d.loc[i].geometry),
-                valor=float(pred.prediccion[i]) if d.loc[i, "CONJUNTO"] == "PREDICCION" else float(d.loc[i, "real"]),
-                sel=i == pid, reservada=d.loc[i, "CONJUNTO"] == "PREDICCION") for i in vecinas(d, pid)]
-    c = None
-    if C is not None:
-        c = C[C.id_parcela == pid].assign(mes=lambda x: x.periodo.str[5:].astype(int)).sort_values("mes")
-    icono = AQUI / "assets" / "mascota" / "cebi.png"
-    return F.ficha_pdf(info, pol, S[S.ID_POLIGONO == pid], c, str(icono) if icono.exists() else None)
-
-
-def boton_ficha(pid, clave):
-    st.download_button("Descargar ficha (PDF)", data=lambda: ficha_bytes(pid, modelo),
-                       file_name=f"ficha_{pid}.pdf", mime="application/pdf", on_click="ignore", key=clave,
-                       type="primary", width="stretch", help="Una página con la cifra, el mapa, el verdor y el clima.")
-
-
-def zoom_para(gdf):
-    x0, y0, x1, y1 = gdf.total_bounds
-    lado = max(x1 - x0, (y1 - y0) * 1.3, 0.01)
-    return float(np.clip(np.log2(560 / lado), 5, 14))       # deja ~50 % de margen en un mapa de ~1200 px
-
-
+# ---------------------------------------------------------------- datos propios
 def analizar_subido(res, modelo, satelite):
     du = res.datos
     pu = predecir(du, modelo)
@@ -479,6 +141,7 @@ pred["error_tipico"] = pred.municipio.map(err_mun)
 pred["aviso"] = avisos_de(pred, sop)
 oof_parcela = OAT.groupby("ID_POLIGONO").prediccion.mean() if OAT is not None else pd.Series(dtype=float)
 DET = detalles(d, pred, oof_parcela)
+FICHA = ContextoFicha(d=d, pred=pred, oof_parcela=oof_parcela, cob_mun=cob_mun, clima=C, series=S)
 
 # ================================================================= VISTA AGRICULTOR
 if agricultor:
@@ -522,7 +185,7 @@ if agricultor:
                                   f"<b>{oof_parcela[pid] - r.real:+.2f} t/ha</b></div></div>")
                 partes.append(f"<div class='nota'>{e(nota_de(d, pred, cob_mun, pid))}</div>")
                 h("".join(partes))
-            boton_ficha(pid, "ficha_agricultor")
+            boton_ficha(pid, "ficha_agricultor", modelo, FICHA)
         with st.container(key="glass_leyenda"):
             arriba = leyenda()
         rc = d.loc[encuadre]
@@ -648,7 +311,7 @@ else:
                 h(f"<div class='aviso'>Aviso: {e(pred.loc[pid, 'aviso'])}.</div>")
             b1, _ = st.columns([1, 3])
             with b1:
-                boton_ficha(pid, "ficha_analista")
+                boton_ficha(pid, "ficha_analista", modelo, FICHA)
         f1, f2 = st.columns([1, 1])
         with f1, st.container(key="glass_disp"):
             titulo("Disponibilidad de datos", "Temporada junio–octubre de 2025.")
@@ -695,7 +358,7 @@ else:
                                         scale=alt.Scale(domain=elegidas, range=["#FF7A45", "#9BE15D", "#7FB2FF"])),
                         tooltip=["ID_POLIGONO", alt.Tooltip("fecha:T", format="%d/%m/%Y"),
                                  alt.Tooltip(f"{col}:Q", format=".2f")])
-                    st.altair_chart(_grafica(base.mark_line(strokeWidth=2) + base.mark_circle(size=30), 260),
+                    st.altair_chart(grafica_base(base.mark_line(strokeWidth=2) + base.mark_circle(size=30), 260),
                                     width="stretch")
                 filas = []
                 for i in elegidas:
@@ -754,7 +417,7 @@ else:
                 diag = alt.Chart(pd.DataFrame({"x": [2, 6], "y": [2, 6]})).mark_line(
                     color="rgba(255,255,255,0.35)", strokeDash=[4, 4]).encode(
                     x=alt.X("x:Q", scale=dom), y=alt.Y("y:Q", scale=dom))
-                st.altair_chart(_grafica(diag + puntos, 300), width="stretch")
+                st.altair_chart(grafica_base(diag + puntos, 300), width="stretch")
             with st.container(key="glass_insuf"):
                 titulo("Caso de información insuficiente",
                        "Simula que un municipio no tuviera parcelas con cosecha y mira qué valor aplicaría la app.")
