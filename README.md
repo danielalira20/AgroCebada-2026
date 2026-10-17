@@ -212,3 +212,6 @@ La [factibilidad INEGI](docs/t15_inegi_factibilidad.md) confirma acceso y cobert
 El [contrato técnico E2](docs/t15_e2_contrato_inegi.md) fija posición topográfica a150m y exposición direccional ponderada por inclinación, pesos físicos, cobertura, pruebas y comparaciones con control de disponibilidad. [Entrega y verificador](registro/t15_e2/README.md):27 comprobaciones analíticas y10 alteraciones peligrosas rechazadas; mismas salidas Mac normal/−O. Es diseño previo: no se extrajeron atributos E2 ni entrenaron modelos.
 
 La [investigación de alternativas](docs/t15_e2_alternativas_fundamentadas.md) contrasta estudios de cebada/cereales con T12/T13 y exploraciones del equipo. Prioriza terminar E2 y después una alternativa compacta de pérdida absoluta; suelo/bandas nuevas requieren piloto y registro propio. No se promete reducciónMAE ni se amplía la cartera al citar un artículo.
+
+
+T15 · Familia de verdor T13 con procedimiento común: [diseño, resultados y reproducción](docs/t15_t13_verdor.md). Evaluación local auditada, sin promoción; fuentes, trazas y controles en `registro/t15_t13/`.
