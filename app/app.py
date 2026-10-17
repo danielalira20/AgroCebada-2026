@@ -60,7 +60,24 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 /* el desenfoque va sólo en lo que flota sobre el mapa: en las tarjetas encerraría la pantalla completa */
 .st-key-glass_top, .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros,
 .st-key-glass_leyenda { backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%); }
+
 .st-key-glass_top { padding: 10px 16px; }
+
+/* QA: espacio y adaptación de la tarjeta informativa */
+.st-key-glass_explica {
+    padding: 18px 20px 26px;
+}
+
+.st-key-glass_explica .mascota > div:last-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.st-key-glass_explica .nota {
+    line-height: 1.55;
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
 
 /* mapa protagonista con paneles flotantes */
 .st-key-hero { position: relative; gap: 0; }
