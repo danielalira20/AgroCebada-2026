@@ -19,9 +19,13 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
+AQUI = Path(__file__).resolve().parents[1]      # app/
+sys.path.insert(0, str(AQUI))                   # para importar agrocebada_app desde app/
+
+from agrocebada_app.backend.rutas.localizador import buscar_dataset  # noqa: E402
+
 Z = 13
 URL = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
-AQUI = Path(__file__).resolve().parents[1]      # app/
 ctx = ssl.create_default_context(cafile=os.environ.get("SSL_CERT_FILE"))
 _cache = {}
 
@@ -60,5 +64,7 @@ def main(datos):
 
 
 if __name__ == "__main__":
-    raiz = next(p for p in [AQUI, *AQUI.parents] if (p / "DATASET_RETO_AGRO_2026").exists())
-    main(Path(sys.argv[1]) if len(sys.argv) > 1 else raiz / "DATASET_RETO_AGRO_2026")
+    datos = Path(sys.argv[1]) if len(sys.argv) > 1 else buscar_dataset()      # AGRO_DATOS, data/raw/..., etc.
+    if datos is None or not (datos / "Parcelas_Reto_AGC_CONJUNTO_70_30.zip").exists():
+        raise SystemExit("No encontré el dataset del reto. Pásalo como argumento o fija AGRO_DATOS.")
+    main(datos)
