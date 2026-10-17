@@ -49,8 +49,12 @@ def resolver_primal(D, y, grupos, alpha):
         cj = np.zeros(len(c)); cj[k+j] = 1.
         current = resolver(cj, A_ub=A, b_ub=b, bounds=bounds,
                            A_eq=np.asarray(equal), b_eq=np.asarray(values))
-        equal.append(cj); values.append(float(current.x[k+j])); lex.append(float(current.fun))
-    beta = current.x[k:k+p]
+        # HiGHS puede devolver 1e-11 para un coeficiente matemáticamente cero.
+        # Fijarlo como igualdad no nula en otra base vuelve inviable la cara.
+        # Canonicalizar cero a la MISMA tolerancia del solver, sin ampliar ésta.
+        value = float(current.x[k+j]); value = 0. if abs(value)<=1e-9 else value
+        equal.append(cj); values.append(value); lex.append(value)
+    beta = np.array(values[1:])
     intercept = {g: float(np.median(y[np.asarray(grupos)==g] - D[np.asarray(grupos)==g]@beta)) for g in levels}
     residual = y - np.array([intercept[g] for g in grupos]) - D@beta
     obj = float(.5*np.mean(np.abs(residual)) + alpha*np.abs(beta).sum())

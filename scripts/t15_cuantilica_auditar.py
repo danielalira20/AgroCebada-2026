@@ -34,8 +34,9 @@ def primal_independiente(D, y, groups, alpha):
     for j in range(p):
         cj = np.zeros(len(c)); cj[2*k+j]=1.; cj[2*k+p+j]=-1.
         cur=solve(cj,A_eq=np.asarray(equal),b_eq=np.asarray(rhs),bounds=(0,None))
-        equal.append(cj);rhs.append(float(cur.fun))
-    beta=cur.x[2*k:2*k+p]-cur.x[2*k+p:2*k+2*p]
+        value=float(cur.fun);value=0. if abs(value)<=1e-9 else value
+        equal.append(cj);rhs.append(value)
+    beta=np.array(rhs[-p:])
     # Certificado dual distinto del primal: suma por municipio=0 y |D.T s|<=alpha.
     dual=solve(-y,A_ub=np.r_[D.T,-D.T],b_ub=np.full(2*p,alpha),
                A_eq=C.T,b_eq=np.zeros(k),bounds=[(-.5/n,.5/n)]*n)

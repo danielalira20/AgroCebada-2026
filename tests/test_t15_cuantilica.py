@@ -135,5 +135,15 @@ class CuantilicaTests(unittest.TestCase):
         detail[0]['prediccion']+=.1
         with self.assertRaises(ValueError):auditar_estado(q.estado(),X,y,X,detail)
 
+    def test_regresion_cero_numerico_en_cara_optima(self):
+        # Caso que antes falló: A/rep3/fold0/interna2, sin usar consulta ni MAE externo.
+        from scripts.t15_comparaciones_contrato import cargar
+        from scripts.evaluacion_comun_modelo import preparar_contexto,divisiones_internas
+        _,e=cargar();X,y,_=preparar_contexto(e,'A',3,0);sp=divisiones_internas(X,'A')[2]
+        X=X.loc[list(sp.entrenamiento)];y=y.loc[X.index]
+        q=m.CuantilicaMunicipal(m.S['jun_oct'],.01).fit(X,y)
+        self.assertEqual(q.estado()['beta'][:2],[0.,0.])
+        auditar_estado(q.estado(),X,y,X,[dict(id_parcela=i,**v.to_dict()) for i,v in q.predict_with_details(X).iterrows()])
+
 
 if __name__=='__main__':unittest.main()
