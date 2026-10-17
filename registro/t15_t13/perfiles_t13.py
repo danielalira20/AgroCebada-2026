@@ -23,7 +23,7 @@ def calcular(root,run,dest):
         r['delta_vs_control']=r[names[0]+'_MAE']-r[names[1]+'_MAE'];r['delta_vs_media']=r[names[0]+'_MAE']-r[names[2]+'_MAE']
         out.append(r)
     with dest.open('x',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=list(out[0]));w.writeheader();w.writerows(out)
+        w=csv.DictWriter(f,fieldnames=list(out[0]),lineterminator="\n");w.writeheader();w.writerows(out)
     main=[r for r in out if r['n_OOF_municipio']==5];eps=1e-12
     by={(r['candidato'],int(r['repeticion']),r['ID_POLIGONO']):r for r in rows if r['escenario']=='A'}
     magnitude={}

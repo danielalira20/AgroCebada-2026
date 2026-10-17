@@ -1,0 +1,7 @@
+{
+  "observacion": "Git avisó que normalizaría CRLF a LF del nuevo CSV de perfiles; eso rompería su huella al clonar.",
+  "correccion": "CSV derivado y su escritor usan LF explícito. Se actualiza sólo su inventario; resultados originales y manifiestos de evaluación permanecen intactos.",
+  "filas_perfil": 138,
+  "cambio_de_valores": false,
+  "comprobacion": "Comparar SHA256 de cada archivo de entrega con los bytes guardados por Git, además de su copia de trabajo."
+}

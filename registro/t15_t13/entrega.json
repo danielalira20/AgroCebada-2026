@@ -30,12 +30,12 @@
     "verificacion_previa/piloto_mac/manifest.json": "64ce2e00daa5eae6cfc27241aa5e2ccfaa1e897c25c5517cc34d715a2160b06d",
     "verificacion_previa/piloto_mac/trazas_ajustes.jsonl.gz": "e343b0ae086e9573e356a29e8c3834ea1778294ae9b863e109ad0f2b886d3b10",
     "verificacion_previa/piloto_mac/oof_parcial_prueba.csv": "356fa2f8ba7e4af9cddd7394c84c30de209a837e7866937e8970fb9205cb4af3",
-    "perfiles_linux.csv": "32c2e2f60d3937322722268a0f4ca0967fd3ae8929166fec08f33c0128c502f9",
+    "perfiles_linux.csv": "dfb13e6fb060c2eea701c5cb257b3c12428c140bc22baa7bc7a6c29af941bdee",
     "comparar_entornos_completo.py": "db731a67a830a0928d0df6c87bedf2d8dc6e36e42ddda6a893e5f678a4b16d27",
     "auditoria_redundancia.json": "e248ebccf313d2b0fff9a64d7af8e53d2c8b100a2fa3d899e1830fa431418442",
     "auditoria_completa_linux.json": "f343f682b22b2a38390120f79908409852853ae9a967ad4a029f3f2196bed212",
     "contenedor_previo_estado.json": "80e612f4d5411ae0d161c5e85964dfd9f28aa07759b46f82b33ce42f125eaacf",
-    "perfiles_t13.py": "1d3a8889e76b71588ba84c8177e00f8f12ad80fef3aec22c13623f761b1b249e",
+    "perfiles_t13.py": "ea2f4c7d701c8530479608b9956e0571f9e8ca9573c7157e5e24ecda74e7c9cd",
     "auditoria_perfiles.json": "a5b6e14468d60f836805e793da3e8454e401435f42a1b376630bd5c7e413ac08",
     "redundancia_t13.py": "4fb81122cb651697c5947c2dfd8b0ba3cb0bab71de00ed7eb01376853b8602b2",
     "redundancia_verificada_sin_etiquetas.json": "3ffdf320915400a6019f761132a823a509e653f91de6daed5ffa703b3dce5ee3",
@@ -53,11 +53,12 @@
     "resultados/trazas_ajustes.jsonl.gz": "a4aca1e26edab1ec7582fbabef8f55fa6e23ea317122bf8f37480c59ca2825d2",
     "resultados/decision.json": "e42cd74884bc7c8d0118f4caf8ebef7a5c7389bf463979ac97f4e8cf4cfba83a",
     "resultados/contrastes.csv": "4b14eb81c6e3bdae975d09f60b9bbaf15dee359027832a7be8acf54cdc8c2749",
-    "resultados/metricas_resumen.csv": "e08709e99e83bbd7e1fdbbd75242c725756f176947995267050fd908a9a016bb"
+    "resultados/metricas_resumen.csv": "e08709e99e83bbd7e1fdbbd75242c725756f176947995267050fd908a9a016bb",
+    "incidencia_serializacion.json": "348429eb2a051f9d533d87677ef0d8eaac89f16cfc6ee74ee88eaaabd6bd688a"
   },
   "informe": {
     "ruta": "docs/t15_t13_verdor.md",
-    "sha256": "0432e379504645758c93e03531ae7bac566a8c0ad458567ef0b68dcb91973288"
+    "sha256": "2c9d24080b87f529070418080427c769a08e11e19ee818c58a9169f7dd41fb50"
   },
   "codigo_sha256": {
     "scripts/t15_t13_datos.py": "a0d8637f8ba5601fe5970eb979cc377b17173b40bf0c44f488bc2e71e0b2a559",
