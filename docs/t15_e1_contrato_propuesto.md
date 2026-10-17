@@ -1,5 +1,7 @@
 # T15 · contrato propuesto de E1: observación, calidad y faltantes
 
+> Actualización 16-oct-2026: se conserva esta propuesta histórica. La implementación y ejecución posterior, autorizadas por Dani sin atribuir aprobación externa, tienen [registro operativo propio e informe de resultados](t15_e1_evaluacion.md); no alteran el JSON histórico para habilitarlo retrospectivamente.
+
 14 de octubre de 2026. Responsable: Dani. Revisión propuesta: Daf y Migue. Estado: **propuesta versionada, no ejecutable**. Amplía la especificación de E1 sin cambiar el código ni el contrato congelado del [PR #21](https://github.com/danielalira20/AgroCebada-2026/pull/21), commit `4afabf081a341f3321fcd58a211d18b43ee5a3b4`.
 
 ## Problema que resuelve

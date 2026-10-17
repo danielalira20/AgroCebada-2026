@@ -200,3 +200,9 @@ El [ejecutor T15](docs/t15_ejecutor.md) completa las selecciones, trazas y repor
 El [informe final de la corrida](docs/t15_resultados.md) y el [paquete completo](registro/t15_resultados/README.md) reúnen predicciones OOF, 400 selecciones con puntuaciones, métricas, contrastes, desgloses y todas las trazas/estados comprimidos sin pérdida. La auditoría separada verifica H3, particiones y cálculos; puede repetirse sin reentrenar mediante `python -O scripts/t15_auditar_entrega.py --salida reports/t15_revision_nueva/auditoria.json`.
 
 Principal A/sin_respaldo: referencia MAE 0.320490 t/ha, RMSE medio por repetición 0.492593 y R² medio por repetición 0.658577 (135 parcelas). La mínima reducción puntual, GP −0.000300 t/ha, no satisface la regla. A/todas y B tienen denominadores distintos; se publican por separado. E1/Q y otras extensiones siguen pendientes; no se ampliaron las comparaciones tras mirar resultados.
+
+## T15 · extensión E1/Q evaluada · 16 de octubre de 2026
+
+El [informe E1/Q](docs/t15_e1_evaluacion.md) y su [entrega completa](registro/t15_e1_evaluacion/README.md) cierran la comparación registrada: MAE principal E1 0.321531 frente a referencia 0.320490 t/ha; no promueve. El control de disponibilidad y la sensibilidad del ancla están separados. Son resultados locales de esta rama, pendientes de publicación; los estados anteriores de planificación se conservan como historia. No cambia la referencia, T03/T07 ni las 59 finales.
+
+La [factibilidad INEGI](docs/t15_inegi_factibilidad.md) confirma acceso y cobertura de las 197 parcelas con el CEM3.0 de 15 m. El original local de unos 29 MB queda ignorado por Git; el registro comparte QA y procedencia. Faltan contrato técnico E2, extracción y evaluación de su aporte, con límites de datum y disponibilidad histórica explícitos.
