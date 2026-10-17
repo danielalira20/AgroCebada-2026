@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/proyecto/scripts/t15_e2_auditar_modelo.py", line 119, in <module>
+    a=p.parse_args();print(json.dumps(auditar(a.raiz,a.entrega,a.salida),ensure_ascii=False,indent=2))
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/proyecto/scripts/t15_e2_auditar_modelo.py", line 78, in auditar
+    raise ValueError('No es comprobación previa completa')
+ValueError: No es comprobación previa completa

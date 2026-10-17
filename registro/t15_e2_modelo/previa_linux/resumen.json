@@ -1,0 +1,40 @@
+{
+  "resultado": "aprobado",
+  "contextos_verificados": 50,
+  "internas_verificadas": 200,
+  "opciones_por_procedimiento": 8,
+  "dimensiones": {
+    "E2": 8,
+    "E12": 10,
+    "E2Q": 9
+  },
+  "registros_ajustes": 16,
+  "ajustes_adaptador_Ridge": 12,
+  "ajustes_adaptador_referencia": 4,
+  "ajustes_puente_antecedente_Ridge": 12,
+  "ajustes_puente_antecedente_referencia": 4,
+  "H3_max_media_correccion_municipal": 2.42861286636753e-17,
+  "puente_max_diferencia": 0.0,
+  "predict_sin_cambiar_estado": 16,
+  "evalua_rendimiento": false,
+  "consulta_y_no_usada_para_elegir": true,
+  "predicciones_finales59": 0,
+  "presupuesto_evaluacion_futura": {
+    "nuevos_procedimientos": 3,
+    "contextos": 50,
+    "opciones_con_variables_total": 24,
+    "Ridge_internos": 4800,
+    "referencias_internas_sin_cache": 600,
+    "ajustes_externos": 150,
+    "Ridge_externos_max": 150,
+    "OOF_nuevas": 4140,
+    "OOF_reutilizadas": 4140,
+    "OOF_total": 8280,
+    "contrastes_total": 28,
+    "metricas_resumen": 24,
+    "selecciones": 150,
+    "aclaracion": "Incluye 1600 Ridge internos y50externos adicionales para E2Q; sustituye propuesta anterior de2procedimientos. Sin cache costo explicito; cache puede reducir solo referencias repetidas.",
+    "ajustes_internos_sin_cache": 5400,
+    "trazas_sin_cache": 5550
+  }
+}

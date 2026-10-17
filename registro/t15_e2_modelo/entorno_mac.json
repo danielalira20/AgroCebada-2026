@@ -1,0 +1,8 @@
+{
+  "sistema": "Darwin",
+  "arquitectura": "arm64",
+  "python": "3.12.15",
+  "numpy": "2.2.6",
+  "pandas": "3.0.6",
+  "sklearn": "1.9.1"
+}

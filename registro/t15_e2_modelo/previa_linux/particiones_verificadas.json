@@ -1,0 +1,502 @@
+[
+  {
+    "escenario": "A",
+    "repeticion": 1,
+    "particion": 0,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "75e302018e2378b423f9398ae5ed58ec8d26d88a16a7cddaa0db8a57ad1795b0",
+    "ids_consulta_sha256": "b3df2b5a5f43ea1bfc09bfcb18803214efc03f7050f18924c6eb26e445dba68e"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 1,
+    "particion": 1,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "ac5e55c0883319759e6607e8754f6bc63aaae0a8eed37d878a09d4b4704a8e61",
+    "ids_consulta_sha256": "0c09be7c4ec4324af6053f710cfde96a4fe12ebd0986eb770f8903b6dd9dcbc0"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 1,
+    "particion": 2,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "f3902f178fbe5f31a4726551ab68914f95f662ebf5bab5e49cd0b2522413cdbc",
+    "ids_consulta_sha256": "8c952812c39cccf46e4361dee1e9073ed6650b9b36e6c4c0dda16a9b01d3a753"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 1,
+    "particion": 3,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "a8538ed106dd66e168f5baa7ee92681fed8040cc046c85c41219441d0e28e0db",
+    "ids_consulta_sha256": "831e91780ebedf6e89664b1e907ad72d628a8204c7159f1a72def60063a478b8"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 1,
+    "particion": 4,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "d37e453a610e9bec9a6e8e4918d8f378df15ea3035d1d168033c550fc0f56b6b",
+    "ids_consulta_sha256": "42a252633a55a553c4aba6c5a45d018b87d9258d8ceef0c8a2d28d2eec3011f0"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 2,
+    "particion": 0,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "b769df759978a48ddf644cadb6913afcd1b2ca733b3fdec58185e00f0ca1cbc5",
+    "ids_consulta_sha256": "06fce6c0f29a0270942affcee09cac83409465cca6cc0713035c8be965c59661"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 2,
+    "particion": 1,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "c96fe30f3426b00fa4d90030b901f3e5b5bd17b70254cbc1e9a94b8293fbd0d2",
+    "ids_consulta_sha256": "be6eecff9e64ca947792af93275c48cf27d7e05e4348c80aac0a3b0bb6e7e766"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 2,
+    "particion": 2,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "a09a9eeb6127b63b8b0428615f998b04861f3ffb822a11d8fce149d7af45f4f8",
+    "ids_consulta_sha256": "6d456faab049f191686e1dada94fef02bc1f10770ee31c8817f218439c08c0e3"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 2,
+    "particion": 3,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "c5deadc8a7659e5241ea206701bf2fa2eb509e8815af2df1c638bb056f395e0a",
+    "ids_consulta_sha256": "461a654f1957890544e6cbd09de517c196eda92d56ad8399b2b151b14bee8247"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 2,
+    "particion": 4,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "1280c279e9cf115151b21c425164044ae0b05bc1ee44b16a12667b4c1d5d32c6",
+    "ids_consulta_sha256": "0badbca9f29b8be8f443ca4b511e08b7dd78cdba04381dd6971309ddecee8fac"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 3,
+    "particion": 0,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "5f211e480e8bb32275856328b2597e6668b91343ee1ba0b6f0bae51774bcacf6",
+    "ids_consulta_sha256": "f9e347090070209b382b162e5de52fc511ae2939de2226da18f1c6affac343fe"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 3,
+    "particion": 1,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "f7d23c542d7a3cce7754544e717316181c7fb7ca580e7dcae81be9e6d8b26af5",
+    "ids_consulta_sha256": "37be4b58d21117b344a5cba21061dd54d219ac63a48ea93d859434f02c0f2d11"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 3,
+    "particion": 2,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "bc00b8c5920ce885ba1c81a0fe42458f8877255a39cbc0678eac5c55e67e194b",
+    "ids_consulta_sha256": "0857be68d291dd55d225f2f70a44d42c5057e64fd5178c9bdc91738097b8ebbb"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 3,
+    "particion": 3,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "a8adb06086c66f4f03bf6759352747a51d57e6b4814a7f643459f3deaf38bc87",
+    "ids_consulta_sha256": "4b1faff27558c443b4bf0e60f2a8a80b3c07a770e5a49f48fc35c73146358c3e"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 3,
+    "particion": 4,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "ecb04e08a5307fbe0da2d61675a3fe0edc72942ca3112062893ab31eab2618bb",
+    "ids_consulta_sha256": "1118f8fa4bc750901ce969f15556998775bcd278d8c2675b9ed27a2e092394a8"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 4,
+    "particion": 0,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "227cf88da66cc2955fbe170ea3a698cb827f0f6a7b77992d37c51d34b55c4d73",
+    "ids_consulta_sha256": "53ae7eb92deeee171f84d3660fc854e9827fc3e56720489dc50305c8a0c0e802"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 4,
+    "particion": 1,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "d96b0ee2ef4157195e89d7296660d1f51e6fd623e427ac3fc58b8f7eed6a350e",
+    "ids_consulta_sha256": "ea746449cbd87c5834e7e6c0735c7b896f31c5f121c2214e6a4b875297b7ce14"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 4,
+    "particion": 2,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "d8d434c1e06ee41b2c0431c9e430fa8cfa58d23954094fd1c0a48605970d789b",
+    "ids_consulta_sha256": "5f04a56286f9ebc23262352f2d74ca2a8bf0de6be89faded6a465fea9802b777"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 4,
+    "particion": 3,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "d92f27e737ef346532514137bc5a86a23e75ef0ac0fc19f879fb4514ddfb4a6c",
+    "ids_consulta_sha256": "d7f9d3472056ba3693b895e93ddf662a30fc0259e67b4ef60910cfd24a92016a"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 4,
+    "particion": 4,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "c482065345d720d4736c95e71b630323049d192c67db02cdbd62e9c9ce6a86b6",
+    "ids_consulta_sha256": "1a4d48e57e6bd83bc88023f344c2a5d9fe3ed0a88f93d48a1f7f129a091c6015"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 5,
+    "particion": 0,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "785e3b47a4e921d21d20f7397c752c76d3c63c05a99fe34323a539ebfedb2c5b",
+    "ids_consulta_sha256": "cc16a1d1b6bc3ef81549363f9f6cca7dca5edaf7226b6027cdc7e0c21571ecdc"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 5,
+    "particion": 1,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "de8048ca8a56aec42dc7450e885e33ca935e3a0301fc76ae480f699410a2d192",
+    "ids_consulta_sha256": "152206579669371ac8ad51ef6ae1695a2b42e6d18586556a54fb7827e7db27c8"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 5,
+    "particion": 2,
+    "n_train": 110,
+    "n_consulta": 28,
+    "n_internas": 4,
+    "ids_train_sha256": "e0d424829305d0fcfa6b7cc1802f1b946e5c39a0923f2d62ddb58159b95fbb59",
+    "ids_consulta_sha256": "55d01bcd57415565854f532bac850a228c28b3a47f80aad6274378c5aa6beba8"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 5,
+    "particion": 3,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "c6ba931874edd9a6155afeb9a60b1488614787221e565e397a9583ba4cc4dd70",
+    "ids_consulta_sha256": "803726855238a57eeabba9b936db0d1d27ccc2f723db43e83eade9452051ad29"
+  },
+  {
+    "escenario": "A",
+    "repeticion": 5,
+    "particion": 4,
+    "n_train": 111,
+    "n_consulta": 27,
+    "n_internas": 4,
+    "ids_train_sha256": "42566b0dd75a92655e66269963baf92e0eb8ddf616edb79474527ee8894ae87e",
+    "ids_consulta_sha256": "e03c062a0fe41f549d15164d540dde6d66762d82cbe2c1afb617b2b18c10f61a"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 1,
+    "particion": 0,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b4c18b7a536b4753bbf385491339efd289141c530ead596e29f15e7ecfcfbf5d",
+    "ids_consulta_sha256": "d551192ea9ed327e167a17a2d25f0575ebfe1f8e64de2225756bc0e1601bdac1"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 1,
+    "particion": 1,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b196a61bfa9d5403d19ee8da8010a7dfffc8e95e48f0c207d93ecd91f5c900ff",
+    "ids_consulta_sha256": "1139c3264c00b4aa465fe584ae6061a3f9882d74cde0371eac67ad4aa50a62cd"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 1,
+    "particion": 2,
+    "n_train": 114,
+    "n_consulta": 24,
+    "n_internas": 4,
+    "ids_train_sha256": "c4cb4524d2209007b1260c0c0fa229492c349712ac4583527196915ab791fd86",
+    "ids_consulta_sha256": "2aa4d7503e7b5ec7ba6891d9df367887c48e5599cde388bf97a9b5d3d717ba44"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 1,
+    "particion": 3,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "25745a6cb5fe0f37cd29064a088c600a1f2fa5360c4677d56f8857dcc91ee855",
+    "ids_consulta_sha256": "5daf8dd277259fb8ea553b72a6d1cf0503a092ab5f754604dabc45d0814d1fb6"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 1,
+    "particion": 4,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "e8e74221b9ca279e9d76e89ae0dfd66bfe2ffbaf81436057fa06b4d8f955866b",
+    "ids_consulta_sha256": "d8fbd3b99e47ca9d7c6243d09f866cb6b3d93cf2147c90c656f986bad7d19b67"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 2,
+    "particion": 0,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b196a61bfa9d5403d19ee8da8010a7dfffc8e95e48f0c207d93ecd91f5c900ff",
+    "ids_consulta_sha256": "1139c3264c00b4aa465fe584ae6061a3f9882d74cde0371eac67ad4aa50a62cd"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 2,
+    "particion": 1,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b4c18b7a536b4753bbf385491339efd289141c530ead596e29f15e7ecfcfbf5d",
+    "ids_consulta_sha256": "d551192ea9ed327e167a17a2d25f0575ebfe1f8e64de2225756bc0e1601bdac1"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 2,
+    "particion": 2,
+    "n_train": 114,
+    "n_consulta": 24,
+    "n_internas": 4,
+    "ids_train_sha256": "96155168bad05771f308e6268cd13b1dc0aeec5c864b76bcdd85437c7c1e7c3b",
+    "ids_consulta_sha256": "4547372a54ce642f04adc38c4b883cafa76bdc3dcf83dab8e466fe3fe2032933"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 2,
+    "particion": 3,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "1c53c8dc9de589e822bb0a8ec9d5874908554d55bcffd9df007d25a98471559b",
+    "ids_consulta_sha256": "16af8e49c4219f6dddd7f05ed22f40818898aba644687bd7e3ff59de9f977fa9"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 2,
+    "particion": 4,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "1feed6b8093a0053696e6998579ddf0b64f9a595607aa2e48d911187adefe4e2",
+    "ids_consulta_sha256": "b5989cfdeecff7ddd35a07e586d5db6ad987c6603674a334f675a09e6a00fb9b"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 3,
+    "particion": 0,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b4c18b7a536b4753bbf385491339efd289141c530ead596e29f15e7ecfcfbf5d",
+    "ids_consulta_sha256": "d551192ea9ed327e167a17a2d25f0575ebfe1f8e64de2225756bc0e1601bdac1"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 3,
+    "particion": 1,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b196a61bfa9d5403d19ee8da8010a7dfffc8e95e48f0c207d93ecd91f5c900ff",
+    "ids_consulta_sha256": "1139c3264c00b4aa465fe584ae6061a3f9882d74cde0371eac67ad4aa50a62cd"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 3,
+    "particion": 2,
+    "n_train": 114,
+    "n_consulta": 24,
+    "n_internas": 4,
+    "ids_train_sha256": "3efa04cb44678608d09b86b926aef2597951a5fcbf14bd3e20cc653adca0921f",
+    "ids_consulta_sha256": "8800f06c24b74a5ca068cf74a32eb687e238b39fede8cbe0cdf9e80e481ac6c6"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 3,
+    "particion": 3,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "f963608f9621e0ea796ea2a05360746f0d76fc1b5b06e07ca98345617506910d",
+    "ids_consulta_sha256": "12186eac1f3eaaf864a33da04b27dbeb5c1ecce07daf5377de2aebfa107afaa1"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 3,
+    "particion": 4,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "c193c847d48463a0daf2573be12f168a4e8be2adb06dcdf8ff82f8d004b17e41",
+    "ids_consulta_sha256": "d9df74e18891b1e5d1f9750fb2baaecebabe104b9c95feb97b498b23045df9dc"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 4,
+    "particion": 0,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b196a61bfa9d5403d19ee8da8010a7dfffc8e95e48f0c207d93ecd91f5c900ff",
+    "ids_consulta_sha256": "1139c3264c00b4aa465fe584ae6061a3f9882d74cde0371eac67ad4aa50a62cd"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 4,
+    "particion": 1,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b4c18b7a536b4753bbf385491339efd289141c530ead596e29f15e7ecfcfbf5d",
+    "ids_consulta_sha256": "d551192ea9ed327e167a17a2d25f0575ebfe1f8e64de2225756bc0e1601bdac1"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 4,
+    "particion": 2,
+    "n_train": 114,
+    "n_consulta": 24,
+    "n_internas": 4,
+    "ids_train_sha256": "01ef1e2942ad160e3a49900d2dab5f0a7a001d8ace0765d2e23417c8920df10c",
+    "ids_consulta_sha256": "a7962fc682a95df8a7931c42f508cc40a98f13b2562908e5b497e1a937030780"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 4,
+    "particion": 3,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "1824f457762ba59b151e356778dd59ab7f80dc0880eb69692c91e21260a28d51",
+    "ids_consulta_sha256": "b89dfbd512c7ed8334fac7f265fdc86dc07d1638bf36c0a39923e7b63a4a2086"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 4,
+    "particion": 4,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "bf5bb935f94315ebc9c2bb3f1c3df09bd907e6393145f75529e59cbdf26797eb",
+    "ids_consulta_sha256": "1ed632f1a465cad958b38eeff9bcaa43bbbb7578a2afb74bf2dad14e1fa80d39"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 5,
+    "particion": 0,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b196a61bfa9d5403d19ee8da8010a7dfffc8e95e48f0c207d93ecd91f5c900ff",
+    "ids_consulta_sha256": "1139c3264c00b4aa465fe584ae6061a3f9882d74cde0371eac67ad4aa50a62cd"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 5,
+    "particion": 1,
+    "n_train": 104,
+    "n_consulta": 34,
+    "n_internas": 4,
+    "ids_train_sha256": "b4c18b7a536b4753bbf385491339efd289141c530ead596e29f15e7ecfcfbf5d",
+    "ids_consulta_sha256": "d551192ea9ed327e167a17a2d25f0575ebfe1f8e64de2225756bc0e1601bdac1"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 5,
+    "particion": 2,
+    "n_train": 114,
+    "n_consulta": 24,
+    "n_internas": 4,
+    "ids_train_sha256": "9f9264e43c44bbfe978f63e48bc98feb354cfbef85c5c1d3197821b32cf8f2a0",
+    "ids_consulta_sha256": "e688dc112517d0a977647f2be657f645f311831b1bfaea568c0a235978e2afbc"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 5,
+    "particion": 3,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "4d3b840a0737362853a82de07b0a76f2e63101a86fa14f594a500c7fb8c10e54",
+    "ids_consulta_sha256": "66c69305faf3365513c90b27fc596e19e0f4d02a8ab82579a15dbe729013e638"
+  },
+  {
+    "escenario": "B",
+    "repeticion": 5,
+    "particion": 4,
+    "n_train": 115,
+    "n_consulta": 23,
+    "n_internas": 4,
+    "ids_train_sha256": "fd90fda9fefae3d348997a7c95ed551b2b694ce5521997a9cbbb94ce9a6d548e",
+    "ids_consulta_sha256": "e459e91400a319d77260aeaba1118fbaa5dd8d950b21be6e66390bb633290236"
+  }
+]

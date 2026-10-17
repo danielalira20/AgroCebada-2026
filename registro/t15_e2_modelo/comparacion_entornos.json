@@ -1,0 +1,11 @@
+{
+  "resultado": "aprobado",
+  "comprobaciones": 71421,
+  "diferencia_maxima": 8.881784197001252e-16,
+  "tolerancia_absoluta": 1e-12,
+  "mismos_16_registros": true,
+  "mismas_50_particiones": true,
+  "mismas_200_internas": true,
+  "misma_tabla_canonica": true,
+  "evaluacion_aporte_completa": false
+}

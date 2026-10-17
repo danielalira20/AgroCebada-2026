@@ -1,0 +1,22 @@
+[
+  {
+    "mutacion": "fuente",
+    "rechazada": true,
+    "motivo": "Inventario de fuentes diferente"
+  },
+  {
+    "mutacion": "codigo",
+    "rechazada": true,
+    "motivo": "Código cambiado tras registro"
+  },
+  {
+    "mutacion": "permiso",
+    "rechazada": true,
+    "motivo": "No convertir registro técnico en autorización de evaluación"
+  },
+  {
+    "mutacion": "regla",
+    "rechazada": true,
+    "motivo": "Regla T03 alterada"
+  }
+]

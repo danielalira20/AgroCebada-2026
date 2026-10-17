@@ -1,0 +1,14 @@
+{
+  "schema": "E2_auditoria_modelo_v1",
+  "resultado": "aprobado",
+  "ajustes_recalculados": 16,
+  "comprobaciones": 6128,
+  "diferencia_maxima": 1.2212453270876722e-15,
+  "tolerancia_absoluta": 1e-12,
+  "importa_productor_o_sklearn": false,
+  "reutiliza_auditor_independiente_E1": true,
+  "H3_sin_centrado_rechazado": true,
+  "evaluacion_aporte_completa": false,
+  "codigo_auditor_sha256": "ac979a509e77a5fca518fe1bbc760d784f3924cebecfb8666724801dbe438fc8",
+  "manifest_sha256": "8e2d92908d8e17ae3329d0b06adcb4428d0c4b65304c6d09305dd55b64edaef5"
+}
