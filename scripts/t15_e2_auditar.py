@@ -151,8 +151,8 @@ def audit(root, delivery, output):
                 check(np.all(z!=-9999) and np.all(stored!=-9999),'Soporte independiente incompleto')
                 delta=float(np.max(np.abs(z-stored)));maxwarp=max(maxwarp,delta)
                 check(delta<=1e-6,'Reproyección regional/ventana difieren')
-                # Compare native support using a separately opened 0/1 GDAL warp.
-                # Complete original region + inner margin is also checked below.
+                # Independent support proof: all original pixels are valid (checked below)
+                # and the 210m source margin covers every sampled neighborhood.
                 lon,lat=inverse.transform(t.c+(cc+.5)*15,t.f-(rr+.5)*15)
                 factors=proj.get_factors(lon,lat)
                 values=independent_values(z,rr-r0,cc-c0,np.asarray(factors.meridional_scale),
