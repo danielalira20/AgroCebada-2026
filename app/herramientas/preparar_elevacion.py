@@ -1,8 +1,8 @@
 """Altitud de cada parcela (m) desde Terrain Tiles de AWS Open Data (formato terrarium, zoom 13), la misma fuente que
 usa el mapa 3D de la app para el relieve. Así los bloques quedan apoyados sobre el terreno.
 
-Uso (una vez, con internet, desde esta carpeta):  python preparar_elevacion.py
-Salida: elevacion_parcelas.csv  (ID_POLIGONO, elev_max_m, elev_centro_m)
+Uso (una vez, con internet, desde app/):  python herramientas/preparar_elevacion.py
+Salida: datos_estaticos/elevacion_parcelas.csv  (ID_POLIGONO, elev_max_m, elev_centro_m)
 """
 import io
 import math
@@ -21,7 +21,7 @@ from PIL import Image
 
 Z = 13
 URL = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
-AQUI = Path(__file__).resolve().parent
+AQUI = Path(__file__).resolve().parents[1]      # app/
 ctx = ssl.create_default_context(cafile=os.environ.get("SSL_CERT_FILE"))
 _cache = {}
 
@@ -55,7 +55,7 @@ def main(datos):
         filas.append(dict(ID_POLIGONO=pid, elev_max_m=round(max(altitud(p[0], p[1]) for p in pts), 1),
                           elev_centro_m=round(altitud(c.x, c.y), 1)))
     out = pd.DataFrame(filas).sort_values("ID_POLIGONO")
-    out.to_csv(AQUI / "elevacion_parcelas.csv", index=False)
+    out.to_csv(AQUI / "datos_estaticos" / "elevacion_parcelas.csv", index=False)
     print(f"{len(out)} parcelas · {len(_cache)} mosaicos · altitud {out.elev_centro_m.min():.0f}–{out.elev_centro_m.max():.0f} m")
 
 

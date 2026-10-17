@@ -18,12 +18,12 @@ La app lee el **paquete compacto `datos_app/`** (0.4 MB, parquet): parcelas con 
 Si cambian T08, T03, T04 o el dataset, se regenera con:
 
 ```bash
-cd entregas/T17_app && python preparar_datos.py
+cd app && python herramientas/preparar_datos.py
 ```
 
-**En el repo del equipo `datos_app/` no se sube** (el `.gitignore` excluye los datos del reto). Cada quien lo arma una vez en su compu con `python preparar_datos.py`; si no lo arma, la app lee directo las fuentes y sólo tarda un poco más en abrir.
+**En el repo del equipo `datos_app/` no se sube** (el `.gitignore` excluye los datos del reto). Cada quien lo arma una vez en su compu con `python herramientas/preparar_datos.py`; si no lo arma, la app lee directo las fuentes y sólo tarda un poco más en abrir.
 
-`preparar_datos.py` (y la app, si no hay `datos_app/`) lee las fuentes originales: el dataset del reto (en la raíz del repo, en `data/` o en `datos/`; o donde diga `AGRO_DATOS`), `registro/t08` (o `entregas/T08`), `registro/t03` (o `entregas/T03`) y `registro/t04/clima_parcela_mes.csv` (o `entregas/T04/...`). Ubica sola la raíz del repo; si las fuentes están en otro lugar, fíjalas con `AGRO_DATOS`, `AGRO_T08`, `AGRO_T03` y `AGRO_T04`. Si `datos_app/` no existe, la app lee directamente esas fuentes (más lento).
+`herramientas/preparar_datos.py` (y la app, si no hay `datos_app/`) lee las fuentes originales: el dataset del reto (en la raíz del repo, en `data/` o en `datos/`; o donde diga `AGRO_DATOS`), `registro/t08` (o `entregas/T08`), `registro/t03` (o `entregas/T03`) y `registro/t04/clima_parcela_mes.csv` (o `entregas/T04/...`). Ubica sola la raíz del repo; si las fuentes están en otro lugar, fíjalas con `AGRO_DATOS`, `AGRO_T08`, `AGRO_T03` y `AGRO_T04`. Si `datos_app/` no existe, la app lee directamente esas fuentes (más lento).
 
 | Archivo | Para qué |
 |---|---|
@@ -31,10 +31,11 @@ cd entregas/T17_app && python preparar_datos.py
 | `agro_datos.py` | Lectura de datos y el procedimiento de T08 (sin Streamlit). |
 | `agro_ficha.py` | La ficha de parcela en PDF. |
 | `agro_carga.py` | La carga segura de un dataset propio. |
-| `preparar_datos.py` | Arma `datos_app/`. |
-| `preparar_elevacion.py` | Arma `elevacion_parcelas.csv` (altitud de cada parcela para el relieve). |
-| `prueba_app.py`, `prueba_carga.py` | Pruebas (ver abajo). |
-| `assets/` | Cebi, la mascota (SVG y PNG). |
+| `herramientas/preparar_datos.py` | Arma `datos_app/`. |
+| `herramientas/preparar_elevacion.py` | Arma `datos_estaticos/elevacion_parcelas.csv` (altitud de cada parcela para el relieve). |
+| `tests/frontend/test_app.py`, `tests/backend/test_carga_segura.py` | Pruebas (ver abajo). |
+| `assets/mascota/` | Cebi, la mascota (SVG y PNG). |
+| `datos_estaticos/` | Datos fijos que no se regeneran con cada corrida (altitud de las parcelas). |
 
 ## Diseño
 
@@ -94,13 +95,13 @@ Nada del archivo se ejecuta: se lee como datos, los archivos se escriben con nom
 ## Cómo se probó
 
 ```bash
-cd entregas/T17_app
-python prueba_app.py      # termina en «OK»
-python prueba_carga.py    # termina en «OK»
+cd app
+python tests/frontend/test_app.py            # termina en «OK»
+python tests/backend/test_carga_segura.py   # termina en «OK»
 ```
 
-- `prueba_app.py`: vista agricultor con los 9 municipios; vista analista con los dos modelos (4 verificaciones en verde, MAE y R² iguales a T08); buscador, filtro por municipio, información insuficiente, mapa desde arriba, comparación de parcelas, pestaña de datos propios y ficha PDF de 3 parcelas.
-- `prueba_carga.py`: el ZIP del reto da las mismas 59 cifras que T08; ZIP con shapefile suelto y CSV simple aceptados; 17 archivos malos rechazados (Excel, imagen, ZIP falso, PDF renombrado, CSV cualquiera, programa y script dentro del ZIP, ruta tramposa, bomba zip, demasiados archivos, tabla sin polígonos, IDs que no coinciden, rendimientos fuera de rango, IDs repetidos, ID con código, plantilla sola y archivo de más de 50 MB).
+- `tests/frontend/test_app.py`: vista agricultor con los 9 municipios; vista analista con los dos modelos (4 verificaciones en verde, MAE y R² iguales a T08); buscador, filtro por municipio, información insuficiente, mapa desde arriba, comparación de parcelas, pestaña de datos propios y ficha PDF de 3 parcelas.
+- `tests/backend/test_carga_segura.py`: el ZIP del reto da las mismas 59 cifras que T08; ZIP con shapefile suelto y CSV simple aceptados; 17 archivos malos rechazados (Excel, imagen, ZIP falso, PDF renombrado, CSV cualquiera, programa y script dentro del ZIP, ruta tramposa, bomba zip, demasiados archivos, tabla sin polígonos, IDs que no coinciden, rendimientos fuera de rango, IDs repetidos, ID con código, plantilla sola y archivo de más de 50 MB).
 - Navegador (Chromium): capturas de las dos vistas, descarga de la ficha, recuadro del mapa, comparación y subida de un archivo bueno y uno malo.
 
 ## Créditos del mapa

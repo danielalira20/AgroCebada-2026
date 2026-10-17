@@ -4,11 +4,14 @@ Lee las fuentes originales del repo (dataset del reto, T08, T03 y T04) y guarda 
 parcelas con su geometría, series de índices de la temporada 2025 (Sentinel-2 y Planet, nubosidad <= 20 %), clima
 mensual, predicciones de validación de los dos modelos, las 59 oficiales y el soporte de datos por parcela.
 
-Uso (desde esta carpeta):  python preparar_datos.py
+Uso (desde app/):  python herramientas/preparar_datos.py
 Volver a correrlo si cambian T08, T03, T04 o el dataset.
 """
 import os
+import sys
+from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # para importar agro_datos desde app/
 os.environ["AGRO_SIN_PAQUETE"] = "1"          # leer siempre las fuentes originales
 
 import agro_datos as A  # noqa: E402

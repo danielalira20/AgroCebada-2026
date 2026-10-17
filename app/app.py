@@ -6,7 +6,7 @@ con las 138 parcelas con rendimiento y estima las 59 reservadas. Dos vistas:
   - Analista: mapa 3D de las 197, las 59 con verificación y exportación, ficha técnica y comparación de parcelas,
     validación por escenario y municipio, información insuficiente y análisis de un dataset propio (carga segura).
 
-Datos: lee el paquete compacto `datos_app/` (lo arma preparar_datos.py); si no está, las fuentes del repo.
+Datos: lee el paquete compacto `datos_app/` (lo arma herramientas/preparar_datos.py); si no está, las fuentes del repo.
 El mapa 3D pone las parcelas sobre el relieve real (Terrain Tiles de AWS) con imagen Sentinel-2 sin nubes (EOX).
 
 Uso (desde esta carpeta):  streamlit run app.py
@@ -164,8 +164,8 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .stDownloadButton button[kind="primary"] { color: #0A110E; font-weight: 600; }
 """
 
-MASCOTA = (AQUI / "assets" / "cebi.svg").read_text(encoding="utf-8") if (AQUI / "assets" / "cebi.svg").exists() else ""
-ICONO = str(AQUI / "assets" / "cebi.png") if (AQUI / "assets" / "cebi.png").exists() else "🌾"
+MASCOTA = (AQUI / "assets" / "mascota" / "cebi.svg").read_text(encoding="utf-8") if (AQUI / "assets" / "mascota" / "cebi.svg").exists() else ""
+ICONO = str(AQUI / "assets" / "mascota" / "cebi.png") if (AQUI / "assets" / "mascota" / "cebi.png").exists() else "🌾"
 MARCA = """<div class="marca"><div class="cebi" style="width:44px;height:44px;flex:0 0 44px">""" + MASCOTA + """</div>
 <div><div class="marca-t">AgroCebada</div><div class="marca-s">Rendimiento de cebada · campaña 2025 ·
 información al 31 de octubre de 2025</div></div></div>"""
@@ -463,7 +463,7 @@ def ficha_bytes(pid, modelo):
     c = None
     if C is not None:
         c = C[C.id_parcela == pid].assign(mes=lambda x: x.periodo.str[5:].astype(int)).sort_values("mes")
-    icono = AQUI / "assets" / "cebi.png"
+    icono = AQUI / "assets" / "mascota" / "cebi.png"
     return F.ficha_pdf(info, pol, S[S.ID_POLIGONO == pid], c, str(icono) if icono.exists() else None)
 
 
@@ -523,7 +523,7 @@ st.set_page_config(page_title="AgroCebada · Rendimiento de cebada", page_icon=I
                    initial_sidebar_state="collapsed")
 h(f"<style>{ESTILO}</style>")
 if not A.hay_datos():
-    st.error("No encontré los datos de la app. Corre preparar_datos.py o fija la ruta del dataset con AGRO_DATOS.")
+    st.error("No encontré los datos de la app. Corre herramientas/preparar_datos.py o fija la ruta del dataset con AGRO_DATOS.")
     st.stop()
 
 d = cargar()

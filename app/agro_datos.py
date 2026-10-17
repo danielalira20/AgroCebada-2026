@@ -1,6 +1,6 @@
-"""Datos y procedimiento de T08 para la app, sin Streamlit (lo usan app.py, preparar_datos.py y prueba_app.py).
+"""Datos y procedimiento de T08 para la app, sin Streamlit (lo usan app.py, herramientas/preparar_datos.py y tests/frontend/test_app.py).
 
-La app lee primero el paquete compacto `datos_app/` (parquet, ~1 MB) que arma `preparar_datos.py`. Si no existe, lee
+La app lee primero el paquete compacto `datos_app/` (parquet, ~1 MB) que arma `herramientas/preparar_datos.py`. Si no existe, lee
 las fuentes originales del repo (dataset del reto, T08, T03 y T04), que es más lento.
 """
 import os
@@ -186,7 +186,7 @@ def soporte():
 
 
 def elevaciones():
-    f = AQUI / "elevacion_parcelas.csv"
+    f = AQUI / "datos_estaticos" / "elevacion_parcelas.csv"
     return pd.read_csv(f).set_index("ID_POLIGONO").elev_max_m if f.exists() else None
 
 

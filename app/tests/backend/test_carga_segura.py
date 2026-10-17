@@ -1,12 +1,15 @@
-"""Pruebas de la carga segura de datasets:  python prueba_carga.py  (desde esta carpeta)."""
+"""Pruebas de la carga segura de datasets:  python tests/backend/test_carga_segura.py  (desde app/)."""
 import io
+import sys
 import zipfile
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-import agro_carga as K
-import agro_datos as A
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))      # app/
+import agro_carga as K  # noqa: E402
+import agro_datos as A  # noqa: E402
 
 
 

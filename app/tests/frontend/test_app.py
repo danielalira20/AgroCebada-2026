@@ -1,11 +1,15 @@
-"""Prueba rápida de la app sin navegador:  python prueba_app.py  (desde esta carpeta)."""
+"""Prueba rápida de la app sin navegador:  python tests/frontend/test_app.py  (desde app/)."""
+import sys
 from pathlib import Path
+
+APP = Path(__file__).resolve().parents[2]       # app/
+sys.path.insert(0, str(APP))
 
 from streamlit.testing.v1 import AppTest
 
 
 def nueva(**estado):
-    at = AppTest.from_file(str(Path(__file__).with_name("app.py")), default_timeout=300)
+    at = AppTest.from_file(str(APP / "app.py"), default_timeout=300)
     for k, v in estado.items():
         at.session_state[k] = v
     return at.run()
@@ -83,7 +87,7 @@ for pid in ["AGC_011", "AGC_120", "AGC_002"]:
                 produccion=float(pred.prediccion[pid]) * r.AREA_HA if est else None, error=0.3, oof=4.4,
                 nota="nota", aviso="", corte="31 de octubre de 2025")
     c = C[C.id_parcela == pid].assign(mes=lambda x: x.periodo.str[5:].astype(int))
-    pdf = F.ficha_pdf(info, pol, S[S.ID_POLIGONO == pid], c, str(A.AQUI / "assets" / "cebi.png"))
+    pdf = F.ficha_pdf(info, pol, S[S.ID_POLIGONO == pid], c, str(A.AQUI / "assets" / "mascota" / "cebi.png"))
     assert pdf[:5] == b"%PDF-" and len(pdf) > 20000, pid
 print("ficha PDF generada para 3 parcelas")
 print("OK")
