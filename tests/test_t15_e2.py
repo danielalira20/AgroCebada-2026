@@ -120,6 +120,12 @@ class TestE2(unittest.TestCase):
         b=audit.independent_values(z,np.array([25]),np.array([25]),[k],[g])
         np.testing.assert_allclose(a[:,25,25],b[0],atol=1e-12,rtol=0)
 
+    def test_independent_cache_global_coordinates(self):
+        z=self.surface(.2,-.1);cache={}
+        a=audit.independent_values(z,[25],[25],[.9996],[.005],cache,origin=(100,200))
+        b=audit.independent_values(z[5:45,5:45],[20],[20],[.9996],[.005],cache,origin=(105,205))
+        np.testing.assert_array_equal(a,b);self.assertEqual(len(cache),1)
+
     def test_norm_and_circular_mean(self):
         for p,q in [(1,2),(0,0),(1e7,-1e7)]:
             a=e.focal(self.surface(p,q),np.ones((51,51),bool))

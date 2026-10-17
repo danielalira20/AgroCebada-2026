@@ -61,10 +61,13 @@ def scalar_cells(geom, t):
     return result
 
 
-def independent_values(z, rr, cc, k, gamma):
+def independent_values(z, rr, cc, k, gamma, cache=None, origin=(0,0)):
     """Direct neighborhood indexing, math.fsum and polar orientation (no convolution)."""
     result = []
     for row, col, scale, convergence in zip(rr, cc, k, gamma):
+        key=(int(row+origin[0]),int(col+origin[1]))
+        if cache is not None and key in cache:
+            result.append(cache[key]);continue
         n = [z[row+dr,col+dc] for dr in range(-10,11) for dc in range(-10,11)
              if 0 < dr*dr+dc*dc <= 100]
         center = z[row,col]
@@ -79,7 +82,9 @@ def independent_values(z, rr, cc, k, gamma):
         inclination = math.atan(magnitude)
         true_downhill = math.atan2(-p,-q)+convergence
         east, north = math.sin(inclination)*math.sin(true_downhill), math.sin(inclination)*math.cos(true_downhill)
-        result.append((tpi,east,north,math.degrees(inclination),float(magnitude <= 1e-12)))
+        item=(tpi,east,north,math.degrees(inclination),float(magnitude <= 1e-12))
+        result.append(item)
+        if cache is not None:cache[key]=item
     return np.asarray(result)
 
 
@@ -120,7 +125,7 @@ def audit(root, delivery, output):
             key=(row['id_parcela'],int(row['fila']),int(row['columna']))
             check(key not in weights,'Peso duplicado')
             weights[key]=tuple(float(row[k]) for k in ['area_interseccion_m2','peso_TPI','peso_exposicion'])
-    checks=0;seen=set();maxwarp=0.;maxarea=0.;sens=[];min_margin=math.inf
+    checks=0;seen=set();maxwarp=0.;maxarea=0.;sens=[];min_margin=math.inf;neighborhood_cache={}
     shifts=[('E15',15,0),('O15',-15,0),('N15',0,15),('S15',0,-15)]
     from shapely.affinity import translate
     with rasterio.Env(GDAL_CACHEMAX=33554432,GDAL_NUM_THREADS='1',PROJ_NETWORK='OFF'), \
@@ -151,7 +156,7 @@ def audit(root, delivery, output):
                 lon,lat=inverse.transform(t.c+(cc+.5)*15,t.f-(rr+.5)*15)
                 factors=proj.get_factors(lon,lat)
                 values=independent_values(z,rr-r0,cc-c0,np.asarray(factors.meridional_scale),
-                                          np.radians(factors.meridian_convergence))
+                                          np.radians(factors.meridian_convergence),neighborhood_cache,(r0,c0))
                 check(np.isfinite(values).all(),'Valor independiente no finito')
                 area=math.fsum(aa)
                 means=np.asarray([math.fsum(aa*values[:,j])/area for j in range(3)])
@@ -200,6 +205,7 @@ def audit(root, delivery, output):
         max_diferencia_derivadas=maxdiff.tolist(),max_diferencia_rewarp_m=maxwarp,
         max_error_relativo_cierre_area=maxarea,sin_rendimientos=True,modelos_ajustados=0,
         margen_fuente_minimo_m=min_margin,parcelas_con_margen_210m=197,
+        celdas_derivadas_recalculadas_unicas=len(neighborhood_cache),
         codigo_sha256=digest(__file__),productor_sha256=manifest['codigo_sha256'],
         manifest_sha256=digest(delivery/'manifest.json'),contrato_sha256=PIN,
         bibliotecas_compartidas=['GDAL','PROJ','GEOS'],
