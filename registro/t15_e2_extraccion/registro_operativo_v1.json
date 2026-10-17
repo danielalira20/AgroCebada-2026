@@ -1,0 +1,22 @@
+{
+  "schema": "E2_registro_extraccion_v1",
+  "fecha": "2026-10-16",
+  "base_commit": "b83aaac61a9bad8bdda6fd3218f18ada89276284",
+  "contrato_sha256": "d7c30ca6572373a78b78348df64e5fda50556f197bbcce03872d92a0735a2d9c",
+  "autorizacion": "Dani solicita implementar extractor INEGI y auditor independiente; extracción y QA de datos reales, sin entrenamiento ni publicación",
+  "contrato_historico_inmutable": true,
+  "leer_y": false,
+  "modelo_ajustado": false,
+  "evaluacion_completa_autorizada": false,
+  "publicacion_autorizada": false,
+  "rejilla_y_formulas": "idénticas al contrato técnico v1",
+  "precision_warp": "WarpedVRT bilinear float64 tolerance=1e-12 pixel; evitar aproximación por defecto 0.125 pixel; fijado antes de atributos",
+  "auditoria": "Implementación separada de fórmulas y pesos; GDAL/PROJ/GEOS compartidos; no independencia del motor GIS",
+  "sensibilidad": "±15m E/N sólo QA, sin escoger variante por resultado o rendimiento",
+  "pendientes_para_modelo": [
+    "QA y auditoría aceptadas",
+    "adaptador y auditor del modelo",
+    "registro código y CSV canónicos",
+    "solicitud de evaluación completa"
+  ]
+}
