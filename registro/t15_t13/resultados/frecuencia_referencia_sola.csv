@@ -1,0 +1,5 @@
+candidato,escenario,version,n_contextos,n_esperados,n_referencia_sola,n_con_correccion,fraccion_referencia_sola,estado
+t15_t13_S_verdor_v1,A,comun-centrado-loo-v3,25,25,17,8,0.68,completo
+t15_t13_S_verdor_v1,B,comun-centrado-loo-v3,25,25,12,13,0.48,completo
+t15_t13_control_S_abr_v1,A,comun-centrado-loo-v3,25,25,13,12,0.52,completo
+t15_t13_control_S_abr_v1,B,comun-centrado-loo-v3,25,25,11,14,0.44,completo

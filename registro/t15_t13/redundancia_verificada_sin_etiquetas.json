@@ -1,0 +1,24 @@
+{
+  "schema": "T15_T13_redundancia_descriptiva_v1",
+  "parcelas": 197,
+  "usa_rendimientos": false,
+  "no_modifica_modelo_o_seleccion": true,
+  "correlacion_Pearson_con_NDVI_max": {
+    "s2_evi_en_maximo_abr_oct": {
+      "global_": 0.9091608751792079,
+      "dentro_municipio": 0.9100978818768332
+    },
+    "s2_savi_en_maximo_abr_oct": {
+      "global_": 0.9152557253956412,
+      "dentro_municipio": 0.9083885199341155
+    },
+    "s2_fapar_en_maximo_abr_oct": {
+      "global_": 0.920519021508075,
+      "dentro_municipio": 0.922904793125167
+    },
+    "s2_mra_en_maximo_abr_oct": {
+      "global_": 0.9205761678486967,
+      "dentro_municipio": 0.9013934474149137
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "resultado": "aprobado",
+  "correlaciones": 8,
+  "contraste": "suma escalar math.fsum frente a pandas",
+  "max_diferencia": 2.220446049250313e-16,
+  "tolerancia": 1e-12,
+  "usa_rendimientos": false,
+  "cambia_seleccion": false
+}

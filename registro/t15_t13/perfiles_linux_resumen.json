@@ -1,0 +1,29 @@
+{
+  "parcelas": 138,
+  "principal": 135,
+  "magnitud_correccion_principal": {
+    "t15_t13_S_verdor_v1": {
+      "n": 675,
+      "media_abs_correccion": 0.013316378905695843,
+      "max_abs_correccion": 0.2640949988051142
+    },
+    "t15_t13_control_S_abr_v1": {
+      "n": 675,
+      "media_abs_correccion": 0.012153495149548502,
+      "max_abs_correccion": 0.20516509067948352
+    }
+  },
+  "vs_control": {
+    "mejoran": 57,
+    "empatan": 6,
+    "empeoran": 72
+  },
+  "vs_media": {
+    "mejoran": 51,
+    "empatan": 22,
+    "empeoran": 62
+  },
+  "QA_una_captura_de_197": 1,
+  "predicciones_promediadas_antes_del_error": false,
+  "ajustes": 0
+}

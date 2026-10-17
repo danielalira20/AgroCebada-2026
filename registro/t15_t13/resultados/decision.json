@@ -1,0 +1,10 @@
+{
+  "resultado": "evaluado_pendiente_auditoria",
+  "cumple_T03": false,
+  "cumple_guardia_aporte": false,
+  "elegible_por_contrato": false,
+  "procedimiento_recomendado_por_regla": "media_mun__resp_grupo",
+  "ganador_T16_congelado": false,
+  "predicciones_finales59": 0,
+  "exposicion_previa": true
+}
