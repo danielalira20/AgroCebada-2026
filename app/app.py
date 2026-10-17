@@ -64,6 +64,18 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-glass_top { padding: 10px 16px; }
 
 
+/* mejorar espaciado de Las 59 estimaciones */
+.st-key-glass_tabla {
+    padding-bottom: 26px;
+}
+
+.st-key-glass_tabla .nota {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+}
+
 /* espacio inferior en Método y límites */
 .st-key-glass_metodo,
 .st-key-glass_resultados,
