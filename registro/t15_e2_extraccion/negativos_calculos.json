@@ -1,0 +1,29 @@
+{
+  "resultado": "aprobado",
+  "mutaciones": [
+    {
+      "columna_alterada": "e2_tpi150_media_m",
+      "hash_tabla_recalculado": true,
+      "rechazada_por_calculo": true,
+      "razon": "Media independiente no coincide: AGC_001"
+    },
+    {
+      "columna_alterada": "e2_exposicion_este_media",
+      "hash_tabla_recalculado": true,
+      "rechazada_por_calculo": true,
+      "razon": "Media independiente no coincide: AGC_001"
+    },
+    {
+      "columna_alterada": "e2_exposicion_norte_media",
+      "hash_tabla_recalculado": true,
+      "rechazada_por_calculo": true,
+      "razon": "Media independiente no coincide: AGC_001"
+    },
+    {
+      "columna_alterada": "area_parcela_utm_m2",
+      "hash_tabla_recalculado": true,
+      "rechazada_por_calculo": true,
+      "razon": "Calidad inconsistente AGC_001: area_parcela_utm_m2"
+    }
+  ]
+}

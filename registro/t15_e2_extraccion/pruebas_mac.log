@@ -1,0 +1,29 @@
+test_auditor_no_producer_import_or_fitting (test_t15_e2.TestE2.test_auditor_no_producer_import_or_fitting) ... ok
+test_bilinear_nodata_not_renormalized (test_t15_e2.TestE2.test_bilinear_nodata_not_renormalized) ... ok
+test_bowl_exact_oracle (test_t15_e2.TestE2.test_bowl_exact_oracle) ... ok
+test_constant_zero_and_offset (test_t15_e2.TestE2.test_constant_zero_and_offset) ... ok
+test_csv_no_nan_17digits (test_t15_e2.TestE2.test_csv_no_nan_17digits) ... ok
+test_different_tiles_same_interior (test_t15_e2.TestE2.test_different_tiles_same_interior) ... ok
+test_duplicate_id_blocks (test_t15_e2.TestE2.test_duplicate_id_blocks) ... ok
+test_edges_not_reflected (test_t15_e2.TestE2.test_edges_not_reflected) ... ok
+test_existing_output_rejected (test_t15_e2.TestE2.test_existing_output_rejected) ... ok
+test_independent_cache_global_coordinates (test_t15_e2.TestE2.test_independent_cache_global_coordinates) ... ok
+test_independent_polar_oracle (test_t15_e2.TestE2.test_independent_polar_oracle) ... ok
+test_no_slope_threshold (test_t15_e2.TestE2.test_no_slope_threshold) ... ok
+test_nodata_horn_and_center (test_t15_e2.TestE2.test_nodata_horn_and_center) ... ok
+test_nodata_tpi_propagates_exact_circle (test_t15_e2.TestE2.test_nodata_tpi_propagates_exact_circle) ... ok
+test_norm_and_circular_mean (test_t15_e2.TestE2.test_norm_and_circular_mean) ... ok
+test_outside_rejected (test_t15_e2.TestE2.test_outside_rejected) ... ok
+test_partial_cell80_20_and_touch_zero (test_t15_e2.TestE2.test_partial_cell80_20_and_touch_zero) ... ok
+test_ramps_and_cardinal_signs (test_t15_e2.TestE2.test_ramps_and_cardinal_signs) ... ok
+test_real_polygon_z_zero_preserves_xy (test_t15_e2.TestE2.test_real_polygon_z_zero_preserves_xy) ... ok
+test_source_hash_guards (test_t15_e2.TestE2.test_source_hash_guards) ... ok
+test_strict_warp_mask_and_zero_real (test_t15_e2.TestE2.test_strict_warp_mask_and_zero_real) ... ok
+test_true_north_rotation_scale (test_t15_e2.TestE2.test_true_north_rotation_scale) ... ok
+test_vector_z_nonzero_blocks (test_t15_e2.TestE2.test_vector_z_nonzero_blocks) ... ok
+test_zoffset_invariance (test_t15_e2.TestE2.test_zoffset_invariance) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.734s
+
+OK

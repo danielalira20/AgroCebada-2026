@@ -1,0 +1,25 @@
+{
+  "resultado": "aprobado",
+  "mutaciones": [
+    {
+      "mutacion": "atributos_parcela.csv",
+      "rechazada": true,
+      "razon": "Artefacto alterado: atributos_parcela.csv"
+    },
+    {
+      "mutacion": "calidad.csv",
+      "rechazada": true,
+      "razon": "Artefacto alterado: calidad.csv"
+    },
+    {
+      "mutacion": "sensibilidad.csv",
+      "rechazada": true,
+      "razon": "Artefacto alterado: sensibilidad.csv"
+    },
+    {
+      "mutacion": "pesos.csv.gz",
+      "rechazada": true,
+      "razon": "Artefacto alterado: pesos.csv.gz"
+    }
+  ]
+}

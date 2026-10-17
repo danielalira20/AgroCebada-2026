@@ -1,0 +1,88 @@
+{
+  "schema": "E2_extraccion_v1",
+  "estado": "completa",
+  "parcelas": 197,
+  "predictores": [
+    "e2_tpi150_media_m",
+    "e2_exposicion_este_media",
+    "e2_exposicion_norte_media"
+  ],
+  "sin_rendimientos": true,
+  "modelos_ajustados": 0,
+  "habilita_entrenamiento": false,
+  "pendientes": [
+    "auditoria_independiente",
+    "reproduccion_Mac_Linux",
+    "adaptador_modelo",
+    "registro_y_solicitud_evaluacion"
+  ],
+  "contrato_sha256": "d7c30ca6572373a78b78348df64e5fda50556f197bbcce03872d92a0735a2d9c",
+  "codigo_sha256": "9571fa886643be8141200d52d70a9f77a28b60e18cf1cf917ce7be4170fd4119",
+  "fuente_sha256": "5f315dd32f7984c0c8f0bdd12f8bc22c014fd097473e2497e30d3be6f648be95",
+  "vectores_sha256": {
+    "Parcelas_Reto_AGC_CONJUNTO.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+    "Parcelas_Reto_AGC_CONJUNTO.shx": "b03e99bc1c619fd9351693091558f549e0b75220f41e1c3b6343dbc41cb7d1f7",
+    "Parcelas_Reto_AGC_CONJUNTO.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+    "Parcelas_Reto_AGC_CONJUNTO.shp": "8f8001a4bc4da00c2fcc0797536e94183d1abc88e4a797a7c63bcd2b65f29f29",
+    "Parcelas_Reto_AGC_CONJUNTO.dbf": "9b7d9e06beb70c688c59d4c2e4227ef851596e3382af7d5566b9c669dc35debb"
+  },
+  "warp": {
+    "transform": [
+      15.0,
+      0.0,
+      536595.0,
+      0.0,
+      -15.0,
+      2211720.0
+    ],
+    "shape": [
+      3703,
+      3507
+    ],
+    "validos_fuente": 12967201,
+    "tolerancia_transformacion_pixeles": 1e-12,
+    "GDAL": "3.10.3"
+  },
+  "derivadas": {
+    "escala_min_max": [
+      0.9996164228812621,
+      0.999698661744797
+    ],
+    "convergencia_min_max_rad": [
+      0.0020237758899233826,
+      0.005098975762004617
+    ],
+    "tile": 256,
+    "halo": 10
+  },
+  "pipeline": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=utm zone=14 ellps=WGS84",
+  "siempre_xy": true,
+  "PROJ_red": false,
+  "geometria": "densificar_0.0001_grados_transformar_sin_reparar",
+  "unidad_z": "m_segun_producto",
+  "datum_vertical": "no_acreditado",
+  "disponibilidad_2025": "no_acreditada",
+  "versiones": {
+    "python": "3.12.15",
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "numpy": "2.2.6",
+    "geopandas": "1.2.0",
+    "rasterio": "1.4.4",
+    "GDAL": "3.10.3",
+    "PROJ": "9.8.1",
+    "shapely": "2.1.2"
+  },
+  "segundos": 816.921888394,
+  "problemas": [],
+  "archivos_sha256": {
+    "atributos_parcela.csv": "e4c491622b4302164165b98bacff1914e5ee334c6a061abc44b516cdcd90cd29",
+    "calidad.csv": "efb513fa8f26d1d154daf94bbfb9643a4596af86e61292b5f6ec4e746a0f6ad4",
+    "dem_utm.tif": "fae40bf5ff4ccdebfb91ac29758f61120dc0bca708d236a9ec0fa27e73592a28",
+    "derivadas.tif": "76e75010ab4fd169e83c1dabb4ed31f153f9921df22c1b7b19dbadba4ebac16d",
+    "pesos.csv.gz": "588ec3dad25a48a7e9ef2524a887a99a7ed1a89a7798b30ad0ab2d776c7434a4",
+    "sensibilidad.csv": "0ecd023c38d7848e6476fa473abc15580a5520c8522e6ae469b7e6387cb16999",
+    "soporte_fuente.tif": "da8be3cbd1564bb2fb6cb9eaf1d4aece33a4767d172405da8ec8b210dd6a40cd",
+    "soporte_utm.tif": "f549fa77418bb25b5d935b03080d7c4bde040b860eafb0f1492c30453c59d1ad"
+  }
+}

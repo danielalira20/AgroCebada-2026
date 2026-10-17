@@ -1,0 +1,40 @@
+{
+  "schema": "E2_auditoria_independiente_v1",
+  "resultado": "aprobado",
+  "parcelas": 197,
+  "controles": 788,
+  "celdas": 67762,
+  "comprobaciones": 1906004,
+  "max_diferencia_agregados": [
+    2.2311041902867146e-12,
+    1.8492152253912764e-15,
+    2.0886070650760757e-15
+  ],
+  "max_diferencia_derivadas": [
+    5.4569682106375694e-12,
+    3.032296636007459e-14,
+    3.027786354969919e-14,
+    1.858069254012662e-12,
+    0.0
+  ],
+  "max_diferencia_rewarp_m": 0.0,
+  "max_error_relativo_cierre_area": 6.412222736282368e-13,
+  "sin_rendimientos": true,
+  "modelos_ajustados": 0,
+  "margen_fuente_minimo_m": 1731.905257628432,
+  "parcelas_con_margen_210m": 197,
+  "celdas_derivadas_recalculadas_unicas": 78753,
+  "codigo_sha256": "17b9e42ca21cb6c745884890a2978b48c4402d3503f3facfce69c1a26ad041c2",
+  "productor_sha256": "9571fa886643be8141200d52d70a9f77a28b60e18cf1cf917ce7be4170fd4119",
+  "manifest_sha256": "8f9427bd1544743adbcbf9aa8b4c765a75b9a188804fc1754a3a3a4f3ad78d32",
+  "contrato_sha256": "d7c30ca6572373a78b78348df64e5fda50556f197bbcce03872d92a0735a2d9c",
+  "bibliotecas_compartidas": [
+    "GDAL",
+    "PROJ",
+    "GEOS"
+  ],
+  "independencia": "sin_importar_productor_focal_directo_polar_sumafsum_intersecciones_escalares",
+  "sistema": "Darwin",
+  "arquitectura": "arm64",
+  "segundos": 42.43056008300482
+}

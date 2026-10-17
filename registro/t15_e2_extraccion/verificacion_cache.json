@@ -1,0 +1,16 @@
+{
+  "resultado": "aprobado",
+  "mismos_resultados_y_comprobaciones": [
+    "max_diferencia_agregados",
+    "max_diferencia_derivadas",
+    "max_diferencia_rewarp_m",
+    "max_error_relativo_cierre_area",
+    "comprobaciones",
+    "celdas",
+    "controles"
+  ],
+  "segundos_sin_cache": 75.58342391699989,
+  "segundos_con_cache": 43.16458204200171,
+  "celdas_recalculadas_unicas": 78753,
+  "fuentes_fijas": true
+}

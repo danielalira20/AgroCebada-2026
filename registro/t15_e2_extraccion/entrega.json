@@ -1,0 +1,44 @@
+{
+  "schema": "E2_entrega_compacta_v1",
+  "estado": "extraccion_y_QA_verificadas_localmente",
+  "contrato_sha256": "d7c30ca6572373a78b78348df64e5fda50556f197bbcce03872d92a0735a2d9c",
+  "imagen_comun": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+  "canonico": "Linux_amd64",
+  "codigo_sha256": {
+    "scripts/t15_e2_extraer.py": "9571fa886643be8141200d52d70a9f77a28b60e18cf1cf917ce7be4170fd4119",
+    "scripts/t15_e2_auditar.py": "17b9e42ca21cb6c745884890a2978b48c4402d3503f3facfce69c1a26ad041c2",
+    "scripts/t15_e2_comparar.py": "7224c284755914efbaa07b93f0340ab2233994e53f5d7a5da01fe540efc999eb",
+    "tests/test_t15_e2.py": "4b551ccaf54bca02836ac98b74a2db1b4d5ad7ae5460a1ae449325e27b575c01"
+  },
+  "archivos_sha256": {
+    "README.md": "11aad8bb3d4d14a7ee1082b5cae38604634104ea73b888e502e67750877105f5",
+    "atributos_parcela.csv": "e4c491622b4302164165b98bacff1914e5ee334c6a061abc44b516cdcd90cd29",
+    "auditoria_linux.json": "b401d3003146992ac9e892109a7e1e41d0457bc6c2b5e09e4ac30de4e7c64330",
+    "auditoria_mac.json": "c6113077250ec96c025a9d5a618cdd2d0e207f01b734d6e45d9bb306547250cc",
+    "calidad.csv": "efb513fa8f26d1d154daf94bbfb9643a4596af86e61292b5f6ec4e746a0f6ad4",
+    "comparacion_plataformas.json": "30943f37a669a95d5f624f5a639405045c32f57791fff61974055ff97f3f1708",
+    "contrato_revalidado.json": "46a9b8fe9c47c5706e9403e062f00c9122d4dfdbe3c51f84078c90e7cd375157",
+    "diccionario_columnas.csv": "ff081bc32f9cc394d1255a007843dbdb38c961c8643f25c641562f82d4153445",
+    "guardias_optimizado.log": "184298ca51c02bab06615c08bddc4a77bfbd31f66821450dbe33200e6a4a504a",
+    "manifest_extraccion.json": "723b4bc414dbba9499940c10bf9bb1f1287e8976b90a1ce0dce9d92adcb2c76f",
+    "negativos_calculos.json": "27ca53bb7b96dd16744324ace3bb7a301b3328e74e05f807dce8bf9224c41162",
+    "negativos_integracion.json": "96afbdab5447843385c4aee7e9ebe18c5f9d4216cca156f3158e7992cf02a012",
+    "pruebas_linux.log": "c92655a340780bce8f3e845c16269f37c14138a75b71f93ad087143ea6805274",
+    "pruebas_mac.log": "8bc8f6bbf60b31947797342fb9d7a3132a853d749c95068f6142d8db5da3ea58",
+    "registro_operativo_v1.json": "237525117c69f7af3e028e14efd11c7ac4b1c29ac6a4885089929dd22242eb3f",
+    "resumen_QA.json": "916ca851689c0eabc1726324ca4ffde0602aaa493ce6199016201d4b9835847e",
+    "sensibilidad.csv": "0ecd023c38d7848e6476fa473abc15580a5520c8522e6ae469b7e6387cb16999",
+    "verificacion_cache.json": "1799f677246640811571a0eeefb224ac260340af541e7a51395619111423c526"
+  },
+  "modelos_E2_ajustados": 0,
+  "OOF_E2": 0,
+  "publicado": false,
+  "habilita_entrenamiento": false,
+  "pendientes": [
+    "adaptador_y_auditor_modelo_v3",
+    "puente_centrado_H3",
+    "registro_codigo_tablas_y_comparaciones",
+    "solicitud_evaluacion_completa",
+    "aplicabilidad_final59_y_T16"
+  ]
+}

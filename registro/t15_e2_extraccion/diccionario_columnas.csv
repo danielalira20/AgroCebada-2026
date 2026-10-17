@@ -1,0 +1,17 @@
+columna,rol,unidad,significado,vacio
+id_parcela,clave,sin_unidad,"Identificador T07, una fila por parcela",no_permitido
+e2_tpi150_media_m,predictor_E2_futuro,m,Posición relativa: media de z_centro menos media de316vecinos a150mUTM; positiva por encima del entorno,"NoData o soporte insuficiente; conservar ID y bloquear evaluación de esta versión, sin imputar"
+e2_exposicion_este_media,predictor_E2_futuro,adimensional,Media por área de sin(inclinacion)*sin(azimut_verdadero); positiva hacia Este,"NoData o soporte insuficiente; conservar ID y bloquear evaluación de esta versión, sin imputar"
+e2_exposicion_norte_media,predictor_E2_futuro,adimensional,Media por área de sin(inclinacion)*cos(azimut_verdadero); positiva hacia Norte,"NoData o soporte insuficiente; conservar ID y bloquear evaluación de esta versión, sin imputar"
+cobertura_tpi_fraccion,QA_no_predictor,fraccion0_1,Área válida TPI dividida entre área total de parcela,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+cobertura_exposicion_fraccion,QA_no_predictor,fraccion0_1,Área válida de9Horn dividida entre área total de parcela,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+n_celdas_interseccion_positiva,QA_no_predictor,conteo,Celdas con intersección de área estrictamente positiva,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+area_parcela_utm_m2,QA_no_predictor,m2_UTM14,Área total del polígono densificado y proyectado,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+area_soporte_tpi_m2,QA_no_predictor,m2_UTM14,Suma de áreas de intersección con TPI válido,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+area_soporte_exposicion_m2,QA_no_predictor,m2_UTM14,Suma de áreas con exposición válida,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+area_fuera_tpi_m2,QA_no_predictor,m2_UTM14,Área sin TPI válido; no confundir con plano,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+area_fuera_exposicion_m2,QA_no_predictor,m2_UTM14,Área sin exposición válida; un plano válido no cuenta aquí,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+fraccion_plano_numerico,QA_no_predictor,fraccion0_1,"Área con hypot(kp,kq)<=1e-12 respecto al área de exposición válida; sólo QA","Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+pendiente_media_grados_QA,QA_no_predictor,grados,"Media por área de atan(hypot(kp,kq)); no predictor","Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+norma_resultante_exposicion_QA,QA_no_predictor,adimensional0_1,"sqrt(mediaE²+mediaN²), después de promediar componentes","Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"
+rango_altitud_QA_m,QA_no_predictor,m,Máximo menos mínimo del DEM métrico en celdas intersectadas; sólo QA,"Si no existe soporte para el diagnóstico, dejar vacío con motivo en manifiesto; no imputar ni usar como predictor"

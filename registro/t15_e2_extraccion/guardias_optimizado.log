@@ -1,0 +1,9 @@
+test_source_hash_guards (test_t15_e2.TestE2.test_source_hash_guards) ... ok
+test_vector_z_nonzero_blocks (test_t15_e2.TestE2.test_vector_z_nonzero_blocks) ... ok
+test_duplicate_id_blocks (test_t15_e2.TestE2.test_duplicate_id_blocks) ... ok
+test_existing_output_rejected (test_t15_e2.TestE2.test_existing_output_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.435s
+
+OK

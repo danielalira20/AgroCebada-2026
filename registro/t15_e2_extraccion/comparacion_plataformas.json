@@ -1,0 +1,57 @@
+{
+  "schema": "E2_reproduccion_plataformas_v1",
+  "resultado": "aprobado",
+  "comprobaciones": 8077,
+  "max_diferencias": {
+    "e2_tpi150_media_m": 1.680966477124457e-11,
+    "e2_exposicion_este_media": 7.795430967405537e-13,
+    "e2_exposicion_norte_media": 5.099948241493735e-13,
+    "cobertura_tpi_fraccion": 1.6076029396572267e-13,
+    "cobertura_exposicion_fraccion": 1.6076029396572267e-13,
+    "n_celdas_interseccion_positiva": 0,
+    "area_parcela_utm_m2": 1.5577825251966715e-08,
+    "area_soporte_tpi_m2": 1.6727426555007696e-08,
+    "area_soporte_exposicion_m2": 1.6727426555007696e-08,
+    "area_fuera_tpi_m2": 3.434251993894577e-09,
+    "area_fuera_exposicion_m2": 3.434251993894577e-09,
+    "fraccion_plano_numerico": 3.2518432391270835e-13,
+    "pendiente_media_grados_QA": 3.723421571066865e-11,
+    "norma_resultante_exposicion_QA": 5.655753643196704e-13,
+    "rango_altitud_QA_m": 1.8781065591610968e-10,
+    "delta_TPI_m": 1.620104050914506e-11,
+    "delta_E": 4.427291866448968e-13,
+    "delta_N": 4.695549504774021e-13
+  },
+  "entregas": [
+    {
+      "manifest_sha256": "8f9427bd1544743adbcbf9aa8b4c765a75b9a188804fc1754a3a3a4f3ad78d32",
+      "versiones": {
+        "python": "3.12.15",
+        "sistema": "Darwin",
+        "arquitectura": "arm64",
+        "numpy": "2.2.6",
+        "geopandas": "1.2.0",
+        "rasterio": "1.4.4",
+        "GDAL": "3.10.3",
+        "PROJ": "9.8.1",
+        "shapely": "2.1.2"
+      }
+    },
+    {
+      "manifest_sha256": "723b4bc414dbba9499940c10bf9bb1f1287e8976b90a1ce0dce9d92adcb2c76f",
+      "versiones": {
+        "python": "3.12.15",
+        "sistema": "Linux",
+        "arquitectura": "x86_64",
+        "numpy": "2.2.6",
+        "geopandas": "1.2.0",
+        "rasterio": "1.4.4",
+        "GDAL": "3.10.3",
+        "PROJ": "9.8.1",
+        "shapely": "2.1.2"
+      }
+    }
+  ],
+  "tolerancias": "contrato_E2_sin_relajar_OOF_ni_cambiar_modelo",
+  "codigo_sha256": "7224c284755914efbaa07b93f0340ab2233994e53f5d7a5da01fe540efc999eb"
+}
