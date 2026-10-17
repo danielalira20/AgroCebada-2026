@@ -13,7 +13,7 @@ Uso (desde esta carpeta):  streamlit run app.py
 """
 import streamlit as st
 
-from agrocebada_app.backend.datos.paquete import hay_datos
+from agrocebada_app.backend.datos.paquete import FALTA_DATASET, hay_datos
 from agrocebada_app.frontend.componentes.paneles.cabecera import cabecera
 from agrocebada_app.frontend.estado.cache import cargar, clima, series, soporte
 from agrocebada_app.frontend.estado.contexto import calcular
@@ -27,7 +27,7 @@ st.set_page_config(page_title="AgroCebada · Rendimiento de cebada", page_icon=I
                    initial_sidebar_state="collapsed")
 h(f"<style>{ESTILO}</style>")
 if not hay_datos():
-    st.error("No encontré los datos de la app. Corre herramientas/preparar_datos.py o fija la ruta del dataset con AGRO_DATOS.")
+    st.error(FALTA_DATASET)
     st.stop()
 
 d, sop, S, C = cargar(), soporte(), series(), clima()

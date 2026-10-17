@@ -13,14 +13,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))   # para importar agrocebada_app desde app/
 
 from agrocebada_app.backend.datos import lectura  # noqa: E402
+from agrocebada_app.backend.datos.paquete import FALTA_DATASET, exigir_datos  # noqa: E402
 from agrocebada_app.backend.rutas.localizador import rutas  # noqa: E402
-from agrocebada_app.config import PAQ  # noqa: E402
+from agrocebada_app.config import CLAVE_DATASET, PAQ  # noqa: E402
 
 
 def main():
+    exigir_datos()                       # mensaje claro si falta el dataset del reto
     r = rutas()
-    if r["datos"] is None or r["t08"] is None:
-        raise SystemExit("No encontré el dataset o T08. Fija AGRO_DATOS y AGRO_T08.")
+    if r["datos"] is None or not (Path(r["datos"]) / CLAVE_DATASET).exists() or r["t08"] is None:
+        raise SystemExit(FALTA_DATASET if r["datos"] is None or not (Path(r["datos"]) / CLAVE_DATASET).exists() else "No encontré las salidas de T08 en registro/; fija AGRO_T08.")
     PAQ.mkdir(exist_ok=True)
     d = lectura.leer_parcelas(r["datos"])
     d.to_parquet(PAQ / "parcelas.parquet")

@@ -7,6 +7,10 @@ sys.path.insert(0, str(APP))
 
 from streamlit.testing.v1 import AppTest
 
+from agrocebada_app.backend.datos import paquete
+
+paquete.exigir_datos()    # mensaje claro si falta el dataset del reto
+
 
 def nueva(**estado):
     at = AppTest.from_file(str(APP / "app.py"), default_timeout=300)
