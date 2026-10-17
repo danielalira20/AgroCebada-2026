@@ -24,6 +24,9 @@ import streamlit as st
 import agro_carga as K
 import agro_datos as A
 import agro_ficha as F
+from agrocebada_app.backend.dominio.avisos import avisos_de
+from agrocebada_app.backend.dominio.notas import nota_de
+from agrocebada_app.backend.dominio.resumen import detalles, resumen_parcela
 from agrocebada_app.config import (AYUDA_MAPA, CORTE_TXT, CREDITOS, INDICES, MESES, MODELO_OFICIAL, MODELOS, RELIEVE,
                                    SATELITE, TOOLTIP)
 
@@ -361,75 +364,6 @@ def curva_clima(c, pid, alto=240):
     st.altair_chart(_grafica(alt.layer(lluvia, temp).resolve_scale(y="independent"), alto), width="stretch")
 
 
-def avisos_de(pred, sop):
-    out = {}
-    for pid, r in pred.iterrows():
-        a = []
-        if r.n_municipio == 1:
-            a.append("se basa en una sola parcela con cosecha de su municipio")
-        if r.fuente != "municipio":
-            a.append("su municipio no tiene parcelas con cosecha: se usó el respaldo")
-        if sop is not None and pid in sop.index and sop.loc[pid, "etiquetadas_en_misma_celda"] == 0:
-            a.append("está en una zona de lluvia sin parcelas con cosecha registrada")
-        out[pid] = "; ".join(a)
-    return pd.Series(out)
-
-
-def resumen_parcela(pid):
-    r, out = d.loc[pid], []
-    out.append(("Área", f"{r.AREA_HA:.2f} ha"))
-    E = elevaciones()
-    if E is not None and pid in E.index:
-        out.append(("Altitud", f"{E[pid]:,.0f} m"))
-    if C is not None:
-        x = C[C.id_parcela == pid]
-        if len(x):
-            out.append(("Lluvia mar–oct", f"{x.PREC.sum():,.0f} mm"))
-    s = S[(S.ID_POLIGONO == pid) & S.ndvi_promedio.notna()]
-    if len(s):
-        top = s.sort_values("ndvi_promedio").iloc[-1]
-        out.append(("Verdor máximo", f"{top.ndvi_promedio:.2f} · {MESES[top.fecha.month]}"))
-    out.append(("Corte de información", "31 oct 2025"))
-    return out
-
-
-def detalles(d, pred, oof_parcela):
-    """Texto del recuadro que aparece al pasar el ratón por cada parcela."""
-    out = {}
-    for pid, r in d.iterrows():
-        if r.CONJUNTO == "PREDICCION" and pid in pred.index:
-            p = pred.loc[pid]
-            lin = [f"Estimación: {p.prediccion:.2f} t/ha" +
-                   (f" (error típico ± {p.error_tipico:.2f})" if pd.notna(p.get("error_tipico")) else ""),
-                   f"Área: {r.AREA_HA:.2f} ha · producción {p.prediccion * r.AREA_HA:.1f} t",
-                   (f"Base: {int(p.n_municipio)} parcelas con cosecha de {r.municipio}" if p.fuente == "municipio"
-                    else f"Base: respaldo por {p.fuente} (su municipio no tiene parcelas con cosecha)")]
-            if p.get("aviso"):
-                lin.append(f"Aviso: {p.aviso}")
-        else:
-            lin = [f"Rendimiento registrado: {r.real:.2f} t/ha"]
-            if pid in oof_parcela.index:
-                lin.append(f"Lo que estimó el método sin conocerla: {oof_parcela[pid]:.2f} t/ha")
-            lin.append(f"Área: {r.AREA_HA:.2f} ha")
-        out[pid] = "\n".join(lin)
-    return out
-
-
-def nota_de(pid):
-    r = d.loc[pid]
-    if r.CONJUNTO != "PREDICCION":
-        return ("Esta parcela ya tiene su cosecha registrada. Sirve para comprobar el método: se estimó como si no se "
-                "conociera y se comparó.")
-    p, n = pred.loc[pid], int(pred.loc[pid, "n_municipio"])
-    origen = (f"la única parcela de {r.municipio} con cosecha registrada" if n == 1 else
-              f"las {n} parcelas de {r.municipio} con cosecha registrada")
-    nota = f"Es el rendimiento típico de {origen} en 2025."
-    if pd.notna(p.error_tipico) and r.municipio in cob_mun.index:
-        nota += (f" Al probarlo con parcelas conocidas, {cob_mun[r.municipio] * 10:.0f} de cada 10 quedaron dentro "
-                 f"de ± {p.error_tipico:.2f} t/ha.")
-    return nota
-
-
 @st.cache_data(show_spinner=False)
 def ficha_bytes(pid, modelo):
     """PDF de una página con la parcela, su cifra, su mapa, su verdor y su clima (se arma al hacer clic)."""
@@ -441,7 +375,7 @@ def ficha_bytes(pid, modelo):
                 produccion=float(p.prediccion) * r.AREA_HA if est else None,
                 error=float(p.error_tipico) if est and pd.notna(p.error_tipico) else None,
                 oof=float(oof_parcela[pid]) if (not est and pid in oof_parcela.index) else None,
-                nota=nota_de(pid), aviso=p.aviso if est else "", corte=CORTE_TXT)
+                nota=nota_de(d, pred, cob_mun, pid), aviso=p.aviso if est else "", corte=CORTE_TXT)
     pol = [dict(coords=anillo(d.loc[i].geometry),
                 valor=float(pred.prediccion[i]) if d.loc[i, "CONJUNTO"] == "PREDICCION" else float(d.loc[i, "real"]),
                 sel=i == pid, reservada=d.loc[i, "CONJUNTO"] == "PREDICCION") for i in vecinas(d, pid)]
@@ -575,7 +509,7 @@ if agricultor:
                 if pd.notna(p.error_tipico):
                     partes.append(f"<div class='mini'><span>Error típico</span><b>± {p.error_tipico:.2f} t/ha</b></div>")
                 partes.append("</div>")
-                partes.append(f"<div class='nota'>{e(nota_de(pid))}</div>")
+                partes.append(f"<div class='nota'>{e(nota_de(d, pred, cob_mun, pid))}</div>")
                 if p.aviso:
                     partes.append(f"<div class='aviso'>Tómalo con más cuidado: {e(p.aviso)}.</div>")
                 h("".join(partes))
@@ -586,7 +520,7 @@ if agricultor:
                     partes.append(f"<div class='fila'><div class='mini'><span>Lo que estimó el método sin conocerla</span>"
                                   f"<b>{oof_parcela[pid]:.2f} t/ha</b></div><div class='mini'><span>Diferencia</span>"
                                   f"<b>{oof_parcela[pid] - r.real:+.2f} t/ha</b></div></div>")
-                partes.append(f"<div class='nota'>{e(nota_de(pid))}</div>")
+                partes.append(f"<div class='nota'>{e(nota_de(d, pred, cob_mun, pid))}</div>")
                 h("".join(partes))
             boton_ficha(pid, "ficha_agricultor")
         with st.container(key="glass_leyenda"):
@@ -596,7 +530,7 @@ if agricultor:
              escala=30, satelite=satelite, arriba=arriba, detalle=DET, clave=f"mapa-agri-{encuadre}",
              al_clic=clic_agricultor)
         with st.container(key="glass_chips"):
-            chips(resumen_parcela(pid))
+            chips(resumen_parcela(d, pid, elevaciones(), C, S))
     h(f"<div class='creditos'>Tu parcela en naranja; las vecinas a ~6 km. {AYUDA_MAPA} · {e(CREDITOS)}</div>")
 
     g1, g2 = st.columns(2)
