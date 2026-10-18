@@ -1,4 +1,6 @@
 """Pestaña «Cartera»: producción estimada por municipio y su escenario bajo–alto."""
+import textwrap
+
 import altair as alt
 import streamlit as st
 
@@ -13,6 +15,9 @@ NOTA = (f"Estimación retrospectiva de la campaña {ANIO}. Los escenarios supone
         "producción regional.")
 
 
+ANCHO_ETIQUETA = 16     # caracteres por renglón en el eje: los nombres largos se parten en dos renglones
+
+
 def _t(x):
     return f"{x:,.0f} t"
 
@@ -20,10 +25,11 @@ def _t(x):
 def grafica_cartera(t, alto_fila=46):
     """Barras de producción por municipio; la línea con topes marca del escenario bajo al alto. Los valores van
     también en el texto y el tooltip, así que no dependen del color."""
-    x = t.assign(sin_rango=t.tipo_rango == "sin rango")
-    orden = list(x.municipio)
-    y = alt.Y("municipio:N", sort=orden, title=None, axis=alt.Axis(labelLimit=170))
-    ayuda = ["municipio", alt.Tooltip("produccion_t:Q", title="Producción estimada (t)", format=",.0f"),
+    x = t.assign(sin_rango=t.tipo_rango == "sin rango",
+                 renglones=t.municipio.map(lambda m: "\n".join(textwrap.wrap(m, ANCHO_ETIQUETA))))
+    orden = list(x.renglones)
+    y = alt.Y("renglones:N", sort=orden, title=None, axis=alt.Axis(labelLimit=0, labelFontSize=11, labelLineHeight=13))
+    ayuda = [alt.Tooltip("municipio:N", title="Municipio"), alt.Tooltip("produccion_t:Q", title="Producción estimada (t)", format=",.0f"),
              alt.Tooltip("escenario_bajo_t:Q", title="Escenario bajo (t)", format=",.0f"),
              alt.Tooltip("escenario_alto_t:Q", title="Escenario alto (t)", format=",.0f")]
     barras = alt.Chart(x).mark_bar(color="#9BE15D", opacity=0.55, cornerRadiusTopRight=4,
@@ -31,7 +37,7 @@ def grafica_cartera(t, alto_fila=46):
         y=y, x=alt.X("produccion_t:Q", title="toneladas", axis=alt.Axis(format=",.0f")), tooltip=ayuda)
     linea = alt.Chart(x[~x.sin_rango]).mark_rule(color="#E8EEE9", strokeWidth=2).encode(
         y=y, x="escenario_bajo_t:Q", x2="escenario_alto_t:Q", tooltip=ayuda)
-    topes = alt.Chart(x[~x.sin_rango].melt(id_vars=["municipio"], value_vars=["escenario_bajo_t", "escenario_alto_t"],
+    topes = alt.Chart(x[~x.sin_rango].melt(id_vars=["renglones"], value_vars=["escenario_bajo_t", "escenario_alto_t"],
                                            value_name="t")).mark_tick(
         color="#E8EEE9", thickness=2, size=18, orient="vertical").encode(y=y, x="t:Q")
     capas = [barras, linea, topes]
