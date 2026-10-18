@@ -147,7 +147,7 @@ Mapa de las 197 parcelas con panel de resumen (59, promedio, MAE y R²) y filtro
 | Método y límites | Cómo se calcula (4 pasos), qué tan bien funciona, fuentes y límites. |
 | Analizar tus datos | Subir un dataset propio y aplicarle el mismo procedimiento (ver abajo). |
 
-**Selector de modelo:** Media · oficial (MAE 0.320, R² 0.659 en A · sin respaldo) o Mediana · en evaluación (MAE 0.313, R² 0.661 en A · sin respaldo). El modelo oficial se configura mediante `MODELO_OFICIAL` en `agrocebada_app/config.py`.
+**Selector de modelo:** Mediana · oficial (MAE 0.313, R² 0.661 en A · sin respaldo) o Media · referencia (MAE 0.320, R² 0.659 en A · sin respaldo). El modelo oficial se configura mediante `MODELO_OFICIAL` en `agrocebada_app/config.py`.
 
 ## Analizar tus datos (carga segura)
 

@@ -20,8 +20,12 @@ for modelo in ["media_mun__resp_grupo", "mediana_mun__resp_grupo"]:
     assert at.tabs[0].label == "Cartera", [t.label for t in at.tabs]
     textos = " ".join(m.value for m in at.tabs[0].markdown)
     assert "Parcelas</span>" in textos and "<b class='kv'>59<" in textos and "Hectáreas" in textos, modelo
-    assert "Producción: escenario bajo a alto" in textos and "1,379–1,717" in textos, modelo
+    # con la confianza (M01) el cuarto recuadro pasa de la producción bajo–alto a la mezcla de confianza de las 59
+    assert "Confianza</span>" in textos and "18 Alta · 40 Media · 1 Baja" in textos, modelo
+    assert "Producción estimada" in textos and "Producción: escenario bajo a alto" not in textos, modelo
     assert "Estimación retrospectiva de la campaña 2025." in textos and "no una cifra oficial" in textos, modelo
     assert len(at.tabs[0].dataframe) == 1, modelo
+    tabla = at.tabs[0].dataframe[0].value
+    assert "Confianza" in tabla.columns and set(tabla["Confianza"]) == {"Alta", "Media", "Baja"}, modelo
     print(f"cartera ({modelo}): primera pestaña, sin errores")
 print("OK")
