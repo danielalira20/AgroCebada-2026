@@ -138,6 +138,8 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
   border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
 .st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
+/* si el contenido del panel «Tu parcela» pasa del alto del mapa, se desplaza dentro de la tarjeta */
+.st-key-glass_panel { max-height: 668px; overflow-y: auto; }
 /* espacio inferior del resumen del analista */
 .st-key-glass_kpis {
     padding-bottom: 26px;
@@ -183,6 +185,12 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
   padding: 8px 10px; }
 .mini span { display: block; font-size: .68rem; color: var(--tenue); }
 .mini b { font-size: 1.02rem; color: #fff; font-weight: 700; }
+.eq { align-items: center; gap: 5px; }
+.eq .mini { text-align: center; padding: 8px 4px; }
+.op { color: var(--tenue); font-weight: 700; font-size: 1.05rem; }
+.mas { margin-top: 10px; }
+.mas summary { cursor: pointer; font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--tenue); font-weight: 600; }
+.mas .nota { margin-top: 6px; }
 .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
 .kv { font-size: 1.45rem !important; letter-spacing: -.02em; }
 .nota { font-size: .78rem; color: var(--tenue); margin-top: 10px; line-height: 1.4; }
