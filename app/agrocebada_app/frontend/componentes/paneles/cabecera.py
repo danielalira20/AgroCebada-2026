@@ -9,7 +9,7 @@ from agrocebada_app.frontend.tema.html import h
 def cabecera():
     """Dibuja la barra y devuelve (es_agricultor, modelo, satelite)."""
     with st.container(key="glass_top"):
-        c1, c2, c3, c4 = st.columns([4.4, 2.1, 2.3, 1.3], vertical_alignment="center")
+        c1, c2, c3, c4 = st.columns([3.2, 2.5, 2.5, 1.8], vertical_alignment="center")
         with c1:
             h(MARCA)
         vista = c2.segmented_control("Vista", ["Agricultor", "Analista"], key="vista", label_visibility="collapsed")

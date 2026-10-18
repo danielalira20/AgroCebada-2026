@@ -49,7 +49,9 @@ def validacion(ctx):
             puntos = alt.Chart(sc).mark_circle(size=55, opacity=0.85).encode(
                 x=alt.X("real:Q", title="registrado (t/ha)", scale=dom),
                 y=alt.Y("estimacion:Q", title="estimado sin conocerlo (t/ha)", scale=dom),
-                color=alt.Color("municipio:N", title=None, legend=alt.Legend(orient="bottom", columns=3)),
+                color=alt.Color("municipio:N", title=None,
+                                legend=alt.Legend(orient="bottom", direction="horizontal", columns=2, labelLimit=220,
+                                                  labelFontSize=11, columnPadding=12, rowPadding=6)),
                 tooltip=["ID_POLIGONO", "municipio", "real", alt.Tooltip("estimacion", format=".2f")])
             diag = alt.Chart(pd.DataFrame({"x": [2, 6], "y": [2, 6]})).mark_line(
                 color="rgba(255,255,255,0.35)", strokeDash=[4, 4]).encode(
