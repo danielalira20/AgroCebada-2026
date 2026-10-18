@@ -52,7 +52,12 @@ def clima():
         return pd.read_parquet(f) if f.exists() else None
     t04 = rutas()["t04"]
     return lectura.leer_clima(t04) if t04 else None
-
+def clima_normal():
+    if usar_paquete():
+        f = PAQ / "clima_normal.parquet"
+        return pd.read_parquet(f) if f.exists() else None
+    t04 = rutas()["t04"]
+    return lectura.leer_clima_normal(t04) if t04 else None
 
 def validacion(modelo, municipios):
     if usar_paquete():
