@@ -13,8 +13,8 @@ COLUMNAS_INDICES = ["ndvi_promedio", "evi_promedio", "lai_promedio"]
 PALETA = [(2.0, (217, 164, 65)), (3.8, (140, 203, 94)), (5.6, (47, 224, 160))]   # t/ha: paja -> verde -> menta
 
 # ---------------------------------------------------------------- interfaz
-MODELO_OFICIAL = "media_mun__resp_grupo"          # cambiar aquí si T16 elige la mediana
-MODELOS = {"media_mun__resp_grupo": "Media · oficial","mediana_mun__resp_grupo": "Mediana · en evaluación",}
+MODELO_OFICIAL = "mediana_mun__resp_grupo"        # modelo final de T16 (D_T16_DECISION_001); la media queda como referencia
+MODELOS = {"mediana_mun__resp_grupo": "Mediana · oficial", "media_mun__resp_grupo": "Media · referencia"}
 CORTE_TXT = "31 de octubre de 2025"
 INDICES = {"NDVI (verdor)": "ndvi_promedio", "EVI": "evi_promedio", "LAI (área foliar)": "lai_promedio"}
 MESES = dict(enumerate(["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"], 1))
