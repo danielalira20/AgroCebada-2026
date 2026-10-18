@@ -18,6 +18,7 @@ MODELOS = {"media_mun__resp_grupo": "Media · oficial", "mediana_mun__resp_grupo
 CORTE_TXT = "31 de octubre de 2025"
 INDICES = {"NDVI (verdor)": "ndvi_promedio", "EVI": "evi_promedio", "LAI (área foliar)": "lai_promedio"}
 MESES = dict(enumerate(["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"], 1))
+MESES_EJE = "['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][month(datum.value)]"
 
 # Mapa 3D: relieve público (sin clave) e imagen Sentinel-2 sin nubes (sin clave; uso no comercial con atribución).
 RELIEVE = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
