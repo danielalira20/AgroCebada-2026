@@ -1,6 +1,6 @@
 """Resúmenes de una parcela: datos clave y texto del recuadro al pasar el ratón."""
-import pandas as pd
-
+from agrocebada_app.backend.dominio.confianza import confianza_de_parcelas
+from agrocebada_app.backend.dominio.rangos import rango_de
 from agrocebada_app.config import MESES
 
 
@@ -23,17 +23,22 @@ def resumen_parcela(d, pid, elevaciones, clima, series):
     return out
 
 
-def detalles(d, pred, oof_parcela):
-    """Texto del recuadro que aparece al pasar el ratón por cada parcela."""
+def detalles(d, pred, oof_parcela, conf):
+    """Texto del recuadro que aparece al pasar el ratón por cada parcela. `conf`: confianza por municipio (M01). En lugar
+    del error típico muestra la confianza de la estimación y el rango de cosechas del municipio (M02)."""
+    nivel = confianza_de_parcelas(pred, conf).nivel
+    rangos = {}
     out = {}
     for pid, r in d.iterrows():
         if r.CONJUNTO == "PREDICCION" and pid in pred.index:
             p = pred.loc[pid]
-            lin = [f"Estimación: {p.prediccion:.2f} t/ha" +
-                   (f" (error típico ± {p.error_tipico:.2f})" if pd.notna(p.get("error_tipico")) else ""),
+            if r.municipio not in rangos:
+                rangos[r.municipio] = rango_de(d, r.municipio)["texto"]
+            lin = [f"Estimación: {p.prediccion:.2f} t/ha · Confianza {nivel[pid]}",
                    f"Área: {r.AREA_HA:.2f} ha · producción {p.prediccion * r.AREA_HA:.1f} t",
                    (f"Base: {int(p.n_municipio)} parcelas con cosecha de {r.municipio}" if p.fuente == "municipio"
-                    else f"Base: respaldo por {p.fuente} (su municipio no tiene parcelas con cosecha)")]
+                    else f"Base: respaldo por {p.fuente} (su municipio no tiene parcelas con cosecha)"),
+                   rangos[r.municipio]]
             if p.get("aviso"):
                 lin.append(f"Aviso: {p.aviso}")
         else:

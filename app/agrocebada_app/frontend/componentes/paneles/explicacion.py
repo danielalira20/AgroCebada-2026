@@ -12,3 +12,9 @@ def explicacion_cebi():
           "registrada. El verdor y el clima se muestran para seguimiento: no cambian la estimación y un color o una "
           "curva no son una recomendación agronómica. El rendimiento no indica calidad maltera ni capacidad de pago."
           "</div></div></div>")
+
+
+def explicacion_corta_html():
+    """Texto breve de «Cómo leer esta estimación» para el panel «Tu parcela» (el HTML, para armarlo con el resto)."""
+    return ("<div class='nota'>Es lo que dieron en 2025 las parcelas de tu municipio con cosecha registrada. Sirve de "
+            "referencia: no es una promesa de cosecha ni una recomendación.</div>")
