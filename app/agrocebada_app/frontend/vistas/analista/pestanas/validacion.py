@@ -17,7 +17,7 @@ def validacion(ctx):
     OA = ctx.OA
     cob_mun = ctx.cob_mun
     if O is None:
-        st.info("No encontré las predicciones de validación de T08.")
+        st.info("No se encontraron los resultados de validación del modelo.")
     else:
         with st.container(key="glass_val"):
             titulo("Resultados fuera del entrenamiento",

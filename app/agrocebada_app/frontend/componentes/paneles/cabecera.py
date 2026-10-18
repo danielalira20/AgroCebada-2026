@@ -18,7 +18,7 @@ def cabecera():
         if not agricultor:
             modelo = c3.segmented_control("Modelo", list(MODELOS), format_func=MODELOS.get, key="modelo",
                                           label_visibility="collapsed",
-                                          help="La media es la referencia oficial de T08. La mediana se propuso en el PR #23.")
+                                          help="La media es el modelo vigente para las estimaciones de 2025. La mediana es una alternativa en evaluación.")
             modelo = modelo or MODELO_OFICIAL
         satelite = c4.toggle("Satélite", value=True, key="satelite",
                              help="Imagen Sentinel-2 sobre el relieve. Apágalo si tu conexión es lenta.")

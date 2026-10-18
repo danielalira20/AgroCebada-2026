@@ -21,14 +21,17 @@ def analizar_subido(res, modelo, satelite):
         for a in res.avisos:
             h(f"<div class='aviso'>{e(a)}</div>")
     with st.container(key="glass_resultado_subido"):
-        titulo("Resultado", f"Mismo procedimiento de T08 ({'mediana' if modelo.startswith('mediana') else 'media'} "
-                            "del municipio, respaldo por grupo y luego general).")
+        titulo("Resultado", f"Estimaciones basadas en la {'mediana' if modelo.startswith('mediana') else 'media'} "
+                            "del rendimiento del municipio. Si no hay datos suficientes, "
+                            "se utiliza el valor del grupo de registro y, como última opción, el valor general."
+                        )
         kp = [("Parcelas por estimar", f"{len(pu)}", ""), ("Municipios", f"{du.municipio.nunique()}", ""),
               ("MAE dejando una fuera", f"{m.MAE:.3f}", "t/ha"), ("R² dejando una fuera", f"{m.R2:.3f}", "")]
         h("<div class='fila'>" + "".join(f"<div class='mini'><span>{e(k)}</span><b class='kv'>{v_}<small>{u}</small>"
                                          f"</b></div>" for k, v_, u in kp) + "</div>")
-        h("<div class='nota'>Validación rápida: cada parcela con cosecha se estima sin ella misma. Sirve como "
-          "referencia; la validación oficial del proyecto es la 5 × 5 de T03.</div>")
+        h("<div class='nota'>Validación rápida: cada parcela con cosecha se estima sin utilizar su propio rendimiento. "
+            "Este resultado sirve como referencia para los datos que subiste. "
+            "La evaluación principal del proyecto utiliza una validación cruzada de 5 × 5 repeticiones.</div>")
         if res.con_mapa:
             det = {i: (f"Estimación: {pu.prediccion[i]:.2f} t/ha · área {du.AREA_HA[i]:.2f} ha" if i in pu.index
                        else f"Registrado: {du.real[i]:.2f} t/ha · área {du.AREA_HA[i]:.2f} ha") for i in du.index}

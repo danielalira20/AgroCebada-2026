@@ -8,13 +8,13 @@ CLAVE_DATASET = "ID_area_rendimiento_70_30_Reto_AgroCebada.csv"
 
 # ---------------------------------------------------------------- datos y procedimiento de T08
 MODELOS_CANDIDATOS = ["media_mun__resp_grupo", "mediana_mun__resp_grupo"]
-TEMPORADA = ("2025-03-01", "2025-10-31")
+TEMPORADA = ("2025-04-01", "2025-10-31")
 COLUMNAS_INDICES = ["ndvi_promedio", "evi_promedio", "lai_promedio"]
 PALETA = [(2.0, (217, 164, 65)), (3.8, (140, 203, 94)), (5.6, (47, 224, 160))]   # t/ha: paja -> verde -> menta
 
 # ---------------------------------------------------------------- interfaz
 MODELO_OFICIAL = "media_mun__resp_grupo"          # cambiar aquí si T16 elige la mediana
-MODELOS = {"media_mun__resp_grupo": "Media · oficial", "mediana_mun__resp_grupo": "Mediana · PR #23"}
+MODELOS = {"media_mun__resp_grupo": "Media · oficial","mediana_mun__resp_grupo": "Mediana · en evaluación",}
 CORTE_TXT = "31 de octubre de 2025"
 INDICES = {"NDVI (verdor)": "ndvi_promedio", "EVI": "evi_promedio", "LAI (área foliar)": "lai_promedio"}
 MESES = dict(enumerate(["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"], 1))

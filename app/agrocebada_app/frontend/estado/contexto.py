@@ -46,7 +46,7 @@ def calcular(d, sop, S, C, modelo, satelite):
     oof_parcela = OAT.groupby("ID_POLIGONO").prediccion.mean() if OAT is not None else pd.Series(dtype=float)
     DET = detalles(d, pred, oof_parcela)
     FICHA = ContextoFicha(d=d, pred=pred, oof_parcela=oof_parcela, cob_mun=cob_mun, clima=C, series=S)
-    mA = metricas(OAT) if O is not None else None
+    mA = metricas(OA) if OA is not None and not OA.empty else None
     return Contexto(d=d, sop=sop, S=S, C=C, modelo=modelo, satelite=satelite, pred=pred, O=O, OA=OA, OAT=OAT,
                     err_mun=err_mun, cob_mun=cob_mun, oof_parcela=oof_parcela, DET=DET, FICHA=FICHA,
                     centro_total=centro_total, mA=mA)

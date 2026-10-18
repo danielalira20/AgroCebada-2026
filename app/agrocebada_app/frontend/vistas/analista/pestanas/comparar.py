@@ -41,15 +41,15 @@ def comparar(ctx, pid):
                 ri, est = d.loc[i], d.loc[i, "CONJUNTO"] == "PREDICCION"
                 s_i = S[(S.ID_POLIGONO == i) & S.ndvi_promedio.notna()]
                 top = s_i.sort_values("ndvi_promedio").iloc[-1] if len(s_i) else None
-                c_i = C[C.id_parcela == i] if C is not None else None
+                c_i = C[(C.id_parcela == i)& (C.periodo.between("2025-04", "2025-10"))] if C is not None else None
                 filas.append({"parcela": i, "municipio": ri.municipio,
                               "rendimiento (t/ha)": float(pred.prediccion[i]) if est else float(ri.real),
                               "tipo": "estimación" if est else "registrado", "área (ha)": ri.AREA_HA,
                               "NDVI máximo": top.ndvi_promedio if top is not None else None,
                               "mes del máximo": MESES[top.fecha.month] if top is not None else "",
-                              "lluvia mar–oct (mm)": c_i.PREC.sum() if c_i is not None and len(c_i) else None})
+                              "lluvia abr–oct (mm)": c_i.PREC.sum() if c_i is not None and len(c_i) else None})
             st.dataframe(pd.DataFrame(filas), hide_index=True, width="stretch",
                          column_config={"rendimiento (t/ha)": st.column_config.NumberColumn(format="%.2f"),
                                         "área (ha)": st.column_config.NumberColumn(format="%.2f"),
                                         "NDVI máximo": st.column_config.NumberColumn(format="%.2f"),
-                                        "lluvia mar–oct (mm)": st.column_config.NumberColumn(format="%.0f")})
+                                        "lluvia abr–oct (mm)": st.column_config.NumberColumn(format="%.0f")})

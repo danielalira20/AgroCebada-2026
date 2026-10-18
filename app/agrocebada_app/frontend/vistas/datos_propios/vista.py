@@ -13,7 +13,9 @@ def datos_propios(ctx):
     satelite = ctx.satelite
     with st.container(key="glass_subir"):
         titulo("Analiza tu propio dataset",
-               "Sube tus parcelas y la app les aplica el mismo procedimiento de T08. Lee qué necesitamos antes.")
+                "Sube tus parcelas y la aplicación calculará las estimaciones ""utilizando el mismo procedimiento que se aplica a los datos del proyecto. "
+                "Revisa los requisitos antes de continuar."
+            )
         st.markdown(REQUISITOS)
         p1, p2 = st.columns([3, 1], vertical_alignment="bottom")
         archivo = p1.file_uploader(f"Sube un .zip o un .csv (máximo {MAX_MB} MB)", type=["zip", "csv"],

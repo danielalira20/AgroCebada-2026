@@ -1,6 +1,10 @@
-# T17 · App de estimación de rendimiento (AgroCebada 2026)
+# AgroCebada 2026 · Estimación de rendimiento de cebada
 
-App en Streamlit que **ejecuta el mismo procedimiento de T08** con las 138 parcelas con rendimiento y estima las 59 reservadas. Las cifras que exporta coinciden exactamente con `predicciones_59_referencias.csv` de T08; la app lo comprueba y lo muestra en pantalla.
+Aplicación desarrollada con Streamlit para consultar estimaciones retrospectivas de la campaña 2025.
+
+Utiliza información de 138 parcelas con rendimiento registrado para estimar el rendimiento de 59 parcelas reservadas, mediante el valor típico de su municipio.
+
+Las estimaciones se verifican contra el archivo de referencia `predicciones_59_referencias.csv`, para comprobar que los resultados coincidan con los del procedimiento evaluado.sed -n '100,145p' README.md
 
 ## Arrancar
 
@@ -105,13 +109,13 @@ Mapa de las 197 parcelas con panel de resumen (59, promedio, MAE y R²) y filtro
 
 | Pestaña | Contenido |
 |---|---|
-| Las 59 estimaciones | Verificaciones (59 IDs, sin duplicados, valores finitos, coincidencia con T08), descarga del CSV y tabla completa. |
+| Las 59 estimaciones | Verificaciones (59 IDs, sin duplicados, valores finitos y coincidencia con el archivo de referencia), descarga del CSV y tabla completa. |
 | Ficha técnica | Estimación, referencia territorial, MAE del municipio, ficha PDF, disponibilidad de datos por sensor, curva NDVI/EVI/LAI, clima y **Comparar parcelas** (hasta 3: curvas juntas y tabla con rendimiento, área, NDVI máximo y lluvia). |
 | Validación | MAE, RMSE, sesgo y R² de los escenarios A y B, resultados por municipio, registrado contra estimado e información insuficiente. |
 | Método y límites | Cómo se calcula (4 pasos), qué tan bien funciona, fuentes y límites. |
 | Analizar tus datos | Subir un dataset propio y aplicarle el mismo procedimiento (ver abajo). |
 
-**Selector de modelo:** Media · oficial (T08: MAE 0.319, R² 0.666 en A) o Mediana · PR #23 (MAE 0.310, R² 0.670). Si T16 elige la mediana, basta cambiar `MODELO_OFICIAL` al inicio de `app.py`.
+**Selector de modelo:** Media · oficial (MAE 0.320, R² 0.659 en A · sin respaldo) o Mediana · en evaluación (MAE 0.313, R² 0.661 en A · sin respaldo). El modelo oficial se configura mediante `MODELO_OFICIAL` en `agrocebada_app/config.py`.
 
 ## Analizar tus datos (carga segura)
 
@@ -120,7 +124,7 @@ Se aceptan **sólo dos formatos**:
 1. **ZIP como el del reto (con mapa):** una tabla `.csv` (UTF-8, comas) con `ID_POLIGONO`, `AREA_HA`, `RENDIMIENTO_T_HA` y `CONJUNTO` (`ENTRENAMIENTO` con rendimiento entre 0.1 y 15 t/ha, o `PREDICCION` con el rendimiento vacío), más el shapefile de las parcelas (`.shp`, `.shx`, `.dbf`, `.prj`, sueltos o en un `.zip` interno) con `ID_POLIGON`, `Municipio` y `Cultivo`.
 2. **CSV simple (sin mapa):** `ID_POLIGONO`, `MUNICIPIO`, `GRUPO`, `AREA_HA`, `RENDIMIENTO_T_HA`, `CONJUNTO`. Hay una plantilla para descargar.
 
-La app muestra la revisión, las estimaciones (mismo procedimiento de T08), una validación rápida dejando una parcela fuera, el mapa (formato 1) y la descarga del CSV.
+La aplicación muestra la revisión del archivo, las estimaciones calculadas con el procedimiento del modelo seleccionado, una validación rápida dejando una parcela fuera, el mapa (cuando el archivo incluye información geográfica) y la descarga del CSV.
 
 **Se rechaza con un motivo concreto:** cualquier otro tipo de archivo (Excel, PDF, imágenes, programas, scripts), contenido que no corresponde a su extensión, más de 50 MB, ZIP con más de 30 archivos, más de 200 MB descomprimido, compresión sospechosa (bomba zip), contraseña, rutas que salen de la carpeta, enlaces, más de 5,000 parcelas, menos de 10 con cosecha o ninguna por estimar, IDs repetidos, con caracteres raros o que no coinciden entre tabla y polígonos, valores fuera de rango y polígonos inválidos o fuera de México.
 
@@ -134,8 +138,8 @@ python tests/frontend/test_app.py            # termina en «OK»
 python tests/backend/test_carga_segura.py   # termina en «OK»
 ```
 
-- `tests/frontend/test_app.py`: vista agricultor con los 9 municipios; vista analista con los dos modelos (4 verificaciones en verde, MAE y R² iguales a T08); buscador, filtro por municipio, información insuficiente, mapa desde arriba, comparación de parcelas, pestaña de datos propios y ficha PDF de 3 parcelas.
-- `tests/backend/test_carga_segura.py`: el ZIP del reto da las mismas 59 cifras que T08; ZIP con shapefile suelto y CSV simple aceptados; 17 archivos malos rechazados (Excel, imagen, ZIP falso, PDF renombrado, CSV cualquiera, programa y script dentro del ZIP, ruta tramposa, bomba zip, demasiados archivos, tabla sin polígonos, IDs que no coinciden, rendimientos fuera de rango, IDs repetidos, ID con código, plantilla sola y archivo de más de 50 MB).
+- `tests/frontend/test_app.py`: vista agricultor con los 9 municipios; vista analista con los dos modelos (4 verificaciones en verde y métricas de validación A · sin respaldo); buscador, filtro por municipio, información insuficiente, mapa desde arriba, comparación de parcelas, pestaña de datos propios y ficha PDF de 3 parcelas.
+- `tests/backend/test_carga_segura.py`: el ZIP del reto produce las mismas 59 estimaciones que el archivo de referencia; ZIP con shapefile suelto y CSV simple aceptados; 17 archivos malos rechazados (Excel, imagen, ZIP falso, PDF renombrado, CSV cualquiera, programa y script dentro del ZIP, ruta tramposa, bomba zip, demasiados archivos, tabla sin polígonos, IDs que no coinciden, rendimientos fuera de rango, IDs repetidos, ID con código, plantilla sola y archivo de más de 50 MB).
 - Navegador (Chromium): capturas de las dos vistas, descarga de la ficha, recuadro del mapa, comparación y subida de un archivo bueno y uno malo.
 
 ## Créditos del mapa

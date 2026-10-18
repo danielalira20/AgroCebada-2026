@@ -21,6 +21,7 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 
 .st-key-glass_top .marca-s {
     line-height: 1.5;
+    margin-top: 5px;
 }
 
 /* separar el encabezado de los botones en móvil */

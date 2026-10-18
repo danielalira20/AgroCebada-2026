@@ -56,7 +56,10 @@ def mostrar(ctx):
         with st.container(key="glass_kpis"):
             kp = [("Parcelas estimadas", f"{len(pred)}", ""), ("Estimación promedio", f"{pred.prediccion.mean():.2f}", "t/ha")]
             if mA is not None:
-                kp += [("MAE validación A", f"{mA.MAE:.3f}", "t/ha"), ("R² validación A", f"{mA.R2:.3f}", "")]
+                kp += [
+                    ("MAE · A sin respaldo", f"{mA.MAE:.3f}", "t/ha"),
+                    ("R² · A sin respaldo", f"{mA.R2:.3f}", ""),
+                ]
             h(f"<div class='eyebrow'>Resumen · {e(MODELOS[modelo])}</div><div class='kpis'>" + "".join(
                 f"<div class='mini'><span>{k}</span><b class='kv'>{v}<small>{u}</small></b></div>" for k, v, u in kp)
               + "</div>")

@@ -29,7 +29,7 @@ def verdor_clima(ctx, pid):
     with g2, st.container(key="glass_clima"):
         if C is None:
             titulo("Lluvia y temperatura", f"Promedio mensual de la zona (píxel de ~5.5 km). {CONTEXTO}")
-            st.info("No encontré la tabla de clima.")
+            st.info("No hay información de lluvia y temperatura disponible para esta parcela.")
             return
         t = comparar(C, clima_normal(), pid)
         if t is None:
