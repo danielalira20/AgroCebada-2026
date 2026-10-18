@@ -9,7 +9,7 @@ from agrocebada_app.frontend.estado.cache import elevaciones
 
 
 def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, satelite=True, arriba=False,
-         detalle=None, con_relieve=True, clave="mapa", al_clic=None):
+         detalle=None, con_relieve=True, clave="mapa", al_clic=None, modo_color="Rendimiento"):
     """Parcelas sobre el relieve real con imagen Sentinel-2. En 3D son bloques (altura y color = t/ha); desde arriba
     son polígonos de color con borde, como un mapa de cultivos. El zoom se limita alrededor de la vista inicial y la
     rueda del ratón no hace zoom, para que el scroll mueva la página."""
