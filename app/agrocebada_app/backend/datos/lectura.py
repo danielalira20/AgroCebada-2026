@@ -41,6 +41,14 @@ def leer_clima(t04):
     c = pd.read_csv(t04)
     c = c[c.periodo.between("2025-03", "2025-10")]
     return c.pivot_table(index=["id_parcela", "periodo"], columns="variable", values="media_ponderada").reset_index()
+def leer_clima_normal(t04):
+    """Promedio 2022–2024 por parcela y mes (marzo a octubre), para comparar contra el clima de 2025."""
+    c = pd.read_csv(t04)
+    c = c[c.periodo.between("2022-01", "2024-12")]
+    c = c.assign(mes=c.periodo.str[5:].astype(int))
+    c = c[c.mes.between(3, 10)]
+    return (c.pivot_table(index=["id_parcela", "mes"], columns="variable", values="media_ponderada", aggfunc="mean")
+            .reset_index().rename_axis(columns=None))
 
 
 def leer_validacion(t08):
