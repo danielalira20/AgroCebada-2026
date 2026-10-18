@@ -12,9 +12,9 @@ def resumen_parcela(d, pid, elevaciones, clima, series):
     if E is not None and pid in E.index:
         out.append(("Altitud", f"{E[pid]:,.0f} m"))
     if clima is not None:
-        x = clima[clima.id_parcela == pid]
+        x = clima[(clima.id_parcela == pid) & (clima.periodo.between("2025-04", "2025-10"))]
         if len(x):
-            out.append(("Lluvia mar–oct", f"{x.PREC.sum():,.0f} mm"))
+            out.append(("Lluvia abr–oct", f"{x.PREC.sum():,.0f} mm"))
     s = series[(series.ID_POLIGONO == pid) & series.ndvi_promedio.notna()]
     if len(s):
         top = s.sort_values("ndvi_promedio").iloc[-1]
