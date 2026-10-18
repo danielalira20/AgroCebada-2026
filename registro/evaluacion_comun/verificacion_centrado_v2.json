@@ -1,0 +1,185 @@
+{
+  "schema": "verificacion_comun_centrado_v2",
+  "version": "comun-centrado-v2",
+  "fecha": "2026-10-13",
+  "sha_procedimiento": "fb4ba40497b14cc9c9c077a3e993e8d24ca559a2d1cd6ebbce168e12aebd8040",
+  "estado": "verificado_tecnicamente_pendiente_revision_humana",
+  "rama": "t15-centrado-municipal",
+  "pruebas_distintas": 65,
+  "historicas": 41,
+  "regresiones_H3": 24,
+  "ejecuciones_pruebas": {
+    "Mac": {
+      "normal": 65,
+      "optimizado": 65
+    },
+    "Docker": {
+      "normal": 65,
+      "optimizado": 65
+    }
+  },
+  "imagen_docker": "sha256:f47077f5bfdd4e6e05d17b8c5056bcbb79498f277ab5d38fee117a0bab5221f5",
+  "control_matematico_Mac": {
+    "resultado": "verificado",
+    "version": "comun-centrado-v2",
+    "sha_procedimiento": "fb4ba40497b14cc9c9c077a3e993e8d24ca559a2d1cd6ebbce168e12aebd8040",
+    "alcance": "control_matematico_fijo_sin_evaluacion_externa",
+    "lambda_fija": 0.1,
+    "contextos": 50,
+    "bloques": 5,
+    "ajustes_Ridge_tecnicos": 250,
+    "predicciones_control": 6900,
+    "maximos": {
+      "prediccion": 2.6645352591003757e-15,
+      "coeficientes": 7.095019016745141e-16,
+      "centros": 8.881784197001252e-16,
+      "media": 0.0,
+      "escala": 0.0,
+      "correccion_media_municipal_train": 4.163336342344337e-17
+    },
+    "seleccion_de_bloque": false,
+    "MAE_externo_calculado": false,
+    "T15_completo_ejecutado": false,
+    "ajustes_finales_59": 0,
+    "revision_humana_pendiente": true,
+    "entorno": {
+      "sistema": "Darwin",
+      "arquitectura": "arm64",
+      "python": "3.12.15",
+      "numpy": "2.2.6",
+      "pandas": "3.0.6",
+      "scipy": "1.18.1",
+      "sklearn": "1.9.1"
+    },
+    "fuentes_sha256": {
+      "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+      "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+      "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+      "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+      "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+      "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+      "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+      "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+      "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+      "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+      "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+    },
+    "control_sha256": "4dfe7a123c11b9a441009f94ba4b498e0ece12bced92cd37db2e230833afeec2"
+  },
+  "control_matematico_Docker": {
+    "resultado": "verificado",
+    "version": "comun-centrado-v2",
+    "sha_procedimiento": "fb4ba40497b14cc9c9c077a3e993e8d24ca559a2d1cd6ebbce168e12aebd8040",
+    "alcance": "control_matematico_fijo_sin_evaluacion_externa",
+    "lambda_fija": 0.1,
+    "contextos": 50,
+    "bloques": 5,
+    "ajustes_Ridge_tecnicos": 250,
+    "predicciones_control": 6900,
+    "maximos": {
+      "prediccion": 3.9968028886505635e-15,
+      "coeficientes": 8.153200337090993e-16,
+      "centros": 8.881784197001252e-16,
+      "media": 0.0,
+      "escala": 0.0,
+      "correccion_media_municipal_train": 4.163336342344337e-17
+    },
+    "seleccion_de_bloque": false,
+    "MAE_externo_calculado": false,
+    "T15_completo_ejecutado": false,
+    "ajustes_finales_59": 0,
+    "revision_humana_pendiente": true,
+    "entorno": {
+      "sistema": "Linux",
+      "arquitectura": "x86_64",
+      "python": "3.12.15",
+      "numpy": "2.2.6",
+      "pandas": "3.0.6",
+      "scipy": "1.18.1",
+      "sklearn": "1.9.1"
+    },
+    "fuentes_sha256": {
+      "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+      "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+      "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+      "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+      "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+      "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+      "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+      "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+      "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+      "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+      "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+    },
+    "control_sha256": "12d53b23db9829e723627e85e2102a11f75d3347d66f25b06d612ef01bfa7c05"
+  },
+  "contraste_Mac_Docker": {
+    "resultado": "verificado",
+    "filas": 6900,
+    "claves_y_fuentes_iguales": true,
+    "maximos": {
+      "prediccion": 4.440892098500626e-15,
+      "correccion": 4.898859096158503e-15
+    },
+    "identicos_por_bytes": false
+  },
+  "equivalencia_T09_publicado": {
+    "commit": "1c8d7eb31a0b2a5c751d949b42b07a1a9aa06cda",
+    "Mac": {
+      "resultado": "verificado",
+      "estados_T09_publicados": 118,
+      "predicciones_fijas": 3036,
+      "maximos": {
+        "prediccion": 7.105427357601002e-15,
+        "coeficientes": 3.3029134982598407e-15,
+        "escala": 1.7053025658242404e-13,
+        "centros": 1.7466583734915275e-13
+      },
+      "busqueda_repetida": false,
+      "MAE_calculado": false,
+      "T15_ejecutado": false
+    },
+    "Docker": {
+      "resultado": "verificado",
+      "estados_T09_publicados": 118,
+      "predicciones_fijas": 3036,
+      "maximos": {
+        "prediccion": 1.7763568394002505e-15,
+        "coeficientes": 5.273559366969494e-16,
+        "escala": 1.7053025658242404e-13,
+        "centros": 1.6364687382974807e-13
+      },
+      "busqueda_repetida": false,
+      "MAE_calculado": false,
+      "T15_ejecutado": false
+    }
+  },
+  "fuentes_originales_protegidas": 360,
+  "originales_alterados": 0,
+  "datos_T07_T03_T08_modificados": false,
+  "diseno_v1_y_propuesta_v1_bytes_intactos": true,
+  "evaluacion_T15_completa": false,
+  "experimento_T15_ejecutable": false,
+  "modelos_finales_59": 0,
+  "ganador_T16_congelado": false,
+  "revision_Daf_Migue_v2": "pendiente",
+  "limitaciones": [
+    "Control numérico fijo sin medir MAE externo ni seleccionar bloques",
+    "Conformidad metodológica y registro definitivo pendientes",
+    "Datos etiquetados de una sola campaña"
+  ],
+  "incidencias_propias": [
+    {
+      "componente": "prueba independiente",
+      "problema": "vista NumPy pandas3 de solo lectura",
+      "resolucion": "copia explícita en el auditor; productor ya copiaba; sin alterar tolerancia ni datos"
+    }
+  ],
+  "fuentes_codigo_sha256": {
+    "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+    "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+    "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+    "scripts/evaluacion_comun_centrado_auditar.py": "a95a0d05332f0afd4798e655a66d5f012d4eeb3b988e604d3392221eccc5a123",
+    "tests/test_evaluacion_comun_centrado.py": "b249601b8adcf06c3d3df25abb5da6005be53b2b12f8d0ddd6e13ebbf60d318d"
+  }
+}

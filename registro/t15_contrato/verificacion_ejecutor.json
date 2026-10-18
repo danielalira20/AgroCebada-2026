@@ -1,0 +1,109 @@
+{
+  "schema": "agrocebada_T15_verificacion_ejecutor_v1",
+  "fecha": "2026-10-15",
+  "resultado": "verificado_para_comprobaciones_y_evaluacion_posterior_explicita",
+  "registro_operativo_sha256": "efa766beccc74f1a53459462f07a84ddff30651cb05d44531cb2694a2e4783df",
+  "contrato_historico_sha256": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+  "cierre": {
+    "responsable_humana": "Dani",
+    "apoyo_tecnico": "Codex",
+    "revision_externa_requerida": false,
+    "decision_directa_usuario": "Ya no van a revisar por cuestión de tiempos; ya sólo lo haremos tú y yo. Actualizar PR y terminar ejecutor, comprobar funcionamiento sin evaluación completa.",
+    "aprobacion_Daf_atribuida": false,
+    "aprobacion_Migue_atribuida": false,
+    "limite": "Autorrevisión técnica; no equivale a revisión independiente de los compañeros."
+  },
+  "pruebas": {
+    "Mac_normal": 64,
+    "Docker_Linux_amd64_python_O": 64,
+    "nuevas_ejecutor": 18,
+    "regresion_contrato_y_v3": 46,
+    "errores": 0,
+    "fallos": 0,
+    "comprobacion_real_G_A": "un_contexto_en_unittest",
+    "comprobacion_real_S_B": "rep1_particion0_en_Mac_y_Docker",
+    "orquestacion_50_contextos": "controles_de_software_referencia_historica_en_temporales_sin_ajustes_reales_de_bloques",
+    "reportes_completos_fixture": {
+      "OOF": 12420,
+      "selecciones": 400,
+      "resumenes": 36,
+      "metricas_por_repeticion": 180,
+      "contrastes": 72,
+      "frecuencias": 16
+    },
+    "entrenamiento_T15_completo": false
+  },
+  "comparacion_entornos": {
+    "resultado": "verificado",
+    "comparaciones": 11575,
+    "max_diferencia_numerica": 1.1102230246251565e-15,
+    "tolerancia": 1e-12,
+    "preflight_byteidentico": true,
+    "huellas_de_estados_diferentes_por_redondeo": 33,
+    "nota_huellas": "Las huellas binarias pueden variar; estados lógicos y valores se contrastaron numéricamente. No se amplió tolerancia.",
+    "evaluacion_completa": false
+  },
+  "reconstruccion_matricial_separada": {
+    "resultado": "verificado",
+    "alcance": "un_contexto_S_B_1_0_matriz_independiente_sin_nueva_busqueda",
+    "max_diferencia_prediccion": 8.881784197001252e-16,
+    "tolerancia": 1e-12,
+    "n_predicciones": 34,
+    "MAE_externo_calculado": false,
+    "evaluacion_completa": false
+  },
+  "codigo_y_registro_sha256": {
+    "scripts/t15_ejecutar.py": "cf338615d70c1786fd3b7e5cdcc3bd27e5288eeed107be24f08c6a5f3f0e8c6d",
+    "scripts/t15_ejecutor_reportes.py": "70e323f3280574cb6a6bbf722a8307ed8b8efa72eb2ef41cbbf0a52ec08aa25f",
+    "scripts/t15_registro_operativo.py": "22a53a080fbd37d2f7983be9b606c7f45e2e8f8b388933d009044ee69f8d0bbd",
+    "scripts/t15_comparaciones_traza.py": "d077ee711e8b3089a770be98987a69015140a706e52d9e95ab897bd31267840a",
+    "tests/test_t15_ejecutor.py": "e26555b836e711f078e7b43c264c70aa4e7b9e58ce1678f8e3e8c63ada9a0aa4",
+    "registro/t15_contrato/registro_operativo_v1.json": "efa766beccc74f1a53459462f07a84ddff30651cb05d44531cb2694a2e4783df"
+  },
+  "Docker": {
+    "imagen": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+    "plataforma": "linux/amd64",
+    "red": false,
+    "repo_solo_lectura": true,
+    "memoria_contenedor_MB": 768,
+    "detenido_al_final": true,
+    "Windows_nativo_verificado": false
+  },
+  "integracion_dev": {
+    "commit": "97a8906b243b63f1e7c24ec85f7050642d9a98f5",
+    "merge_local": "38b58d8",
+    "conflictos_resueltos": {
+      "registro/decisiones.csv": {
+        "filas_antes": 57,
+        "filas_despues": 58,
+        "nuevos_dev": [
+          "D_T14_001"
+        ],
+        "prefijo_nuestro_preservado": true,
+        "renumeracion": false
+      },
+      "registro/uso_ia.csv": {
+        "filas_antes": 52,
+        "filas_despues": 55,
+        "nuevos_dev": [
+          "IA_T14_001",
+          "IA_T14_002",
+          "IA_T14_003"
+        ],
+        "prefijo_nuestro_preservado": true,
+        "renumeracion": false
+      }
+    },
+    "T14_codigo_tablas_documentos_identicos_a_dev": true,
+    "fuentes_del_metodo_y_T07_sin_cambios": true
+  },
+  "estado_actual": {
+    "evaluacion_completa_ejecutada": false,
+    "MAE_global_nuevo": null,
+    "ganador_T16_congelado": false,
+    "predicciones_finales59_generadas": false,
+    "requiere_esperar_revisores_externos": false,
+    "requiere_solicitud_Dani_para_evaluacion_completa": true,
+    "SG_Q_E1_cuantil_activados": false
+  }
+}

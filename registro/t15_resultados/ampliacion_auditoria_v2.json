@@ -1,0 +1,13 @@
+{
+  "fecha_UTC": "2026-10-16T15:14:12.867634+00:00",
+  "antes_de_metricas_completas": true,
+  "auditor_inicial_sha256": "e6d8911d2d32738ee1115f0fb878620e421ea4b2107bcef7a7c6d96495926f3e",
+  "auditor_ampliado_sha256": "ba99f7e7d5e1b3ed2ac34f633d75e03e5d2de0d355375eb2015c58497c26fdc1",
+  "motivo": "Revisión del auditor: ampliar comprobación numérica a todas las referencias seleccionadas, medias grupo/global y concordancia estado/traza/configuración. No se detectó error de productor; se cubre una omisión del control privado.",
+  "tolerancias": {
+    "referencias_metricas": 1e-12,
+    "matrices_coeficientes": 1e-10,
+    "prediccion_reconstruida": 1e-09
+  },
+  "cambios_en_productor_datos_modelos_menu_criterios": false
+}

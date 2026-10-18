@@ -1,0 +1,48 @@
+{
+  "version": "aplicabilidad-C-v1",
+  "diseno_sha256": "9e1d19e196cb0d505e04fd07063b6d21b0c9e062866e8bf697fc3365ee2ac477",
+  "fuentes_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824",
+    "registro/t07/calidad_satelite.csv": "53ada7bbbc448b9cc0d5211427dfa2d220b6794f679b7d2c6c74afab839582f3",
+    "registro/t07/calidad_ventanas.csv": "8bb18bd47b905a98c40083ebb80c2e93f1995dfe1b517539eaff44692a85aa69",
+    "registro/t09/aplicabilidad_59.csv": "834e3d70d34c60dd10fb466998d5fa1de300c27585a1e49b0d98c37c29dd3c7d",
+    "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "registro/t04/procedencia.json": "460e64618fd4afad2efbe5748c1e0326dc70f89430f2ae7a77a646ec907ae23d",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv": "70db27a146653fa0253d734956fabe5a1c21a436484176d0f3da3a1ec650b4ec"
+  },
+  "paquete_zip_sha256": "d74dbaba1764e026da8ce38f7f3476f80523f479a6c141827887e09326061bb5",
+  "archivos_sha256": {
+    "conciliacion_t02_t09.csv": "207a4def7e1582c79f344076e8b6e788465bb76be1726dcd053d0c7efe35aeac",
+    "contextos_oof_138.csv": "ebdc73038ba003b5f521160251dd5ec037b27f0458233d8563ed7ff3f683f9f4",
+    "diccionario.csv": "9eacacd695810972202647ddcd1afd73a7a67cdaff8a9409b08826eb62b1421e",
+    "entradas_59.csv": "644b03fb5c837deff14d57941eb649556a2ecdb786c71d82b35bda87e88761e9",
+    "error_por_soporte.csv": "579a5ab865f73cb98fbc6272bc611b8cbb039013bdc96708219f76481648b78d",
+    "perfil_59.csv": "0482f1c6cadd2b8ae1116a8429bf2eb78c3dbc0bd83194455e4614d8b3cc4b34",
+    "resumen.json": "37131b2380c60e4480a749cff7fe6de22fb21b2b4aa2f540cd885f84287b7f61",
+    "resumen_municipio.csv": "759b92f6c95b04f308720a25956740fc9330b242b878c60585970d0673a4adb4"
+  },
+  "software": {
+    "python": "3.12.15",
+    "numpy": "2.2.6",
+    "geopandas": "1.2.0",
+    "shapely": "2.1.2",
+    "pyproj": "3.8.0",
+    "PROJ": "9.8.1"
+  },
+  "scripts_sha256": {
+    "scripts/diagnostico_aplicabilidad59.py": "2bcc3ff6c82e77b012f38c466d4c8c38220cae587e728156a2e9c6f541be9071"
+  },
+  "estado": "tecnicamente_generado_pendiente_revision_independiente",
+  "T15_ejecutado": false,
+  "T18_ejecutado": false
+}

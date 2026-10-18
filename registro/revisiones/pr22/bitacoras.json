@@ -1,0 +1,22 @@
+{
+  "decisiones.csv": {
+    "filas_originales_preservadas": true,
+    "IDs_nuevos": [
+      "D026"
+    ],
+    "duplicados_heredados": {},
+    "duplicados_nuevos": {}
+  },
+  "uso_ia.csv": {
+    "filas_originales_preservadas": true,
+    "IDs_nuevos": [
+      "IA_T03_001",
+      "IA_T14_004",
+      "IA_T14_005"
+    ],
+    "duplicados_heredados": {
+      "IA_T07_012": 2
+    },
+    "duplicados_nuevos": {}
+  }
+}

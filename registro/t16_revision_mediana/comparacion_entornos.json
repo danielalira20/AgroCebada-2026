@@ -1,0 +1,75 @@
+{
+  "fecha_UTC": "2026-10-16T21:53:21.697142+00:00",
+  "Mac_Docker_manifest_identico": true,
+  "comparacion_archivos": {
+    "contextos_verificados.csv": {
+      "bytes_identicos": true,
+      "filas": 100,
+      "sha256_mac": "2ce0640940d4e809cf47b1231de06c7d0e078a26a1c6dc840c82a45f8951a8c8",
+      "sha256_docker": "2ce0640940d4e809cf47b1231de06c7d0e078a26a1c6dc840c82a45f8951a8c8"
+    },
+    "contrastes.csv": {
+      "bytes_identicos": true,
+      "filas": 8,
+      "sha256_mac": "84438d1ab7f30a21e2401f081f584e41bf7bdc27c6f8f8233e5515fe7764fe66",
+      "sha256_docker": "84438d1ab7f30a21e2401f081f584e41bf7bdc27c6f8f8233e5515fe7764fe66"
+    },
+    "diferencias_por_parcela.csv": {
+      "bytes_identicos": true,
+      "filas": 546,
+      "sha256_mac": "55119feb881a2d0b43e714de53b743d3c7d2378aab3ecfb95ddbefffc3e6dbe2",
+      "sha256_docker": "55119feb881a2d0b43e714de53b743d3c7d2378aab3ecfb95ddbefffc3e6dbe2"
+    },
+    "influencia_celdas.csv": {
+      "bytes_identicos": true,
+      "filas": 22,
+      "sha256_mac": "ab959855e3c458183ba78099193f5c6752c66225bcb9b9cc1bba7606ecda1511",
+      "sha256_docker": "ab959855e3c458183ba78099193f5c6752c66225bcb9b9cc1bba7606ecda1511"
+    },
+    "metricas.csv": {
+      "bytes_identicos": true,
+      "filas": 16,
+      "sha256_mac": "e60e4181f50b8d4f65234c920333d90b345fadfccbf673175f3ab894583fd1d1",
+      "sha256_docker": "e60e4181f50b8d4f65234c920333d90b345fadfccbf673175f3ab894583fd1d1"
+    },
+    "metricas_por_repeticion.csv": {
+      "bytes_identicos": true,
+      "filas": 80,
+      "sha256_mac": "6a8f433ae6b104399fdfc8a4f219aa8f9c2e80cb27b3d86c60f441b74a184b60",
+      "sha256_docker": "6a8f433ae6b104399fdfc8a4f219aa8f9c2e80cb27b3d86c60f441b74a184b60"
+    },
+    "por_municipio.csv": {
+      "bytes_identicos": true,
+      "filas": 30,
+      "sha256_mac": "65721578fbefff75fd42ec2e5a6df19fb8fc4593532ca849951c0b492c932687",
+      "sha256_docker": "65721578fbefff75fd42ec2e5a6df19fb8fc4593532ca849951c0b492c932687"
+    }
+  },
+  "tests_Mac_optimizado": 12,
+  "tests_Docker_optimizado": 12,
+  "integridad_T15_Docker": {
+    "resultado": "integridad_verificada",
+    "commit_ejecucion": "cc7d0ae5437490d63408d74b4a3693a7b4494d55",
+    "artefactos_publicados": 19,
+    "artefactos_originales": 11,
+    "fuentes_fijadas": 821,
+    "fuentes_actuales_computacionales": 25,
+    "fuentes_historicas_consultadas_en_Git": 6,
+    "ajustes_nuevos": 0
+  },
+  "imagen": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+  "Linux_amd64_sin_red_repo_RO": true,
+  "reproduccion_script_PR23_Mac": "pr23_mac.log",
+  "reproduccion_script_PR23_Docker": "parcial: bootstrap A completado y coincidente; repetición de simulación exploratoria interrumpida expresamente después de más de16min. No validación integral del script original en Docker.",
+  "predicciones_59_generadas": false,
+  "T15_reentrenada": false,
+  "tests_Mac_normal": 12,
+  "terminacion_explicita_Docker_exploratorio": {
+    "orden": "docker stop con10segundos de margen",
+    "codigo_salida": 137,
+    "motivo": "Evitar repetir el remuestreo exploratorio ya completado en Mac, después de completar la auditoría y pruebas decisivas en Linux/amd64. No fallo numérico ni diagnóstico OOM.",
+    "salida_observada_A": "dMAE -0.0079; 86 mejoran/45 empeoran; pWilcoxon .012; fracción bootstrap negativa90%; IC20000[-.0163,+.0057]"
+  },
+  "auditoria_Docker_independiente_completa": true,
+  "fecha_cierre_UTC": "2026-10-16T22:06:25.201037+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "resultado": "verificado",
+  "auditor_importa_productor": false,
+  "tolerancias_fijadas_antes_de_ver_resultados": {
+    "referencias_metricas": 1e-12,
+    "matrices_coeficientes": 1e-10,
+    "prediccion_reconstruida": 1e-09
+  },
+  "comprobaciones": 554410,
+  "maximos_observados": {
+    "referencias_metricas": 1.3322676295501878e-15,
+    "prediccion_reconstruida": 6.661338147750939e-15,
+    "matrices_coeficientes": 4.547473508864641e-13
+  },
+  "OOF_verificadas": 12420,
+  "selecciones_verificadas": 400,
+  "trazas_verificadas": {
+    "externa": 450,
+    "interna": 13600
+  },
+  "estados_externos": 450,
+  "Ridge_externos_reconstruidos": 282,
+  "fuentes_previas_intactas": true,
+  "fugas_por_ID_grupo_reservadas_detectadas": 0,
+  "columnas_y_parametros_fuera_registro": 0,
+  "limite": "Verifica datos, trazas, álgebra y reportes; la selección humana previa no es validación externa ciega. No garantiza exactitud de medición en campo ni otra campaña.",
+  "script_auditor_sha256": "35633091dd88ce41ef9a6a930a915af93384df4712351e0b6c6e39af492fa6f5"
+}

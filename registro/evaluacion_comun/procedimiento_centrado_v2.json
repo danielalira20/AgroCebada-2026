@@ -1,0 +1,143 @@
+{
+  "schema": "agrocebada_comun_centrado_v2",
+  "version": "comun-centrado-v2",
+  "estado": "correccion_H3_para_revision_sin_evaluacion_T15",
+  "base_dev": "cb4580701b2bf28588e56ce3d73e64fbf2b6a738",
+  "responsable": "Dani",
+  "revision_metodologica": [
+    "Daf (T15)",
+    "Migue (T03/T16)"
+  ],
+  "corte": "2025-10-31",
+  "poblacion": {
+    "total": 197,
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "repeticiones": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "particiones": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "referencia": "media_mun__resp_grupo",
+  "ventanas": [
+    "abr_oct",
+    "jun_oct"
+  ],
+  "regularizacion": {
+    "lambda": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "alpha": "n_entrenamiento*lambda",
+    "lambda_no_se_amplia_automaticamente": true
+  },
+  "estimador": {
+    "familia": "referencia_mas_Ridge_residuo_LOO_centrado_municipal",
+    "fit_intercept": false,
+    "solver": "svd",
+    "escalado": "StandardScaler_solo_entrenamiento",
+    "faltante_admitido": [
+      "pendiente_media_t10_grados"
+    ],
+    "imputacion": "mediana_solo_entrenamiento_mas_indicador_fijo_para_pendiente",
+    "area": "log_natural_area_ha_origen_si_declarada",
+    "centrado": {
+      "momento": "despues_log_imputacion_indicador_y_escala_global",
+      "fit": "Z_menos_media_Z_municipal_solo_entrenamiento",
+      "predict": "Z_menos_centro_guardado_municipio_grupo_global",
+      "columnas": "todas_las_transformadas_incluido_indicador_faltante",
+      "reescalar_dentro_municipio": false,
+      "municipio_unico": "D_cero_fila_conservada",
+      "conteo_alpha": "todas_las_filas_entrenamiento",
+      "media_correccion_cero": "solo_en_municipios_del_entrenamiento_no_imponer_en_evaluacion"
+    }
+  },
+  "seleccion": {
+    "metrica": "MAE",
+    "poblacion_A_B": "validacion_con_municipio_en_entrenamiento",
+    "poblacion_C": "todas_solo_diagnostico",
+    "n_internas": 4,
+    "semilla_A": 0,
+    "A": "StratifiedKFold_municipio_min4_otros",
+    "B": "GroupKFold_celda_chirps",
+    "C": "GroupKFold_municipio",
+    "referencia_sola_opcion_interna": true,
+    "empate": [
+      "MAE_redondeado_6_decimales",
+      "referencia_sola",
+      "mayor_lambda",
+      "jun_oct",
+      "nombre_opcion"
+    ],
+    "sin_busqueda_en_59": true
+  },
+  "presupuesto": {
+    "max_procedimientos_por_experimento": 8,
+    "max_opciones_con_variables_por_procedimiento": 8,
+    "referencia_no_cuenta": true,
+    "repetir_mas_busquedas_requiere_registro_nuevo": true,
+    "combinaciones_concretas": "pendiente_T10_y_registro_T15; no elegidas aqui"
+  },
+  "comparacion": {
+    "principal": "A",
+    "sensibilidad_obligatoria": "B",
+    "subconjunto_decision": "sin_respaldo",
+    "dMAE": "promedio_por_parcela_de_diferencias_de_error_absoluto_en_repeticiones_elegibles",
+    "dRMSE": "promedio_por_repeticion_de_diferencias_RMSE",
+    "bootstrap": "celda_chirps_del_centroide",
+    "replicas": 5000,
+    "semilla": 20261006,
+    "intervalo_percentil": [
+      2.5,
+      97.5
+    ],
+    "promocion": {
+      "dMAE_max": -0.01,
+      "IC95_superior_max_exclusivo": 0,
+      "repeticiones_mejoran_min": 4,
+      "dRMSE_max": 0.01
+    }
+  },
+  "limites": [
+    "Conocemos resultados anteriores: esta armonizacion no se presenta como diseño ciego previo a T09/T11/T14.",
+    "No altera las ejecuciones historicas ni garantiza mejora.",
+    "A/B evalúan parcelas2025; C no demuestra rendimiento futuro entre campañas.",
+    "No elimina parcelas24 ni incluye calidad de auditoria como predictor.",
+    "No fija sensores o ventanas por ventaja vista en una comparación externa.",
+    "H3 corregido cambia el estimador; requiere conformidad de Daf/Migue y nuevo registro antes de ejecutar T15. No se modifica T10/T11/T13/T14."
+  ],
+  "fuentes_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+  },
+  "fecha": "2026-10-13",
+  "antecedente": {
+    "version": "comun-v1",
+    "sha256": "da633adf27c7f1cf2d7760dc2f190abe38d9a912f80a976717fc6213c48f76d3",
+    "commit": "fc3edc1e4e33f280b31854025987045bfd546042",
+    "resultados_previos_conocidos": true
+  },
+  "T15_evaluacion_completa_ejecutada": false,
+  "revisores_aprobaron_v2": false
+}

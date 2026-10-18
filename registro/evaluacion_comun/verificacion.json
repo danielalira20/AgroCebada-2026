@@ -1,0 +1,52 @@
+{
+  "schema": "verificacion_preparacion_comun_v1",
+  "fecha": "2026-10-13",
+  "sha_procedimiento": "da633adf27c7f1cf2d7760dc2f190abe38d9a912f80a976717fc6213c48f76d3",
+  "estado": "listo_para_revision; no ejecutada evaluación completa T15",
+  "pruebas": {
+    "Mac_completas": 294,
+    "Docker_especificas": 41,
+    "Python_optimizado_especificas": 41
+  },
+  "versiones_verificadas": {
+    "python": "3.12.15",
+    "sklearn": "1.9.1",
+    "pandas": "3.0.6",
+    "numpy": "2.2.6",
+    "scipy": "1.18.1"
+  },
+  "reproduccion_tecnica": {
+    "dos_comprobaciones_docker_identicas_por_bytes": true,
+    "max_diferencia_Mac_Docker": 4.440892098500626e-16,
+    "seleccion_igual": true,
+    "matrices_5_bloques_max_Docker": 8.881784197001252e-16,
+    "matrices_5_bloques_max_Mac": 8.881784197001252e-16,
+    "n_ajustes_internos_contexto": 36,
+    "contexto": "A/repeticion1/particion0",
+    "resultado_elegido_tecnico": "referencia_sola",
+    "alcance": "prueba técnica; no evaluación externa completa ni elección T16",
+    "modelos_finales_59": 0
+  },
+  "datos": {
+    "total": 197,
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "particiones": 690,
+    "OOF_referencia": 1380,
+    "contextos_externos_con_internas_validas": 50
+  },
+  "fuentes_T09_originales_preservadas": 424,
+  "historicos": {
+    "T11_head": "a2dbc14bf73ecd549b79383c8f2cd0317a42d3bf",
+    "T11_OOF_integras": 12420,
+    "T14_OOF_integras": 6900,
+    "metodo_comun_acreditado_en_historicos": false
+  },
+  "no_hay_ganador_T16": true,
+  "pendientes": [
+    "Revisión metodológica Daf/Migue",
+    "Revisar T10 y corrección T11 en sus versiones vigentes",
+    "Registrar combinaciones T15 antes de ejecutar",
+    "Ejecutar y reproducir evaluación completa sólo después del registro"
+  ]
+}

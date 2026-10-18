@@ -1,0 +1,87 @@
+{
+  "schema": "agrocebada_T15_verificacion_contrato_v1",
+  "fecha": "2026-10-15",
+  "resultado": "verificado_tecnicamente_para_revision",
+  "contrato_sha256": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+  "metodo": "comun-centrado-loo-v3",
+  "base_commit": "c9015e47fd353869d04b563149d3a0b707cb08c1",
+  "commits_diseno_y_codigo": [
+    "2e30966",
+    "51bb04f"
+  ],
+  "paquete_sha256": {
+    "registro/t15_contrato/contrato_v1.json": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+    "docs/t15_contrato_comparaciones.md": "2442ae9cf835085a62afb0a378a8f67d505ea17ccdfbb4641ada22258586b5b5",
+    "scripts/t15_comparaciones_contrato.py": "d0de0d138ac907ae06aa346d5bb7742c6b5cf08f533bebcc51313afac2fa7dc5",
+    "scripts/t15_comparaciones_traza.py": "3cb6f06c1b9e669e1b95f85f0eaae7c516dffa28e51a09dd717aca3677834239",
+    "tests/test_t15_comparaciones.py": "7d103968b2a853c0b1a5a1860ef7e1732d859fc14fa195d1be8f7d03eba55711"
+  },
+  "pruebas": {
+    "Mac_normal": 46,
+    "Docker_comun_python_O": 46,
+    "nuevas": 20,
+    "v3_preexistentes": 26,
+    "errores": 0,
+    "fallos": 0,
+    "selectores_iguales_v3": [
+      "G_A_rep1_part0",
+      "G_B_rep1_part0",
+      "S_A_rep1_part0"
+    ],
+    "metrica_de_aporte_evaluada_en_completa": false
+  },
+  "Docker": {
+    "imagen": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+    "plataforma": "linux/amd64",
+    "red": false,
+    "repositorio": "solo_lectura",
+    "memoria_contenedor_MB": 512,
+    "CPU": 2,
+    "detenido_al_final": true
+  },
+  "preflight": {
+    "resultado": "verificado",
+    "contrato_sha256": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+    "version": "comun-centrado-loo-v3",
+    "etiquetadas": 138,
+    "reservadas": 59,
+    "contextos_externos": 50,
+    "divisiones_internas": 200,
+    "modelos_ajustados": 0,
+    "evaluacion_habilitada": false
+  },
+  "preflight_archivos_identicos_por_bytes": true,
+  "preflight_sha256": "df5e227449c5bcf1619e47dd119008949ab9a0d25b604f02c8c572a75aa4c7f5",
+  "auditoria_independiente": {
+    "resultado": "verificado",
+    "comparaciones": 30400,
+    "divisiones": 200,
+    "modelos_ajustados": 0,
+    "importa_productor": false,
+    "resumen": {
+      "A": {
+        "validaciones": 2760,
+        "respaldadas": 60,
+        "referencia_municipal_una_etiqueta": 30
+      },
+      "B": {
+        "validaciones": 2760,
+        "respaldadas": 206,
+        "referencia_municipal_una_etiqueta": 360
+      }
+    }
+  },
+  "puerta_pruebas_de_este_lote": "cumplida",
+  "puertas_aun_pendientes": [
+    "publicacion_autorizada_y_revision_complemento_LOO_y_este_lote",
+    "precisiones_documentales_PR22",
+    "registro_aceptado_con_commit_antes_de_corrida"
+  ],
+  "extensiones": "SG y E1/Q necesitan revisión propia; cuantil necesita formulación; ninguna entra automáticamente al principal.",
+  "OOF_completa_T15_generada": false,
+  "ajuste_final_138": false,
+  "predicciones_finales_59": false,
+  "push": false,
+  "cambia_etiquetas": false,
+  "auditoria_es_independiente_del_productor_no_revision_humana": true
+}

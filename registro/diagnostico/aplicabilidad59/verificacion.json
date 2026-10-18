@@ -1,0 +1,76 @@
+{
+  "resultado": "aprobado",
+  "comparaciones_Mac_Docker_y_estaticas": 661916,
+  "max_delta_numerico_Mac_Docker": 4.440892098500626e-16,
+  "max_delta_geometrico_Mac_Docker_m": 2.543970367696602e-09,
+  "transferencias_calidad_comprobadas": 1239,
+  "tablas_numericas_antes_despues_diccionario_identicas": 6,
+  "archivos_previos_protegidos": 745,
+  "archivos_previos_cambiados": [],
+  "auditor_independiente": {
+    "resultado": "aprobado",
+    "comparaciones": 297889,
+    "max_delta_atributos_estado_y_error": 2.2737367544323206e-12,
+    "max_delta_geometria_m": 4.547473508864641e-11,
+    "n_contextos": 51,
+    "n_representaciones": 15,
+    "registros_atributos": 21585,
+    "geometrias": 197,
+    "usa_productor": false,
+    "ajustes_modelos": 0,
+    "metodo": "statistics_pstdev_cdist_y_geometria_escalar_proyeccion_explicita",
+    "limites": "Comprobacion tecnica, no aprobacion humana ni evidencia nueva de mejora predictiva"
+  },
+  "imagen_Docker": "b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+  "nueva_evaluacion_predictiva": false,
+  "nuevo_modelo": false,
+  "pruebas": {
+    "Mac": 28,
+    "Docker_linux_amd64_python_O": 28
+  },
+  "B": {
+    "estado": "borrador_no_ejecutable",
+    "procedimientos": 8,
+    "opciones": 60
+  },
+  "C": {
+    "version": "aplicabilidad-C-v1",
+    "n_reservadas": 59,
+    "n_etiquetadas": 138,
+    "n_contextos_externos": 50,
+    "n_contextos_parcela_oof": 1380,
+    "n_entradas59": 885,
+    "n_entradas_oof": 20700,
+    "municipio_representado": 59,
+    "soporte_municipal_menos4": 1,
+    "vecina20_general": 24,
+    "vecina20_municipio": 24,
+    "celda_principal_nueva": 2,
+    "clima_exacto": {
+      "abr_oct": 49,
+      "jun_oct": 49
+    },
+    "fuera_global_algun_bloque": 9,
+    "supera_q95_algun_bloque": 19,
+    "alerta_contorno": 12,
+    "hay_modelo_nuevo": false,
+    "hay_predicciones_nuevas": false,
+    "unidad": "parcela_2025_no_repeticion_ni_fila_de_soporte",
+    "advertencia": "Soporte descriptivo; no probabilidad ni intervalo de rendimiento; no validacion temporal."
+  },
+  "revision_humana": "pendiente_Daf_Migue",
+  "publicado": false,
+  "codigo_sha256": {
+    "scripts/diagnostico_aplicabilidad59.py": "2bcc3ff6c82e77b012f38c466d4c8c38220cae587e728156a2e9c6f541be9071",
+    "scripts/auditar_aplicabilidad59.py": "5c242ec35311b726c63333523879c7e5516c54dd99a42ca5a5b24a9862212df2",
+    "scripts/aplicabilidad_agregacion.py": "8cefc83571d5e0e9d6bdca3409bfe25b1bcb19b9b3c553ccafcc3138f895cd3a",
+    "tests/test_diagnostico_aplicabilidad59.py": "ce3360b38d9b59f6a320f7d0d6188be9eebe131da3decbe2aacded95c93f623f",
+    "tests/test_aplicabilidad_agregacion.py": "8289f964ab335d5a5671af49debc750afff27a91e17d47c75acc2fdeddc6e39d"
+  },
+  "incidencias_resueltas": [
+    "Auditor: reconocer booleano NumPy, sin cambiar cálculo",
+    "Comparador: clasificar delta de centros como metros; tolerancias originales preservadas",
+    "Complemento distingue pérdidas por parcela, registro y repetición sin cambiar predicciones"
+  ],
+  "alcance_historico": "Errores T08 reagrupados, no nuevo MAE de v3."
+}

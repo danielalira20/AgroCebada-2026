@@ -1,0 +1,16 @@
+{
+  "PR24_commit": "1331e4f90898e3b806c57f87e8fc296c4e1fc88a",
+  "referencia_mediana_T08_T12_byte_identica": true,
+  "sha256_referencia": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+  "control_diferente": "t12_control_mediana_het_GP añade corrección heterogénea sobre mediana; no se exige identidad con referencia pura.",
+  "OOF_control": 1380,
+  "OOF_distintas_de_referencia_pura": 653,
+  "por_escenario": {
+    "A": 248,
+    "B": 405
+  },
+  "max_delta": 0.36613961652912685,
+  "interpretacion": "Diferencia esperada entre procedimientos, no fallo de cálculo. Las cifras de mediana pura proceden del CSV T08 compartido, no de atribuir el control het a mediana sola.",
+  "valores_metricas_referencias_T12_cotejados": 192,
+  "max_delta_metricas_T12": 2.220446049250313e-16
+}
