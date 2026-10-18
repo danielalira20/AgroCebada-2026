@@ -45,8 +45,8 @@ for modelo in ["media_mun__resp_grupo", "mediana_mun__resp_grupo"]:
     assert checks and checks[0].count("✓") == 4 and "✗" not in checks[0], (modelo, checks)
     kpis = html(at, "class='kpis'")[0]
     print(f"analista ({modelo}): 4 verificaciones en verde ·",
-          "MAE", kpis.split("MAE validación A</span><b class='kv'>")[1][:5],
-          "· R²", kpis.split("R² validación A</span><b class='kv'>")[1][:5])
+        "MAE", kpis.split("MAE · A sin respaldo</span><b class='kv'>")[1][:5],
+        "· R²", kpis.split("R² · A sin respaldo</span><b class='kv'>")[1][:5])
 
 caja(at, "Buscar parcela por ID").set_value("AGC_120").run()
 assert not at.exception, at.exception
