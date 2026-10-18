@@ -6,6 +6,8 @@ Responsable: Migue | Revisor: Diego
 - **Usa:** clima mensual de T04 (`registro/t04/clima_parcela_mes.csv`), particiones de T03, referencia de T08/D019 y la regla de T03 §4 en `sin_respaldo`.
 - **Reproducir:** `python scripts/t14_clima.py --datos RUTA/DATASET_RETO_AGRO_2026 --clima registro/t04/clima_parcela_mes.csv --particiones registro/t03/particiones.csv --catalogo analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv --pares analisis/auditoria_catalogo_y_etiquetas/tablas/pares_de_parcelas_cercanas.csv --salida registro/t14`
 
+> **Nota (15 oct):** T15 v3 alinea el centro municipal con la referencia LOO. Con esa alineación los ΔMAE de las variantes centradas cambian ≤ 0.001 y ninguna conclusión cambia.
+
 ## Pregunta
 
 ¿Cuál variable climática (lluvia, temperatura mínima o temperatura máxima) aporta más para estimar el rendimiento, por encima de la referencia territorial? (Segunda pregunta adicional del reto.)

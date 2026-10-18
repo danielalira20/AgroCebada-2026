@@ -53,6 +53,7 @@ Los datos completos están en `registro/t03/soporte_resumen.csv`. Ninguna cifra 
 - **Subconjuntos (D019).** Toda comparación se reporta en `todas` (las 690 predicciones fuera del entrenamiento de cada escenario) y en `sin_respaldo` (sólo las predicciones de parcelas cuyo municipio tiene etiquetas en el entrenamiento de esa partición: 675 en A y 659 en B). La regla de decisión se aplica en `sin_respaldo`, porque es el caso de las 59 reservadas, donde el respaldo no se activa nunca (§3). El subconjunto depende sólo de la partición, no del modelo, así que es el mismo para todos los candidatos.
 - **Referencia para T09–T16: `media_mun__resp_grupo` (D019).** Todos los frentes miden su ΔMAE contra ella.
 - **Comparación emparejada:** para cada parcela, la diferencia de error absoluto entre el candidato y la referencia, promediada en las 5 repeticiones (ΔMAE por parcela), en cada subconjunto.
+  - **Unidad de resumen en `sin_respaldo` (aclaración del 15 de octubre).** El ΔMAE se calcula por parcela (promedio de sus repeticiones válidas y luego promedio de parcelas), como dice este punto. El nivel de MAE en `sin_respaldo` se reporta igual, por parcela; si se reporta por registros, se dice. En A da lo mismo (135 parcelas × 5 registros). En B no: 16 parcelas tienen 4 registros válidos y la referencia da 0.3632 por parcela frente a 0.3584 por registros. En el ΔMAE la diferencia entre unidades es ≤ 0.0005.
 - **Incertidumbre que respeta la cercanía espacial (O4):** bootstrap por bloques.
   - **Unidad que se remuestrea:** la celda CHIRPS (0.05°) del centroide de la parcela. Hay 23 celdas con parcelas etiquetadas. Todas las parcelas de una celda entran o salen juntas. En el subconjunto `sin_respaldo` son 22 celdas, porque una sólo contiene parcelas que usan respaldo (`n_celdas` en `registro/t03/comparacion_emparejada.csv`).
   - **Estadístico:** el ΔMAE medio de todas las parcelas de las celdas elegidas (cada celda pesa según su número de parcelas).
@@ -105,7 +106,9 @@ Añadido el 6 de octubre a partir de la auditoría de T02 y de la revisión de D
   - Los modelos con variables (T09–T15) aplican el mismo respaldo a su término municipal; sus variables propias se usan igual.
   - Cada predicción registra qué respaldo usó (columna `fuente`), y T08 reporta cuántas veces se activa (`registro/t03/activacion_respaldos.csv`). Implementado en `scripts/t08_referencias.py`; resultados en `registro/t03/`; reproducido por Daf en la revisión del PR #8. Con las particiones de `registro/t03/particiones.csv` se activa en 15 de 690 predicciones del escenario A (las tres parcelas únicas de su municipio, en las 5 repeticiones) y en ninguna de las 59 reservadas.
   - **Coincide con T02 (Jass):** el catálogo confirma que Apan, Nanacamilpa y Tepeapulco tienen una sola parcela conocida cada uno, por lo que el escalón de su etiqueta no se puede determinar; es el mismo motivo por el que se agrupan en `otros`.
+  - **Municipio con una sola etiqueta en el entrenamiento (aclaración del 15 de octubre).** Al ajustar, esa fila usa el respaldo: su referencia y su centro municipal se calculan sin ella (grupo → global). Al predecir, la referencia y el centro municipales salen de esa única etiqueta. Pasa en todos los ajustes con Apan, Tepeapulco o Nanacamilpa; en 34 predicciones externas de B (MAE de la referencia 0.197, sobre todo Emiliano Zapata); en ninguna de A; y en 1 de las 59: AGC_120 (Nanacamilpa), cuya referencia es 2.5 t/ha, la etiqueta de AGC_048 a 1.9 km.
 - **Presupuesto por frente:** una familia de modelo y como máximo 8 configuraciones (por ejemplo, 6–8 valores de α en Ridge o Huber). Cualquier búsqueda mayor cuenta como otro experimento y se registra.
+  - **Qué cuenta como configuración (aclaración del 15 de octubre).** Una configuración es un procedimiento que se compara fuera contra la referencia (máximo 8 por frente). Las opciones que se eligen dentro de cada entrenamiento externo con las internas (α, ventana) no suman configuraciones, pero se reporta cuántas hay por procedimiento. Elegir entre opciones mirando resultados externos sí suma. Es como se ha contado desde T14 (8 procedimientos × 6 α).
 - **Candidatos admitidos en T08–T16:**
   - Mediana global.
   - Media y mediana municipal, cada una con respaldo global o por grupo de registro.
@@ -114,6 +117,24 @@ Añadido el 6 de octubre a partir de la auditoría de T02 y de la revisión de D
   - Regresión con interceptos municipales sin penalizar.
   - Un contraste no lineal pequeño (T12).
 - **Residuos (O4):** residuo = real − referencia. Dentro de cada entrenamiento externo, la referencia de cada fila se calcula **dejando fuera esa fila**. Nunca se calcula una referencia con las 138 etiquetas antes de evaluar.
+
+## 5 bis. Selección interna en el escenario B (extensión prospectiva, 15 de octubre)
+
+Añadido el 15 de octubre a partir de la revisión de T15 v3 (PR #21). **No cambia la evaluación principal (A), la regla de decisión de la §4 ni los resultados ya reportados de T08–T14.**
+
+- **Motivo.** En B la evaluación externa deja fuera celdas CHIRPS completas. Con internas estratificadas por municipio, el α se elige validando en parcelas que comparten celda con el ajuste interno, que es la situación de A y no la de B. Para que la selección interna imite a la externa (validación anidada), en B las internas se agrupan por celda.
+- **Regla (sólo evaluaciones nuevas, desde T15 v3):**
+  1. Escenario B: 4 particiones internas con `GroupKFold` por la celda CHIRPS del centroide, sin barajar (reproducible). Si un entrenamiento tiene menos de 4 celdas, el script se detiene.
+  2. MAE interno = MAE de todas las predicciones internas concatenadas, contando sólo las filas con referencia municipal en el ajuste interno (`fuente == municipio`, la población `sin_respaldo` de D019). Se concatena porque los pliegues por celda tienen tamaños muy distintos (hay celdas de 34 parcelas).
+  3. Empate: gana el α mayor (sin cambio).
+  4. Escenarios A y C: sin cambio (internas estratificadas por municipio, estrato `otros`, semilla 0).
+  5. Cada salida registra qué internas usó (`internas = estratificada | celda`) y, por ajuste, cuántas filas internas se excluyeron por respaldo y cuántas usan una referencia municipal de una sola etiqueta.
+- **Qué no cambia.**
+  - La principal sigue siendo A (§3) y la regla de la §4 se aplica igual, en `sin_respaldo`.
+  - Los resultados de T08–T14 no se recalculan ni cambian de nombre: se evaluaron con la versión de T03 vigente (internas estratificadas también en B) y así se citan.
+  - En T16, una comparación en B entre un procedimiento con internas por celda y otro con internas estratificadas se marca como no homogénea. Para comparar frentes en B se usa la misma versión de internas.
+- **Por qué es extensión y no corrección.** No es neutral: cambia el α elegido y el resultado en B. En la verificación independiente (`entregas/revisiones/verificar_t15_v3.py` del repo de revisión `nova-cz/agrocebada`, rama `claude/gallant-galileo-ls6ktb`), con Tmax centrado el α más frecuente pasa de 1 000–10 000 a 100 y el ΔMAE en B `sin_respaldo` pasa de +0.0018 a −0.0079 (IC95_celdas −0.019 a +0.010, 5 de 5 repeticiones; no cumple la regla). Con las tres variables pasa de +0.0020 a +0.0096. Por eso sólo vale para procedimientos declarados antes de ver sus resultados con estas internas; si ya se vieron, se reporta como posterior.
+- **Costo.** En B, de 2 760 validaciones internas, 206 caen en respaldo (72 con estratificadas) y 360 usan una referencia de una sola etiqueta (28 con estratificadas). La elección de α es más variable.
 
 ## 6. Corte temporal provisional (mejora C)
 

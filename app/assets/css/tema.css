@@ -1,0 +1,270 @@
+
+:root { --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D; }
+.stApp { background:
+  radial-gradient(1100px 520px at 0% -10%, rgba(155,225,93,.13), transparent 60%),
+  radial-gradient(900px 480px at 100% 0%, rgba(47,224,160,.10), transparent 60%),
+  radial-gradient(900px 600px at 50% 115%, rgba(47,224,160,.07), transparent 60%), #0A110E; }
+header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
+.block-container { padding-top: 1rem; padding-bottom: 2rem; max-width: 1500px; }
+
+/* vidrio */
+[class*="st-key-glass"] { background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)), var(--vidrio);
+  border: 1px solid var(--borde); border-radius: 18px; padding: 14px 16px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.06); }
+/* el desenfoque va sólo en lo que flota sobre el mapa: en las tarjetas encerraría la pantalla completa */
+.st-key-glass_top, .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros,
+.st-key-glass_leyenda { backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%); }
+
+.st-key-glass_top {
+    padding: 16px 16px 22px;
+}
+
+.st-key-glass_top .marca-s {
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+/* separar el encabezado de los botones en móvil */
+@media (max-width: 600px) {
+    .st-key-glass_top .marca {
+        margin-bottom: 14px;
+    }
+}
+
+
+/* QA: espacio para el botón PDF en Ficha técnica */
+.st-key-glass_ficha .stDownloadButton {
+    margin-top: 16px;
+}
+
+/* QA: separación de la nota inferior de NDVI */
+.st-key-glass_indice {
+    padding-bottom: 28px;
+}
+
+.st-key-glass_indice .nota {
+    margin-top: 16px;
+    margin-bottom: 10px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+}
+
+/* mejorar espaciado de Las 59 estimaciones */
+.st-key-glass_tabla {
+    padding-bottom: 26px;
+}
+.st-key-glass_tabla .nota {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+}
+
+/* espacio inferior en Método y límites */
+.st-key-glass_metodo,
+.st-key-glass_resultados,
+.st-key-glass_fuentes,
+.st-key-glass_limites {
+    padding-bottom: 28px;
+}
+
+/* QA: espaciado de información insuficiente */
+.st-key-glass_insuf {
+    padding-bottom: 26px;
+}
+.st-key-glass_insuf .nota {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+}
+
+/* métricas adaptables en pantallas pequeñas */
+@media (max-width: 600px) {
+    .st-key-glass_resultados .fila {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .st-key-glass_resultados .mini {
+        min-width: 0;
+        padding: 12px;
+    }
+    .st-key-glass_resultados .mini:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Evitar que los textos terminen pegados al borde */
+.st-key-glass_resultados .nota {
+    margin-top: 16px;
+    margin-bottom: 10px;
+    line-height: 1.55;
+}
+
+/* Separación interior de las tarjetas del procedimiento */
+.st-key-glass_metodo .paso {
+    padding: 16px 14px 22px;
+}
+
+/* Dar espacio a las etiquetas de fuentes */
+.st-key-glass_fuentes .etiquetas {
+    margin-bottom: 8px;
+}
+
+/* Separación inferior de las advertencias */
+.st-key-glass_limites .limites {
+    padding-bottom: 8px;
+}
+
+/* QA: espacio y adaptación de la tarjeta informativa */
+.st-key-glass_explica {
+    padding: 18px 20px 26px;
+}
+
+.st-key-glass_explica .mascota > div:last-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.st-key-glass_explica .nota {
+    line-height: 1.55;
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
+
+/* mapa protagonista con paneles flotantes */
+.st-key-hero { position: relative; gap: 0; }
+.st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+.st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
+/* espacio inferior del resumen del analista */
+.st-key-glass_kpis {
+    padding-bottom: 26px;
+}
+.st-key-glass_kpis .kpis {
+    margin-bottom: 6px;
+}
+.st-key-glass_chips, .st-key-glass_filtros { position: absolute; top: 16px; right: 62px; width: 280px; z-index: 5; }
+/* Leyenda del mapa: espacio interno y mejor lectura */
+.st-key-glass_leyenda {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 300px;
+    z-index: 5;
+    padding: 12px 16px 18px;
+}
+.st-key-glass_leyenda .ley-nota {
+    margin-top: 8px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+/* Espaciado adicional en pantallas pequeñas */
+@media (max-width: 900px) {
+    .st-key-glass_leyenda {
+        padding-bottom: 24px;
+    }
+}
+@media (max-width: 900px) {
+  .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda {
+    position: relative; top: auto; left: auto; right: auto; bottom: auto; width: auto; margin-top: 10px; }
+}
+
+/* texto */
+.marca { display: flex; align-items: center; gap: 12px; }
+.marca-t { font-weight: 800; font-size: 1.15rem; color: #fff; letter-spacing: -.01em; line-height: 1.1; }
+.marca-s { font-size: .76rem; color: var(--tenue); }
+.eyebrow { font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--tenue); font-weight: 600; }
+.big { font-size: 3.1rem; font-weight: 800; letter-spacing: -.035em; line-height: 1; color: #fff; margin: 6px 0 2px; }
+.big small, .kv small { font-size: .95rem; font-weight: 600; color: var(--tenue); margin-left: 6px; letter-spacing: 0; }
+.fila { display: flex; gap: 8px; margin-top: 12px; }
+.mini { flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
+  padding: 8px 10px; }
+.mini span { display: block; font-size: .68rem; color: var(--tenue); }
+.mini b { font-size: 1.02rem; color: #fff; font-weight: 700; }
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.kv { font-size: 1.45rem !important; letter-spacing: -.02em; }
+.nota { font-size: .78rem; color: var(--tenue); margin-top: 10px; line-height: 1.4; }
+.aviso { margin-top: 10px; font-size: .78rem; color: #F5D08A; background: rgba(245,181,68,.12);
+  border: 1px solid rgba(245,181,68,.30); border-radius: 10px; padding: 8px 10px; line-height: 1.35; }
+.chips { display: flex; flex-direction: column; gap: 9px; }
+.chip { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: .78rem;
+  color: var(--tenue); }
+.chip b { color: #fff; font-size: .95rem; font-weight: 700; }
+.ley-bar { height: 8px; border-radius: 6px; background: linear-gradient(90deg, rgb(217,164,65), rgb(140,203,94),
+  rgb(47,224,160)); }
+.ley-txt { display: flex; justify-content: space-between; font-size: .7rem; color: var(--tenue); margin-top: 4px; }
+.ley-nota { font-size: .7rem; color: var(--tenue); margin-top: 4px; }
+.tit { font-weight: 700; font-size: 1.02rem; color: #fff; }
+.sub { font-size: .8rem; color: var(--tenue); margin: 2px 0 8px; }
+.chk { display: inline-flex; gap: 6px; align-items: center; padding: 5px 11px; border-radius: 999px; font-size: .78rem;
+  margin: 0 6px 6px 0; }
+.chk.ok { background: rgba(47,224,160,.12); color: #7EF0C4; border: 1px solid rgba(47,224,160,.30); }
+.chk.mal { background: rgba(255,99,99,.12); color: #FF9C9C; border: 1px solid rgba(255,99,99,.30); }
+.creditos { font-size: .66rem; color: #66796e; margin: 8px 4px 16px; }
+.encontrada { font-size: .8rem; color: #fff; margin-top: 4px; }
+.mascota { display: flex; gap: 14px; align-items: flex-start; }
+.mascota .cebi { flex: 0 0 64px; width: 64px; height: 64px; }
+
+/* Cebi animado: llega, parpadea, mece el brote y da saltitos (sólo CSS) */
+.cebi svg { width: 100%; height: 100%; overflow: visible; }
+.cebi .cebi-todo { transform-box: view-box; transform-origin: 50% 92%; animation: cebi-salto 7s ease-in-out 2.2s infinite; }
+.cebi .cebi-ojos { transform-box: fill-box; transform-origin: center; animation: cebi-parpadeo 4.8s ease-in-out 1.2s infinite; }
+.cebi .cebi-brote { transform-box: view-box; transform-origin: 50% 30%; animation: cebi-brote 2.8s ease-in-out infinite alternate; }
+.cebi .cebi-pie { transform-box: fill-box; transform-origin: center bottom; }
+.marca .cebi { animation: cebi-llega .9s cubic-bezier(.2, .9, .3, 1.25) both; }
+.mascota .cebi { animation: cebi-camina 1.8s ease-out both; }
+.mascota .cebi .cebi-pie-i { animation: cebi-paso .3s ease-in-out 6 alternate; }
+.mascota .cebi .cebi-pie-d { animation: cebi-paso .3s ease-in-out .15s 6 alternate; }
+.mascota .cebi .cebi-torso { animation: cebi-bamboleo .3s ease-in-out 6 alternate; transform-box: view-box;
+  transform-origin: 50% 90%; }
+@keyframes cebi-llega { 0% { opacity: 0; transform: translateY(-22px) scale(.4); } 60% { opacity: 1; }
+  100% { opacity: 1; transform: none; } }
+@keyframes cebi-camina { 0% { opacity: 0; transform: translateX(-70px); } 15% { opacity: 1; }
+  100% { opacity: 1; transform: none; } }
+@keyframes cebi-paso { from { transform: translateY(0); } to { transform: translateY(-28%); } }
+@keyframes cebi-bamboleo { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+@keyframes cebi-parpadeo { 0%, 88%, 100% { transform: scaleY(1); } 92% { transform: scaleY(.08); } 96% { transform: scaleY(1); } }
+@keyframes cebi-brote { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
+@keyframes cebi-salto { 0%, 82%, 100% { transform: translateY(0) scale(1, 1); } 85% { transform: translateY(0) scale(1.07, .9); }
+  90% { transform: translateY(-12%) scale(.95, 1.06); } 95% { transform: translateY(0) scale(1.05, .94); } }
+@media (prefers-reduced-motion: reduce) { .cebi, .cebi * { animation: none !important; } }
+.pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+.paso { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 12px; }
+.paso .n { width: 26px; height: 26px; border-radius: 50%; background: rgba(155,225,93,.18); color: var(--acento);
+  display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
+.paso b { display: block; color: #fff; margin: 8px 0 4px; font-size: .92rem; }
+.paso p { margin: 0; font-size: .8rem; color: var(--tenue); line-height: 1.4; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.etiqueta { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); border-radius: 999px;
+  padding: 6px 12px; font-size: .78rem; color: #E7EFE9; }
+.etiqueta span { color: var(--tenue); }
+.limites { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin-top: 8px; }
+.limite { display: flex; gap: 10px; font-size: .82rem; color: #E7EFE9; line-height: 1.4; }
+.limite::before { content: "!"; flex: 0 0 20px; height: 20px; border-radius: 50%; background: rgba(245,181,68,.16);
+  color: #F5B544; font-weight: 800; font-size: .72rem; display: grid; place-items: center; margin-top: 1px; }
+@media (max-width: 900px) { .pasos { grid-template-columns: 1fr 1fr; } .limites { grid-template-columns: 1fr; } }
+
+/* pestañas tipo píldora */
+.stTabs [role="tablist"] { gap: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--borde) !important;
+  padding: 6px; border-radius: 14px; width: fit-content; max-width: 100%; overflow-x: auto; box-shadow: none !important; }
+.stTabs [role="tab"] { height: auto; padding: 8px 16px !important; border-radius: 10px; border: none !important;
+  box-shadow: none !important; }
+.stTabs [role="tab"][aria-selected="true"] { background: rgba(155,225,93,.16); }
+.stTabs [role="tab"]::after, .stTabs [role="tab"]::before, .stTabs [role="tablist"]::after { display: none !important; }
+.stTabs > div { border-bottom: none !important; box-shadow: none !important; }
+
+/* controles */
+[data-testid="stWidgetLabel"] p { font-size: .74rem; color: var(--tenue); }
+.stApp [data-baseweb="select"] > div { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
+
+.stDownloadButton button[kind="primary"] {
+    color: #0A110E;
+    font-weight: 600;
+}
+
+/* QA: separar la explicación del botón PDF */
+.st-key-glass_panel .stDownloadButton {
+    margin-top: 14px;
+}
