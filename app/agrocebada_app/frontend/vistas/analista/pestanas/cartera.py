@@ -5,6 +5,7 @@ import altair as alt
 import streamlit as st
 
 from agrocebada_app.backend.dominio.cartera import cartera_municipios, totales_cartera
+from agrocebada_app.backend.dominio.confianza import NIVELES
 from agrocebada_app.backend.dominio.rangos import ANIO, rangos_municipio
 from agrocebada_app.frontend.componentes.graficas.base import grafica_base
 from agrocebada_app.frontend.tema.html import e, h, titulo
@@ -50,14 +51,15 @@ def grafica_cartera(t, alto_fila=46):
 def cartera(ctx):
     d = ctx.d
     rangos = rangos_municipio(d[d.CONJUNTO == "ENTRENAMIENTO"])
-    t = cartera_municipios(d, ctx.pred, rangos)
+    t = cartera_municipios(d, ctx.pred, rangos, ctx.conf)
     tot = totales_cartera(t)
     with st.container(key="glass_cartera"):
         titulo("Cartera por municipio",
                "Producción estimada de las parcelas por estimar y lo que pasaría si todo el municipio tuviera "
                "un año bajo o uno alto.")
         if tot["mezcla_confianza"]:
-            cuarto = ("Confianza", " · ".join(f"{n} {k}" for k, n in tot["mezcla_confianza"].items()), "parcelas")
+            mezcla = tot["mezcla_confianza"]      # en el orden alta, media, baja y con la inicial en mayúscula
+            cuarto = ("Confianza", " · ".join(f"{mezcla[k]} {k.capitalize()}" for k in NIVELES if k in mezcla), "parcelas")
         else:
             cuarto = ("Producción: escenario bajo a alto",
                       f"{tot['escenario_bajo_t']:,.0f}–{tot['escenario_alto_t']:,.0f}", "t")
@@ -74,7 +76,8 @@ def cartera(ctx):
         a, b = st.columns([3, 1], vertical_alignment="center")
         with a:
             titulo("Tabla por municipio")
-        vista = t.assign(tipo_rango=t.tipo_rango.map(TIPOS)).rename(columns={
+        vista = t.assign(tipo_rango=t.tipo_rango.map(TIPOS),
+                         confianza=t.confianza.map(lambda v: v.capitalize() if isinstance(v, str) else v)).rename(columns={
             "municipio": "Municipio", "parcelas": "Parcelas", "hectareas": "Hectáreas",
             "estimacion": "Estimación (t/ha)", "tipo_rango": "Tipo de rango",
             "rango_bajo": "Año bajo del municipio (t/ha)", "rango_alto": "Año alto del municipio (t/ha)",
