@@ -29,6 +29,7 @@ def main():
     lectura.leer_series(r["datos"]).to_parquet(PAQ / "series.parquet", index=False)
     if r["t04"]:
         lectura.leer_clima(r["t04"]).to_parquet(PAQ / "clima.parquet", index=False)
+        lectura.leer_clima_normal(r["t04"]).to_parquet(PAQ / "clima_normal.parquet", index=False)
     v = lectura.leer_validacion(r["t08"])
     v[["ID_POLIGONO", "repeticion", "particion", "escenario", "real", "prediccion", "candidato", "fuente"]].to_parquet(
         PAQ / "validacion.parquet", index=False)
