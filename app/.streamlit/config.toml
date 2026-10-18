@@ -1,0 +1,29 @@
+[theme]
+base = "dark"
+primaryColor = "#9BE15D"
+backgroundColor = "#0A110E"
+secondaryBackgroundColor = "#15201B"
+textColor = "#E7EFE9"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap, sans-serif"
+baseRadius = "12px"
+borderColor = "#24312B"
+chartCategoricalColors = ["#9BE15D", "#2FE0A0", "#F5B544", "#7FB2FF", "#FF7A45", "#C59BFF", "#F2E86D", "#5ED1E8", "#FF9EC4"]
+
+[server]
+headless = true
+maxUploadSize = 50             # MB; la app además revisa tamaño, tipo y contenido de cada archivo
+enableXsrfProtection = true    # protege la subida de archivos contra peticiones de otros sitios
+enableCORS = true
+enableStaticServing = false    # no se sirve ningún archivo de la carpeta al navegador
+runOnSave = false
+fileWatcherType = "none"       # en producción no vigila cambios de código
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "viewer"         # oculta el botón Deploy y el menú de desarrollador
+showErrorDetails = "none"      # si algo falla, el navegador no ve rutas, código ni trazas; sólo un aviso genérico
+
+[runner]
+magicEnabled = false

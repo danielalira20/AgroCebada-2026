@@ -33,3 +33,29 @@ CLAUDE.local.md
 
 # Archivos de contexto locales 
 context/*
+
+# Paquete compacto de la app T17 (se regenera con app/herramientas/preparar_datos.py)
+app/datos_app/
+
+# Secretos de Streamlit (el config.toml de app/.streamlit sí se versiona)
+**/.streamlit/secrets.toml
+
+# Cachés de herramientas, cobertura y empaquetado
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Editores, sistema y archivos temporales
+.vscode/
+.idea/
+Thumbs.db
+*.log
+*.tmp
+*.swp
+
+# Configuración local de Claude Code
+.claude/settings.local.json
