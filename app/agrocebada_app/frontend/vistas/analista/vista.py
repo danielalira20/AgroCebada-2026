@@ -1,4 +1,4 @@
-"""Vista del analista: mapa de las 197 parcelas, resumen y cinco pestañas."""
+"""Vista del analista: mapa de las 197 parcelas, resumen y seis pestañas."""
 import streamlit as st
 
 from agrocebada_app.backend.dominio.geometria import vecinas
@@ -6,6 +6,7 @@ from agrocebada_app.config import AYUDA_MAPA, CREDITOS, MODELOS
 from agrocebada_app.frontend.componentes.mapa.mapa import mapa
 from agrocebada_app.frontend.componentes.paneles.leyenda import leyenda
 from agrocebada_app.frontend.tema.html import e, h
+from agrocebada_app.frontend.vistas.analista.pestanas.cartera import cartera
 from agrocebada_app.frontend.vistas.analista.pestanas.estimaciones import estimaciones
 from agrocebada_app.frontend.vistas.analista.pestanas.ficha_tecnica import ficha_tecnica
 from agrocebada_app.frontend.vistas.analista.pestanas.metodo_limites import metodo_limites
@@ -65,9 +66,11 @@ def mostrar(ctx):
               + "</div>")
     h(f"<div class='creditos'>{AYUDA_MAPA} · {e(CREDITOS)}</div>")
 
-    t1, t2, t3, t4, t5 = st.tabs(["Las 59 estimaciones", "Ficha técnica", "Validación", "Método y límites",
-                                  "Analizar tus datos"])
+    t0, t1, t2, t3, t4, t5 = st.tabs(["Cartera", "Las 59 estimaciones", "Ficha técnica", "Validación",
+                                      "Método y límites", "Analizar tus datos"])
 
+    with t0:
+        cartera(ctx)
     with t1:
         estimaciones(ctx)
     with t2:
