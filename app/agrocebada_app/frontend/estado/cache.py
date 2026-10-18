@@ -23,6 +23,9 @@ def series():
 def clima():
     return paquete.clima()
 
+@st.cache_data
+def clima_normal():
+    return paquete.clima_normal()
 
 @st.cache_data
 def soporte():
