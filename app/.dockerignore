@@ -1,0 +1,28 @@
+# Nada de datos del reto ni de tablas generadas dentro de la imagen
+datos_app
+**/*.zip
+**/*.csv
+!datos_estaticos/elevacion_parcelas.csv
+**/*.parquet
+**/*.shp
+**/*.shx
+**/*.dbf
+**/*.prj
+**/*.tif
+**/*.tiff
+**/*.joblib
+**/*.pkl
+
+# Entornos, secretos y archivos de desarrollo
+.venv
+venv
+.env
+.env.*
+**/.streamlit/secrets.toml
+**/__pycache__
+**/*.py[cod]
+.pytest_cache
+.git
+tests
+Dockerfile
+.dockerignore
