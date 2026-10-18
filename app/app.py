@@ -61,14 +61,43 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-glass_top, .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros,
 .st-key-glass_leyenda { backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%); }
 
-.st-key-glass_top { padding: 10px 16px; }
+.st-key-glass_top {
+    padding: 16px 16px 22px;
+}
 
+.st-key-glass_top .marca-s {
+    line-height: 1.5;
+}
+
+/* separar el encabezado de los botones en móvil */
+@media (max-width: 600px) {
+    .st-key-glass_top .marca {
+        margin-bottom: 14px;
+    }
+}
+
+
+/* QA: espacio para el botón PDF en Ficha técnica */
+.st-key-glass_ficha .stDownloadButton {
+    margin-top: 16px;
+}
+
+/* QA: separación de la nota inferior de NDVI */
+.st-key-glass_indice {
+    padding-bottom: 28px;
+}
+
+.st-key-glass_indice .nota {
+    margin-top: 16px;
+    margin-bottom: 10px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+}
 
 /* mejorar espaciado de Las 59 estimaciones */
 .st-key-glass_tabla {
     padding-bottom: 26px;
 }
-
 .st-key-glass_tabla .nota {
     margin-top: 16px;
     margin-bottom: 8px;
@@ -82,6 +111,17 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-glass_fuentes,
 .st-key-glass_limites {
     padding-bottom: 28px;
+}
+
+/* QA: espaciado de información insuficiente */
+.st-key-glass_insuf {
+    padding-bottom: 26px;
+}
+.st-key-glass_insuf .nota {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
 }
 
 /* métricas adaptables en pantallas pequeñas */
@@ -143,6 +183,13 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
   border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
 .st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
+/* espacio inferior del resumen del analista */
+.st-key-glass_kpis {
+    padding-bottom: 26px;
+}
+.st-key-glass_kpis .kpis {
+    margin-bottom: 6px;
+}
 .st-key-glass_chips, .st-key-glass_filtros { position: absolute; top: 16px; right: 62px; width: 280px; z-index: 5; }
 /* Leyenda del mapa: espacio interno y mejor lectura */
 .st-key-glass_leyenda {
@@ -934,7 +981,9 @@ else:
                 puntos = alt.Chart(sc).mark_circle(size=55, opacity=0.85).encode(
                     x=alt.X("real:Q", title="registrado (t/ha)", scale=dom),
                     y=alt.Y("estimacion:Q", title="estimado sin conocerlo (t/ha)", scale=dom),
-                    color=alt.Color("municipio:N", title=None, legend=alt.Legend(orient="bottom", columns=3)),
+                    
+                    color=alt.Color("municipio:N",title=None,legend=alt.Legend(orient="bottom",direction="horizontal",columns=2,labelLimit=220,labelFontSize=11,columnPadding=12,rowPadding=6)),
+
                     tooltip=["ID_POLIGONO", "municipio", "real", alt.Tooltip("estimacion", format=".2f")])
                 diag = alt.Chart(pd.DataFrame({"x": [2, 6], "y": [2, 6]})).mark_line(
                     color="rgba(255,255,255,0.35)", strokeDash=[4, 4]).encode(
