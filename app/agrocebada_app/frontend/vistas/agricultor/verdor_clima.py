@@ -18,4 +18,4 @@ def verdor_clima(ctx, pid):
         if C is not None:
             curva_clima(C, pid)
         else:
-            st.info("No encontré la tabla de clima de T04.")
+            st.info("No hay información de lluvia y temperatura disponible para esta parcela.")

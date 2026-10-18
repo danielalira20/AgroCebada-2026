@@ -14,7 +14,7 @@ def estimaciones(ctx):
         checks = [("59 IDs", len(pred) == 59), ("Sin IDs duplicados", pred.index.is_unique),
                   ("Valores finitos", bool(np.isfinite(pred.prediccion).all()))]
         if of is not None:
-            checks.append(("Coinciden con el archivo de T08",
+            checks.append(("Coinciden con el archivo de referencia",
                            bool((pred.prediccion - of.reindex(pred.index)).abs().max() < 1e-9)))
         a, b = st.columns([3, 1], vertical_alignment="center")
         with a:
