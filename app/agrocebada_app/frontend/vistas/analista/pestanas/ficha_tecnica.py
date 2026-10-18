@@ -44,7 +44,7 @@ def ficha_tecnica(ctx):
             boton_ficha(pid, "ficha_analista", modelo, FICHA)
     f1, f2 = st.columns([1, 1])
     with f1, st.container(key="glass_disp"):
-        titulo("Disponibilidad de datos", "Temporada junio–octubre de 2025.")
+        titulo("Disponibilidad de datos","Capturas y meses sin imágenes despejadas: abril–octubre de 2025. ""Hueco máximo sin imagen: junio–octubre de 2025.")
         if sop is not None and pid in sop.index:
             s0 = sop.loc[pid]
             st.dataframe(pd.DataFrame({
@@ -57,7 +57,7 @@ def ficha_tecnica(ctx):
                                       s0.ls_hueco_max_dias_jun_oct]}),
                 hide_index=True, width="stretch")
         else:
-            st.info("No encontré el soporte de T03 para esta parcela.")
+            st.info("No se encontró información sobre la disponibilidad de imágenes satelitales para esta parcela.")
     with f2, st.container(key="glass_indice"):
         nombre = st.segmented_control("Índice", list(INDICES), default=list(INDICES)[0],
                                       label_visibility="collapsed") or list(INDICES)[0]

@@ -14,15 +14,15 @@ def metodo_limites(ctx):
     n_mun = d[d.CONJUNTO == "ENTRENAMIENTO"].municipio.nunique()
     estad = "mediana" if modelo.startswith("mediana") else "media"
     with st.container(key="glass_metodo"):
-        titulo("Cómo se calcula", "Es el mismo procedimiento de T08; la app lo ejecuta cada vez que se abre.")
+        titulo("Cómo se calcula","La aplicación utiliza los datos de cosecha de 2025 para calcular ""una estimación basada en el valor típico de cada municipio.")
         pasos = [("Datos", f"{n_tr} parcelas con cosecha registrada en 2025, de {n_mun} municipios."),
                  ("Valor típico del municipio", f"Para cada municipio se calcula la {estad} del rendimiento de "
                                                 "esas parcelas."),
                  ("Asignación", "Cada parcela reservada recibe el valor de su municipio. Si no hubiera datos del "
                                 "municipio, se usa el de su grupo de registro y, al final, el general."),
-                 ("Validación", "Se repite el cálculo escondiendo parcelas conocidas: validación cruzada 5 × 5 "
-                                "(escenario A) y por zonas de lluvia completas (escenario B), con la regla de T03 "
-                                "escrita antes de ver resultados.")]
+                 ("Validación", "Se repite el cálculo dejando fuera parcelas conocidas mediante validación cruzada 5 × 5 "
+                                "(escenario A) y evaluando zonas de lluvia completas (escenario B), "
+                                "con un procedimiento definido antes de analizar los resultados.")]
         h("<div class='pasos'>" + "".join(f"<div class='paso'><div class='n'>{i}</div><b>{e(t)}</b><p>{e(x)}</p></div>"
                                           for i, (t, x) in enumerate(pasos, 1)) + "</div>")
     r1, r2 = st.columns([3, 2])
@@ -35,9 +35,9 @@ def metodo_limites(ctx):
             h("<div class='fila'>" + "".join(
                 f"<div class='mini'><span>{e(k)}</span><b class='kv'>{v}<small>{u}</small></b></div>"
                 for k, v, u in kp) + "</div>")
-        h("<div class='nota'>Por qué un modelo simple: se probaron cerca de 20 variantes con satélite, clima, "
-          "relieve, vecinas, árbol con poda, PCA y red neuronal, y ninguna redujo el error de forma confiable "
-          "frente a este valor típico.</div>")
+        h("<div class='nota'>¿Por qué se utiliza un modelo simple? "
+        "Las alternativas evaluadas no demostraron una mejora suficiente frente al valor típico del municipio. "
+        "Consulta la pestaña Evidencia para conocer los experimentos y sus resultados.</div>")
     with r2, st.container(key="glass_fuentes"):
         titulo("Fuentes")
         fuentes = [("FIRA", "polígonos y rendimientos"), ("Sentinel-2, Landsat y Planet", "índices por parcela"),
