@@ -180,7 +180,12 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 }
 
 /* mapa protagonista con paneles flotantes */
-.st-key-hero { position: relative; gap: 0; }
+/* una clave de contenedor por vista: al cambiar de vista no se mezclan los paneles de la anterior con los nuevos */
+[class*="st-key-hero_"] { position: relative; gap: 0; }
+/* al cambiar de vista, Streamlit deja unos segundos sueltos (fuera del mapa) los paneles de la vista anterior: no se ven */
+:is(.st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda):not([class*="st-key-hero_"] *) { display: none !important; }
+/* el recuadro del mapa tiene su alto desde el primer cuadro: los paneles flotantes no se montan sobre un hueco */
+@media (min-width: 901px) { [class*="st-key-hero_"] { min-height: 700px; } }
 /* Aviso nativo temporal sobre el mapa; no cambia el espacio de los paneles. */
 [data-testid="stToastContainer"] {
   top: 150px !important; left: 50%; right: auto; transform: translateX(-50%);
@@ -192,7 +197,7 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 @media (prefers-reduced-motion: reduce) {
   [data-testid="stToastContainer"] * { animation: none !important; transition: none !important; }
 }
-.st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
+[class*="st-key-hero_"] [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
   border: 1px solid var(--borde); box-shadow: 0 10px 26px rgba(0,0,0,.26); }
 .st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
 /* si el contenido del panel «Tu parcela» pasa del alto del mapa, se desplaza dentro de la tarjeta */
