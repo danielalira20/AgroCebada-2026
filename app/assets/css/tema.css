@@ -60,6 +60,20 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
     overflow-wrap: break-word;
 }
 
+/* Las 59 estimaciones (M11): tabla ancha en escritorio/tablet, tarjetas en pantallas angostas */
+.est-movil { display: none; }
+.est-tarjeta { border-top: 1px solid var(--borde); padding: 16px 0; }
+.est-tarjeta-titulo { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.est-tarjeta h3 { margin: 0; padding: 0; font-size: .95rem; line-height: 1.4; color: #e7efe9; }
+.est-tarjeta dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 0; }
+.est-tarjeta dt { font-size: .78rem; color: var(--tenue); }
+.est-tarjeta dd { margin: 4px 0 0; font-size: .95rem; color: #e7efe9; }
+.est-aviso { margin: 10px 0 0; font-size: .78rem; color: #F5D08A; line-height: 1.4; }
+@media (max-width: 700px) {
+  .st-key-tabla_59_ancha { display: none; }
+  .est-movil { display: block; }
+}
+
 /* espacio inferior en Método y límites */
 .st-key-glass_metodo,
 .st-key-glass_resultados,

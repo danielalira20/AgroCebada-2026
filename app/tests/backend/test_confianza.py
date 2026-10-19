@@ -35,7 +35,8 @@ assert (MIN_ALTA, MIN_MEDIA) == (10, 3)
 d = parcelas({"U": 1, "V": 2, "T": 3, "N": 9, "A": 10, "B": 10, "Z": 0})
 OA = val({"A": 0.1, "B": 0.9, "N": 0.1, "T": 0.1})
 t = confianza_municipios(d, OA)
-assert list(t.columns) == COLUMNAS == ["municipio", "n_cosecha", "mae_municipio", "mae_general", "nivel", "motivo"]
+assert list(t.columns) == COLUMNAS == ["municipio", "n_cosecha", "mae_municipio", "mae_general", "nivel", "motivo",
+                                       "motivo_detallado"]
 f = t.set_index("municipio")
 assert f.n_cosecha.to_dict() == {"A": 10, "B": 10, "N": 9, "T": 3, "U": 1, "V": 2, "Z": 0}, f.n_cosecha.to_dict()
 assert f.nivel.to_dict() == {"A": "alta", "B": "media", "N": "media", "T": "media", "U": "baja", "V": "baja", "Z": "baja"}
@@ -45,6 +46,10 @@ assert abs(f.mae_general.iloc[0] - metricas(OA)["MAE"]) < 1e-12          # el er
 assert abs(f.loc["A", "mae_municipio"] - 0.1) < 1e-9 and np.isnan(f.loc["U", "mae_municipio"])
 assert f.loc["A", "motivo"] == "Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio."
 assert f.loc["B", "motivo"] == "Confianza media: tu municipio tiene 10 parcelas con cosecha, pero ahí el error fue mayor que el promedio."
+assert f.loc["A", "motivo_detallado"] == ("Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.10 t/ha) fue "
+                                          "67% menor que el promedio general, y el 100% de esas parcelas quedó dentro de ese margen.")
+assert f.loc["B", "motivo_detallado"] == ("Confianza media: tu municipio tiene 10 parcelas con cosecha; su error (0.90 t/ha) fue "
+                                          "200% mayor que el promedio general, y el 100% de esas parcelas quedó dentro de ese margen.")
 assert f.loc["N", "motivo"].startswith("Confianza media: tu municipio tiene sólo 9 parcelas con cosecha;")
 assert f.loc["U", "motivo"] == "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
 assert f.loc["V", "motivo"] == "Confianza baja: tu municipio tiene sólo 2 parcelas con cosecha."
@@ -56,16 +61,36 @@ s = confianza_municipios(parcelas({"A": 10, "U": 1}), None).set_index("municipio
 assert s.nivel.to_dict() == {"A": "media", "U": "baja"} and s.mae_municipio.isna().all() and s.mae_general.isna().all()
 assert "no hay validación suficiente" in s.loc["A", "motivo"]
 
+# --- el motivo dice % de diferencia contra el promedio y qué parte de las parcelas quedó dentro de ese margen
+# C: 5 filas con ae 0.1 y 5 con ae 0.3 (mae_municipio 0.2, sólo la mitad cae dentro); D: 10 filas con ae 0.1 constante
+c_oa = pd.DataFrame({"municipio": ["C"] * 10 + ["D"] * 10, "ae": [0.1] * 5 + [0.3] * 5 + [0.1] * 10,
+                     "e": [0.1] * 5 + [0.3] * 5 + [0.1] * 10, "real": [3.0] * 20, "repeticion": 1})
+c_t = confianza_municipios(parcelas({"C": 10, "D": 10}), c_oa).set_index("municipio")
+assert abs(c_t.loc["C", "mae_municipio"] - 0.2) < 1e-9 and abs(c_t.loc["C", "mae_general"] - 0.15) < 1e-9
+assert c_t.loc["C", "nivel"] == "media"
+# "motivo" (agricultor/ficha PDF) se queda breve, sin números nuevos; "motivo_detallado" (analista) sí los trae
+assert c_t.loc["C", "motivo"] == "Confianza media: tu municipio tiene 10 parcelas con cosecha, pero ahí el error fue mayor que el promedio."
+assert c_t.loc["C", "motivo_detallado"] == ("Confianza media: tu municipio tiene 10 parcelas con cosecha; su error (0.20 t/ha) "
+                                            "fue 33% mayor que el promedio general, y el 50% de esas parcelas quedó dentro de ese margen.")
+assert c_t.loc["D", "nivel"] == "alta" and "33% menor" in c_t.loc["D", "motivo_detallado"] \
+    and "100% de esas parcelas" in c_t.loc["D", "motivo_detallado"] and "%" not in c_t.loc["D", "motivo"]
+# error igual al general: no dice "0% menor/mayor", dice que es igual (sólo en el detallado)
+e_t = confianza_municipios(parcelas({"E": 10}), val({"E": 0.4})).set_index("municipio")
+assert "fue igual al promedio general" in e_t.loc["E", "motivo_detallado"] and "% menor" not in e_t.loc["E", "motivo_detallado"]
+assert "%" not in e_t.loc["E", "motivo"]
+
 # --- por parcela: la fuente de respaldo manda sobre el municipio
 assert confianza_parcela(t, "A", "municipio")["nivel"] == "alta"
 assert confianza_parcela(t, "A", "municipio")["motivo"] == f.loc["A", "motivo"]
+assert confianza_parcela(t, "A", "municipio")["motivo_detallado"] == f.loc["A", "motivo_detallado"]
 g, gl = confianza_parcela(t, "A", "grupo"), confianza_parcela(t, "A", "global")
 assert g["nivel"] == gl["nivel"] == "baja" and "su grupo de registro" in g["motivo"] and "toda la región" in gl["motivo"]
+assert g["motivo_detallado"] == g["motivo"] and gl["motivo_detallado"] == gl["motivo"]   # sin MAE, las dos son iguales
 assert confianza_parcela(t, "Desconocido", "municipio")["nivel"] == "baja"
 pred = pd.DataFrame({"municipio": ["A", "U", "B", "A"], "fuente": ["municipio", "municipio", "municipio", "grupo"]},
                     index=["p1", "p2", "p3", "p4"])
 cp = confianza_de_parcelas(pred, t)
-assert list(cp.index) == list(pred.index) and list(cp.columns) == ["nivel", "motivo"]
+assert list(cp.index) == list(pred.index) and list(cp.columns) == ["nivel", "motivo", "motivo_detallado"]
 assert cp.nivel.tolist() == ["alta", "baja", "media", "baja"]
 
 # --- D2: una excepción cambia el nivel y/o suma una nota al motivo; la regla general no se toca
@@ -82,8 +107,9 @@ finally:
     conf.EXCEPCIONES.clear()
     conf.EXCEPCIONES.update(viejo)
 
-# --- las palabras: sólo hablan de la estimación, nunca de la parcela ni de quien la cultiva
-motivos = list(f.motivo) + list(s.motivo) + list(cp.motivo)
+# --- las palabras: sólo hablan de la estimación, nunca de la parcela ni de quien la cultiva (las dos versiones)
+motivos = list(f.motivo) + list(s.motivo) + list(cp.motivo) + list(f.motivo_detallado) + list(s.motivo_detallado) \
+    + list(cp.motivo_detallado)
 for m in motivos:
     assert m.startswith("Confianza "), m
     assert not any(p in m.lower() for p in PALABRAS_PROHIBIDAS), m
@@ -116,8 +142,12 @@ for modelo, mae_general in [("media_mun__resp_grupo", 0.3205), ("mediana_mun__re
         (modelo, cp.nivel.value_counts().to_dict())          # si D2 baja Calpulalpan a media: 4 alta · 54 media · 1 baja
     assert pred.loc[pred.municipio == "Nanacamilpa de Mariano Arista", "fuente"].tolist() == ["municipio"]
     assert confianza_parcela(t, "Nanacamilpa de Mariano Arista", "municipio")["nivel"] == "baja"
-    assert "redondeadas" in f.loc["Calpulalpan", "motivo"]
-    for m in t.motivo:
+    assert "redondeadas" in f.loc["Calpulalpan", "motivo"] and "redondeadas" in f.loc["Calpulalpan", "motivo_detallado"]
+    # Chignahuapan (media) y Calpulalpan (alta) sí tienen MAE que comparar: el detallado trae el % y Dani lo pidió
+    # para Analista, no para el agricultor
+    assert f.loc["Chignahuapan", "motivo"] != f.loc["Chignahuapan", "motivo_detallado"]
+    assert "%" not in f.loc["Chignahuapan", "motivo"] and "%" in f.loc["Chignahuapan", "motivo_detallado"]
+    for m in list(t.motivo) + list(t.motivo_detallado):
         assert not any(w in m.lower() for w in PALABRAS_PROHIBIDAS), m
     # la regla no mira las 59: sin ellas la tabla de los municipios con cosecha es la misma
     sin59 = confianza_municipios(entrena, OA).set_index("municipio")

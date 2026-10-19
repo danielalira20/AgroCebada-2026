@@ -62,6 +62,12 @@ def leer_oficial(t08):
     return pd.read_csv(f) if f.exists() else None
 
 
+def leer_entrega_final(t18):
+    """Las 59 predicciones de la entrega de T18 (RENDIMIENTO_T_HA a 2 decimales), o None si no existe."""
+    f = Path(t18) / "predicciones_finales.csv"
+    return pd.read_csv(f, encoding="utf-8-sig").set_index("ID_POLIGONO") if f.exists() else None
+
+
 def leer_soporte(t03):
     f = Path(t03) / "soporte_parcelas.csv"
     return pd.read_csv(f).set_index("ID_POLIGONO") if f.exists() else None

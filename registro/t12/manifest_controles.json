@@ -1,0 +1,123 @@
+{
+  "schema": "manifest_t12_controles_v1",
+  "version": "t12-controles-v1",
+  "controles": {
+    "C4": {
+      "archivos_sha256": {
+        "desglose_error_t12.csv": "09ee8cfce04ea8743be9b1a80db2b65218511ed5f40e6a7ff647c6d40af1163f",
+        "sensibilidad_sin_alerta_t12.csv": "3889a97217594597153b01c698bf8f8f2d741ef57ff3857bef8cf9e8a60ff9df"
+      },
+      "procesos": 2,
+      "entorno": {
+        "sistema": "Linux",
+        "python": "3.12.15",
+        "numpy": "2.2.6",
+        "pandas": "3.0.6",
+        "sklearn": "1.9.1"
+      },
+      "codigo_sha256": {
+        "scripts/t12_heterogeneidad.py": "3b4f55c74906efa2a29981e65e1d6497bb8bf532a1f9336b5da0164a43621717",
+        "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+        "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+        "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+        "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+        "scripts/t12_evaluar.py": "2753ce9eb38d6ee822889018b11973423fbce1badd1bfa53769ffceb5060c952",
+        "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+        "scripts/t12_controles.py": "c0b781cc97a4e92c64f7db8dd83b0caa5f595d2fdb7854afebfeb8dc834eebfc"
+      }
+    },
+    "C6": {
+      "archivos_sha256": {
+        "parcelas_extremas_t12.csv": "0ed791555cc98d2251495b6665c341d7962a42dbbbfad186c554534502c6e2f1"
+      },
+      "procesos": 2,
+      "entorno": {
+        "sistema": "Linux",
+        "python": "3.12.15",
+        "numpy": "2.2.6",
+        "pandas": "3.0.6",
+        "sklearn": "1.9.1"
+      },
+      "codigo_sha256": {
+        "scripts/t12_heterogeneidad.py": "3b4f55c74906efa2a29981e65e1d6497bb8bf532a1f9336b5da0164a43621717",
+        "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+        "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+        "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+        "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+        "scripts/t12_evaluar.py": "2753ce9eb38d6ee822889018b11973423fbce1badd1bfa53769ffceb5060c952",
+        "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+        "scripts/t12_controles.py": "c0b781cc97a4e92c64f7db8dd83b0caa5f595d2fdb7854afebfeb8dc834eebfc"
+      }
+    },
+    "C5": {
+      "archivos_sha256": {
+        "pendientes_por_municipio_t12.csv": "4cd8a606a97c42f0e16ec824d7075a5b2fd30248cda98327e1757e581a8bf004",
+        "importancia_gb_t12.csv": "54286c0f1a007ddad36b74f0a0caf9019e64e2e4b7c9ad38db05a9f202c4ac56"
+      },
+      "procesos": 2,
+      "entorno": {
+        "sistema": "Linux",
+        "python": "3.12.15",
+        "numpy": "2.2.6",
+        "pandas": "3.0.6",
+        "sklearn": "1.9.1"
+      },
+      "codigo_sha256": {
+        "scripts/t12_heterogeneidad.py": "3b4f55c74906efa2a29981e65e1d6497bb8bf532a1f9336b5da0164a43621717",
+        "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+        "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+        "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+        "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+        "scripts/t12_evaluar.py": "2753ce9eb38d6ee822889018b11973423fbce1badd1bfa53769ffceb5060c952",
+        "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+        "scripts/t12_controles.py": "c0b781cc97a4e92c64f7db8dd83b0caa5f595d2fdb7854afebfeb8dc834eebfc"
+      }
+    },
+    "C3": {
+      "archivos_sha256": {
+        "curva_aprendizaje_t12.csv": "adb3a7fccbdb27b24bff61f66fc498e3afd5b594d4e197006932b91711f6c53c"
+      },
+      "procesos": 2,
+      "entorno": {
+        "sistema": "Linux",
+        "python": "3.12.15",
+        "numpy": "2.2.6",
+        "pandas": "3.0.6",
+        "sklearn": "1.9.1"
+      },
+      "codigo_sha256": {
+        "scripts/t12_heterogeneidad.py": "3b4f55c74906efa2a29981e65e1d6497bb8bf532a1f9336b5da0164a43621717",
+        "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+        "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+        "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+        "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+        "scripts/t12_evaluar.py": "2753ce9eb38d6ee822889018b11973423fbce1badd1bfa53769ffceb5060c952",
+        "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+        "scripts/t12_controles.py": "c0b781cc97a4e92c64f7db8dd83b0caa5f595d2fdb7854afebfeb8dc834eebfc"
+      }
+    },
+    "C2": {
+      "archivos_sha256": {
+        "control_revuelto_t12.csv": "d9da58c2b2303109066236c14bddd9a5cc9f0d5d97e4342ba5b6b956c5981006"
+      },
+      "procesos": 2,
+      "entorno": {
+        "sistema": "Linux",
+        "python": "3.12.15",
+        "numpy": "2.2.6",
+        "pandas": "3.0.6",
+        "sklearn": "1.9.1"
+      },
+      "codigo_sha256": {
+        "scripts/t12_heterogeneidad.py": "3b4f55c74906efa2a29981e65e1d6497bb8bf532a1f9336b5da0164a43621717",
+        "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+        "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+        "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+        "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+        "scripts/t12_evaluar.py": "2753ce9eb38d6ee822889018b11973423fbce1badd1bfa53769ffceb5060c952",
+        "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+        "scripts/t12_controles.py": "c0b781cc97a4e92c64f7db8dd83b0caa5f595d2fdb7854afebfeb8dc834eebfc"
+      }
+    }
+  }
+}
