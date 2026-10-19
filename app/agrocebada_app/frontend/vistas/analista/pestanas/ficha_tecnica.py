@@ -2,6 +2,7 @@
 import pandas as pd
 import streamlit as st
 
+from agrocebada_app.backend.dominio.confianza import confianza_parcela
 from agrocebada_app.config import INDICES, MODELOS
 from agrocebada_app.frontend.componentes.descargas.boton_ficha import boton_ficha
 from agrocebada_app.frontend.componentes.graficas.clima import curva_clima
@@ -21,10 +22,12 @@ def ficha_tecnica(ctx):
     FICHA = ctx.FICHA
     pid = st.selectbox("Parcela (ID)", sorted(d.index), index=sorted(d.index).index(pred.index[0]))
     r = d.loc[pid]
+    confianza = None
     with st.container(key="glass_ficha"):
         titulo(f"{pid} · {r.municipio}, {r.Estado}", f"{r.AREA_HA:.2f} ha · grupo de registro {r.grupo_registro}")
         if r.CONJUNTO == "PREDICCION":
             p = pred.loc[pid]
+            confianza = confianza_parcela(ctx.conf, r.municipio, p.fuente)
             kp = [(f"Estimación · {MODELOS[modelo]}", f"{p.prediccion:.2f}", "t/ha"),
                   ("Referencia territorial", f"{p.fuente}", f"{int(p.n_municipio)} parcelas")]
             if pd.notna(p.error_tipico):
@@ -41,7 +44,7 @@ def ficha_tecnica(ctx):
             h(f"<div class='aviso'>Aviso: {e(pred.loc[pid, 'aviso'])}.</div>")
         b1, _ = st.columns([1, 3])
         with b1:
-            boton_ficha(pid, "ficha_analista", modelo, FICHA)
+            boton_ficha(pid, "ficha_analista", modelo, FICHA, confianza=confianza)
     f1, f2 = st.columns([1, 1])
     with f1, st.container(key="glass_disp"):
         titulo("Disponibilidad de datos","Capturas y meses sin imágenes despejadas: abril–octubre de 2025. ""Hueco máximo sin imagen: junio–octubre de 2025.")
