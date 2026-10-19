@@ -52,7 +52,7 @@ du = res.datos
 entrena = du[du.CONJUNTO == "ENTRENAMIENTO"]
 pu = predecir(du, MODELO_OFICIAL)
 v = validacion_dejando_uno(du, MODELO_OFICIAL)
-conf = confianza_municipios(du, v)                      # M01 con la validación del propio archivo
+conf = confianza_municipios(du, v[v.fuente == "municipio"])   # M01: sólo las estimadas desde su propio municipio
 cp = confianza_de_parcelas(pu, conf)
 rangos = rangos_municipio(entrena).set_index("municipio")
 

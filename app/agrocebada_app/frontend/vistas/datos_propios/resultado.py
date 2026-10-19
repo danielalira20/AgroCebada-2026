@@ -98,8 +98,11 @@ def analizar_subido(res, modelo, satelite, mA=None):
     entrena = du[du.CONJUNTO == "ENTRENAMIENTO"]
     pu = predecir(du, modelo)
     v = validacion_dejando_uno(du, modelo)
-    m = metricas(v)
-    conf = confianza_municipios(du, v)                  # M01, con la validación del propio archivo
+    m = metricas(v)                                     # todas las predicciones del archivo, con y sin respaldo
+    # La confianza se mide sólo con las que se estimaron desde su propio municipio, igual que el «A · sin respaldo»
+    # de la vista principal: si una parcela se estimó con el grupo, su error no habla de su municipio.
+    conf = confianza_municipios(du, v[v.fuente == "municipio"])
+
     rangos = rangos_municipio(entrena).set_index("municipio")       # M02, con las cosechas del propio archivo
     cp = confianza_de_parcelas(pu, conf)
     pu["error_tipico"] = pu.municipio.map(conf.set_index("municipio").mae_municipio)
