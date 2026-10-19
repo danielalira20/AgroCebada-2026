@@ -6,6 +6,7 @@ from agrocebada_app.config import MODELO_OFICIAL
 
 def iniciar_sesion():
     valores = {
+        "tema": "claro",
         "vista": "Agricultor",
         "modelo": MODELO_OFICIAL,
         "capa": "Todas",

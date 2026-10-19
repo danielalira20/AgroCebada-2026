@@ -11,6 +11,8 @@ cifras, confianzas y rangos que la vista principal.
 """
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.backend.dominio.confianza import confianza_de_parcelas, confianza_municipios
 from agrocebada_app.backend.dominio.geometria import zoom_para
 from agrocebada_app.backend.dominio.rangos import rango_de, rango_texto, rangos_municipio
@@ -64,7 +66,7 @@ def _tabla_municipios(conf, rangos):
                     mae=conf.mae_municipio.map(lambda x: numero(x, 2)))     # 2 decimales, igual que en las 59
     titulo("Por municipio", "De dónde sale la confianza de cada parcela.")
     with st.container(key="tabla_mun_subido"):
-        st.dataframe(t[["municipio", "n_cosecha", "mae", "confianza", "rango", "motivo_detallado"]].rename(
+        tabla_visual(t[["municipio", "n_cosecha", "mae", "confianza", "rango", "motivo_detallado"]].rename(
             columns={"n_cosecha": "parcelas con cosecha", "mae": "MAE del municipio (t/ha)",
                      "motivo_detallado": "motivo de la confianza"}),
             hide_index=True, width="stretch", height=340, row_height=100,
@@ -134,7 +136,7 @@ def analizar_subido(res, modelo, satelite, mA=None):
         tabla = pu.reset_index()[["ID_POLIGONO", "municipio", "prediccion", "area_ha", "error_tipico", "fuente"]]
         tabla["confianza"] = cp.nivel.map(etiqueta_confianza).to_numpy()
         tabla["rango"] = [rango_texto(rangos.bajo.get(x), rangos.alto.get(x)) for x in tabla.municipio]
-        st.dataframe(tabla.rename(columns={"prediccion": "estimación (t/ha)", "area_ha": "área (ha)",
+        tabla_visual(tabla.rename(columns={"prediccion": "estimación (t/ha)", "area_ha": "área (ha)",
                                            "error_tipico": "MAE del municipio (t/ha)",
                                            "rango": "rango del municipio"}), hide_index=True,
                      width="stretch", height=320,

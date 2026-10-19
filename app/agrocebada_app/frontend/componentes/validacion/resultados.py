@@ -1,6 +1,8 @@
 """Resumen principal y poblaciones auxiliares, con datos calculados por el dominio."""
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.frontend.tema.html import e, h, titulo
 
 TRES_DECIMALES = ["MAE (t/ha)", "RMSE (t/ha)", "Sesgo (t/ha)", "R²"]
@@ -30,5 +32,5 @@ def resultados(pob, modelo):
         if not apoyo.empty:
             with st.expander(f"Otras poblaciones, como apoyo ({len(apoyo)})", expanded=False):
                 st.caption("Cada fila evalúa una población diferente; no son comparaciones directas de desempeño.")
-                st.dataframe(apoyo, hide_index=True, width="stretch",
+                tabla_visual(apoyo, hide_index=True, width="stretch",
                              column_config={c: st.column_config.NumberColumn(format="%.3f") for c in TRES_DECIMALES})

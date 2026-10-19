@@ -1,6 +1,8 @@
 """Tabla municipal adaptable y regla de confianza, sin duplicar sus umbrales."""
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.frontend.componentes.validacion.formato import etiqueta_confianza, insignia, numero
 from agrocebada_app.frontend.tema.html import e, h, titulo
 
@@ -13,7 +15,7 @@ def municipios(pm):
                                    "confianza": "Confianza"}).copy()
         vista["Confianza"] = vista["Confianza"].map(etiqueta_confianza)
         with st.container(key="val_tabla_municipal"):
-            st.dataframe(vista, hide_index=True, width="stretch", height=352,
+            tabla_visual(vista, hide_index=True, width="stretch", height=352,
                          column_config={"Municipio": st.column_config.TextColumn(width=340),
                                         "MAE (t/ha)": st.column_config.NumberColumn(format="%.3f")})
         filas = []

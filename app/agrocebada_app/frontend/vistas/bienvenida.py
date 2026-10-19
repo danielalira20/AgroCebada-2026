@@ -59,7 +59,7 @@ def mostrar_bienvenida():
         border: 1px solid rgba(255,255,255,0.10) !important;
         background:
             linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-            rgba(6, 14, 11, 0.96) !important;
+            var(--dialogo) !important;
         box-shadow:
             0 24px 70px rgba(0,0,0,0.55),
             inset 0 1px 0 rgba(255,255,255,0.06) !important;
@@ -77,8 +77,8 @@ def mostrar_bienvenida():
 
     div[data-testid="stDialog"] .stButton button[kind="primary"] {
         background: rgba(139, 205, 82, 0.10) !important;
-        color: #A3E36B !important;
-        border: 2px solid #A3E36B !important;
+        color: var(--bienvenida-acento) !important;
+        border: 2px solid var(--bienvenida-acento) !important;
         border-radius: 16px !important;
         font-weight: 700 !important;
         box-shadow: none !important;
@@ -86,12 +86,12 @@ def mostrar_bienvenida():
 
     div[data-testid="stDialog"] .stButton button[kind="primary"]:hover {
         background: rgba(139, 205, 82, 0.20) !important;
-        color: #B8F18A !important;
-        border-color: #B8F18A !important;
+        color: var(--bienvenida-hover) !important;
+        border-color: var(--bienvenida-hover) !important;
     }
 
     div[data-testid="stDialog"] .stButton button[kind="secondary"] {
-        color: #E7EFE9 !important;
+        color: var(--texto) !important;
         border: 1px solid rgba(255,255,255,0.12) !important;
         background: rgba(255,255,255,0.03) !important;
     }
@@ -99,7 +99,7 @@ def mostrar_bienvenida():
     div[data-testid="stDialog"] [data-testid="stInfo"] {
         background: rgba(155,225,93,0.12) !important;
         border: 1px solid rgba(155,225,93,0.22) !important;
-        color: #DFF3CF !important;
+        color: var(--bienvenida-texto) !important;
     }
 
     div[data-testid="stDialog"] {
@@ -133,10 +133,10 @@ def mostrar_bienvenida():
         <div style="
             background: rgba(155, 225, 93, 0.10);
             border: 1px solid rgba(155, 225, 93, 0.25);
-            border-left: 4px solid #9BE15D;
+            border-left: 4px solid var(--acento);
             border-radius: 12px;
             padding: 14px 18px;
-            color: #DDEBD5;
+            color: var(--bienvenida-texto);
             line-height: 1.6;
             margin: 14px 0 20px;
         ">

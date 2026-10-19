@@ -1,6 +1,8 @@
 """Comparación resumida de la simulación y detalle completo por parcela."""
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.frontend.componentes.validacion.formato import insignia, resumen_estimacion
 from agrocebada_app.frontend.tema.html import e, h
 
@@ -38,7 +40,7 @@ def comparacion(tabla, normal, sim, bloques, motivo):
             "estimación normal": "Con datos (t/ha)", "confianza normal": "Confianza con datos",
             "sin datos del municipio": "Sin datos (t/ha)", "fuente sin datos": "Fuente sin datos",
             "confianza sin datos": "Confianza sin datos"})
-        st.dataframe(detalle, hide_index=True, width="stretch",
+        tabla_visual(detalle, hide_index=True, width="stretch",
                      column_config={c: st.column_config.NumberColumn(format="%.2f")
                                     for c in ["Con datos (t/ha)", "Sin datos (t/ha)"]})
         st.caption(motivo if sim.fuente.nunique() == 1 else
