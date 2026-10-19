@@ -32,12 +32,18 @@ def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, sate
         sel = pid == resaltar
         # desde arriba el terreno va plano (el relieve no se nota y su brillo taparía la imagen)
         z = round(float(E.get(pid, base)) - base + 3, 1) if (relieve and not arriba) else 2.0
-        if arriba:                        # de lejos las parcelas son chicas: bordes más finos para que no sean puntos
-            cerca = zoom >= 12
-            linea, ancho = (([255, 255, 255, 255], 2.5 if cerca else 1.0) if (reservada or sel)
-                            else ([255, 255, 255, 120], 1.0 if cerca else 0.0))
+        if sel:
+            linea, ancho = [255, 255, 255, 255], 4.0
+        elif arriba:
+            linea, ancho = (
+                ([255, 255, 255, 110], 0.7)
+                if reservada
+                else ([255, 255, 255, 70], 0.5)
+            )
         else:
-            linea, ancho = ([255, 255, 255, 235] if (reservada or sel) else [0, 0, 0, 0]), 1.0
+            linea, ancho = (
+                [255, 255, 255, 235] if reservada else [0, 0, 0, 0]
+            ), 1.0
         filas.append(dict(id=pid, municipio=r.municipio, tipo="estimación" if reservada else "registrado",
                           detalle=(detalle or {}).get(pid, f"{'Estimación' if reservada else 'Registrado'}: {v:.2f} t/ha"),
                           valor=round(v, 2), poligono=[[x, y, z] for x, y in anillo(r.geometry)],
