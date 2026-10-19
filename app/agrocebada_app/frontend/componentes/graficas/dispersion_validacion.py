@@ -7,10 +7,11 @@ from agrocebada_app.frontend.componentes.graficas.base import grafica_base
 from agrocebada_app.frontend.tema.html import titulo
 
 
-def dispersion(ctx):
-    """Registrado contra estimado, con las parcelas de A · sin respaldo."""
+def dispersion(ctx, clave="glass_disp_val"):
+    """Registrado contra estimado, con las parcelas de A · sin respaldo. `clave` evita contenedores repetidos cuando
+    la misma gráfica sale en dos pestañas (st.tabs dibuja todas en cada ejecución)."""
     OA = ctx.OA
-    with st.container(key="glass_disp_val"):
+    with st.container(key=clave):
         titulo("Registrado contra estimado",
                f"Cada punto es una de las {OA.ID_POLIGONO.nunique()} parcelas de A · sin respaldo; sobre la "
                "diagonal la estimación sería perfecta.")
