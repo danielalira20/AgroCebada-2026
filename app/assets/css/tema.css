@@ -306,7 +306,7 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-validacion { gap: 20px; }
 .st-key-validacion .tit { font-size: 1.12rem; line-height: 1.4; }
 .st-key-validacion .sub, .st-key-validacion .nota { font-size: .88rem; line-height: 1.55; }
-.st-key-glass_mun, .st-key-glass_reglas_val, .st-key-glass_disp_val { padding: 22px 24px; }
+.st-key-glass_mun, .st-key-glass_reglas_val, .st-key-glass_disp_val, .st-key-glass_disp_evid { padding: 22px 24px; }
 .val-confianza { display: inline-flex; align-items: center; white-space: nowrap; font-size: .8rem;
   font-weight: 650; line-height: 1.5; padding: 4px 10px; border: 1px solid; border-radius: 999px; }
 .val-alta { color: #9ee6be; background: rgba(47,224,160,.08); border-color: rgba(47,224,160,.28); }
@@ -323,12 +323,12 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .val-municipio dt { font-size: .78rem; color: var(--tenue); }
 .val-municipio dd { margin: 4px 0 0; font-size: .95rem; color: #e7efe9; }
 @media (max-width: 900px) {
-  .st-key-val_regla_grafica [data-testid="stColumn"] { width: 100%; flex: 1 1 100%; min-width: 0; }
+  .st-key-val_regla_grafica [data-testid="stColumn"], .st-key-evid_aprende [data-testid="stColumn"] { width: 100%; flex: 1 1 100%; min-width: 0; }
 }
 @media (max-width: 700px) {
   .st-key-val_tabla_municipal { display: none; }
   .val-municipios-movil { display: block; }
-  .st-key-glass_mun, .st-key-glass_reglas_val, .st-key-glass_disp_val { padding: 18px 16px; }
+  .st-key-glass_mun, .st-key-glass_reglas_val, .st-key-glass_disp_val, .st-key-glass_disp_evid { padding: 18px 16px; }
   .val-regla { grid-template-columns: 1fr; gap: 6px; justify-items: start; }
 }
 
@@ -359,4 +359,18 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
     overflow-x: auto; scrollbar-width: thin;
   }
   .st-key-glass_disp_val [data-testid="stFullScreenFrame"] { min-width: 320px; }
+}
+
+/* Evidencia (M13): reutiliza el vidrio de Validación y añade sólo lo propio de sus textos. */
+.st-key-evidencia { gap: 20px; }
+.st-key-evidencia .tit { font-size: 1.12rem; line-height: 1.4; }
+.st-key-evidencia .sub, .st-key-evidencia .nota { font-size: .88rem; line-height: 1.55; }
+[class*="st-key-glass_evid"] { padding: 22px 24px; }
+.evid-texto { font-size: .9rem; line-height: 1.55; color: #d8e3dc; margin: 10px 0; }
+.evid-resp { font-size: .95rem; line-height: 1.55; color: #fff; font-weight: 600; margin: 10px 0 12px; }
+.evid-falta { margin: 8px 0 0; padding-left: 18px; font-size: .88rem; line-height: 1.6; color: #d8e3dc; }
+.st-key-glass_evid_aprende .eyebrow { margin-top: 16px; }
+.st-key-glass_evid_aprende .fila { margin-bottom: 4px; }
+@media (max-width: 700px) {
+  [class*="st-key-glass_evid"] { padding: 18px 16px; }
 }
