@@ -32,3 +32,25 @@ def franja_municipio(d, s, pid, col="ndvi_promedio", sensor="Planet", minimo=3):
     out = pd.DataFrame({"p25": g.quantile(0.25), "p75": g.quantile(0.75), "n": g.size()}).reset_index()
     out = out[out.n >= minimo]
     return out if len(out) else None
+
+
+
+NOMBRE_MES = {1: "enero", 2: "febrero", 3: "marzo", 4: "abril", 5: "mayo", 6: "junio", 7: "julio", 8: "agosto",
+              9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre"}
+
+
+def mes_mas_verde(d, s, pid, col="ndvi_promedio"):
+    """(mes de la parcela, mes de su municipio o None): en qué mes llegó el índice a su punto más alto, semana a
+    semana y con el mismo sensor de la franja. Para el municipio usa el centro de la franja. None si no hay datos."""
+    sensor = sensor_para(s, pid, col)
+    if sensor is None:
+        return None
+    x = s[(s.ID_POLIGONO == pid) & (s.sensor == sensor) & s[col].notna()]
+    semanal = x.assign(semana=x.fecha.dt.to_period("W-SUN").dt.start_time).groupby("semana")[col].median()
+    mes_parcela = NOMBRE_MES[semanal.idxmax().month]
+    f = franja_municipio(d, s, pid, col, sensor)
+    mes_municipio = None
+    if f is not None:
+        centro = (f.p25 + f.p75) / 2
+        mes_municipio = NOMBRE_MES[f.loc[centro.idxmax(), "semana"].month]
+    return mes_parcela, mes_municipio
