@@ -487,3 +487,21 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 @media (max-width: 600px) {
   :is(.st-key-glass_disp, .st-key-glass_ndvi, .st-key-glass_clima, .st-key-glass_calculadora) { padding-bottom: 28px; }
 }
+
+/* Método y límites (M15): tabla de alcance; reutiliza las insignias de confianza de Validación. */
+.st-key-metodo { gap: 20px; }
+.st-key-metodo .tit { font-size: 1.12rem; line-height: 1.4; }
+.st-key-metodo .sub, .st-key-metodo .nota { font-size: .88rem; line-height: 1.55; }
+.st-key-glass_alcance { padding: 22px 24px; }
+.alc-cab, .alc-fila { display: grid; grid-template-columns: 170px minmax(0, 1.3fr) minmax(0, 1.5fr) 110px; gap: 14px; align-items: start; }
+.alc-cab { font-size: .75rem; color: var(--tenue); padding: 0 0 8px; border-bottom: 1px solid var(--borde); margin-top: 10px; }
+.alc-fila { padding: 14px 0; border-bottom: 1px solid var(--borde); }
+.alc-fila p { margin: 0; font-size: .88rem; line-height: 1.5; color: #d8e3dc; }
+.alc-fila small { display: block; margin-top: 4px; font-size: .8rem; line-height: 1.4; color: var(--tenue); }
+.alc-cuantas { font-weight: 650; color: #fff !important; }
+.alc-no { color: #e8b9b9; background: rgba(224,120,120,.08); border-color: rgba(224,120,120,.3); }
+@media (max-width: 900px) {
+  .alc-cab { display: none; }
+  .alc-fila { grid-template-columns: 1fr; gap: 6px; }
+}
+@media (max-width: 700px) { .st-key-glass_alcance { padding: 18px 16px; } }
