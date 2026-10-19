@@ -18,9 +18,10 @@ from agrocebada_app.config import MESES, PALETA
 ANCHO_TEXTO = 105           # caracteres por renglón de los textos de la ficha
 INTERLINEA = 0.0158         # alto de un renglón de 9 pt, en fracción de la hoja
 MAX_FILAS_CALCULADORA = 3
-# nivel de confianza (M01) -> ícono y palabra: el nivel se lee sin depender del color
+# nivel de confianza (M01) -> ícono y palabra: el nivel se lee sin depender del color. Los íconos son los de
+# frontend/componentes/validacion/formato.py (no se importan: el backend no depende del frontend); una prueba los compara.
 CONFIANZA = {"alta": ("✔", "alta", "#2F7D32", "#E6F2E3"), "media": ("▲", "media", "#8A5A00", "#FDF1D8"),
-             "baja": ("⚠", "baja", "#A13A1F", "#FBE6DF")}
+             "baja": ("◆", "baja", "#A13A1F", "#FBE6DF")}
 PIE = f"Estimación retrospectiva de la campaña {ANIO} · Orientativa, no es un dictamen"
 
 

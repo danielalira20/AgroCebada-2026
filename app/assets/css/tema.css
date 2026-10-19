@@ -10,9 +10,11 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .block-container { padding-top: 1rem; padding-bottom: 2rem; max-width: 1500px; }
 
 /* vidrio */
+/* La separación la da el borde y la superficie, no una sombra marcada: la tarjeta se apoya en la página en vez de
+   flotar sobre ella. */
 [class*="st-key-glass"] { background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)), var(--vidrio);
   border: 1px solid var(--borde); border-radius: 18px; padding: 14px 16px;
-  box-shadow: 0 14px 34px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.06); }
+  box-shadow: 0 6px 18px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.05); }
 /* el desenfoque va sólo en lo que flota sobre el mapa: en las tarjetas encerraría la pantalla completa */
 .st-key-glass_top, .st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros,
 .st-key-glass_leyenda { backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%); }
@@ -191,7 +193,7 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
   [data-testid="stToastContainer"] * { animation: none !important; transition: none !important; }
 }
 .st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
-  border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+  border: 1px solid var(--borde); box-shadow: 0 10px 26px rgba(0,0,0,.26); }
 .st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
 /* si el contenido del panel «Tu parcela» pasa del alto del mapa, se desplaza dentro de la tarjeta */
 .st-key-glass_panel { max-height: 668px; overflow-y: auto; }
@@ -488,6 +490,58 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 }
 @media (max-width: 600px) {
   :is(.st-key-glass_disp, .st-key-glass_ndvi, .st-key-glass_clima, .st-key-glass_calculadora) { padding-bottom: 28px; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Tu libreta (bitácora de cosecha): se lee como una libreta, no como una tabla.
+   Un renglón por año, con el año en el margen izquierdo y una raya que los separa,
+   igual que una hoja rayada. Mantiene el tema oscuro de la app: lo que se toma
+   prestado del registro agrícola es la estructura, no la paleta.
+   ─────────────────────────────────────────────────────────────────────────── */
+.st-key-glass_bitacora { padding: 18px 20px 26px; }
+.lib-guia { margin: 10px 0 0; padding-left: 20px; display: grid; gap: 10px; }
+.lib-guia li { font-size: .82rem; line-height: 1.5; color: #d8e3dc; }
+.lib-guia li b { display: block; color: #e7efe9; }
+.lib-guia li span { color: var(--tenue); }
+.lib-vacia { font-size: .85rem; line-height: 1.55; color: var(--tenue); padding: 22px 0; border-top: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde); margin: 14px 0; }
+
+.lib-hoja { margin: 14px 0 18px; border-top: 1px solid var(--borde); }
+.lib-renglon { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; padding: 14px 0;
+  border-bottom: 1px solid var(--borde); }
+/* el año vive en el margen, separado por una raya vertical como en una libreta */
+.lib-anio { font-size: 1.05rem; font-weight: 600; color: var(--acento); letter-spacing: -.01em;
+  border-right: 1px solid var(--borde); padding-right: 16px; }
+.lib-cuerpo { min-width: 0; }
+.lib-cifra { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; color: #e7efe9; font-size: 1.05rem; }
+.lib-cifra small { font-size: .74rem; color: var(--tenue); font-weight: 400; }
+.lib-cifra b { font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; }
+.lib-dif { display: inline-block; margin-top: 8px; font-size: .78rem; line-height: 1.45; }
+.lib-dif.arriba { color: #9ee6be; }
+.lib-dif.abajo { color: #f5d08a; }
+.lib-dif.sin { color: var(--tenue); }
+.lib-nota { margin-top: 8px; font-size: .78rem; color: var(--tenue); font-style: italic; line-height: 1.45;
+  overflow-wrap: break-word; }
+
+/* cuántos vecinos faltan para que el municipio suba de nivel */
+.lib-meta { display: grid; gap: 10px; margin: 16px 0 6px; padding: 14px 16px; border: 1px solid var(--borde);
+  border-radius: 12px; background: rgba(155,225,93,.05); }
+.lib-puntos { display: flex; flex-wrap: wrap; gap: 6px; }
+.lib-puntos span { width: 12px; height: 12px; border-radius: 50%; }
+.lib-puntos .lleno { background: var(--acento); }
+.lib-puntos .vacio { background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.16); }
+.lib-meta-txt { font-size: .82rem; line-height: 1.55; color: #d8e3dc; }
+.lib-meta-txt b { color: #e7efe9; }
+.lib-tablero { flex-wrap: wrap; }
+.lib-tablero .mini { min-width: 150px; }
+
+@media (max-width: 600px) {
+  .st-key-glass_bitacora { padding: 16px 14px 22px; }
+  .lib-renglon { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; }
+  .lib-anio { padding-right: 12px; font-size: .95rem; }
+  .lib-cifra b { font-size: 1.2rem; }
+  .lib-tablero { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .lib-tablero .mini { min-width: 0; padding: 12px; }
 }
 
 /* Método y límites (M15): tabla de alcance; reutiliza las insignias de confianza de Validación. */

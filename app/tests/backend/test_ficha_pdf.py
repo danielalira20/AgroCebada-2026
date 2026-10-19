@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from agrocebada_app.backend.datos import paquete  # noqa: E402
+from agrocebada_app.backend.dominio.confianza import confianza_parcela  # noqa: E402
 from agrocebada_app.backend.dominio.rangos import ANIO, rango_de  # noqa: E402
 from agrocebada_app.backend.ficha_pdf.armado import armar_ficha, datos_ficha  # noqa: E402
 from agrocebada_app.backend.ficha_pdf.ficha import PIE, figura_ficha  # noqa: E402
@@ -73,16 +74,31 @@ for nombre, pid in casos.items():
 assert datos_ficha("AGC_120", FICHA)[0]["rango"].startswith("Nanacamilpa de Mariano Arista sólo tiene 1 parcela")
 assert "entre 4.40 y 4.79" in datos_ficha(casos["cuautepec_minimo_maximo"], FICHA)[0]["rango"]
 
-# con confianza (M01) y calculadora (M05) inventadas también sale en una página, con palabra e ícono
+# los íconos de la ficha son los de formato.py (el backend no lo importa; aquí se comparan)
+from agrocebada_app.backend.ficha_pdf.ficha import CONFIANZA  # noqa: E402
+from agrocebada_app.frontend.componentes.validacion.formato import NIVELES  # noqa: E402
+assert {k: v[0] for k, v in CONFIANZA.items()} == {k: v[0] for k, v in NIVELES.items()}
+
+# con la confianza real de M01 (por parcela, con su fuente) y la calculadora (M05) también sale en una página,
+# con palabra e ícono; una parcela con cosecha registrada no lleva confianza
 for nombre, pid in casos.items():
-    info, pol, serie, clima, mascota = datos_ficha(pid, FICHA, confianza=confianza, calculadora=calculadora)
+    if d.loc[pid].CONJUNTO != "PREDICCION":
+        continue
+    conf_real = confianza_parcela(ctx.conf, d.loc[pid].municipio, ctx.pred.loc[pid, "fuente"])
+    info, pol, serie, clima, mascota = datos_ficha(pid, FICHA, confianza=conf_real, calculadora=calculadora)
     t = textos(figura_ficha(info, pol, serie, clima, mascota))
-    assert any("Confianza media" in x and "▲" in x for x in t), pid
+    palabra = conf_real["nivel"]
+    assert any(f"Confianza {palabra}" in x and CONFIANZA[palabra][0] in x for x in t), (pid, palabra)
     assert "CALCULADORA" in t and "54.0 t" in t, pid
-    pdf = armar_ficha(pid, FICHA, confianza=confianza, calculadora=calculadora)
+    pdf = armar_ficha(pid, FICHA, confianza=conf_real, calculadora=calculadora)
     assert paginas(pdf) == 1 and pdf[:5] == b"%PDF-", pid
     if carpeta and nombre == "AGC_011_chignahuapan":
         (carpeta / "ficha_AGC_011_con_confianza_y_calculadora.pdf").write_bytes(pdf)
+    if carpeta:
+        (carpeta / f"ficha_{pid}_confianza_{palabra}.pdf").write_bytes(armar_ficha(pid, FICHA, confianza=conf_real))
+assert confianza_parcela(ctx.conf, "Nanacamilpa de Mariano Arista", "municipio")["nivel"] == "baja"   # AGC_120
+niveles = {confianza_parcela(ctx.conf, d.loc[i].municipio, ctx.pred.loc[i, "fuente"])["nivel"] for i in ctx.pred.index}
+assert niveles == {"alta", "media", "baja"}
 # cada modelo conserva su etiqueta y la cifra de su contexto
 for modelo, cifra in [("media_mun__resp_grupo", 4.477323943661971), ("mediana_mun__resp_grupo", 4.52)]:
     otro = calcular(d, paquete.soporte(), S, C, modelo, False)
