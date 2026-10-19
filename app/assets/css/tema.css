@@ -603,3 +603,157 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 /* El selector conserva su tamaño incluso cuando el encabezado se envuelve. */
 .st-key-glass_top [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:last-child {
   flex: 0 0 64px; width: 64px; min-width: 64px; margin-left: auto; }
+
+/* QA móvil: compactar los controles del encabezado */
+@media (max-width: 600px) {
+  .st-key-glass_top [data-testid="stHorizontalBlock"] {
+    gap: 8px !important;
+  }
+  .st-key-glass_top [data-testid="stColumn"] {
+    gap: 4px !important;
+  }
+  .st-key-glass_top .stElementContainer {
+    margin-bottom: 0 !important;
+  }
+  .st-key-glass_top {
+    padding-bottom: 16px;
+  }
+}
+/* QA móvil: alinear el selector de tema con Satélite */
+@media (max-width: 600px) {
+  .st-key-glass_top [data-testid="stHorizontalBlock"] {
+    position: relative;
+  }
+  .st-key-glass_top [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:last-child {
+    transform: translateY(-40px);
+  }
+  .st-key-glass_top {
+    padding-bottom: 10px;
+  }
+}
+/* QA móvil: reducir el espacio inferior del encabezado */
+@media (max-width: 600px) {
+  .st-key-glass_top {
+    padding-bottom: 8px !important;
+  }
+  .st-key-glass_top [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:last-child {
+    margin-bottom: -55px !important;
+  }
+}
+/* QA móvil: separar los controles del mapa */
+@media (max-width: 600px) {
+  .st-key-glass_leyenda {
+    margin-bottom: 16px !important;
+  }
+}
+/* QA móvil: equilibrar el espacio de Tabla por municipio */
+@media (max-width: 600px) {
+  .st-key-titulo_tabla_municipio {
+    padding-top: 12px;
+    padding-bottom: 20px;
+  }
+}
+
+/* QA móvil: separar la descripción del botón de Cebi */
+@media (max-width: 600px) {
+  .st-key-glass_cebi [data-testid="stHorizontalBlock"] {
+    row-gap: 24px !important;
+  }
+
+  .st-key-glass_cebi [data-testid="stColumn"]:last-child {
+    padding-top: 12px !important;
+  }
+}
+
+/* QA móvil: carrusel horizontal de las 59 parcelas */
+@media (max-width: 700px) {
+  .est-carrusel-59 {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 2px 18px;
+  }
+
+  .est-carrusel-59 .est-tarjeta {
+    flex: 0 0 88%;
+    min-width: 0;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 18px 16px;
+  }
+
+  .est-carrusel-59 .est-tarjeta dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .est-carrusel-59 .est-tarjeta dd {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* QA móvil: evitar desbordamientos en las métricas de Ficha técnica */
+@media (max-width: 600px) {
+  .st-key-glass_ficha .fila {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .st-key-glass_ficha .mini {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+  }
+
+  .st-key-glass_ficha .mini:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .st-key-glass_ficha .mini span,
+  .st-key-glass_ficha .mini .kv,
+  .st-key-glass_ficha .mini small {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+/* QA móvil: carrusel horizontal de Error y confianza por municipio */
+@media (max-width: 700px) {
+  .val-municipios-movil {
+    display: flex !important;
+    flex-direction: row;
+    gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 2px 18px;
+  }
+
+  .val-municipios-movil .val-municipio {
+    flex: 0 0 88%;
+    min-width: 0;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 18px 16px;
+  }
+
+  .val-municipios-movil .val-municipio dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .val-municipios-movil .val-municipio h3,
+  .val-municipios-movil .val-municipio dd {
+    overflow-wrap: anywhere;
+  }
+}

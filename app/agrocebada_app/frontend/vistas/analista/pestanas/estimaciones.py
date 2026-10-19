@@ -25,7 +25,7 @@ def _tarjetas(tabla):
             f"<div><dt>Estimación</dt><dd>{r.prediccion:.2f} t/ha</dd></div>"
             f"<div><dt>Producción</dt><dd>{r.produccion_t:.2f} t</dd></div>"
             f"<div><dt>Rango del municipio</dt><dd>{e(r.rango)}</dd></div></dl>{nota}</article>")
-    h("<div class='est-movil'>" + "".join(filas) + "</div>")
+    h("<div class='est-movil est-carrusel-59'>" + "".join(filas) + "</div>")
 
 
 def estimaciones(ctx):

@@ -79,7 +79,8 @@ def cartera(ctx):
 
         a, b = st.columns([3, 1], vertical_alignment="center")
         with a:
-            titulo("Tabla por municipio")
+            with st.container(key="titulo_tabla_municipio"):
+                titulo("Tabla por municipio")
         vista = t.assign(tipo_rango=t.tipo_rango.map(TIPOS),
                          confianza=t.confianza.map(lambda v: v.capitalize() if isinstance(v, str) else v)).rename(columns={
             "municipio": "Municipio", "parcelas": "Parcelas", "hectareas": "Hectáreas",
