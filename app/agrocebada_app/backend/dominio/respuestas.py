@@ -2,6 +2,7 @@
 simple lo que está repartido en la pantalla (desglose M04, confianza M01, rango M02, calculadora M05, clima M07) y
 añaden lo que la pantalla no dice: por qué el vecino tiene el mismo número, cómo quedó la parcela frente a su
 municipio y qué haría más precisa la cifra. Todo sale del dato: no hay cifras escritas a mano ni modelo de lenguaje."""
+from agrocebada_app.backend.dominio.bitacora import faltan_para_subir
 from agrocebada_app.backend.dominio.calculadora import cuentas, equilibrio, frase_equilibrio
 from agrocebada_app.backend.dominio.clima_anomalia import comparar, frases
 from agrocebada_app.backend.dominio.desglose import NO_ENTRA, NO_VE, desglose
@@ -83,13 +84,26 @@ def _clima(clima, normal, pid):
     return " ".join(lista) + " Es contexto: no cambia tu estimación."
 
 
+def _cuanto_falta(n, municipio):
+    """Frase con lo que calcula «Tu libreta» (faltan_para_subir): la misma regla de M01, sin repetir la cuenta."""
+    f = faltan_para_subir(n)
+    if f["siguiente"] is None:
+        return (f"{municipio[:1].upper() + municipio[1:]} ya tiene parcelas suficientes: su confianza depende de qué "
+                "tan bien acierta el método ahí, no de sumar más parcelas.")
+    parcelas = f"{f['faltan']} parcela{'s' if f['faltan'] != 1 else ''}"
+    frase = (f"Con {parcelas} más con cosecha registrada, {municipio} pasaría de confianza {f['nivel']} a "
+             f"{f['siguiente']}")
+    if f["condicionado"]:
+        frase += ", siempre que el error ahí quede igual o por debajo del promedio"
+    return frase + "."
+
+
 def _mejorar(d, municipio):
-    """Qué no conoce la app y qué haría más precisa la cifra."""
+    """Qué no conoce la app, qué haría más precisa la cifra y cuánto le falta al municipio para subir de confianza."""
     n = int(d.loc[(d.municipio == municipio) & (d.CONJUNTO == "ENTRENAMIENTO"), "real"].notna().sum())
-    return (f"La app no conoce tu {NO_VE}. Lo que más ayudaría es registrar tu cosecha al terminar la temporada: hoy "
-            f"{municipio} tiene {n} parcela{'s' if n != 1 else ''} con cosecha registrada. Con más cosechas registradas "
-            "la cifra de tu municipio se vuelve más firme, y con datos de cada parcela se podría distinguir la tuya "
-            "de la de tus vecinos.")
+    return (f"La app no conoce tu {NO_VE}. Lo que más ayudaría es registrar tu cosecha al terminar la temporada; "
+            f"puedes anotarla en «Tu libreta», más abajo en esta página. Hoy {municipio} tiene {n} "
+            f"parcela{'s' if n != 1 else ''} con cosecha registrada. {_cuanto_falta(n, 'tu municipio')}")
 
 
 def saludo(d, pred, modelo, conf, pid):

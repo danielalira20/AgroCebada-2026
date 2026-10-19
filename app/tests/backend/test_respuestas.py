@@ -10,7 +10,8 @@ import pandas as pd  # noqa: E402
 from agrocebada_app.backend.dominio.confianza import confianza_municipios  # noqa: E402
 from agrocebada_app.backend.dominio.desglose import desglose  # noqa: E402
 from agrocebada_app.backend.dominio.rangos import ANIO  # noqa: E402
-from agrocebada_app.backend.dominio.respuestas import CONTEXTO, P_CLIMA, P_MEJORAR, respuestas, saludo  # noqa: E402
+from agrocebada_app.backend.dominio.respuestas import (CONTEXTO, P_CLIMA, P_MEJORAR, _cuanto_falta,  # noqa: E402
+                                                       respuestas, saludo)
 
 MOD = "mediana_mun__resp_grupo"
 # --- datos inventados: municipio M con 10 parcelas con cosecha (1 a 10 t/ha) y dos por estimar
@@ -37,7 +38,8 @@ assert res["¿Por qué mi vecino tiene el mismo número?"].startswith(
     "Porque las 2 parcelas por estimar de M reciben el mismo número, 5.50 t/ha.")
 assert "Escribe tu precio" in res["¿Me alcanza para mis costos?"]               # sin datos no inventa nada
 assert res[P_CLIMA] == "No tengo el clima de tu zona para comparar."
-assert "hoy M tiene 10 parcelas con cosecha registrada" in res[P_MEJORAR]
+assert "Hoy M tiene 10 parcelas con cosecha registrada" in res[P_MEJORAR]
+assert "«Tu libreta»" in res[P_MEJORAR]
 
 # --- una sola parcela por estimar en el municipio
 assert dict(respuestas(d, pred.loc[["P1"]], MOD, conf, "P1"))["¿Por qué mi vecino tiene el mismo número?"].startswith(
@@ -70,4 +72,10 @@ assert reg[0] == ("¿Cómo le fue a mi parcela frente a las de mi municipio?",
 assert len(reg) == 5
 assert saludo(d, pred, MOD, conf, "M3") == (f"Hola, soy Cebi. Tu parcela M3 tiene su cosecha registrada: 3.00 t/ha "
                                             f"en {ANIO}. ¿Qué quieres saber?")
+# --- cuánto falta para subir de confianza (usa faltan_para_subir de «Tu libreta»)
+assert _cuanto_falta(1, "N") == "Con 2 parcelas más con cosecha registrada, N pasaría de confianza baja a media."
+assert _cuanto_falta(2, "N").startswith("Con 1 parcela más con cosecha registrada")
+assert _cuanto_falta(5, "C") == ("Con 5 parcelas más con cosecha registrada, C pasaría de confianza media a alta, "
+                                 "siempre que el error ahí quede igual o por debajo del promedio.")
+assert _cuanto_falta(71, "Ch").startswith("Ch ya tiene parcelas suficientes")
 print("OK")
