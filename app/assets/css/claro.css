@@ -7,6 +7,8 @@
   --conf-alta: #216341; --conf-baja: #70448e; --mejora: #397523; --sin-mejora: #42677b;
   --complementaria: #70448e; --no-disponible: #9a3535; --barra-fondo: #dae2d4; --ambar: #8d580c;
   --dialogo: #fffef8; --bienvenida-acento: #397523; --bienvenida-hover: #28581b; --bienvenida-texto: #324f27;
+  --cebi-panel: #f6f9f2; --cebi-burbuja: #e8efdf; --cebi-borde: #b7cbae;
+  --cebi-usuario: #d6e9bf; --cebi-sombra: 0 16px 48px rgba(35, 59, 30, .18);
 }
 .stApp { color: var(--texto); background:
   radial-gradient(1100px 520px at 0% -10%, rgba(137,176,89,.10), transparent 60%),
@@ -41,7 +43,6 @@
 .stApp button[kind="primary"], .stApp .stDownloadButton button[kind="primary"] {
   background: #397523; border-color: #397523; color: #fff; }
 .stApp button[kind="primary"] p { color: #fff; }
-.st-key-glass_cebi button[kind="primary"], .st-key-glass_cebi button[kind="primary"] p { color: #fff !important; }
 .stApp button:disabled { opacity: .55; }
 .stApp [data-testid="stBaseButton-segmented_control"] { background: #fffef8; color: var(--texto); border-color: var(--borde); }
 .stApp [data-testid="stBaseButton-segmented_controlActive"],

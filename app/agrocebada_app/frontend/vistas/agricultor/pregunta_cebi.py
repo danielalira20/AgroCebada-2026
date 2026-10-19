@@ -1,6 +1,4 @@
-"""«Pregúntale a Cebi» en la vista del agricultor (M19): una tarjeta chica que abre una ventana con preguntas fijas
-y respuestas en burbujas. Sin campo de texto libre: Cebi sólo contesta lo que sabe. La plática se guarda mientras se
-use la página y empieza de nuevo al cambiar de parcela."""
+"""Cebi flotante: preguntas guiadas y respuestas con datos, con historial por parcela y sesión."""
 import streamlit as st
 
 from agrocebada_app.backend.dominio.respuestas import respuestas, saludo
@@ -8,48 +6,83 @@ from agrocebada_app.frontend.estado.cache import clima_normal
 from agrocebada_app.frontend.tema.estilos import MASCOTA
 from agrocebada_app.frontend.tema.html import e, h
 
-_TU = ("<div style='display:flex;justify-content:flex-end;margin:10px 0'>"
-       "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 4px 14px;font-size:.9rem;"
-       "background:#9BE15D;color:#10200F;font-weight:500'>{}</div></div>")
-_CEBI = ("<div class='mascota' style='margin:10px 0'><div class='cebi'>{}</div>"
-         "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 14px 4px;font-size:.9rem;"
-         "background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);color:var(--texto)'>{}</div></div>")
+
+def _etiqueta(pregunta):
+    """Accesos breves; la pregunta original sigue en la ayuda y en la conversación."""
+    etiquetas = {
+        "¿Por qué mi vecino tiene el mismo número?": "Mis vecinos",
+        "¿Qué tanto puedo confiar?": "La confianza",
+        "¿Me alcanza para mis costos?": "Mis costos",
+        "¿Cómo estuvo el clima este año en mi zona?": "El clima",
+        "¿Qué haría más precisa mi cifra?": "Más precisión",
+        "¿Cómo le fue a mi parcela frente a las de mi municipio?": "Mi cosecha",
+        "¿Entre qué valores quedaron las de mi municipio?": "Mi municipio",
+        "¿Qué no sabe la app de mi parcela?": "Qué falta saber",
+    }
+    if pregunta.startswith("¿Por qué mi parcela tiene "):
+        return "Mi estimación"
+    return etiquetas.get(pregunta, pregunta)
 
 
-@st.dialog("Pregúntale a Cebi", width="large")
+_COMPOSITOR = """<div class='cebi-compositor'>
+<div class='cebi-escritura'>
+<input type='text' placeholder='Escribe tu mensaje…' aria-label='Mensaje para Cebi, próximamente'
+       aria-describedby='cebi-aviso-maqueta' disabled>
+<button type='button' class='cebi-microfono' aria-label='Usar micrófono, próximamente' title='Voz, próximamente' disabled>
+<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' aria-hidden='true'>
+<rect x='9' y='3' width='6' height='12' rx='3'/><path d='M5 11v1a7 7 0 0 0 14 0v-1M12 19v3m-3 0h6'/></svg></button>
+<button type='button' class='cebi-enviar' aria-label='Enviar mensaje, próximamente' title='Mensajes, próximamente' disabled>
+<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>
+<path d='m7 11 5-5 5 5M12 6v12'/></svg></button>
+</div><div class='cebi-proximamente' id='cebi-aviso-maqueta'>Texto y voz, próximamente</div></div>"""
+
+
+def _preguntar(clave, indice):
+    hechas = st.session_state.setdefault(clave, [])
+    if indice in hechas:
+        hechas.remove(indice)
+    hechas.append(indice)
+
+
+def _reiniciar(clave):
+    st.session_state[clave] = []
+
+
+@st.fragment
 def _platica(ctx, pid):
     lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
                        precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
                        area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal())
     clave = f"cebi_{pid}"
     hechas = st.session_state.setdefault(clave, [])
-    h("<div class='nota'>Elige una pregunta y Cebi te contesta con los datos de tu parcela.</div>")
-    cols = st.columns(2)
-    for i, (pregunta, _) in enumerate(lista):
-        if cols[i % 2].button(pregunta, key=f"{clave}_{i}", width="stretch"):
-            if i in hechas:          # si ya la había preguntado, la mueve al final en vez de repetirla
-                hechas.remove(i)
-            hechas.append(i)
-    burbujas = [_CEBI.format(MASCOTA, e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid)))]
-    for i in hechas[-4:]:                         # las últimas cuatro preguntas
-        pregunta, respuesta = lista[i]
-        burbujas += [_TU.format(e(pregunta)), _CEBI.format(MASCOTA, e(respuesta))]
-    h("".join(burbujas))
-    if hechas and st.button("Empezar de nuevo", key=f"{clave}_borrar"):
-        hechas.clear()
-        st.rerun(scope="fragment")
+    with st.container(key="cebi_chat"):
+        h(f"<div class='cebi-cabecera'><div class='cebi' aria-hidden='true'>{MASCOTA}</div>"
+          f"<div><strong>Cebi<span class='cebi-hojita' aria-hidden='true'>✦</span></strong><span>Con los datos de tu parcela</span></div>"
+          f"<span class='cebi-parcela'>Parcela {e(pid)}</span></div>")
+        with st.container(height=220 if hechas else 150, border=False, autoscroll=True, key="cebi_mensajes"):
+            mensajes = [f"<div class='cebi-respuesta'>{e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid))}</div>"]
+            for indice in hechas[-4:]:
+                pregunta, respuesta = lista[indice]
+                mensajes.extend((f"<div class='cebi-pregunta'>{e(pregunta)}</div>",
+                                 f"<div class='cebi-respuesta'>{e(respuesta)}</div>"))
+            h("<div class='cebi-conversacion' role='log' aria-label='Conversación con Cebi' aria-live='polite'>"
+              + "".join(mensajes) + "</div>")
+        h("<div class='cebi-sugerencias'><span>Explora tu parcela</span><span>Elige una pregunta ↗</span></div>")
+        with st.container(key="cebi_preguntas"):
+            columnas = st.columns(3, gap="small")
+            for indice, (pregunta, _) in enumerate(lista):
+                columnas[indice % 3].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
+                                            wrap=True, on_click=_preguntar, args=(clave, indice))
+        h(_COMPOSITOR)
+        with st.container(horizontal=True, horizontal_alignment="right"):
+            st.button("Empezar de nuevo", key=f"{clave}_borrar", type="tertiary", disabled=not hechas,
+                      on_click=_reiniciar, args=(clave,), width="content", wrap=True)
 
 
 def pregunta_cebi(ctx, pid):
-    """Tarjeta chica en la página; el botón abre la ventana con la plática."""
-    h("<style>.st-key-glass_cebi button, .st-key-glass_cebi button p {color:#10200F !important;"
-      "font-weight:400 !important}</style>")
-    with st.container(key="glass_cebi"):
-        c1, c2 = st.columns([3, 1], vertical_alignment="center")
-        with c1:
-            h(f"<div class='mascota'><div class='cebi'>{MASCOTA}</div><div><div class='tit'>¿Tienes dudas sobre tu "
-              "parcela?</div><div class='nota' style='margin-top:4px'>Cebi te contesta con los datos de tu parcela: "
-              "por qué tiene ese número, qué tanto confiar, si te alcanza para tus costos y más.</div></div></div>")
-        with c2:
-            if st.button("Pregúntale a Cebi", key=f"abrir_cebi_{pid}", type="primary", width="stretch"):
-                _platica(ctx, pid)
+    """Acceso persistente abajo a la derecha y conversación en un popover nativo."""
+    with st.container(key="cebi_launcher"):
+        h(f"<div class='cebi-acceso' aria-hidden='true'><span>¿Te ayudo?</span>"
+          f"<div class='cebi'>{MASCOTA}</div></div>")
+        with st.popover("Pregúntale a Cebi", key="cebi_popover", width=72):
+            _platica(ctx, pid)

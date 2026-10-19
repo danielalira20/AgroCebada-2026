@@ -1,6 +1,8 @@
 :root { color-scheme: dark; --texto-fuerte: #fff; --texto: #e7efe9; --texto-suave: #d8e3dc; --aviso-texto: #f5d08a; --exito: #7ef0c4; --error: #ff9c9c; --credito: #66796e; --conf-alta: #9ee6be; --conf-baja: #d3c2ec; --mejora: #c0e899; --sin-mejora: #b4cfde; --complementaria: #d5c2ee; --no-disponible: #e8b9b9; --barra-fondo: #41544a; --ambar: #f5b544; }
 
-:root { --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D;
+:root { --cebi-panel: #14251e; --cebi-burbuja: #20362b; --cebi-borde: #405a46;
+  --cebi-usuario: #b6df91; --cebi-sombra: 0 16px 48px rgba(0, 0, 0, .25);
+  --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D;
   --dialogo: rgba(6, 14, 11, 0.96); --bienvenida-acento: #A3E36B; --bienvenida-hover: #B8F18A; --bienvenida-texto: #DFF3CF; }
 .stApp { background:
   radial-gradient(1100px 520px at 0% -10%, rgba(155,225,93,.13), transparent 60%),
