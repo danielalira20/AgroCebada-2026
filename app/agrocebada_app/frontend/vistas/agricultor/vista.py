@@ -24,7 +24,7 @@ def mostrar(ctx):
     satelite = ctx.satelite
     pred = ctx.pred
     DET = ctx.DET
-    with st.container(key="hero"):
+    with st.container(key="hero_agricultor"):
         pid, encuadre = panel_parcela(ctx)
         with st.container(key="glass_leyenda"):
             arriba, modo_color = leyenda()
