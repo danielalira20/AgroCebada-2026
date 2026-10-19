@@ -96,5 +96,30 @@ O = pd.DataFrame({"escenario": "A", "fuente": "municipio", "ID_POLIGONO": ["p1",
 a = ev.ajuste_final(O, MEDIANA)
 assert a["parcelas"] == 2 and a["predicciones"] == 4 and abs(a["mae"] - 0.3) < 1e-12 and a["modelo"] == "Mediana · oficial"
 assert ev.ajuste_final(None) is None
+assert ev.ajuste_final(O.assign(escenario="B"), MEDIANA) is None, "B no debe presentarse como población principal"
+
+# filtros: sin cambiar cifras, orden ni trazabilidad; complementarias explícitas
+antes = e.copy(deep=True)
+for p, n in [(1, 8), (2, 4), (3, 15)]:
+    todas = ev.filtrar_pruebas(e, p)
+    bajan = ev.filtrar_pruebas(e, p, "bajan")
+    no_bajan = ev.filtrar_pruebas(e, p, "no_bajan")
+    assert len(todas) == n and set(todas.estado) == {"registrada"}
+    assert set(bajan.index).isdisjoint(no_bajan.index)
+    assert set(bajan.index) | set(no_bajan.index) == set(todas.index)
+    pd.testing.assert_frame_equal(todas, e.loc[todas.index])
+    assert ev.filtrar_pruebas(e, p, complementarias=True).shape[0] == {1: 10, 2: 4, 3: 16}[p]
+assert ev.filtrar_pruebas(e, 1, "bajan").empty
+pd.testing.assert_frame_equal(e, antes)
+sin_registro = e[e.estado == "complementaria"]
+assert ev.resumen(sin_registro, 1)["n"] == 0
+assert ev.referencia(sin_registro) is None
+assert "No hay una decisión" in ev.cierre_modelo_final(sin_registro)
+try:
+    ev.filtrar_pruebas(e, 1, "inventado")
+except ValueError:
+    pass
+else:
+    raise AssertionError("Un filtro desconocido no debe devolver todas las filas en silencio")
 
 print("OK")

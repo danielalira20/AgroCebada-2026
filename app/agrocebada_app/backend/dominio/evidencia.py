@@ -19,7 +19,8 @@ PREGUNTAS = {
 }
 CAUTELA = ("Esto no demuestra que el clima, el relieve o el satélite sean inútiles en cualquier modelo: sólo que, "
            "añadidos a este método y con estas parcelas, no mejoraron lo suficiente.")
-REGLA = ("Una prueba se promueve si baja el error al menos 0.01 t/ha, su intervalo de confianza no incluye el cero y "
+REDUCCION_MINIMA = 0.01
+REGLA = (f"Una prueba se promueve si baja el error al menos {REDUCCION_MINIMA:.2f} t/ha, su intervalo de confianza no incluye el cero y "
          "mejora en al menos 4 de 5 repeticiones, sin empeorar el RMSE (regla de promoción de T03 §4).")
 FALTA = [("Fecha de siembra", "dos parcelas del mismo municipio pueden sembrarse con semanas de diferencia."),
          ("Variedad", "la base no dice qué cebada se sembró en cada parcela."),
@@ -71,6 +72,9 @@ def resumen(exp, pregunta, oficial=MODELO_OFICIAL):
     """Respuesta corta a una pregunta guía, con las cifras de sus pruebas registradas."""
     x = exp[(exp.pregunta == pregunta) & (exp.estado == "registrada")]
     n, pasan = len(x), int(x.pasa_regla.astype(bool).sum())
+    if x.empty:
+        return {"pregunta": pregunta, "n": 0, "pasan": 0, "frase": "No hay pruebas registradas para esta pregunta.",
+                "mejor": None, "cambio_mejor": None}
     mejor, peor = x.loc[x.delta_mae.idxmin()], x.loc[x.delta_mae.idxmax()]
     if pasan:
         frase = f"{pasan} de {n} pruebas registradas pasaron la regla."
@@ -87,12 +91,16 @@ def resumen(exp, pregunta, oficial=MODELO_OFICIAL):
 
 def referencia(exp):
     """MAE de la referencia (promedio del municipio) en la población de las pruebas registradas."""
-    return float(exp.loc[exp.estado == "registrada", "mae_referencia"].round(4).mode().iloc[0])
+    valores = exp.loc[exp.estado == "registrada", "mae_referencia"].round(4).mode()
+    return float(valores.iloc[0]) if not valores.empty else None
 
 
 def cierre_modelo_final(exp, oficial=MODELO_OFICIAL):
     """Cómo cierra la pregunta 3 según el modelo oficial. Sale de la fila de T16 y de la configuración."""
-    f = exp[(exp.tarea == "T16") & (exp.estado == "registrada")].iloc[0]
+    decision = exp[(exp.tarea == "T16") & (exp.estado == "registrada")]
+    if decision.empty:
+        return "No hay una decisión de T16 registrada en esta tabla."
+    f = decision.iloc[0]
     cifras = (f"La mediana del municipio bajó el error de {f.mae_referencia:.4f} a {f.mae:.4f} t/ha "
               f"({_s(f.delta_mae)}), en {int(f.reps_mejoran)} de 5 repeticiones, pero su intervalo "
               f"[{_s(f.ic_inf)}, {_s(f.ic_sup)}] incluye el cero y no llega a 0.01: no pasó la regla.")
@@ -107,7 +115,11 @@ def ajuste_final(O, modelo=MODELO_OFICIAL):
     propia cosecha). None si no hay validación."""
     if O is None or O.empty:
         return None
-    p = poblaciones(O).iloc[0]
+    pob = poblaciones(O)
+    principal = pob[pob.principal]
+    if principal.empty:
+        return None
+    p = principal.iloc[0]
     return {"modelo": MODELOS.get(modelo, modelo), "mae": float(p.MAE), "rmse": float(p.RMSE),
             "parcelas": int(p.parcelas), "predicciones": int(p.predicciones), "poblacion": p.poblacion}
 
@@ -130,3 +142,18 @@ def variacion_ubicacion(d):
 def lo_que_falta():
     """Información que el método no ve (siembra, variedad y manejo), con una línea de por qué importa."""
     return list(FALTA)
+
+
+def filtrar_pruebas(exp, pregunta, resultado="todas", complementarias=False):
+    """Selección del explorador; conserva índices y fuentes, sin recalcular resultados ni promover pruebas."""
+    x = exp[exp.pregunta == pregunta]
+    if not complementarias:
+        x = x[x.estado == "registrada"]
+    if resultado == "bajan":
+        x = x[x.delta_mae < 0]
+    elif resultado == "no_bajan":
+        x = x[x.delta_mae >= 0]
+    elif resultado != "todas":
+        raise ValueError(f"Filtro de resultado desconocido: {resultado}")
+    return x.assign(_complementaria=x.estado != "registrada").sort_values(
+        ["_complementaria", "delta_mae", "prueba"], kind="stable").drop(columns="_complementaria").copy()
