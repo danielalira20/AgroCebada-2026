@@ -2,6 +2,8 @@
 import pandas as pd
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.backend.dominio.evidencia import etiqueta_prueba, filtrar_pruebas, marca, referencia, tabla
 from agrocebada_app.frontend.componentes.evidencia.comparacion import comparacion
 from agrocebada_app.frontend.tema.html import e, h, titulo
@@ -24,7 +26,7 @@ def _restablecer():
 def _tabla_resumen(x, oficial):
     t = tabla(x, None, oficial)[["prueba", "cambio", "resultado"]].rename(columns=COLUMNAS)
     with st.container(key="evid_tabla_desktop"):
-        st.dataframe(t, hide_index=True, width="stretch", column_config=FORMATOS)
+        tabla_visual(t, hide_index=True, width="stretch", column_config=FORMATOS)
     filas = "".join(f"<article class='evid-fila'><h3>{e(etiqueta_prueba(f, oficial))}</h3>"
                     f"<b>{f.delta_mae:+.4f} t/ha</b><span>{e(marca(f))}</span></article>" for f in x.itertuples())
     h("<div class='evid-tabla-movil'>" + filas + "</div>")
@@ -92,6 +94,6 @@ def tabla_completa(exp, oficial):
     with st.expander(f"Catálogo completo y fuentes ({len(exp)} pruebas)", expanded=False):
         st.caption("Todas las preguntas, sin los filtros del explorador. El CSV conserva también motivos y notas.")
         t = tabla(exp, None, oficial)[list(COLUMNAS)].rename(columns=COLUMNAS)
-        st.dataframe(t, hide_index=True, width="stretch", height=460, column_config=FORMATOS)
+        tabla_visual(t, hide_index=True, width="stretch", height=460, column_config=FORMATOS)
         st.download_button(f"Descargar las {len(exp)} pruebas (CSV)", exp.to_csv(index=False).encode("utf-8-sig"),
                            file_name="evidencia_experimentos.csv", mime="text/csv", key="evid_descarga", on_click="ignore")

@@ -3,6 +3,10 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
+from agrocebada_app.frontend.tema.paleta import color_grafica
+
 from agrocebada_app.backend.dominio.geometria import vecinas
 from agrocebada_app.config import INDICES, MESES
 from agrocebada_app.frontend.componentes.graficas.base import grafica_base
@@ -31,11 +35,11 @@ def comparar(ctx, pid):
                 base = alt.Chart(x).encode(
                     x=alt.X("fecha:T", title=None, axis=alt.Axis(format="%d/%m")), y=alt.Y(f"{col}:Q", title=ind),
                     color=alt.Color("ID_POLIGONO:N", title=None, legend=alt.Legend(orient="top"),
-                                    scale=alt.Scale(domain=elegidas, range=["#FF7A45", "#9BE15D", "#7FB2FF"])),
+                                    scale=alt.Scale(domain=elegidas, range=[color_grafica("#FF7A45"), color_grafica("#9BE15D"), color_grafica("#7FB2FF")])),
                     tooltip=["ID_POLIGONO", alt.Tooltip("fecha:T", format="%d/%m/%Y"),
                              alt.Tooltip(f"{col}:Q", format=".2f")])
                 st.altair_chart(grafica_base(base.mark_line(strokeWidth=2) + base.mark_circle(size=30), 260),
-                                width="stretch")
+                                width="stretch", theme=None)
             filas = []
             for i in elegidas:
                 ri, est = d.loc[i], d.loc[i, "CONJUNTO"] == "PREDICCION"
@@ -48,7 +52,7 @@ def comparar(ctx, pid):
                               "NDVI máximo": top.ndvi_promedio if top is not None else None,
                               "mes del máximo": MESES[top.fecha.month] if top is not None else "",
                               "lluvia abr–oct (mm)": c_i.PREC.sum() if c_i is not None and len(c_i) else None})
-            st.dataframe(pd.DataFrame(filas), hide_index=True, width="stretch",
+            tabla_visual(pd.DataFrame(filas), hide_index=True, width="stretch",
                          column_config={"rendimiento (t/ha)": st.column_config.NumberColumn(format="%.2f"),
                                         "área (ha)": st.column_config.NumberColumn(format="%.2f"),
                                         "NDVI máximo": st.column_config.NumberColumn(format="%.2f"),

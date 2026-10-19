@@ -1,0 +1,106 @@
+/* Marfil y verde bosque; la escala agrícola del mapa conserva su significado. */
+:root {
+  color-scheme: light;
+  --vidrio: rgba(255, 255, 255, .62); --borde: #c9d4c4; --tenue: #53664f; --acento: #397523;
+  --texto-fuerte: #203b26; --texto: #293f2c; --texto-suave: #40533e;
+  --aviso-texto: #80520c; --exito: #166344; --error: #aa3232; --credito: #53664f;
+  --conf-alta: #216341; --conf-baja: #70448e; --mejora: #397523; --sin-mejora: #42677b;
+  --complementaria: #70448e; --no-disponible: #9a3535; --barra-fondo: #dae2d4; --ambar: #8d580c;
+  --dialogo: #fffef8; --bienvenida-acento: #397523; --bienvenida-hover: #28581b; --bienvenida-texto: #324f27;
+}
+.stApp { color: var(--texto); background:
+  radial-gradient(1100px 520px at 0% -10%, rgba(137,176,89,.10), transparent 60%),
+  radial-gradient(900px 480px at 100% 0%, rgba(156,190,150,.08), transparent 60%), #f1f4ee; }
+[class*="st-key-glass"] { background: linear-gradient(150deg, rgba(255,255,255,.18), transparent), var(--vidrio);
+  box-shadow: 0 10px 30px rgba(43,67,34,.06), inset 0 1px 0 rgba(255,255,255,.65); }
+/* Vidrio del mapa: suelo de opacidad para leer sobre cualquier imagen satelital. */
+:is(.st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda) {
+  --tenue: #384b32;
+  background: linear-gradient(145deg, rgba(255,255,255,.12), transparent), rgba(248,252,240,.78);
+  border-color: rgba(255,255,255,.55);
+  box-shadow: 0 12px 32px rgba(27,52,26,.13), inset 0 1px 0 rgba(255,255,255,.65);
+  backdrop-filter: blur(24px) saturate(115%); -webkit-backdrop-filter: blur(24px) saturate(115%); }
+:is(.st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda) .mini {
+  background: rgba(255,255,255,.28); border-color: rgba(72,100,52,.16); }
+.st-key-hero [data-testid="stDeckGlJsonChart"] { box-shadow: 0 14px 36px rgba(43,67,34,.13); }
+.mini, .paso, .etiqueta, .val-escenario, .evid-pregunta { background: #f1f4e9; border-color: var(--borde); }
+.stApp :is(h1, h2, h3, h4, h5, h6), .stApp [data-testid="stMarkdownContainer"],
+.stApp [data-testid="stExpander"] summary { color: var(--texto); }
+.stApp [data-testid="stCaptionContainer"] { color: var(--tenue); }
+.stApp a { color: #346c23; }
+.stApp [data-testid="stWidgetLabel"] p { color: var(--tenue); }
+.stApp :is(input, textarea), .stApp [data-baseweb="select"] > div,
+.stApp [data-baseweb="input"], .stApp [data-baseweb="base-input"] {
+  background: #fffef8; color: var(--texto); border-color: var(--borde); }
+.stApp input::placeholder, .stApp textarea::placeholder { color: #66735e; opacity: 1; }
+.stApp [data-baseweb="select"] :is(span, input, svg) { color: var(--texto); fill: currentColor; }
+.stApp [data-baseweb="tag"] { background: #e4ecd9; color: var(--texto); }
+.stApp button[kind="secondary"], .stApp button[kind="tertiary"],
+.stApp [data-testid="stNumberInput"] button, .stApp [data-testid="stPopoverButton"] {
+  color: var(--texto); background: #fffef8; border-color: var(--borde); }
+.stApp button[kind="primary"], .stApp .stDownloadButton button[kind="primary"] {
+  background: #397523; border-color: #397523; color: #fff; }
+.stApp button[kind="primary"] p { color: #fff; }
+.st-key-glass_cebi button[kind="primary"], .st-key-glass_cebi button[kind="primary"] p { color: #fff !important; }
+.stApp button:disabled { opacity: .55; }
+.stApp [data-testid="stBaseButton-segmented_control"] { background: #fffef8; color: var(--texto); border-color: var(--borde); }
+.stApp [data-testid="stBaseButton-segmented_controlActive"],
+.stApp [data-testid="stSegmentedControl"] button[aria-pressed="true"] { background: #e5efd9; color: #315f21; border-color: #397523; }
+.stApp button[role="radio"] { background: #fffef8 !important; color: var(--texto) !important; border-color: var(--borde); }
+.stApp button[role="radio"][aria-checked="true"] { background: #e5efd9 !important; color: #315f21 !important; border-color: #397523; }
+.stApp button [data-testid="stMarkdownContainer"] { color: inherit; }
+.stApp [data-testid="stTooltipIcon"] { color: var(--tenue); }
+.stApp button[aria-label^="Help"] { color: var(--tenue); }
+.stApp button[kind="elementToolbar"] { color: var(--texto); background: #fffef8; }
+.stApp label:has(input[role="switch"]:checked) > div:first-of-type { background: var(--acento); }
+.stApp [data-testid="stProgressBarTrack"] > div { background: var(--acento); }
+.stApp [role="combobox"] { color: var(--texto); background: #fffef8; }
+.stApp [role="group"]:has(> input[role="combobox"]) {
+  background: rgba(255,255,255,.40); border-color: rgba(70,100,50,.27); border-radius: 12px; }
+.stApp [role="group"] > input[role="combobox"] { background: transparent; }
+.stApp [role="group"]:has(> input[role="combobox"]) > button { background: transparent; color: var(--texto); }
+.stApp [role="group"]:has(> input[role="combobox"]) > button svg { color: inherit; }
+.stTabs [role="tablist"] { background: #eaeee1; }
+.stTabs [role="tab"] { color: var(--tenue); }
+.stTabs [role="tab"][aria-selected="true"] { background: #dce8cd; color: #284e1b; }
+.stApp [data-testid="stExpander"] { border-color: var(--borde); background: transparent; border-radius: 14px; }
+.stApp [data-testid="stExpander"] details { border-color: var(--borde); border-radius: 14px;
+  background: rgba(255,255,255,.32); overflow: hidden; }
+.stApp [data-testid="stFileUploaderDropzone"] { background: #eaf0e0; color: var(--texto); }
+.stApp [data-testid="stFileUploaderDropzone"] :is(span, small, svg) { color: var(--tenue); }
+.stApp [data-testid="stAlert"] { color: var(--texto); }
+.stApp [data-testid="stAlert"] :is(p, li) { color: inherit; }
+.stApp [data-testid="stMetricValue"] { color: var(--texto-fuerte); }
+/* Evidencia: tarjetas reconocibles y bloques de lectura con aire propio. */
+.st-key-evidencia .evid-preguntas { gap: 18px; margin: 6px 0 18px; }
+.st-key-evidencia .evid-pregunta {
+  background: linear-gradient(145deg, #fff, #f8faf5); border: 1px solid #b9cbb0;
+  box-shadow: 0 8px 22px rgba(43,67,34,.08); padding: 22px 24px; }
+.st-key-evidencia .evid-pregunta::before { content: ""; display: block; width: 30px; height: 3px;
+  background: #527a3b; border-radius: 3px; margin-bottom: 16px; }
+.st-key-evidencia .evid-pregunta h3 { color: #203b26; }
+.st-key-evidencia .evid-decision { background: #e8efdf; border: 1px solid #c8d8bb;
+  border-radius: 14px; padding: 20px; }
+.st-key-evidencia .evid-cautela { background: #e5eddd; border-left: 3px solid #527a3b;
+  border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 12px 0; max-width: none; }
+.st-key-evidencia [data-testid="stExpander"] { margin-bottom: 8px; }
+/* Los menús y diálogos se montan fuera de .stApp. */
+[data-baseweb="popover"] [role="listbox"], [data-baseweb="menu"],
+[data-baseweb="popover"] [role="option"] { background: #fffef8; color: #293f2c; }
+[data-baseweb="popover"] [role="option"][aria-selected="true"] { background: #e5efd9; }
+[data-baseweb="tooltip"] { background: #243d29; color: #fff; }
+[data-testid="stDialog"] [role="dialog"] { background: var(--dialogo); color: var(--texto); border-color: var(--borde); }
+[data-testid="stDialog"] :is(h1, h2, h3, p, label) { color: var(--texto); }
+[data-testid="stDialog"] button[kind="secondary"] { background: #f1f4e9 !important; color: var(--texto) !important; }
+[data-testid="stDialog"] [data-testid="stInfo"] { color: var(--bienvenida-texto); }
+[data-testid="stToast"] { background: #fffef8; color: var(--texto); border: 1px solid var(--borde); }
+.st-key-selector_tema button::before { background: #dce8cd; border-color: #8ba777;
+  box-shadow: inset 0 2px 4px rgba(57,87,36,.12); }
+.st-key-selector_tema button::after {
+  transform: translateX(30px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23397523' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E"); }
+@media (hover: hover) and (pointer: fine) {
+  .stApp button[kind="secondary"]:hover { background: #e9f0dd; border-color: #397523; }
+  .stApp button[kind="primary"]:hover { background: #2c601c; border-color: #2c601c; }
+  [data-baseweb="popover"] [role="option"]:hover { background: #eaf0e0; }
+}

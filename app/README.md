@@ -42,7 +42,7 @@ Variables de entorno (todas opcionales si las carpetas están donde la app las b
 | `AGRO_T04` | carpeta o archivo `clima_parcela_mes.csv` |
 | `AGRO_T08` | carpeta con `predicciones_59_referencias.csv` y `predicciones_oof_referencias_*.csv` |
 
-**Versión de Streamlit:** `requirements.txt` pide `>=1.56,<1.66`. La descarga diferida de la ficha necesita 1.52 o más, las pruebas (`AppTest`) 1.56 o más, y con 1.66 el mapa 3D dio errores de WebGL en el navegador.
+**Versión de Streamlit:** `requirements.txt` pide `>=1.65,<1.66` para configurar el fondo y el texto de las cabeceras nativas de las tablas con contraste suficiente. Con 1.66 el mapa 3D dio errores de WebGL en el navegador.
 
 ### Con Docker
 
@@ -109,7 +109,8 @@ Las dependencias van en un solo sentido: `frontend → backend → config`. Ning
 
 ## Diseño
 
-- Tema oscuro con paneles de vidrio flotando sobre el mapa.
+- **Modo claro predeterminado**, con marfil y verde bosque. El interruptor compacto de sol/luna, al final de la barra superior, cambia la apariencia sin perder filtros ni cifras. La elección se conserva durante la sesión; una sesión nueva empieza en claro. El oscuro mantiene los paneles de vidrio y su paleta original.
+- Los estilos compartidos viven en `assets/css/tema.css`; `claro.css` cambia sus variables de color y adapta los controles nativos. Las tarjetas del mapa conservan un vidrio blanco translúcido con desenfoque y texto oscuro. Las gráficas usan `frontend/tema/paleta.py`, y `frontend/tema/tablas.py` adapta las celdas sin perder las tablas interactivas. Las cabeceras usan fondo salvia y texto bosque, configurados en `.streamlit/config.toml` y compartidos por ambos modos. La bienvenida y Cebi usan las mismas variables. El PDF y los colores que representan rendimiento o confianza en el mapa conservan sus escalas.
 - El **mapa 3D es el protagonista**: cada parcela es un bloque con su forma real; la altura y el color son las t/ha (paja → verde → menta). Las parcelas por estimar llevan borde blanco y la elegida va en naranja.
 - Las parcelas se apoyan sobre el **relieve real** (Terrain Tiles de AWS) con **imagen Sentinel-2 sin nubes** (EOX). El botón «Satélite» la apaga si la conexión es lenta.
 - Dos vistas del mapa (junto a la leyenda): **3D** y **Desde arriba** (polígonos de color sobre la imagen, como un mapa de cultivos).

@@ -2,6 +2,8 @@
 import altair as alt
 import streamlit as st
 
+from agrocebada_app.frontend.tema.paleta import color_grafica
+
 from agrocebada_app.backend.dominio.franja_verdor import franja_municipio, sensor_para
 from agrocebada_app.config import MESES_EJE
 from agrocebada_app.frontend.componentes.graficas.base import grafica_base
@@ -20,11 +22,11 @@ def curva_indice(s, pid, col, nombre, alto=240):
         x=alt.X("fecha:T", title=None, axis=_eje_meses()),
         y=alt.Y(f"{col}:Q", title=nombre),
         color=alt.Color("sensor:N", title=None, scale=alt.Scale(domain=["Planet", "Sentinel-2"],
-                                                                range=["#9BE15D", "#5ED1E8"]),
+                                                                range=[color_grafica("#9BE15D"), color_grafica("#5ED1E8")]),
                         legend=alt.Legend(orient="top")),
         tooltip=[alt.Tooltip("fecha:T", format="%d/%m/%Y"), "sensor", alt.Tooltip(f"{col}:Q", format=".2f")])
     st.altair_chart(grafica_base(base.mark_line(opacity=0.55, strokeWidth=2) + base.mark_circle(size=34, opacity=0.95),
-                                 alto), width="stretch")
+                                 alto), width="stretch", theme=None)
 
 
 def curva_franja(s, d, pid, col="ndvi_promedio", nombre="NDVI", alto=240):
@@ -39,15 +41,15 @@ def curva_franja(s, d, pid, col="ndvi_promedio", nombre="NDVI", alto=240):
         x=alt.X("fecha:T", title=None, axis=_eje_meses()), y=alt.Y(f"{col}:Q", title=nombre),
         tooltip=[alt.Tooltip("fecha:T", title="fecha", format="%d/%m/%Y"),
                  alt.Tooltip(f"{col}:Q", title="tu parcela", format=".2f")])
-    capas = [linea.mark_line(color="#9BE15D", strokeWidth=2.2), linea.mark_circle(color="#9BE15D", size=30)]
+    capas = [linea.mark_line(color=color_grafica("#9BE15D"), strokeWidth=2.2), linea.mark_circle(color=color_grafica("#9BE15D"), size=30)]
     f = franja_municipio(d, s, pid, col, sensor)
     if f is not None:
-        franja = alt.Chart(f).mark_area(color="#B4C5BA", opacity=0.3).encode(
+        franja = alt.Chart(f).mark_area(color=color_grafica("#B4C5BA"), opacity=0.3).encode(
             x=alt.X("semana:T", title=None, axis=_eje_meses()), y=alt.Y("p25:Q", title=nombre), y2="p75:Q",
             tooltip=[alt.Tooltip("semana:T", title="semana del", format="%d/%m"),
                      alt.Tooltip("p25:Q", title="parte baja de la franja", format=".2f"),
                      alt.Tooltip("p75:Q", title="parte alta de la franja", format=".2f"),
                      alt.Tooltip("n:Q", title="parcelas con dato")])
         capas.insert(0, franja)
-    st.altair_chart(grafica_base(alt.layer(*capas), alto), width="stretch")
+    st.altair_chart(grafica_base(alt.layer(*capas), alto), width="stretch", theme=None)
     return sensor, f is not None
