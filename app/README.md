@@ -132,6 +132,7 @@ Las dependencias van en un solo sentido: `frontend → backend → config`. Ning
 | Panel «Tu parcela» | Municipio y parcela, rendimiento estimado (t/ha), producción estimada (t/ha × ha), error típico del municipio, de dónde sale la cifra, avisos y el botón **Descargar ficha (PDF)**. |
 | Mapa | La parcela en naranja y sus vecinas a ~6 km; panel con área, altitud, lluvia de la temporada, verdor máximo y fecha de corte. |
 | Verdor y clima | Curva de NDVI 2025 por sensor y lluvia/temperatura del mes, como contexto. |
+| Pregúntale a Cebi | Mascota flotante sin fondo abajo a la derecha: salta y parpadea al pasar el mouse y abre una conversación con accesos breves a las preguntas originales. Conserva los últimos cuatro intercambios por parcela y permite empezar de nuevo. Usa los mismos datos y valores de la calculadora; se cierra con Escape o al pulsar fuera. El campo de texto, micrófono y envío son una maqueta visual deshabilitada, sin captura de audio ni envío de mensajes. Respeta movimiento reducido. Estilos en `assets/css/cebi.css`, adaptados a ambos temas. |
 | Cómo leer | Tarjeta con Cebi que explica qué es y qué no es la cifra. |
 
 **Ficha PDF** (una página A4, se arma al hacer clic): parcela, cifra grande, producción, error típico, nota, avisos, mapa con la parcela y sus vecinas (con escala de 1 km), verdor y clima.
