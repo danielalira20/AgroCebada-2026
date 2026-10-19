@@ -51,12 +51,24 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 
 /* mejorar espaciado de Las 59 estimaciones */
 .st-key-glass_tabla {
-    padding-bottom: 26px;
+    padding-bottom: 36px;
 }
+
+.st-key-glass_cartera {
+    padding-bottom: 36px;
+}
+
+.st-key-glass_cartera .nota {
+    margin-top: 18px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+
 .st-key-glass_tabla .nota {
-    margin-top: 16px;
-    margin-bottom: 8px;
-    line-height: 1.55;
+    margin-top: 18px;
+    margin-bottom: 14px;
+    line-height: 1.6;
     overflow-wrap: break-word;
 }
 
@@ -373,4 +385,44 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
     overflow-x: auto; scrollbar-width: thin;
   }
   .st-key-glass_disp_val [data-testid="stFullScreenFrame"] { min-width: 320px; }
+}
+
+/* espacio inferior para evitar textos pegados al borde */
+.st-key-glass_disp,
+.st-key-glass_ndvi,
+.st-key-glass_clima,
+.st-key-glass_calculadora {
+    padding-bottom: 36px;
+}
+
+/* Separación de las notas finales */
+.st-key-glass_disp .nota,
+.st-key-glass_ndvi .nota,
+.st-key-glass_clima .nota,
+.st-key-glass_calculadora .nota {
+    margin-top: 16px;
+    margin-bottom: 12px;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+}
+
+/* Adaptación a celular */
+@media (max-width: 600px) {
+    .st-key-glass_disp,
+    .st-key-glass_ndvi,
+    .st-key-glass_clima,
+    .st-key-glass_calculadora {
+        padding-bottom: 28px;
+    }
+}
+
+/* espacio inferior en la tarjeta de información del mapa */
+.st-key-glass_chips {
+    padding-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+    .st-key-glass_chips {
+        padding-bottom: 24px;
+    }
 }

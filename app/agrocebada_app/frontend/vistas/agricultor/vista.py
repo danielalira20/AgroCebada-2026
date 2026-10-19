@@ -26,11 +26,12 @@ def mostrar(ctx):
     with st.container(key="hero"):
         pid, encuadre = panel_parcela(ctx)
         with st.container(key="glass_leyenda"):
-            arriba = leyenda()
+            arriba, modo_color = leyenda()
         rc = d.loc[encuadre]
         mapa(d, pred, vecinas(d, encuadre), (rc.lon_c - 0.018, rc.lat_c), 13.2, resaltar=pid, altura=700,
-             escala=30, satelite=satelite, arriba=arriba, detalle=DET, clave=f"mapa-agri-{encuadre}",
-             al_clic=lambda clave: clic_agricultor(clave, d))
+                escala=30, satelite=satelite, arriba=arriba, modo_color=modo_color,
+                detalle=DET, conf=ctx.conf, clave=f"mapa-agri-{encuadre}",
+                al_clic=lambda clave: clic_agricultor(clave, d))
         with st.container(key="glass_chips"):
             chips(resumen_parcela(d, pid, elevaciones(), C, S))
     h(f"<div class='creditos'>Tu parcela en naranja; las vecinas a ~6 km. {AYUDA_MAPA} · {e(CREDITOS)}</div>")
