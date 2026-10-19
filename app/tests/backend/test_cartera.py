@@ -62,4 +62,15 @@ conf = pd.DataFrame({"municipio": list(f.index), "nivel": ["alta", "alta", "medi
 tc = cartera_municipios(p, predecir(p, "media_mun__resp_grupo"), rangos, conf)
 mezcla = totales_cartera(tc)["mezcla_confianza"]
 assert sum(mezcla.values()) == 59 and set(mezcla) == {"alta", "media", "baja"}, mezcla
+
+# --- con la confianza real de M01 y el modelo oficial: 18 Alta · 40 Media · 1 Baja
+from agrocebada_app.backend.dominio.confianza import confianza_municipios  # noqa: E402
+from agrocebada_app.config import MODELO_OFICIAL  # noqa: E402
+from agrocebada_app.frontend.estado.cache import oof  # noqa: E402
+
+O = oof(MODELO_OFICIAL, p.municipio)
+real = confianza_municipios(p, O[(O.escenario == "A") & (O.fuente == "municipio")])
+treal = cartera_municipios(p, predecir(p, MODELO_OFICIAL), rangos, real)
+assert totales_cartera(treal)["mezcla_confianza"] == {"alta": 18, "media": 40, "baja": 1}, totales_cartera(treal)
+assert treal.set_index("municipio").confianza["Nanacamilpa de Mariano Arista"] == "baja"
 print("OK")
