@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 
-from agrocebada_app.config import INDICES
+from agrocebada_app.config import INDICES, MODELOS
 from agrocebada_app.frontend.componentes.descargas.boton_ficha import boton_ficha
 from agrocebada_app.frontend.componentes.graficas.clima import curva_clima
 from agrocebada_app.frontend.componentes.graficas.indices import curva_indice
@@ -25,7 +25,7 @@ def ficha_tecnica(ctx):
         titulo(f"{pid} · {r.municipio}, {r.Estado}", f"{r.AREA_HA:.2f} ha · grupo de registro {r.grupo_registro}")
         if r.CONJUNTO == "PREDICCION":
             p = pred.loc[pid]
-            kp = [("Estimación (modelo final)", f"{p.prediccion:.2f}", "t/ha"),
+            kp = [(f"Estimación · {MODELOS[modelo]}", f"{p.prediccion:.2f}", "t/ha"),
                   ("Referencia territorial", f"{p.fuente}", f"{int(p.n_municipio)} parcelas")]
             if pd.notna(p.error_tipico):
                 kp.append(("MAE del municipio", f"{p.error_tipico:.2f}", "t/ha"))

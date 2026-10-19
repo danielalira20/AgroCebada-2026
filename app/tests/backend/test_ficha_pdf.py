@@ -83,6 +83,9 @@ for nombre, pid in casos.items():
     assert paginas(pdf) == 1 and pdf[:5] == b"%PDF-", pid
     if carpeta and nombre == "AGC_011_chignahuapan":
         (carpeta / "ficha_AGC_011_con_confianza_y_calculadora.pdf").write_bytes(pdf)
-# otro modelo: la etiqueta cambia
-assert datos_ficha("AGC_011", FICHA, modelo="mediana_mun__resp_grupo")[0]["modelo"] == MODELOS["mediana_mun__resp_grupo"]
+# cada modelo conserva su etiqueta y la cifra de su contexto
+for modelo, cifra in [("media_mun__resp_grupo", 4.477323943661971), ("mediana_mun__resp_grupo", 4.52)]:
+    otro = calcular(d, paquete.soporte(), S, C, modelo, False)
+    info = datos_ficha("AGC_011", otro.FICHA, modelo=modelo)[0]
+    assert info["modelo"] == MODELOS[modelo] and abs(info["valor"] - cifra) < 1e-9, (modelo, info)
 print("OK")
