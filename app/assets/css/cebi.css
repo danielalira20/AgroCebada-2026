@@ -109,8 +109,10 @@
   width: 44px !important; height: 44px !important; min-height: 0 !important; }
 /* Grabando, con nota grabada o con error ya no cabe en el botón: entonces se lleva el renglón entero en vez de
    salirse del panel, que es lo que hacía al quedarse con su ancho natural dentro de una fila alineada a la derecha. */
+/* Ojo: un :has() no puede ir dentro de otro :has(). Escrito como «:has(audio:not(:has(Record)))» el navegador
+   tira esa parte en silencio y la regla no empareja con nada; la condición tiene que colgar del contenedor. */
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) > [data-testid="stElementContainer"]:has(
-    [data-testid="stAudioInput"]:not(:has([aria-label="Record"]))) { flex: 1 1 100% !important; }
+    [data-testid="stAudioInput"]):not(:has([aria-label="Record"])) { flex: 1 1 100% !important; }
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:not(:has([aria-label="Record"])),
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:not(:has([aria-label="Record"])) > div {
   width: 100% !important; max-width: 100% !important; }
@@ -122,9 +124,9 @@
    «…again.», que no le dice nada a nadie. Aquí se le da su propio renglón y se cuenta en español; el botón de
    reintentar se queda donde está. La seña es que desaparece la onda, o que aparece su enlace de permisos. */
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) { flex-wrap: wrap; }
+/* el estado en que pide permiso sí conserva el botón «Record», así que necesita su propia seña: el enlace */
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) > [data-testid="stElementContainer"]:has(
-    [data-testid="stAudioInput"]:is(:not(:has([data-testid="stAudioInputWaveSurfer"])),
-                                    :has(a[href*="enable-peripherals"]))) {
+    [data-testid="stAudioInput"]):has(a[href*="enable-peripherals"]) {
   flex: 1 1 100% !important; }
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])),
