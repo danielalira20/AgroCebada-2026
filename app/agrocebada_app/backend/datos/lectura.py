@@ -65,3 +65,11 @@ def leer_oficial(t08):
 def leer_soporte(t03):
     f = Path(t03) / "soporte_parcelas.csv"
     return pd.read_csv(f).set_index("ID_POLIGONO") if f.exists() else None
+
+def leer_calidad(t07):
+    """Revisión de contornos por parcela (T07): categoría del dibujo, si es angosta o muy pequeña y si tiene alerta."""
+    f = Path(t07) / "calidad_parcelas.csv"
+    if not f.exists():
+        return None
+    c = pd.read_csv(f).rename(columns={"id_parcela": "ID_POLIGONO"}).set_index("ID_POLIGONO")
+    return c[["contorno_categoria", "contorno_angosta_o_muy_pequena", "alerta_contorno_t03_bis"]]
