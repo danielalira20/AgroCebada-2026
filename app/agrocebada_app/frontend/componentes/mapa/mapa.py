@@ -7,6 +7,7 @@ from agrocebada_app.backend.dominio.confianza import confianza_de_parcelas
 from agrocebada_app.config import RELIEVE, SATELITE, TOOLTIP
 from agrocebada_app.frontend.componentes.mapa.colores import color, color_confianza
 from agrocebada_app.frontend.estado.cache import elevaciones
+from agrocebada_app.frontend.tema.paleta import color as color_tema
 
 
 def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, satelite=True, arriba=False,
@@ -74,6 +75,6 @@ def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, sate
     # no la cambia: el mapa no se vuelve a crear, conserva el zoom y sólo se recolorea la parcela elegida (Streamlit,
     # además, atenúa las demás).
     clave = f"{clave}-{'arriba' if arriba else '3d'}"
-    st.pydeck_chart(pdk.Deck(layers=capas, views=[vista], map_provider="carto", map_style="dark", tooltip=TOOLTIP,
+    st.pydeck_chart(pdk.Deck(layers=capas, views=[vista], map_provider="carto", map_style=color_tema("light", "dark"), tooltip=TOOLTIP,
                              initial_view_state=estado), height=altura, key=clave,
                     on_select=(lambda: al_clic(clave)) if al_clic else "ignore", selection_mode="single-object")

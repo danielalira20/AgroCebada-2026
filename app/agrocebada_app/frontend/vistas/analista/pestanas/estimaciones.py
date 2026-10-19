@@ -4,6 +4,8 @@ se muestran tarjetas, el mismo patrón que ya usa la pestaña Validación para n
 import numpy as np
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.backend.datos.exportar import cifras_parcelas
 from agrocebada_app.backend.dominio.rangos import rango_texto
 from agrocebada_app.config import MODELO_OFICIAL
@@ -65,7 +67,7 @@ def estimaciones(ctx):
                           file_name=f"predicciones_59_{modelo}.csv", mime="text/csv", type="primary", width="stretch")
 
         with st.container(key="tabla_59_ancha"):
-            st.dataframe(tabla[["ID_POLIGONO", "municipio", "confianza_txt", "prediccion", "produccion_t", "rango",
+            tabla_visual(tabla[["ID_POLIGONO", "municipio", "confianza_txt", "prediccion", "produccion_t", "rango",
                                 "area_ha", "motivo_detallado", "mae_txt", "fuente", "n_municipio",
                                 "aviso"]].rename(columns={
                                     "prediccion": "estimación (t/ha)", "area_ha": "área (ha)",

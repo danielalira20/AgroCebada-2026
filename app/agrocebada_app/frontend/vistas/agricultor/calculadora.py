@@ -2,6 +2,8 @@
 Muestra primero la respuesta en una frase; la tabla completa queda plegada."""
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.backend.dominio.calculadora import (AGROCOSTOS, columnas, cuentas, equilibrio, frase_equilibrio,
                                                          rango_municipio)
 from agrocebada_app.backend.dominio.rangos import ANIO
@@ -69,7 +71,7 @@ def calculadora(ctx, pid):
                 vista.loc[fila] = [f"{v:.2f}" for v in t.loc[fila]]
             for fila in ["Ingreso", "Costo", "Ingreso menos costo"]:
                 vista.loc[fila] = [_dinero(v) for v in t.loc[fila]]
-            st.dataframe(vista, width="stretch")
+            tabla_visual(vista, width="stretch")
             if rango["tipo_rango"] == "sin rango":
                 nota = f"{rango['texto']} Por eso sólo se muestra la cuenta con tu parcela."
             else:

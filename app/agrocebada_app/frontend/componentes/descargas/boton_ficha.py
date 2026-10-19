@@ -1,6 +1,7 @@
 """Botón para descargar la ficha de una parcela en PDF (se arma al hacer clic)."""
 import streamlit as st
 
+from agrocebada_app.backend.dominio.calculadora import columnas, cuentas, rango_municipio
 from agrocebada_app.backend.ficha_pdf.armado import armar_ficha
 
 
@@ -11,7 +12,35 @@ def ficha_bytes(pid, modelo, _ctx, confianza=None, calculadora=None):
     return armar_ficha(pid, _ctx, modelo, confianza, calculadora)
 
 
+def _dinero(x):
+    return f"-${abs(x):,.0f}" if x < 0 else f"${x:,.0f}"
+
+
+def filas_calculadora(pid, ctx):
+    """Filas (concepto, valor) de la calculadora (M05) con lo que el usuario escribió en esta sesión, o None si no
+    llenó el precio y el costo. Es la misma cuenta de la vista: estimación (o cosecha registrada) y año bajo."""
+    precio, costo = st.session_state.get("calc_precio"), st.session_state.get("calc_costo")
+    if not precio or not costo:
+        return None
+    r = ctx.d.loc[pid]
+    est = r.CONJUNTO == "PREDICCION"
+    rend = float(ctx.pred.loc[pid, "prediccion"]) if est else float(r.real)
+    area = float(st.session_state.get(f"calc_area_{pid}") or r.AREA_HA)
+    cols = columnas(rend, "Con la estimación" if est else "Con tu cosecha registrada", rango_municipio(ctx.d, r.municipio))
+    t = cuentas(cols, area, precio, costo)
+    base = t.columns[0]
+    filas = [(f"Producción en {area:.2f} ha", f"{t.loc['Producción (t)', base]:.1f} t"),
+             ("Ingreso menos costo" + (" · cubre costos" if t.loc["¿Cubre costos?", base] == "Sí" else " · no cubre costos"),
+              _dinero(t.loc["Ingreso menos costo", base]))]
+    if len(cols) == 3:
+        filas.append((cols[1][0], _dinero(t.loc["Ingreso menos costo", t.columns[1]])))
+    return filas
+
+
 def boton_ficha(pid, clave, modelo, ctx, confianza=None, calculadora=None):
+    """`calculadora`: si no llega, se toma de lo que el usuario llenó en la calculadora (session_state)."""
+    if calculadora is None:
+        calculadora = filas_calculadora(pid, ctx)
     st.download_button("Descargar ficha (PDF)", data=lambda: ficha_bytes(pid, modelo, ctx, confianza, calculadora),
                        file_name=f"ficha_{pid}.pdf", mime="application/pdf", on_click="ignore", key=clave,
                        type="primary", width="stretch", help="Una página con la cifra, el rango de su municipio, el mapa, el verdor y el clima.")

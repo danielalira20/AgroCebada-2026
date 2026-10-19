@@ -7,6 +7,9 @@ textColor = "#E7EFE9"
 font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap, sans-serif"
 baseRadius = "12px"
 borderColor = "#24312B"
+# Cabeceras nativas (canvas): salvia y bosque, legibles con ambos temas.
+dataframeHeaderBackgroundColor = "#DCE7D3"
+dataframeHeaderTextColor = "#293F2C"
 chartCategoricalColors = ["#9BE15D", "#2FE0A0", "#F5B544", "#7FB2FF", "#FF7A45", "#C59BFF", "#F2E86D", "#5ED1E8", "#FF9EC4"]
 
 [server]

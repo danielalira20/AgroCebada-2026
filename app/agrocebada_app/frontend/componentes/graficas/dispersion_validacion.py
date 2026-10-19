@@ -3,6 +3,8 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
+from agrocebada_app.frontend.tema.paleta import color_grafica
+
 from agrocebada_app.frontend.componentes.graficas.base import grafica_base
 from agrocebada_app.frontend.tema.html import titulo
 
@@ -26,6 +28,6 @@ def dispersion(ctx, clave="glass_disp_val"):
                                               labelFontSize=11, columnPadding=12, rowPadding=6)),
             tooltip=["ID_POLIGONO", "municipio", "real", alt.Tooltip("estimacion", format=".2f")])
         diag = alt.Chart(pd.DataFrame({"x": [2, 6], "y": [2, 6]})).mark_line(
-            color="rgba(255,255,255,0.35)", strokeDash=[4, 4]).encode(
+            color=color_grafica("rgba(255,255,255,0.35)"), strokeDash=[4, 4]).encode(
             x=alt.X("x:Q", scale=dom), y=alt.Y("y:Q", scale=dom))
-        st.altair_chart(grafica_base(diag + puntos, 300), width="stretch")
+        st.altair_chart(grafica_base(diag + puntos, 300), width="stretch", theme=None)

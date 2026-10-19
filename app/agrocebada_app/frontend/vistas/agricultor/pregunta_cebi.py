@@ -13,7 +13,7 @@ _TU = ("<div style='display:flex;justify-content:flex-end;margin:10px 0'>"
        "background:#9BE15D;color:#10200F;font-weight:500'>{}</div></div>")
 _CEBI = ("<div class='mascota' style='margin:10px 0'><div class='cebi'>{}</div>"
          "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 14px 4px;font-size:.9rem;"
-         "background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);color:#E8EEE9'>{}</div></div>")
+         "background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);color:var(--texto)'>{}</div></div>")
 
 
 @st.dialog("Pregúntale a Cebi", width="large")

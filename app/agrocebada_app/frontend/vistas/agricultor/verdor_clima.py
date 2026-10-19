@@ -22,8 +22,8 @@ def _tarjeta(nombre, detalle, lineas):
     return (f"<div style='{_TARJETA}'>"
             f"<div style='font-weight:600;font-size:1rem'>{e(nombre)}</div>"
             f"<div class='nota' style='margin:2px 0 10px'>{e(detalle)}</div>"
-            "<div style='border-left:3px solid #9BE15D;padding:2px 0 2px 12px;font-size:.95rem;line-height:1.6;"
-            f"color:#E8EEE9'>{cuerpo}</div></div>")
+            "<div style='border-left:3px solid var(--acento);padding:2px 0 2px 12px;font-size:.95rem;line-height:1.6;"
+            f"color:var(--texto)'>{cuerpo}</div></div>")
 
 
 def _frase_verdor(d, S, pid):

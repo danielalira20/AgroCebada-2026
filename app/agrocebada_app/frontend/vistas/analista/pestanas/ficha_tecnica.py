@@ -2,6 +2,8 @@
 import pandas as pd
 import streamlit as st
 
+from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
+
 from agrocebada_app.backend.dominio.calidad import tarjeta
 from agrocebada_app.backend.dominio.confianza import confianza_parcela
 from agrocebada_app.config import INDICES, MODELOS
@@ -52,7 +54,7 @@ def ficha_tecnica(ctx):
         titulo("Disponibilidad de datos","Capturas y meses sin imágenes despejadas: abril–octubre de 2025. ""Hueco máximo sin imagen: junio–octubre de 2025.")
         if sop is not None and pid in sop.index:
             s0 = sop.loc[pid]
-            st.dataframe(pd.DataFrame({
+            tabla_visual(pd.DataFrame({
                 "sensor": ["Sentinel-2", "Planet", "Landsat"],
                 "con dato": [s0.s2_capturas_con_dato, s0.pl_capturas_con_dato, s0.ls_capturas_con_dato],
                 "despejadas": [s0.s2_capturas_despejadas, s0.pl_capturas_despejadas, s0.ls_capturas_despejadas],
