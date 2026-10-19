@@ -1,45 +1,83 @@
-"""Verdor y clima de la parcela elegida, como contexto: no entran en el cálculo de la estimación."""
+"""Verdor y clima de la parcela elegida, como contexto: no entran en el cálculo de la estimación.
+Un solo recuadro con dos tarjetas internas (verdor y clima) y, plegadas abajo, sus dos gráficas."""
 import streamlit as st
 
 from agrocebada_app.backend.dominio.clima_anomalia import comparar, frases
+from agrocebada_app.backend.dominio.franja_verdor import mes_mas_verde
 from agrocebada_app.frontend.componentes.graficas.clima import curva_clima, curva_clima_normal
 from agrocebada_app.frontend.componentes.graficas.indices import curva_franja
 from agrocebada_app.frontend.estado.cache import clima_normal
-from agrocebada_app.frontend.tema.html import h, titulo
+from agrocebada_app.frontend.tema.html import e, h, titulo
 
 CONTEXTO = "Es contexto: no entra en el cálculo de la estimación."
+ZONA = "la zona de unos 5 km alrededor de tu parcela"
+
+_TARJETA = ("flex:1 1 300px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);"
+            "border-radius:14px;padding:14px 16px")
+
+
+def _tarjeta(nombre, detalle, lineas):
+    """Una tarjeta interna: nombre, explicación corta y el resumen con barra verde."""
+    cuerpo = "<br>".join(e(x) for x in lineas)
+    return (f"<div style='{_TARJETA}'>"
+            f"<div style='font-weight:600;font-size:1rem'>{e(nombre)}</div>"
+            f"<div class='nota' style='margin:2px 0 10px'>{e(detalle)}</div>"
+            "<div style='border-left:3px solid #9BE15D;padding:2px 0 2px 12px;font-size:.95rem;line-height:1.6;"
+            f"color:#E8EEE9'>{cuerpo}</div></div>")
+
+
+def _frase_verdor(d, S, pid):
+    meses = mes_mas_verde(d, S, pid)
+    if meses is None:
+        return "No hay imágenes de satélite suficientes de tu parcela."
+    parcela, municipio = meses
+    if municipio is None:
+        return f"Tu parcela llegó a su verdor más alto en {parcela}."
+    if municipio == parcela:
+        return f"Tu parcela y las de tu municipio llegaron a su verdor más alto en {parcela}."
+    return f"Tu parcela llegó a su verdor más alto en {parcela}; las de tu municipio, en {municipio}."
+
+
+def _lineas_clima(C, t):
+    if C is None:
+        return "En " + ZONA + ".", ["No hay información de lluvia y temperatura disponible para esta parcela."]
+    if t is None:
+        return f"Promedio mensual de {ZONA}.", ["Abre las gráficas para ver la lluvia y la temperatura de 2025."]
+    return (f"En {ZONA}, contra el promedio 2022–2024.",
+            frases(t) or ["La lluvia y la temperatura de 2025 quedaron cerca del promedio 2022–2024 en tu zona."])
 
 
 def verdor_clima(ctx, pid):
     d, S, C = ctx.d, ctx.S, ctx.C
-    g1, g2 = st.columns(2)
-    with g1, st.container(key="glass_ndvi"):
-        titulo("Tu parcela comparada con las de tu municipio",
-               "Verdor (NDVI): sube cuando el cultivo crece y baja al madurar o cosechar.")
-        r = curva_franja(S, d, pid)
-        if r is not None:
-            sensor, hay_franja = r
-            if hay_franja:
-                nota = ("La línea verde es tu parcela. La franja gris marca los valores más comunes entre las "
-                        "parcelas con cosecha de tu municipio, semana a semana.")
-            else:
-                nota = ("La línea verde es tu parcela. Tu municipio tiene muy pocas parcelas con cosecha para "
-                        "compararla.")
-            h(f"<div class='nota'>{nota} {CONTEXTO}</div>")
-    with g2, st.container(key="glass_clima"):
-        if C is None:
-            titulo("Lluvia y temperatura", f"Promedio mensual de la zona de unos 5 km alrededor de tu parcela. {CONTEXTO}")
-            st.info("No hay información de lluvia y temperatura disponible para esta parcela.")
-            return
-        t = comparar(C, clima_normal(), pid)
-        if t is None:
-            # sin el promedio 2022–2024 (paquete viejo o sin T04): la gráfica de siempre
-            titulo("Lluvia y temperatura", f"Promedio mensual de la zona de unos 5 km alrededor de tu parcela. {CONTEXTO}")
-            curva_clima(C, pid)
-            return
-        titulo("¿Cómo fue el clima de 2025?",
-                f"La zona de unos 5 km alrededor de tu parcela, contra el promedio 2022–2024. {CONTEXTO}")
-        curva_clima_normal(t, alto=160)
-        lista = frases(t) or ["La lluvia y la temperatura de 2025 quedaron cerca del promedio 2022–2024 en tu zona."]
-        h("<div class='nota'>La raya clara y la línea punteada son el promedio 2022–2024.<br>"
-          + "<br>".join(f"• {f}" for f in lista) + "</div>")
+    t = comparar(C, clima_normal(), pid) if C is not None else None
+    with st.container(key="glass_temporada"):
+        titulo("Cómo fue tu temporada", f"Verdor de tu parcela y clima de tu zona en 2025. {CONTEXTO}")
+
+        # 1) dos tarjetas internas, siempre a la misma altura
+        detalle_clima, lineas_clima = _lineas_clima(C, t)
+        h("<div style='display:flex;flex-wrap:wrap;gap:14px;align-items:stretch;margin:6px 0 12px'>"
+          + _tarjeta("Verdor", "Sube cuando el cultivo crece y baja al madurar o cosechar.",
+                     [_frase_verdor(d, S, pid)])
+          + _tarjeta("Lluvia y temperatura", detalle_clima, lineas_clima)
+          + "</div>")
+
+        # 2) las dos gráficas, plegadas, cada una en su tarjeta
+        with st.expander("Ver las gráficas"):
+            g1, g2 = st.columns(2, gap="medium")
+            with g1, st.container(border=True):
+                h("<div style='font-weight:600;font-size:.95rem'>Verdor</div>")
+                r = curva_franja(S, d, pid, alto=320)
+                if r is not None:
+                    _, hay_franja = r
+                    nota = ("La línea verde es tu parcela. La franja gris marca los valores más comunes entre las "
+                            "parcelas con cosecha de tu municipio, semana a semana." if hay_franja else
+                            "La línea verde es tu parcela. Tu municipio tiene muy pocas parcelas con cosecha para "
+                            "compararla.")
+                    h(f"<div class='nota'>{nota}</div>")
+            with g2, st.container(border=True):
+                h("<div style='font-weight:600;font-size:.95rem'>Lluvia y temperatura</div>")
+                if t is not None:
+                    curva_clima_normal(t, alto=160)
+                    h("<div class='nota'>La raya clara y la línea punteada son el promedio 2022–2024.</div>")
+                elif C is not None:
+                    curva_clima(C, pid)
