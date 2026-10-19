@@ -508,7 +508,10 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .lib-vacia { font-size: .85rem; line-height: 1.55; color: var(--tenue); padding: 22px 0; border-top: 1px solid var(--borde);
   border-bottom: 1px solid var(--borde); margin: 14px 0; }
 
-.lib-hoja { margin: 14px 0 18px; border-top: 1px solid var(--borde); }
+/* La hoja ya no es un solo bloque: cada renglón es su propio contenedor, porque el que tiene nota de voz
+   lleva su reproductor debajo. La raya de arriba y los márgenes se mantienen igual. */
+.st-key-lib_hoja { margin: 14px 0 18px; border-top: 1px solid var(--borde); gap: 0; }
+.st-key-lib_hoja [data-testid="stVerticalBlock"] { gap: 0; }
 .lib-renglon { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; padding: 14px 0;
   border-bottom: 1px solid var(--borde); }
 /* el año vive en el margen, separado por una raya vertical como en una libreta */
@@ -524,6 +527,18 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .lib-dif.sin { color: var(--tenue); }
 .lib-nota { margin-top: 8px; font-size: .78rem; color: var(--tenue); font-style: italic; line-height: 1.45;
   overflow-wrap: break-word; }
+/* la nota de voz del renglón: su rótulo y, debajo, el reproductor de Streamlit en tamaño de renglón */
+.lib-voz { margin-top: 10px; font-size: .72rem; font-weight: 600; color: var(--tenue); }
+[class*="st-key-lib_renglon_"] { padding-bottom: 14px; border-bottom: 1px solid var(--borde); }
+[class*="st-key-lib_renglon_"] .lib-renglon { border-bottom: 0; padding-bottom: 0; }
+/* Streamlit le cuelga -16px de margen a cada bloque de markdown, para compensar el margen de sus párrafos. Aquí
+   el renglón termina en un div, no en un párrafo, así que ese -16 subía el reproductor encima de su etiqueta. */
+[class*="st-key-lib_renglon_"] [data-testid="stMarkdownContainer"] { margin-bottom: 0; }
+[class*="st-key-lib_renglon_"] [data-testid="stAudio"] { margin: 8px 0 0 88px; max-width: 420px; }
+[class*="st-key-lib_renglon_"] audio[data-testid="stAudio"] { height: 36px; }
+@media (max-width: 700px) {
+  [class*="st-key-lib_renglon_"] [data-testid="stAudio"] { margin-left: 68px; }
+}
 
 /* cuántos vecinos faltan para que el municipio suba de nivel */
 /* El renglón para dictar la nota: va pegado arriba del formulario, discreto, del lado del campo de la nota. */

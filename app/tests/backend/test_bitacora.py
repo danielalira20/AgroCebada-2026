@@ -7,7 +7,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import pandas as pd  # noqa: E402
 
 from agrocebada_app.backend.dominio.bitacora import (  # noqa: E402
-    COLUMNAS, Dato, a_csv, agregar, desde_csv, faltan_para_subir, nueva_entrada, quitar, resumen, vacia)
+    AUDIO, COLUMNAS, EN_SESION, Dato, a_csv, agregar, desde_csv, faltan_para_subir, nueva_entrada,
+    quitar, resumen, vacia)
 from agrocebada_app.backend.dominio.confianza import MIN_ALTA, MIN_MEDIA  # noqa: E402
 
 # --- una anotación: el productor dice toneladas; el rendimiento se deriva de su superficie
@@ -33,7 +34,7 @@ assert len(nueva_entrada(2025, 32.0, 7.17, nota="x" * 500)["nota"]) == 140
 
 # --- la libreta: ordenada por año, y anotar dos veces el mismo año corrige en vez de duplicar
 lb = vacia()
-assert list(lb.columns) == COLUMNAS
+assert list(lb.columns) == EN_SESION
 for anio, t in [(2023, 28.0), (2025, 32.0), (2024, 30.0)]:
     lb = agregar(lb, nueva_entrada(anio, t, 7.17, estimacion_app=4.52))
 assert lb.anio.tolist() == [2023, 2024, 2025]
@@ -41,6 +42,22 @@ lb = agregar(lb, nueva_entrada(2024, 31.0, 7.17, estimacion_app=4.52))      # co
 assert lb.anio.tolist() == [2023, 2024, 2025] and len(lb) == 3
 assert float(lb[lb.anio == 2024].toneladas.iloc[0]) == 31.0
 assert quitar(lb, 2023).anio.tolist() == [2024, 2025] and len(quitar(vacia(), 2023)) == 0
+
+# --- la nota de voz viaja con su renglón, pero no en el archivo: un minuto de audio pesa más que toda la bitácora
+voz = b"RIFF....da igual el contenido: aqui solo se comprueba que viaja con su anio"
+con_voz = agregar(agregar(vacia(), nueva_entrada(2024, 30.0, 7.17)),
+                  nueva_entrada(2025, 32.0, 7.17, nota="granizo en julio", audio=voz))
+assert con_voz[con_voz.anio == 2025][AUDIO].iloc[0] == voz, "la grabación se queda con su año"
+assert con_voz[con_voz.anio == 2024][AUDIO].iloc[0] is None, "el año sin grabación no hereda la de otro"
+# anotar otro año no le quita la voz al anterior: era justo lo que se perdía cuando el audio vivía en la grabadora
+con_voz = agregar(con_voz, nueva_entrada(2023, 28.0, 7.17))
+assert con_voz[con_voz.anio == 2025][AUDIO].iloc[0] == voz
+texto_csv = a_csv(con_voz, "P1", "M").decode("utf-8")
+assert AUDIO not in texto_csv.splitlines()[0], "el audio no va al archivo"
+assert "granizo en julio" in texto_csv, "lo escrito sí"
+vuelta = desde_csv(a_csv(con_voz, "P1", "M"))
+assert list(vuelta.columns) == EN_SESION and vuelta[AUDIO].isna().all(), "al volver del archivo no hay audio"
+assert list(vuelta.nota) == ["", "", "granizo en julio"]
 
 # --- el tablero
 assert resumen(vacia()) is None

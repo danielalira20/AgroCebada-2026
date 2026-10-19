@@ -15,6 +15,10 @@ from agrocebada_app.backend.carga_segura.reglas import RENDIMIENTO   # qué rend
 from agrocebada_app.backend.dominio.confianza import MIN_ALTA, MIN_MEDIA
 
 COLUMNAS = ["anio", "toneladas", "rendimiento", "estimacion_app", "diferencia", "nota"]
+# La nota de voz viaja con su renglón pero no cabe en el archivo: un minuto de audio pesa más que toda la bitácora
+# y volvería el CSV inservible para abrirlo en otro lado. Vive en la sesión; lo que se descarga es la nota escrita.
+AUDIO = "audio"
+EN_SESION = COLUMNAS + [AUDIO]
 ANIO = (2000, 2100)          # un año fuera de esto es un dedazo, no una cosecha
 MAX_NOTA = 140
 
@@ -24,10 +28,10 @@ class Dato(ValueError):
 
 
 def vacia():
-    return pd.DataFrame(columns=COLUMNAS)
+    return pd.DataFrame(columns=EN_SESION)
 
 
-def nueva_entrada(anio, toneladas, area_ha, estimacion_app=None, nota=""):
+def nueva_entrada(anio, toneladas, area_ha, estimacion_app=None, nota="", audio=None):
     """Una anotación a partir de lo que el productor sabe: el año y cuántas toneladas levantó en toda la parcela.
     El rendimiento por hectárea se deriva de su superficie, no se le pide. `estimacion_app` es lo que la app había
     estimado para esa parcela, para poder contrastar después."""
@@ -52,14 +56,15 @@ def nueva_entrada(anio, toneladas, area_ha, estimacion_app=None, nota=""):
     dif = rendimiento - float(estimacion_app) if estimacion_app is not None and pd.notna(estimacion_app) else None
     return {"anio": anio, "toneladas": round(toneladas, 2), "rendimiento": round(rendimiento, 2),
             "estimacion_app": None if estimacion_app is None or pd.isna(estimacion_app) else round(float(estimacion_app), 2),
-            "diferencia": None if dif is None else round(dif, 2), "nota": str(nota or "").strip()[:MAX_NOTA]}
+            "diferencia": None if dif is None else round(dif, 2), "nota": str(nota or "").strip()[:MAX_NOTA],
+            AUDIO: bytes(audio) if audio else None}
 
 
 def agregar(libreta, entrada):
     """Suma la anotación y devuelve la bitácora ordenada por año. Anotar dos veces el mismo año reemplaza: una
     parcela tiene una cosecha por año, y corregir un dedazo no debe dejar dos verdades."""
     libreta = vacia() if libreta is None or libreta.empty else libreta[libreta.anio != entrada["anio"]]
-    return (pd.concat([libreta, pd.DataFrame([entrada], columns=COLUMNAS)], ignore_index=True)
+    return (pd.concat([libreta, pd.DataFrame([entrada], columns=EN_SESION)], ignore_index=True)
             .sort_values("anio").reset_index(drop=True))
 
 
@@ -101,8 +106,10 @@ def faltan_para_subir(n_cosecha):
 
 
 def a_csv(libreta, parcela="", municipio=""):
-    """La bitácora como archivo del productor: se la lleva y la vuelve a cargar cuando quiera."""
-    x = (vacia() if libreta is None else libreta).copy()
+    """La bitácora como archivo del productor: se la lleva y la vuelve a cargar cuando quiera.
+
+    Sin las notas de voz: el archivo es para leerlo y volver a subirlo, y el audio no cabe ahí."""
+    x = (vacia() if libreta is None else libreta).copy().reindex(columns=COLUMNAS)
     x.insert(0, "ID_POLIGONO", parcela)
     x.insert(1, "MUNICIPIO", municipio)
     return x.to_csv(index=False).encode("utf-8")
@@ -122,6 +129,7 @@ def desde_csv(contenido):
         if c not in x.columns:
             x[c] = None
     x = x[COLUMNAS].copy()
+    x[AUDIO] = None                       # el archivo nunca trae audio; los renglones que vuelven son sólo texto
     for c in ("anio", "toneladas", "rendimiento", "estimacion_app", "diferencia"):
         x[c] = pd.to_numeric(x[c], errors="coerce")
     x = x[x.anio.between(*ANIO) & x.toneladas.gt(0) & x.rendimiento.between(*RENDIMIENTO)]
@@ -129,4 +137,4 @@ def desde_csv(contenido):
         raise Dato("El archivo no trae ninguna cosecha que se pueda usar.")
     x["anio"] = x.anio.astype(int)
     x["nota"] = x.nota.fillna("").astype(str).str.slice(0, MAX_NOTA)
-    return x.drop_duplicates("anio", keep="last").sort_values("anio").reset_index(drop=True)
+    return x[EN_SESION].drop_duplicates("anio", keep="last").sort_values("anio").reset_index(drop=True)

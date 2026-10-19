@@ -16,12 +16,16 @@ from agrocebada_app.frontend.componentes.graficas.base import grafica_base
 from agrocebada_app.frontend.tema.estilos import MASCOTA
 from agrocebada_app.frontend.tema.html import e, h, titulo
 
+_PENDIENTE = "lib_audio_%s"      # la grabación que todavía no se anota
+_VUELTA = "lib_voz_n_%s"         # cuántas veces se ha anotado: renueva la grabadora
+
 GUIA = [("Anota lo que levantaste", "Sólo necesitas el año y cuántas toneladas sacaste de toda la parcela. El "
                                     "rendimiento por hectárea lo saca la app con tu superficie."),
         ("Compara con lo que dijo la app", "Cada renglón te muestra lo que la app había estimado y por cuánto le "
                                            "atinó o le falló. Así sabes qué tanto fiarte de ella."),
         ("Guarda tu libreta", "Descárgala cuando termines. Es tuya: no se queda en ningún servidor. La próxima vez "
-                              "la vuelves a subir y sigues anotando.")]
+                              "la vuelves a subir y sigues anotando. El archivo lleva lo escrito; las notas de voz "
+                              "sólo viven mientras tengas esta pantalla abierta.")]
 
 
 def _estado(pid):
@@ -39,21 +43,28 @@ def _guia():
 
 
 def _renglones(libreta, area):
-    """La libreta: un renglón por año, el más reciente abajo, como se escribe a mano."""
-    filas = []
-    for x in libreta.itertuples():
-        if pd.notna(x.diferencia):
-            arriba = float(x.diferencia) >= 0
-            comp = (f"<span class='lib-dif {'arriba' if arriba else 'abajo'}'>"
-                    f"{'▲' if arriba else '▼'} {abs(float(x.diferencia)):.2f} t/ha "
-                    f"{'arriba' if arriba else 'abajo'} de lo que estimó la app</span>")
-        else:
-            comp = "<span class='lib-dif sin'>la app no tenía estimación para este año</span>"
-        nota = f"<div class='lib-nota'>{e(x.nota)}</div>" if isinstance(x.nota, str) and x.nota else ""
-        filas.append(f"<div class='lib-renglon'><div class='lib-anio'>{int(x.anio)}</div><div class='lib-cuerpo'>"
-                     f"<div class='lib-cifra'>{float(x.toneladas):,.2f} <small>t en toda la parcela</small>"
-                     f"<b>{float(x.rendimiento):.2f} <small>t/ha</small></b></div>{comp}{nota}</div></div>")
-    h(f"<div class='lib-hoja'>{''.join(filas)}</div>")
+    """La libreta: un renglón por año, el más reciente abajo, como se escribe a mano.
+
+    Se dibuja renglón por renglón y no de un tirón porque el que trae nota de voz lleva su reproductor: así cada
+    grabación se queda con su año en vez de perderse cuando se graba la siguiente."""
+    with st.container(key="lib_hoja"):
+        for x in libreta.itertuples():
+            if pd.notna(x.diferencia):
+                arriba = float(x.diferencia) >= 0
+                comp = (f"<span class='lib-dif {'arriba' if arriba else 'abajo'}'>"
+                        f"{'▲' if arriba else '▼'} {abs(float(x.diferencia)):.2f} t/ha "
+                        f"{'arriba' if arriba else 'abajo'} de lo que estimó la app</span>")
+            else:
+                comp = "<span class='lib-dif sin'>la app no tenía estimación para este año</span>"
+            nota = f"<div class='lib-nota'>{e(x.nota)}</div>" if isinstance(x.nota, str) and x.nota else ""
+            audio = getattr(x, bit.AUDIO, None)
+            with st.container(key=f"lib_renglon_{int(x.anio)}"):
+                h(f"<div class='lib-renglon'><div class='lib-anio'>{int(x.anio)}</div><div class='lib-cuerpo'>"
+                  f"<div class='lib-cifra'>{float(x.toneladas):,.2f} <small>t en toda la parcela</small>"
+                  f"<b>{float(x.rendimiento):.2f} <small>t/ha</small></b></div>{comp}{nota}"
+                  f"{'<div class=\'lib-voz\'>Tu nota de voz</div>' if audio else ''}</div></div>")
+                if audio:
+                    st.audio(bytes(audio), format="audio/wav")
 
 
 def _progreso(n_cosecha, municipio):
@@ -103,7 +114,8 @@ def _tablero(r, libreta, valor_municipio):
 
 
 def _dictar(pid, clave):
-    """Dictar la nota del año en vez de escribirla; lo que se transcribe cae en el campo para poder corregirlo.
+    """Dictar la nota del año: la grabación se guarda para anotarla con su renglón y, de paso, se pasa a texto en
+    el campo para poder corregirlo.
 
     Va fuera del formulario a propósito: dentro, Streamlit no entrega el audio hasta que se envía, y la nota se
     guardaría sin que nadie hubiera podido leerla. Si este equipo no puede transcribir, no se dibuja el micrófono."""
@@ -111,21 +123,24 @@ def _dictar(pid, clave):
         return
     with st.container(horizontal=True, vertical_alignment="center", horizontal_alignment="right", key="lib_dictado"):
         h("<span class='lib-dictar'>¿Prefieres dictarla? La escribo por ti</span>")
-        audio = st.audio_input("Dicta tu nota", key=f"lib_voz_{pid}", label_visibility="collapsed")
+        # la llave cambia después de anotar para que la grabadora salga limpia y nadie anote dos veces el mismo audio
+        audio = st.audio_input("Dicta tu nota", key=f"lib_voz_{pid}_{st.session_state.get(_VUELTA % pid, 0)}",
+                               label_visibility="collapsed")
     if audio is None:
+        st.session_state.pop(_PENDIENTE % pid, None)      # si borró la grabación, se va con ella
         return
-    huella = (pid, audio.size)
-    if st.session_state.get("lib_voz_hecha") == huella:
+    datos = audio.getvalue()
+    if st.session_state.get(_PENDIENTE % pid) == datos:   # ya la oí; no la vuelvo a transcribir en cada vuelta
         return
-    st.session_state["lib_voz_hecha"] = huella
+    st.session_state[_PENDIENTE % pid] = datos            # se guarda aunque no se pueda transcribir: el audio manda
     with st.spinner("Escuchando tu nota…"):
         try:
-            texto = voz.transcribir(audio.getvalue())
+            texto = voz.transcribir(datos)
         except RuntimeError as ex:
             st.warning(str(ex))
             return
     if not texto:
-        st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
+        st.warning("No alcancé a entender la grabación, pero tu nota de voz se guarda igual al anotar.")
         return
     st.session_state[clave] = texto[:bit.MAX_NOTA]
     st.rerun()
@@ -171,8 +186,11 @@ def bitacora(ctx, pid):
                     st.warning("Escribe cuántas toneladas levantaste para poder anotarlo.")
                 else:
                     try:
-                        libreta = bit.agregar(libreta, bit.nueva_entrada(anio, ton, area, estimacion, nota))
+                        libreta = bit.agregar(libreta, bit.nueva_entrada(
+                            anio, ton, area, estimacion, nota, audio=st.session_state.get(_PENDIENTE % pid)))
                         _guardar(pid, libreta)
+                        st.session_state.pop(_PENDIENTE % pid, None)
+                        st.session_state[_VUELTA % pid] = st.session_state.get(_VUELTA % pid, 0) + 1
                         st.rerun()
                     except bit.Dato as ex:
                         st.warning(str(ex))
@@ -186,7 +204,7 @@ def bitacora(ctx, pid):
         st.download_button("Descargar mi libreta", bit.a_csv(libreta, pid, r.municipio),
                            file_name=f"libreta_{pid}.csv", mime="text/csv", on_click="ignore",
                            width="stretch", disabled=libreta.empty, key=f"lib_baja_{pid}",
-                           help="Guárdala en tu teléfono. La próxima vez la vuelves a subir aquí y sigues anotando.")
+                           help="Guárdala en tu teléfono. La próxima vez la vuelves a subir aquí y sigues anotando. Lleva lo escrito; las notas de voz no caben en el archivo.")
         with st.expander("¿Ya tienes una libreta guardada? Súbela aquí"):
             subido = st.file_uploader("Elige el archivo que descargaste", type=["csv"], key=f"lib_sube_{pid}")
         if subido is not None and st.session_state.get("lib_ultimo") != (pid, subido.name, subido.size):

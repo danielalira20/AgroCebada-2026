@@ -31,8 +31,9 @@ def pantalla(pid, modelo, entradas):
         libreta = bit.vacia()
         area = float(ctx.d.loc[pid, "AREA_HA"])
         est = float(ctx.pred.loc[pid, "prediccion"]) if pid in ctx.pred.index else None
-        for anio, ton in entradas:
-            libreta = bit.agregar(libreta, bit.nueva_entrada(anio, ton, area, est))
+        for entrada in entradas:                     # (año, toneladas) o (año, toneladas, nota de voz)
+            libreta = bit.agregar(libreta, bit.nueva_entrada(
+                entrada[0], entrada[1], area, est, audio=entrada[2] if len(entrada) > 2 else None))
         st.session_state["bitacora"] = {pid: libreta}
     bitacora(ctx, pid)
 
@@ -97,4 +98,15 @@ assert not at.exception, at.exception
 guardada = at.session_state["bitacora"][PID]
 assert list(guardada.nota) == ["granizo en julio"], list(guardada.nota)
 print("la nota dictada llega al campo, se puede corregir y queda anotada en la libreta")
+
+# --- la grabación se queda en su renglón y se puede volver a oír: sólo el año que la trae lleva reproductor
+VOZ = b"RIFF....da igual el contenido, aqui solo importa que llegue hasta la pantalla"
+at = AppTest.from_function(pantalla, args=(PID, MODELO_OFICIAL, [(2024, 30.0), (2025, 32.0, VOZ)]),
+                           default_timeout=300).run()
+assert not at.exception, at.exception
+assert len(at.get("audio")) == 1, "sólo el renglón con grabación lleva reproductor"
+assert at.get("audio")[0].proto.url.endswith(".wav"), at.get("audio")[0].proto.url
+texto = " ".join(x.value for x in at.markdown)
+assert texto.count("Tu nota de voz") == 1, texto.count("Tu nota de voz")
+print("la grabación se queda con su año y se puede volver a oír desde el renglón")
 print("OK")
