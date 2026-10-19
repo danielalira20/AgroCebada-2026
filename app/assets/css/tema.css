@@ -135,6 +135,17 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 
 /* mapa protagonista con paneles flotantes */
 .st-key-hero { position: relative; gap: 0; }
+/* Aviso nativo temporal sobre el mapa; no cambia el espacio de los paneles. */
+[data-testid="stToastContainer"] {
+  top: 150px !important; left: 50%; right: auto; transform: translateX(-50%);
+  width: min(440px, calc(100% - 32px));
+}
+@media (max-width: 900px) {
+  [data-testid="stToastContainer"] { top: auto !important; bottom: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-testid="stToastContainer"] * { animation: none !important; transition: none !important; }
+}
 .st-key-hero [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
   border: 1px solid var(--borde); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
 .st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }

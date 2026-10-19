@@ -36,8 +36,7 @@ def metodo_limites(ctx):
                 f"<div class='mini'><span>{e(k)}</span><b class='kv'>{v}<small>{u}</small></b></div>"
                 for k, v, u in kp) + "</div>")
         h("<div class='nota'>¿Por qué se utiliza un modelo simple? "
-        "Las alternativas evaluadas no demostraron una mejora suficiente frente al valor típico del municipio. "
-        "Consulta la pestaña Evidencia para conocer los experimentos y sus resultados.</div>")
+        "Las alternativas evaluadas no demostraron una mejora suficiente frente al valor típico del municipio.</div>")
     with r2, st.container(key="glass_fuentes"):
         titulo("Fuentes")
         fuentes = [("FIRA", "polígonos y rendimientos"), ("Sentinel-2, Landsat y Planet", "índices por parcela"),

@@ -1,6 +1,7 @@
 """Panel «Tu parcela»: selectores, cifra estimada (o registrada) con su desglose, y botón de la ficha."""
 import streamlit as st
 
+from agrocebada_app.backend.dominio.confianza import confianza_parcela
 from agrocebada_app.backend.dominio.desglose import desglose
 from agrocebada_app.backend.dominio.notas import nota_de
 from agrocebada_app.frontend.componentes.descargas.boton_ficha import boton_ficha
@@ -87,5 +88,7 @@ def panel_parcela(ctx):
         encuadre = st.session_state.setdefault("encuadre_agri", pid)       # parcela en la que se centra el mapa
         r = d.loc[pid]
         h(_estimada(ctx, pid, r) if r.CONJUNTO == "PREDICCION" else _registrada(ctx, pid, r))
-        boton_ficha(pid, "ficha_agricultor", ctx.modelo, ctx.FICHA)
+        confianza = (confianza_parcela(ctx.conf, r.municipio, ctx.pred.loc[pid, "fuente"])
+                     if r.CONJUNTO == "PREDICCION" else None)
+        boton_ficha(pid, "ficha_agricultor", ctx.modelo, ctx.FICHA, confianza=confianza)
     return pid, encuadre
