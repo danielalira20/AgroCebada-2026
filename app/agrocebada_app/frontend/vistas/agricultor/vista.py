@@ -13,6 +13,7 @@ from agrocebada_app.frontend.vistas.agricultor.panel_parcela import panel_parcel
 from agrocebada_app.frontend.vistas.agricultor.seleccion import clic_agricultor
 from agrocebada_app.frontend.vistas.agricultor.verdor_clima import verdor_clima
 from agrocebada_app.frontend.vistas.agricultor.calculadora import calculadora
+from agrocebada_app.frontend.vistas.agricultor.pregunta_cebi import pregunta_cebi
 
 
 def mostrar(ctx):
@@ -34,6 +35,7 @@ def mostrar(ctx):
             chips(resumen_parcela(d, pid, elevaciones(), C, S))
     h(f"<div class='creditos'>Tu parcela en naranja; las vecinas a ~6 km. {AYUDA_MAPA} · {e(CREDITOS)}</div>")
 
+    pregunta_cebi(ctx, pid)
     verdor_clima(ctx, pid)
     calculadora(ctx, pid)
     explicacion_cebi()

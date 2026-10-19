@@ -20,25 +20,25 @@ def verdor_clima(ctx, pid):
         if r is not None:
             sensor, hay_franja = r
             if hay_franja:
-                nota = (f"La línea es tu parcela ({sensor}). La franja muestra dónde quedó la mitad central de las "
+                nota = ("La línea verde es tu parcela. La franja gris marca los valores más comunes entre las "
                         "parcelas con cosecha de tu municipio, semana a semana.")
             else:
-                nota = (f"La línea es tu parcela ({sensor}). Tu municipio tiene muy pocas parcelas con cosecha para "
-                        "dibujar una franja de comparación.")
+                nota = ("La línea verde es tu parcela. Tu municipio tiene muy pocas parcelas con cosecha para "
+                        "compararla.")
             h(f"<div class='nota'>{nota} {CONTEXTO}</div>")
     with g2, st.container(key="glass_clima"):
         if C is None:
-            titulo("Lluvia y temperatura", f"Promedio mensual de la zona (píxel de ~5.5 km). {CONTEXTO}")
+            titulo("Lluvia y temperatura", f"Promedio mensual de la zona de unos 5 km alrededor de tu parcela. {CONTEXTO}")
             st.info("No hay información de lluvia y temperatura disponible para esta parcela.")
             return
         t = comparar(C, clima_normal(), pid)
         if t is None:
             # sin el promedio 2022–2024 (paquete viejo o sin T04): la gráfica de siempre
-            titulo("Lluvia y temperatura", f"Promedio mensual de la zona (píxel de ~5.5 km). {CONTEXTO}")
+            titulo("Lluvia y temperatura", f"Promedio mensual de la zona de unos 5 km alrededor de tu parcela. {CONTEXTO}")
             curva_clima(C, pid)
             return
         titulo("¿Cómo fue el clima de 2025?",
-               f"Tu zona (píxel de ~5.5 km) contra el promedio 2022–2024. {CONTEXTO}")
+                f"La zona de unos 5 km alrededor de tu parcela, contra el promedio 2022–2024. {CONTEXTO}")
         curva_clima_normal(t, alto=160)
         lista = frases(t) or ["La lluvia y la temperatura de 2025 quedaron cerca del promedio 2022–2024 en tu zona."]
         h("<div class='nota'>La raya clara y la línea punteada son el promedio 2022–2024.<br>"
