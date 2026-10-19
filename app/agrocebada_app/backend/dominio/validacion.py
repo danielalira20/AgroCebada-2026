@@ -77,9 +77,8 @@ def contraste_respaldo(O, pred):
             "estimaciones": len(pred), "estimaciones_con_respaldo": int((pred.fuente != "municipio").sum())}
 
 
-def frase_respaldo(c):
-    """Dos frases con el contraste. No afirma que el respaldo sea mejor o peor: con pocas parcelas no se puede saber,
-    y por eso la confianza es baja."""
+def bloques_respaldo(c):
+    """El mismo contraste separado en evidencia, límite y uso real, para no cortar párrafos en la interfaz."""
     n = c["estimaciones"]
     if c["estimaciones_con_respaldo"]:
         reales = f"{c['estimaciones_con_respaldo']} de las {n} estimaciones reales usan respaldo."
@@ -87,15 +86,22 @@ def frase_respaldo(c):
         reales = (f"Ninguna de las {n} estimaciones reales usa respaldo: todas se apoyan en parcelas con cosecha de "
                   "su propio municipio.")
     if not c["predicciones"]:
-        return ("En la validación todas las predicciones tuvieron parcelas con cosecha en su municipio. " + reales)
+        return {"validacion": "En la validación todas las predicciones tuvieron parcelas con cosecha en su municipio.",
+                "limite": "", "estimaciones": reales}
     uno = c["parcelas"] == 1
     parcelas = f"{c['parcelas']} parcela{'' if uno else 's'}"
-    pocas = (f" Con {'sólo ' if c['parcelas'] < MIN_MEDIA else ''}{parcelas} no alcanza para comparar: la confianza es "
+    pocas = (f"Con {'sólo ' if c['parcelas'] < MIN_MEDIA else ''}{parcelas} no alcanza para comparar: la confianza es "
              "baja por falta de evidencia, no porque el error haya sido mayor.") if c["parcelas"] < MIN_ALTA else ""
-    return (f"En la validación, {parcelas} no {'tuvo' if uno else 'tuvieron'} otras con cosecha en su municipio y "
+    evidencia = (f"En la validación, {parcelas} no {'tuvo' if uno else 'tuvieron'} otras con cosecha en su municipio y "
             f"se {'estimó' if uno else 'estimaron'} con el valor del grupo ({c['predicciones']} predicciones, MAE "
             f"{c['mae']:.2f} t/ha, frente a {c['mae_municipio']:.2f} t/ha cuando sí había datos del "
-            f"municipio).{pocas} {reales}")
+            "municipio).")
+    return {"validacion": evidencia, "limite": pocas, "estimaciones": reales}
+
+
+def frase_respaldo(c):
+    """Versión continua compatible con los consumidores del texto original."""
+    return " ".join(t for t in bloques_respaldo(c).values() if t)
 
 
 def comparacion_oculto(pred, sim, conf, municipio):

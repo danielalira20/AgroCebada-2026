@@ -287,3 +287,76 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-glass_panel .stDownloadButton {
     margin-top: 14px;
 }
+
+/* Validación: cada bloque conserva su espacio y sus detalles secundarios. */
+.st-key-glass_val { padding: 22px 24px; }
+.st-key-glass_val .val-contexto { font-size: .88rem; color: var(--tenue); margin: 8px 0; line-height: 1.5; }
+.st-key-glass_val .val-metricas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.st-key-glass_val .mini { min-width: 0; padding: 14px 16px; }
+.st-key-glass_val .mini span { font-size: .85rem; }
+.st-key-glass_val .kv { font-size: 1.8rem !important; }
+.st-key-glass_val .nota { font-size: .85rem; line-height: 1.5; margin-bottom: 6px; }
+@media (max-width: 600px) {
+  .st-key-glass_val { padding: 18px 16px; }
+  .st-key-glass_val .val-metricas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .st-key-glass_val .mini { padding: 12px; }
+  .st-key-glass_val .kv { font-size: 1.45rem !important; }
+}
+
+.st-key-validacion { gap: 20px; }
+.st-key-validacion .tit { font-size: 1.12rem; line-height: 1.4; }
+.st-key-validacion .sub, .st-key-validacion .nota { font-size: .88rem; line-height: 1.55; }
+.st-key-glass_mun, .st-key-glass_reglas_val, .st-key-glass_disp_val { padding: 22px 24px; }
+.val-confianza { display: inline-flex; align-items: center; white-space: nowrap; font-size: .8rem;
+  font-weight: 650; line-height: 1.5; padding: 4px 10px; border: 1px solid; border-radius: 999px; }
+.val-alta { color: #9ee6be; background: rgba(47,224,160,.08); border-color: rgba(47,224,160,.28); }
+.val-media { color: #f5d08a; background: rgba(245,181,68,.08); border-color: rgba(245,181,68,.28); }
+.val-baja, .val-sin-datos { color: #d3c2ec; background: rgba(178,138,221,.09); border-color: rgba(178,138,221,.3); }
+.val-reglas { display: grid; gap: 16px; margin: 12px 0 20px; }
+.val-regla { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: start; }
+.val-regla p { margin: 2px 0 0; font-size: .88rem; line-height: 1.55; color: #d8e3dc; }
+.val-municipios-movil { display: none; }
+.val-municipio { border-top: 1px solid var(--borde); padding: 16px 0; }
+.val-municipio-titulo { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.val-municipio h3 { margin: 0; padding: 0; font-size: .95rem; line-height: 1.4; color: #e7efe9; }
+.val-municipio dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0 0; }
+.val-municipio dt { font-size: .78rem; color: var(--tenue); }
+.val-municipio dd { margin: 4px 0 0; font-size: .95rem; color: #e7efe9; }
+@media (max-width: 900px) {
+  .st-key-val_regla_grafica [data-testid="stColumn"] { width: 100%; flex: 1 1 100%; min-width: 0; }
+}
+@media (max-width: 700px) {
+  .st-key-val_tabla_municipal { display: none; }
+  .val-municipios-movil { display: block; }
+  .st-key-glass_mun, .st-key-glass_reglas_val, .st-key-glass_disp_val { padding: 18px 16px; }
+  .val-regla { grid-template-columns: 1fr; gap: 6px; justify-items: start; }
+}
+
+.st-key-validacion .st-key-glass_insuf { padding: 22px 24px; }
+.st-key-validacion .st-key-glass_insuf [data-testid="stSelectbox"] { max-width: 480px; margin-bottom: 14px; }
+.val-comparacion { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.val-escenario { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.025); }
+.val-escenario h3, .val-conclusiones h3 { font-size: .9rem; line-height: 1.4; font-weight: 600;
+  color: #d8e3dc; padding: 0; margin: 0 0 10px; }
+.val-cifra { font-size: 1.9rem; font-weight: 750; line-height: 1.25; color: #fff; margin: 4px 0 12px; }
+.val-cifra small { font-size: .88rem; font-weight: 500; color: var(--tenue); margin-left: 6px; }
+.val-fuente { font-size: .85rem; line-height: 1.5; margin: 12px 0 0; color: var(--tenue); }
+.val-niveles { display: flex; flex-wrap: wrap; gap: 6px; }
+.st-key-validacion .val-alerta { font-size: .9rem; line-height: 1.5; padding: 14px 16px; margin: 4px 0; }
+.val-conclusiones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;
+  border-top: 1px solid var(--borde); padding-top: 18px; margin: 6px 0; }
+.val-conclusiones p { font-size: .88rem; line-height: 1.55; color: var(--tenue); margin: 0 0 10px; }
+.st-key-validacion [data-testid="stExpander"] summary { min-height: 44px; }
+.st-key-validacion :is(button, summary, input):focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .st-key-validacion .st-key-glass_insuf { padding: 18px 16px; }
+  .val-comparacion, .val-conclusiones { grid-template-columns: 1fr; gap: 12px; }
+  .val-escenario { padding: 16px; }
+}
+/* A 320 px la leyenda original necesita desplazamiento dentro de su tarjeta. */
+@media (max-width: 380px) {
+  .st-key-glass_disp_val [data-testid="stElementContainer"]:has([data-testid="stVegaLiteChart"]) {
+    overflow-x: auto; scrollbar-width: thin;
+  }
+  .st-key-glass_disp_val [data-testid="stFullScreenFrame"] { min-width: 320px; }
+}
