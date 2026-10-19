@@ -42,6 +42,14 @@ Variables de entorno (todas opcionales si las carpetas están donde la app las b
 | `AGRO_T04` | carpeta o archivo `clima_parcela_mes.csv` |
 | `AGRO_T08` | carpeta con `predicciones_59_referencias.csv` y `predicciones_oof_referencias_*.csv` |
 
+**Voz en «Pregúntale a Cebi» (opcional).** Para que las preguntas habladas se pasen a texto hay que instalar el reconocimiento de voz, que no viene en `requirements.txt` porque pesa unos 300 MB y la app funciona sin él:
+
+```sh
+pip install faster-whisper
+```
+
+Corre en el mismo equipo que la app, sin clave ni internet. El modelo (~145 MB) se descarga la primera vez; con `AGRO_WHISPER` puede elegirse otro (`tiny`, `base`, `small`). Sin él, la grabadora avisa que no puede transcribir.
+
 **Versión de Streamlit:** `requirements.txt` pide `>=1.65,<1.66` para configurar el fondo y el texto de las cabeceras nativas de las tablas con contraste suficiente. Con 1.66 el mapa 3D dio errores de WebGL en el navegador.
 
 ### Con Docker
@@ -132,7 +140,7 @@ Las dependencias van en un solo sentido: `frontend → backend → config`. Ning
 | Panel «Tu parcela» | Municipio y parcela, rendimiento estimado (t/ha), producción estimada (t/ha × ha), error típico del municipio, de dónde sale la cifra, avisos y el botón **Descargar ficha (PDF)**. |
 | Mapa | La parcela en naranja y sus vecinas a ~6 km; panel con área, altitud, lluvia de la temporada, verdor máximo y fecha de corte. |
 | Verdor y clima | Curva de NDVI 2025 por sensor y lluvia/temperatura del mes, como contexto. |
-| Pregúntale a Cebi | Mascota flotante sin fondo abajo a la derecha: salta y parpadea al pasar el mouse y abre una conversación con accesos breves a las preguntas originales. Conserva los últimos cuatro intercambios por parcela y permite empezar de nuevo. Usa los mismos datos y valores de la calculadora; se cierra con Escape o al pulsar fuera. El campo de texto, micrófono y envío son una maqueta visual deshabilitada, sin captura de audio ni envío de mensajes. Respeta movimiento reducido. Estilos en `assets/css/cebi.css`, adaptados a ambos temas. |
+| Pregúntale a Cebi | Mascota flotante sin fondo abajo a la derecha: salta y parpadea al pasar el mouse y abre una conversación con accesos breves a las preguntas originales. Conserva los últimos cuatro intercambios por parcela y permite empezar de nuevo. Usa los mismos datos y valores de la calculadora; se cierra con Escape o al pulsar fuera. Además de los accesos, acepta preguntas escritas y habladas: el enrutador (`backend/dominio/enrutador.py`) empareja lo que se dice con una de las respuestas que ya calcula del dato y, si no la reconoce, lo admite en vez de inventar —Cebi elige, nunca redacta, así que no puede afirmar lo que el método no hace—. La voz se transcribe en el equipo que sirve la app (`backend/dominio/transcribir.py`), no en el navegador, para que funcione igual en cualquier teléfono; es **opcional**: sin `faster-whisper` instalado la app avisa y sigue funcionando. Respeta movimiento reducido. Estilos en `assets/css/cebi.css`, adaptados a ambos temas. |
 | Cómo leer | Tarjeta con Cebi que explica qué es y qué no es la cifra. |
 
 **Ficha PDF** (una página A4, se arma al hacer clic): parcela, cifra grande, producción, error típico, nota, avisos, mapa con la parcela y sus vecinas (con escala de 1 km), verdor y clima.

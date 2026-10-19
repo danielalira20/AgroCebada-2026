@@ -105,3 +105,11 @@
   .stApp button[kind="primary"]:hover { background: #2c601c; border-color: #2c601c; }
   [data-baseweb="popover"] [role="option"]:hover { background: #eaf0e0; }
 }
+
+/* El campo de escritura y la grabadora de Cebi traen su propia barra oscura, que el resto del tema no alcanza:
+   en modo claro hay que vestirlas como el panel donde viven. */
+:is([data-testid="stAudioInput"], [data-testid="stChatInput"]) > div {
+  background: #f1f4e9 !important; border: 1px solid var(--borde); }
+:is([data-testid="stAudioInput"], [data-testid="stChatInput"]) :is(svg, span, p, textarea) { color: var(--texto) !important; }
+[data-testid="stChatInput"] textarea::placeholder { color: var(--tenue) !important; }
+[data-testid="stAudioInput"] svg { fill: currentColor; }

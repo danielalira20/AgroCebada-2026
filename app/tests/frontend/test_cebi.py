@@ -43,8 +43,10 @@ for tema in ("claro", "oscuro"):
     assert len([b for b in at.button if b.key.startswith("cebi_P1_")]) == 7
     assert at.button(key="cebi_P1_0").label == "Mi estimación"
     assert at.button(key="cebi_P1_0").proto.help == "¿Por qué mi parcela tiene 5.50?"
-    compositor = next(m.value for m in at.markdown if "class='cebi-compositor'" in m.value)
-    assert "Texto y voz, próximamente" in compositor and compositor.count("disabled") == 3
+    # el compositor ya no es maqueta: hay campo de escritura de verdad y grabadora de voz
+    assert at.chat_input(key="cebi_P1_texto").placeholder == "Escribe tu pregunta…"
+    assert "Preguntar hablando" in [x.label for x in at.expander]
+    assert not [m for m in at.markdown if "próximamente" in m.value]
     assert "Tu parcela P1 tiene una estimación de 5.50 t/ha" in conversacion(at)
     assert at.button(key="cebi_P1_borrar").disabled
     for indice in range(6):
@@ -75,3 +77,27 @@ for tema in ("claro", "oscuro"):
     assert "¿Cómo le fue a mi parcela" in conversacion(at)
 
 print("OK: popover, preguntas de ambas clases de parcela, historial de cuatro turnos, aislamiento, reinicio y costos actualizados")
+
+# --- texto libre: se enruta a una respuesta conocida, y lo que no sabe lo admite
+at = AppTest.from_string(PAGINA, default_timeout=30).run()
+at.chat_input(key="cebi_P1_texto").set_value("me alcanza para los gastos").run()
+assert not at.exception, at.exception
+turno = at.session_state["cebi_P1"][-1]
+assert turno[0] == "libre" and turno[1] == "me alcanza para los gastos"
+assert turno[2] is not None, "debió reconocer la pregunta de costos"
+texto = conversacion(at)
+assert "me alcanza para los gastos" in texto, "la burbuja muestra lo que la persona escribió, no la pregunta del botón"
+
+at.chat_input(key="cebi_P1_texto").set_value("cuando debo sembrar").run()
+assert not at.exception, at.exception
+assert at.session_state["cebi_P1"][-1][2] is None, "no debe enrutar una pregunta que no sabe"
+texto = conversacion(at)
+assert "No entendí" in texto and "inventar" in texto, texto[-300:]
+print("texto libre: enruta lo que sabe y admite lo que no, sin inventar")
+
+# --- con conversación los botones pasan a la fila que se desliza
+at = AppTest.from_string(PAGINA, default_timeout=30).run()
+assert any("Explora tu parcela" in m.value for m in at.markdown)
+at.button(key="cebi_P1_0").click().run()
+assert any("Más preguntas" in m.value for m in at.markdown), "la etiqueta cambia al haber conversación"
+print("OK")

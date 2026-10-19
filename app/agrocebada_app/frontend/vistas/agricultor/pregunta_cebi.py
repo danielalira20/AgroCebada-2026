@@ -1,10 +1,19 @@
-"""Cebi flotante: preguntas guiadas y respuestas con datos, con historial por parcela y sesión."""
+"""Cebi flotante: preguntas guiadas, texto libre y voz, con historial por parcela y sesión.
+
+Cebi elige, no redacta. Lo que se escribe o se dicta pasa por el enrutador, que lo empareja con una de las
+respuestas que `respuestas.py` arma del dato; si no reconoce la pregunta lo dice en vez de inventar. Por eso no hay
+modelo de lenguaje: uno que redacta podría afirmar lo que el método no hace, como que el clima mueve la estimación.
+"""
 import streamlit as st
 
+from agrocebada_app.backend.dominio import transcribir as voz
+from agrocebada_app.backend.dominio.enrutador import enrutar, no_entendi
 from agrocebada_app.backend.dominio.respuestas import respuestas, saludo
 from agrocebada_app.frontend.estado.cache import clima_normal
 from agrocebada_app.frontend.tema.estilos import MASCOTA
 from agrocebada_app.frontend.tema.html import e, h
+
+TURNOS = 4          # cuántos intercambios se conservan a la vista
 
 
 def _etiqueta(pregunta):
@@ -24,28 +33,63 @@ def _etiqueta(pregunta):
     return etiquetas.get(pregunta, pregunta)
 
 
-_COMPOSITOR = """<div class='cebi-compositor'>
-<div class='cebi-escritura'>
-<input type='text' placeholder='Escribe tu mensaje…' aria-label='Mensaje para Cebi, próximamente'
-       aria-describedby='cebi-aviso-maqueta' disabled>
-<button type='button' class='cebi-microfono' aria-label='Usar micrófono, próximamente' title='Voz, próximamente' disabled>
-<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' aria-hidden='true'>
-<rect x='9' y='3' width='6' height='12' rx='3'/><path d='M5 11v1a7 7 0 0 0 14 0v-1M12 19v3m-3 0h6'/></svg></button>
-<button type='button' class='cebi-enviar' aria-label='Enviar mensaje, próximamente' title='Mensajes, próximamente' disabled>
-<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>
-<path d='m7 11 5-5 5 5M12 6v12'/></svg></button>
-</div><div class='cebi-proximamente' id='cebi-aviso-maqueta'>Texto y voz, próximamente</div></div>"""
-
-
 def _preguntar(clave, indice):
+    """Un botón: se guarda el índice, igual que antes, y si se repite se mueve al final."""
     hechas = st.session_state.setdefault(clave, [])
     if indice in hechas:
         hechas.remove(indice)
     hechas.append(indice)
 
 
+def _decir(clave, texto, preguntas):
+    """Texto escrito o dictado: se enruta a una respuesta conocida, o se admite que no se entendió."""
+    st.session_state.setdefault(clave, []).append(("libre", str(texto).strip(), enrutar(texto, preguntas)))
+
+
 def _reiniciar(clave):
     st.session_state[clave] = []
+
+
+def _burbujas(turnos, lista):
+    """Las burbujas de los últimos turnos. Un turno es el índice de un botón o una pregunta escrita."""
+    mensajes = []
+    for turno in turnos:
+        if isinstance(turno, tuple):
+            _, texto, indice = turno
+            respuesta = lista[indice][1] if indice is not None else no_entendi(lista)
+            pregunta = texto
+        else:
+            pregunta, respuesta = lista[turno]
+        mensajes.append(f"<div class='cebi-pregunta'>{e(pregunta)}</div>")
+        mensajes.append(f"<div class='cebi-respuesta'>{e(respuesta)}</div>")
+    return mensajes
+
+
+def _escuchar(clave, pid, lista):
+    """Nota de voz: se graba aquí y se transcribe en el equipo de la app, para que funcione igual en cualquier
+    teléfono. Si no se puede transcribir, se dice y no pasa nada más."""
+    with st.expander("Preguntar hablando"):
+        if not voz.disponible():
+            h(f"<div class='nota'>{e(voz.por_que_no())}</div>")
+            return
+        audio = st.audio_input("Graba tu pregunta", key=f"{clave}_voz", label_visibility="collapsed")
+        if audio is None:
+            return
+        huella = (pid, audio.size)
+        if st.session_state.get(f"{clave}_voz_hecha") == huella:
+            return
+        st.session_state[f"{clave}_voz_hecha"] = huella
+        with st.spinner("Escuchando tu pregunta…"):
+            try:
+                texto = voz.transcribir(audio.getvalue())
+            except RuntimeError as ex:
+                st.warning(str(ex))
+                return
+        if not texto:
+            st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
+            return
+        _decir(clave, texto, lista)
+        st.rerun()
 
 
 @st.fragment
@@ -61,19 +105,23 @@ def _platica(ctx, pid):
           f"<span class='cebi-parcela'>Parcela {e(pid)}</span></div>")
         with st.container(height=220 if hechas else 150, border=False, autoscroll=True, key="cebi_mensajes"):
             mensajes = [f"<div class='cebi-respuesta'>{e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid))}</div>"]
-            for indice in hechas[-4:]:
-                pregunta, respuesta = lista[indice]
-                mensajes.extend((f"<div class='cebi-pregunta'>{e(pregunta)}</div>",
-                                 f"<div class='cebi-respuesta'>{e(respuesta)}</div>"))
+            mensajes.extend(_burbujas(hechas[-TURNOS:], lista))
             h("<div class='cebi-conversacion' role='log' aria-label='Conversación con Cebi' aria-live='polite'>"
               + "".join(mensajes) + "</div>")
-        h("<div class='cebi-sugerencias'><span>Explora tu parcela</span><span>Elige una pregunta ↗</span></div>")
-        with st.container(key="cebi_preguntas"):
-            columnas = st.columns(3, gap="small")
+        # Antes de la primera pregunta los botones invitan a explorar; después se encogen a una fila que se desliza,
+        # para dejarle la pantalla a la conversación.
+        h(f"<div class='cebi-sugerencias'><span>{'Más preguntas' if hechas else 'Explora tu parcela'}</span></div>")
+        with st.container(key="cebi_preguntas_fila" if hechas else "cebi_preguntas"):
+            columnas = st.columns(len(lista) if hechas else 3, gap="small")
             for indice, (pregunta, _) in enumerate(lista):
-                columnas[indice % 3].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
-                                            wrap=True, on_click=_preguntar, args=(clave, indice))
-        h(_COMPOSITOR)
+                destino = columnas[indice] if hechas else columnas[indice % 3]
+                destino.button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
+                               wrap=True, on_click=_preguntar, args=(clave, indice))
+        escrito = st.chat_input("Escribe tu pregunta…", key=f"{clave}_texto")
+        if escrito:
+            _decir(clave, escrito, lista)
+            st.rerun()
+        _escuchar(clave, pid, lista)
         with st.container(horizontal=True, horizontal_alignment="right"):
             st.button("Empezar de nuevo", key=f"{clave}_borrar", type="tertiary", disabled=not hechas,
                       on_click=_reiniciar, args=(clave,), width="content", wrap=True)

@@ -49,17 +49,33 @@
 .cebi-respuesta, .cebi-pregunta { padding: 10px 12px; font-size: .87rem; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-line; }
 .cebi-respuesta { align-self: flex-start; max-width: 96%; background: color-mix(in srgb, var(--cebi-burbuja) 45%, transparent); color: var(--texto); border-radius: 3px 16px 16px 16px; }
 .cebi-pregunta { align-self: flex-end; max-width: 88%; background: var(--cebi-usuario); color: #20351b; border-radius: 16px 16px 4px 16px; }
-.cebi-sugerencias { display: flex; justify-content: space-between; gap: 8px; font-size: .72rem; font-weight: 600; color: var(--texto-suave); }
-.cebi-sugerencias > span + span { font-size: .65rem; font-weight: 400; }
-.st-key-cebi_preguntas [data-testid="stVerticalBlock"] { gap: 6px; }
-.st-key-cebi_preguntas button[kind="secondary"] {
+.cebi-sugerencias { font-size: .72rem; font-weight: 600; color: var(--texto-suave); margin-top: 2px; }
+:is(.st-key-cebi_preguntas, .st-key-cebi_preguntas_fila) [data-testid="stVerticalBlock"] { gap: 6px; }
+.st-key-cebi_preguntas_fila [data-testid="stHorizontalBlock"] {
+  flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; gap: 6px;
+  padding-bottom: 4px; scroll-snap-type: x proximity;
+  /* la última pastilla se desvanece en el borde para que se note que hay más */
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+}
+.st-key-cebi_preguntas_fila [data-testid="stColumn"] { flex: 0 0 auto; width: auto !important;
+  min-width: 0 !important; scroll-snap-align: start; }
+.st-key-cebi_preguntas_fila button[kind="secondary"] { white-space: nowrap; }
+.st-key-cebi_preguntas_fila button p { white-space: nowrap; }
+:is(.st-key-cebi_preguntas, .st-key-cebi_preguntas_fila) button[kind="secondary"] {
   min-height: 44px; height: 100%; padding: 6px 8px;
   border: 1px solid color-mix(in srgb, var(--cebi-borde) 65%, transparent) !important;
   background: transparent !important; color: var(--texto) !important;
   border-radius: 100px;
   transition: background-color 160ms ease, border-color 160ms ease;
 }
-.st-key-cebi_preguntas button p { font-size: .73rem; line-height: 1.3; font-weight: 400; color: inherit; }
+:is(.st-key-cebi_preguntas, .st-key-cebi_preguntas_fila) button p { font-size: .73rem; line-height: 1.3;
+  font-weight: 400; color: inherit; }
+/* campo real de escritura y grabadora de voz */
+.st-key-cebi_chat [data-testid="stChatInput"] { border-radius: 18px; border: 1px solid var(--cebi-borde);
+  background: var(--cebi-panel); }
+.st-key-cebi_chat [data-testid="stChatInput"] textarea { font-size: .83rem; }
+.st-key-cebi_chat [data-testid="stExpander"] summary { min-height: 40px; font-size: .72rem; }
+.st-key-cebi_chat [data-testid="stExpander"] summary p { font-size: .72rem; }
 .cebi-compositor { padding-top: 12px; }
 .cebi-escritura { display: flex; align-items: center; gap: 2px; padding: 5px 6px 5px 14px;
   border: 1px solid var(--cebi-borde); border-radius: 18px; background: var(--cebi-panel); }
@@ -81,7 +97,7 @@
 @media (hover: hover) and (pointer: fine) {
   .st-key-cebi_launcher:has([data-testid="stPopoverButton"]:hover) .cebi-todo { transform: translateY(-7px) rotate(-5deg); }
   .st-key-cebi_launcher:has([data-testid="stPopoverButton"]:hover) .cebi-ojos { animation: cebi-guiña 250ms var(--ease-out) 1; }
-  .st-key-cebi_preguntas button[kind="secondary"]:hover { background: var(--cebi-burbuja) !important; border-color: var(--cebi-borde) !important; }
+  :is(.st-key-cebi_preguntas, .st-key-cebi_preguntas_fila) button[kind="secondary"]:hover { background: var(--cebi-burbuja) !important; border-color: var(--cebi-borde) !important; }
 }
 @media (max-width: 640px) {
   .st-key-cebi_launcher { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); }
@@ -91,7 +107,7 @@
   .st-key-cebi_preguntas [data-testid="stColumn"] { min-width: 0 !important; flex: 1 1 0; }
   .cebi-cabecera { gap: 8px; }
   .cebi-cabecera .cebi-parcela { font-size: .62rem; padding: 4px 6px; }
-  .st-key-cebi_preguntas button p { font-size: .7rem; }
+  :is(.st-key-cebi_preguntas, .st-key-cebi_preguntas_fila) button p { font-size: .7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cebi-acceso .cebi, .cebi-acceso .cebi * { animation: none !important; transition: none !important; transform: none !important; }
