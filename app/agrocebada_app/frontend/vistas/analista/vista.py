@@ -1,4 +1,4 @@
-"""Vista del analista: mapa de las 197 parcelas, resumen y seis pestañas."""
+"""Vista del analista: mapa de las 197 parcelas, resumen y siete pestañas."""
 import streamlit as st
 
 from agrocebada_app.backend.dominio.geometria import vecinas
@@ -9,6 +9,7 @@ from agrocebada_app.frontend.componentes.paneles.leyenda import leyenda
 from agrocebada_app.frontend.tema.html import e, h
 from agrocebada_app.frontend.vistas.analista.pestanas.cartera import cartera
 from agrocebada_app.frontend.vistas.analista.pestanas.estimaciones import estimaciones
+from agrocebada_app.frontend.vistas.analista.pestanas.evidencia import evidencia
 from agrocebada_app.frontend.vistas.analista.pestanas.ficha_tecnica import ficha_tecnica
 from agrocebada_app.frontend.vistas.analista.pestanas.metodo_limites import metodo_limites
 from agrocebada_app.frontend.vistas.analista.pestanas.validacion import validacion
@@ -70,8 +71,8 @@ def mostrar(ctx):
             boton_cifras(ctx)
     h(f"<div class='creditos'>{AYUDA_MAPA} · {e(CREDITOS)}</div>")
 
-    t0, t1, t2, t3, t4, t5 = st.tabs(["Cartera", "Las 59 estimaciones", "Ficha técnica", "Validación",
-                                      "Método y límites", "Analizar tus datos"])
+    t0, t1, t2, t3, t6, t4, t5 = st.tabs(["Cartera", "Las 59 estimaciones", "Ficha técnica", "Validación",
+                                          "Evidencia", "Método y límites", "Analizar tus datos"])
 
     with t0:
         cartera(ctx)
@@ -81,6 +82,8 @@ def mostrar(ctx):
         ficha_tecnica(ctx)
     with t3:
         validacion(ctx)
+    with t6:
+        evidencia(ctx)
     with t4:
         metodo_limites(ctx)
     with t5:
