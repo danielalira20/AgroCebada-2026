@@ -12,11 +12,14 @@ from agrocebada_app.backend.dominio.enrutador import enrutar, no_entendi, normal
 
 # Las preguntas tal como las arma respuestas.py para una parcela por estimar.
 PREGUNTAS = [("¿Por qué mi parcela tiene 4.52?", "r0"),
-             ("¿Por qué mi vecino tiene el mismo número?", "r1"),
-             ("¿Qué tanto puedo confiar?", "r2"),
-             ("¿Me alcanza para mis costos?", "r3"),
-             ("¿Cómo estuvo el clima este año en mi zona?", "r4"),
-             ("¿Qué haría más precisa mi cifra?", "r5")]
+             ("¿Cuántas toneladas me van a salir?", "r1"),
+             ("¿Por qué mi vecino tiene el mismo número?", "r2"),
+             ("¿Qué tanto puedo confiar?", "r3"),
+             ("¿De cuánto puede fallar mi número?", "r4"),
+             ("¿Me alcanza para mis costos?", "r5"),
+             ("¿Cómo se vio mi parcela desde el satélite?", "r6"),
+             ("¿Cómo estuvo el clima este año en mi zona?", "r7"),
+             ("¿Qué haría más precisa mi cifra?", "r8")]
 
 # --- normalizar: acentos y mayúsculas no deben cambiar el resultado
 assert normalizar("¿CUÁNTO Saqué?") == "¿cuanto saque?"
@@ -25,11 +28,16 @@ assert normalizar("LLOVIÓ") == "llovio"
 # --- cómo lo preguntaría quien cultiva
 casos = [
     ("por que me sale ese numero", 0), ("de donde sale esa cifra", 0), ("cuanto voy a sacar", 0),
-    ("mi vecino tiene lo mismo, por que", 1), ("por que mi compadre de al lado tiene igual", 1),
-    ("que tanto le puedo creer", 2), ("es seguro ese dato", 2), ("se equivoca mucho", 2),
-    ("me alcanza para los gastos", 3), ("cuanto dinero saco", 3), ("sirve para un credito", 3),
-    ("como estuvo la lluvia", 4), ("llovio poco este año", 4), ("hubo helada", 4),
-    ("como mejoro mi cifra", 5), ("que puedo hacer para que sea mas exacta", 5),
+    ("cuantas toneladas me van a salir", 1), ("cuanto me sale en total", 1),
+    ("cuantos camiones voy a llenar", 1), ("cuanta produccion tendre", 1),
+    ("mi vecino tiene lo mismo, por que", 2), ("por que mi compadre de al lado tiene igual", 2),
+    ("que tanto le puedo creer", 3), ("es seguro ese dato", 3),
+    ("se equivoca mucho", 4), ("de cuanto puede fallar", 4), ("que tanto error tiene", 4),
+    ("me alcanza para los gastos", 5), ("cuanto dinero saco", 5), ("sirve para un credito", 5),
+    ("como se vio mi parcela desde el satelite", 6), ("se veia verde mi milpa", 6),
+    ("salio en las fotos del satelite", 6),
+    ("como estuvo la lluvia", 7), ("llovio poco este año", 7), ("hubo helada", 7),
+    ("como mejoro mi cifra", 8), ("que puedo hacer para que sea mas exacta", 8),
 ]
 for texto, esperado in casos:
     obtenido = enrutar(texto, PREGUNTAS)
@@ -49,11 +57,17 @@ assert enrutar("me alcanza para los gastos", solo_clima) is None, "no puede ofre
 
 # --- preguntas de una parcela con cosecha registrada (otro juego de preguntas)
 con_cosecha = [("¿Cómo le fue a mi parcela frente a las de mi municipio?", "a"),
-               ("¿Entre qué valores quedaron las de mi municipio?", "b"),
-               ("¿Me alcanza para mis costos?", "c")]
+               ("¿Cuántas toneladas saqué en total?", "b"),
+               ("¿Entre qué valores quedaron las de mi municipio?", "c"),
+               ("¿Me alcanza para mis costos?", "d"),
+               ("¿Cómo se vio mi parcela desde el satélite?", "e")]
 assert enrutar("como me fue comparado con el municipio", con_cosecha) == 0
-assert enrutar("entre que valores quedaron", con_cosecha) == 1
-assert enrutar("cuanto gane de dinero", con_cosecha) == 2
+assert enrutar("cuantas toneladas saque en total", con_cosecha) == 1
+assert enrutar("entre que valores quedaron", con_cosecha) == 2
+assert enrutar("cuanto gane de dinero", con_cosecha) == 3
+assert enrutar("como se veia desde el satelite", con_cosecha) == 4
+# el margen sólo existe donde hay estimación: aquí la cosecha ya se conoce y no hay a qué arrimarlo
+assert enrutar("de cuanto puede fallar", con_cosecha) is None
 
 # --- el mensaje de «no entendí» admite que no sabe y ofrece lo que sí
 m = no_entendi(PREGUNTAS)

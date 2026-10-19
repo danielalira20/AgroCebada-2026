@@ -1,16 +1,21 @@
 """Respuestas de «Pregúntale a Cebi» (M19). Preguntas fijas con respuestas armadas de plantillas: reúnen en lenguaje
 simple lo que está repartido en la pantalla (desglose M04, confianza M01, rango M02, calculadora M05, clima M07) y
-añaden lo que la pantalla no dice: por qué el vecino tiene el mismo número, cómo quedó la parcela frente a su
-municipio y qué haría más precisa la cifra. Todo sale del dato: no hay cifras escritas a mano ni modelo de lenguaje."""
+añaden lo que la pantalla no dice: por qué el vecino tiene el mismo número, cuántas toneladas son en toda la
+parcela, de cuánto puede fallar el número en su cosecha, cómo quedó frente a su municipio y qué haría más precisa
+la cifra. Todo sale del dato: no hay cifras escritas a mano ni modelo de lenguaje."""
 from agrocebada_app.backend.dominio.calculadora import cuentas, equilibrio, frase_equilibrio
 from agrocebada_app.backend.dominio.clima_anomalia import comparar, frases
 from agrocebada_app.backend.dominio.desglose import NO_ENTRA, NO_VE, desglose
+from agrocebada_app.backend.dominio.franja_verdor import frase_verdor
 from agrocebada_app.backend.dominio.rangos import ANIO, rango_de
 
 P_CLIMA = "¿Cómo estuvo el clima este año en mi zona?"
 P_MEJORAR = "¿Qué haría más precisa mi cifra?"
 P_NO_SABE = "¿Qué no sabe la app de mi parcela?"
-CONTEXTO = (P_CLIMA, P_MEJORAR, P_NO_SABE)   # las únicas que hablan de clima o de lo que no entra al cálculo
+P_SATELITE = "¿Cómo se vio mi parcela desde el satélite?"
+P_MARGEN = "¿De cuánto puede fallar mi número?"
+# las únicas que hablan de clima, de verdor o de lo que no entra al cálculo
+CONTEXTO = (P_CLIMA, P_MEJORAR, P_NO_SABE, P_SATELITE)
 _TOL = 1e-9
 
 
@@ -92,6 +97,38 @@ def _mejorar(d, municipio):
             "de la de tus vecinos.")
 
 
+def _produccion(rend, area, estimada):
+    """Toneladas de toda la parcela. La cosecha se piensa en toneladas, no en t/ha: con la misma cifra por hectárea,
+    una parcela de 0.35 ha y una de 64 ha no se parecen en nada."""
+    salen = "te saldrían" if estimada else "fueron"
+    return (f"Con {rend:.2f} t/ha en {area:.2f} ha, {salen} unas {rend * area:.2f} toneladas en total. "
+            "Las t/ha son por hectárea; el total es lo que acabas subiendo al camión. Si sembraste otra "
+            "superficie, cámbiala en la calculadora «¿Me alcanza?» de esta página y te rehago la cuenta.")
+
+
+def _margen(municipio, p, area, precio):
+    """El error típico del municipio en las toneladas de esta parcela, y en pesos si ya hay precio.
+
+    Es lo que «¿Qué tanto puedo confiar?» no dice: ahí va el nivel y el rango, aquí de cuánto puede ser el golpe."""
+    err = p.get("error_tipico")
+    if err is None or err != err:                       # NaN: el municipio no tiene con qué medirse
+        return (f"No tengo medido el error del método en {municipio}, así que prefiero no darte un número. "
+                "Eso mismo es lo que te baja la confianza; toca «¿Qué tanto puedo confiar?» y te cuento por qué.")
+    err, dicho = float(err), f"En {municipio} el método se equivoca en promedio"
+    texto = (f"{dicho} {err:.2f} t/ha, que en tus {area:.2f} ha son unas {err * area:.2f} toneladas arriba o abajo.")
+    if precio:
+        texto += f" A {_dinero(precio)} por tonelada, eso es como {_dinero(err * area * float(precio))}."
+    return (f"{texto} No es un tope, es un promedio: se midió estimando una por una las parcelas de tu municipio "
+            "que sí tienen cosecha registrada, tapándole al método la que le tocaba estimar.")
+
+
+def _satelite(d, series, pid):
+    """Cómo se vio la parcela desde arriba. Es la misma frase de la tarjeta de verdor, para no contradecirla."""
+    if series is None:
+        return "No tengo imágenes de satélite de tu parcela para decirte cómo se vio."
+    return f"{frase_verdor(d, series, pid)} Lo mide el satélite por el verde de la planta, semana a semana. {NO_ENTRA}"
+
+
 def saludo(d, pred, modelo, conf, pid):
     """Primera burbuja de Cebi: el resumen de la parcela en una frase."""
     r = d.loc[pid]
@@ -102,9 +139,10 @@ def saludo(d, pred, modelo, conf, pid):
     return f"Hola, soy Cebi. Tu parcela {pid} tiene su cosecha registrada: {r.real:.2f} t/ha en {ANIO}. ¿Qué quieres saber?"
 
 
-def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, area=None, clima=None, normal=None):
+def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, area=None, clima=None, normal=None,
+               series=None):
     """Lista [(pregunta, respuesta)] para `pid`. Cambia si la parcela está por estimar o ya tiene cosecha.
-    `precio`, `costo` y `area` vienen de la calculadora (M05); `clima` y `normal`, de M07."""
+    `precio`, `costo` y `area` vienen de la calculadora (M05); `clima` y `normal`, de M07; `series`, de M06."""
     r = d.loc[pid]
     area = area or float(r.AREA_HA)
     if r.CONJUNTO == "PREDICCION":
@@ -113,9 +151,12 @@ def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, ar
         est = x["estimacion"]
         return [
             (f"¿Por qué mi parcela tiene {est:.2f}?", f"{_como(r.municipio, p, modelo)} {x['frase']}"),
+            ("¿Cuántas toneladas me van a salir?", _produccion(float(p.prediccion), area, True)),
             ("¿Por qué mi vecino tiene el mismo número?", _vecinos(d, pred, pid, est)),
             ("¿Qué tanto puedo confiar?", f"{x['motivo']} {x['rango']}"),
+            (P_MARGEN, _margen(r.municipio, p, area, precio)),
             ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(p.prediccion), precio, costo, area)),
+            (P_SATELITE, _satelite(d, series, pid)),
             (P_CLIMA, _clima(clima, normal, pid)),
             (P_MEJORAR, _mejorar(d, r.municipio)),
         ]
@@ -124,8 +165,10 @@ def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, ar
         dio += f" Si no la conociera, el método habría estimado {oof[pid]:.2f} t/ha ({oof[pid] - r.real:+.2f})."
     return [
         ("¿Cómo le fue a mi parcela frente a las de mi municipio?", dio),
+        ("¿Cuántas toneladas saqué en total?", _produccion(float(r.real), area, False)),
         ("¿Entre qué valores quedaron las de mi municipio?", rango_de(d, r.municipio)["texto"]),
         ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(r.real), precio, costo, area)),
+        (P_SATELITE, _satelite(d, series, pid)),
         (P_CLIMA, _clima(clima, normal, pid)),
         (P_NO_SABE, f"No conoce tu {NO_VE}: sólo usa las cosechas registradas. {NO_ENTRA}"),
     ]

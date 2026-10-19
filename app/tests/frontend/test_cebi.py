@@ -22,7 +22,7 @@ d = pd.DataFrame({'municipio': ['M'] * 12,
 pred = pd.DataFrame({'prediccion': [5.5, 5.5], 'fuente': ['municipio'] * 2,
     'n_municipio': [10, 10]}, index=['P1', 'P2'])
 ctx = SimpleNamespace(d=d, pred=pred, modelo='mediana_mun__resp_grupo',
-    conf=confianza_municipios(d, None), oof_parcela=None, C=None)
+    conf=confianza_municipios(d, None), oof_parcela=None, C=None, S=None)
 pid = st.selectbox('Parcela', ['P1', 'P2', 'M1'], key='parcela_prueba')
 st.number_input('Precio', value=0., key='calc_precio')
 st.number_input('Costo', value=0., key='calc_costo')
@@ -40,7 +40,7 @@ for tema in ("claro", "oscuro"):
     at.run()
     assert not at.exception, at.exception
     assert len(at.get("popover")) == 1 and not at.get("dialog")
-    assert len([b for b in at.button if b.key.startswith("cebi_P1_")]) == 7
+    assert len([b for b in at.button if b.key.startswith("cebi_P1_")]) == 10   # 9 preguntas y «empezar de nuevo»
     assert at.button(key="cebi_P1_0").label == "Mi estimación"
     assert at.button(key="cebi_P1_0").proto.help == "¿Por qué mi parcela tiene 5.50?"
     # el compositor ya no es maqueta: hay campo de escritura de verdad y grabadora de voz
@@ -49,29 +49,29 @@ for tema in ("claro", "oscuro"):
     assert not [m for m in at.markdown if "próximamente" in m.value]
     assert "Tu parcela P1 tiene una estimación de 5.50 t/ha" in conversacion(at)
     assert at.button(key="cebi_P1_borrar").disabled
-    for indice in range(6):
+    for indice in range(9):
         at.button(key=f"cebi_P1_{indice}").click().run()
         assert not at.exception, at.exception
-    assert at.session_state["cebi_P1"] == list(range(6))
+    assert at.session_state["cebi_P1"] == list(range(9))
     assert conversacion(at).count("class='cebi-pregunta'") == 4
     assert "¿Por qué mi vecino" not in conversacion(at)
     at.button(key="cebi_P1_2").click().run()
-    assert at.session_state["cebi_P1"] == [0, 1, 3, 4, 5, 2]
+    assert at.session_state["cebi_P1"] == [0, 1, 3, 4, 5, 6, 7, 8, 2]
     at.selectbox(key="parcela_prueba").select("P2").run()
     assert at.session_state["cebi_P2"] == []
     assert "Tu parcela P2" in conversacion(at) and "cebi-pregunta" not in conversacion(at)
     at.selectbox(key="parcela_prueba").select("P1").run()
-    assert at.session_state["cebi_P1"] == [0, 1, 3, 4, 5, 2]
+    assert at.session_state["cebi_P1"] == [0, 1, 3, 4, 5, 6, 7, 8, 2]
     at.number_input(key="calc_precio").set_value(4000.).run()
     at.number_input(key="calc_costo").set_value(1000.).run()
-    at.button(key="cebi_P1_3").click().run()
+    at.button(key="cebi_P1_5").click().run()        # «¿Me alcanza para mis costos?»
     assert "$110,000" in conversacion(at) and "$105,000" in conversacion(at), conversacion(at)
     at.button(key="cebi_P1_borrar").click().run()
     assert not at.exception, at.exception
     assert at.session_state["cebi_P1"] == [] and at.button(key="cebi_P1_borrar").disabled
     assert "cebi-pregunta" not in conversacion(at)
     at.selectbox(key="parcela_prueba").select("M1").run()
-    assert len([b for b in at.button if b.key.startswith("cebi_M1_")]) == 6
+    assert len([b for b in at.button if b.key.startswith("cebi_M1_")]) == 8   # 7 preguntas y «empezar de nuevo»
     at.button(key="cebi_M1_0").click().run()
     assert not at.exception, at.exception
     assert "¿Cómo le fue a mi parcela" in conversacion(at)

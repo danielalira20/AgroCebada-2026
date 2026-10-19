@@ -24,7 +24,11 @@ def _etiqueta(pregunta):
         "¿Me alcanza para mis costos?": "Mis costos",
         "¿Cómo estuvo el clima este año en mi zona?": "El clima",
         "¿Qué haría más precisa mi cifra?": "Más precisión",
-        "¿Cómo le fue a mi parcela frente a las de mi municipio?": "Mi cosecha",
+        "¿Cómo le fue a mi parcela frente a las de mi municipio?": "Cómo me fue",
+        "¿Cuántas toneladas me van a salir?": "Mi total",
+        "¿Cuántas toneladas saqué en total?": "Mi total",
+        "¿De cuánto puede fallar mi número?": "El margen",
+        "¿Cómo se vio mi parcela desde el satélite?": "El satélite",
         "¿Entre qué valores quedaron las de mi municipio?": "Mi municipio",
         "¿Qué no sabe la app de mi parcela?": "Qué falta saber",
     }
@@ -96,7 +100,8 @@ def _escuchar(clave, pid, lista):
 def _platica(ctx, pid):
     lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
                        precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
-                       area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal())
+                       area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
+                       series=ctx.S)
     clave = f"cebi_{pid}"
     hechas = st.session_state.setdefault(clave, [])
     with st.container(key="cebi_chat"):
@@ -108,15 +113,16 @@ def _platica(ctx, pid):
             mensajes.extend(_burbujas(hechas[-TURNOS:], lista))
             h("<div class='cebi-conversacion' role='log' aria-label='Conversación con Cebi' aria-live='polite'>"
               + "".join(mensajes) + "</div>")
-        # Antes de la primera pregunta los botones invitan a explorar; después se encogen a una fila que se desliza,
-        # para dejarle la pantalla a la conversación.
-        h(f"<div class='cebi-sugerencias'><span>{'Más preguntas' if hechas else 'Explora tu parcela'}</span></div>")
-        with st.container(key="cebi_preguntas_fila" if hechas else "cebi_preguntas"):
-            columnas = st.columns(len(lista) if hechas else 3, gap="small")
+        # Antes de la primera pregunta los botones invitan a explorar en rejilla; después se encogen a una fila que
+        # se desliza, para dejarle la pantalla a la conversación. El cambio es sólo de clase: si aquí cambiara la
+        # llave del contenedor o el número de columnas, Streamlit rehace el bloque y el popover se cierra solo.
+        h(f"<div class='cebi-sugerencias{' cebi-fila' if hechas else ''}'>"
+          f"<span>{'Más preguntas' if hechas else 'Explora tu parcela'}</span></div>")
+        with st.container(key="cebi_preguntas"):
+            columnas = st.columns(len(lista), gap="small")
             for indice, (pregunta, _) in enumerate(lista):
-                destino = columnas[indice] if hechas else columnas[indice % 3]
-                destino.button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
-                               wrap=True, on_click=_preguntar, args=(clave, indice))
+                columnas[indice].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
+                                        wrap=True, on_click=_preguntar, args=(clave, indice))
         escrito = st.chat_input("Escribe tu pregunta…", key=f"{clave}_texto")
         if escrito:
             _decir(clave, escrito, lista)
