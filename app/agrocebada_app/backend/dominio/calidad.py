@@ -67,27 +67,44 @@ def frase_redondeo(d, municipio):
     return False, f"Las cosechas de {municipio} vienen con dos decimales o más; no hay redondeo que pese en el error."
 
 
-def tarjeta(d, sop, cal, pid):
-    """Líneas de la tarjeta: lista de dicts con estado ('ok', 'ojo' o 'info'), titulo y texto."""
+def tarjeta(d, sop, cal, pid, con_imagenes=True):
+    """Líneas de la tarjeta: lista de dicts con estado ('ok', 'ojo' o 'info'), titulo, corto (dato breve) y texto.
+    con_imagenes=False omite las líneas de imágenes, para cuando ya se muestra la tabla de disponibilidad."""
     lineas = []
-    im = imagenes(sop, pid)
+    im = imagenes(sop, pid) if con_imagenes else None
     if im is not None:
         if im["despejadas"]:
             lineas.append(dict(estado="info", titulo="Imágenes sin nubes en la temporada",
+                               corto=f"{sum(im['despejadas'].values())} imágenes",
                                texto=" · ".join(f"{s}: {n}" for s, n in im["despejadas"].items())))
         if im["sensor_hueco"] is not None:
             lineas.append(dict(estado="info", titulo="Hueco más largo sin imagen (junio–octubre)",
+                               corto=f"{im['hueco_dias']:.0f} días",
                                texto=f"{im['hueco_dias']:.0f} días con {im['sensor_hueco']}, "
                                      "el sensor con menos huecos para esta parcela."))
     co = contorno(cal, pid)
     if co is not None:
         if co["alerta"]:
             por_que = "; ".join(co["motivos"]) or "no coincide bien con el campo real"
-            lineas.append(dict(estado="ojo", titulo="Dibujo de la parcela",
+            lineas.append(dict(estado="ojo", titulo="Dibujo de la parcela", corto="Con alerta",
                                texto=f"No coincide bien con el campo: {por_que}. "
                                      "Lo que se mide de esta parcela (área e imágenes) es menos confiable."))
         else:
-            lineas.append(dict(estado="ok", titulo="Dibujo de la parcela", texto="Sigue bien la orilla del campo."))
-    avisar, frase = frase_redondeo(d, d.loc[pid, "municipio"])
-    lineas.append(dict(estado="ojo" if avisar else "info", titulo="Cosechas registradas del municipio", texto=frase))
+            lineas.append(dict(estado="ok", titulo="Dibujo de la parcela", corto="Sigue la orilla",
+                               texto="El dibujo sigue bien la orilla del campo."))
+    m = d.loc[pid, "municipio"]
+    avisar, frase = frase_redondeo(d, m)
+    reales = d.loc[(d.municipio == m) & (d.CONJUNTO == "ENTRENAMIENTO"), "real"].dropna()
+    paso = escalon(reales)
+    if len(reales) == 0:
+        corto = "Sin cosechas"
+    elif len(reales) < MIN_PARCELAS_ESCALON:
+        corto = "Muy pocas para saber"
+    elif paso is not None and paso >= 0.5:
+        corto = f"Redondeadas a {paso:g} t/ha"
+    elif paso == 0.1:
+        corto = "Con un decimal"
+    else:
+        corto = "Con dos decimales"
+    lineas.append(dict(estado="ojo" if avisar else "info", titulo="Cosechas del municipio", corto=corto, texto=frase))
     return lineas

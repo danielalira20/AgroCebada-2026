@@ -44,11 +44,16 @@ assert contorno(cal, "A2")["alerta"] and len(contorno(cal, "A2")["motivos"]) == 
 assert contorno(cal, "A3")["motivos"][0].startswith("un mismo dibujo")
 assert contorno(cal, "ZZ") is None
 
-# --- tarjeta completa y tarjeta sin soporte ni contorno
+# --- tarjeta completa, sin las líneas de imágenes y sin soporte ni contorno
 t = tarjeta(d, sop, cal, "A1")
 assert [x["estado"] for x in t] == ["info", "info", "ok", "ojo"], t
+assert [x["corto"] for x in t] == ["53 imágenes", "12 días", "Sigue la orilla", "Redondeadas a 0.5 t/ha"], t
 assert t[0]["texto"] == "Sentinel-2: 10 · Planet: 40 · Landsat: 3"
-assert [x["titulo"] for x in tarjeta(d, None, None, "A5")] == ["Cosechas registradas del municipio"]
+assert [x["titulo"] for x in tarjeta(d, sop, cal, "A1", con_imagenes=False)] == [
+    "Dibujo de la parcela", "Cosechas del municipio"]
+assert tarjeta(d, sop, cal, "A2", con_imagenes=False)[0]["corto"] == "Con alerta"
+assert [x["titulo"] for x in tarjeta(d, None, None, "A5")] == ["Cosechas del municipio"]
+assert tarjeta(d, None, None, "P1")[0]["corto"] == "Muy pocas para saber"
 print("datos inventados ✓")
 
 # --- datos reales (si hay paquete): conteos contra soporte en 3 parcelas al azar y escalones conocidos
