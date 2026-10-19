@@ -23,11 +23,11 @@ def leyenda():
         h(
             "<div class='eyebrow' style='margin-top:10px'>Confianza de la estimación</div>"
             "<div class='ley-nota' style='margin-top:8px'>"
-            "🟢 Alta · estimación con mayor respaldo</div>"
+            "<span style='color:#22C55E'>●</span> Alta · estimación con mayor respaldo</div>"
             "<div class='ley-nota'>"
-            "🟡 Media · respaldo moderado</div>"
+            "<span style='color:#F59E0B'>●</span> Media · respaldo moderado</div>"
             "<div class='ley-nota'>"
-            "🔴 Baja · información limitada</div>"
+            "<span style='color:#EF4444'>●</span> Baja · información limitada</div>"
             "<div class='ley-nota' style='margin-top:10px'>"
             "La confianza indica el respaldo de la estimación, no garantiza el rendimiento.</div>"
         )
