@@ -10,10 +10,10 @@ from agrocebada_app.frontend.tema.html import e, h
 
 _TU = ("<div style='display:flex;justify-content:flex-end;margin:10px 0'>"
        "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 4px 14px;font-size:.9rem;"
-       "background:#9BE15D;color:#10200F;font-weight:500'>{}</div></div>")
+       "background:var(--acento);color:var(--dialogo);font-weight:500'>{}</div></div>")
 _CEBI = ("<div class='mascota' style='margin:10px 0'><div class='cebi'>{}</div>"
          "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 14px 4px;font-size:.9rem;"
-         "background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);color:var(--texto)'>{}</div></div>")
+         "background:var(--barra-fondo);border:1px solid var(--borde);color:var(--texto)'>{}</div></div>")
 
 
 @st.dialog("Pregúntale a Cebi", width="large")
@@ -43,7 +43,7 @@ def _platica(ctx, pid):
 
 def pregunta_cebi(ctx, pid):
     """Tarjeta chica en la página; el botón abre la ventana con la plática."""
-    h("<style>.st-key-glass_cebi button, .st-key-glass_cebi button p {color:#10200F !important;"
+    h("<style>.st-key-glass_cebi button, .st-key-glass_cebi button p {color:var(--dialogo) !important;"
       "font-weight:400 !important}</style>")
     with st.container(key="glass_cebi"):
         c1, c2 = st.columns([3, 1], vertical_alignment="center")

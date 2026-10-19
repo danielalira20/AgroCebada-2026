@@ -12,7 +12,7 @@ from agrocebada_app.frontend.tema.html import e, h, titulo
 CONTEXTO = "Es contexto: no entra en el cálculo de la estimación."
 ZONA = "la zona de unos 5 km alrededor de tu parcela"
 
-_TARJETA = ("flex:1 1 300px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);"
+_TARJETA = ("flex:1 1 300px;background:var(--vidrio);border:1px solid var(--borde);"
             "border-radius:14px;padding:14px 16px")
 
 
