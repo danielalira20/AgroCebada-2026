@@ -36,6 +36,10 @@ def main():
     lectura.leer_oficial(r["t08"])[["ID_POLIGONO", "candidato", "prediccion"]].to_csv(PAQ / "oficial_59.csv", index=False)
     if r["t03"]:
         lectura.leer_soporte(r["t03"]).to_parquet(PAQ / "soporte.parquet")
+    if r.get("t07"):
+        c = lectura.leer_calidad(r["t07"])
+        if c is not None:
+            c.to_parquet(PAQ / "calidad.parquet")
     total = sum(f.stat().st_size for f in PAQ.iterdir())
     print(f"datos_app/ listo: {len(list(PAQ.iterdir()))} archivos, {total / 1e6:.1f} MB")
 
