@@ -57,7 +57,7 @@ aviso = at.session_state['avisos_filtro']
 assert len(aviso) == 1 and 'No hay parcelas por estimar en Emiliano Zapata' in aviso[0]['texto']
 assert 'Se conservó el filtro anterior' in aviso[0]['texto'] and aviso[0]['duration'] == 5
 assert not any('No hay parcelas' in i.value for i in at.info), 'No debe dejar una franja persistente'
-assert len(at.tabs) == 6 and any(t.label == 'Ficha técnica' for t in at.tabs)
+assert len(at.tabs) == 7 and any(t.label == 'Ficha técnica' for t in at.tabs)
 at.run()
 assert at.session_state['avisos_filtro'] == [], 'El aviso no debe reaparecer en otros reruns'
 
