@@ -1,0 +1,13 @@
+{
+  "fecha": "2026-10-16",
+  "antes_de_revisar_metricas_completas": true,
+  "auditor_sha256": "e6d8911d2d32738ee1115f0fb878620e421ea4b2107bcef7a7c6d96495926f3e",
+  "tolerancias": {
+    "referencias_metricas": 1e-12,
+    "matrices_coeficientes": 1e-10,
+    "prediccion_reconstruida": 1e-09
+  },
+  "origen_tolerancias": "Mismos órdenes que auditor matricial v3 ya registrado; no se eligen según nuevos resultados.",
+  "sin_importar_productor": true,
+  "sin_cambiar_modelos_ventanas_ni_criterios": true
+}

@@ -1,5 +1,9 @@
 # AgroCebada 2026
 
+- [T15: evaluación completa, resultados y auditoría del 16-oct](docs/t15_resultados.md) · [paquete para revisión](registro/t15_resultados/README.md)
+
+**Estado T15 al 16-oct:** evaluación principal completa sobre `cc7d0ae`, con 12,420 OOF y auditoría de 554,410 comprobaciones. Ningún bloque cumple la promoción; se conserva la referencia. Las notas históricas que siguen explican la preparación previa y no sustituyen este resultado. No hay predicciones finales de las 59 ni ganador T16. Esta publicación no fusiona el PR21 en `dev`.
+
 - [T15: contexto LOO de alertas en las 138 frente a las 59](docs/t15_observacion_migue_loo.md)
 - [Revisión PR22: protocolo, cifras comprobadas y precisiones pendientes](docs/revision_pr22_protocolo.md)
 
@@ -190,3 +194,9 @@ El [contrato de comparaciones y pruebas](docs/t15_contrato_comparaciones.md) fij
 ## Ejecutor T15 y cierre operativo con Dani
 
 El [ejecutor T15](docs/t15_ejecutor.md) completa las selecciones, trazas y reportes del contrato. El [registro operativo](registro/t15_contrato/registro_operativo_v1.json) recoge la decisión de Dani de continuar sin esperar revisiones externas; conserva el método y las ocho comparaciones. La [verificación](registro/t15_contrato/verificacion_ejecutor.json) acredita 64 pruebas en Mac/Docker y comprobaciones limitadas. La evaluación completa requiere una solicitud posterior y confirmación explícita; no se ha ejecutado.
+
+## T15 · evaluación completa publicada · 16 de octubre de 2026
+
+El [informe final de la corrida](docs/t15_resultados.md) y el [paquete completo](registro/t15_resultados/README.md) reúnen predicciones OOF, 400 selecciones con puntuaciones, métricas, contrastes, desgloses y todas las trazas/estados comprimidos sin pérdida. La auditoría separada verifica H3, particiones y cálculos; puede repetirse sin reentrenar mediante `python -O scripts/t15_auditar_entrega.py --salida reports/t15_revision_nueva/auditoria.json`.
+
+Principal A/sin_respaldo: referencia MAE 0.320490 t/ha, RMSE medio por repetición 0.492593 y R² medio por repetición 0.658577 (135 parcelas). La mínima reducción puntual, GP −0.000300 t/ha, no satisface la regla. A/todas y B tienen denominadores distintos; se publican por separado. E1/Q y otras extensiones siguen pendientes; no se ampliaron las comparaciones tras mirar resultados.

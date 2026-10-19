@@ -1,5 +1,9 @@
 # T15 · guía de revisión del PR #21
 
+> **Actualización del 16-oct:** el PR incluye ahora la evaluación real completa y auditada del commit `cc7d0ae`. Empezar por [resultados e incidencias](t15_resultados.md), después [datos, trazas, estados y auditoría reproducible](../registro/t15_resultados/README.md). La nueva publicación incorpora resultados, sin cambiar fuentes, estimadores, menú ni reglas. Jass puede contrastar sus controles con las OOF publicadas. La revisión nueva no se presume ni se atribuye a los compañeros; GitHub identifica el HEAD actual.
+>
+> La espera de revisión previa de esta guía histórica fue sustituida por la instrucción directa de Dani recogida en el [registro operativo](../registro/t15_contrato/registro_operativo_v1.json); después Dani autorizó ejecutar la corrida y publicar sus resultados. Los apartados siguientes conservan el contexto del 14-oct. La autorización de ejecución figura en `registro/t15_resultados/registro_inicio.json` y la de publicación en `entrega.json`. Ningún bloque promociona y no se produjeron las 59 finales. Esto no fusiona PR21 en `dev`.
+
 14 de octubre de 2026. Responsable: Dani. Revisión de T15: Daf; revisión metodológica y protocolo: Migue.
 
 ## Problema que resuelve
