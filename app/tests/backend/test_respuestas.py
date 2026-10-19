@@ -30,7 +30,7 @@ lista = respuestas(d, pred, MOD, conf, "P1")
 res = dict(lista)
 assert [p for p, _ in lista] == ["¿Por qué mi parcela tiene 5.50?", "¿Por qué mi vecino tiene el mismo número?",
                                  "¿Qué tanto puedo confiar?", "¿Me alcanza para mis costos?", P_CLIMA, P_MEJORAR]
-assert res["¿Por qué mi parcela tiene 5.50?"] == (f"Se tomó la mediana de las 10 parcelas con cosecha registrada de M "
+assert res["¿Por qué mi parcela tiene 5.50?"] == (f"Se tomó el valor típico (la mediana) de las 10 parcelas con cosecha registrada de M "
                                                   f"en {ANIO}. {x['frase']}")
 assert res["¿Qué tanto puedo confiar?"] == f"{x['motivo']} {x['rango']}"         # lo mismo que M01 y M02
 assert res["¿Por qué mi vecino tiene el mismo número?"].startswith(

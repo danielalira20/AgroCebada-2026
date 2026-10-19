@@ -43,7 +43,7 @@ def _platica(ctx, pid):
 def pregunta_cebi(ctx, pid):
     """Tarjeta chica en la página; el botón abre la ventana con la plática."""
     h("<style>.st-key-glass_cebi button, .st-key-glass_cebi button p {color:#10200F !important;"
-        "font-weight:600}</style>")
+      "font-weight:400 !important}</style>")
     with st.container(key="glass_cebi"):
         c1, c2 = st.columns([3, 1], vertical_alignment="center")
         with c1:

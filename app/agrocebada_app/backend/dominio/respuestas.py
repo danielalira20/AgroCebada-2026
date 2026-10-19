@@ -36,14 +36,14 @@ def _costos(d, municipio, rend, precio, costo, area):
 
 def _como(municipio, p, modelo):
     """De dónde salió la estimación (municipio, grupo o región)."""
-    estad = "mediana" if modelo.startswith("mediana") else "promedio"
+    estad = "el valor típico (la mediana)" if modelo.startswith("mediana") else "el promedio"
     if p.fuente == "municipio":
         n = int(p.n_municipio)
         if n == 1:
             return f"Se tomó el rendimiento de la única parcela con cosecha registrada de {municipio} en {ANIO}."
-        return f"Se tomó la {estad} de las {n} parcelas con cosecha registrada de {municipio} en {ANIO}."
+        return f"Se tomó {estad} de las {n} parcelas con cosecha registrada de {municipio} en {ANIO}."
     de = "su grupo de registro" if p.fuente == "grupo" else "toda la región"
-    return (f"Tu municipio no tiene parcelas con cosecha suficientes, así que se tomó la {estad} de las parcelas "
+    return (f"Tu municipio no tiene parcelas con cosecha suficientes, así que se tomó {estad} de las parcelas "
             f"con cosecha de {de} en {ANIO}.")
 
 
