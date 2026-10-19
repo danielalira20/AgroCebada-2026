@@ -3,55 +3,14 @@ Las cifras y los textos salen de backend/dominio/validacion.py; aquí sólo se d
 import streamlit as st
 
 from agrocebada_app.backend.dominio.validacion import (
-    comparacion_oculto, contraste_respaldo, descripcion_principal, frase_respaldo, poblaciones, por_municipio,
+    frase_respaldo, comparacion_oculto, contraste_respaldo, poblaciones, por_municipio,
     regla_confianza)
 from agrocebada_app.backend.modelo.estimador import predecir
+from agrocebada_app.config import MODELOS
 from agrocebada_app.frontend.componentes.graficas.dispersion_validacion import dispersion
+from agrocebada_app.frontend.componentes.validacion.resultados import resultados
+from agrocebada_app.frontend.componentes.validacion.municipios import municipios, reglas_confianza
 from agrocebada_app.frontend.tema.html import e, h, titulo
-
-TRES_DECIMALES = ["MAE (t/ha)", "RMSE (t/ha)", "Sesgo (t/ha)", "R²"]
-
-
-def _tarjetas(items):
-    h("<div class='fila'>" + "".join(f"<div class='mini'><span>{e(k)}</span><b class='kv'>{e(v)}<small>{e(u)}</small></b></div>"
-                                     for k, v, u in items) + "</div>")
-
-
-def _poblaciones(ctx):
-    """Tabla principal: A · sin respaldo destacada y las demás poblaciones como apoyo, cada una con su nombre."""
-    pob = poblaciones(ctx.O)
-    with st.container(key="glass_val"):
-        titulo("Resultados fuera del entrenamiento",
-               "Validación cruzada 5 × 5. «Sin respaldo» son las predicciones cuyo municipio sí estaba en el "
-               "entrenamiento, que es el caso de las 59.")
-        if pob.principal.any():
-            p = pob[pob.principal].iloc[0]
-            h(f"<div class='nota'><b>Población principal.</b> {e(descripcion_principal(pob))}</div>")
-            _tarjetas([("MAE", f"{p.MAE:.3f}", "t/ha"), ("RMSE", f"{p.RMSE:.3f}", "t/ha"),
-                       ("Sesgo", f"{p.sesgo:+.3f}", "t/ha"), ("R²", f"{p.R2:.3f}", "")])
-        h("<div class='nota'>Las demás poblaciones, como apoyo. Las parcelas son distintas en cada una: no se "
-          "comparan cifras de poblaciones distintas sin decir cuál es cuál.</div>")
-        vista = pob.assign(poblacion=pob.poblacion + pob.principal.map({True: " (principal)", False: ""})).drop(
-            columns="principal").rename(columns={"poblacion": "Población", "parcelas": "Parcelas",
-                                                 "predicciones": "Predicciones", "MAE": "MAE (t/ha)",
-                                                 "RMSE": "RMSE (t/ha)", "sesgo": "Sesgo (t/ha)", "R2": "R²"})
-        st.dataframe(vista, hide_index=True, width="stretch",
-                     column_config={c: st.column_config.NumberColumn(format="%.3f") for c in TRES_DECIMALES})
-
-
-def _por_municipio(ctx):
-    """Error y confianza de cada municipio, con la regla escrita debajo."""
-    conf = ctx.conf
-    mae_general = float(conf.mae_general.iloc[0]) if len(conf) else float("nan")
-    with st.container(key="glass_mun"):
-        titulo("Por municipio", "Escenario A, sin respaldo. La confianza sale de la regla de abajo.")
-        pm = por_municipio(conf, ctx.cob_mun).rename(columns={
-            "municipio": "Municipio", "n_cosecha": "Parcelas con cosecha", "mae_municipio": "MAE (t/ha)",
-            "dentro": "Dentro de ± MAE", "confianza": "Confianza"})
-        st.dataframe(pm, hide_index=True, width="stretch",
-                     column_config={"MAE (t/ha)": st.column_config.NumberColumn(format="%.3f")})
-        reglas = "<br>".join(f"<b>{e(n)}:</b> {e(t)}" for n, t in (x.split(": ", 1) for x in regla_confianza(mae_general)))
-        h(f"<div class='nota'><b>Cómo se decide la confianza</b><br>{reglas}</div>")
 
 
 def _insuficiente(ctx):
@@ -75,10 +34,14 @@ def validacion(ctx):
     if ctx.O is None or ctx.OA is None or ctx.OA.empty:
         st.info("No se encontraron los resultados de validación del modelo.")
         return
-    _poblaciones(ctx)
-    v1, v2 = st.columns([2, 3])
-    with v1:
-        _por_municipio(ctx)
-    with v2:
-        dispersion(ctx)
-    _insuficiente(ctx)
+    with st.container(key="validacion"):
+        resultados(poblaciones(ctx.O), MODELOS[ctx.modelo])
+        municipios(por_municipio(ctx.conf, ctx.cob_mun))
+        with st.container(key="val_regla_grafica"):
+            v1, v2 = st.columns([2, 3])
+            with v1:
+                mae_general = float(ctx.conf.mae_general.iloc[0]) if len(ctx.conf) else float("nan")
+                reglas_confianza(regla_confianza(mae_general))
+            with v2:
+                dispersion(ctx)
+        _insuficiente(ctx)
