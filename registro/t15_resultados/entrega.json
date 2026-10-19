@@ -1,0 +1,51 @@
+{
+  "schema": "agrocebada_t15_entrega_publica_v1",
+  "fecha": "2026-10-16",
+  "commit_ejecucion": "cc7d0ae5437490d63408d74b4a3693a7b4494d55",
+  "autorizacion_publicacion": "Dani: Los resultados completos todavía están locales; aún no están publicados en el PR. Pues ya los subimos de una no?",
+  "PR": "https://github.com/danielalira20/AgroCebada-2026/pull/21",
+  "estado": "evaluacion_completa_auditada_para_revision",
+  "candidatos_promovidos": [],
+  "predicciones_finales_59_generadas": false,
+  "auditor_original_sha256": "35633091dd88ce41ef9a6a930a915af93384df4712351e0b6c6e39af492fa6f5",
+  "auditor_portable": "scripts/t15_auditar_entrega.py",
+  "auditor_portable_sha256": "76a1ea67130c6edddaa1eb883c1060ec0d523d3322af9d2def915e79bdebef26",
+  "adaptacion_auditor": "Sólo E/S, gzip, fuentes históricas Git y destino explícito; mismos cálculos y tolerancias. No modifica productor/modelos ni acredita revisión humana externa.",
+  "compresion_sin_perdida": {
+    "estados_modelos.jsonl": {
+      "archivo": "estados_modelos.jsonl.gz",
+      "bytes_originales": 22501013,
+      "bytes_comprimidos": 2813466,
+      "sha256_descomprimido": "a9ced85aa652d5900e2173de6b56ded0261ff9c020ddf8f6b97d62d22e0c47bc"
+    },
+    "trazas_ajustes.jsonl": {
+      "archivo": "trazas_ajustes.jsonl.gz",
+      "bytes_originales": 37789359,
+      "bytes_comprimidos": 1703871,
+      "sha256_descomprimido": "5aa8777fa0220235159da47767e1be6bde2ee61c9b6cdd4017e13d4b89d7a688"
+    }
+  },
+  "imagen_original": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+  "limites": "Fuente de ejecución cc7d0ae; revisión retrospectiva 2025; no T16 ni futuras campañas; no E1/Q.",
+  "artefactos_sha256": {
+    "README.md": "7a1c061ae954f8186b554897044f91ca59414640a9dceafd832595c9fb5c593c",
+    "ampliacion_auditoria_v2.json": "988b3dd9fcc2d9861a87fa55a30a4e7481abdfd370ec866037b98d743aa83da6",
+    "auditoria_independiente.json": "d75905c469a7a624983711705e405bedc190bc3545f8d6639c6aa53bc51b9abd",
+    "contrastes.csv": "966574db08f0354b91391a0769671e484995f772e59320be8e3829f8bde31d2a",
+    "correccion_auditoria_v3.json": "325e6577b6761aa90a77c745a6dddd011221e4b8a49c7c5713fdd1ce07b2d566",
+    "desgloses_calidad_y_sin24.csv": "5abc54fcf60d55737dbfa6d92149db9975afe2d8bda9a9261e0eced96bd4117b",
+    "diseno_auditoria.json": "e3e2cd64cbfc6aa316b636a27da58696ca2de84c2cfa8bdfca7e7a7b7b37fc95",
+    "estados_modelos.jsonl.gz": "9411b0b0882d264e0e136b9238a911442d7ba3c0e77a56260109e0634f4aafd3",
+    "frecuencia_referencia_sola.csv": "7895a49402456ad5123208503a8ee763638c8c7268e3a6809ef268d49b838c22",
+    "informe.md": "72fa499c3406ddc8e01fc745ece3fa0ce17f0982d2e9ea7802a749c76c3d9ad9",
+    "manifest.json": "fa89ae95172444242b0a97e39f7923b1604f950c0e2f87b2fd0db1e46c06799f",
+    "metricas_por_repeticion.csv": "84af67aedce11bc54850f905b05c113686490a1d7014aab07fd51b701af13d1d",
+    "metricas_resumen.csv": "6140d8745f495e673924d0adc9249318c7cf732201c4e971a79e03e49127434d",
+    "predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "preflight.json": "df5e227449c5bcf1619e47dd119008949ab9a0d25b604f02c8c572a75aa4c7f5",
+    "registro_inicio.json": "ba938ca7cc9f30cf8d6d67e13631a5758786dda762896ae3e65fc1a1a6223901",
+    "selecciones.jsonl": "4e8b28b4fa1f3256b956d77fde98be3e9462026712754286df199551437950e6",
+    "trazas_ajustes.jsonl.gz": "4caeaacbcfd01eecbd592a2e38d6a649782d892ca29d206f1949fb6a7f11a324",
+    "verificacion_portable.json": "ae807f0e37e375791b9b8b562ab97b86264369cfb68d3e546992ee12293239dd"
+  }
+}

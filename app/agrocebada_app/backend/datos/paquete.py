@@ -89,3 +89,10 @@ def soporte():
         return pd.read_parquet(f) if f.exists() else None
     t03 = rutas()["t03"]
     return lectura.leer_soporte(t03) if t03 else None
+
+def calidad():
+    if usar_paquete():
+        f = PAQ / "calidad.parquet"
+        return pd.read_parquet(f) if f.exists() else None
+    t07 = rutas()["t07"]
+    return lectura.leer_calidad(t07) if t07 else None

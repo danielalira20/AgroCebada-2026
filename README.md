@@ -1,5 +1,14 @@
 # AgroCebada 2026
 
+- [T15: evaluación completa, resultados y auditoría del 16-oct](docs/t15_resultados.md) · [paquete para revisión](registro/t15_resultados/README.md)
+
+**Estado T15 al 16-oct:** evaluación principal completa sobre `cc7d0ae`, con 12,420 OOF y auditoría de 554,410 comprobaciones. Ningún bloque cumple la promoción; se conserva la referencia. Las notas históricas que siguen explican la preparación previa y no sustituyen este resultado. No hay predicciones finales de las 59 ni ganador T16. Esta publicación no fusiona el PR21 en `dev`.
+
+- [T15: contexto LOO de alertas en las 138 frente a las 59](docs/t15_observacion_migue_loo.md)
+- [Revisión PR22: protocolo, cifras comprobadas y precisiones pendientes](docs/revision_pr22_protocolo.md)
+
+- [T15: guía de revisión del PR #21 — método v3, propuesta B y aplicabilidad C](docs/t15_guia_revision_pr21.md)
+
 Repositorio de trabajo de Dani, Jass, Migue, Daf y Diego para estimar el rendimiento de cebada de las 59 parcelas reservadas y mostrar los resultados en una aplicación funcional.
 
 La [pestaña «Plan unificado corregido»](https://docs.google.com/document/d/1G2-cyDyIHyaQsGjbdzdvvsU65rnc6Tc4SrnIZAoNynk/edit?tab=t.q0k09ka9rtmy) es la fuente de responsabilidades y decisiones. Las tareas vigentes son T01–T22. Las versiones anteriores sirven como antecedentes.
@@ -149,3 +158,45 @@ El [diseño R centrado v2](docs/t09_R_centrado_v2.md) y su componente de entrena
 ## T09: reevaluación de R centrado · 13 de octubre de 2026
 
 Los controles y la evaluación completa de R_centrado v2 están verificados técnicamente, pendientes de revisión de Migue. La corrección de H3 no supera la referencia municipal en MAE ni cumple la regla de mejora. Se preservan los resultados v1 y las59 reservadas. Consulta [diseño, resultados, incidencias y reproducción](docs/t09_centrado_evaluacion_v2.md) y la [entrega versionada](registro/t09/centrado_v2/verificacion.json). T15 y la actualización de otros consumidores siguen pendientes; no se modificaron con esta entrega.
+
+## Preparación de comparación común T15/T16
+
+El [procedimiento común histórico v1](docs/evaluacion_comun.md) fija familia, selección interna, regularización y reglas para comparar bloques. El [registro](docs/evaluacion_comun_registro.md) limita búsquedas y explicita atributos/ventanas. [Evidencia técnica](registro/evaluacion_comun/verificacion.json):294 pruebas Mac,41Docker y41conPython optimizado. Está preparado para revisión Daf/Migue; no se ejecutó la evaluación completa nueva ni se eligió ganadorT16.
+
+El verificador `python -m scripts.evaluacion_comun_contrato` comprueba datos,particiones yreferencia sin ajustar estimadores. Mantiene T09/T11/T14 como procedimientos históricos.
+
+
+## Revisión y coordinación para T15 · 13 de octubre
+
+[Revisión T10/T11 reproducida](docs/revision_T10_T11_20261013.md) y [propuesta concreta T15](docs/t15_comparaciones_propuestas.md). Solicitudes a Daf y Migue enviadas; conformidad metodológica pendiente. La propuesta JSON no es ejecutable hasta cerrar el acuerdo y registrarlo antes de correr. T09 y los históricos conservan sus ramas y resultados.
+
+[Alternativas para reducir MAE](docs/alternativas_MAE_20261013.md): investigación de modelos, curvas existentes, suelo y clima diario. Hipótesis priorizadas, sin nuevos datos o evaluaciones incorporados.
+
+### Corrección H3 en el procedimiento común · para revisión
+
+La [versión centrada v2](docs/evaluacion_comun_centrado_v2.md) resta centros aprendidos sólo en entrenamiento a todas las variables transformadas, incluido el indicador D020. Conserva datos y búsqueda; la propuesta T15 sigue pendiente y no ejecutable. [Evidencia propia](registro/evaluacion_comun/verificacion_centrado_v2.json): controles matemáticos por bloques, prevención de filtraciones e identidad de versión. Los históricos permanecen identificados como tales.
+
+## T15 · fase A: coherencia y versiones · 14 de octubre de 2026
+
+La [entrega local de fase A](docs/t15_fase_a_coherencia.md) identifica dev actualizado y conserva los históricos. El [método LOO v3](docs/evaluacion_comun_centrado_loo_v3.md) alinea referencia residual y centro por fila, incluidos respaldos de municipios pequeños, y añade frecuencia explícita de referencia sola. Verificado en Mac y Docker; revisión del nuevo código pendiente. La propuesta sigue no ejecutable: no se ejecutó T15 completo ni se produjeron las 59 finales. T06/T03 conservan pendientes concretos de sus responsables.
+
+
+## T15: planificación B y aplicabilidad C
+
+[B documental](docs/t15_fase_b_documental.md) conserva las ocho comparaciones y separa las extensiones propuestas; sigue sin habilitar entrenamientos. [C descriptiva](docs/diagnostico_aplicabilidad59.md) entrega soporte de las59 reservadas por territorio, atributos y calidad, con errores históricos T08 como contexto, reproducción Mac/Docker y revisión humana pendiente.
+
+Las tablas compactas están en `registro/diagnostico/aplicabilidad59/`. El detalle OOF se genera localmente en `data/processed/`; las instrucciones del informe conservan destinos nuevos. No son nuevas predicciones ni sustituyen T16/T18.
+
+## Contrato de comparaciones T15 · 15 de octubre
+
+El [contrato de comparaciones y pruebas](docs/t15_contrato_comparaciones.md) fija las ocho comparaciones, las fuentes y los criterios de v3, añade trazas por ajuste y registra aparte las extensiones. La [verificación técnica](registro/t15_contrato/verificacion.json) conserva la evidencia Mac/Docker. Cierre técnico local para revisión; no se ha ejecutado T15 completa ni se ha seleccionado un ganador.
+
+## Ejecutor T15 y cierre operativo con Dani
+
+El [ejecutor T15](docs/t15_ejecutor.md) completa las selecciones, trazas y reportes del contrato. El [registro operativo](registro/t15_contrato/registro_operativo_v1.json) recoge la decisión de Dani de continuar sin esperar revisiones externas; conserva el método y las ocho comparaciones. La [verificación](registro/t15_contrato/verificacion_ejecutor.json) acredita 64 pruebas en Mac/Docker y comprobaciones limitadas. La evaluación completa requiere una solicitud posterior y confirmación explícita; no se ha ejecutado.
+
+## T15 · evaluación completa publicada · 16 de octubre de 2026
+
+El [informe final de la corrida](docs/t15_resultados.md) y el [paquete completo](registro/t15_resultados/README.md) reúnen predicciones OOF, 400 selecciones con puntuaciones, métricas, contrastes, desgloses y todas las trazas/estados comprimidos sin pérdida. La auditoría separada verifica H3, particiones y cálculos; puede repetirse sin reentrenar mediante `python -O scripts/t15_auditar_entrega.py --salida reports/t15_revision_nueva/auditoria.json`.
+
+Principal A/sin_respaldo: referencia MAE 0.320490 t/ha, RMSE medio por repetición 0.492593 y R² medio por repetición 0.658577 (135 parcelas). La mínima reducción puntual, GP −0.000300 t/ha, no satisface la regla. A/todas y B tienen denominadores distintos; se publican por separado. E1/Q y otras extensiones siguen pendientes; no se ampliaron las comparaciones tras mirar resultados.

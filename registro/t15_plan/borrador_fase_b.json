@@ -1,0 +1,1120 @@
+{
+  "schema": "t15_B_documental_v1",
+  "fecha": "2026-10-14",
+  "responsable": "Dani",
+  "revisor_T15": "Daf",
+  "revisor_protocolo": "Migue",
+  "estado": "borrador_para_revision",
+  "ejecutable": false,
+  "inscripcion_experimental_aceptada": false,
+  "principal": {
+    "archivo": "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json",
+    "sha256": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "version": "comun-centrado-loo-v3",
+    "procedimientos": [
+      {
+        "candidato": "comun_centrado_loo_v3_C",
+        "bloques": [
+          "C"
+        ],
+        "area_explicita": false,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_G",
+        "bloques": [
+          "G"
+        ],
+        "area_explicita": true,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "estatica",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "estatica",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "estatica",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "estatica",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_P",
+        "bloques": [
+          "P"
+        ],
+        "area_explicita": false,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_CG",
+        "bloques": [
+          "C",
+          "G"
+        ],
+        "area_explicita": true,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_CP",
+        "bloques": [
+          "C",
+          "P"
+        ],
+        "area_explicita": false,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_GP",
+        "bloques": [
+          "G",
+          "P"
+        ],
+        "area_explicita": true,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_CGP",
+        "bloques": [
+          "C",
+          "G",
+          "P"
+        ],
+        "area_explicita": true,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_abr_oct",
+              "tmin_media_c_abr_oct",
+              "tmax_media_c_abr_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_abr_oct",
+              "pl_ndvi_integral_abr_oct",
+              "pl_lai2_max_abr_oct",
+              "pl_ndvi_dias_sobre_mitad_abr_oct",
+              "pl_ndvi_dia_inicio_abr_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "prec_acumulada_mm_jun_oct",
+              "tmin_media_c_jun_oct",
+              "tmax_media_c_jun_oct",
+              "elevacion_media_m",
+              "pendiente_media_t10_grados",
+              "area_ha_origen",
+              "pl_ndvi_max_jun_oct",
+              "pl_ndvi_integral_jun_oct",
+              "pl_lai2_max_jun_oct",
+              "pl_ndvi_dias_sobre_mitad_jun_oct",
+              "pl_ndvi_dia_inicio_jun_oct",
+              "pl_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      },
+      {
+        "candidato": "comun_centrado_loo_v3_S",
+        "bloques": [
+          "S"
+        ],
+        "area_explicita": false,
+        "calidad_explicita": false,
+        "opciones": [
+          {
+            "columnas": [
+              "s2_ndvi_max_abr_oct",
+              "s2_ndvi_integral_abr_oct",
+              "s2_ndvi_dias_sobre_mitad_abr_oct",
+              "s2_ndwi_en_maximo_abr_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_abr_oct",
+              "s2_ndvi_integral_abr_oct",
+              "s2_ndvi_dias_sobre_mitad_abr_oct",
+              "s2_ndwi_en_maximo_abr_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_abr_oct",
+              "s2_ndvi_integral_abr_oct",
+              "s2_ndvi_dias_sobre_mitad_abr_oct",
+              "s2_ndwi_en_maximo_abr_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_abr_oct",
+              "s2_ndvi_integral_abr_oct",
+              "s2_ndvi_dias_sobre_mitad_abr_oct",
+              "s2_ndwi_en_maximo_abr_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "abr_oct",
+            "lambda_reg": 10.0
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_jun_oct",
+              "s2_ndvi_integral_jun_oct",
+              "s2_ndvi_dias_sobre_mitad_jun_oct",
+              "s2_ndwi_en_maximo_jun_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.01
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_jun_oct",
+              "s2_ndvi_integral_jun_oct",
+              "s2_ndvi_dias_sobre_mitad_jun_oct",
+              "s2_ndwi_en_maximo_jun_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 0.1
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_jun_oct",
+              "s2_ndvi_integral_jun_oct",
+              "s2_ndvi_dias_sobre_mitad_jun_oct",
+              "s2_ndwi_en_maximo_jun_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 1.0
+          },
+          {
+            "columnas": [
+              "s2_ndvi_max_jun_oct",
+              "s2_ndvi_integral_jun_oct",
+              "s2_ndvi_dias_sobre_mitad_jun_oct",
+              "s2_ndwi_en_maximo_jun_oct",
+              "s2_ndvi_al_corte"
+            ],
+            "ventana": "jun_oct",
+            "lambda_reg": 10.0
+          }
+        ]
+      }
+    ],
+    "presupuesto": {
+      "procedimientos_con_variables": 8,
+      "opciones_con_variables_totales": 60,
+      "contextos_externos_A_B": 50,
+      "opciones_por_division_interna_valoradas": 13600,
+      "comparaciones_referencia_sola_incluidas": 1600,
+      "ajustes_Ridge_internos_maximos": 12000,
+      "ajustes_Ridge_externos_maximos": 400,
+      "referencias_externas_compartidas": 50,
+      "filas_oof_esperadas": 12420,
+      "contrastes_unicos_por_escenario_subconjunto": 18,
+      "filas_tabla_contrastes_A_B_todas_sin_respaldo": 72,
+      "ajustes_finales_59": 0
+    },
+    "referencia": "media_mun__resp_grupo",
+    "pendientes": [
+      "revision_implementacion_v3",
+      "T03_internas_B_por_celda",
+      "ejecutor_y_registro_definitivo"
+    ]
+  },
+  "seleccion": {
+    "primaria": "MAE",
+    "poblacion": "A/sin_respaldo",
+    "delta_MAE_max": -0.01,
+    "IC95_celdas_superior_menor_que": 0,
+    "repeticiones_mejoran_min": 4,
+    "delta_RMSE_max": 0.01,
+    "secundarias": [
+      "RMSE",
+      "R2_interpretable",
+      "sesgo"
+    ],
+    "B_obligatorio": true,
+    "bootstrap": {
+      "n": 5000,
+      "semilla": 20261006
+    },
+    "comparacion": "misma_referencia_misma_poblacion_mismo_entrenamiento",
+    "sin_ganador": "conservar_procedimiento_mas_simple_segun_T03"
+  },
+  "exposicion_previa": {
+    "post_analisis_errores": true,
+    "fuentes": [
+      "T08-T14",
+      "diagnostico_fases_0_4",
+      "analisis_alternativas_Daf"
+    ],
+    "vecinos": {
+      "rho_20m_reportado": 0.57,
+      "delta_MAE_reportado": 0.0021,
+      "delta_RMSE_reportado": -0.0174,
+      "IC95_delta_RMSE_reportado": [
+        -0.0388,
+        0.0145
+      ],
+      "pesos_explorados": [
+        0.5,
+        1
+      ],
+      "radios_descriptivos_reportados_m": [
+        1,
+        5,
+        20,
+        100,
+        500
+      ],
+      "script_recibido": false,
+      "resultados_reproducidos": false,
+      "advertencia": "No es un registro anterior a estas exploraciones."
+    }
+  },
+  "extensiones": [
+    {
+      "id": "V20",
+      "prioridad": "propuesta_acotada_sin_nuevas_fuentes",
+      "ejecutable": false,
+      "hipotesis": "Los residuos de vecinas etiquetadas aportan informacion local.",
+      "comparador": "media_mun__resp_grupo",
+      "familia": "correccion_vecinal_no_Ridge",
+      "formula": "referencia(x)+w*media(residuos_LOO_vecinas_entrenamiento)",
+      "geometria": "distancia_orillas_EPSG32614",
+      "radio_principal_m": 20,
+      "desigualdad_radio": "estrictamente_menor",
+      "mismo_municipio": true,
+      "vecinos": "todos_los_admisibles_no_solo_el_mas_cercano",
+      "pesos": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1
+      ],
+      "ventanas": "no_aplica_no_duplicar",
+      "sin_vecina": "referencia_exacta",
+      "residuos": "recalcular_referencia_LOO_solo_en_entrenamiento_de_cada_interna_y_externa",
+      "interna": "misma_politica_A_B_del_metodo_comun",
+      "desempate": "w0_primero_despues_menor_w",
+      "presupuesto": {
+        "opciones": 5,
+        "contextos_externos": 50,
+        "puntuaciones_internas_max": 1000,
+        "conjuntos_residuos_internos_max": 200,
+        "predicciones_externas_contextos": 50
+      },
+      "sensibilidades": {
+        "radios_m": [
+          5,
+          100
+        ],
+        "reoptimizar_w": false,
+        "usar_w_elegido_20m": true,
+        "elegibles_promocion": false,
+        "contextos_externos_adicionales": 100
+      },
+      "control": {
+        "tipo": "reasignacion_vecinas_dentro_municipio_entrenamiento",
+        "replicas": 20,
+        "semilla": 20261014,
+        "usar_y_validacion": false,
+        "ejecutar": "solo_si_candidato_cumple_regla_principal",
+        "presupuesto_max_contextos": 1000,
+        "no_causalidad": true,
+        "fallo_control": "no_promover_hasta_aclararlo"
+      },
+      "pendientes": [
+        "script_y_resultados_Daf",
+        "aclarar_unidad_70_pares",
+        "revision_residuos_sin_filtracion",
+        "registro_y_ejecutor_propios"
+      ]
+    },
+    {
+      "id": "E1",
+      "prioridad": "factibilidad_con_series_existentes",
+      "ejecutable": false,
+      "hipotesis": "Un contraste de agua posterior al maximo añade señal temporal.",
+      "comparador": "S_con_cinco_resumenes_T15_mismos_contextos",
+      "fuente": "series_Sentinel2_T06_FIRA_antes_del_corte",
+      "atributo": "NDWI_medio_dias15_45_post_max_NDVI_menos_NDWI_en_max",
+      "maximo": "mismo_maximo_observado_del_procesamiento_T06_primera_fecha_si_empate",
+      "faltantes": "minimo_dos_fechas_validas_y_distintas_post_max_y_NDWI_valido_en_max",
+      "no_extrapolar": true,
+      "no_fecha_agronomica_confirmada": true,
+      "opciones": {
+        "ventanas": [
+          "abr_oct",
+          "jun_oct"
+        ],
+        "lambda_reg": [
+          0.01,
+          0.1,
+          1,
+          10
+        ],
+        "referencia_sola": true,
+        "total_con_variables": 8
+      },
+      "presupuesto": {
+        "Ridge_internos_max": 1600,
+        "Ridge_externos_max": 50
+      },
+      "pendientes": [
+        "comprobar_no_duplicacion_T13_T13e",
+        "piloto_soporte_sin_y",
+        "versionar_contrato_nuevas_columnas_y_faltantes",
+        "registro_definitivo"
+      ]
+    },
+    {
+      "id": "E2",
+      "prioridad": "piloto_relieve_15m",
+      "ejecutable": false,
+      "hipotesis": "La posicion topografica local aporta mas detalle util que la rejilla120m.",
+      "comparador": "S_con_cinco_resumenes_T15_mismos_contextos",
+      "fuente": "INEGI_CEM15m",
+      "activo_dem": null,
+      "version_publicacion_historica": null,
+      "atributos": [
+        "TPI_radio150m",
+        "media_seno_orientacion",
+        "media_coseno_orientacion"
+      ],
+      "TPI": "media_elevacion_parcela_menos_media_vecindario_metrico_radio150m",
+      "orientacion": "agregacion_circular_ponderada_por_area_planos_sin_orientacion",
+      "TWI_primera_cartera": false,
+      "extraccion": "misma_regla_197_sin_seleccion_por_y",
+      "opciones": {
+        "ventanas": [
+          "abr_oct",
+          "jun_oct"
+        ],
+        "lambda_reg": [
+          0.01,
+          0.1,
+          1,
+          10
+        ],
+        "referencia_sola": true,
+        "total_con_variables": 8
+      },
+      "presupuesto": {
+        "Ridge_internos_max": 1600,
+        "Ridge_externos_max": 50
+      },
+      "pendientes": [
+        "activo_y_licencia_version_corte",
+        "QA_soporte_bordes_planos_NoData",
+        "versionar_contrato",
+        "registro_definitivo"
+      ]
+    }
+  ],
+  "presupuesto_extensiones_no_aceptado": {
+    "V20_opciones": 5,
+    "E1_opciones": 8,
+    "E2_opciones": 8,
+    "Ridge_internos_max_E1_E2": 3200,
+    "Ridge_externos_max_E1_E2": 100,
+    "no_sumar_a_las_60_principales_silenciosamente": true,
+    "no_combinar_ganadores_observados": true,
+    "sensibilidad_y_control_separados_de_busqueda": true
+  },
+  "pospuestas": [
+    {
+      "id": "E0_optica_cruda",
+      "motivo": "coste_solo_reabrir_ante_defecto_observacional_concreto"
+    },
+    {
+      "id": "E3_suelo",
+      "motivo": "resolucion_estimacion_y_procedencia_historica_por_verificar_no_inutilidad_demostrada"
+    },
+    {
+      "id": "E4_cuantilica",
+      "motivo": "hipotesis_distinta_de_D019_pospuesta_por_presupuesto_no_descartada"
+    },
+    {
+      "id": "radar_meteo_diaria",
+      "motivo": "requiere_carencia_y_factibilidad_concretas"
+    }
+  ],
+  "limites": [
+    "No_cambiar_metrica_por_resultado_favorable",
+    "No_nuevos_rendimientos",
+    "No_probabilidad_individual_de_acierto_a_partir_de_soporte",
+    "No_reabrir_pasados_como_si_usaran_v3"
+  ]
+}

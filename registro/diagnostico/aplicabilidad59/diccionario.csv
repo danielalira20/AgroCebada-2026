@@ -1,0 +1,118 @@
+﻿archivo,columna,significado,unidad,significado_vacio
+perfil_59.csv,id_parcela,Identificador original; nunca predictor automático.,ID,no_admitido
+perfil_59.csv,municipio,"Municipio original conciliado con T02; agrupación territorial, no etiqueta de rendimiento.",nombre,no_admitido
+perfil_59.csv,n_etiquetas_municipio,Etiquetas locales disponibles:138 para reservadas; sólo entrenamiento externo para OOF.,conteo,no_admitido
+perfil_59.csv,n_etiquetas_grupo,IDs del mismo grupo de registro Cebada/CEBADA disponibles en entrenamiento; no interpretación agronómica.,conteo,no_admitido
+perfil_59.csv,fuente_referencia,"Nivel municipal, grupo o global aplicable según disponibilidad de IDs; coincide con T08.",categoria,no_admitido
+perfil_59.csv,soporte_municipal_menos4,Menos de cuatro etiquetas del municipio en el entrenamiento pertinente.,booleano,no_admitido
+perfil_59.csv,conocida_mas_cercana_centro,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,no_admitido
+perfil_59.csv,distancia_centros_m,Mínima distancia geodésica WGS84 entre centroides T02 hacia entrenamiento.,m,no_admitido
+perfil_59.csv,conocida_mas_cercana_orilla,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,no_admitido
+perfil_59.csv,distancia_orillas_m,Distancia mínima al polígono etiquetado del entrenamiento en EPSG32614.,m,no_admitido
+perfil_59.csv,conocida_local_mas_cercana_orilla,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,sin_etiquetas_locales
+perfil_59.csv,distancia_orillas_municipio_m,Distancia mínima entre orillas hacia una etiqueta local del entrenamiento.,m,sin_etiquetas_locales
+perfil_59.csv,n_vecinas20_general,"Parcelas etiquetadas del entrenamiento con distancia entre orillas <20m, cualquier municipio.",conteo,no_admitido
+perfil_59.csv,n_vecinas20_municipio,Vecinas <20m del mismo municipio y entrenamiento; no bandera global T07.,conteo,no_admitido
+perfil_59.csv,celda_principal,Celda de lluvia principal de T02; no conjunto completo de celdas tocadas.,ID_celda,no_admitido
+perfil_59.csv,n_etiquetas_celda_principal,Etiquetas del entrenamiento cuya celda principal T02 coincide; no todas las intersecciones.,conteo,no_admitido
+perfil_59.csv,n_etiquetas_celda_y_municipio,Etiquetas de entrenamiento con igual municipio y celda principal.,conteo,no_admitido
+perfil_59.csv,area_ha_origen,Área declarada original; denominador del rendimiento aún no confirmado.,ha,no_admitido
+perfil_59.csv,area_ha_geodesica,"Área geodésica de T02, conservada con su redondeo publicado.",ha,no_admitido
+perfil_59.csv,contorno_categoria,"Categoría visual de T02, atlas sin fecha acreditada de2025.",categoria_A_B_C,no_admitido
+perfil_59.csv,alerta_contorno,Bandera T03bis/T07 de contorno para inspección; no daño confirmado ni regla de exclusión.,booleano,no_admitido
+perfil_59.csv,centroide_dentro_parcela,El centroide utilizado para la comparación de relieve cae dentro de la parcela.,booleano,no_admitido
+perfil_59.csv,cobertura_elevacion,"Fracción con elevación válida de T05/T07; conservar literal, incluso redondeo próximo a1.",fraccion_0_1,no_admitido
+perfil_59.csv,cobertura_pendiente,Fracción con pendiente válida de T05/T07; no mide incertidumbre del rendimiento.,fraccion_0_1,no_admitido
+perfil_59.csv,entradas_candidatas_ausentes,"Unión de faltantes originales de las representaciones indicadas, antes de imputar para distancia.",lista_columnas,ninguna
+perfil_59.csv,representaciones_fuera_global,"Representaciones con alguna entrada fuera del rango global de entrenamiento, con tolerancias por unidad.",lista,ninguna
+perfil_59.csv,representaciones_fuera_municipio,Representaciones con entrada fuera del rango local; n local pequeño limita interpretación.,lista,ninguna
+perfil_59.csv,representaciones_supera_q95,"Representaciones que superan su referencia local de distancia, no modelos fallidos.",lista,ninguna_o_percentil_no_definido
+perfil_59.csv,clima_completo,Las seis combinaciones variable/ventana de T07 tienen estado completa.,booleano,no_admitido
+perfil_59.csv,alcance,Reconstrucción2025 con disponibilidad histórica de publicación no acreditada; no validación futura.,texto,no_admitido
+perfil_59.csv,pl_capturas_abr_oct,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,capturas,no_admitido
+perfil_59.csv,pl_hueco_max_dias_abr_oct,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,dias,no_admitido
+perfil_59.csv,pl_meses_sin_captura_abr_oct,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,meses,no_admitido
+perfil_59.csv,pl_capturas_jun_oct,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,capturas,no_admitido
+perfil_59.csv,pl_hueco_max_dias_jun_oct,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,dias,no_admitido
+perfil_59.csv,pl_meses_sin_captura_jun_oct,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,meses,no_admitido
+perfil_59.csv,pl_ultima_captura,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,fecha_ISO,sin_captura_valida
+perfil_59.csv,pl_ndvi_al_corte_presente,Calidad/observación T06/T07 del sensor Planet en la ventana indicada; no rendimiento.,booleano,no_admitido
+perfil_59.csv,s2_capturas_abr_oct,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,capturas,no_admitido
+perfil_59.csv,s2_hueco_max_dias_abr_oct,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,dias,no_admitido
+perfil_59.csv,s2_meses_sin_captura_abr_oct,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,meses,no_admitido
+perfil_59.csv,s2_capturas_jun_oct,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,capturas,no_admitido
+perfil_59.csv,s2_hueco_max_dias_jun_oct,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,dias,no_admitido
+perfil_59.csv,s2_meses_sin_captura_jun_oct,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,meses,no_admitido
+perfil_59.csv,s2_ultima_captura,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,fecha_ISO,sin_captura_valida
+perfil_59.csv,s2_ndvi_al_corte_presente,Calidad/observación T06/T07 del sensor Sentinel2 en la ventana indicada; no rendimiento.,booleano,no_admitido
+perfil_59.csv,motivos_revision,Razones descriptivas de revisión; no suma de riesgo calibrada.,lista,sin_motivo_especifico
+perfil_59.csv,mensaje_soporte,Mensaje descriptivo propuesto para la app; no predicción ni garantía.,texto,no_admitido
+perfil_59.csv,perfil_clima_exacto_abr_oct,Las tres entradas climáticas de la ventana coinciden literalmente con alguna etiquetada; no igualdad de rendimiento.,booleano,no_admitido
+perfil_59.csv,perfil_clima_exacto_jun_oct,Las tres entradas climáticas de la ventana coinciden literalmente con alguna etiquetada; no igualdad de rendimiento.,booleano,no_admitido
+entradas_59.csv,id_parcela,Identificador original; nunca predictor automático.,ID,no_admitido
+entradas_59.csv,municipio,"Municipio original conciliado con T02; agrupación territorial, no etiqueta de rendimiento.",nombre,no_admitido
+entradas_59.csv,representacion,Bloques y ventana cuyas entradas se inspeccionan; no es un modelo nuevo evaluado.,ID_representacion,no_aplica_en_desgloses_geograficos
+entradas_59.csv,n_entrenamiento,IDs del entrenamiento usado para aprender escala/mediana de X.,conteo,no_admitido
+entradas_59.csv,n_municipio,IDs del mismo municipio disponibles en ese entrenamiento.,conteo,no_admitido
+entradas_59.csv,vecino_atributos_global,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,no_admitido
+entradas_59.csv,distancia_global,Distancia RMS estandarizada al vecino de atributos global.,adimensional,no_admitido
+entradas_59.csv,vecino_atributos_municipio,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,sin_etiquetas_locales
+entradas_59.csv,distancia_municipio,Distancia RMS al vecino de atributos del mismo municipio.,adimensional,sin_etiquetas_locales
+entradas_59.csv,n_referencia_distancia,Filas locales de entrenamiento con otra fila local para distancia LOO.,conteo,no_admitido
+entradas_59.csv,percentil_local_estricto,"Porcentaje de distancias LOO locales estrictamente menores, con tolerancia1e-12. No probabilidad.",porcentaje,sin_dos_etiquetas_locales
+entradas_59.csv,q95_local,Cuantil95 higher de distancias LOO del entrenamiento local.,adimensional,sin_dos_etiquetas_locales
+entradas_59.csv,supera_q95_local,Distancia local mayor que q95+1e-12; diagnóstico no regla de rechazo.,booleano,sin_dos_etiquetas_locales
+entradas_59.csv,motivo_percentil_ausente,"Explica por qué no existe referencia LOO local, incluido municipio con una etiqueta.",texto,percentil_disponible
+entradas_59.csv,fuera_rango_global,Columnas originales fuera de rango del entrenamiento global.,lista_columnas,ninguna
+entradas_59.csv,fuera_rango_municipio,Columnas originales fuera de rango local; interpretar junto a n_municipio.,lista_columnas,ninguna_o_sin_etiquetas_locales
+entradas_59.csv,entradas_ausentes,Columnas ausentes antes de imputar en la copia para distancia.,lista_columnas,ninguna
+entradas_59.csv,constantes_en_entrenamiento,"Columnas transformadas, incluido indicador D020, con desviación exactamente cero; escala fijada a1.",columnas,no_admitido
+contextos_oof_138.csv,id_parcela,Identificador original; nunca predictor automático.,ID,no_admitido
+contextos_oof_138.csv,municipio,"Municipio original conciliado con T02; agrupación territorial, no etiqueta de rendimiento.",nombre,no_admitido
+contextos_oof_138.csv,escenario,"A municipal conocido o B separación por celda, evaluación histórica T03.",categoria_A_B,no_admitido
+contextos_oof_138.csv,repeticion,Repetición T03 de1 a5; reutiliza las mismas parcelas.,entero1_5,no_admitido
+contextos_oof_138.csv,particion,Partición externa T03 de0 a4.,entero0_4,no_admitido
+contextos_oof_138.csv,n_etiquetas_municipio,Etiquetas locales disponibles:138 para reservadas; sólo entrenamiento externo para OOF.,conteo,no_admitido
+contextos_oof_138.csv,n_etiquetas_grupo,IDs del mismo grupo de registro Cebada/CEBADA disponibles en entrenamiento; no interpretación agronómica.,conteo,no_admitido
+contextos_oof_138.csv,fuente_referencia,"Nivel municipal, grupo o global aplicable según disponibilidad de IDs; coincide con T08.",categoria,no_admitido
+contextos_oof_138.csv,soporte_municipal_menos4,Menos de cuatro etiquetas del municipio en el entrenamiento pertinente.,booleano,no_admitido
+contextos_oof_138.csv,conocida_mas_cercana_centro,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,no_admitido
+contextos_oof_138.csv,distancia_centros_m,Mínima distancia geodésica WGS84 entre centroides T02 hacia entrenamiento.,m,no_admitido
+contextos_oof_138.csv,conocida_mas_cercana_orilla,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,no_admitido
+contextos_oof_138.csv,distancia_orillas_m,Distancia mínima al polígono etiquetado del entrenamiento en EPSG32614.,m,no_admitido
+contextos_oof_138.csv,conocida_local_mas_cercana_orilla,ID del vecino de entrenamiento que minimiza la distancia indicada; no se usa como predictor.,ID,sin_etiquetas_locales
+contextos_oof_138.csv,distancia_orillas_municipio_m,Distancia mínima entre orillas hacia una etiqueta local del entrenamiento.,m,sin_etiquetas_locales
+contextos_oof_138.csv,n_vecinas20_general,"Parcelas etiquetadas del entrenamiento con distancia entre orillas <20m, cualquier municipio.",conteo,no_admitido
+contextos_oof_138.csv,n_vecinas20_municipio,Vecinas <20m del mismo municipio y entrenamiento; no bandera global T07.,conteo,no_admitido
+contextos_oof_138.csv,celda_principal,Celda de lluvia principal de T02; no conjunto completo de celdas tocadas.,ID_celda,no_admitido
+contextos_oof_138.csv,n_etiquetas_celda_principal,Etiquetas del entrenamiento cuya celda principal T02 coincide; no todas las intersecciones.,conteo,no_admitido
+contextos_oof_138.csv,n_etiquetas_celda_y_municipio,Etiquetas de entrenamiento con igual municipio y celda principal.,conteo,no_admitido
+contextos_oof_138.csv,alerta_contorno,Bandera T03bis/T07 de contorno para inspección; no daño confirmado ni regla de exclusión.,booleano,no_admitido
+contextos_oof_138.csv,error_historico,Predicción T08 existente menos etiqueta original; no nueva evaluación.,t/ha,no_admitido
+error_por_soporte.csv,escenario,"A municipal conocido o B separación por celda, evaluación histórica T03.",categoria_A_B,no_admitido
+error_por_soporte.csv,representacion,Bloques y ventana cuyas entradas se inspeccionan; no es un modelo nuevo evaluado.,ID_representacion,no_aplica_en_desgloses_geograficos
+error_por_soporte.csv,subconjunto,Todas las evaluadas o sin_respaldo: municipio presente en el entrenamiento correspondiente.,categoria,no_admitido
+error_por_soporte.csv,dimension,Condición usada para agrupar errores históricos; puede variar por repetición/entrenamiento.,columna,no_admitido
+error_por_soporte.csv,categoria,Valor de la dimensión del grupo; True/False indican sí/no y no_definido ausencia de referencia.,texto,categoria_vacia_legitima
+error_por_soporte.csv,n_registros_oof,Registros parcela/repetición del grupo; dependientes.,conteo,no_admitido
+error_por_soporte.csv,n_parcelas,"IDs distintos del grupo, que pueden aparecer en otros grupos entre repeticiones.",conteo,no_admitido
+error_por_soporte.csv,MAE_historico,Media de pérdidas absolutas de los registros históricos del grupo.,t/ha,sin_registros
+error_por_soporte.csv,RMSE_historico,Raíz de media cuadrática de errores históricos del grupo.,t/ha,sin_registros
+error_por_soporte.csv,sesgo_historico,Media de predicción menos real de registros históricos del grupo.,t/ha,sin_registros
+conciliacion_t02_t09.csv,id_parcela,Identificador original; nunca predictor automático.,ID,no_admitido
+conciliacion_t02_t09.csv,n_municipio_igual_T09,La definición indicada coincide con el diagnóstico T09 publicado.,conteo,no_admitido
+conciliacion_t02_t09.csv,referencia_igual_T09,La definición indicada coincide con el diagnóstico T09 publicado.,booleano,no_admitido
+conciliacion_t02_t09.csv,clima_completo_igual_T09,La definición indicada coincide con el diagnóstico T09 publicado.,booleano,no_admitido
+conciliacion_t02_t09.csv,delta_distancia_orillas_T02_m,Valor C menos valor publicado T02/T09; distinguir el redondeo geométrico de la equivalencia sqrt3 del clima.,m,no_admitido
+conciliacion_t02_t09.csv,delta_distancia_centros_T02_m,Valor C menos valor publicado T02/T09; distinguir el redondeo geométrico de la equivalencia sqrt3 del clima.,m,no_admitido
+conciliacion_t02_t09.csv,perfil_exacto_igual_T09_abr_oct,La definición indicada coincide con el diagnóstico T09 publicado.,booleano,no_admitido
+conciliacion_t02_t09.csv,delta_distancia_clima_T09_abr_oct,Valor C menos valor publicado T02/T09; distinguir el redondeo geométrico de la equivalencia sqrt3 del clima.,adimensional_norma_Euclidea_T09,no_admitido
+conciliacion_t02_t09.csv,perfil_exacto_igual_T09_jun_oct,La definición indicada coincide con el diagnóstico T09 publicado.,booleano,no_admitido
+conciliacion_t02_t09.csv,delta_distancia_clima_T09_jun_oct,Valor C menos valor publicado T02/T09; distinguir el redondeo geométrico de la equivalencia sqrt3 del clima.,adimensional_norma_Euclidea_T09,no_admitido
+resumen_municipio.csv,municipio,"Municipio original conciliado con T02; agrupación territorial, no etiqueta de rendimiento.",nombre,no_admitido
+resumen_municipio.csv,n_etiquetas,Total de parcelas etiquetadas del municipio en el catálogo de138.,conteo,no_admitido
+resumen_municipio.csv,n_reservadas,Reservadas del municipio; puede ser cero.,conteo,no_admitido
+resumen_municipio.csv,reservadas_vecina20_local,Reservadas del municipio con al menos una etiquetada local <20m.,parcelas,no_admitido
+resumen_municipio.csv,reservadas_celda_nueva,Reservadas cuya celda principal no aparece entre las138.,parcelas,no_admitido
+resumen_municipio.csv,reservadas_fuera_global,"Reservadas con alguna entrada candidata fuera del rango global, no número de modelos fallidos.",parcelas,no_admitido
+resumen_municipio.csv,reservadas_con_alerta_contorno,Reservadas con bandera de revisión de contorno T03bis/T07.,parcelas,no_admitido

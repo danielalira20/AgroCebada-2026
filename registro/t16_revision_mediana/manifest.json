@@ -1,0 +1,45 @@
+{
+  "schema": "agrocebada_revision_mediana_v1",
+  "universo": {
+    "total": 197,
+    "etiquetadas": 138,
+    "reservadas_sin_usar": 59
+  },
+  "referencias_reconstruidas": 2760,
+  "contextos_verificados": 100,
+  "max_delta_OOF_reconstruccion": 8.881784197001252e-16,
+  "max_delta_media_T08_T15": 8.881784197001252e-16,
+  "tolerancia": 1e-12,
+  "regla_T03_modificada": false,
+  "T15_modificado": false,
+  "modelo_final_elegido": false,
+  "predicciones_59_generadas": false,
+  "n_boot": 5000,
+  "semilla": 20261006,
+  "auditor_importa_productor": false,
+  "script_sha256": "bb9b38c46b404711ff530fcfb7c329601443b081d43d4d5be11af19b07ab02f7",
+  "diseno_sha256": "e8f3241aae4194d64381bde220cd3081389aa057fdef2abd69fd6fa31abdaa7b",
+  "fuentes_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "registro/t03/predicciones_oof_referencias_mediana_mun__resp_grupo.csv": "e3a6b9ffae9dfbf4261c98913f1a4382086a47ea08059fc0f33161d4a8d91679",
+    "registro/t15_resultados/predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "docs/T03_protocolo_evaluacion.md": "5cfccf45f5f6e56b7c684ba21ec04d52a6e39496a8f6d56ca694a859a3a8d0b9",
+    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t15_resultados/manifest.json": "fa89ae95172444242b0a97e39f7923b1604f950c0e2f87b2fd0db1e46c06799f"
+  },
+  "entorno": {
+    "numpy": "2.2.6"
+  },
+  "archivos_sha256": {
+    "contextos_verificados.csv": "2ce0640940d4e809cf47b1231de06c7d0e078a26a1c6dc840c82a45f8951a8c8",
+    "contrastes.csv": "84438d1ab7f30a21e2401f081f584e41bf7bdc27c6f8f8233e5515fe7764fe66",
+    "diferencias_por_parcela.csv": "55119feb881a2d0b43e714de53b743d3c7d2378aab3ecfb95ddbefffc3e6dbe2",
+    "influencia_celdas.csv": "ab959855e3c458183ba78099193f5c6752c66225bcb9b9cc1bba7606ecda1511",
+    "metricas.csv": "e60e4181f50b8d4f65234c920333d90b345fadfccbf673175f3ab894583fd1d1",
+    "metricas_por_repeticion.csv": "6a8f433ae6b104399fdfc8a4f219aa8f9c2e80cb27b3d86c60f441b74a184b60",
+    "por_municipio.csv": "65721578fbefff75fd42ec2e5a6df19fb8fc4593532ca849951c0b492c932687"
+  }
+}

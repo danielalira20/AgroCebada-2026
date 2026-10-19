@@ -31,6 +31,9 @@ def clima_normal():
 def soporte():
     return paquete.soporte()
 
+@st.cache_data
+def calidad():
+    return paquete.calidad()
 
 @st.cache_data
 def oficial(modelo):

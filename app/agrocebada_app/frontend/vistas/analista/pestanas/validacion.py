@@ -1,72 +1,46 @@
-"""Pestaña «Validación»: métricas por escenario y municipio, dispersión e información insuficiente."""
-import altair as alt
-import pandas as pd
+"""Pestaña «Validación»: métricas por población, confianza por municipio, dispersión e información insuficiente.
+Las cifras y los textos salen de backend/dominio/validacion.py; aquí sólo se dibujan."""
 import streamlit as st
 
+from agrocebada_app.backend.dominio.validacion import (
+    bloques_respaldo, comparacion_oculto, contraste_respaldo, poblaciones, por_municipio,
+    regla_confianza)
 from agrocebada_app.backend.modelo.estimador import predecir
-from agrocebada_app.backend.modelo.metricas import metricas
-from agrocebada_app.frontend.componentes.graficas.base import grafica_base
-from agrocebada_app.frontend.tema.html import h, titulo
+from agrocebada_app.config import MODELOS
+from agrocebada_app.frontend.componentes.graficas.dispersion_validacion import dispersion
+from agrocebada_app.frontend.componentes.validacion.resultados import resultados
+from agrocebada_app.frontend.componentes.validacion.municipios import municipios, reglas_confianza
+from agrocebada_app.frontend.componentes.validacion.simulacion import comparacion
+from agrocebada_app.frontend.tema.html import titulo
+
+
+def _insuficiente(ctx):
+    """Oculta un municipio y muestra qué valor y qué confianza tendría la estimación sin sus datos."""
+    pred = ctx.pred
+    with st.container(key="glass_insuf"):
+        titulo("¿Y si no hubiera datos de tu municipio?", "Oculta sus cosechas para ver de dónde saldría la estimación.")
+        if pred.empty:
+            st.info("No hay parcelas por estimar para simular este caso.")
+            return
+        oculto = st.selectbox("Municipio a ocultar", sorted(pred.municipio.unique()), key="val_municipio_oculto")
+        sim = predecir(ctx.d, ctx.modelo, ocultar=oculto)
+        tabla, motivo = comparacion_oculto(pred, sim, ctx.conf, oculto)
+        comparacion(tabla, pred.loc[tabla.index], sim.loc[tabla.index],
+                    bloques_respaldo(contraste_respaldo(ctx.O, pred)), motivo)
 
 
 def validacion(ctx):
-    d = ctx.d
-    modelo = ctx.modelo
-    pred = ctx.pred
-    O = ctx.O
-    OA = ctx.OA
-    cob_mun = ctx.cob_mun
-    if O is None:
+    if ctx.O is None or ctx.OA is None or ctx.OA.empty:
         st.info("No se encontraron los resultados de validación del modelo.")
-    else:
-        with st.container(key="glass_val"):
-            titulo("Resultados fuera del entrenamiento",
-                   "Validación cruzada 5 × 5. «Sin respaldo» son las predicciones cuyo municipio sí estaba en el "
-                   "entrenamiento, que es el caso de las 59.")
-            filas = []
-            for esc, nom in [("A", "A · municipio conocido (principal)"), ("B", "B · zona de lluvia nueva")]:
-                for sub, x in [("todas", O[O.escenario == esc]),
-                               ("sin respaldo", O[(O.escenario == esc) & (O.fuente == "municipio")])]:
-                    filas.append({"escenario": nom, "predicciones": sub, **metricas(x).to_dict()})
-            st.dataframe(pd.DataFrame(filas).rename(columns={"MAE": "MAE (t/ha)", "RMSE": "RMSE (t/ha)",
-                                                             "sesgo": "sesgo (t/ha)", "R2": "R²"}),
-                         hide_index=True, width="stretch",
-                         column_config={c: st.column_config.NumberColumn(format="%.3f")
-                                        for c in ["MAE (t/ha)", "RMSE (t/ha)", "sesgo (t/ha)", "R²"]})
-        v1, v2 = st.columns([2, 3])
-        with v1, st.container(key="glass_mun"):
-            titulo("Por municipio", "Escenario A, sin respaldo.")
-            pm = OA.groupby("municipio").agg(parcelas=("ID_POLIGONO", "nunique"), MAE=("ae", "mean"))
-            pm["dentro de ± MAE"] = (cob_mun * 100).round(0).astype(int).astype(str) + " %"
-            st.dataframe(pm.reset_index().rename(columns={"MAE": "MAE (t/ha)"}), hide_index=True, width="stretch",
-                         column_config={"MAE (t/ha)": st.column_config.NumberColumn(format="%.3f")})
-        with v2, st.container(key="glass_disp_val"):
-            titulo("Registrado contra estimado",
-                   "Cada punto es una de las 138 parcelas; sobre la diagonal la estimación sería perfecta.")
-            sc = OA.groupby("ID_POLIGONO").agg(real=("real", "first"), estimacion=("prediccion", "mean"),
-                                               municipio=("municipio", "first")).reset_index()
-            dom = alt.Scale(domain=[2, 6])
-            puntos = alt.Chart(sc).mark_circle(size=55, opacity=0.85).encode(
-                x=alt.X("real:Q", title="registrado (t/ha)", scale=dom),
-                y=alt.Y("estimacion:Q", title="estimado sin conocerlo (t/ha)", scale=dom),
-                color=alt.Color("municipio:N", title=None,
-                                legend=alt.Legend(orient="bottom", direction="horizontal", columns=2, labelLimit=220,
-                                                  labelFontSize=11, columnPadding=12, rowPadding=6)),
-                tooltip=["ID_POLIGONO", "municipio", "real", alt.Tooltip("estimacion", format=".2f")])
-            diag = alt.Chart(pd.DataFrame({"x": [2, 6], "y": [2, 6]})).mark_line(
-                color="rgba(255,255,255,0.35)", strokeDash=[4, 4]).encode(
-                x=alt.X("x:Q", scale=dom), y=alt.Y("y:Q", scale=dom))
-            st.altair_chart(grafica_base(diag + puntos, 300), width="stretch")
-        with st.container(key="glass_insuf"):
-            titulo("Caso de información insuficiente",
-                   "Simula que un municipio no tuviera parcelas con cosecha y mira qué valor aplicaría la app.")
-            oculto = st.selectbox("Municipio a ocultar", sorted(pred.municipio.unique()))
-            sim = predecir(d, modelo, ocultar=oculto)
-            comp = pd.DataFrame({"municipio": pred.municipio, "estimación normal": pred.prediccion,
-                                 "sin datos del municipio": sim.prediccion, "fuente": sim.fuente})
-            st.dataframe(comp[comp.municipio == oculto].round(2).reset_index(), hide_index=True, width="stretch")
-            resp = O[(O.escenario == "A") & (O.fuente != "municipio")]
-            if len(resp):
-                h(f"<div class='nota'>La app aplica el respaldo evaluado (valor del grupo de registro y luego el "
-                  f"general) y lo indica en la columna fuente. En la validación ocurrió en {len(resp)} "
-                  f"predicciones, con MAE {resp.ae.mean():.2f} t/ha. En las 59 reales no ocurre.</div>")
+        return
+    with st.container(key="validacion"):
+        resultados(poblaciones(ctx.O), MODELOS[ctx.modelo])
+        municipios(por_municipio(ctx.conf, ctx.cob_mun))
+        with st.container(key="val_regla_grafica"):
+            v1, v2 = st.columns([2, 3])
+            with v1:
+                mae_general = float(ctx.conf.mae_general.iloc[0]) if len(ctx.conf) else float("nan")
+                reglas_confianza(regla_confianza(mae_general))
+            with v2:
+                dispersion(ctx)
+        _insuficiente(ctx)

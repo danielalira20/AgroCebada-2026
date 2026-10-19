@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import pandas as pd
 
 from agrocebada_app.backend.dominio.avisos import avisos_de
+from agrocebada_app.backend.dominio.confianza import confianza_municipios
 from agrocebada_app.backend.dominio.resumen import detalles
 from agrocebada_app.backend.ficha_pdf.armado import ContextoFicha
 from agrocebada_app.backend.modelo.estimador import predecir
@@ -30,6 +31,7 @@ class Contexto:
     FICHA: ContextoFicha
     centro_total: tuple
     mA: pd.Series | None       # métricas del escenario A (igual que metricas_referencias.csv de T08)
+    conf: pd.DataFrame         # confianza por municipio (M01): municipio, n_cosecha, mae_municipio, mae_general, nivel, motivo
 
 
 def calcular(d, sop, S, C, modelo, satelite):
@@ -44,9 +46,10 @@ def calcular(d, sop, S, C, modelo, satelite):
     pred["error_tipico"] = pred.municipio.map(err_mun)
     pred["aviso"] = avisos_de(pred, sop)
     oof_parcela = OAT.groupby("ID_POLIGONO").prediccion.mean() if OAT is not None else pd.Series(dtype=float)
-    DET = detalles(d, pred, oof_parcela)
+    conf = confianza_municipios(d, OA)
+    DET = detalles(d, pred, oof_parcela, conf)
     FICHA = ContextoFicha(d=d, pred=pred, oof_parcela=oof_parcela, cob_mun=cob_mun, clima=C, series=S)
     mA = metricas(OA) if OA is not None and not OA.empty else None
     return Contexto(d=d, sop=sop, S=S, C=C, modelo=modelo, satelite=satelite, pred=pred, O=O, OA=OA, OAT=OAT,
                     err_mun=err_mun, cob_mun=cob_mun, oof_parcela=oof_parcela, DET=DET, FICHA=FICHA,
-                    centro_total=centro_total, mA=mA)
+                    centro_total=centro_total, mA=mA, conf=conf)

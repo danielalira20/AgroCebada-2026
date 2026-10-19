@@ -1,16 +1,18 @@
-"""Vista del analista: mapa de las 197 parcelas, resumen y cinco pestañas."""
+"""Vista del analista: mapa de las 197 parcelas, resumen y seis pestañas."""
 import streamlit as st
 
 from agrocebada_app.backend.dominio.geometria import vecinas
 from agrocebada_app.config import AYUDA_MAPA, CREDITOS, MODELOS
+from agrocebada_app.frontend.componentes.descargas.boton_cifras import boton_cifras
 from agrocebada_app.frontend.componentes.mapa.mapa import mapa
 from agrocebada_app.frontend.componentes.paneles.leyenda import leyenda
 from agrocebada_app.frontend.tema.html import e, h
+from agrocebada_app.frontend.vistas.analista.pestanas.cartera import cartera
 from agrocebada_app.frontend.vistas.analista.pestanas.estimaciones import estimaciones
 from agrocebada_app.frontend.vistas.analista.pestanas.ficha_tecnica import ficha_tecnica
 from agrocebada_app.frontend.vistas.analista.pestanas.metodo_limites import metodo_limites
 from agrocebada_app.frontend.vistas.analista.pestanas.validacion import validacion
-from agrocebada_app.frontend.vistas.analista.seleccion import clic_analista
+from agrocebada_app.frontend.vistas.analista.seleccion import clic_analista, ids_filtrados, validar_filtros
 from agrocebada_app.frontend.vistas.datos_propios.vista import datos_propios
 
 
@@ -22,10 +24,16 @@ def mostrar(ctx):
     DET = ctx.DET
     centro_total = ctx.centro_total
     mA = ctx.mA
+    validar_filtros(d)
+    aviso = st.session_state.pop("aviso_filtros_an", None)
+    if aviso:
+        st.toast(aviso, icon=":material/info:", duration=5)
     with st.container(key="hero"):
         with st.container(key="glass_filtros"):
-            capa = st.segmented_control("Mostrar", ["Todas", "Las 59", "Las 138"], key="capa") or "Todas"
-            muni_f = st.selectbox("Municipio", ["Todos"] + sorted(d.municipio.unique()))
+            capa = st.segmented_control("Mostrar", ["Todas", "Las 59", "Las 138"], key="capa",
+                                        on_change=validar_filtros, args=(d,)) or "Todas"
+            muni_f = st.selectbox("Municipio", ["Todos"] + sorted(d.municipio.unique()), key="municipio_an",
+                                  on_change=validar_filtros, args=(d,))
             buscado = st.selectbox("Buscar parcela por ID", ["(ninguna)"] + sorted(d.index), key="buscar_id",
                                    help="También puedes hacer clic en una parcela del mapa.",
                                    on_change=lambda: st.session_state.update(encuadre_an=st.session_state.buscar_id))
@@ -45,11 +53,7 @@ def mostrar(ctx):
                 detalle=DET, clave=f"mapa-an-{encuadre}",
                 al_clic=lambda clave: clic_analista(clave, d))
         else:
-            ids = [i for i in d.index if (muni_f == "Todos" or d.loc[i, "municipio"] == muni_f) and not (
-                (capa == "Las 59" and d.loc[i, "CONJUNTO"] != "PREDICCION") or
-                (capa == "Las 138" and d.loc[i, "CONJUNTO"] == "PREDICCION"))]
-            if not ids:
-                ids = list(d.index[d.municipio == muni_f]) if muni_f != "Todos" else list(d.index)
+            ids = ids_filtrados(d, capa, muni_f)
             c0 = (d.loc[ids].lon_c.mean(), d.loc[ids].lat_c.mean()) if muni_f != "Todos" else centro_total
             mapa(d, pred, ids, c0, 11.2 if muni_f != "Todos" else 9.9, altura=700, resaltar=resaltar,
                 escala=250 if muni_f != "Todos" else 450, satelite=satelite, arriba=arriba,
@@ -65,11 +69,14 @@ def mostrar(ctx):
             h(f"<div class='eyebrow'>Resumen · {e(MODELOS[modelo])}</div><div class='kpis'>" + "".join(
                 f"<div class='mini'><span>{k}</span><b class='kv'>{v}<small>{u}</small></b></div>" for k, v, u in kp)
               + "</div>")
+            boton_cifras(ctx)
     h(f"<div class='creditos'>{AYUDA_MAPA} · {e(CREDITOS)}</div>")
 
-    t1, t2, t3, t4, t5 = st.tabs(["Las 59 estimaciones", "Ficha técnica", "Validación", "Método y límites",
-                                  "Analizar tus datos"])
+    t0, t1, t2, t3, t4, t5 = st.tabs(["Cartera", "Las 59 estimaciones", "Ficha técnica", "Validación",
+                                      "Método y límites", "Analizar tus datos"])
 
+    with t0:
+        cartera(ctx)
     with t1:
         estimaciones(ctx)
     with t2:

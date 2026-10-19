@@ -54,8 +54,15 @@ def buscar_dataset():
     return None
 
 
+def buscar_t04():
+    """Clima de T04: AGRO_T04 puede ser el archivo clima_parcela_mes.csv o la carpeta que lo contiene."""
+    f = buscar("AGRO_T04", "registro/t04/clima_parcela_mes.csv", "entregas/T04/clima_parcela_mes.csv")
+    return f / "clima_parcela_mes.csv" if f is not None and f.is_dir() else f
+
+
 def rutas():
     return {"datos": buscar_dataset(),
             "t08": buscar_con("AGRO_T08", "predicciones_59_referencias.csv", "registro/t08", "registro/t03", "entregas/T08"),
             "t03": buscar_con("AGRO_T03", "soporte_parcelas.csv", "registro/t03", "entregas/T03"),
-            "t04": buscar("AGRO_T04", "registro/t04/clima_parcela_mes.csv", "entregas/T04/clima_parcela_mes.csv")}
+            "t04": buscar_t04(),
+            "t07": buscar_con("AGRO_T07", "calidad_parcelas.csv", "registro/t07", "entregas/T07")}

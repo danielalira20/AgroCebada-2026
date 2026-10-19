@@ -1,0 +1,22 @@
+{
+  "PR22_commit": "f73f376d81210b7b78e97532759d54b309f7a02f",
+  "base_dev": "97a8906b243b63f1e7c24ec85f7050642d9a98f5",
+  "archivos_examinados_sha256": {
+    "docs/T03_protocolo_evaluacion.md": "3d8d8f808d0a31116c21a6168bbdbcb5bac45f88e93b8a545a7915263033e1d4",
+    "docs/T14_clima.md": "ddc7d36b9358502e1102fe587f13591d80f146dedf528c09974680b41fad2505",
+    "registro/decisiones.csv": "033c4f67c29cab30e712c80e98314ddb9d6f15b016f66c9c62841f48ae8f8c08",
+    "registro/uso_ia.csv": "cd64073456c81569e12600aab3e85171ad2ed5cdfadabb0d83e2f810b61e5f7e"
+  },
+  "T14_codigo_para_lectura_sha256": "4a33ef85d56754272a9d594b825726388dca194de3db4e9f0bac4b8143b1276d",
+  "catalogo_T02_para_centroides": {
+    "ruta": "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv",
+    "sha256": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945"
+  },
+  "acceso_evidencia_externa": {
+    "repositorio": "nova-cz/agrocebada",
+    "archivo": "entregas/revisiones/verificar_t15_v3.py",
+    "resultado": "HTTP404_con_acceso_actual",
+    "ejecutada": false
+  },
+  "limite": "No confundir diferencias de centroides y de orillas ni notas T14 con homogeneidad completa T15."
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "agrocebada_T15_ejecutor_v1",
+  "modo": "completa",
+  "estado": "completa_verificada",
+  "evaluacion_completa": true,
+  "version": "comun-centrado-loo-v3",
+  "contrato_sha256": "ec725f603df78847c37366feef71c620c6ddef15cd0d11716019252fdfa6ad99",
+  "registro_operativo_sha256": "efa766beccc74f1a53459462f07a84ddff30651cb05d44531cb2694a2e4783df",
+  "fuente_commit": "cc7d0ae5437490d63408d74b4a3693a7b4494d55",
+  "entorno": {
+    "python": "3.12.15",
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "librerias": {
+      "numpy": "2.2.6",
+      "pandas": "3.0.6",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    }
+  },
+  "fuentes_sha256": {
+    "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+    "scripts/evaluacion_comun_centrado.py": "68054f35a8e3def775bf4d9eab6fd7ab30725baa83fdf05dd2ee20ffd47238c4",
+    "scripts/evaluacion_comun_contrato.py": "604347a3569e002b09334424aba523d329aac52fc238934783f2c73de4fcc16f",
+    "scripts/evaluacion_comun_modelo.py": "40152f140b4659bdd78b31ca778a677903160b29657b21afac1996b8979d1d53",
+    "scripts/evaluacion_comun_reportes.py": "1b7bee9cbadd75a58acd46970bab65d95ee777d5006a5c3cd22c8909c85b3ceb",
+    "registro/evaluacion_comun/procedimiento_centrado_loo_v3.json": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+    "registro/evaluacion_comun/propuesta_t15_centrado_loo_v3.json": "cbbef40c46bc433e21a43af4b6ccfe950db990e9d0da7df9c72def6b5638ecb1",
+    "requirements.txt": "7e7c67b4d43abf4564efd99038036795e3fc7dca2f255261fef27acfadc8f4b4",
+    "Dockerfile": "fa12707e735c0e2c52c2894ebf237cf5e81ed3e2984b7a4a0ba607e841038485",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+  },
+  "codigo_sha256": {
+    "scripts/t15_ejecutar.py": "cf338615d70c1786fd3b7e5cdcc3bd27e5288eeed107be24f08c6a5f3f0e8c6d",
+    "scripts/t15_ejecutor_reportes.py": "70e323f3280574cb6a6bbf722a8307ed8b8efa72eb2ef41cbbf0a52ec08aa25f",
+    "scripts/t15_comparaciones_traza.py": "d077ee711e8b3089a770be98987a69015140a706e52d9e95ab897bd31267840a"
+  },
+  "control_calidad_sha256": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+  "modelos_para_59": 0,
+  "ganador_T16_congelado": false,
+  "cierre": {
+    "responsable_humana": "Dani",
+    "apoyo_tecnico": "Codex",
+    "revision_externa_requerida": false,
+    "decision_directa_usuario": "Ya no van a revisar por cuestión de tiempos; ya sólo lo haremos tú y yo. Actualizar PR y terminar ejecutor, comprobar funcionamiento sin evaluación completa.",
+    "aprobacion_Daf_atribuida": false,
+    "aprobacion_Migue_atribuida": false,
+    "limite": "Autorrevisión técnica; no equivale a revisión independiente de los compañeros."
+  },
+  "contadores": {
+    "ajustes_internos": 13600,
+    "Ridge_internos": 12000,
+    "ajustes_externos": 450,
+    "Ridge_externos": 282
+  },
+  "contextos_ejecutados": 50,
+  "filas_OOF": 12420,
+  "reportes": {
+    "integridad": {
+      "candidatos": [
+        "comun_centrado_loo_v3_C",
+        "comun_centrado_loo_v3_CG",
+        "comun_centrado_loo_v3_CGP",
+        "comun_centrado_loo_v3_CP",
+        "comun_centrado_loo_v3_G",
+        "comun_centrado_loo_v3_GP",
+        "comun_centrado_loo_v3_P",
+        "comun_centrado_loo_v3_S",
+        "media_mun__resp_grupo"
+      ],
+      "predicciones": 12420,
+      "referencia_verificada": true,
+      "integridad_OOF": true,
+      "metodo_comun_acreditado": false
+    },
+    "metricas_resumen": 36,
+    "metricas_por_repeticion": 180,
+    "contrastes": 72,
+    "desgloses": 756,
+    "ganador_T16_congelado": false
+  },
+  "tiempo_segundos": 4294.746486391,
+  "memoria_maxima_proceso_MiB": 317.1328125,
+  "memoria_estado": "medida_ru_maxrss",
+  "archivos_sha256": {
+    "contrastes.csv": "966574db08f0354b91391a0769671e484995f772e59320be8e3829f8bde31d2a",
+    "desgloses_calidad_y_sin24.csv": "5abc54fcf60d55737dbfa6d92149db9975afe2d8bda9a9261e0eced96bd4117b",
+    "estados_modelos.jsonl": "a9ced85aa652d5900e2173de6b56ded0261ff9c020ddf8f6b97d62d22e0c47bc",
+    "frecuencia_referencia_sola.csv": "7895a49402456ad5123208503a8ee763638c8c7268e3a6809ef268d49b838c22",
+    "informe.md": "72fa499c3406ddc8e01fc745ece3fa0ce17f0982d2e9ea7802a749c76c3d9ad9",
+    "metricas_por_repeticion.csv": "84af67aedce11bc54850f905b05c113686490a1d7014aab07fd51b701af13d1d",
+    "metricas_resumen.csv": "6140d8745f495e673924d0adc9249318c7cf732201c4e971a79e03e49127434d",
+    "predicciones_oof.csv": "b1fc3dfbbf2b6cf65e1a19805b0d9fcf64c852ff7661a92ca947d1483c9fba2e",
+    "preflight.json": "df5e227449c5bcf1619e47dd119008949ab9a0d25b604f02c8c572a75aa4c7f5",
+    "selecciones.jsonl": "4e8b28b4fa1f3256b956d77fde98be3e9462026712754286df199551437950e6",
+    "trazas_ajustes.jsonl": "5aa8777fa0220235159da47767e1be6bde2ee61c9b6cdd4017e13d4b89d7a688"
+  }
+}

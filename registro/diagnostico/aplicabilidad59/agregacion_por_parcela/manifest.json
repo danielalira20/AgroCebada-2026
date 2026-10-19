@@ -1,0 +1,25 @@
+{
+  "version": "C-complemento-unidad-parcela-v1",
+  "fuentes_sha256": {
+    "contextos_oof_138.csv": "ebdc73038ba003b5f521160251dd5ec037b27f0458233d8563ed7ff3f683f9f4",
+    "entradas_oof_138.csv_detalle_local": "6ae043943a98e226fce8a3a71bc0cefb80293ff39e28a4f80fb068591ee280a2",
+    "error_por_soporte.csv": "579a5ab865f73cb98fbc6272bc611b8cbb039013bdc96708219f76481648b78d",
+    "manifest_C": "ef24ba0114ea1a435a94c93dabe7134596cbc427564b9551ab97fa34fa484a05"
+  },
+  "archivos_sha256": {
+    "error_por_soporte_unidad_parcela.csv": "d73fe01259a826fad89dac27c0adee2f764c4e86d31f1802a49366847a8d6103"
+  },
+  "codigo_sha256": "8cefc83571d5e0e9d6bdca3409bfe25b1bcb19b9b3c553ccafcc3138f895cd3a",
+  "comparaciones_agregado_por_registro": 600,
+  "max_delta": 1.7763568394002505e-15,
+  "unidades": {
+    "parcela": "Media entre IDs de pérdida media por ID en sus repeticiones elegibles; RMSE usa errores cuadrados, no predicciones promediadas.",
+    "registro": "Cada fila OOF recibe igual peso; difiere si varían las repeticiones elegibles por ID.",
+    "repeticion": "Media de los MAE de cada repetición; no equivale necesariamente a los otros dos."
+  },
+  "advertencias": [
+    "Un ID puede pertenecer a categorías distintas entre repeticiones: grupos no aditivos.",
+    "Desglose exploratorio de referencia T08 histórica, no nueva mejora ni incertidumbre individual."
+  ],
+  "modelos_ajustados": 0
+}

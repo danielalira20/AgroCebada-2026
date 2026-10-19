@@ -1,0 +1,74 @@
+{
+  "schema": "aplicabilidad_contraste_LOO_v1",
+  "fecha": "2026-10-15",
+  "responsable": "Dani",
+  "revisores": [
+    "Migue",
+    "Daf"
+  ],
+  "motivo": "Observación Migue PR21 del 15oct: contextualizar 9/59 y 19/59 con la misma regla en 138 dejándolas fuera una a una.",
+  "PR21_commit": "4afabf081a341f3321fcd58a211d18b43ee5a3b4",
+  "estado": "complemento_descriptivo_posterior_C_diseno_antes_de_calculos_LOO",
+  "fuentes_sha256": {
+    "registro/diagnostico/aplicabilidad59/diseno.json": "9e1d19e196cb0d505e04fd07063b6d21b0c9e062866e8bf697fc3365ee2ac477",
+    "registro/diagnostico/aplicabilidad59/entradas_59.csv": "644b03fb5c837deff14d57941eb649556a2ecdb786c71d82b35bda87e88761e9",
+    "registro/diagnostico/aplicabilidad59/perfil_59.csv": "0482f1c6cadd2b8ae1116a8429bf2eb78c3dbc0bd83194455e4614d8b3cc4b34",
+    "scripts/diagnostico_aplicabilidad59.py": "2bcc3ff6c82e77b012f38c466d4c8c38220cae587e728156a2e9c6f541be9071",
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/catalogo_base.csv": "93b5b0f1be8eb8810235ae67baf77a22f8ef2ea85f19707b15324b85999ed58f"
+  },
+  "reglas_heredadas": "Las 15 representaciones, mediana D020/indicador, log área, escala poblacional del entrenamiento, rangos crudos con tolerancias y referencia de vecinos/q95 higher+1e-12 de C-v1, sin cambios.",
+  "poblaciones": {
+    "etiquetadas_LOO": {
+      "parcelas_evaluadas": 138,
+      "parcelas_referencia_por_caso": 137
+    },
+    "reservadas": {
+      "parcelas_evaluadas": 59,
+      "parcelas_referencia_por_caso": 138
+    }
+  },
+  "exclusion": "ID evaluado fuera de mediana/escala/rangos/vecinos y referencia q95; ninguna reservada forma parte de ningún conjunto de referencia.",
+  "rendimientos": "No se utilizan valores de rendimiento; cohorte tomada de conjunto_origen del catálogo; no modelos predictivos ni errores nuevos.",
+  "reglas_comparadas": [
+    "fuera_rango_global",
+    "supera_q95_local"
+  ],
+  "agregaciones": [
+    "cada_una_de_15_representaciones",
+    "union_alguna_de_15",
+    "union_por_municipio"
+  ],
+  "indefinidos": "q95 sin al menos dos referencias locales es ausente, no False; unión True si alguna True, False sólo si todas definidas y False, en otro caso ausente.",
+  "denominadores": "Por regla mostrar n_parcelas_total/evaluables/con_aviso/sin_diagnostico; proporción observada sobre total y proporción sobre evaluables separadas.",
+  "multiplicidad": "15 representaciones correlacionadas/29 columnas; unión descriptiva, sin p-valores, umbrales nuevos, score de riesgo ni eliminación.",
+  "comparabilidad": "Referencia LOO137 frente138 reservadas y mezcla municipal distinta; desgloses por municipio; no declaración de igualdad por tasas parecidas.",
+  "conciliacion": "Recalcular soporte 59 y cotejar los 885 perfiles con C-v1 (estados/IDs exactos y números atol1e-9); conservar archivos anteriores.",
+  "salidas_compactas": [
+    "comparacion_138_59.csv",
+    "comparacion_por_municipio.csv",
+    "perfil_union_197.csv",
+    "diccionario.csv",
+    "manifest.json"
+  ],
+  "detalle_local": "perfiles_2955.csv (138x15+59x15), no nuevas parcelas",
+  "QA": [
+    "independencia_de_y",
+    "fila_evaluada_fuera_de_estadisticas",
+    "municipios0_1_2_referencias",
+    "empates_y_constantes_no_alerta",
+    "ausentes_no_falsos_ceros",
+    "conteos_unicos_y_denominadores",
+    "auditor_statistics_cdist_independiente",
+    "Mac_Docker_comun"
+  ],
+  "no_realizado": [
+    "T15_completo",
+    "seleccion_parametros",
+    "estimadores",
+    "predicciones59",
+    "nuevos_rasgos",
+    "modificacion_T03",
+    "publicacion"
+  ]
+}

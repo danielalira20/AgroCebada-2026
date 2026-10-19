@@ -1,0 +1,42 @@
+﻿archivo,columna,significado,unidad,significado_vacio
+comparacion_138_59.csv,representacion,"Bloque/ventana de C-v1; alguna_de_15 es la unión de sus avisos, sin duplicar parcelas.",categoria,no_admitido
+comparacion_138_59.csv,regla,Fuera de algún rango global crudo o distancia al vecino local mayor que q95 higher+1e-12.,categoria,no_admitido
+comparacion_138_59.csv,etiquetadas_n_parcelas_total,"etiquetadas: Total de IDs únicos del grupo, incluidos los que no tienen diagnóstico.",parcelas,no_admitido
+comparacion_138_59.csv,etiquetadas_n_parcelas_evaluables,etiquetadas: IDs con regla definida.,parcelas,no_admitido
+comparacion_138_59.csv,etiquetadas_n_parcelas_con_aviso,etiquetadas: IDs con aviso observado; no número de fallos predictivos.,parcelas,no_admitido
+comparacion_138_59.csv,etiquetadas_n_parcelas_sin_diagnostico,etiquetadas: IDs con regla ausente; no se reclasifican como sin aviso.,parcelas,no_admitido
+comparacion_138_59.csv,etiquetadas_proporcion_aviso_observado_sobre_total,etiquetadas: Avisos observados / total; no interpreta los indefinidos como negativos.,fraccion_0_1,denominador_cero
+comparacion_138_59.csv,etiquetadas_proporcion_aviso_sobre_evaluables,etiquetadas: Avisos / IDs con diagnóstico definido.,fraccion_0_1,denominador_cero
+comparacion_138_59.csv,reservadas_n_parcelas_total,"reservadas: Total de IDs únicos del grupo, incluidos los que no tienen diagnóstico.",parcelas,no_admitido
+comparacion_138_59.csv,reservadas_n_parcelas_evaluables,reservadas: IDs con regla definida.,parcelas,no_admitido
+comparacion_138_59.csv,reservadas_n_parcelas_con_aviso,reservadas: IDs con aviso observado; no número de fallos predictivos.,parcelas,no_admitido
+comparacion_138_59.csv,reservadas_n_parcelas_sin_diagnostico,reservadas: IDs con regla ausente; no se reclasifican como sin aviso.,parcelas,no_admitido
+comparacion_138_59.csv,reservadas_proporcion_aviso_observado_sobre_total,reservadas: Avisos observados / total; no interpreta los indefinidos como negativos.,fraccion_0_1,denominador_cero
+comparacion_138_59.csv,reservadas_proporcion_aviso_sobre_evaluables,reservadas: Avisos / IDs con diagnóstico definido.,fraccion_0_1,denominador_cero
+comparacion_por_municipio.csv,municipio,"Municipio original; desglose descriptivo, no rendimiento.",texto,no_admitido
+comparacion_por_municipio.csv,representacion,"Bloque/ventana de C-v1; alguna_de_15 es la unión de sus avisos, sin duplicar parcelas.",categoria,no_admitido
+comparacion_por_municipio.csv,regla,Fuera de algún rango global crudo o distancia al vecino local mayor que q95 higher+1e-12.,categoria,no_admitido
+comparacion_por_municipio.csv,etiquetadas_n_parcelas_total,"etiquetadas: Total de IDs únicos del grupo, incluidos los que no tienen diagnóstico.",parcelas,no_admitido
+comparacion_por_municipio.csv,etiquetadas_n_parcelas_evaluables,etiquetadas: IDs con regla definida.,parcelas,no_admitido
+comparacion_por_municipio.csv,etiquetadas_n_parcelas_con_aviso,etiquetadas: IDs con aviso observado; no número de fallos predictivos.,parcelas,no_admitido
+comparacion_por_municipio.csv,etiquetadas_n_parcelas_sin_diagnostico,etiquetadas: IDs con regla ausente; no se reclasifican como sin aviso.,parcelas,no_admitido
+comparacion_por_municipio.csv,etiquetadas_proporcion_aviso_observado_sobre_total,etiquetadas: Avisos observados / total; no interpreta los indefinidos como negativos.,fraccion_0_1,denominador_cero
+comparacion_por_municipio.csv,etiquetadas_proporcion_aviso_sobre_evaluables,etiquetadas: Avisos / IDs con diagnóstico definido.,fraccion_0_1,denominador_cero
+comparacion_por_municipio.csv,reservadas_n_parcelas_total,"reservadas: Total de IDs únicos del grupo, incluidos los que no tienen diagnóstico.",parcelas,no_admitido
+comparacion_por_municipio.csv,reservadas_n_parcelas_evaluables,reservadas: IDs con regla definida.,parcelas,no_admitido
+comparacion_por_municipio.csv,reservadas_n_parcelas_con_aviso,reservadas: IDs con aviso observado; no número de fallos predictivos.,parcelas,no_admitido
+comparacion_por_municipio.csv,reservadas_n_parcelas_sin_diagnostico,reservadas: IDs con regla ausente; no se reclasifican como sin aviso.,parcelas,no_admitido
+comparacion_por_municipio.csv,reservadas_proporcion_aviso_observado_sobre_total,reservadas: Avisos observados / total; no interpreta los indefinidos como negativos.,fraccion_0_1,denominador_cero
+comparacion_por_municipio.csv,reservadas_proporcion_aviso_sobre_evaluables,reservadas: Avisos / IDs con diagnóstico definido.,fraccion_0_1,denominador_cero
+perfil_union_197.csv,cohorte,Etiquetada evaluada con las otras 137 o reservada evaluada con las 138; no predictor.,categoria,no_admitido
+perfil_union_197.csv,id_parcela,ID original único por cohorte en el perfil de unión.,ID,no_admitido
+perfil_union_197.csv,municipio,"Municipio original; desglose descriptivo, no rendimiento.",texto,no_admitido
+perfil_union_197.csv,n_parcelas_referencia,IDs de referencia: 137 para cada etiquetada LOO y 138 para reservadas.,parcelas,no_admitido
+perfil_union_197.csv,n_parcelas_referencia_municipio,Parcelas de referencia del municipio; la propia fila nunca se incluye.,parcelas,no_admitido
+perfil_union_197.csv,n_representaciones,Representaciones C inspeccionadas por ID; no observaciones independientes.,representaciones,no_admitido
+perfil_union_197.csv,n_representaciones_q95_evaluables,Representaciones con al menos dos referencias del municipio.,representaciones,no_admitido
+perfil_union_197.csv,representaciones_fuera_rango_global,Representaciones con al menos una entrada fuera de rango.,lista,ningun_aviso
+perfil_union_197.csv,representaciones_supera_q95_local,Representaciones con aviso de distancia local observado.,lista,ningun_aviso_observado_no_implica_todas_evaluables
+perfil_union_197.csv,representaciones_q95_no_definido,Representaciones sin dos referencias locales; no se cuentan como no aviso.,lista,todas_evaluables
+perfil_union_197.csv,aviso_rango_global,Alguna entrada fuera del rango de sus referencias; no error de predicción ni exclusión.,booleano,no_admitido
+perfil_union_197.csv,aviso_q95_local,Unión triestado: sí si alguna supera q95; no sólo si todas definidas y no; ausente en otro caso.,booleano,referencia_local_insuficiente

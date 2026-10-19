@@ -1,0 +1,77 @@
+{
+  "codigo_sha256": {
+    "scripts/t08_referencias.py": "28a8733c944065b039b2317acde58e6d90b3599c4dea519d649209952872bbfd",
+    "scripts/t18_predicciones_finales.py": "af3e86be886cf19716513c021e97c130dbc5f46be80c44428d6e9d6089182883"
+  },
+  "controles": {
+    "dif_max_ruta_pandas_vs_t08_estimador": 0.0,
+    "dif_max_vs_predicciones_59_referencias_t08": 0.0,
+    "ids_unicos": true,
+    "n_etiquetadas": 138,
+    "n_reservadas": 59,
+    "orden_igual_al_csv_oficial": true,
+    "parcelas_con_advertencia_una_sola_etiqueta": [
+      "AGC_120"
+    ],
+    "perdida_por_redondeo": 8.881784197001252e-16,
+    "predicciones_finitas": true,
+    "reservadas_sin_rendimiento_en_oficial": true,
+    "respaldos_activados": 0
+  },
+  "decision": "D_T16_DECISION_001 (excepción explícita a T03; ver registro/decisiones.csv)",
+  "entorno": {
+    "arquitectura": "x86_64",
+    "geopandas": "1.2.0",
+    "numpy": "2.2.6",
+    "pandas": "3.0.6",
+    "plataforma": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+    "python": "3.12.15"
+  },
+  "entradas_sha256": {
+    "ID_area_rendimiento_70_30_Reto_AgroCebada.csv": "ec07b7ede0ae692109d91b3e941b1a353fe7f89410507db9bfbe6d7c112590ef",
+    "Parcelas_Reto_AGC_CONJUNTO_70_30.zip": "bb7155e551e1f89fb0dfdb676e10bf0aa2c4b2964188bf7673fa1808717b1d02",
+    "registro/t03/predicciones_59_referencias.csv": "db845d52b6d218db6c0efb2894f3c184a847a9ae1db0cf2b5b9a8e195e383e56"
+  },
+  "etiquetas_por_municipio": {
+    "Almoloya": 10,
+    "Apan": 1,
+    "Calpulalpan": 30,
+    "Chignahuapan": 71,
+    "Cuautepec de Hinojosa": 5,
+    "Emiliano Zapata": 3,
+    "Nanacamilpa de Mariano Arista": 1,
+    "Singuilucan": 16,
+    "Tepeapulco": 1
+  },
+  "formato_entrega": {
+    "codificacion": "utf-8-sig",
+    "columnas": [
+      "ID_POLIGONO",
+      "AREA_HA",
+      "RENDIMIENTO_T_HA",
+      "CONJUNTO"
+    ],
+    "decimales": 2,
+    "filas": 59,
+    "saltos": "CRLF"
+  },
+  "generado_utc": "2026-10-19T03:07:08Z",
+  "git": {
+    "cambios_en_archivos_rastreados": false,
+    "commit": "9e13b0245c87f4c8419e0d9323c48835b3dedfc9",
+    "rama": "t18-predicciones-v1"
+  },
+  "metrica_validacion_de_referencia": {
+    "MAE_media": 0.32049,
+    "MAE_mediana": 0.312585,
+    "fuente": "docs/t16_procedimiento_final.md §4 (A/sin_respaldo, 675 predicciones fuera de entrenamiento)"
+  },
+  "nota": "La salida no se puede evaluar contra rendimiento real: FIRA resguarda el de las 59.",
+  "procedimiento": "mediana_mun__resp_grupo",
+  "salidas_sha256": {
+    "detalle_predicciones_59.csv": "4e595800c1adab64cca5c73a85a8064af6a9cd13a9f3fd9f3ea57018221eb974",
+    "predicciones_finales.csv": "27bc277d10b4dd730c277f3a1e71f9f1a473b9ca5f1e02ad31ba4b76ecc7c9c7"
+  },
+  "schema": "agrocebada_T18_trazabilidad_v1",
+  "version": "T18-v1"
+}

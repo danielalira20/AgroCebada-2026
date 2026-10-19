@@ -1,0 +1,95 @@
+{
+  "resultado": "verificado",
+  "version": "comun-centrado-loo-v3",
+  "sha_procedimiento": "95ee8be41a60f05f797b8466c741713efcb261efb4bcdbf28af66f7895dcf7a2",
+  "alcance": "control_matematico_fijo_sin_evaluacion_externa",
+  "lambda_fija": 0.1,
+  "contextos": 50,
+  "bloques": 5,
+  "ajustes_Ridge_tecnicos": 250,
+  "predicciones_control": 6900,
+  "maximos": {
+    "prediccion": 2.6645352591003757e-15,
+    "coeficientes": 6.245004513516506e-16,
+    "centros": 0.0,
+    "residuos": 0.0,
+    "escala": 0.0,
+    "media_correccion_municipal_predict_train": 3.122502256758253e-17
+  },
+  "MAE_externo_calculado": false,
+  "seleccion_bloque": false,
+  "T15_completo_ejecutado": false,
+  "ajustes_finales_59": 0,
+  "revision_humana_pendiente": true,
+  "entorno": {
+    "sistema": "Linux",
+    "arquitectura": "x86_64",
+    "python": "3.12.15",
+    "numpy": "2.2.6",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1"
+  },
+  "fuentes_sha256": {
+    "registro/t07/tabla_comun.csv": "f6ffca6b6b4a08be2d921fac180311a2187727d91aac8a25b2356a1ad7720fb5",
+    "registro/t07/contrato_columnas.json": "22c1d5108aaf6dc6910e02c51d2509dfbe680878243864598e134fcaeb1edd8a",
+    "registro/t07/diccionario_columnas.csv": "15db36545cf07c094a45798efea8b9218e1711a3a858996b40e1c6538410af84",
+    "registro/t07/calidad_parcelas.csv": "75bfb1d06e462dd4042ab1540d0ae033788504516119f3a4c7de24eeb188089c",
+    "registro/t07/calidad_relieve.csv": "2862453b96f6527f6cc84650fb8b01737e7ad44bd718c1e2d6c65a715cf54ab0",
+    "registro/t07/manifest.json": "80da6f882c94224f8173aca8d7a403dc3ad6723eb0bc1b94bb040d8b9086aa21",
+    "registro/t03/particiones.csv": "2884910583de21c824e571b8525f868178e3b596b6873293b4551b2bbe9e4dc7",
+    "registro/t03/soporte_parcelas.csv": "d96d8d0883e922c95197ab64dcfd5cf170d7065864e41797b0d636eb08112df3",
+    "registro/t03/predicciones_oof_referencias_media_mun__resp_grupo.csv": "e767c06ab63898595bf925b98ed90ae0266815528652ed1d44228235f6860569",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/catalogo_parcelas.csv": "dcae25a84eee063f96ac92e0968c4815ba158af5f56895adc5d4fb7a89e2a945",
+    "analisis/auditoria_catalogo_y_etiquetas/tablas/soporte_por_parcela.csv": "872af7388648a9f93cb9413e937446f5ab770f5db997223627059cf195c65824"
+  },
+  "control_sha256": "233eea8a6bd23ba16c11730ef8cbcd73fda7681e0486295537617ccd1ef6c0ef",
+  "estado": "verificado_tecnicamente_revision_v3_pendiente",
+  "comparacion_Mac_Docker": {
+    "filas": 6900,
+    "claves_fuentes_identicas": true,
+    "maximos": {
+      "prediccion": 4.440892098500626e-15,
+      "correccion": 4.3298697960381105e-15
+    },
+    "fuentes_centros_LOO_byte_identicas": true
+  },
+  "pruebas": {
+    "Mac_focalizadas": 91,
+    "Docker_linux_amd64_python_O": 91,
+    "Mac_suite_completa_distintas": 466,
+    "suite_completa_primera_ejecucion": {
+      "total": 466,
+      "aprobadas": 464,
+      "errores_permisos_reports": 2
+    },
+    "reintento_dos_pruebas_con_permisos": "2 aprobadas, sin cambios de codigo o tolerancias"
+  },
+  "imagen_Docker": "sha256:b2dea1bd162fb607dedb4e1a670edde239743db940d2868e2167f7414e8875aa",
+  "originales_checker": {
+    "archivos_comparados": 166,
+    "extraidos_identicos_al_ZIP": true
+  },
+  "protegidos_y_historicos": {
+    "archivos_hash": 176,
+    "modificados": 0
+  },
+  "diseño_commit_previo": "afdc6fa",
+  "implementacion_commit": "ccc0cb7",
+  "seleccion_tecnica_parcial": {
+    "contextos": 2,
+    "Ridge_internos": 64,
+    "referencias_internas": 8,
+    "ajustes_externos": 0,
+    "no_interpretar_frecuencia_global": true
+  },
+  "pendientes": [
+    "Revision del nuevo commit v3 por Daf/Migue",
+    "Extension de internas B en T03 por Migue",
+    "Correccion/prototipo de interpolacion T06 y contraste8668 por Daf, sin modificar sus archivos aqui"
+  ],
+  "codigo_sha256": {
+    "scripts/evaluacion_comun_centrado_loo.py": "1aa920f3ec246af0c17b7e7755bb98b5cc2f75ed7d8a5d0505e713e56c4e1f07",
+    "scripts/evaluacion_comun_centrado_loo_auditar.py": "b47b121f916f064b4d84fc7115c862dfc5a2611dd95529ce0907e016d82aa2d6",
+    "tests/test_evaluacion_comun_centrado_loo.py": "c9a9436f4667b09a3224c9744ef71b00357492643327ae2493621a7cea756544"
+  }
+}

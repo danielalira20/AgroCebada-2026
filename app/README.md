@@ -4,33 +4,65 @@ Aplicación desarrollada con Streamlit para consultar estimaciones retrospectiva
 
 Utiliza información de 138 parcelas con rendimiento registrado para estimar el rendimiento de 59 parcelas reservadas, mediante el valor típico de su municipio.
 
-Las estimaciones se verifican contra el archivo de referencia `predicciones_59_referencias.csv`, para comprobar que los resultados coincidan con los del procedimiento evaluado.sed -n '100,145p' README.md
+Las estimaciones se verifican contra el archivo de referencia `predicciones_59_referencias.csv`, para comprobar que los resultados coincidan con los del procedimiento evaluado.
 
-## Arrancar
+## Cómo correrla
 
-Desde la carpeta `app/` del repo:
+La app lee el dataset del reto y las salidas de T03, T04 y T08 (no están en git; ver «Datos que usa»). Todos los comandos se dan desde la raíz del repo; en Windows (PowerShell) cambia `export X=...` por `$env:X = "..."` y `\` por `` ` ``.
 
-```bash
-pip install -r requirements.txt
-python herramientas/preparar_datos.py     # una vez: arma datos_app/ (ver abajo)
-streamlit run app.py
-```
+### Sin Docker
 
-Se abre en http://localhost:8501. Si no encuentra el dataset del reto, fija su ruta con `AGRO_DATOS` (en PowerShell: `$env:AGRO_DATOS = "C:\ruta\al\repo\data\raw\DATASET_RETO_AGRO_2026"`).
+1. **Python 3.12** (el mismo de la imagen de Docker y el que se probó).
+2. **Entorno virtual** (`.venv/` ya está en `.gitignore`) e instalación:
+
+   ```bash
+   python3.12 -m venv .venv
+   source .venv/bin/activate              # en PowerShell: .venv\Scripts\Activate.ps1
+   pip install -r app/requirements.txt
+   ```
+
+3. **Dataset:** copia la carpeta `DATASET_RETO_AGRO_2026` a `data/` (queda en `data/DATASET_RETO_AGRO_2026/`; `data/` está ignorada por git). La app también la encuentra en `datos/` o en la raíz. Si está en otro lugar, fija `AGRO_DATOS` con la carpeta.
+4. **Salidas de T03, T04 y T08:** la app las busca sola en `registro/t03`, `registro/t04` y `registro/t08` (las de T08, `predicciones_59_referencias.csv` y `predicciones_oof_referencias_*.csv`, hoy viven en `registro/t03/`). Si están en otro lugar, fija `AGRO_T03`, `AGRO_T04` y `AGRO_T08` con su carpeta; `AGRO_T04` acepta la carpeta o el archivo `clima_parcela_mes.csv`.
+5. **Arrancar** (desde `app/`):
+
+   ```bash
+   cd app
+   python herramientas/preparar_datos.py     # una vez: arma datos_app/ y la abre más rápido (opcional)
+   streamlit run app.py
+   ```
+
+   Se abre en http://localhost:8501. Sin `datos_app/` la app lee directo las fuentes y sólo tarda un poco más en abrir. Si falta el dataset, muestra un mensaje que dice qué falta.
+
+Variables de entorno (todas opcionales si las carpetas están donde la app las busca):
+
+| Variable | Qué es |
+|---|---|
+| `AGRO_DATOS` | carpeta del dataset del reto |
+| `AGRO_T03` | carpeta con `soporte_parcelas.csv` |
+| `AGRO_T04` | carpeta o archivo `clima_parcela_mes.csv` |
+| `AGRO_T08` | carpeta con `predicciones_59_referencias.csv` y `predicciones_oof_referencias_*.csv` |
 
 **Versión de Streamlit:** `requirements.txt` pide `>=1.56,<1.66`. La descarga diferida de la ficha necesita 1.52 o más, las pruebas (`AppTest`) 1.56 o más, y con 1.66 el mapa 3D dio errores de WebGL en el navegador.
 
 ### Con Docker
 
-La imagen del repo (`docker build -t agrocebada-entorno .` desde la raíz) trae Python 3.12 pero no Streamlit. Desde la raíz del repo, en PowerShell:
+`app/Dockerfile` (Python 3.12, usuario sin privilegios) instala las dependencias y copia sólo el código. **Los datos nunca van dentro de la imagen**: `app/.dockerignore` deja fuera `datos_app/`, los CSV, los parquet y los shapefiles, y los datos se montan como carpetas de sólo lectura al correr el contenedor.
 
-```powershell
-docker run --rm -it -p 8501:8501 `
-  -v "${PWD}:/proyecto" -w /proyecto/app `
-  -e AGRO_DATOS=/proyecto/data/raw/DATASET_RETO_AGRO_2026 `
-  agrocebada-entorno `
-  bash -c "pip install -r requirements.txt && python herramientas/preparar_datos.py && streamlit run app.py --server.address 0.0.0.0"
+```bash
+docker build -t agrocebada-app app
+
+docker run --rm -p 8501:8501 \
+  -v "$PWD/data/DATASET_RETO_AGRO_2026:/datos:ro" \
+  -v "$PWD/registro:/registro:ro" \
+  -e AGRO_DATOS=/datos -e AGRO_T03=/registro/t03 -e AGRO_T08=/registro/t03 -e AGRO_T04=/registro/t04 \
+  agrocebada-app
 ```
+
+Se abre en http://localhost:8501. (En PowerShell: `-v "${PWD}/data/DATASET_RETO_AGRO_2026:/datos:ro"` y el continuador de línea es `` ` ``.)
+
+> **Estado de la prueba:** el `Dockerfile` y el `.dockerignore` **no se probaron** al escribirlos (la máquina donde se hicieron no tenía Docker). Lo que sí se comprobó: que `app/requirements.txt` instala en un entorno limpio de Python 3.12 y que con él pasan todas las pruebas y la app arranca desde la raíz del repo. Antes de usarlo, construir la imagen y abrir la app una vez.
+
+La imagen del repo (`docker build -t agrocebada-entorno .` en la raíz) es otra: sirve para el trabajo de análisis, no trae Streamlit.
 
 ## Datos que usa
 
@@ -115,7 +147,7 @@ Mapa de las 197 parcelas con panel de resumen (59, promedio, MAE y R²) y filtro
 | Método y límites | Cómo se calcula (4 pasos), qué tan bien funciona, fuentes y límites. |
 | Analizar tus datos | Subir un dataset propio y aplicarle el mismo procedimiento (ver abajo). |
 
-**Selector de modelo:** Media · oficial (MAE 0.320, R² 0.659 en A · sin respaldo) o Mediana · en evaluación (MAE 0.313, R² 0.661 en A · sin respaldo). El modelo oficial se configura mediante `MODELO_OFICIAL` en `agrocebada_app/config.py`.
+**Selector de modelo:** Mediana · oficial (MAE 0.313, R² 0.661 en A · sin respaldo) o Media · referencia (MAE 0.320, R² 0.659 en A · sin respaldo). El modelo oficial se configura mediante `MODELO_OFICIAL` en `agrocebada_app/config.py`.
 
 ## Analizar tus datos (carga segura)
 
@@ -136,6 +168,7 @@ Nada del archivo se ejecuta: se lee como datos, los archivos se escriben con nom
 cd app
 python tests/frontend/test_app.py            # termina en «OK»
 python tests/backend/test_carga_segura.py   # termina en «OK»
+for t in tests/*/test_*.py; do python "$t" || break; done     # todas, una por una; cada una termina en «OK»
 ```
 
 - `tests/frontend/test_app.py`: vista agricultor con los 9 municipios; vista analista con los dos modelos (4 verificaciones en verde y métricas de validación A · sin respaldo); buscador, filtro por municipio, información insuficiente, mapa desde arriba, comparación de parcelas, pestaña de datos propios y ficha PDF de 3 parcelas.
@@ -158,4 +191,37 @@ python tests/backend/test_carga_segura.py   # termina en «OK»
 
 ## Publicarla en internet
 
-Streamlit necesita un servidor encendido con conexión permanente (WebSocket), así que **no corre en Vercel** (sus funciones se apagan al terminar cada petición). Opciones que sí funcionan directo desde el repo de GitHub: **Streamlit Community Cloud** (gratis; permite repo privado y limitar quién la ve), Hugging Face Spaces, Render o Railway. Antes de publicarla hay que confirmar que las reglas de FIRA permiten subir los datos del reto (`datos_app/` incluye polígonos y rendimientos).
+**Todavía no está publicada: falta que FIRA autorice subir los datos del reto** (`datos_app/` incluye polígonos y rendimientos). Hasta entonces no se sube nada.
+
+Streamlit necesita un servidor encendido con conexión permanente (WebSocket), así que **no corre en Vercel** (sus funciones se apagan al terminar cada petición). Opciones que sí funcionan directo desde el repo de GitHub: **Streamlit Community Cloud** (gratis; permite repo privado y limitar quién la ve), Hugging Face Spaces, Render o Railway.
+
+### Streamlit Community Cloud: revisión
+
+| Punto | Estado |
+|---|---|
+| Dependencias | `app/requirements.txt` sirve. Community Cloud busca el archivo primero junto al archivo principal y después en la raíz, así que gana el de `app/` sobre el `requirements.txt` de la raíz (el del entorno de análisis). Instala en un entorno limpio de Python 3.12 y con él pasan las pruebas. |
+| Versión de Python | Se elige al desplegar (en «Advanced settings»). Elegir **3.12**, la que se probó. |
+| `config.toml` | **Falta mover algo.** Community Cloud lee `.streamlit/config.toml` de la **raíz del repo**, aunque el archivo principal esté en una subcarpeta, y hoy está en `app/.streamlit/config.toml`. Sin copiarlo a la raíz no se aplicarían el tema, `toolbarMode = "viewer"` ni `showErrorDetails = "none"` (que oculta rutas y trazas). |
+| Carpeta de trabajo | La raíz del repo. La app ubica sus archivos con rutas absolutas desde el código, así que no depende de ella (se probó arrancándola desde la raíz). |
+| Claves | No usa; no hace falta configurar secretos. |
+
+### Pasos para publicarla (cuando FIRA autorice)
+
+1. Confirmar por escrito con FIRA que se pueden subir los datos y con qué condiciones. Si no, usar la ejecución local o Docker.
+2. Copiar `app/.streamlit/config.toml` a `.streamlit/config.toml` en la raíz del repo (un PR aparte).
+3. Resolver los datos (ver abajo) antes de desplegar.
+4. En https://share.streamlit.io: «Create app» → repositorio `danielalira20/AgroCebada-2026`, la rama que decida el equipo, archivo principal `app/app.py`.
+5. En «Advanced settings»: Python 3.12; no hay secretos que agregar.
+6. Elegir quién la ve: repo privado y, en el panel de la app, compartirla sólo con las personas autorizadas.
+7. Al abrirla, revisar que cargue el mapa y las dos vistas, y descargar una ficha.
+
+### Datos que necesitaría la nube
+
+El repo no trae los datos del reto (`.gitignore`), así que sin ellos la app sólo muestra el aviso de que falta el dataset. El mínimo es el paquete compacto **`datos_app/`** (unos 0.4 MB: parcelas con geometría, series de índices 2025, clima, validación de los dos modelos, las 59 oficiales, soporte y, si se arma con `preparar_datos.py`, el clima 2022–2024). Se genera en una computadora que tenga el dataset (`python herramientas/preparar_datos.py`). Dos formas de llevarlo a la nube:
+
+- **En un repo privado**, agregándolo con `git add -f app/datos_app` (el `.gitignore` lo excluye a propósito). Sólo si FIRA lo autoriza; es lo más simple.
+- **Fuera de git**, en un almacenamiento privado, y que la app lo descargue al arrancar con una dirección guardada en los secretos de Streamlit. Requiere un cambio en el código que hoy no existe.
+
+### Fondo del mapa
+
+La app pide al navegador, sin clave: imagen Sentinel-2 de EOX (`tiles.maps.eox.at`), relieve de AWS (`s3.amazonaws.com/elevation-tiles-prod`), estilo de CARTO y, para el mapa, bibliotecas desde `unpkg.com`. EOX es CC BY-NC-SA: uso no comercial con atribución (la app la muestra). Si alguna de estas fuentes se cae, el mapa pierde el fondo pero las cifras no cambian.
