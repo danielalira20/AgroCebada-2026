@@ -1,0 +1,95 @@
+{
+  "schema": "auditoria_t12_v1",
+  "version": "t12-auditor-v1",
+  "sha_diseno_t12": "c0bd784b1bb55dda887294fb597d3e6547485992b5a220a1249ed57c79bf41b9",
+  "independencia": "NumPy y csv; sin importar el código de producción. Comparte solo la semilla y el sorteo del remuestreo de celdas y las particiones internas de scikit-learn.",
+  "integridad_oof": {
+    "aprobado": true,
+    "candidatos": [
+      "media_mun__resp_grupo",
+      "mediana_mun__resp_grupo",
+      "t12_control_comun_G",
+      "t12_control_comun_GP",
+      "t12_control_comun_P",
+      "t12_control_mediana_het_GP",
+      "t12_gb_GP",
+      "t12_het_G",
+      "t12_het_GP",
+      "t12_het_P"
+    ],
+    "predicciones_por_candidato": 1380,
+    "problemas": []
+  },
+  "ajustes_het": {
+    "aprobado": true,
+    "procedimientos": [
+      "t12_control_mediana_het_GP",
+      "t12_het_G",
+      "t12_het_GP",
+      "t12_het_P"
+    ],
+    "contextos": 50,
+    "selecciones_reconstruidas": 200,
+    "predicciones_comparadas": 5520,
+    "dif_max_prediccion": 1.7763568394002505e-15,
+    "dif_max_MAE_interno": 8.881784197001252e-16,
+    "dif_max_MAE_todas_internas": 1.1102230246251565e-15,
+    "tolerancia_prediccion": 1e-10,
+    "tolerancia_MAE_interno": 1e-10,
+    "problemas": [],
+    "n_problemas": 0
+  },
+  "metricas": {
+    "aprobado": true,
+    "filas_comparadas": 240,
+    "dif_max": 2.220446049250313e-16,
+    "tolerancia": 1e-12,
+    "problemas": []
+  },
+  "comparaciones": {
+    "aprobado": true,
+    "comparaciones": 52,
+    "dif_max": 2.1597307275911248e-16,
+    "tolerancia": 1e-12,
+    "replicas": 5000,
+    "semilla": 20261006,
+    "problemas": []
+  },
+  "controles": {
+    "C6": {
+      "filas": 40
+    },
+    "C2": {
+      "permutaciones": 20,
+      "observado": -0.0009437067288656116,
+      "b": 0,
+      "p": 0.047619047619047616
+    },
+    "C3": {
+      "filas": 54
+    },
+    "C4": {
+      "filas_municipio": 270,
+      "filas_sin_alerta": 36
+    },
+    "aprobado": true,
+    "dif_max": 1.7763568394002505e-15,
+    "tolerancia": 1e-12,
+    "problemas": []
+  },
+  "aprobado": true,
+  "entorno": {
+    "sistema": "Linux",
+    "python": "3.12.15",
+    "numpy": "2.2.6",
+    "sklearn": "1.9.1"
+  },
+  "salidas_auditadas_sha256": {
+    "predicciones_oof_t12.csv": "68767851d5e2c436e174e5695a38baebd2377f4011147a70de1534797fe8714e",
+    "seleccion_interna_t12.csv": "c98d98d6493c40f704c52a525cf81a6d19b34424869200488614544003e5688a",
+    "comparacion_emparejada_t12.csv": "252abc568ce40f3b81b3db028cf066b41ea7d4e9d3c5d103493c0b72f590da45",
+    "metricas_t12.csv": "8c6dc45591b0f76770e86d7dd2dbf097a6e335d1bbde8e95bd9d191adecb0598",
+    "predicciones_59_t12.csv": "4aa5a00991ef2e5a863b4797de732aaafc581377ed41dc74518b8d3230fd8b04"
+  },
+  "auditor_sha256": "0825bba0eb6b4f5b658410fa8f69ac5eeb7a53527dd95bcc73ac8289b060acfa"
+}
