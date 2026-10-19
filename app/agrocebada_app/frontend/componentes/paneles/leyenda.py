@@ -28,7 +28,7 @@ def leyenda():
             "<span style='color:#F59E0B'>●</span> Media · respaldo moderado</div>"
             "<div class='ley-nota'>"
             "<span style='color:#EF4444'>●</span> Baja · información limitada</div>"
-            "<div class='ley-nota' style='margin-top:10px'>"
+            "<div class='nota' style='margin-top: 16px; margin-bottom: 14px; line-height: 1.55;'>"
             "La confianza indica el respaldo de la estimación, no garantiza el rendimiento.</div>"
         )
     else:

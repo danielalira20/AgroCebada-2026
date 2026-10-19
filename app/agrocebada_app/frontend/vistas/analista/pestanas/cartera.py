@@ -72,14 +72,15 @@ def cartera(ctx):
         h("<div class='kpis'>" + "".join(
             f"<div class='mini'><span>{e(k)}</span><b class='kv'>{e(v)}<small>{e(u)}</small></b></div>"
             for k, v, u in kp) + "</div>")
+        h("<div style='height: 20px;'></div>")
+        titulo("Producción por municipio", "La barra es la producción estimada; la línea con topes va del escenario ""bajo al alto.")
 
-        titulo("Producción por municipio", "La barra es la producción estimada; la línea con topes va del escenario "
-                                           "bajo al alto.")
         grafica_cartera(t)
 
         a, b = st.columns([3, 1], vertical_alignment="center")
         with a:
-            titulo("Tabla por municipio")
+            with st.container(key="titulo_tabla_municipio"):
+                titulo("Tabla por municipio")
         vista = t.assign(tipo_rango=t.tipo_rango.map(TIPOS),
                          confianza=t.confianza.map(lambda v: v.capitalize() if isinstance(v, str) else v)).rename(columns={
             "municipio": "Municipio", "parcelas": "Parcelas", "hectareas": "Hectáreas",

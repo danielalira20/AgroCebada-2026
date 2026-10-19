@@ -20,5 +20,5 @@ def alcance(filas, modelo):
             f"<div><p>{e(f['situacion'])}</p><small>{e(f['nota'])}</small></div><p>{e(f['error'])}</p>"
             f"<p class='alc-cuantas'>{e(f['estimaciones'])}</p></article>" for f in filas)
         h(f"<div class='alc'>{cab}{cuerpo}</div>")
-        h("<p class='nota'>Los umbrales son los de la regla de confianza (pestaña Validación). «De las 59» cuenta las "
+        h("<p class='nota' style='margin-top: 20px; margin-bottom: 12px; line-height: 1.55;'>Los umbrales son los de la regla de confianza (pestaña Validación). «De las 59» cuenta las "
           "estimaciones por municipio; la confianza de cada una puede ser menor si su error en la validación fue mayor.</p>")
