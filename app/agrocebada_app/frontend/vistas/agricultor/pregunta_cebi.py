@@ -20,7 +20,8 @@ _CEBI = ("<div class='mascota' style='margin:10px 0'><div class='cebi'>{}</div>"
 def _platica(ctx, pid):
     lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
                        precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
-                       area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal())
+                        area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
+                       libreta=st.session_state.get("bitacora", {}).get(pid))
     clave = f"cebi_{pid}"
     hechas = st.session_state.setdefault(clave, [])
     h("<div class='nota'>Elige una pregunta y Cebi te contesta con los datos de tu parcela.</div>")
