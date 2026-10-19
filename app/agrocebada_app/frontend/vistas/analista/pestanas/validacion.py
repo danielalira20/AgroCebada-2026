@@ -3,31 +3,30 @@ Las cifras y los textos salen de backend/dominio/validacion.py; aquí sólo se d
 import streamlit as st
 
 from agrocebada_app.backend.dominio.validacion import (
-    frase_respaldo, comparacion_oculto, contraste_respaldo, poblaciones, por_municipio,
+    bloques_respaldo, comparacion_oculto, contraste_respaldo, poblaciones, por_municipio,
     regla_confianza)
 from agrocebada_app.backend.modelo.estimador import predecir
 from agrocebada_app.config import MODELOS
 from agrocebada_app.frontend.componentes.graficas.dispersion_validacion import dispersion
 from agrocebada_app.frontend.componentes.validacion.resultados import resultados
 from agrocebada_app.frontend.componentes.validacion.municipios import municipios, reglas_confianza
-from agrocebada_app.frontend.tema.html import e, h, titulo
+from agrocebada_app.frontend.componentes.validacion.simulacion import comparacion
+from agrocebada_app.frontend.tema.html import titulo
 
 
 def _insuficiente(ctx):
     """Oculta un municipio y muestra qué valor y qué confianza tendría la estimación sin sus datos."""
     pred = ctx.pred
     with st.container(key="glass_insuf"):
-        titulo("Caso de información insuficiente",
-               "Simula que un municipio no tuviera parcelas con cosecha y mira qué valor aplicaría la app y con qué "
-               "confianza.")
-        oculto = st.selectbox("Municipio a ocultar", sorted(pred.municipio.unique()))
+        titulo("¿Y si no hubiera datos de tu municipio?", "Oculta sus cosechas para ver de dónde saldría la estimación.")
+        if pred.empty:
+            st.info("No hay parcelas por estimar para simular este caso.")
+            return
+        oculto = st.selectbox("Municipio a ocultar", sorted(pred.municipio.unique()), key="val_municipio_oculto")
         sim = predecir(ctx.d, ctx.modelo, ocultar=oculto)
         tabla, motivo = comparacion_oculto(pred, sim, ctx.conf, oculto)
-        st.dataframe(tabla.reset_index(), hide_index=True, width="stretch")
-        h(f"<div class='nota'>{e(motivo)}</div>")
-        h("<div class='nota'>La app aplica el respaldo evaluado (valor del grupo de registro y luego el general), lo "
-          "indica en la columna fuente y lo marca siempre con confianza baja. "
-          f"{e(frase_respaldo(contraste_respaldo(ctx.O, pred)))}</div>")
+        comparacion(tabla, pred.loc[tabla.index], sim.loc[tabla.index],
+                    bloques_respaldo(contraste_respaldo(ctx.O, pred)), motivo)
 
 
 def validacion(ctx):

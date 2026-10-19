@@ -64,18 +64,18 @@ for modelo, mae in [("media_mun__resp_grupo", "0.320"), ("mediana_mun__resp_grup
     next(x for x in tab.selectbox if x.label == "Municipio a ocultar").set_value("Chignahuapan").run()
     assert not at.exception, (modelo, at.exception)
     tab = pestana(at)
-    ins = tabla(tab, "confianza sin datos")
-    assert set(ins["confianza normal"]) == {"Media"} and set(ins["confianza sin datos"]) == {"Baja"}, modelo
-    assert set(ins["fuente sin datos"]) == {"grupo"} and len(ins) == 29, modelo
+    ins = tabla(tab, "Confianza sin datos")
+    assert set(ins["Confianza con datos"]) == {"Media"} and set(ins["Confianza sin datos"]) == {"Baja"}, modelo
+    assert set(ins["Fuente sin datos"]) == {"grupo"} and len(ins) == 29, modelo
     t = textos(tab)
-    assert "Confianza baja:" in t and "Ninguna de las 59 estimaciones reales usa respaldo" in t, modelo
+    assert "Confianza baja por falta de evidencia" in t and "Ninguna de las 59 estimaciones reales usa respaldo" in t, modelo
     # Recorrer todos los municipios con estimaciones, sin perder filas del detalle.
     for municipio in sorted(ctx.pred.municipio.unique()):
         next(x for x in tab.selectbox if x.label == "Municipio a ocultar").set_value(municipio).run()
         assert not at.exception, (modelo, municipio, at.exception)
         tab = pestana(at)
-        detalle = tabla(tab, "confianza sin datos")
-        assert detalle["ID_POLIGONO"].tolist() == ctx.pred.index[ctx.pred.municipio == municipio].tolist()
+        detalle = tabla(tab, "Confianza sin datos")
+        assert detalle["Parcela"].tolist() == ctx.pred.index[ctx.pred.municipio == municipio].tolist()
     # Cambiar el modelo dentro de la misma sesión debe actualizar resumen, regla y simulación.
     otro = next(m for m in MODELOS if m != modelo)
     at.segmented_control(key="modelo").set_value(otro).run()

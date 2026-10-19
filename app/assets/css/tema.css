@@ -332,6 +332,27 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
   .val-regla { grid-template-columns: 1fr; gap: 6px; justify-items: start; }
 }
 
+.st-key-validacion .st-key-glass_insuf { padding: 22px 24px; }
+.st-key-validacion .st-key-glass_insuf [data-testid="stSelectbox"] { max-width: 480px; margin-bottom: 14px; }
+.val-comparacion { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.val-escenario { border: 1px solid var(--borde); border-radius: 14px; padding: 18px; background: rgba(255,255,255,.025); }
+.val-escenario h3, .val-conclusiones h3 { font-size: .9rem; line-height: 1.4; font-weight: 600;
+  color: #d8e3dc; padding: 0; margin: 0 0 10px; }
+.val-cifra { font-size: 1.9rem; font-weight: 750; line-height: 1.25; color: #fff; margin: 4px 0 12px; }
+.val-cifra small { font-size: .88rem; font-weight: 500; color: var(--tenue); margin-left: 6px; }
+.val-fuente { font-size: .85rem; line-height: 1.5; margin: 12px 0 0; color: var(--tenue); }
+.val-niveles { display: flex; flex-wrap: wrap; gap: 6px; }
+.st-key-validacion .val-alerta { font-size: .9rem; line-height: 1.5; padding: 14px 16px; margin: 4px 0; }
+.val-conclusiones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;
+  border-top: 1px solid var(--borde); padding-top: 18px; margin: 6px 0; }
+.val-conclusiones p { font-size: .88rem; line-height: 1.55; color: var(--tenue); margin: 0 0 10px; }
+.st-key-validacion [data-testid="stExpander"] summary { min-height: 44px; }
+.st-key-validacion :is(button, summary, input):focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .st-key-validacion .st-key-glass_insuf { padding: 18px 16px; }
+  .val-comparacion, .val-conclusiones { grid-template-columns: 1fr; gap: 12px; }
+  .val-escenario { padding: 16px; }
+}
 /* A 320 px la leyenda original necesita desplazamiento dentro de su tarjeta. */
 @media (max-width: 380px) {
   .st-key-glass_disp_val [data-testid="stElementContainer"]:has([data-testid="stVegaLiteChart"]) {
