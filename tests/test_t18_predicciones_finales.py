@@ -18,6 +18,7 @@ import numpy as np
 import pandas as pd
 
 from scripts import t18_comparar_corridas as comparador
+from scripts import t18_comparar_entregas as entregas
 from scripts import t18_predicciones_finales as t18
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -141,6 +142,50 @@ class ComparadorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             dif, _ = comparador.comparar(self.corrida(t, "a"), self.corrida(t, "b", python="3.11.0"))
         self.assertTrue(any("entorno.python" in d for d in dif))
+
+
+class CompararEntregasTests(unittest.TestCase):
+    BASE = [("AGC_003", "18.68", "3.20"), ("AGC_011", "7.17", "4.52"), ("AGC_120", "7.47", "2.50")]
+
+    def csv(self, filas=None, bom=True, eol="\r\n", dec2=True, coma_final=False, encabezado=None):
+        filas = self.BASE if filas is None else filas
+        enc = encabezado or "ID_POLIGONO,AREA_HA,RENDIMIENTO_T_HA,CONJUNTO"
+        cola = "," if coma_final else ""
+        lineas = [enc + cola] + [f"{i},{a},{r if dec2 else r.rstrip('0').rstrip('.')},PREDICCION{cola}" for i, a, r in filas]
+        return (("\ufeff" if bom else "") + eol.join(lineas) + eol).encode("utf-8")
+
+    def test_mismo_contenido_con_formato_distinto_coincide(self):
+        dif, fmt, r = entregas.comparar(self.csv(), self.csv(bom=False, eol="\n", dec2=False))
+        self.assertEqual(dif, [])
+        self.assertGreaterEqual(len(fmt), 3)
+        self.assertEqual(r["max_dif_rendimiento"], 0.0)
+
+    def test_la_coma_final_se_detecta_como_formato_no_como_contenido(self):
+        dif, fmt, _ = entregas.comparar(self.csv(), self.csv(coma_final=True))
+        self.assertEqual(dif, [])
+        self.assertTrue(any("coma final" in f for f in fmt))
+
+    def test_detecta_un_valor_distinto_y_dice_cual(self):
+        otro = [("AGC_003", "18.68", "3.21"), *self.BASE[1:]]
+        dif, _, r = entregas.comparar(self.csv(), self.csv(otro), municipios={"AGC_003": "Singuilucan"})
+        self.assertEqual(r["filas_con_rendimiento_distinto"], 1)
+        self.assertTrue(any("AGC_003 (Singuilucan)" in d for d in dif))
+
+    def test_detecta_id_faltante_y_numero_de_filas(self):
+        dif, _, _ = entregas.comparar(self.csv(), self.csv(self.BASE[:2]))
+        self.assertTrue(any("IDs solo en A" in d for d in dif))
+        self.assertTrue(any("número de filas" in d for d in dif))
+
+    def test_detecta_mismo_contenido_en_otro_orden(self):
+        dif, _, _ = entregas.comparar(self.csv(), self.csv(list(reversed(self.BASE))))
+        self.assertTrue(any("distinto orden" in d for d in dif))
+
+    def test_detecta_encabezado_distinto_y_valor_no_numerico(self):
+        dif, _, _ = entregas.comparar(self.csv(), self.csv(encabezado="ID_POLIGON,AREA_HA,RENDIMIENTO_T_HA,CONJUNTO"))
+        self.assertTrue(any("encabezado distinto" in d for d in dif))
+        malo = [("AGC_003", "18.68", "XX"), *self.BASE[1:]]
+        dif, _, _ = entregas.comparar(self.csv(), self.csv(malo))
+        self.assertTrue(any("no numérico" in d for d in dif))
 
 
 @unittest.skipUnless((DATOS / t18.CSV_OFICIAL).exists() and (SALIDA / "predicciones_finales.csv").exists(),
