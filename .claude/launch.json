@@ -1,0 +1,10 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "agrocebada-app",
+      "url": "http://localhost:8503",
+      "port": 8503
+    }
+  ]
+}
