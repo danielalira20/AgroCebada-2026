@@ -41,5 +41,10 @@ def oficial(modelo):
 
 
 @st.cache_data
+def entrega_final():
+    return paquete.entrega_final()
+
+
+@st.cache_data
 def oof(modelo, municipios):
     return paquete.validacion(modelo, municipios)

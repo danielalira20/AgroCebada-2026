@@ -3,13 +3,14 @@ import pydeck as pdk
 import streamlit as st
 
 from agrocebada_app.backend.dominio.geometria import anillo
+from agrocebada_app.backend.dominio.confianza import confianza_de_parcelas
 from agrocebada_app.config import RELIEVE, SATELITE, TOOLTIP
-from agrocebada_app.frontend.componentes.mapa.colores import color
+from agrocebada_app.frontend.componentes.mapa.colores import color, color_confianza
 from agrocebada_app.frontend.estado.cache import elevaciones
 
 
 def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, satelite=True, arriba=False,
-         detalle=None, con_relieve=True, clave="mapa", al_clic=None):
+         detalle=None, con_relieve=True, clave="mapa", al_clic=None, modo_color="Rendimiento", conf=None):
     """Parcelas sobre el relieve real con imagen Sentinel-2. En 3D son bloques (altura y color = t/ha); desde arriba
     son polígonos de color con borde, como un mapa de cultivos. El zoom se limita alrededor de la vista inicial y la
     rueda del ratón no hace zoom, para que el scroll mueva la página."""
@@ -18,6 +19,11 @@ def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, sate
     base = 0.0
     if relieve:
         base = float(E[resaltar]) if resaltar in E.index else float(E.reindex(list(ids)).median())
+
+    niveles_confianza = None
+    if modo_color == "Confianza" and conf is not None:
+        niveles_confianza = confianza_de_parcelas(pred, conf)["nivel"]
+
     filas = []
     for pid in ids:
         r = d.loc[pid]
@@ -26,16 +32,26 @@ def mapa(d, pred, ids, centro, zoom, resaltar=None, altura=660, escala=600, sate
         sel = pid == resaltar
         # desde arriba el terreno va plano (el relieve no se nota y su brillo taparía la imagen)
         z = round(float(E.get(pid, base)) - base + 3, 1) if (relieve and not arriba) else 2.0
-        if arriba:                        # de lejos las parcelas son chicas: bordes más finos para que no sean puntos
-            cerca = zoom >= 12
-            linea, ancho = (([255, 255, 255, 255], 2.5 if cerca else 1.0) if (reservada or sel)
-                            else ([255, 255, 255, 120], 1.0 if cerca else 0.0))
+        if sel:
+            linea, ancho = [255, 255, 255, 255], 4.0
+        elif arriba:
+            linea, ancho = (
+                ([255, 255, 255, 110], 0.7)
+                if reservada
+                else ([255, 255, 255, 70], 0.5)
+            )
         else:
-            linea, ancho = ([255, 255, 255, 235] if (reservada or sel) else [0, 0, 0, 0]), 1.0
+            linea, ancho = (
+                [255, 255, 255, 235] if reservada else [0, 0, 0, 0]
+            ), 1.0
         filas.append(dict(id=pid, municipio=r.municipio, tipo="estimación" if reservada else "registrado",
                           detalle=(detalle or {}).get(pid, f"{'Estimación' if reservada else 'Registrado'}: {v:.2f} t/ha"),
                           valor=round(v, 2), poligono=[[x, y, z] for x, y in anillo(r.geometry)],
-                          color=[255, 122, 69, 240] if sel else color(v, 205 if arriba else 235),
+                          color=(
+                                color_confianza(niveles_confianza.get(pid))
+                                if niveles_confianza is not None
+                                else color(v, 205 if arriba else 235)
+                            ),
                           linea=linea, ancho=ancho))
     capas = []
     if relieve or satelite:            # sin relieve (datos subidos) la imagen va sobre un terreno plano

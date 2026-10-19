@@ -45,19 +45,21 @@ def mostrar(ctx):
                          else f"registrado {rb.real:.2f} t/ha")
                 h(f"<div class='encontrada'><b>{e(buscado)}</b> · {e(rb.municipio)} · {valor}</div>")
         with st.container(key="glass_leyenda"):
-            arriba = leyenda()
+            arriba, modo_color = leyenda()
         resaltar = buscado if buscado != "(ninguna)" else None
         if encuadre != "(ninguna)":
             re_ = d.loc[encuadre]
             mapa(d, pred, vecinas(d, encuadre), (re_.lon_c, re_.lat_c), 13.2, resaltar=resaltar, altura=700,
-                 escala=30, satelite=satelite, arriba=arriba, detalle=DET, clave=f"mapa-an-{encuadre}",
-                 al_clic=lambda clave: clic_analista(clave, d))
+                escala=30, satelite=satelite, arriba=arriba, modo_color=modo_color,
+                detalle=DET, conf=ctx.conf, clave=f"mapa-an-{encuadre}",
+                al_clic=lambda clave: clic_analista(clave, d))
         else:
             ids = ids_filtrados(d, capa, muni_f)
             c0 = (d.loc[ids].lon_c.mean(), d.loc[ids].lat_c.mean()) if muni_f != "Todos" else centro_total
             mapa(d, pred, ids, c0, 11.2 if muni_f != "Todos" else 9.9, altura=700, resaltar=resaltar,
-                 escala=250 if muni_f != "Todos" else 450, satelite=satelite, arriba=arriba, detalle=DET,
-                 clave=f"mapa-an-{muni_f}-{capa}", al_clic=lambda clave: clic_analista(clave, d))
+                escala=250 if muni_f != "Todos" else 450, satelite=satelite, arriba=arriba,
+                modo_color=modo_color, detalle=DET, conf=ctx.conf,
+                clave=f"mapa-an-{muni_f}-{capa}", al_clic=lambda clave: clic_analista(clave, d))
         with st.container(key="glass_kpis"):
             kp = [("Parcelas estimadas", f"{len(pred)}", ""), ("Estimación promedio", f"{pred.prediccion.mean():.2f}", "t/ha")]
             if mA is not None:

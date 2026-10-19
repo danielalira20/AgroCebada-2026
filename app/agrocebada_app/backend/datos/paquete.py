@@ -83,6 +83,13 @@ def oficial(modelo):
     return None if o is None else o[o.candidato == modelo].set_index("ID_POLIGONO").prediccion
 
 
+def entrega_final():
+    """Las 59 del CSV de entrega de T18 (sólo existe para MODELO_OFICIAL), o None si aún no se generó."""
+    t18 = rutas()["t18"]
+    o = lectura.leer_entrega_final(t18) if t18 else None
+    return None if o is None else o.RENDIMIENTO_T_HA
+
+
 def soporte():
     if usar_paquete():
         f = PAQ / "soporte.parquet"
