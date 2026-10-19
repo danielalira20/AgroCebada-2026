@@ -48,7 +48,9 @@ Variables de entorno (todas opcionales si las carpetas están donde la app las b
 pip install faster-whisper
 ```
 
-Corre en el mismo equipo que la app, sin clave ni internet. El modelo (~145 MB) se descarga la primera vez; con `AGRO_WHISPER` puede elegirse otro (`tiny`, `base`, `small`). Sin él, la grabadora avisa que no puede transcribir.
+Corre en el mismo equipo que la app, sin clave ni internet. El modelo (~145 MB) se descarga la primera vez; con `AGRO_WHISPER` puede elegirse otro (`tiny`, `base`, `small`). Sin él no se dibuja el micrófono.
+
+**El micrófono lo da el navegador, no la app.** Los navegadores sólo entregan el micrófono en un origen seguro: `localhost` o `https`. Abriendo la app por su URL de red (`http://192.168.x.x:8501`, la que Streamlit imprime para otros aparatos) el micrófono queda bloqueado por el navegador y no hay permiso que lo arregle; el chat sigue funcionando escribiendo. Para que la voz funcione hay que abrirla en el mismo equipo que la sirve, o servirla por `https`. En macOS además el navegador necesita estar habilitado en Ajustes del sistema → Privacidad y seguridad → Micrófono. Cuando el navegador no lo entrega, Cebi lo dice en español junto al micrófono.
 
 **Versión de Streamlit:** `requirements.txt` pide `>=1.65,<1.66` para configurar el fondo y el texto de las cabeceras nativas de las tablas con contraste suficiente. Con 1.66 el mapa 3D dio errores de WebGL en el navegador.
 

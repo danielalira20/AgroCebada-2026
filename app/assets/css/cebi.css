@@ -108,6 +108,38 @@
   width: 44px !important; height: 44px !important; min-height: 0 !important; }
 .st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > div {
   width: 44px !important; justify-content: center; }
+
+/* Cuando el navegador no da el micrófono —permiso denegado, sin micrófono, o una página servida por http que no
+   sea localhost—, Streamlit cambia la onda por un aviso suyo en inglés. Encogido al botón ese aviso se leía
+   «…again.», que no le dice nada a nadie. Aquí se le da su propio renglón y se cuenta en español; el botón de
+   reintentar se queda donde está. La seña es que desaparece la onda, o que aparece su enlace de permisos. */
+.st-key-cebi_chat .st-key-cebi_compositor { flex-wrap: wrap; }
+.st-key-cebi_chat .st-key-cebi_compositor > [data-testid="stElementContainer"]:has(
+    [data-testid="stAudioInput"]:is(:not(:has([data-testid="stAudioInputWaveSurfer"])),
+                                    :has(a[href*="enable-peripherals"]))) {
+  flex: 1 1 100% !important; }
+.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])),
+.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])) > div {
+  width: 100% !important; height: auto !important; min-height: 44px !important; }
+.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])) > div {
+  display: flex !important; align-items: center; gap: 10px; }
+/* el aviso: el texto de Streamlit se calla y en su lugar va el nuestro */
+.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
+    > div > :is(div, span):not([data-testid]):not(:has([data-testid="stAudioInputActionButton"])) {
+  display: block !important; width: auto !important; flex: 1 1 auto;
+  font-size: 0 !important; text-align: left; }
+.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
+    > div > :is(div, span):not([data-testid]):not(:has([data-testid="stAudioInputActionButton"]))::after {
+  content: "No pude usar el micrófono. Dale permiso a tu navegador y vuelve a intentar; mientras tanto, escríbeme la pregunta.";
+  display: block; font-size: .72rem; line-height: 1.45; color: var(--texto-suave); }
+.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
+    [data-testid="stAudioInputWaveformTimeCode"] { display: none !important; }
 /* campo real de escritura y grabadora de voz */
 .st-key-cebi_chat [data-testid="stChatInput"] { border-radius: 18px; border: 1px solid var(--cebi-borde);
   background: var(--cebi-panel); }
