@@ -2,22 +2,14 @@
 junto a cada cifra (M11). La tabla ancha es para escritorio/tablet; en pantallas angostas se esconde y en su lugar
 se muestran tarjetas, el mismo patrón que ya usa la pestaña Validación para no depender sólo del scroll horizontal."""
 import numpy as np
-import pandas as pd
 import streamlit as st
 
 from agrocebada_app.backend.datos.exportar import cifras_parcelas
+from agrocebada_app.backend.dominio.rangos import rango_texto
 from agrocebada_app.config import MODELO_OFICIAL
 from agrocebada_app.frontend.componentes.validacion.formato import etiqueta_confianza, insignia, numero
 from agrocebada_app.frontend.estado.cache import entrega_final, oficial
 from agrocebada_app.frontend.tema.html import e, h, titulo
-
-
-def _rango_texto(bajo, alto):
-    if pd.isna(bajo) or pd.isna(alto):
-        return "Sin rango"
-    if round(float(bajo), 2) == round(float(alto), 2):
-        return f"{float(bajo):.2f} t/ha"
-    return f"{float(bajo):.2f}–{float(alto):.2f} t/ha"
 
 
 def _tarjetas(tabla):
@@ -61,7 +53,7 @@ def estimaciones(ctx):
         tabla = pred.reset_index()
         tabla["produccion_t"] = tabla.prediccion * tabla.area_ha
         tabla = tabla.merge(cp, left_on="ID_POLIGONO", right_index=True)
-        tabla["rango"] = [_rango_texto(f.rango_bajo, f.rango_alto) for f in tabla.itertuples()]
+        tabla["rango"] = [rango_texto(f.rango_bajo, f.rango_alto) for f in tabla.itertuples()]
         tabla["confianza_txt"] = tabla.confianza.map(etiqueta_confianza)
         tabla["mae_txt"] = tabla.error_tipico.map(lambda v: numero(v, 2))   # NaN -> "—", nunca "None"
 

@@ -48,6 +48,16 @@ def _fila(municipio, r):
             "dentro": dentro, "texto": texto}
 
 
+def rango_texto(bajo, alto):
+    """Rango compacto para una celda o una tarjeta: «3.91–5.07 t/ha», «3.5 t/ha» si los dos extremos coinciden, o
+    «Sin rango» si el municipio no alcanzó para darlo. La frase larga la arma `_fila`; ésta es la versión corta."""
+    if pd.isna(bajo) or pd.isna(alto):
+        return "Sin rango"
+    if _t(bajo) == _t(alto):
+        return f"{float(_t(bajo)):g} t/ha"
+    return f"{_t(bajo)}–{_t(alto)} t/ha"
+
+
 def rangos_municipio(d, col="real"):
     """Tabla por municipio (columnas: municipio, n_cosecha, tipo_rango, bajo, alto, dentro, texto) con las parcelas
     de `d` que tienen rendimiento registrado en `col`. Pasa sólo las parcelas con cosecha (ENTRENAMIENTO)."""

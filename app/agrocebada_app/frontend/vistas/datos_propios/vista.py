@@ -11,6 +11,7 @@ from agrocebada_app.frontend.vistas.datos_propios.resultado import analizar_subi
 def datos_propios(ctx):
     modelo = ctx.modelo
     satelite = ctx.satelite
+    mA = ctx.mA                      # métricas del proyecto, sólo como referencia en el detalle técnico
     with st.container(key="glass_subir"):
         titulo("Analiza tu propio dataset",
                 "Sube tus parcelas y la aplicación calculará las estimaciones ""utilizando el mismo procedimiento que se aplica a los datos del proyecto. "
@@ -39,4 +40,4 @@ def datos_propios(ctx):
         if motivo:
             st.error(f"Archivo rechazado. {motivo}")
         else:
-            analizar_subido(res, modelo, satelite)
+            analizar_subido(res, modelo, satelite, mA)

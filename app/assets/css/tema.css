@@ -72,7 +72,8 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
     overflow-wrap: break-word;
 }
 
-/* Las 59 estimaciones (M11): tabla ancha en escritorio/tablet, tarjetas en pantallas angostas */
+/* Tabla ancha en escritorio/tablet y tarjetas en pantallas angostas: lo usan «Las 59 estimaciones» (M11) y la
+   tabla por municipio de «Analizar tus datos» (M16) */
 .est-movil { display: none; }
 .est-tarjeta { border-top: 1px solid var(--borde); padding: 16px 0; }
 .est-tarjeta-titulo { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
@@ -82,8 +83,23 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .est-tarjeta dd { margin: 4px 0 0; font-size: .95rem; color: #e7efe9; }
 .est-aviso { margin: 10px 0 0; font-size: .78rem; color: #F5D08A; line-height: 1.4; }
 @media (max-width: 700px) {
-  .st-key-tabla_59_ancha { display: none; }
+  .st-key-tabla_59_ancha, .st-key-tabla_mun_subido { display: none; }
   .est-movil { display: block; }
+}
+
+/* Analizar tus datos (M16): aire en las tarjetas del resultado y de la explicación de Cebi */
+.st-key-glass_resultado_subido, .st-key-glass_tabla_subido, .st-key-glass_mapa_subido { padding: 18px 20px 26px; }
+.st-key-glass_resultado_subido .mascota { margin-top: 18px; border-top: 1px solid var(--borde); padding-top: 18px; }
+/* la explicación informa, no advierte: lista limpia, sin el signo de admiración de «Método y límites» */
+.que-es { display: grid; gap: 10px; margin-top: 10px; }
+.que-es div { font-size: .82rem; line-height: 1.5; color: #d8e3dc; padding-left: 14px; position: relative; }
+.que-es div::before { content: "·"; position: absolute; left: 0; color: var(--acento); font-weight: 800; }
+.que-es b { color: #e7efe9; }
+/* en pantallas chicas las tres cifras no caben en una fila: la confianza pasa a su propio renglón */
+@media (max-width: 600px) {
+  .st-key-glass_resultado_subido .fila { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .st-key-glass_resultado_subido .mini { min-width: 0; padding: 12px; }
+  .st-key-glass_resultado_subido .mini:last-child { grid-column: 1 / -1; }
 }
 
 /* espacio inferior en Método y límites */
