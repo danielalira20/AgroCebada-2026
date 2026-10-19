@@ -43,8 +43,10 @@ assert set(f.nivel) <= {"alta", "media", "baja"}
 assert abs(f.mae_general.iloc[0] - 0.3) < 1e-9 and (f.mae_general == f.mae_general.iloc[0]).all()
 assert abs(f.mae_general.iloc[0] - metricas(OA)["MAE"]) < 1e-12          # el error general es el mismo de las métricas
 assert abs(f.loc["A", "mae_municipio"] - 0.1) < 1e-9 and np.isnan(f.loc["U", "mae_municipio"])
-assert f.loc["A", "motivo"] == "Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio."
-assert f.loc["B", "motivo"] == "Confianza media: tu municipio tiene 10 parcelas con cosecha, pero ahí el error fue mayor que el promedio."
+assert f.loc["A", "motivo"] == ("Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.10 t/ha) fue "
+                                "67% menor que el promedio general, y el 100% de esas parcelas quedó dentro de ese margen.")
+assert f.loc["B", "motivo"] == ("Confianza media: tu municipio tiene 10 parcelas con cosecha; su error (0.90 t/ha) fue "
+                                "200% mayor que el promedio general, y el 100% de esas parcelas quedó dentro de ese margen.")
 assert f.loc["N", "motivo"].startswith("Confianza media: tu municipio tiene sólo 9 parcelas con cosecha;")
 assert f.loc["U", "motivo"] == "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
 assert f.loc["V", "motivo"] == "Confianza baja: tu municipio tiene sólo 2 parcelas con cosecha."
@@ -55,6 +57,20 @@ assert confianza_municipios(parcelas({"E": 10}), val({"E": 0.4})).nivel.tolist()
 s = confianza_municipios(parcelas({"A": 10, "U": 1}), None).set_index("municipio")
 assert s.nivel.to_dict() == {"A": "media", "U": "baja"} and s.mae_municipio.isna().all() and s.mae_general.isna().all()
 assert "no hay validación suficiente" in s.loc["A", "motivo"]
+
+# --- el motivo dice % de diferencia contra el promedio y qué parte de las parcelas quedó dentro de ese margen
+# C: 5 filas con ae 0.1 y 5 con ae 0.3 (mae_municipio 0.2, sólo la mitad cae dentro); D: 10 filas con ae 0.1 constante
+c_oa = pd.DataFrame({"municipio": ["C"] * 10 + ["D"] * 10, "ae": [0.1] * 5 + [0.3] * 5 + [0.1] * 10,
+                     "e": [0.1] * 5 + [0.3] * 5 + [0.1] * 10, "real": [3.0] * 20, "repeticion": 1})
+c_t = confianza_municipios(parcelas({"C": 10, "D": 10}), c_oa).set_index("municipio")
+assert abs(c_t.loc["C", "mae_municipio"] - 0.2) < 1e-9 and abs(c_t.loc["C", "mae_general"] - 0.15) < 1e-9
+assert c_t.loc["C", "nivel"] == "media"
+assert c_t.loc["C", "motivo"] == ("Confianza media: tu municipio tiene 10 parcelas con cosecha; su error (0.20 t/ha) "
+                                  "fue 33% mayor que el promedio general, y el 50% de esas parcelas quedó dentro de ese margen.")
+assert c_t.loc["D", "nivel"] == "alta" and "33% menor" in c_t.loc["D", "motivo"] and "100% de esas parcelas" in c_t.loc["D", "motivo"]
+# error igual al general: no dice "0% menor/mayor", dice que es igual
+e_t = confianza_municipios(parcelas({"E": 10}), val({"E": 0.4})).set_index("municipio")
+assert "fue igual al promedio general" in e_t.loc["E", "motivo"] and "% menor" not in e_t.loc["E", "motivo"]
 
 # --- por parcela: la fuente de respaldo manda sobre el municipio
 assert confianza_parcela(t, "A", "municipio")["nivel"] == "alta"

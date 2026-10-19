@@ -26,8 +26,10 @@ def _parcelas(n):
     return f"{n} parcela{'s' if n != 1 else ''}"
 
 
-def _regla(n, mae_mun, mae_gen):
-    """(nivel, motivo) de un municipio con `n` parcelas con cosecha, su MAE y el error general (pueden ser NaN)."""
+def _regla(n, mae_mun, mae_gen, dentro=np.nan):
+    """(nivel, motivo) de un municipio con `n` parcelas con cosecha, su MAE, el error general y la parte de sus
+    predicciones que quedó dentro de ± su propio MAE (pueden ser NaN). `dentro` es la misma cifra que ya muestra
+    Validación (0 a 1): no se calcula aparte, para que el motivo y esa pestaña nunca digan números distintos."""
     if n == 0:
         return "baja", ("Confianza baja: tu municipio no tiene parcelas con cosecha registrada; la estimación se apoya "
                         "en otras zonas.")
@@ -39,11 +41,17 @@ def _regla(n, mae_mun, mae_gen):
     if pd.isna(mae_mun) or pd.isna(mae_gen):
         return "media", (f"Confianza media: tu municipio tiene {_parcelas(n)} con cosecha, pero no hay validación "
                          "suficiente para medir el error ahí.")
+    if abs(mae_mun - mae_gen) < _TOL:
+        cambio = "fue igual al promedio general"
+    else:
+        pct = abs(mae_mun - mae_gen) / mae_gen * 100
+        cambio = f"fue {pct:.0f}% {'menor' if mae_mun < mae_gen else 'mayor'} que el promedio general"
+    extra = f", y el {dentro * 100:.0f}% de esas parcelas quedó dentro de ese margen" if pd.notna(dentro) else ""
     if mae_mun <= mae_gen + _TOL:
-        return "alta", (f"Confianza alta: tu municipio tiene {_parcelas(n)} con cosecha y ahí el error fue igual o "
-                        "menor que el promedio.")
-    return "media", (f"Confianza media: tu municipio tiene {_parcelas(n)} con cosecha, pero ahí el error fue mayor "
-                     "que el promedio.")
+        return "alta", (f"Confianza alta: tu municipio tiene {_parcelas(n)} con cosecha; su error ({mae_mun:.2f} t/ha) "
+                        f"{cambio}{extra}.")
+    return "media", (f"Confianza media: tu municipio tiene {_parcelas(n)} con cosecha; su error ({mae_mun:.2f} t/ha) "
+                     f"{cambio}{extra}.")
 
 
 def confianza_municipios(d, OA, col="real"):
@@ -55,10 +63,13 @@ def confianza_municipios(d, OA, col="real"):
     tiene = OA is not None and not OA.empty
     mae_mun = OA.groupby("municipio").ae.mean() if tiene else pd.Series(dtype=float)
     mae_gen = float(metricas(OA)["MAE"]) if tiene else np.nan
+    dentro_mun = (OA.assign(dentro=OA.ae <= OA.municipio.map(mae_mun)).groupby("municipio").dentro.mean()
+                 if tiene else pd.Series(dtype=float))
     filas = []
     for m in sorted(n.index):
         mm = float(mae_mun.get(m, np.nan))
-        nivel, motivo = _regla(int(n[m]), mm, mae_gen)
+        dm = float(dentro_mun.get(m, np.nan))
+        nivel, motivo = _regla(int(n[m]), mm, mae_gen, dm)
         ex = EXCEPCIONES.get(m, {})
         nivel = ex.get("nivel", nivel)
         if ex.get("nota"):
