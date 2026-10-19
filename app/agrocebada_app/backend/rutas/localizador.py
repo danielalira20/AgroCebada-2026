@@ -64,4 +64,5 @@ def rutas():
     return {"datos": buscar_dataset(),
             "t08": buscar_con("AGRO_T08", "predicciones_59_referencias.csv", "registro/t08", "registro/t03", "entregas/T08"),
             "t03": buscar_con("AGRO_T03", "soporte_parcelas.csv", "registro/t03", "entregas/T03"),
-            "t04": buscar_t04()}
+            "t04": buscar_t04(),
+            "t07": buscar_con("AGRO_T07", "calidad_parcelas.csv", "registro/t07", "entregas/T07")}

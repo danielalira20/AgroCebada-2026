@@ -1,12 +1,14 @@
-"""Pestaña «Ficha técnica»: estimación, disponibilidad de datos, curvas y comparación."""
+"""Pestaña «Ficha técnica»: estimación, disponibilidad y calidad del dato, curvas y comparación."""
 import pandas as pd
 import streamlit as st
 
+from agrocebada_app.backend.dominio.calidad import tarjeta
 from agrocebada_app.backend.dominio.confianza import confianza_parcela
 from agrocebada_app.config import INDICES, MODELOS
 from agrocebada_app.frontend.componentes.descargas.boton_ficha import boton_ficha
 from agrocebada_app.frontend.componentes.graficas.clima import curva_clima
 from agrocebada_app.frontend.componentes.graficas.indices import curva_indice
+from agrocebada_app.frontend.estado.cache import calidad as calidad_parcelas
 from agrocebada_app.frontend.tema.html import e, h, titulo
 from agrocebada_app.frontend.vistas.analista.pestanas.comparar import comparar
 
@@ -61,10 +63,19 @@ def ficha_tecnica(ctx):
                 hide_index=True, width="stretch")
         else:
             st.info("No se encontró información sobre la disponibilidad de imágenes satelitales para esta parcela.")
+        # calidad del dato (M14): lo que la tabla no dice
+        lineas = tarjeta(d, sop, calidad_parcelas(), pid, con_imagenes=False)
+        titulo("Calidad del dato", "Para leer la cifra con cuidado. Es contexto: no entra en la estimación.")
+        h("<div class='fila'>" + "".join(
+            f"<div class='mini'><span>{e(x['titulo'])}</span><b class='kv'>{e(x['corto'])}</b></div>"
+            for x in lineas) + "</div>")
+        for x in lineas:
+            clase = "aviso" if x["estado"] == "ojo" else "nota"
+            h(f"<div class='{clase}'>{e(x['texto'])}</div>")
     with f2, st.container(key="glass_indice"):
         nombre = st.segmented_control("Índice", list(INDICES), default=list(INDICES)[0],
                                       label_visibility="collapsed") or list(INDICES)[0]
-        curva_indice(S, pid, INDICES[nombre], nombre, alto=220)
+        curva_indice(S, pid, INDICES[nombre], nombre, alto=300)
         h("<div class='nota'>Cada punto es una captura con nubosidad ≤ 20 %; los tramos sin puntos son huecos. "
           "Contexto: los índices no entran al modelo final.</div>")
     if C is not None:
