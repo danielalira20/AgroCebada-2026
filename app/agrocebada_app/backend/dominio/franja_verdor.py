@@ -54,3 +54,18 @@ def mes_mas_verde(d, s, pid, col="ndvi_promedio"):
         centro = (f.p25 + f.p75) / 2
         mes_municipio = NOMBRE_MES[f.loc[centro.idxmax(), "semana"].month]
     return mes_parcela, mes_municipio
+
+def frase_verdor(d, s, pid, col="ndvi_promedio"):
+    """En qué mes se puso más verde la parcela frente a su municipio, en una frase.
+
+    Vive aquí y no en la pantalla porque la dicen dos lugares —la tarjeta de verdor y Cebi— y tienen que decir lo
+    mismo."""
+    meses = mes_mas_verde(d, s, pid, col)
+    if meses is None:
+        return "No hay imágenes de satélite suficientes de tu parcela."
+    parcela, municipio = meses
+    if municipio is None:
+        return f"Tu parcela llegó a su verdor más alto en {parcela}."
+    if municipio == parcela:
+        return f"Tu parcela y las de tu municipio llegaron a su verdor más alto en {parcela}."
+    return f"Tu parcela llegó a su verdor más alto en {parcela}; las de tu municipio, en {municipio}."
