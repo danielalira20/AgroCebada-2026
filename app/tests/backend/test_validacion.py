@@ -9,7 +9,7 @@ import pandas as pd  # noqa: E402
 
 from agrocebada_app.backend.dominio.confianza import confianza_municipios  # noqa: E402
 from agrocebada_app.backend.dominio.validacion import (  # noqa: E402
-    COLUMNAS_MUNICIPIOS, COLUMNAS_POBLACIONES, comparacion_oculto, contraste_respaldo, descripcion_principal,
+    COLUMNAS_MUNICIPIOS, COLUMNAS_POBLACIONES, bloques_respaldo, comparacion_oculto, contraste_respaldo, descripcion_principal,
     frase_respaldo, poblaciones, por_municipio, regla_confianza)
 from agrocebada_app.backend.modelo.metricas import metricas  # noqa: E402
 
@@ -67,6 +67,10 @@ c = contraste_respaldo(O, pred)
 assert (c["predicciones"], c["parcelas"], c["estimaciones"], c["estimaciones_con_respaldo"]) == (2, 1, 4, 0), c
 assert abs(c["mae"] - 0.5) < 1e-12 and abs(c["mae_municipio"] - OA.ae.mean()) < 1e-12
 f = frase_respaldo(c)
+partes = bloques_respaldo(c)
+assert set(partes) == {"validacion", "limite", "estimaciones"}
+assert " ".join(t for t in partes.values() if t) == f
+assert "Ninguna" not in partes["validacion"] and "Ninguna" in partes["estimaciones"]
 assert f.startswith("En la validación, 1 parcela no tuvo otras con cosecha en su municipio y se estimó con el valor del grupo (2 predicciones")
 assert "MAE 0.50 t/ha, frente a" in f and "Con sólo 1 parcela no alcanza para comparar" in f
 assert "no porque el error haya sido mayor" in f and "Ninguna de las 4 estimaciones reales usa respaldo" in f
@@ -74,6 +78,8 @@ f2 = frase_respaldo(contraste_respaldo(O, pred.assign(fuente=["municipio", "grup
 assert "2 de las 4 estimaciones reales usan respaldo." in f2
 sin_resp = contraste_respaldo(O[O.fuente == "municipio"], pred)
 assert sin_resp["predicciones"] == 0 and frase_respaldo(sin_resp).startswith("En la validación todas las predicciones")
+assert bloques_respaldo(sin_resp)["limite"] == ""
+assert bloques_respaldo(dict(c, parcelas=20))["limite"] == ""
 
 # --- ocultar un municipio: la estimación sin sus datos usa el grupo y la confianza baja
 sim = pred.assign(prediccion=[3.6, 3.6, 3.9, 3.7], fuente=["grupo"] * 4)
