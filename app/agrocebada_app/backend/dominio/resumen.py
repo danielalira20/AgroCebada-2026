@@ -1,5 +1,6 @@
 """Resúmenes de una parcela: datos clave y texto del recuadro al pasar el ratón."""
 from agrocebada_app.backend.dominio.confianza import confianza_de_parcelas
+from agrocebada_app.backend.dominio.franja_verdor import pico_verdor
 from agrocebada_app.backend.dominio.rangos import rango_de
 from agrocebada_app.config import MESES
 
@@ -15,10 +16,10 @@ def resumen_parcela(d, pid, elevaciones, clima, series):
         x = clima[(clima.id_parcela == pid) & (clima.periodo.between("2025-04", "2025-10"))]
         if len(x):
             out.append(("Lluvia abr–oct", f"{x.PREC.sum():,.0f} mm"))
-    s = series[(series.ID_POLIGONO == pid) & series.ndvi_promedio.notna()]
-    if len(s):
-        top = s.sort_values("ndvi_promedio").iloc[-1]
-        out.append(("Verdor máximo", f"{top.ndvi_promedio:.2f} · {MESES[top.fecha.month]}"))
+    # el mismo punto más verde que la gráfica, la tarjeta de verdor y Cebi: un solo sensor y mediana por semana
+    pico = pico_verdor(series, pid) if series is not None else None
+    if pico is not None:
+        out.append(("Verdor máximo", f"{pico[0]:.2f} · {MESES[pico[1]]}"))
     out.append(("Corte de información", "31 oct 2025"))
     return out
 

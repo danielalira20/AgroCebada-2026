@@ -71,29 +71,29 @@ def _burbujas(turnos, lista):
 
 def _escuchar(clave, pid, lista):
     """Nota de voz: se graba aquí y se transcribe en el equipo de la app, para que funcione igual en cualquier
-    teléfono. Si no se puede transcribir, se dice y no pasa nada más."""
-    with st.expander("Preguntar hablando"):
-        if not voz.disponible():
-            h(f"<div class='nota'>{e(voz.por_que_no())}</div>")
+    teléfono. El micrófono va junto al campo de escribir, no escondido: es la otra forma de preguntar, no un extra.
+
+    Si este equipo no puede transcribir no se dibuja el micrófono, para no ofrecer un botón que no lleva a nada."""
+    if not voz.disponible():
+        return
+    audio = st.audio_input("Graba tu pregunta", key=f"{clave}_voz", label_visibility="collapsed")
+    if audio is None:
+        return
+    huella = (pid, audio.size)
+    if st.session_state.get(f"{clave}_voz_hecha") == huella:
+        return
+    st.session_state[f"{clave}_voz_hecha"] = huella
+    with st.spinner("Escuchando tu pregunta…"):
+        try:
+            texto = voz.transcribir(audio.getvalue())
+        except RuntimeError as ex:
+            st.warning(str(ex))
             return
-        audio = st.audio_input("Graba tu pregunta", key=f"{clave}_voz", label_visibility="collapsed")
-        if audio is None:
-            return
-        huella = (pid, audio.size)
-        if st.session_state.get(f"{clave}_voz_hecha") == huella:
-            return
-        st.session_state[f"{clave}_voz_hecha"] = huella
-        with st.spinner("Escuchando tu pregunta…"):
-            try:
-                texto = voz.transcribir(audio.getvalue())
-            except RuntimeError as ex:
-                st.warning(str(ex))
-                return
-        if not texto:
-            st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
-            return
-        _decir(clave, texto, lista)
-        st.rerun()
+    if not texto:
+        st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
+        return
+    _decir(clave, texto, lista)
+    st.rerun()
 
 
 @st.fragment
@@ -123,11 +123,12 @@ def _platica(ctx, pid):
             for indice, (pregunta, _) in enumerate(lista):
                 columnas[indice].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
                                         wrap=True, on_click=_preguntar, args=(clave, indice))
-        escrito = st.chat_input("Escribe tu pregunta…", key=f"{clave}_texto")
+        with st.container(horizontal=True, vertical_alignment="center", key="cebi_compositor"):
+            escrito = st.chat_input("Escribe tu pregunta…", key=f"{clave}_texto")
+            _escuchar(clave, pid, lista)
         if escrito:
             _decir(clave, escrito, lista)
             st.rerun()
-        _escuchar(clave, pid, lista)
         with st.container(horizontal=True, horizontal_alignment="right"):
             st.button("Empezar de nuevo", key=f"{clave}_borrar", type="tertiary", disabled=not hechas,
                       on_click=_reiniciar, args=(clave,), width="content", wrap=True)

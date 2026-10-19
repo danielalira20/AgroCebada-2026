@@ -49,7 +49,10 @@
 .cebi-respuesta, .cebi-pregunta { padding: 10px 12px; font-size: .87rem; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-line; }
 .cebi-respuesta { align-self: flex-start; max-width: 96%; background: color-mix(in srgb, var(--cebi-burbuja) 45%, transparent); color: var(--texto); border-radius: 3px 16px 16px 16px; }
 .cebi-pregunta { align-self: flex-end; max-width: 88%; background: var(--cebi-usuario); color: #20351b; border-radius: 16px 16px 4px 16px; }
-.cebi-sugerencias { font-size: .72rem; font-weight: 600; color: var(--texto-suave); margin-top: 2px; }
+/* El rótulo necesita aire: pegado a las pastillas no se leía ni se veía el borde de la primera fila. */
+.cebi-sugerencias { font-size: .72rem; font-weight: 600; color: var(--texto-suave);
+  margin: 6px 0 10px; padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--cebi-borde) 45%, transparent); }
 .st-key-cebi_preguntas [data-testid="stVerticalBlock"] { gap: 6px; }
 /* Sin conversación: una pastilla por pregunta, tres por renglón, para que se vean todas de un vistazo. */
 .st-key-cebi_preguntas [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: 6px; }
@@ -74,6 +77,37 @@
   transition: background-color 160ms ease, border-color 160ms ease;
 }
 .st-key-cebi_preguntas button p { font-size: .73rem; line-height: 1.3; font-weight: 400; color: inherit; }
+/* Campo de escritura y micrófono en un solo renglón: hablar es la otra forma de preguntar, no un extra escondido.
+   La grabadora de Streamlit trae barra, tiempo y reproductor; aquí se encoge al botón redondo y crece sólo cuando
+   se está grabando, que es cuando el tiempo y el paro sirven de algo. */
+.st-key-cebi_compositor { gap: 6px; align-items: center; }
+/* quien reparte el ancho del renglón es el contenedor de cada elemento, no el widget de adentro */
+.st-key-cebi_compositor > [data-testid="stElementContainer"]:has([data-testid="stChatInput"]) {
+  flex: 1 1 auto !important; width: auto !important; min-width: 0 !important; }
+.st-key-cebi_compositor > [data-testid="stElementContainer"]:has([data-testid="stAudioInput"]) {
+  flex: 0 0 auto !important; width: auto !important; min-width: 0 !important; }
+.st-key-cebi_compositor [data-testid="stChatInput"] { width: 100%; }
+.st-key-cebi_compositor [data-testid="stAudioInput"] > div {
+  background: transparent !important; border: 0 !important; box-shadow: none !important;
+  padding: 0 !important; min-height: 0; gap: 0; }
+/* En reposo el botón dice «Record»: entonces sobran la barra de herramientas, la onda y el cronómetro, y queda
+   sólo el micrófono. Grabando o con nota grabada vuelven a aparecer, que es cuando sirven. */
+.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > :is(
+    [data-testid="stElementToolbar"],
+    [data-testid="stAudioInputWaveformTimeCode"],
+    div:has(> [data-testid="stAudioInputWaveSurfer"])) { display: none !important; }
+.st-key-cebi_compositor [data-testid="stAudioInput"] [data-testid="stAudioInputActionButton"] {
+  width: 44px; height: 44px; min-height: 44px; border-radius: 100px;
+  border: 1px solid var(--cebi-borde) !important; background: var(--cebi-panel) !important;
+  color: var(--texto) !important; }
+.st-key-cebi_compositor [data-testid="stAudioInput"] [data-testid="stAudioInputActionButton"] svg {
+  width: 20px; height: 20px; }
+/* el ancho lo fija Streamlit para la barra completa; en reposo sólo queda el botón */
+.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]),
+.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div {
+  width: 44px !important; height: 44px !important; min-height: 0 !important; }
+.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > div {
+  width: 44px !important; justify-content: center; }
 /* campo real de escritura y grabadora de voz */
 .st-key-cebi_chat [data-testid="stChatInput"] { border-radius: 18px; border: 1px solid var(--cebi-borde);
   background: var(--cebi-panel); }

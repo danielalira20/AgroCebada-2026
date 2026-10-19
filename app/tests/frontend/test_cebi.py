@@ -7,6 +7,8 @@ sys.path.insert(0, str(APP))
 
 from streamlit.testing.v1 import AppTest
 
+from agrocebada_app.backend.dominio import transcribir as voz
+
 PAGINA = """
 from types import SimpleNamespace
 import numpy as np
@@ -43,9 +45,10 @@ for tema in ("claro", "oscuro"):
     assert len([b for b in at.button if b.key.startswith("cebi_P1_")]) == 10   # 9 preguntas y «empezar de nuevo»
     assert at.button(key="cebi_P1_0").label == "Mi estimación"
     assert at.button(key="cebi_P1_0").proto.help == "¿Por qué mi parcela tiene 5.50?"
-    # el compositor ya no es maqueta: hay campo de escritura de verdad y grabadora de voz
+    # el compositor ya no es maqueta: hay campo de escritura de verdad y, junto a él, el micrófono
     assert at.chat_input(key="cebi_P1_texto").placeholder == "Escribe tu pregunta…"
-    assert "Preguntar hablando" in [x.label for x in at.expander]
+    assert not [x for x in at.expander if "hablando" in x.label], "el micrófono no se esconde en un expander"
+    assert len(at.get("audio_input")) == (1 if voz.disponible() else 0)
     assert not [m for m in at.markdown if "próximamente" in m.value]
     assert "Tu parcela P1 tiene una estimación de 5.50 t/ha" in conversacion(at)
     assert at.button(key="cebi_P1_borrar").disabled
