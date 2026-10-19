@@ -22,6 +22,7 @@ from agrocebada_app.frontend.tema.estilos import ESTILO, ICONO
 from agrocebada_app.frontend.tema.html import h
 from agrocebada_app.frontend.vistas.agricultor import vista as vista_agricultor
 from agrocebada_app.frontend.vistas.analista import vista as vista_analista
+from agrocebada_app.frontend.vistas.bienvenida import mostrar_bienvenida
 
 st.set_page_config(page_title="AgroCebada · Rendimiento de cebada", page_icon=ICONO, layout="wide",
                    initial_sidebar_state="collapsed")
@@ -30,9 +31,17 @@ if not hay_datos():
     st.error(FALTA_DATASET)
     st.stop()
 
-d, sop, S, C = cargar(), soporte(), series(), clima()
 iniciar_sesion()
+if st.session_state.get("bienvenida_completada", False):
+    vista_elegida = st.session_state.pop("bienvenida_vista_elegida", None)
+    if vista_elegida is not None:
+        st.session_state["vista"] = vista_elegida
+
+d, sop, S, C = cargar(), soporte(), series(), clima()
 agricultor, modelo, satelite = cabecera()
 ctx = calcular(d, sop, S, C, modelo, satelite)
 
 (vista_agricultor if agricultor else vista_analista).mostrar(ctx)
+
+if not st.session_state["bienvenida_completada"]:
+    mostrar_bienvenida()
