@@ -77,9 +77,10 @@
   transition: background-color 160ms ease, border-color 160ms ease;
 }
 .st-key-cebi_preguntas button p { font-size: .73rem; line-height: 1.3; font-weight: 400; color: inherit; }
-/* Campo de escritura y micrófono en un solo renglón: hablar es la otra forma de preguntar, no un extra escondido.
-   La grabadora de Streamlit trae barra, tiempo y reproductor; aquí se encoge al botón redondo y crece sólo cuando
-   se está grabando, que es cuando el tiempo y el paro sirven de algo. */
+/* El micrófono es el mismo en el chat de Cebi y en la libreta, y por eso las reglas valen para los dos: hablar es
+   la otra forma de escribir, no un extra escondido. La grabadora de Streamlit trae barra, onda, cronómetro y
+   reproductor; aquí se encoge al botón redondo y sólo crece cuando hay algo que mostrar —grabando, con nota
+   grabada, o cuando el navegador no dio el micrófono—. En Cebi, además, comparte renglón con el campo de escribir. */
 .st-key-cebi_compositor { gap: 6px; align-items: center; }
 /* quien reparte el ancho del renglón es el contenedor de cada elemento, no el widget de adentro */
 .st-key-cebi_compositor > [data-testid="stElementContainer"]:has([data-testid="stChatInput"]) {
@@ -87,57 +88,57 @@
 .st-key-cebi_compositor > [data-testid="stElementContainer"]:has([data-testid="stAudioInput"]) {
   flex: 0 0 auto !important; width: auto !important; min-width: 0 !important; }
 .st-key-cebi_compositor [data-testid="stChatInput"] { width: 100%; }
-.st-key-cebi_compositor [data-testid="stAudioInput"] > div {
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"] > div {
   background: transparent !important; border: 0 !important; box-shadow: none !important;
   padding: 0 !important; min-height: 0; gap: 0; }
 /* En reposo el botón dice «Record»: entonces sobran la barra de herramientas, la onda y el cronómetro, y queda
    sólo el micrófono. Grabando o con nota grabada vuelven a aparecer, que es cuando sirven. */
-.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > :is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > :is(
     [data-testid="stElementToolbar"],
     [data-testid="stAudioInputWaveformTimeCode"],
     div:has(> [data-testid="stAudioInputWaveSurfer"])) { display: none !important; }
-.st-key-cebi_compositor [data-testid="stAudioInput"] [data-testid="stAudioInputActionButton"] {
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"] [data-testid="stAudioInputActionButton"] {
   width: 44px; height: 44px; min-height: 44px; border-radius: 100px;
   border: 1px solid var(--cebi-borde) !important; background: var(--cebi-panel) !important;
   color: var(--texto) !important; }
-.st-key-cebi_compositor [data-testid="stAudioInput"] [data-testid="stAudioInputActionButton"] svg {
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"] [data-testid="stAudioInputActionButton"] svg {
   width: 20px; height: 20px; }
 /* el ancho lo fija Streamlit para la barra completa; en reposo sólo queda el botón */
-.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]),
-.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div {
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:has([aria-label="Record"]),
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:has([aria-label="Record"]) > div {
   width: 44px !important; height: 44px !important; min-height: 0 !important; }
-.st-key-cebi_compositor [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > div {
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:has([aria-label="Record"]) > div > div {
   width: 44px !important; justify-content: center; }
 
 /* Cuando el navegador no da el micrófono —permiso denegado, sin micrófono, o una página servida por http que no
    sea localhost—, Streamlit cambia la onda por un aviso suyo en inglés. Encogido al botón ese aviso se leía
    «…again.», que no le dice nada a nadie. Aquí se le da su propio renglón y se cuenta en español; el botón de
    reintentar se queda donde está. La seña es que desaparece la onda, o que aparece su enlace de permisos. */
-.st-key-cebi_chat .st-key-cebi_compositor { flex-wrap: wrap; }
-.st-key-cebi_chat .st-key-cebi_compositor > [data-testid="stElementContainer"]:has(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) { flex-wrap: wrap; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) > [data-testid="stElementContainer"]:has(
     [data-testid="stAudioInput"]:is(:not(:has([data-testid="stAudioInputWaveSurfer"])),
                                     :has(a[href*="enable-peripherals"]))) {
   flex: 1 1 100% !important; }
-.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])),
-.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])) > div {
   width: 100% !important; height: auto !important; min-height: 44px !important; }
-.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])) > div {
   display: flex !important; align-items: center; gap: 10px; }
 /* el aviso: el texto de Streamlit se calla y en su lugar va el nuestro */
-.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
     > div > :is(div, span):not([data-testid]):not(:has([data-testid="stAudioInputActionButton"])) {
   display: block !important; width: auto !important; flex: 1 1 auto;
   font-size: 0 !important; text-align: left; }
-.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
     > div > :is(div, span):not([data-testid]):not(:has([data-testid="stAudioInputActionButton"]))::after {
   content: "No pude usar el micrófono. Dale permiso a tu navegador y vuelve a intentar; mientras tanto, escríbeme la pregunta.";
   display: block; font-size: .72rem; line-height: 1.45; color: var(--texto-suave); }
-.st-key-cebi_chat .st-key-cebi_compositor [data-testid="stAudioInput"]:is(
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
     :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
     [data-testid="stAudioInputWaveformTimeCode"] { display: none !important; }
 /* campo real de escritura y grabadora de voz */

@@ -10,6 +10,7 @@ import pandas as pd
 import streamlit as st
 
 from agrocebada_app.backend.dominio import bitacora as bit
+from agrocebada_app.backend.dominio import transcribir as voz
 from agrocebada_app.backend.modelo.estimador import estadistico
 from agrocebada_app.frontend.componentes.graficas.base import grafica_base
 from agrocebada_app.frontend.tema.estilos import MASCOTA
@@ -101,6 +102,35 @@ def _tablero(r, libreta, valor_municipio):
           "t/ha), que es lo que la app usa para estimar. Tus barras son lo que de verdad levantaste.</div>")
 
 
+def _dictar(pid, clave):
+    """Dictar la nota del año en vez de escribirla; lo que se transcribe cae en el campo para poder corregirlo.
+
+    Va fuera del formulario a propósito: dentro, Streamlit no entrega el audio hasta que se envía, y la nota se
+    guardaría sin que nadie hubiera podido leerla. Si este equipo no puede transcribir, no se dibuja el micrófono."""
+    if not voz.disponible():
+        return
+    with st.container(horizontal=True, vertical_alignment="center", horizontal_alignment="right", key="lib_dictado"):
+        h("<span class='lib-dictar'>¿Prefieres dictarla? La escribo por ti</span>")
+        audio = st.audio_input("Dicta tu nota", key=f"lib_voz_{pid}", label_visibility="collapsed")
+    if audio is None:
+        return
+    huella = (pid, audio.size)
+    if st.session_state.get("lib_voz_hecha") == huella:
+        return
+    st.session_state["lib_voz_hecha"] = huella
+    with st.spinner("Escuchando tu nota…"):
+        try:
+            texto = voz.transcribir(audio.getvalue())
+        except RuntimeError as ex:
+            st.warning(str(ex))
+            return
+    if not texto:
+        st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
+        return
+    st.session_state[clave] = texto[:bit.MAX_NOTA]
+    st.rerun()
+
+
 def bitacora(ctx, pid):
     d, pred = ctx.d, ctx.pred
     r = d.loc[pid]
@@ -126,6 +156,8 @@ def bitacora(ctx, pid):
         else:
             _renglones(libreta, area)
 
+        nota_clave = f"lib_nota_{pid}"
+        _dictar(pid, nota_clave)
         with st.form(key=f"lib_form_{pid}", clear_on_submit=True, border=False):
             c1, c2, c3 = st.columns([1, 1, 2])
             anio = c1.number_input("¿De qué año?", min_value=bit.ANIO[0], max_value=bit.ANIO[1], value=2025, step=1)
@@ -133,7 +165,7 @@ def bitacora(ctx, pid):
                                   placeholder="de toda la parcela",
                                   help=f"De toda tu parcela, que mide {area:,.2f} ha. La app saca sola el t/ha.")
             nota = c3.text_input("¿Algo que recordar de ese año? (opcional)", placeholder="granizo en julio, "
-                                 "sembré tarde, cambié de semilla…", max_chars=bit.MAX_NOTA)
+                                 "sembré tarde, cambié de semilla…", max_chars=bit.MAX_NOTA, key=nota_clave)
             if st.form_submit_button("Anotar en mi libreta", type="primary"):
                 if not ton:
                     st.warning("Escribe cuántas toneladas levantaste para poder anotarlo.")

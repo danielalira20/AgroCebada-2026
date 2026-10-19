@@ -526,6 +526,10 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
   overflow-wrap: break-word; }
 
 /* cuántos vecinos faltan para que el municipio suba de nivel */
+/* El renglón para dictar la nota: va pegado arriba del formulario, discreto, del lado del campo de la nota. */
+.st-key-lib_dictado { gap: 8px; margin-bottom: -6px; }
+.lib-dictar { font-size: .74rem; color: var(--tenue); }
+.st-key-lib_dictado > [data-testid="stElementContainer"] { flex: 0 0 auto !important; width: auto !important; }
 .lib-meta { display: grid; gap: 10px; margin: 16px 0 6px; padding: 14px 16px; border: 1px solid var(--borde);
   border-radius: 12px; background: rgba(155,225,93,.05); }
 .lib-puntos { display: flex; flex-wrap: wrap; gap: 6px; }

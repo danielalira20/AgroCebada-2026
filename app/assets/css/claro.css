@@ -32,7 +32,10 @@
 .stApp a { color: #346c23; }
 .stApp [data-testid="stWidgetLabel"] p { color: var(--tenue); }
 .stApp :is(input, textarea), .stApp [data-baseweb="select"] > div,
-.stApp [data-baseweb="input"], .stApp [data-baseweb="base-input"] {
+.stApp [data-baseweb="input"], .stApp [data-baseweb="base-input"],
+/* el campo numérico no es un control de BaseWeb: sin esta línea su caja se quedaba con el fondo oscuro del
+   tema y asomaba como un bloque gris detrás de los botones de − y +, que son semitransparentes */
+.stApp [data-testid="stNumberInputContainer"] {
   background: #fffef8; color: var(--texto); border-color: var(--borde); }
 .stApp input::placeholder, .stApp textarea::placeholder { color: #66735e; opacity: 1; }
 .stApp [data-baseweb="select"] :is(span, input, svg) { color: var(--texto); fill: currentColor; }
