@@ -12,8 +12,8 @@ from agrocebada_app.backend.dominio.rangos import rangos_municipio
 from agrocebada_app.backend.dominio.validacion import COLUMNAS_POBLACIONES, poblaciones
 
 COLUMNAS_PARCELAS = ["ID_POLIGONO", "municipio", "conjunto", "area_ha", "estimacion", "modelo", "fuente",
-                     "confianza", "motivo", "rango_bajo", "rango_alto", "produccion_t", "produccion_baja_t",
-                     "produccion_alta_t"]
+                     "confianza", "motivo", "motivo_detallado", "rango_bajo", "rango_alto", "produccion_t",
+                     "produccion_baja_t", "produccion_alta_t"]
 NOMBRES = ("cifras_parcelas.csv", "cifras_municipios.csv", "cifras_validacion.csv")
 
 
@@ -28,7 +28,7 @@ def cifras_parcelas(d, pred, conf, modelo):
     pre["estimacion"] = pre.estimacion.round(2)   # 2 decimales, igual que el desglose (M04) y la entrega de T18
     pre["conjunto"], pre["modelo"] = "PREDICCION", modelo
     c = confianza_de_parcelas(pred, conf).reset_index(drop=True)
-    pre["confianza"], pre["motivo"] = c.nivel, c.motivo
+    pre["confianza"], pre["motivo"], pre["motivo_detallado"] = c.nivel, c.motivo, c.motivo_detallado
     pre["rango_bajo"] = pre.municipio.map(rangos.bajo)
     pre["rango_alto"] = pre.municipio.map(rangos.alto)
     pre["produccion_t"] = pre.estimacion * pre.area_ha
@@ -39,7 +39,7 @@ def cifras_parcelas(d, pred, conf, modelo):
     tr = d[d.CONJUNTO == "ENTRENAMIENTO"].reset_index()[["ID_POLIGONO", "municipio", "AREA_HA", "real"]].rename(
         columns={"AREA_HA": "area_ha", "real": "estimacion"})
     tr["conjunto"], tr["modelo"], tr["fuente"] = "ENTRENAMIENTO", None, None
-    tr["confianza"], tr["motivo"] = None, None
+    tr["confianza"], tr["motivo"], tr["motivo_detallado"] = None, None, None
     tr["rango_bajo"] = tr.municipio.map(rangos.bajo)
     tr["rango_alto"] = tr.municipio.map(rangos.alto)
     tr["produccion_t"] = tr.estimacion * tr.area_ha

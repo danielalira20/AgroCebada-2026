@@ -38,7 +38,7 @@ def estimaciones(ctx):
     modelo = ctx.modelo
     pred = ctx.pred
     cp = cifras_parcelas(ctx.d, pred, ctx.conf, modelo).set_index("ID_POLIGONO")
-    cp = cp.loc[pred.index, ["confianza", "motivo", "rango_bajo", "rango_alto"]]
+    cp = cp.loc[pred.index, ["confianza", "motivo_detallado", "rango_bajo", "rango_alto"]]
     with st.container(key="glass_tabla"):
         checks = [("59 IDs", len(pred) == 59), ("Sin IDs duplicados", pred.index.is_unique),
                   ("Valores finitos", bool(np.isfinite(pred.prediccion).all()))]
@@ -65,18 +65,20 @@ def estimaciones(ctx):
         tabla["confianza_txt"] = tabla.confianza.map(etiqueta_confianza)
         tabla["mae_txt"] = tabla.error_tipico.map(lambda v: numero(v, 2))   # NaN -> "—", nunca "None"
 
-        export = tabla[["ID_POLIGONO", "prediccion", "confianza", "motivo", "rango_bajo", "rango_alto"]].rename(
-            columns={"prediccion": "RENDIMIENTO_T_HA", "rango_bajo": "rango_municipio_bajo",
-                    "rango_alto": "rango_municipio_alto"})
+        export = tabla[["ID_POLIGONO", "prediccion", "confianza", "motivo_detallado", "rango_bajo",
+                        "rango_alto"]].rename(columns={"prediccion": "RENDIMIENTO_T_HA", "motivo_detallado": "motivo",
+                                                       "rango_bajo": "rango_municipio_bajo",
+                                                       "rango_alto": "rango_municipio_alto"})
         b.download_button("Descargar CSV de las 59", export.to_csv(index=False).encode("utf-8"),
                           file_name=f"predicciones_59_{modelo}.csv", mime="text/csv", type="primary", width="stretch")
 
         with st.container(key="tabla_59_ancha"):
             st.dataframe(tabla[["ID_POLIGONO", "municipio", "confianza_txt", "prediccion", "produccion_t", "rango",
-                                "area_ha", "motivo", "mae_txt", "fuente", "n_municipio", "aviso"]].rename(columns={
+                                "area_ha", "motivo_detallado", "mae_txt", "fuente", "n_municipio",
+                                "aviso"]].rename(columns={
                                     "prediccion": "estimación (t/ha)", "area_ha": "área (ha)",
                                     "produccion_t": "producción (t)", "confianza_txt": "confianza",
-                                    "rango": "rango del municipio", "motivo": "motivo de la confianza",
+                                    "rango": "rango del municipio", "motivo_detallado": "motivo de la confianza",
                                     "mae_txt": "MAE del municipio (t/ha)",
                                     "n_municipio": "parcelas con cosecha en el municipio"}),
                          hide_index=True, width="stretch", height=420, row_height=148,
