@@ -13,6 +13,7 @@ from agrocebada_app.frontend.vistas.agricultor.panel_parcela import panel_parcel
 from agrocebada_app.frontend.vistas.agricultor.seleccion import clic_agricultor
 from agrocebada_app.frontend.vistas.agricultor.verdor_clima import verdor_clima
 from agrocebada_app.frontend.vistas.agricultor.calculadora import calculadora
+from agrocebada_app.frontend.vistas.agricultor.bitacora import bitacora
 from agrocebada_app.frontend.vistas.agricultor.pregunta_cebi import pregunta_cebi
 
 
@@ -39,4 +40,5 @@ def mostrar(ctx):
     pregunta_cebi(ctx, pid)
     verdor_clima(ctx, pid)
     calculadora(ctx, pid)
+    bitacora(ctx, pid)
     explicacion_cebi()
