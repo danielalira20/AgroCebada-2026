@@ -1,15 +1,20 @@
 """Respuestas de «Pregúntale a Cebi» (M19). Preguntas fijas con respuestas armadas de plantillas: reúnen en lenguaje
-simple lo que está repartido en la pantalla (desglose M04, confianza M01, rango M02, calculadora M05, clima M07) y
-añaden lo que la pantalla no dice: por qué el vecino tiene el mismo número, cómo quedó la parcela frente a su
-municipio y qué haría más precisa la cifra. Todo sale del dato: no hay cifras escritas a mano ni modelo de lenguaje."""
+simple lo que está repartido en la pantalla (desglose M04, confianza M01, rango M02, calculadora M05, clima M07,
+«Tu libreta») y añaden lo que la pantalla no dice: por qué el vecino tiene el mismo número, cómo quedó la parcela
+frente a su municipio y qué haría más precisa la cifra. Todo sale del dato: no hay cifras escritas a mano ni modelo
+de lenguaje."""
+from agrocebada_app.backend.dominio.bitacora import faltan_para_subir
+from agrocebada_app.backend.dominio.bitacora import resumen as resumen_libreta
 from agrocebada_app.backend.dominio.calculadora import cuentas, equilibrio, frase_equilibrio
 from agrocebada_app.backend.dominio.clima_anomalia import comparar, frases
 from agrocebada_app.backend.dominio.desglose import NO_ENTRA, NO_VE, desglose
 from agrocebada_app.backend.dominio.rangos import ANIO, rango_de
+from agrocebada_app.backend.modelo.estimador import estadistico
 
 P_CLIMA = "¿Cómo estuvo el clima este año en mi zona?"
 P_MEJORAR = "¿Qué haría más precisa mi cifra?"
 P_NO_SABE = "¿Qué no sabe la app de mi parcela?"
+P_LIBRETA = "¿Cómo me fue en los años que anoté?"
 CONTEXTO = (P_CLIMA, P_MEJORAR, P_NO_SABE)   # las únicas que hablan de clima o de lo que no entra al cálculo
 _TOL = 1e-9
 
@@ -83,13 +88,55 @@ def _clima(clima, normal, pid):
     return " ".join(lista) + " Es contexto: no cambia tu estimación."
 
 
+def _n_cosecha(d, municipio):
+    """Parcelas con cosecha registrada del municipio (lo mismo que cuenta M01)."""
+    return int(d.loc[(d.municipio == municipio) & (d.CONJUNTO == "ENTRENAMIENTO"), "real"].notna().sum())
+
+
+def _cuanto_falta(n, municipio):
+    """Frase con lo que calcula «Tu libreta» (faltan_para_subir): la misma regla de M01, sin repetir la cuenta."""
+    f = faltan_para_subir(n)
+    if f["siguiente"] is None:
+        return (f"{municipio[:1].upper() + municipio[1:]} ya tiene parcelas suficientes: su confianza depende de qué "
+                "tan bien acierta el método ahí, no de sumar más parcelas.")
+    parcelas = f"{f['faltan']} parcela{'s' if f['faltan'] != 1 else ''}"
+    frase = (f"Con {parcelas} más con cosecha registrada, {municipio} pasaría de confianza {f['nivel']} a "
+             f"{f['siguiente']}")
+    if f["condicionado"]:
+        frase += ", siempre que el error ahí quede igual o por debajo del promedio"
+    return frase + "."
+
+
 def _mejorar(d, municipio):
-    """Qué no conoce la app y qué haría más precisa la cifra."""
-    n = int(d.loc[(d.municipio == municipio) & (d.CONJUNTO == "ENTRENAMIENTO"), "real"].notna().sum())
-    return (f"La app no conoce tu {NO_VE}. Lo que más ayudaría es registrar tu cosecha al terminar la temporada: hoy "
-            f"{municipio} tiene {n} parcela{'s' if n != 1 else ''} con cosecha registrada. Con más cosechas registradas "
-            "la cifra de tu municipio se vuelve más firme, y con datos de cada parcela se podría distinguir la tuya "
-            "de la de tus vecinos.")
+    """Qué no conoce la app, qué haría más precisa la cifra y cuánto le falta al municipio para subir de confianza."""
+    n = _n_cosecha(d, municipio)
+    return (f"La app no conoce tu {NO_VE}. Lo que más ayudaría es registrar tu cosecha al terminar la temporada; "
+            f"puedes anotarla en «Tu libreta», más abajo en esta página. Hoy {municipio} tiene {n} "
+            f"parcela{'s' if n != 1 else ''} con cosecha registrada. {_cuanto_falta(n, 'tu municipio')}")
+
+
+def _libreta(d, modelo, municipio, libreta):
+    """Resumen de lo que el agricultor anotó en «Tu libreta», con el mismo cálculo y la misma referencia que la libreta."""
+    cosechas = d.loc[(d.municipio == municipio) & (d.CONJUNTO == "ENTRENAMIENTO"), "real"].dropna()
+    valor = float(estadistico(modelo)(cosechas)) if len(cosechas) else None
+    x = resumen_libreta(libreta, valor)
+    n = x["anios"]
+    partes = [f"Anotaste {n} año{'s' if n != 1 else ''}. Tu promedio fue {x['promedio']:.2f} t/ha"]
+    if n > 1:
+        partes[0] += (f"; tu mejor año fue {x['mejor']['anio']} con {x['mejor']['rendimiento']:.2f} t/ha y el más "
+                      f"bajo, {x['peor']['anio']} con {x['peor']['rendimiento']:.2f} t/ha.")
+    else:
+        partes[0] += "."
+    if x["error_app"] is not None:
+        partes.append(f"Lo que estimó la app quedó, en promedio, a {x['error_app']:.2f} t/ha de lo que anotaste.")
+    if x["vs_municipio"] is not None:
+        dif = x["vs_municipio"]
+        ref = f"valor típico de las parcelas con cosecha de {municipio} en {ANIO} ({valor:.2f} t/ha)"
+        if abs(dif) < 0.005:
+            partes.append(f"Tu promedio quedó igual que el {ref}.")
+        else:
+            partes.append(f"Tu promedio está {abs(dif):.2f} t/ha {'arriba' if dif > 0 else 'abajo'} del {ref}.")
+    return " ".join(partes)
 
 
 def saludo(d, pred, modelo, conf, pid):
@@ -102,30 +149,41 @@ def saludo(d, pred, modelo, conf, pid):
     return f"Hola, soy Cebi. Tu parcela {pid} tiene su cosecha registrada: {r.real:.2f} t/ha en {ANIO}. ¿Qué quieres saber?"
 
 
-def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, area=None, clima=None, normal=None):
+def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, area=None, clima=None, normal=None,
+               libreta=None):
     """Lista [(pregunta, respuesta)] para `pid`. Cambia si la parcela está por estimar o ya tiene cosecha.
-    `precio`, `costo` y `area` vienen de la calculadora (M05); `clima` y `normal`, de M07."""
+    `precio`, `costo` y `area` vienen de la calculadora (M05); `clima` y `normal`, de M07; `libreta`, de «Tu libreta»
+    (si el agricultor anotó cosechas aparece una pregunta más)."""
     r = d.loc[pid]
     area = area or float(r.AREA_HA)
     if r.CONJUNTO == "PREDICCION":
         x = desglose(d, pred, modelo, conf, pid)
         p = pred.loc[pid]
         est = x["estimacion"]
-        return [
+        sin_rango = rango_de(d, r.municipio)["tipo_rango"] == "sin rango"
+        confiar = f"{x['motivo']} " + ("Por eso tampoco hay un rango de cosechas para comparar." if sin_rango
+                                       else x["rango"])
+        if x["nivel"] != "alta":
+            confiar += f" {_cuanto_falta(_n_cosecha(d, r.municipio), 'tu municipio')}"
+        lista = [
             (f"¿Por qué mi parcela tiene {est:.2f}?", f"{_como(r.municipio, p, modelo)} {x['frase']}"),
             ("¿Por qué mi vecino tiene el mismo número?", _vecinos(d, pred, pid, est)),
-            ("¿Qué tanto puedo confiar?", f"{x['motivo']} {x['rango']}"),
+            ("¿Qué tanto puedo confiar?", confiar),
             ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(p.prediccion), precio, costo, area)),
             (P_CLIMA, _clima(clima, normal, pid)),
             (P_MEJORAR, _mejorar(d, r.municipio)),
         ]
-    dio = _posicion(d, pid)
-    if oof is not None and pid in oof.index:
-        dio += f" Si no la conociera, el método habría estimado {oof[pid]:.2f} t/ha ({oof[pid] - r.real:+.2f})."
-    return [
-        ("¿Cómo le fue a mi parcela frente a las de mi municipio?", dio),
-        ("¿Entre qué valores quedaron las de mi municipio?", rango_de(d, r.municipio)["texto"]),
-        ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(r.real), precio, costo, area)),
-        (P_CLIMA, _clima(clima, normal, pid)),
-        (P_NO_SABE, f"No conoce tu {NO_VE}: sólo usa las cosechas registradas. {NO_ENTRA}"),
-    ]
+    else:
+        dio = _posicion(d, pid)
+        if oof is not None and pid in oof.index:
+            dio += f" Si no la conociera, el método habría estimado {oof[pid]:.2f} t/ha ({oof[pid] - r.real:+.2f})."
+        lista = [
+            ("¿Cómo le fue a mi parcela frente a las de mi municipio?", dio),
+            ("¿Entre qué valores quedaron las de mi municipio?", rango_de(d, r.municipio)["texto"]),
+            ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(r.real), precio, costo, area)),
+            (P_CLIMA, _clima(clima, normal, pid)),
+            (P_NO_SABE, f"No conoce tu {NO_VE}: sólo usa las cosechas registradas. {NO_ENTRA}"),
+        ]
+    if libreta is not None and not libreta.empty:
+        lista.append((P_LIBRETA, _libreta(d, modelo, r.municipio, libreta)))
+    return lista
