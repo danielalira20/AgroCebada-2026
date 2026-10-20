@@ -8,12 +8,13 @@ import streamlit as st
 
 from agrocebada_app.backend.dominio import transcribir as voz
 from agrocebada_app.backend.dominio.enrutador import enrutar, no_entendi
-from agrocebada_app.backend.dominio.respuestas import respuestas, saludo
+from agrocebada_app.backend.dominio.respuestas import respuestas, respuestas_cuenta, saludo
 from agrocebada_app.frontend.estado.cache import clima_normal
 from agrocebada_app.frontend.tema.estilos import MASCOTA
 from agrocebada_app.frontend.tema.html import e, h
 
 TURNOS = 4          # cuántos intercambios se conservan a la vista
+TEMA_PARCELA, TEMA_CUENTA = "parcela", "cuenta"     # de dónde salen las preguntas que se ofrecen
 
 
 def _etiqueta(pregunta):
@@ -32,6 +33,9 @@ def _etiqueta(pregunta):
         "¿Entre qué valores quedaron las de mi municipio?": "Mi municipio",
         "¿Qué no sabe la app de mi parcela?": "Qué falta saber",
         "¿Cómo me fue en los años que anoté?": "Mi libreta",
+        "¿Cuánto necesito sacar para no perder?": "Mi equilibrio",
+        "¿Qué pasa si el año sale bajo o alto?": "Año bajo o alto",
+        "¿Qué hago si no me alcanza?": "Si no alcanza",
     }
     if pregunta.startswith("¿Por qué mi parcela tiene "):
         return "Mi estimación"
@@ -46,13 +50,26 @@ def _preguntar(clave, indice):
     hechas.append(indice)
 
 
-def _decir(clave, texto, preguntas):
+def _guardado(indice, de_cuenta, total):
+    """Cómo se guarda un índice de la lista completa [parcela + cuenta]. Las de «Mi cuenta» van contadas desde el
+    final (negativas): siempre son tres, así el historial no se corre si a la parcela le aparece una pregunta más."""
+    return indice if indice is None or indice < total - de_cuenta else indice - total
+
+
+def _decir(clave, texto, preguntas, de_cuenta=0):
     """Texto escrito o dictado: se enruta a una respuesta conocida, o se admite que no se entendió."""
-    st.session_state.setdefault(clave, []).append(("libre", str(texto).strip(), enrutar(texto, preguntas)))
+    indice = enrutar(texto, preguntas)
+    st.session_state.setdefault(clave, []).append(
+        ("libre", str(texto).strip(), _guardado(indice, de_cuenta, len(preguntas))))
+
+
+def _elegir_tema(clave, tema):
+    st.session_state[f"{clave}_tema"] = tema
 
 
 def _reiniciar(clave):
     st.session_state[clave] = []
+    st.session_state.pop(f"{clave}_tema", None)
 
 
 def _cerrar():
@@ -76,7 +93,7 @@ def _burbujas(turnos, lista):
     return mensajes
 
 
-def _escuchar(clave, pid, lista):
+def _escuchar(clave, pid, lista, de_cuenta=0):
     """Nota de voz: se graba aquí y se transcribe en el equipo de la app, para que funcione igual en cualquier
     teléfono. El micrófono va junto al campo de escribir, no escondido: es la otra forma de preguntar, no un extra.
 
@@ -99,7 +116,7 @@ def _escuchar(clave, pid, lista):
     if not texto:
         st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
         return
-    _decir(clave, texto, lista)
+    _decir(clave, texto, lista, de_cuenta)
     st.rerun()
 
 
@@ -108,12 +125,19 @@ def _platica(ctx, pid):
     if st.session_state.pop("cebi_cerrar", False):
         st.session_state["cebi_vuelta"] = st.session_state.get("cebi_vuelta", 0) + 1
         st.rerun(scope="app")        # la llave vive fuera del fragmento, así que hay que rehacer la página entera
-    lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
-                       precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
-                       area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
-                       series=ctx.S, libreta=st.session_state.get("bitacora", {}).get(pid))
+    precio, costo = st.session_state.get("calc_precio"), st.session_state.get("calc_costo")
+    area = st.session_state.get(f"calc_area_{pid}")
+    # La calculadora deja la superficie en blanco si la persona la borra; para Cebi eso es «cuenta pendiente», igual
+    # que allá, y no «usa la superficie del catálogo».
+    area_vacia = f"calc_area_{pid}" in st.session_state and area is None
+    lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela, precio=precio, costo=costo,
+                       area=area, clima=ctx.C, normal=clima_normal(), series=ctx.S,
+                       libreta=st.session_state.get("bitacora", {}).get(pid), area_pendiente=area_vacia)
+    cuenta = respuestas_cuenta(ctx.d, ctx.pred, pid, precio=precio, costo=costo, area=area, area_pendiente=area_vacia)
+    todas = lista + cuenta          # lo que el enrutador y el historial ven: las de la parcela y las de la cuenta
     clave = f"cebi_{pid}"
     hechas = st.session_state.setdefault(clave, [])
+    tema = st.session_state.get(f"{clave}_tema")
     with st.container(key="cebi_chat"):
         h(f"<div class='cebi-cabecera'><div class='cebi' aria-hidden='true'>{MASCOTA}</div>"
           f"<div><strong>Cebi<span class='cebi-hojita' aria-hidden='true'>✦</span></strong><span>Con los datos de tu parcela</span></div>"
@@ -122,26 +146,44 @@ def _platica(ctx, pid):
                   help="Cerrar la conversación")
         with st.container(height=220 if hechas else 150, border=False, autoscroll=True, key="cebi_mensajes"):
             mensajes = [f"<div class='cebi-respuesta'>{e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid))}</div>"]
-            mensajes.extend(_burbujas(hechas[-TURNOS:], lista))
+            mensajes.extend(_burbujas(hechas[-TURNOS:], todas))
             h("<div class='cebi-conversacion' role='log' aria-label='Conversación con Cebi' aria-live='polite'>"
               + "".join(mensajes) + "</div>")
         # Antes de la primera pregunta los botones invitan a explorar en rejilla; después se encogen a una fila que
         # se desliza, para dejarle la pantalla a la conversación. El cambio es sólo de clase: si aquí cambiara la
         # llave del contenedor o el número de columnas, Streamlit rehace el bloque y el popover se cierra solo.
-        h(f"<div class='cebi-sugerencias{' cebi-fila' if hechas else ''}'>"
-          f"<span>{'Más preguntas' if hechas else 'Explora tu parcela'}</span></div>")
+        # Al empezar se pregunta de qué se quiere hablar (dos pastillas); al escoger, salen las de ese tema. Las
+        # columnas son siempre las mismas, y las que no llevan pastilla las esconde el CSS.
+        rotulo = ("¿Qué quieres explorar?" if tema is None else "Más preguntas" if hechas
+                  else "Explora tu parcela" if tema == TEMA_PARCELA else "Tu cuenta")
+        h(f"<div class='cebi-sugerencias{' cebi-fila' if hechas else ''}'><span>{rotulo}</span></div>")
         with st.container(key="cebi_preguntas"):
-            columnas = st.columns(len(lista), gap="small")
-            for indice, (pregunta, _) in enumerate(lista):
-                columnas[indice].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
-                                        wrap=True, on_click=_preguntar, args=(clave, indice))
+            columnas = st.columns(max(len(lista), len(cuenta), 2), gap="small")
+            if tema is None:
+                columnas[0].button("Mi parcela", key=f"{clave}_t_parcela", width="stretch", wrap=True,
+                                   help="Tu estimación, tus vecinos, el clima y el satélite",
+                                   on_click=_elegir_tema, args=(clave, TEMA_PARCELA))
+                columnas[1].button("Mi cuenta", key=f"{clave}_t_cuenta", width="stretch", wrap=True,
+                                   help="Cuánto necesitas sacar, qué pasa en un año bajo o alto y qué hacer "
+                                        "si no alcanza",
+                                   on_click=_elegir_tema, args=(clave, TEMA_CUENTA))
+            elif tema == TEMA_PARCELA:
+                for indice, (pregunta, _) in enumerate(lista):
+                    columnas[indice].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}",
+                                            width="stretch", wrap=True, on_click=_preguntar, args=(clave, indice))
+            else:
+                for j, (pregunta, _) in enumerate(cuenta):
+                    columnas[j].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_c{j}", width="stretch",
+                                       wrap=True, on_click=_preguntar, args=(clave, j - len(cuenta)))
         with st.container(horizontal=True, vertical_alignment="center", key="cebi_compositor"):
             escrito = st.chat_input("Escribe tu pregunta…", key=f"{clave}_texto")
-            _escuchar(clave, pid, lista)
+            _escuchar(clave, pid, todas, len(cuenta))
         if escrito:
-            _decir(clave, escrito, lista)
+            _decir(clave, escrito, todas, len(cuenta))
             st.rerun()
         with st.container(horizontal=True, horizontal_alignment="right"):
+            st.button("Cambiar de tema", key=f"{clave}_cambiar", type="tertiary", disabled=tema is None,
+                      on_click=_elegir_tema, args=(clave, None), width="content", wrap=True)
             st.button("Empezar de nuevo", key=f"{clave}_borrar", type="tertiary", disabled=not hechas,
                       on_click=_reiniciar, args=(clave,), width="content", wrap=True)
 

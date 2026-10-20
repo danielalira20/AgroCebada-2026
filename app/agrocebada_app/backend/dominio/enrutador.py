@@ -61,6 +61,21 @@ TEMAS = [
     {"prefijo": "¿Qué no sabe la app",
      "fuertes": {"no sabe", "ignora", "desconoce", "siembra", "variedad", "manejo", "limite", "limites"},
      "claves": {"sabe", "falta", "ve"}},
+    # «Mi cuenta»: las tres que salen de la calculadora «¿Me alcanza?». «alcanza» ya es palabra decisiva de «¿Me
+    # alcanza», así que lo que distingue a «¿Qué hago si no me alcanza?» es la frase completa («que hago», «si no
+    # me alcanza»).
+    {"prefijo": "¿Cuánto necesito sacar",
+     "fuertes": {"equilibrio", "necesito sacar", "no perder", "cubrir los costos", "cubrir mis costos", "empatar",
+                 "minimo para"},
+     "claves": {"necesito", "minimo", "cubrir", "debo sacar"}},
+    {"prefijo": "¿Qué pasa si el año",
+     "fuertes": {"escenario", "escenarios", "ano bajo", "ano alto", "ano malo", "mal ano", "ano flojo", "sale bajo",
+                 "sale alto", "sale mal", "me va mal", "va mal", "peor"},
+     "claves": {"bajo", "alto", "baja", "alta", "pasa", "pasaria", "flojo", "malo"}},
+    {"prefijo": "¿Qué hago si no me alcanza",
+     "fuertes": {"que hago", "si no me alcanza", "si no alcanza", "no me alcanza", "no alcanza", "faltante",
+                 "me falta dinero", "falta dinero", "plan b", "apoyo", "apoyos", "seguro agricola", "asesor"},
+     "claves": {"pierdo", "perdi", "salvar", "ayuda"}},
 ]
 FUERTE, DEBIL = 3, 1
 MINIMO = 2          # una palabra decisiva basta, o dos de apoyo; con menos, Cebi dice que no sabe en vez de
