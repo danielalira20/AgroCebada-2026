@@ -90,6 +90,25 @@ cd app && python herramientas/preparar_datos.py
 
 **En el repo del equipo `datos_app/` no se sube** (el `.gitignore` excluye los datos del reto). Cada quien lo arma una vez en su compu con `python herramientas/preparar_datos.py`; si no lo arma, la app lee directo las fuentes y sólo tarda un poco más en abrir.
 
+### La tabla única de cifras (M03) y el cierre del modelo (M17)
+
+Las cifras que publican el informe, el video y la entrega **no se escriben a mano**: salen de una sola tabla, la
+misma que descarga el botón «Descargar cifras» de la vista Analista. Se regenera con:
+
+```bash
+cd app && python herramientas/exportar_cifras.py
+```
+
+Escribe tres archivos en `registro/t17/`: `cifras_parcelas.csv` (una fila por cada una de las 197 parcelas, con
+estimación, confianza, motivo, rango y producción), `cifras_municipios.csv` y `cifras_validacion.csv`. Toma el
+modelo de `MODELO_OFICIAL` en `agrocebada_app/config.py`, así que **se vuelve a correr cada vez que cambie una
+cifra o el modelo oficial**; si no, el informe y la app dejan de decir lo mismo. Acepta una carpeta de salida como
+argumento si se quiere comparar sin sobrescribir el registro.
+
+Que las 59 estimaciones de la app sean idénticas a la entrega de T18 lo comprueba
+`tests/backend/test_exportar.py`, parcela por parcela contra `registro/t18/predicciones_finales.csv`. Esa
+comprobación no se salta: si el archivo falta, la prueba falla diciendo por qué.
+
 `herramientas/preparar_datos.py` (y la app, si no hay `datos_app/`) lee las fuentes originales: el dataset del reto (en la raíz del repo, en `data/` o en `datos/`; o donde diga `AGRO_DATOS`), `registro/t08` (o `entregas/T08`), `registro/t03` (o `entregas/T03`) y `registro/t04/clima_parcela_mes.csv` (o `entregas/T04/...`). Ubica sola la raíz del repo; si las fuentes están en otro lugar, fíjalas con `AGRO_DATOS`, `AGRO_T08`, `AGRO_T03` y `AGRO_T04`. Si `datos_app/` no existe, la app lee directamente esas fuentes (más lento).
 
 ## Estructura de `app/`
@@ -115,7 +134,7 @@ app/
 │       └── vistas/             #   agricultor, analista (una pestaña por archivo) y datos propios
 ├── assets/                     # mascota/ (Cebi, SVG y PNG) y css/tema.css
 ├── datos_estaticos/            # altitud de cada parcela (elevacion_parcelas.csv)
-├── herramientas/               # scripts que se corren a mano: preparar_datos.py y preparar_elevacion.py
+├── herramientas/               # scripts que se corren a mano: preparar_datos.py, exportar_cifras.py y preparar_elevacion.py
 └── tests/                      # backend/test_carga_segura.py y frontend/test_app.py
 ```
 

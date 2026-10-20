@@ -66,9 +66,12 @@ assert principal.poblacion.startswith("A ·") and abs(principal.MAE - 0.3205) < 
 vacia = cifras_validacion(None)
 assert vacia.empty and list(vacia.columns) == COLUMNAS_POBLACIONES
 
-# --- cifras_parcelas con el modelo oficial (mediana) coincide exacto con el CSV de entrega de T18 (PR #41)
+# --- M17: las 59 de la app coinciden una por una con el CSV de entrega de T18 (PR #41).
+# El archivo está versionado, así que aquí no se salta: si falta, es que algo se borró o se movió y hay que
+# enterarse. Antes esta comprobación vivía dentro de un «if existe» y podía pasar en verde sin comprobar nada.
 t18 = Path(__file__).resolve().parents[3] / "registro" / "t18" / "predicciones_finales.csv"
-if t18.exists():
+assert t18.exists(), f"falta {t18}: es parte del repositorio y sin él no se puede cerrar M17"
+if True:
     pred_mediana = predecir(p, "mediana_mun__resp_grupo")
     O_mediana = paquete.validacion("mediana_mun__resp_grupo", p.municipio)
     OA_mediana = O_mediana[(O_mediana.escenario == "A") & (O_mediana.fuente == "municipio")]
@@ -76,6 +79,7 @@ if t18.exists():
     cp_mediana = cifras_parcelas(p, pred_mediana, conf_mediana, "mediana_mun__resp_grupo")
     pre_mediana = cp_mediana[cp_mediana.conjunto == "PREDICCION"].set_index("ID_POLIGONO")
     entrega = pd.read_csv(t18, encoding="utf-8-sig").set_index("ID_POLIGONO")
+    assert len(entrega) == 59, f"la entrega de T18 debe traer 59 parcelas, trae {len(entrega)}"
     assert set(entrega.index) == set(pre_mediana.index), set(entrega.index) ^ set(pre_mediana.index)
     dif = (entrega.RENDIMIENTO_T_HA - pre_mediana.loc[entrega.index, "estimacion"]).abs()
     assert dif.max() < 1e-9, f"cifras_parcelas no coincide con registro/t18/predicciones_finales.csv: {dif.max()}"
