@@ -1,0 +1,1806 @@
+{
+  "schema": "agrocebada_planeador_fase0_v1",
+  "capturado_utc": "2026-10-19T23:47:04.890880+00:00",
+  "git": {
+    "commit": "efbb2dd3c82b254550232f42e1ff7b1c51c351c0",
+    "rama": "feature/agriultor-prediccion"
+  },
+  "entorno": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "geopandas": "1.2.0"
+  },
+  "alcance": "Resultados existentes de fase 0; Cebi excluido. No certifica aprobación T16 ni trazabilidad histórica T18.",
+  "fuentes_sha256": {
+    "app/datos_app/parcelas.parquet": "fb6b6e7bb3399b9f3e55c4e11c65b406b30b41dac9cd95ec26908a5e6218486e",
+    "app/datos_app/series.parquet": "289aa8a1b1136345f8453d5b73f907cf2d71870a501700bd445418957c65a66b",
+    "app/datos_app/clima.parquet": "75aecb690142c320608c59d6579fad32eb939eb25d5182c75db3c87553d86714",
+    "app/datos_app/clima_normal.parquet": null,
+    "app/datos_app/validacion.parquet": "74419cda50b7f7bb6027e473330fcc06e3d4c2a435dad474d4632ec37407e828",
+    "app/datos_app/soporte.parquet": "54573efa537977f56a93f7d25c6d575c1a4c516861bcf9ef0797f92c7f42ca7b",
+    "app/datos_app/calidad.parquet": null,
+    "app/datos_app/oficial_59.csv": "e8d810302836506170e03cb347496512913d3d66ad71c3db5e6f8fd058d3489a",
+    "registro/t18/predicciones_finales.csv": "4cbe214d056e79b8c81d890a0c27b078a2f78807c3b397f4027f366a8e712d7c",
+    "registro/t18/detalle_predicciones_59.csv": "4e595800c1adab64cca5c73a85a8064af6a9cd13a9f3fd9f3ea57018221eb974",
+    "registro/t18/trazabilidad.json": "fdb47e1bc77e7241fada68b0360271401411f4d7be7867a785750ceeb5b5d005"
+  },
+  "resultados": {
+    "modelo_oficial": "mediana_mun__resp_grupo",
+    "temporada": [
+      "2025-04-01",
+      "2025-10-31"
+    ],
+    "modo_fuentes": "paquete",
+    "poblacion": {
+      "total": 197,
+      "entrenamiento": 138,
+      "prediccion": 59,
+      "municipios": 9
+    },
+    "disponibilidad": {
+      "clima": true,
+      "clima_normal": false,
+      "calidad": false,
+      "soporte": true
+    },
+    "rangos": [
+      {
+        "municipio": "Almoloya",
+        "n_cosecha": 10,
+        "tipo_rango": "P10–P90",
+        "bajo": 4.383,
+        "alto": 4.708,
+        "dentro": 8,
+        "texto": "En Almoloya, 8 de 10 parcelas con cosecha dieron entre 4.38 y 4.71 t/ha en 2025."
+      },
+      {
+        "municipio": "Apan",
+        "n_cosecha": 1,
+        "tipo_rango": "sin rango",
+        "bajo": null,
+        "alto": null,
+        "dentro": 0,
+        "texto": "Apan sólo tiene 1 parcela con cosecha: no alcanza para dar un rango."
+      },
+      {
+        "municipio": "Calpulalpan",
+        "n_cosecha": 30,
+        "tipo_rango": "P10–P90",
+        "bajo": 2.5,
+        "alto": 3.5,
+        "dentro": 30,
+        "texto": "Las 30 parcelas con cosecha de Calpulalpan dieron entre 2.50 y 3.50 t/ha en 2025."
+      },
+      {
+        "municipio": "Chignahuapan",
+        "n_cosecha": 71,
+        "tipo_rango": "P10–P90",
+        "bajo": 3.91,
+        "alto": 5.07,
+        "dentro": 57,
+        "texto": "En Chignahuapan, 57 de 71 parcelas con cosecha dieron entre 3.91 y 5.07 t/ha en 2025."
+      },
+      {
+        "municipio": "Cuautepec de Hinojosa",
+        "n_cosecha": 5,
+        "tipo_rango": "mínimo–máximo",
+        "bajo": 4.4,
+        "alto": 4.79,
+        "dentro": 5,
+        "texto": "Las 5 parcelas con cosecha de Cuautepec de Hinojosa dieron entre 4.40 y 4.79 t/ha en 2025."
+      },
+      {
+        "municipio": "Emiliano Zapata",
+        "n_cosecha": 3,
+        "tipo_rango": "mínimo–máximo",
+        "bajo": 3.5,
+        "alto": 3.5,
+        "dentro": 3,
+        "texto": "Las 3 parcelas con cosecha de Emiliano Zapata dieron 3.5 t/ha en 2025."
+      },
+      {
+        "municipio": "Nanacamilpa de Mariano Arista",
+        "n_cosecha": 1,
+        "tipo_rango": "sin rango",
+        "bajo": null,
+        "alto": null,
+        "dentro": 0,
+        "texto": "Nanacamilpa de Mariano Arista sólo tiene 1 parcela con cosecha: no alcanza para dar un rango."
+      },
+      {
+        "municipio": "Singuilucan",
+        "n_cosecha": 16,
+        "tipo_rango": "P10–P90",
+        "bajo": 2.5,
+        "alto": 3.5,
+        "dentro": 14,
+        "texto": "En Singuilucan, 14 de 16 parcelas con cosecha dieron entre 2.50 y 3.50 t/ha en 2025."
+      },
+      {
+        "municipio": "Tepeapulco",
+        "n_cosecha": 1,
+        "tipo_rango": "sin rango",
+        "bajo": null,
+        "alto": null,
+        "dentro": 0,
+        "texto": "Tepeapulco sólo tiene 1 parcela con cosecha: no alcanza para dar un rango."
+      }
+    ],
+    "supuestos_ilustrativos": {
+      "area_ha": 10.0,
+      "precio_t": 5500.0,
+      "costo_ha": 22000.0
+    },
+    "modelos": {
+      "media_mun__resp_grupo": {
+        "predicciones_59": [
+          {
+            "ID_POLIGONO": "AGC_003",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 18.68
+          },
+          {
+            "ID_POLIGONO": "AGC_011",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.17
+          },
+          {
+            "ID_POLIGONO": "AGC_016",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.47
+          },
+          {
+            "ID_POLIGONO": "AGC_025",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 2.0
+          },
+          {
+            "ID_POLIGONO": "AGC_027",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 8.46
+          },
+          {
+            "ID_POLIGONO": "AGC_028",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.86
+          },
+          {
+            "ID_POLIGONO": "AGC_029",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 5.9
+          },
+          {
+            "ID_POLIGONO": "AGC_030",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 13.05
+          },
+          {
+            "ID_POLIGONO": "AGC_031",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.98
+          },
+          {
+            "ID_POLIGONO": "AGC_036",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.0
+          },
+          {
+            "ID_POLIGONO": "AGC_039",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 7.71
+          },
+          {
+            "ID_POLIGONO": "AGC_042",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 3.81
+          },
+          {
+            "ID_POLIGONO": "AGC_043",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.15
+          },
+          {
+            "ID_POLIGONO": "AGC_050",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 2.42
+          },
+          {
+            "ID_POLIGONO": "AGC_052",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.598000000000001,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 6.23
+          },
+          {
+            "ID_POLIGONO": "AGC_061",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 7.23
+          },
+          {
+            "ID_POLIGONO": "AGC_063",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 12.54
+          },
+          {
+            "ID_POLIGONO": "AGC_065",
+            "municipio": "Almoloya",
+            "prediccion": 4.520999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 60.88
+          },
+          {
+            "ID_POLIGONO": "AGC_071",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 5.21
+          },
+          {
+            "ID_POLIGONO": "AGC_075",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 3.9
+          },
+          {
+            "ID_POLIGONO": "AGC_076",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.01
+          },
+          {
+            "ID_POLIGONO": "AGC_082",
+            "municipio": "Almoloya",
+            "prediccion": 4.520999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 2.77
+          },
+          {
+            "ID_POLIGONO": "AGC_085",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.5
+          },
+          {
+            "ID_POLIGONO": "AGC_086",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 4.73
+          },
+          {
+            "ID_POLIGONO": "AGC_087",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 5.66
+          },
+          {
+            "ID_POLIGONO": "AGC_088",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.91
+          },
+          {
+            "ID_POLIGONO": "AGC_091",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 0.35
+          },
+          {
+            "ID_POLIGONO": "AGC_093",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 3.71
+          },
+          {
+            "ID_POLIGONO": "AGC_094",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 3.63
+          },
+          {
+            "ID_POLIGONO": "AGC_095",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.33
+          },
+          {
+            "ID_POLIGONO": "AGC_107",
+            "municipio": "Almoloya",
+            "prediccion": 4.520999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 2.63
+          },
+          {
+            "ID_POLIGONO": "AGC_113",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 10.58
+          },
+          {
+            "ID_POLIGONO": "AGC_116",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.43
+          },
+          {
+            "ID_POLIGONO": "AGC_118",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 4.42
+          },
+          {
+            "ID_POLIGONO": "AGC_120",
+            "municipio": "Nanacamilpa de Mariano Arista",
+            "prediccion": 2.5,
+            "fuente": "municipio",
+            "n_municipio": 1,
+            "area_ha": 7.47
+          },
+          {
+            "ID_POLIGONO": "AGC_126",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.75
+          },
+          {
+            "ID_POLIGONO": "AGC_128",
+            "municipio": "Almoloya",
+            "prediccion": 4.520999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 6.15
+          },
+          {
+            "ID_POLIGONO": "AGC_129",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 8.16
+          },
+          {
+            "ID_POLIGONO": "AGC_130",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.598000000000001,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 12.1
+          },
+          {
+            "ID_POLIGONO": "AGC_136",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.69
+          },
+          {
+            "ID_POLIGONO": "AGC_142",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.29
+          },
+          {
+            "ID_POLIGONO": "AGC_143",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 11.48
+          },
+          {
+            "ID_POLIGONO": "AGC_147",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 6.8
+          },
+          {
+            "ID_POLIGONO": "AGC_149",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.598000000000001,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 8.99
+          },
+          {
+            "ID_POLIGONO": "AGC_153",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.99
+          },
+          {
+            "ID_POLIGONO": "AGC_154",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.49
+          },
+          {
+            "ID_POLIGONO": "AGC_156",
+            "municipio": "Singuilucan",
+            "prediccion": 3.08125,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 8.2
+          },
+          {
+            "ID_POLIGONO": "AGC_158",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 11.22
+          },
+          {
+            "ID_POLIGONO": "AGC_173",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 3.6
+          },
+          {
+            "ID_POLIGONO": "AGC_174",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.598000000000001,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 6.89
+          },
+          {
+            "ID_POLIGONO": "AGC_175",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.41
+          },
+          {
+            "ID_POLIGONO": "AGC_177",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.66
+          },
+          {
+            "ID_POLIGONO": "AGC_182",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 4.13
+          },
+          {
+            "ID_POLIGONO": "AGC_183",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 7.85
+          },
+          {
+            "ID_POLIGONO": "AGC_186",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 11.7
+          },
+          {
+            "ID_POLIGONO": "AGC_188",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 2.34
+          },
+          {
+            "ID_POLIGONO": "AGC_190",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.01
+          },
+          {
+            "ID_POLIGONO": "AGC_191",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.75
+          },
+          {
+            "ID_POLIGONO": "AGC_192",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.477323943661971,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 2.14
+          }
+        ],
+        "metricas": [
+          {
+            "poblacion": "A · municipio conocido · sin respaldo",
+            "parcelas": 135,
+            "predicciones": 675,
+            "MAE": 0.32048971038707874,
+            "RMSE": 0.4925930953739293,
+            "sesgo": 0.0003380913108983254,
+            "R2": 0.6585767448496691,
+            "principal": true
+          },
+          {
+            "poblacion": "A · municipio conocido · todas las predicciones",
+            "parcelas": 138,
+            "predicciones": 690,
+            "MAE": 0.3192498003933612,
+            "RMSE": 0.48982574049493505,
+            "sesgo": 0.002948319395147513,
+            "R2": 0.6663823838097557,
+            "principal": false
+          },
+          {
+            "poblacion": "B · zona de lluvia nueva · sin respaldo",
+            "parcelas": 135,
+            "predicciones": 659,
+            "MAE": 0.3578674085639142,
+            "RMSE": 0.521985168457037,
+            "sesgo": -0.04113627925996055,
+            "R2": 0.6109633862726992,
+            "principal": false
+          },
+          {
+            "poblacion": "B · zona de lluvia nueva · todas las predicciones",
+            "parcelas": 138,
+            "predicciones": 690,
+            "MAE": 0.3801006073512245,
+            "RMSE": 0.5552775188741957,
+            "sesgo": -0.0038185147642252346,
+            "R2": 0.5647204450956472,
+            "principal": false
+          }
+        ],
+        "confianza": [
+          {
+            "municipio": "Almoloya",
+            "n_cosecha": 10,
+            "mae_municipio": 0.14120000000000013,
+            "mae_general": 0.32048971038707874,
+            "nivel": "alta",
+            "motivo": "Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.",
+            "motivo_detallado": "Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 68% de esas parcelas quedó dentro de ese margen."
+          },
+          {
+            "municipio": "Apan",
+            "n_cosecha": 1,
+            "mae_municipio": null,
+            "mae_general": 0.32048971038707874,
+            "nivel": "baja",
+            "motivo": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.",
+            "motivo_detallado": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
+          },
+          {
+            "municipio": "Calpulalpan",
+            "n_cosecha": 30,
+            "mae_municipio": 0.28694444444444445,
+            "mae_general": 0.32048971038707874,
+            "nivel": "alta",
+            "motivo": "Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",
+            "motivo_detallado": "Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.29 t/ha) fue 10% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado."
+          },
+          {
+            "municipio": "Chignahuapan",
+            "n_cosecha": 71,
+            "mae_municipio": 0.3800579000317695,
+            "mae_general": 0.32048971038707874,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.",
+            "motivo_detallado": "Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.38 t/ha) fue 19% mayor que el promedio general, y el 63% de esas parcelas quedó dentro de ese margen."
+          },
+          {
+            "municipio": "Cuautepec de Hinojosa",
+            "n_cosecha": 5,
+            "mae_municipio": 0.14299999999999963,
+            "mae_general": 0.32048971038707874,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.",
+            "motivo_detallado": "Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme."
+          },
+          {
+            "municipio": "Emiliano Zapata",
+            "n_cosecha": 3,
+            "mae_municipio": 0.0,
+            "mae_general": 0.32048971038707874,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene sólo 3 parcelas con cosecha; con pocas parcelas la estimación es menos firme.",
+            "motivo_detallado": "Confianza media: tu municipio tiene sólo 3 parcelas con cosecha; con pocas parcelas la estimación es menos firme."
+          },
+          {
+            "municipio": "Nanacamilpa de Mariano Arista",
+            "n_cosecha": 1,
+            "mae_municipio": null,
+            "mae_general": 0.32048971038707874,
+            "nivel": "baja",
+            "motivo": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.",
+            "motivo_detallado": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
+          },
+          {
+            "municipio": "Singuilucan",
+            "n_cosecha": 16,
+            "mae_municipio": 0.34666666666666657,
+            "mae_general": 0.32048971038707874,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.",
+            "motivo_detallado": "Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.35 t/ha) fue 8% mayor que el promedio general, y el 62% de esas parcelas quedó dentro de ese margen."
+          },
+          {
+            "municipio": "Tepeapulco",
+            "n_cosecha": 1,
+            "mae_municipio": null,
+            "mae_general": 0.32048971038707874,
+            "nivel": "baja",
+            "motivo": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.",
+            "motivo_detallado": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
+          }
+        ],
+        "cuentas_ilustrativas": [
+          {
+            "municipio": "Almoloya",
+            "rendimiento": 4.520999999999999,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.520999999999999,
+                "Producción (t)": 45.209999999999994,
+                "Ingreso": 248654.99999999997,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 28654.99999999997,
+                "¿Cubre costos?": "Sí"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 4.383,
+                "Producción (t)": 43.83,
+                "Ingreso": 241065.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 21065.0,
+                "¿Cubre costos?": "Sí"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 4.708,
+                "Producción (t)": 47.08,
+                "Ingreso": 258940.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 38940.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          },
+          {
+            "municipio": "Apan",
+            "rendimiento": 3.0,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.0,
+                "Producción (t)": 30.0,
+                "Ingreso": 165000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -55000.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Calpulalpan",
+            "rendimiento": 3.0,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.0,
+                "Producción (t)": 30.0,
+                "Ingreso": 165000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -55000.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 2.5,
+                "Producción (t)": 25.0,
+                "Ingreso": 137500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -82500.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Chignahuapan",
+            "rendimiento": 4.477323943661971,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.477323943661971,
+                "Producción (t)": 44.77323943661971,
+                "Ingreso": 246252.8169014084,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 26252.816901408398,
+                "¿Cubre costos?": "Sí"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 3.91,
+                "Producción (t)": 39.1,
+                "Ingreso": 215050.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -4950.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 5.07,
+                "Producción (t)": 50.7,
+                "Ingreso": 278850.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 58850.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          },
+          {
+            "municipio": "Cuautepec de Hinojosa",
+            "rendimiento": 4.598000000000001,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.598000000000001,
+                "Producción (t)": 45.980000000000004,
+                "Ingreso": 252890.00000000003,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 32890.00000000003,
+                "¿Cubre costos?": "Sí"
+              },
+              "La más baja de tu municipio": {
+                "Rendimiento (t/ha)": 4.4,
+                "Producción (t)": 44.0,
+                "Ingreso": 242000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 22000.0,
+                "¿Cubre costos?": "Sí"
+              },
+              "La más alta de tu municipio": {
+                "Rendimiento (t/ha)": 4.79,
+                "Producción (t)": 47.9,
+                "Ingreso": 263450.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 43450.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          },
+          {
+            "municipio": "Emiliano Zapata",
+            "rendimiento": 3.5,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              },
+              "La más baja de tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              },
+              "La más alta de tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Nanacamilpa de Mariano Arista",
+            "rendimiento": 2.5,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 2.5,
+                "Producción (t)": 25.0,
+                "Ingreso": 137500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -82500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Singuilucan",
+            "rendimiento": 3.08125,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.08125,
+                "Producción (t)": 30.8125,
+                "Ingreso": 169468.75,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -50531.25,
+                "¿Cubre costos?": "No"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 2.5,
+                "Producción (t)": 25.0,
+                "Ingreso": 137500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -82500.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Tepeapulco",
+            "rendimiento": 4.45,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.45,
+                "Producción (t)": 44.5,
+                "Ingreso": 244750.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 24750.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          }
+        ]
+      },
+      "mediana_mun__resp_grupo": {
+        "predicciones_59": [
+          {
+            "ID_POLIGONO": "AGC_003",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 18.68
+          },
+          {
+            "ID_POLIGONO": "AGC_011",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.17
+          },
+          {
+            "ID_POLIGONO": "AGC_016",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.47
+          },
+          {
+            "ID_POLIGONO": "AGC_025",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 2.0
+          },
+          {
+            "ID_POLIGONO": "AGC_027",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 8.46
+          },
+          {
+            "ID_POLIGONO": "AGC_028",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.86
+          },
+          {
+            "ID_POLIGONO": "AGC_029",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 5.9
+          },
+          {
+            "ID_POLIGONO": "AGC_030",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 13.05
+          },
+          {
+            "ID_POLIGONO": "AGC_031",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.98
+          },
+          {
+            "ID_POLIGONO": "AGC_036",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.0
+          },
+          {
+            "ID_POLIGONO": "AGC_039",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 7.71
+          },
+          {
+            "ID_POLIGONO": "AGC_042",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 3.81
+          },
+          {
+            "ID_POLIGONO": "AGC_043",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.15
+          },
+          {
+            "ID_POLIGONO": "AGC_050",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 2.42
+          },
+          {
+            "ID_POLIGONO": "AGC_052",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.61,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 6.23
+          },
+          {
+            "ID_POLIGONO": "AGC_061",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 7.23
+          },
+          {
+            "ID_POLIGONO": "AGC_063",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 12.54
+          },
+          {
+            "ID_POLIGONO": "AGC_065",
+            "municipio": "Almoloya",
+            "prediccion": 4.529999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 60.88
+          },
+          {
+            "ID_POLIGONO": "AGC_071",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 5.21
+          },
+          {
+            "ID_POLIGONO": "AGC_075",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 3.9
+          },
+          {
+            "ID_POLIGONO": "AGC_076",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.01
+          },
+          {
+            "ID_POLIGONO": "AGC_082",
+            "municipio": "Almoloya",
+            "prediccion": 4.529999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 2.77
+          },
+          {
+            "ID_POLIGONO": "AGC_085",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.5
+          },
+          {
+            "ID_POLIGONO": "AGC_086",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 4.73
+          },
+          {
+            "ID_POLIGONO": "AGC_087",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 5.66
+          },
+          {
+            "ID_POLIGONO": "AGC_088",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.91
+          },
+          {
+            "ID_POLIGONO": "AGC_091",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 0.35
+          },
+          {
+            "ID_POLIGONO": "AGC_093",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 3.71
+          },
+          {
+            "ID_POLIGONO": "AGC_094",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 3.63
+          },
+          {
+            "ID_POLIGONO": "AGC_095",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.33
+          },
+          {
+            "ID_POLIGONO": "AGC_107",
+            "municipio": "Almoloya",
+            "prediccion": 4.529999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 2.63
+          },
+          {
+            "ID_POLIGONO": "AGC_113",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 10.58
+          },
+          {
+            "ID_POLIGONO": "AGC_116",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 7.43
+          },
+          {
+            "ID_POLIGONO": "AGC_118",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 4.42
+          },
+          {
+            "ID_POLIGONO": "AGC_120",
+            "municipio": "Nanacamilpa de Mariano Arista",
+            "prediccion": 2.5,
+            "fuente": "municipio",
+            "n_municipio": 1,
+            "area_ha": 7.47
+          },
+          {
+            "ID_POLIGONO": "AGC_126",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.75
+          },
+          {
+            "ID_POLIGONO": "AGC_128",
+            "municipio": "Almoloya",
+            "prediccion": 4.529999999999999,
+            "fuente": "municipio",
+            "n_municipio": 10,
+            "area_ha": 6.15
+          },
+          {
+            "ID_POLIGONO": "AGC_129",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 8.16
+          },
+          {
+            "ID_POLIGONO": "AGC_130",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.61,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 12.1
+          },
+          {
+            "ID_POLIGONO": "AGC_136",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.69
+          },
+          {
+            "ID_POLIGONO": "AGC_142",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.29
+          },
+          {
+            "ID_POLIGONO": "AGC_143",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 11.48
+          },
+          {
+            "ID_POLIGONO": "AGC_147",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 6.8
+          },
+          {
+            "ID_POLIGONO": "AGC_149",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.61,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 8.99
+          },
+          {
+            "ID_POLIGONO": "AGC_153",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.99
+          },
+          {
+            "ID_POLIGONO": "AGC_154",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.49
+          },
+          {
+            "ID_POLIGONO": "AGC_156",
+            "municipio": "Singuilucan",
+            "prediccion": 3.2,
+            "fuente": "municipio",
+            "n_municipio": 16,
+            "area_ha": 8.2
+          },
+          {
+            "ID_POLIGONO": "AGC_158",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 11.22
+          },
+          {
+            "ID_POLIGONO": "AGC_173",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 3.6
+          },
+          {
+            "ID_POLIGONO": "AGC_174",
+            "municipio": "Cuautepec de Hinojosa",
+            "prediccion": 4.61,
+            "fuente": "municipio",
+            "n_municipio": 5,
+            "area_ha": 6.89
+          },
+          {
+            "ID_POLIGONO": "AGC_175",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.41
+          },
+          {
+            "ID_POLIGONO": "AGC_177",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.66
+          },
+          {
+            "ID_POLIGONO": "AGC_182",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 4.13
+          },
+          {
+            "ID_POLIGONO": "AGC_183",
+            "municipio": "Calpulalpan",
+            "prediccion": 3.0,
+            "fuente": "municipio",
+            "n_municipio": 30,
+            "area_ha": 7.85
+          },
+          {
+            "ID_POLIGONO": "AGC_186",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 11.7
+          },
+          {
+            "ID_POLIGONO": "AGC_188",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 2.34
+          },
+          {
+            "ID_POLIGONO": "AGC_190",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 5.01
+          },
+          {
+            "ID_POLIGONO": "AGC_191",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 1.75
+          },
+          {
+            "ID_POLIGONO": "AGC_192",
+            "municipio": "Chignahuapan",
+            "prediccion": 4.52,
+            "fuente": "municipio",
+            "n_municipio": 71,
+            "area_ha": 2.14
+          }
+        ],
+        "metricas": [
+          {
+            "poblacion": "A · municipio conocido · sin respaldo",
+            "parcelas": 135,
+            "predicciones": 675,
+            "MAE": 0.3125851851851852,
+            "RMSE": 0.49068274703263126,
+            "sesgo": 0.03803703703703689,
+            "R2": 0.6612225271174903,
+            "principal": true
+          },
+          {
+            "poblacion": "A · municipio conocido · todas las predicciones",
+            "parcelas": 138,
+            "predicciones": 690,
+            "MAE": 0.3097028985507247,
+            "RMSE": 0.4871959499191031,
+            "sesgo": 0.04112318840579696,
+            "R2": 0.6699588478237557,
+            "principal": false
+          },
+          {
+            "poblacion": "B · zona de lluvia nueva · sin respaldo",
+            "parcelas": 135,
+            "predicciones": 659,
+            "MAE": 0.3398170557111733,
+            "RMSE": 0.5164244925729228,
+            "sesgo": -0.016019358854652985,
+            "R2": 0.6191799788342482,
+            "principal": false
+          },
+          {
+            "poblacion": "B · zona de lluvia nueva · todas las predicciones",
+            "parcelas": 138,
+            "predicciones": 690,
+            "MAE": 0.3630072463768116,
+            "RMSE": 0.5525073621327545,
+            "sesgo": 0.021442028985507212,
+            "R2": 0.5686484917658561,
+            "principal": false
+          }
+        ],
+        "confianza": [
+          {
+            "municipio": "Almoloya",
+            "n_cosecha": 10,
+            "mae_municipio": 0.13620000000000035,
+            "mae_general": 0.3125851851851852,
+            "nivel": "alta",
+            "motivo": "Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.",
+            "motivo_detallado": "Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen."
+          },
+          {
+            "municipio": "Apan",
+            "n_cosecha": 1,
+            "mae_municipio": null,
+            "mae_general": 0.3125851851851852,
+            "nivel": "baja",
+            "motivo": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.",
+            "motivo_detallado": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
+          },
+          {
+            "municipio": "Calpulalpan",
+            "n_cosecha": 30,
+            "mae_municipio": 0.26666666666666666,
+            "mae_general": 0.3125851851851852,
+            "nivel": "alta",
+            "motivo": "Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",
+            "motivo_detallado": "Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado."
+          },
+          {
+            "municipio": "Chignahuapan",
+            "n_cosecha": 71,
+            "mae_municipio": 0.36777464788732406,
+            "mae_general": 0.3125851851851852,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.",
+            "motivo_detallado": "Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen."
+          },
+          {
+            "municipio": "Cuautepec de Hinojosa",
+            "n_cosecha": 5,
+            "mae_municipio": 0.14899999999999966,
+            "mae_general": 0.3125851851851852,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.",
+            "motivo_detallado": "Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme."
+          },
+          {
+            "municipio": "Emiliano Zapata",
+            "n_cosecha": 3,
+            "mae_municipio": 0.0,
+            "mae_general": 0.3125851851851852,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene sólo 3 parcelas con cosecha; con pocas parcelas la estimación es menos firme.",
+            "motivo_detallado": "Confianza media: tu municipio tiene sólo 3 parcelas con cosecha; con pocas parcelas la estimación es menos firme."
+          },
+          {
+            "municipio": "Nanacamilpa de Mariano Arista",
+            "n_cosecha": 1,
+            "mae_municipio": null,
+            "mae_general": 0.3125851851851852,
+            "nivel": "baja",
+            "motivo": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.",
+            "motivo_detallado": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
+          },
+          {
+            "municipio": "Singuilucan",
+            "n_cosecha": 16,
+            "mae_municipio": 0.3737499999999999,
+            "mae_general": 0.3125851851851852,
+            "nivel": "media",
+            "motivo": "Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.",
+            "motivo_detallado": "Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen."
+          },
+          {
+            "municipio": "Tepeapulco",
+            "n_cosecha": 1,
+            "mae_municipio": null,
+            "mae_general": 0.3125851851851852,
+            "nivel": "baja",
+            "motivo": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.",
+            "motivo_detallado": "Confianza baja: tu municipio tiene sólo 1 parcela con cosecha."
+          }
+        ],
+        "cuentas_ilustrativas": [
+          {
+            "municipio": "Almoloya",
+            "rendimiento": 4.529999999999999,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.529999999999999,
+                "Producción (t)": 45.3,
+                "Ingreso": 249149.99999999997,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 29149.99999999997,
+                "¿Cubre costos?": "Sí"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 4.383,
+                "Producción (t)": 43.83,
+                "Ingreso": 241065.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 21065.0,
+                "¿Cubre costos?": "Sí"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 4.708,
+                "Producción (t)": 47.08,
+                "Ingreso": 258940.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 38940.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          },
+          {
+            "municipio": "Apan",
+            "rendimiento": 3.0,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.0,
+                "Producción (t)": 30.0,
+                "Ingreso": 165000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -55000.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Calpulalpan",
+            "rendimiento": 3.0,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.0,
+                "Producción (t)": 30.0,
+                "Ingreso": 165000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -55000.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 2.5,
+                "Producción (t)": 25.0,
+                "Ingreso": 137500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -82500.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Chignahuapan",
+            "rendimiento": 4.52,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.52,
+                "Producción (t)": 45.199999999999996,
+                "Ingreso": 248599.99999999997,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 28599.99999999997,
+                "¿Cubre costos?": "Sí"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 3.91,
+                "Producción (t)": 39.1,
+                "Ingreso": 215050.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -4950.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 5.07,
+                "Producción (t)": 50.7,
+                "Ingreso": 278850.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 58850.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          },
+          {
+            "municipio": "Cuautepec de Hinojosa",
+            "rendimiento": 4.61,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.61,
+                "Producción (t)": 46.1,
+                "Ingreso": 253550.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 33550.0,
+                "¿Cubre costos?": "Sí"
+              },
+              "La más baja de tu municipio": {
+                "Rendimiento (t/ha)": 4.4,
+                "Producción (t)": 44.0,
+                "Ingreso": 242000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 22000.0,
+                "¿Cubre costos?": "Sí"
+              },
+              "La más alta de tu municipio": {
+                "Rendimiento (t/ha)": 4.79,
+                "Producción (t)": 47.9,
+                "Ingreso": 263450.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 43450.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          },
+          {
+            "municipio": "Emiliano Zapata",
+            "rendimiento": 3.5,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              },
+              "La más baja de tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              },
+              "La más alta de tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Nanacamilpa de Mariano Arista",
+            "rendimiento": 2.5,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 2.5,
+                "Producción (t)": 25.0,
+                "Ingreso": 137500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -82500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Singuilucan",
+            "rendimiento": 3.2,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 3.2,
+                "Producción (t)": 32.0,
+                "Ingreso": 176000.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -44000.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año bajo en tu municipio": {
+                "Rendimiento (t/ha)": 2.5,
+                "Producción (t)": 25.0,
+                "Ingreso": 137500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -82500.0,
+                "¿Cubre costos?": "No"
+              },
+              "Año alto en tu municipio": {
+                "Rendimiento (t/ha)": 3.5,
+                "Producción (t)": 35.0,
+                "Ingreso": 192500.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": -27500.0,
+                "¿Cubre costos?": "No"
+              }
+            }
+          },
+          {
+            "municipio": "Tepeapulco",
+            "rendimiento": 4.45,
+            "equilibrio_t_ha": 4.0,
+            "cuentas": {
+              "Referencia municipal": {
+                "Rendimiento (t/ha)": 4.45,
+                "Producción (t)": 44.5,
+                "Ingreso": 244750.0,
+                "Costo": 220000.0,
+                "Ingreso menos costo": 24750.0,
+                "¿Cubre costos?": "Sí"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
