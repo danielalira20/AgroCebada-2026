@@ -104,3 +104,4 @@
   .stApp button[kind="primary"]:hover { background: #2c601c; border-color: #2c601c; }
   [data-baseweb="popover"] [role="option"]:hover { background: #eaf0e0; }
 }
+:root { --guia-sobre-acento: #fff; --guia-velo: rgba(236, 242, 229, .52); }
