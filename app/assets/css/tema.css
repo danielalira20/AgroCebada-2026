@@ -906,7 +906,7 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .guia-cab { display: flex; align-items: center; justify-content: space-between; }
 .guia-etiqueta { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--acento);
   background: color-mix(in srgb, var(--acento) 14%, transparent); padding: 5px 10px; border-radius: 999px; }
-.guia-x { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--borde); background: transparent; color: var(--texto);
+.guia-x { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--borde-control); background: transparent; color: var(--texto);
   font-size: 1.2rem; line-height: 1; cursor: pointer; }
 .guia-x:hover { background: color-mix(in srgb, var(--texto) 10%, transparent); }
 .guia-icono { display: flex; align-items: center; gap: 16px; margin-top: 14px; padding: 14px 16px; border-radius: 16px;
@@ -928,7 +928,7 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .guia-tarjeta button:focus-visible, .guia-ayuda:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
 .guia-tarjeta.guia-hoja { left: 14px !important; right: 14px; top: auto !important; bottom: 14px; width: auto; max-width: none; }
 .guia-ayuda { position: fixed; z-index: 60; display: none; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0;
-  border-radius: 6px; border: 1px solid var(--borde); background: var(--dialogo); color: var(--acento); font: 800 1rem/1 inherit; cursor: pointer;
+  border-radius: 6px; border: 1px solid var(--borde-control); background: var(--dialogo); color: var(--acento); font: 800 1rem/1 inherit; cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
 .guia-ayuda:hover { filter: brightness(1.12); }
 body.guia-abierta { overflow: hidden; }

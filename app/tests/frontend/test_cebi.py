@@ -46,9 +46,9 @@ def tema(at, pid, cual="parcela"):
     assert not at.exception, at.exception
 
 
-for tema in ("claro", "oscuro"):
+for modo in ("claro", "oscuro"):
     at = AppTest.from_string(PAGINA, default_timeout=30)
-    at.session_state["tema"] = tema
+    at.session_state["tema"] = modo
     at.run()
     assert not at.exception, at.exception
     assert len(at.get("popover")) == 1 and not at.get("dialog")
@@ -147,7 +147,8 @@ print("inicio de dos pastillas y paso a la fila que se desliza")
 at = AppTest.from_string(PAGINA, default_timeout=30).run()
 tema(at, "P1", "cuenta")
 assert "Tu cuenta" in rotulo(at) and not at.button(key="cebi_P1_cambiar").disabled
-assert [b.label for b in at.button if b.key.startswith("cebi_P1_c")] == ["Mi equilibrio", "Año bajo o alto", "Si no alcanza"]
+cuenta = [b.label for b in at.button if b.key.startswith("cebi_P1_c") and b.key[len("cebi_P1_c"):].isdigit()]
+assert cuenta == ["Mi equilibrio", "Año bajo o alto", "Si no alcanza"], cuenta
 assert not [b for b in at.button if b.key in ("cebi_P1_0", "cebi_P1_t_parcela")], "no se mezclan los dos temas"
 at.button(key="cebi_P1_c0").click().run()      # sin precio ni costo no inventa nada
 assert "Escribe tu precio por tonelada y tu costo por hectárea" in conversacion(at), conversacion(at)
