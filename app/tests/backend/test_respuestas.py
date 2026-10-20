@@ -11,8 +11,9 @@ from agrocebada_app.backend.dominio import bitacora as bit  # noqa: E402
 from agrocebada_app.backend.dominio.confianza import confianza_municipios  # noqa: E402
 from agrocebada_app.backend.dominio.desglose import desglose  # noqa: E402
 from agrocebada_app.backend.dominio.rangos import ANIO  # noqa: E402
-from agrocebada_app.backend.dominio.respuestas import (CONTEXTO, P_CLIMA, P_LIBRETA, P_MARGEN,  # noqa: E402
-                                                       P_MEJORAR, P_SATELITE, _cuanto_falta, respuestas, saludo)
+from agrocebada_app.backend.dominio.respuestas import (CONTEXTO, P_CLIMA, P_EQUILIBRIO, P_ESCENARIOS,  # noqa: E402
+                                                       P_LIBRETA, P_MARGEN, P_MEJORAR, P_PLAN, P_SATELITE,
+                                                       _cuanto_falta, respuestas, respuestas_cuenta, saludo)
 
 MOD = "mediana_mun__resp_grupo"
 # --- datos inventados: municipio M con 10 parcelas con cosecha (1 a 10 t/ha) y dos por estimar
@@ -115,4 +116,42 @@ assert rl == ("Anotaste 2 años. Tu promedio fue 4.25 t/ha; tu mejor año fue 20
               "con 4.00 t/ha. Lo que estimó la app quedó, en promedio, a 0.50 t/ha de lo que anotaste. Tu promedio "
               f"está 1.25 t/ha abajo del valor típico de las parcelas con cosecha de M en {ANIO} (5.50 t/ha)."), rl
 assert P_LIBRETA in dict(respuestas(d, pred, MOD, conf, "M3", libreta=lib))         # también en parcelas registradas
+
+# --- «Mi cuenta»: siempre tres preguntas, con la misma cuenta que la calculadora «¿Me alcanza?» (planeador)
+nombres = [P_EQUILIBRIO, P_ESCENARIOS, P_PLAN]
+sin = respuestas_cuenta(d, pred, "P1")
+assert [p for p, _ in sin] == nombres
+assert all("Escribe tu precio por tonelada y tu costo por hectárea" in t for _, t in sin), sin   # sin datos no inventa
+assert all("Escribe tu superficie" in t for _, t in respuestas_cuenta(d, pred, "P1", precio=6000, costo=18000,
+                                                                      area_pendiente=True))    # superficie borrada
+cu = dict(respuestas_cuenta(d, pred, "P1", precio=6000, costo=18000, area=5))
+assert cu[P_EQUILIBRIO].startswith("Para cubrir el costo necesitas al menos 3.00 t/ha."), cu[P_EQUILIBRIO]
+assert "Tu estimación (5.50 t/ha) queda por encima de ese punto." in cu[P_EQUILIBRIO]
+assert cu[P_EQUILIBRIO].endswith("Es orientativo; no es un dictamen de crédito.")
+assert cu[P_ESCENARIOS].startswith("En M, 8 de 10 parcelas con cosecha dieron entre 1.90 y 9.10 t/ha"), cu[P_ESCENARIOS]
+assert "un rendimiento bajo de tu municipio (1.90 t/ha) te faltarían $33,000." in cu[P_ESCENARIOS]
+assert "tu estimación (5.50 t/ha) te quedarían $75,000." in cu[P_ESCENARIOS]
+assert "un rendimiento alto de tu municipio (9.10 t/ha) te quedarían $183,000." in cu[P_ESCENARIOS]
+assert cu[P_ESCENARIOS].endswith(f"Son referencias de lo que pasó en {ANIO}; no dicen cuál te tocará.")
+# con la misma cuenta que la calculadora: lo que dice «Mis costos» y lo que dice «Mi cuenta» coincide
+assert "quedan $75,000" in dict(respuestas(d, pred, MOD, conf, "P1", precio=6000, costo=18000, area=5))[
+    "¿Me alcanza para mis costos?"]
+# el plan sale del escenario bajo (el que falta aun cuando la referencia cubre) y trae sus tres pasos y la nota
+assert cu[P_PLAN].startswith("Con el escenario bajo") and "te faltarían $33,000." in cu[P_PLAN], cu[P_PLAN]
+assert cu[P_PLAN].count("\n") == 4 and "\n1. " in cu[P_PLAN] and "\n3. " in cu[P_PLAN]
+assert cu[P_PLAN].endswith("no garantiza apoyos ni resultados de cosecha.")
+# si la referencia misma no alcanza, el equilibrio lo dice y queda por debajo
+mal = dict(respuestas_cuenta(d, pred, "P1", precio=6000, costo=40000, area=5))
+assert "necesitas al menos 6.67 t/ha" in mal[P_EQUILIBRIO] and "queda por debajo de ese punto" in mal[P_EQUILIBRIO]
+assert "(5.50 t/ha) te faltarían $35,000." in mal[P_ESCENARIOS]
+# nada de lo prohibido en el método: ni predicciones del año ni recomendaciones de siembra
+for _, t in list(cu.items()) + list(mal.items()):
+    for frase in ("vas a perder cosecha", "conviene revisar", "se recomienda sembrar", "será buena", "será mala"):
+        assert frase not in t, frase
+# parcela con cosecha registrada: la cuenta parte de lo que sacó
+assert "Tu cosecha registrada (3.00 t/ha)" in dict(respuestas_cuenta(d, pred, "M3", precio=6000, costo=40000,
+                                                                      area=5))[P_EQUILIBRIO]
+# la superficie borrada en la calculadora también deja pendiente «Mis costos»
+assert "Escribe tu superficie" in dict(respuestas(d, pred, MOD, conf, "P1", precio=6000, costo=18000,
+                                                  area_pendiente=True))["¿Me alcanza para mis costos?"]
 print("OK")

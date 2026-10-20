@@ -1,0 +1,1874 @@
+[
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 320,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 244,
+        "clase": "rapida-resumen",
+        "columnas": "244px",
+        "contenido": 244
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-equilibrio",
+        "columnas": "214.4px",
+        "contenido": 242
+      },
+      {
+        "ancho": 244,
+        "clase": "esc-tarjetas",
+        "columnas": "244px",
+        "contenido": 244
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 242
+      }
+    ],
+    "viewport": 320,
+    "archivo": "rapida-claro-320.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 375,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 299,
+        "clase": "rapida-resumen",
+        "columnas": "299.2px",
+        "contenido": 299
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-equilibrio",
+        "columnas": "269.6px",
+        "contenido": 298
+      },
+      {
+        "ancho": 299,
+        "clase": "esc-tarjetas",
+        "columnas": "299.2px",
+        "contenido": 299
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 298
+      }
+    ],
+    "viewport": 375,
+    "archivo": "rapida-claro-375.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 600,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 524,
+        "clase": "rapida-resumen",
+        "columnas": "524px",
+        "contenido": 524
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-equilibrio",
+        "columnas": "494.4px",
+        "contenido": 522
+      },
+      {
+        "ancho": 524,
+        "clase": "esc-tarjetas",
+        "columnas": "524px",
+        "contenido": 524
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 522
+      }
+    ],
+    "viewport": 600,
+    "archivo": "rapida-claro-600.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 700,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 624,
+        "clase": "rapida-resumen",
+        "columnas": "624px",
+        "contenido": 624
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-equilibrio",
+        "columnas": "146.837px 419.562px",
+        "contenido": 622
+      },
+      {
+        "ancho": 624,
+        "clase": "esc-tarjetas",
+        "columnas": "624px",
+        "contenido": 624
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 622
+      }
+    ],
+    "viewport": 700,
+    "archivo": "rapida-claro-700.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 900,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 696,
+        "clase": "rapida-resumen",
+        "columnas": "336px 336px",
+        "contenido": 696
+      },
+      {
+        "ancho": 694,
+        "clase": "esc-equilibrio",
+        "columnas": "165.5px 472.888px",
+        "contenido": 694
+      },
+      {
+        "ancho": 696,
+        "clase": "esc-tarjetas",
+        "columnas": "222.663px 222.663px 222.675px",
+        "contenido": 696
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 221
+      }
+    ],
+    "viewport": 900,
+    "archivo": "rapida-claro-900.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 1400,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 1196,
+        "clase": "rapida-resumen",
+        "columnas": "586px 586px",
+        "contenido": 1196
+      },
+      {
+        "ancho": 1194,
+        "clase": "esc-equilibrio",
+        "columnas": "295.138px 843.263px",
+        "contenido": 1194
+      },
+      {
+        "ancho": 1196,
+        "clase": "esc-tarjetas",
+        "columnas": "389.325px 389.337px 389.325px",
+        "contenido": 1196
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 388
+      }
+    ],
+    "viewport": 1400,
+    "archivo": "rapida-claro-1400.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 320,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 244,
+        "clase": "rapida-resumen",
+        "columnas": "244px",
+        "contenido": 244
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-equilibrio",
+        "columnas": "214.4px",
+        "contenido": 242
+      },
+      {
+        "ancho": 244,
+        "clase": "esc-tarjetas",
+        "columnas": "244px",
+        "contenido": 244
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 242
+      }
+    ],
+    "viewport": 320,
+    "archivo": "rapida-oscuro-320.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 375,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 299,
+        "clase": "rapida-resumen",
+        "columnas": "299.2px",
+        "contenido": 299
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-equilibrio",
+        "columnas": "269.6px",
+        "contenido": 298
+      },
+      {
+        "ancho": 299,
+        "clase": "esc-tarjetas",
+        "columnas": "299.2px",
+        "contenido": 299
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 298
+      }
+    ],
+    "viewport": 375,
+    "archivo": "rapida-oscuro-375.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 600,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 524,
+        "clase": "rapida-resumen",
+        "columnas": "524px",
+        "contenido": 524
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-equilibrio",
+        "columnas": "494.4px",
+        "contenido": 522
+      },
+      {
+        "ancho": 524,
+        "clase": "esc-tarjetas",
+        "columnas": "524px",
+        "contenido": 524
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 522
+      }
+    ],
+    "viewport": 600,
+    "archivo": "rapida-oscuro-600.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 700,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 624,
+        "clase": "rapida-resumen",
+        "columnas": "624px",
+        "contenido": 624
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-equilibrio",
+        "columnas": "146.837px 419.562px",
+        "contenido": 622
+      },
+      {
+        "ancho": 624,
+        "clase": "esc-tarjetas",
+        "columnas": "624px",
+        "contenido": 624
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 622
+      }
+    ],
+    "viewport": 700,
+    "archivo": "rapida-oscuro-700.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 900,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 696,
+        "clase": "rapida-resumen",
+        "columnas": "336px 336px",
+        "contenido": 696
+      },
+      {
+        "ancho": 694,
+        "clase": "esc-equilibrio",
+        "columnas": "165.5px 472.888px",
+        "contenido": 694
+      },
+      {
+        "ancho": 696,
+        "clase": "esc-tarjetas",
+        "columnas": "222.663px 222.663px 222.675px",
+        "contenido": 696
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 221
+      }
+    ],
+    "viewport": 900,
+    "archivo": "rapida-oscuro-900.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "rapida-cifra",
+        "px": "44px"
+      },
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 1400,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 1196,
+        "clase": "rapida-resumen",
+        "columnas": "586px 586px",
+        "contenido": 1196
+      },
+      {
+        "ancho": 1194,
+        "clase": "esc-equilibrio",
+        "columnas": "295.138px 843.263px",
+        "contenido": 1194
+      },
+      {
+        "ancho": 1196,
+        "clase": "esc-tarjetas",
+        "columnas": "389.325px 389.337px 389.325px",
+        "contenido": 1196
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 388
+      }
+    ],
+    "viewport": 1400,
+    "archivo": "rapida-oscuro-1400.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 1400,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 1194,
+        "clase": "esc-equilibrio",
+        "columnas": "295.138px 843.263px",
+        "contenido": 1194
+      },
+      {
+        "ancho": 1196,
+        "clase": "esc-tarjetas",
+        "columnas": "389.325px 389.337px 389.325px",
+        "contenido": 1196
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 388
+      }
+    ],
+    "viewport": 1400,
+    "archivo": "catalogo-oscuro-1400.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 900,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 694,
+        "clase": "esc-equilibrio",
+        "columnas": "165.5px 472.888px",
+        "contenido": 694
+      },
+      {
+        "ancho": 696,
+        "clase": "esc-tarjetas",
+        "columnas": "222.663px 222.663px 222.675px",
+        "contenido": 696
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 221
+      }
+    ],
+    "viewport": 900,
+    "archivo": "catalogo-oscuro-900.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 700,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 622,
+        "clase": "esc-equilibrio",
+        "columnas": "146.837px 419.562px",
+        "contenido": 622
+      },
+      {
+        "ancho": 624,
+        "clase": "esc-tarjetas",
+        "columnas": "624px",
+        "contenido": 624
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 622
+      }
+    ],
+    "viewport": 700,
+    "archivo": "catalogo-oscuro-700.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 600,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 522,
+        "clase": "esc-equilibrio",
+        "columnas": "494.4px",
+        "contenido": 522
+      },
+      {
+        "ancho": 524,
+        "clase": "esc-tarjetas",
+        "columnas": "524px",
+        "contenido": 524
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 522
+      }
+    ],
+    "viewport": 600,
+    "archivo": "catalogo-oscuro-600.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 375,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 298,
+        "clase": "esc-equilibrio",
+        "columnas": "269.6px",
+        "contenido": 298
+      },
+      {
+        "ancho": 299,
+        "clase": "esc-tarjetas",
+        "columnas": "299.2px",
+        "contenido": 299
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 298
+      }
+    ],
+    "viewport": 375,
+    "archivo": "catalogo-oscuro-375.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 320,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(231, 239, 233)",
+        "fondo": "rgba(13, 21, 17, 0.58)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 242,
+        "clase": "esc-equilibrio",
+        "columnas": "214.4px",
+        "contenido": 242
+      },
+      {
+        "ancho": 244,
+        "clase": "esc-tarjetas",
+        "columnas": "244px",
+        "contenido": 244
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 242
+      }
+    ],
+    "viewport": 320,
+    "archivo": "catalogo-oscuro-320.jpg",
+    "tema": "oscuro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 320,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 242,
+        "clase": "esc-equilibrio",
+        "columnas": "214.4px",
+        "contenido": 242
+      },
+      {
+        "ancho": 244,
+        "clase": "esc-tarjetas",
+        "columnas": "244px",
+        "contenido": 244
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 242
+      },
+      {
+        "ancho": 242,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 242
+      }
+    ],
+    "viewport": 320,
+    "archivo": "catalogo-claro-320.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 375,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 298,
+        "clase": "esc-equilibrio",
+        "columnas": "269.6px",
+        "contenido": 298
+      },
+      {
+        "ancho": 299,
+        "clase": "esc-tarjetas",
+        "columnas": "299.2px",
+        "contenido": 299
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 298
+      },
+      {
+        "ancho": 298,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 298
+      }
+    ],
+    "viewport": 375,
+    "archivo": "catalogo-claro-375.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "none",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 600,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 522,
+        "clase": "esc-equilibrio",
+        "columnas": "494.4px",
+        "contenido": 522
+      },
+      {
+        "ancho": 524,
+        "clase": "esc-tarjetas",
+        "columnas": "524px",
+        "contenido": 524
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 522
+      },
+      {
+        "ancho": 522,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 522
+      }
+    ],
+    "viewport": 600,
+    "archivo": "catalogo-claro-600.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 700,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 622,
+        "clase": "esc-equilibrio",
+        "columnas": "146.837px 419.562px",
+        "contenido": 622
+      },
+      {
+        "ancho": 624,
+        "clase": "esc-tarjetas",
+        "columnas": "624px",
+        "contenido": 624
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 622
+      },
+      {
+        "ancho": 622,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 622
+      }
+    ],
+    "viewport": 700,
+    "archivo": "catalogo-claro-700.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 900,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 694,
+        "clase": "esc-equilibrio",
+        "columnas": "165.5px 472.888px",
+        "contenido": 694
+      },
+      {
+        "ancho": 696,
+        "clase": "esc-tarjetas",
+        "columnas": "222.663px 222.663px 222.675px",
+        "contenido": 696
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 221
+      },
+      {
+        "ancho": 221,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 221
+      }
+    ],
+    "viewport": 900,
+    "archivo": "catalogo-claro-900.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  },
+  {
+    "alto": 1000,
+    "barra": "block",
+    "cifras": [
+      {
+        "clase": "esc-umbral",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      },
+      {
+        "clase": "esc-rendimiento",
+        "px": "32px"
+      }
+    ],
+    "docAncho": 1400,
+    "expansores": [
+      {
+        "abierto": true,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+      },
+      {
+        "abierto": false,
+        "color": "rgb(41, 63, 44)",
+        "fondo": "rgba(255, 255, 255, 0.62)",
+        "texto": "keyboard_arrow_rightVer la cuenta completa"
+      }
+    ],
+    "layout": [
+      {
+        "ancho": 1194,
+        "clase": "esc-equilibrio",
+        "columnas": "295.138px 843.263px",
+        "contenido": 1194
+      },
+      {
+        "ancho": 1196,
+        "clase": "esc-tarjetas",
+        "columnas": "389.325px 389.337px 389.325px",
+        "contenido": 1196
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--bajo",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--referencia",
+        "columnas": "none",
+        "contenido": 388
+      },
+      {
+        "ancho": 388,
+        "clase": "esc-tarjeta esc-tarjeta--alto",
+        "columnas": "none",
+        "contenido": 388
+      }
+    ],
+    "viewport": 1400,
+    "archivo": "catalogo-claro-1400.jpg",
+    "tema": "claro",
+    "configuracion": "app/.streamlit/config.toml"
+  }
+]

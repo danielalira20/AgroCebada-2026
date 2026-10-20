@@ -8,6 +8,9 @@ from agrocebada_app.frontend.componentes.mapa.mapa import mapa
 from agrocebada_app.frontend.componentes.paneles.explicacion import explicacion_cebi
 from agrocebada_app.frontend.componentes.paneles.leyenda import leyenda
 from agrocebada_app.frontend.estado.cache import elevaciones
+from agrocebada_app.frontend.estado.planeador import (
+    MODOS_AGRICULTOR, guardar_catalogo, guardar_modo, preparar_catalogo, preparar_modo,
+)
 from agrocebada_app.frontend.tema.html import chips, e, h
 from agrocebada_app.frontend.vistas.agricultor.panel_parcela import panel_parcela
 from agrocebada_app.frontend.vistas.agricultor.seleccion import clic_agricultor
@@ -15,9 +18,24 @@ from agrocebada_app.frontend.vistas.agricultor.verdor_clima import verdor_clima
 from agrocebada_app.frontend.vistas.agricultor.calculadora import calculadora
 from agrocebada_app.frontend.vistas.agricultor.bitacora import bitacora
 from agrocebada_app.frontend.vistas.agricultor.pregunta_cebi import pregunta_cebi
+from agrocebada_app.frontend.vistas.agricultor.consulta_rapida import consulta_rapida
 
 
 def mostrar(ctx):
+    preparar_modo(st.session_state)
+    with st.container(key="glass_recorrido_agricultor"):
+        modo = st.segmented_control("Tipo de consulta", MODOS_AGRICULTOR, key="agri_modo_control",
+                                    required=True, wrap=True, on_change=guardar_modo,
+                                    args=(st.session_state,))
+    if modo == "Consulta rápida":
+        consulta_rapida(ctx)
+        return
+    preparar_catalogo(st.session_state)
+    _mostrar_catalogo(ctx)
+    guardar_catalogo(st.session_state)
+
+
+def _mostrar_catalogo(ctx):
     d = ctx.d
     S = ctx.S
     C = ctx.C

@@ -65,6 +65,9 @@
 .st-key-cebi_preguntas [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: 6px; }
 .st-key-cebi_preguntas [data-testid="stColumn"] {
   flex: 0 0 calc((100% - 12px) / 3) !important; width: auto !important; min-width: 0 !important; }
+/* El número de columnas no cambia nunca (si cambiara, Streamlit rehace el bloque y cierra el popover), así que al
+   escoger tema las que se quedan sin pastilla se esconden en vez de dejar huecos en la rejilla. */
+.st-key-cebi_preguntas [data-testid="stColumn"]:not(:has(button)) { display: none; }
 /* Con conversación: el mismo bloque se encoge a un solo renglón que se desliza. Es la misma marca que cambia el
    rótulo de arriba, así no hace falta mover nada del árbol de Streamlit. */
 .st-key-cebi_chat:has(.cebi-sugerencias.cebi-fila) .st-key-cebi_preguntas [data-testid="stHorizontalBlock"] {

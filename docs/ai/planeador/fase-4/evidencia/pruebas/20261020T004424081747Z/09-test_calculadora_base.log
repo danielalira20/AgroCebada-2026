@@ -1,0 +1,3 @@
+2026-10-19 18:45:00.399 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:45:09.775 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+OK: parcela estimada/registrada, cuenta municipal sin ID, área única, retención, limpieza y datos para PDF.

@@ -5,10 +5,11 @@ en toda la parcela, de cuánto puede fallar el número en su cosecha, cómo qued
 más precisa la cifra. Todo sale del dato: no hay cifras escritas a mano ni modelo de lenguaje."""
 from agrocebada_app.backend.dominio.bitacora import faltan_para_subir
 from agrocebada_app.backend.dominio.bitacora import resumen as resumen_libreta
-from agrocebada_app.backend.dominio.calculadora import cuentas, equilibrio, frase_equilibrio
+from agrocebada_app.backend.dominio.calculadora import frase_equilibrio
 from agrocebada_app.backend.dominio.clima_anomalia import comparar, frases
 from agrocebada_app.backend.dominio.desglose import NO_ENTRA, NO_VE, desglose
 from agrocebada_app.backend.dominio.franja_verdor import frase_verdor
+from agrocebada_app.backend.dominio.planeador import escenarios_cuenta, evaluar_cuenta, importe, plan_si_sale_mal
 from agrocebada_app.backend.dominio.rangos import ANIO, rango_de
 from agrocebada_app.backend.modelo.estimador import estadistico
 
@@ -18,6 +19,10 @@ P_NO_SABE = "¿Qué no sabe la app de mi parcela?"
 P_SATELITE = "¿Cómo se vio mi parcela desde el satélite?"
 P_MARGEN = "¿De cuánto puede fallar mi número?"
 P_LIBRETA = "¿Cómo me fue en los años que anoté?"
+# las tres de «Mi cuenta»: salen de la misma cuenta que la calculadora «¿Me alcanza?» (planeador)
+P_EQUILIBRIO = "¿Cuánto necesito sacar para no perder?"
+P_ESCENARIOS = "¿Qué pasa si el año sale bajo o alto?"
+P_PLAN = "¿Qué hago si no me alcanza?"
 # las únicas que hablan de clima, de verdor o de lo que no entra al cálculo
 CONTEXTO = (P_CLIMA, P_MEJORAR, P_NO_SABE, P_SATELITE)
 _TOL = 1e-9
@@ -27,19 +32,66 @@ def _dinero(x):
     return f"-${abs(x):,.0f}" if x < 0 else f"${x:,.0f}"
 
 
-def _costos(d, municipio, rend, precio, costo, area):
-    """Respuesta de costos con la misma cuenta que la calculadora (M05). Sin precio o costo, pide escribirlos."""
-    if not precio or not costo or not area:
-        return ("Escribe tu precio por tonelada y tu costo por hectárea en la calculadora «¿Me alcanza?» de esta "
-                "página y te hago la cuenta.")
-    c = cuentas([("x", rend)], area, precio, costo)["x"]
-    dif = c["Ingreso menos costo"]
-    if c["¿Cubre costos?"] == "Sí":
-        cierre = f"sí cubre tus costos y quedan {_dinero(dif)}."
+_PIDE_DATOS = ("Escribe tu precio por tonelada y tu costo por hectárea en la calculadora «¿Me alcanza?» de esta "
+               "página y te hago la cuenta.")
+_PIDE_AREA = "Escribe tu superficie en la calculadora «¿Me alcanza?» de esta página y te hago la cuenta."
+_REVISA = "Revísalo en la calculadora «¿Me alcanza?» de esta página."
+
+
+def _referencia_parcela(d, pred, pid):
+    """(t/ha, etiqueta de la cuenta, cómo se llama) con lo que usa la calculadora para esa parcela."""
+    r = d.loc[pid]
+    if r.CONJUNTO == "PREDICCION":
+        return float(pred.loc[pid, "prediccion"]), "Con la estimación", "tu estimación"
+    return float(r.real), "Con tu cosecha registrada", "tu cosecha registrada"
+
+
+def _cuenta(d, municipio, rend, etiqueta, area, precio, costo, area_pendiente=False):
+    """La misma cuenta que la calculadora (evaluar_cuenta). Devuelve (mensaje, None) si todavía no hay cuenta que
+    contar, o (None, (resultado, escenarios)). La superficie borrada en la calculadora cuenta como pendiente."""
+    if not precio or not costo:
+        return _PIDE_DATOS, None
+    if area_pendiente:
+        return _PIDE_AREA, None
+    try:
+        resultado = evaluar_cuenta(d, municipio, rend, etiqueta, area, precio, costo)
+    except ValueError:
+        return f"No pude hacer la cuenta con los datos que tengo. {_REVISA}", None
+    if resultado["estado"] == "pendiente":
+        return _PIDE_DATOS, None
+    if resultado["estado"] == "invalida":
+        return f"{' '.join(resultado['errores'].values())} {_REVISA}", None
+    return None, (resultado, escenarios_cuenta(resultado, "Referencia"))
+
+
+def _queda(s):
+    """Qué le pasa al bolsillo en un escenario, con las palabras de la tarjeta de la calculadora."""
+    if s["cobertura"] == "falta":
+        return f"te faltarían {importe(-s['saldo'])}"
+    if s["cobertura"] == "equilibrio":
+        return "justo cubrirías tus costos"
+    return f"te quedarían {importe(s['saldo'])}"
+
+
+def _escenario(escenarios, sid):
+    return next(s for s in escenarios if s["id"] == sid)
+
+
+def _costos(d, municipio, rend, precio, costo, area, area_pendiente=False, etiqueta="Con la estimación"):
+    """Respuesta de costos con la misma cuenta que la calculadora (M05 y planeador). Sin precio o costo, pide escribirlos."""
+    previo, cuenta = _cuenta(d, municipio, rend, etiqueta, area, precio, costo, area_pendiente)
+    if previo:
+        return previo
+    resultado, escenarios = cuenta
+    ref = _escenario(escenarios, "referencia")
+    if ref["cobertura"] == "falta":
+        cierre = f"no cubre tus costos: faltarían {importe(-ref['saldo'])}."
+    elif ref["cobertura"] == "equilibrio":
+        cierre = "justo cubre tus costos."
     else:
-        cierre = f"no cubre tus costos: faltarían {_dinero(-dif)}."
-    return (f"Con {rend:.2f} t/ha en {area:.2f} ha, el ingreso sería {_dinero(c['Ingreso'])} contra un costo de "
-            f"{_dinero(c['Costo'])}: {cierre} {frase_equilibrio(d, municipio, equilibrio(precio, costo))} "
+        cierre = f"sí cubre tus costos y quedan {importe(ref['saldo'])}."
+    return (f"Con {rend:.2f} t/ha en {area:.2f} ha, el ingreso sería {importe(ref['ingreso'])} contra un costo de "
+            f"{importe(ref['costo'])}: {cierre} {frase_equilibrio(d, municipio, resultado['umbral'])} "
             "Es orientativo; no es un dictamen de crédito.")
 
 
@@ -186,10 +238,11 @@ def saludo(d, pred, modelo, conf, pid):
 
 
 def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, area=None, clima=None, normal=None,
-               series=None, libreta=None):
+               series=None, libreta=None, area_pendiente=False):
     """Lista [(pregunta, respuesta)] para `pid`. Cambia si la parcela está por estimar o ya tiene cosecha.
     `precio`, `costo` y `area` vienen de la calculadora (M05); `clima` y `normal`, de M07; `series`, de M06;
-    `libreta`, de «Tu libreta» (si el agricultor anotó cosechas aparece una pregunta más)."""
+    `libreta`, de «Tu libreta» (si el agricultor anotó cosechas aparece una pregunta más). `area_pendiente` es True si
+    borró la superficie de la calculadora: la cuenta queda pendiente, como allá."""
     r = d.loc[pid]
     area = area or float(r.AREA_HA)
     if r.CONJUNTO == "PREDICCION":
@@ -207,7 +260,8 @@ def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, ar
             ("¿Por qué mi vecino tiene el mismo número?", _vecinos(d, pred, pid, est)),
             ("¿Qué tanto puedo confiar?", confiar),
             (P_MARGEN, _margen(r.municipio, p, area, precio)),
-            ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(p.prediccion), precio, costo, area)),
+            ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(p.prediccion), precio, costo, area,
+                                         area_pendiente)),
             (P_SATELITE, _satelite(d, series, pid)),
             (P_CLIMA, _clima(clima, normal, pid)),
             (P_MEJORAR, _mejorar(d, r.municipio)),
@@ -220,7 +274,8 @@ def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, ar
             ("¿Cómo le fue a mi parcela frente a las de mi municipio?", dio),
             ("¿Cuántas toneladas saqué en total?", _produccion(float(r.real), area, False)),
             ("¿Entre qué valores quedaron las de mi municipio?", rango_de(d, r.municipio)["texto"]),
-            ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(r.real), precio, costo, area)),
+            ("¿Me alcanza para mis costos?", _costos(d, r.municipio, float(r.real), precio, costo, area,
+                                         area_pendiente, "Con tu cosecha registrada")),
             (P_SATELITE, _satelite(d, series, pid)),
             (P_CLIMA, _clima(clima, normal, pid)),
             (P_NO_SABE, f"No conoce tu {NO_VE}: sólo usa las cosechas registradas. {NO_ENTRA}"),
@@ -228,3 +283,46 @@ def respuestas(d, pred, modelo, conf, pid, oof=None, precio=None, costo=None, ar
     if libreta is not None and not libreta.empty:
         lista.append((P_LIBRETA, _libreta(d, modelo, r.municipio, libreta)))
     return lista
+
+
+def respuestas_cuenta(d, pred, pid, precio=None, costo=None, area=None, area_pendiente=False):
+    """Las tres preguntas de «Mi cuenta» para `pid`: cuánto necesita sacar, qué pasa en un año bajo o alto y qué
+    hacer si no alcanza. Salen de la misma cuenta que la calculadora «¿Me alcanza?» (evaluar_cuenta, escenarios_cuenta
+    y plan_si_sale_mal): no se recalcula nada ni se redacta nada aparte. Sin precio y costo, piden escribirlos.
+    Siempre devuelve tres, para que el historial de Cebi cuente desde el final y no se corra."""
+    r = d.loc[pid]
+    rend, etiqueta, que = _referencia_parcela(d, pred, pid)
+    area = area or float(r.AREA_HA)
+    previo, cuenta = _cuenta(d, r.municipio, rend, etiqueta, area, precio, costo, area_pendiente)
+    if previo:
+        return [(P_EQUILIBRIO, previo), (P_ESCENARIOS, previo), (P_PLAN, previo)]
+    resultado, escenarios = cuenta
+    ref = _escenario(escenarios, "referencia")
+
+    posicion = {"cubre": "queda por encima de ese punto", "equilibrio": "queda justo en ese punto",
+                "falta": "queda por debajo de ese punto"}[ref["cobertura"]]
+    equilibrio_txt = (f"{frase_equilibrio(d, r.municipio, resultado['umbral'])} {que.capitalize()} ({rend:.2f} t/ha) "
+                      f"{posicion}. Es orientativo; no es un dictamen de crédito.")
+
+    rango = resultado["rango"]
+    if len(escenarios) == 1:
+        escenarios_txt = (f"{rango['texto']} Por eso no puedo darte un rendimiento bajo ni uno alto; sólo la cuenta "
+                          f"con {que}.")
+    else:
+        extremos = rango["tipo_rango"] == "mínimo–máximo"
+        bajo, alto = _escenario(escenarios, "bajo"), _escenario(escenarios, "alto")
+        escenarios_txt = " ".join([
+            rango["texto"],
+            f"Con {'el menor rendimiento registrado' if extremos else 'un rendimiento bajo'} de tu municipio "
+            f"({bajo['rendimiento_t_ha']:.2f} t/ha) {_queda(bajo)}.",
+            f"Con {que} ({rend:.2f} t/ha) {_queda(ref)}.",
+            f"Con {'el mayor rendimiento registrado' if extremos else 'un rendimiento alto'} de tu municipio "
+            f"({alto['rendimiento_t_ha']:.2f} t/ha) {_queda(alto)}.",
+            f"Son referencias de lo que pasó en {ANIO}; no dicen cuál te tocará."])
+
+    plan = plan_si_sale_mal(escenarios)
+    intro = plan["apertura"] if plan["estado"] == "falta" else (
+        f"{plan['apertura']} Si tus números cambian y llegara a faltarte, esto ayuda:")
+    pasos = "\n".join(f"{i}. {paso}" for i, paso in enumerate(plan["pasos"], 1))
+    return [(P_EQUILIBRIO, equilibrio_txt), (P_ESCENARIOS, escenarios_txt),
+            (P_PLAN, f"{intro}\n{pasos}\n{plan['nota']}")]

@@ -1,0 +1,46 @@
+2026-10-19 19:03:03.691 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.703 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.704 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.705 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.706 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.719 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.722 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.725 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.727 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:03.729 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:04.087 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+2026-10-19 19:03:04.091 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:04.332 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:13.611 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:15.304 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:16.963 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:18.261 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:21.123 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:25.554 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:29.610 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:35.210 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:39.242 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:43.667 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:50.729 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:51.049 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:03:55.660 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:04:05.693 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:04:15.463 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:04:34.797 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+Agricultor · Mediana · oficial · AGC_025: modelo, confianza y PDF de una página
+Agricultor · Mediana · oficial · AGC_011: modelo, confianza y PDF de una página
+Agricultor · Mediana · oficial · AGC_120: modelo, confianza y PDF de una página
+Agricultor · Mediana · oficial · AGC_002: modelo, confianza y PDF de una página
+Agricultor · Mediana · oficial · AGC_025: modelo, confianza y PDF de una página
+Agricultor · Mediana · oficial · AGC_011: modelo, confianza y PDF de una página
+Analista · Mediana · oficial · AGC_025: modelo, confianza y PDF de una página
+Analista · Mediana · oficial · AGC_011: modelo, confianza y PDF de una página
+Analista · Mediana · oficial · AGC_120: modelo, confianza y PDF de una página
+Analista · Mediana · oficial · AGC_002: modelo, confianza y PDF de una página
+Analista · Mediana · oficial · AGC_025: modelo, confianza y PDF de una página
+Analista · Media · referencia · AGC_025: modelo, confianza y PDF de una página
+Analista · Media · referencia · AGC_011: modelo, confianza y PDF de una página
+Analista · Media · referencia · AGC_120: modelo, confianza y PDF de una página
+Analista · Media · referencia · AGC_002: modelo, confianza y PDF de una página
+Analista · Media · referencia · AGC_025: modelo, confianza y PDF de una página
+OK: ambas vistas; confianza alta/media/baja, registrado y respaldo por grupo; ambos modelos en Analista

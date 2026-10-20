@@ -2,6 +2,7 @@
 import streamlit as st
 
 from agrocebada_app.config import MODELO_OFICIAL
+from agrocebada_app.frontend.estado.planeador import hidratar_compatibilidad
 
 
 def iniciar_sesion():
@@ -17,3 +18,4 @@ def iniciar_sesion():
 
     for k, v in valores.items():
         st.session_state.setdefault(k, v)
+    hidratar_compatibilidad(st.session_state)

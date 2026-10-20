@@ -1,7 +1,7 @@
 """Botón para descargar la ficha de una parcela en PDF (se arma al hacer clic)."""
 import streamlit as st
 
-from agrocebada_app.backend.dominio.calculadora import columnas, cuentas, rango_municipio
+from agrocebada_app.backend.dominio.planeador import escenarios_cuenta, evaluar_cuenta, importe as _dinero
 from agrocebada_app.backend.ficha_pdf.armado import armar_ficha
 
 
@@ -12,28 +12,28 @@ def ficha_bytes(pid, modelo, _ctx, confianza=None, calculadora=None):
     return armar_ficha(pid, _ctx, modelo, confianza, calculadora)
 
 
-def _dinero(x):
-    return f"-${abs(x):,.0f}" if x < 0 else f"${x:,.0f}"
-
-
 def filas_calculadora(pid, ctx):
     """Filas (concepto, valor) de la calculadora (M05) con lo que el usuario escribió en esta sesión, o None si no
-    llenó el precio y el costo. Es la misma cuenta de la vista: estimación (o cosecha registrada) y año bajo."""
+    llenó el precio y el costo. Usa la misma referencia y escenario bajo histórico que la vista."""
     precio, costo = st.session_state.get("calc_precio"), st.session_state.get("calc_costo")
     if not precio or not costo:
         return None
     r = ctx.d.loc[pid]
     est = r.CONJUNTO == "PREDICCION"
     rend = float(ctx.pred.loc[pid, "prediccion"]) if est else float(r.real)
-    area = float(st.session_state.get(f"calc_area_{pid}") or r.AREA_HA)
-    cols = columnas(rend, "Con la estimación" if est else "Con tu cosecha registrada", rango_municipio(ctx.d, r.municipio))
-    t = cuentas(cols, area, precio, costo)
+    area = st.session_state.get(f"calc_area_{pid}", float(r.AREA_HA))
+    resultado = evaluar_cuenta(ctx.d, r.municipio, rend, "Con la estimación" if est else "Con tu cosecha registrada",
+                               area, precio, costo)
+    if resultado["estado"] != "calculada":
+        return None
+    t = resultado["tabla"]
     base = t.columns[0]
     filas = [(f"Producción en {area:.2f} ha", f"{t.loc['Producción (t)', base]:.1f} t"),
              ("Ingreso menos costo" + (" · cubre costos" if t.loc["¿Cubre costos?", base] == "Sí" else " · no cubre costos"),
               _dinero(t.loc["Ingreso menos costo", base]))]
-    if len(cols) == 3:
-        filas.append((cols[1][0], _dinero(t.loc["Ingreso menos costo", t.columns[1]])))
+    if len(t.columns) == 3:
+        bajo = next(s for s in escenarios_cuenta(resultado, "Referencia") if s["id"] == "bajo")
+        filas.append((bajo["etiqueta"], _dinero(bajo["saldo"])))
     return filas
 
 

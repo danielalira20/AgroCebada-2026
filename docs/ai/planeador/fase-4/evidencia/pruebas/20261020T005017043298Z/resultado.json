@@ -1,0 +1,57 @@
+{
+  "inicio_utc": "2026-10-20T00:50:17.043298+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "plataforma": "Windows-11-10.0.26200-SP0",
+  "fuentes_sha256": {
+    "app.py": "f71583a4e154aab99a07421698039b884e5ad171349e23900b5ed9865dc44af3",
+    "agrocebada_app/backend/dominio/planeador.py": "2d33753c5d2a93f0f8ad0f557d45055c7a231724978682cee161c69415bda502",
+    "agrocebada_app/frontend/estado/planeador.py": "d630313b665d9dd782779f8d0bab02b59782e9b5e77bcbfd0751f611830ced3e",
+    "agrocebada_app/frontend/estado/sesion.py": "9c770d7ad5a91dde98cfef88ebf57cf9061df056483b88ac4fe2764d83f2fcdc",
+    "agrocebada_app/frontend/tema/html.py": "23f5eb97ca9b8f2cd81049df98a1a157441835dec5101860b8b10fc6bb5b65d9",
+    "agrocebada_app/frontend/componentes/escenarios/vista.py": "ef9ca670adba190149b2fe4c9ce6e2fe0f2f5de10f5e215c980491ab6e53f1ca",
+    "agrocebada_app/frontend/componentes/descargas/boton_ficha.py": "ce1c90a4d4340eca84f3b13051347ff26187651deae842d98f5a1ebc4962fb7d",
+    "agrocebada_app/frontend/vistas/agricultor/calculadora.py": "c3a125d44e2712a8c10a85d707f20cd90b138e676487614610a7d2028d78b6ac",
+    "agrocebada_app/frontend/vistas/agricultor/consulta_rapida.py": "9656e60e5d31e06a393cef9cc06799b63729de171fcfd7360427883cf51c3512",
+    "agrocebada_app/frontend/vistas/agricultor/vista.py": "2f2feb853ecaa57b6e30fbc3c66212fde3f5ac894e100ed3d969e70f78440bc1",
+    "agrocebada_app/frontend/vistas/agricultor/verdor_clima.py": "3b223a81660e4860e15ea892c9384f307ef94560f59ab9e0f1d97271dbb1bcc8",
+    "assets/css/tema.css": "9ced3cff01b72d6ad0828c63afa2fc00e938f50fe689388437f34555389bd9fe",
+    "assets/css/claro.css": "de93bcfdee81476dd8ace25f69620b463d1a202afa029a7630ae549e732f0ac4",
+    "tests/frontend/test_calculadora_visual.py": "dd4952bcfc082fad1c9df257d00e80f09019424702ab32f14752b50a26033eac",
+    "tests/frontend/test_recorridos_agricultor.py": "134e26a7215d3bb070af880ea69b8ef02a7f1699d2ff09cd0d063a4888317ffd",
+    "tests/frontend/test_tema.py": "a03b9bd736ea70dcf638c279979bd2d902034d0bff02e833bad6bad5c1e64f07",
+    "herramientas/verificar_base_planeador.py": "e1af1d37ae88f47efcb6c7a1d19f1f1b1b00dd8a1be149c894d1ba5a368271e2",
+    "herramientas/verificar_planeador.py": "a48da3169b59ce4f204370dfd0c54d19de5324c2d2de3eead03be8ec216d3aeb"
+  },
+  "base_sha256": "04688c4bb1694fdad14f7c5534126d0232cdfb5ca9bd44241c0e80d8c663a2e3",
+  "completa": true,
+  "resultado": "OK",
+  "casos": [
+    {
+      "script": "tests/frontend/test_calculadora_visual.py",
+      "codigo": 0,
+      "log": "01-test_calculadora_visual.log",
+      "segundos": 23.672
+    },
+    {
+      "script": "tests/frontend/test_recorridos_agricultor.py",
+      "codigo": 0,
+      "log": "02-test_recorridos_agricultor.log",
+      "segundos": 23.0
+    },
+    {
+      "script": "tests/frontend/test_tema.py",
+      "codigo": 0,
+      "log": "03-test_tema.log",
+      "segundos": 26.75
+    },
+    {
+      "script": "herramientas/verificar_base_planeador.py",
+      "codigo": 0,
+      "log": "04-verificar_base_planeador.log",
+      "segundos": 10.422
+    }
+  ],
+  "fuentes_estables": true,
+  "base_estable": true,
+  "fin_utc": "2026-10-20T00:51:41.227582+00:00"
+}

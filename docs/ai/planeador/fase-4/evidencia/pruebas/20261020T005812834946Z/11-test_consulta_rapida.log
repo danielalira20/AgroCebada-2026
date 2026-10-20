@@ -1,0 +1,3 @@
+2026-10-19 19:00:21.124 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:00:37.820 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+OK: nueve municipios, referencia sin parcela, área única, limpieza y ausencia de soporte.

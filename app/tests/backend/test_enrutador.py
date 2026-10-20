@@ -73,4 +73,25 @@ assert enrutar("de cuanto puede fallar", con_cosecha) is None
 m = no_entendi(PREGUNTAS)
 assert "no entendí" in m.lower() and "inventar" in m.lower(), m
 assert "por qué mi parcela tiene 4.52" in m.lower(), m      # ofrece ejemplos reales de lo que sí sabe
+
+# --- «Mi cuenta»: el enrutador ve la lista completa (parcela + las tres de la cuenta), como en pregunta_cebi.py
+CUENTA = [("¿Cuánto necesito sacar para no perder?", "c0"),
+          ("¿Qué pasa si el año sale bajo o alto?", "c1"),
+          ("¿Qué hago si no me alcanza?", "c2")]
+TODAS = PREGUNTAS + CUENTA
+casos_cuenta = [
+    ("cuanto necesito sacar para no perder", 9), ("cual es mi punto de equilibrio", 9),
+    ("cuanto debo sacar para cubrir mis costos", 9), ("lo minimo para empatar", 9),
+    ("que pasa si el año sale bajo", 10), ("y si me va mal este año", 10), ("que pasaria en un año malo", 10),
+    ("como seria el peor escenario", 10),
+    ("que hago si no me alcanza", 11), ("y si no alcanza el dinero que hago", 11), ("hay algun apoyo", 11),
+    ("necesito un plan b", 11),
+    # lo de antes sigue donde estaba: «alcanza» solo sigue siendo «¿Me alcanza para mis costos?»
+    ("me alcanza para los gastos", 5), ("cuanto dinero saco", 5), ("como estuvo la lluvia", 7),
+]
+for frase, esperado in casos_cuenta:
+    assert enrutar(frase, TODAS) == esperado, (frase, enrutar(frase, TODAS), esperado)
+# sin las de la cuenta (otra lista) esas frases no caen en cualquiera
+assert enrutar("que pasa si el año sale bajo", PREGUNTAS) != 10
+print(f"{len(casos_cuenta)} frases de «Mi cuenta» enrutadas a la respuesta correcta")
 print("OK")

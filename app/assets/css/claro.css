@@ -125,6 +125,8 @@ audio[data-testid="stAudio"] { color-scheme: light; }
   .stApp :is(button[kind="primary"], button[kind="primaryFormSubmit"]):hover { background: #2c601c; border-color: #2c601c; }
   [data-baseweb="popover"] [role="option"]:hover { background: #eaf0e0; }
 }
+:root { --guia-sobre-acento: #fff; --guia-velo: rgba(236, 242, 229, .52); }
+
 
 /* El campo de escritura y la grabadora de Cebi traen su propia barra oscura, que el resto del tema no alcanza:
    en modo claro hay que vestirlas como el panel donde viven. */

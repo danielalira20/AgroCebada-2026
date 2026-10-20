@@ -1,0 +1,1 @@
+"""Escenarios económicos del planeador."""
