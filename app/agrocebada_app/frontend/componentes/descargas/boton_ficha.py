@@ -1,7 +1,7 @@
 """Botón para descargar la ficha de una parcela en PDF (se arma al hacer clic)."""
 import streamlit as st
 
-from agrocebada_app.backend.dominio.calculadora import columnas, cuentas, rango_municipio
+from agrocebada_app.backend.dominio.planeador import evaluar_cuenta
 from agrocebada_app.backend.ficha_pdf.armado import armar_ficha
 
 
@@ -25,15 +25,18 @@ def filas_calculadora(pid, ctx):
     r = ctx.d.loc[pid]
     est = r.CONJUNTO == "PREDICCION"
     rend = float(ctx.pred.loc[pid, "prediccion"]) if est else float(r.real)
-    area = float(st.session_state.get(f"calc_area_{pid}") or r.AREA_HA)
-    cols = columnas(rend, "Con la estimación" if est else "Con tu cosecha registrada", rango_municipio(ctx.d, r.municipio))
-    t = cuentas(cols, area, precio, costo)
+    area = st.session_state.get(f"calc_area_{pid}", float(r.AREA_HA))
+    resultado = evaluar_cuenta(ctx.d, r.municipio, rend, "Con la estimación" if est else "Con tu cosecha registrada",
+                               area, precio, costo)
+    if resultado["estado"] != "calculada":
+        return None
+    t = resultado["tabla"]
     base = t.columns[0]
     filas = [(f"Producción en {area:.2f} ha", f"{t.loc['Producción (t)', base]:.1f} t"),
              ("Ingreso menos costo" + (" · cubre costos" if t.loc["¿Cubre costos?", base] == "Sí" else " · no cubre costos"),
               _dinero(t.loc["Ingreso menos costo", base]))]
-    if len(cols) == 3:
-        filas.append((cols[1][0], _dinero(t.loc["Ingreso menos costo", t.columns[1]])))
+    if len(t.columns) == 3:
+        filas.append((t.columns[1], _dinero(t.loc["Ingreso menos costo", t.columns[1]])))
     return filas
 
 

@@ -4,9 +4,10 @@ import streamlit as st
 
 from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
 
-from agrocebada_app.backend.dominio.calculadora import (AGROCOSTOS, columnas, cuentas, equilibrio, frase_equilibrio,
-                                                         rango_municipio)
+from agrocebada_app.backend.dominio.calculadora import AGROCOSTOS, frase_equilibrio
+from agrocebada_app.backend.dominio.planeador import evaluar_cuenta
 from agrocebada_app.backend.dominio.rangos import ANIO
+from agrocebada_app.frontend.estado.planeador import (guardar_entrada, hidratar_compatibilidad, preparar_area)
 from agrocebada_app.frontend.tema.html import e, h, titulo
 
 # cómo se nombra cada columna de la tabla dentro de una frase
@@ -31,23 +32,44 @@ def calculadora(ctx, pid):
         rend, etiqueta, que = float(pred.loc[pid, "prediccion"]), "Con la estimación", "tu estimación"
     else:
         rend, etiqueta, que = float(r.real), "Con tu cosecha registrada", "tu cosecha registrada"
+    return calculadora_base(ctx, r.municipio, rend, etiqueta, float(r.AREA_HA), f"calc_area_{pid}",
+                            parcela=pid, que=que)
+
+
+def calculadora_base(ctx, municipio, rendimiento, etiqueta, area_inicial, clave_area, *,
+                     parcela=None, que="la referencia de tu municipio", area_editable=True):
+    """Dibuja la cuenta común; un flujo sin parcela puede aportar su única superficie ya capturada."""
+    hidratar_compatibilidad(st.session_state)
+    if area_editable:
+        preparar_area(st.session_state, clave_area, area_inicial, parcela)
     h("<style>.st-key-glass_calculadora [data-testid='stNumberInput'] button:disabled"
       "{display:none !important}</style>")
     with st.container(key="glass_calculadora"):
         titulo("¿Me alcanza?",
                "Escribe tu precio por tonelada y tu costo por hectárea. Orientativo; no es un dictamen de crédito.")
-        c1, c2, c3 = st.columns(3)
+        campos = st.columns(3 if area_editable else 2)
+        c1, c2 = campos[:2]
         precio = c1.number_input("Precio por tonelada ($)", min_value=0.0, value=None, step=100.0,
-                                 placeholder="tu precio", key="calc_precio")
+                                 placeholder="tu precio", key="calc_precio",
+                                 on_change=guardar_entrada, args=(st.session_state, "calc_precio", "precio_t"))
         costo = c2.number_input("Costo por hectárea ($)", min_value=0.0, value=None, step=500.0,
-                                placeholder="tu costo", key="calc_costo")
-        area = c3.number_input("Área (ha)", min_value=0.01, value=float(r.AREA_HA), step=0.5, key=f"calc_area_{pid}")
+                                placeholder="tu costo", key="calc_costo",
+                                on_change=guardar_entrada, args=(st.session_state, "calc_costo", "costo_ha"))
+        area = area_inicial
+        if area_editable:
+            area = campos[2].number_input("Área (ha)", min_value=0.01, value=None, step=0.5, key=clave_area,
+                                          on_change=guardar_entrada,
+                                          args=(st.session_state, clave_area,
+                                                "area_rapida_ha" if parcela is None else "area", parcela))
         h(f"<div class='nota'>¿No tienes tu costo a la mano? Consulta los costos de producción por región en "
           f"<a href='{AGROCOSTOS}' target='_blank'>Agrocostos de FIRA</a>.</div>")
-        if not precio or not costo:
+        resultado = evaluar_cuenta(ctx.d, municipio, rendimiento, etiqueta, area, precio, costo)
+        if resultado["estado"] != "calculada":
+            for mensaje in resultado["errores"].values():
+                st.warning(mensaje)
             return
-        rango = rango_municipio(d, r.municipio)
-        t = cuentas(columnas(rend, etiqueta, rango), area, precio, costo)
+        rango, t = resultado["rango"], resultado["tabla"]
+        rend = rendimiento
         nombres = list(t.columns)
 
         # 1) la respuesta en una frase, con palabra e ícono
@@ -63,7 +85,7 @@ def calculadora(ctx, pid):
             bajo, alto = nombres[1], nombres[2]
             lineas.append(f"{_EN_FRASE[bajo].capitalize()} {_queda(t.loc['Ingreso menos costo', bajo])}; "
                           f"{_EN_FRASE[alto]}, {_queda(t.loc['Ingreso menos costo', alto])[len('te quedarían '):] if t.loc['Ingreso menos costo', alto] >= 0 else _queda(t.loc['Ingreso menos costo', alto])}.")
-        lineas.append(frase_equilibrio(d, r.municipio, equilibrio(precio, costo)))
+        lineas.append(frase_equilibrio(ctx.d, municipio, resultado["umbral"]))
         h("<div class='nota'>" + "<br>".join(e(x) for x in lineas) + "</div>")
 
         # 2) la cuenta completa, plegada
