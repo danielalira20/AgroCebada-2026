@@ -15,6 +15,7 @@ import streamlit as st
 
 from agrocebada_app.backend.datos.paquete import FALTA_DATASET, hay_datos
 from agrocebada_app.frontend.componentes.paneles.cabecera import cabecera
+from agrocebada_app.frontend.componentes.paneles.guia import guia
 from agrocebada_app.frontend.estado.cache import cargar, clima, series, soporte
 from agrocebada_app.frontend.estado.contexto import calcular
 from agrocebada_app.frontend.estado.sesion import iniciar_sesion
@@ -45,3 +46,5 @@ ctx = calcular(d, sop, S, C, modelo, satelite)
 
 if not st.session_state["bienvenida_completada"]:
     mostrar_bienvenida()
+
+guia()

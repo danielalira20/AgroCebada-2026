@@ -787,3 +787,47 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
     overflow-wrap: anywhere;
   }
 }
+
+/* guía de uso (assets/js/guia.js): el velo difumina todo menos el hueco que deja el paso */
+:root { --guia-sobre-acento: #0a110e; --guia-velo: rgba(8, 14, 11, .46); }
+.guia-velo { position: fixed; inset: 0; z-index: 99990; background: var(--guia-velo);
+  backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); animation: guia-entra .25s ease-out; }
+.guia-aro { position: fixed; z-index: 99991; border-radius: 16px; border: 2px solid var(--acento); pointer-events: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--acento) 28%, transparent); animation: guia-entra .25s ease-out; }
+.guia-tarjeta { position: fixed; z-index: 99992; width: 380px; max-width: calc(100vw - 28px); box-sizing: border-box; padding: 18px 20px 20px;
+  background: var(--dialogo); color: var(--texto); border: 1px solid var(--borde); border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35); animation: guia-entra .25s ease-out; }
+.guia-tarjeta h3 { margin: 14px 0 6px; font-size: 1.28rem; line-height: 1.25; color: var(--texto-fuerte); font-weight: 800; letter-spacing: -.01em; }
+.guia-tarjeta p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--texto-suave); }
+.guia-cab { display: flex; align-items: center; justify-content: space-between; }
+.guia-etiqueta { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--acento);
+  background: color-mix(in srgb, var(--acento) 14%, transparent); padding: 5px 10px; border-radius: 999px; }
+.guia-x { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--borde); background: transparent; color: var(--texto);
+  font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.guia-x:hover { background: color-mix(in srgb, var(--texto) 10%, transparent); }
+.guia-icono { display: flex; align-items: center; gap: 16px; margin-top: 14px; padding: 14px 16px; border-radius: 16px;
+  background: color-mix(in srgb, var(--acento) 11%, transparent); color: var(--acento); }
+.guia-icono svg { flex: 0 0 auto; padding: 9px; box-sizing: content-box; border-radius: 12px; background: color-mix(in srgb, var(--acento) 16%, transparent); }
+.guia-barras { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.guia-barras i { display: block; height: 7px; border-radius: 4px; background: color-mix(in srgb, var(--acento) 30%, transparent); }
+.guia-barras i:nth-child(1) { width: 100%; } .guia-barras i:nth-child(2) { width: 72%; } .guia-barras i:nth-child(3) { width: 38%; }
+.guia-pie { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.guia-cuenta { font-size: .8rem; font-weight: 700; color: var(--tenue); }
+.guia-puntos { display: flex; gap: 5px; }
+.guia-puntos i { width: 7px; height: 7px; border-radius: 50%; background: color-mix(in srgb, var(--texto) 22%, transparent); }
+.guia-puntos i.on { width: 20px; border-radius: 4px; background: var(--acento); }
+.guia-botones { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+.guia-botones button { font: inherit; font-weight: 700; font-size: .92rem; padding: 10px 18px; border-radius: 12px; cursor: pointer; border: 0; }
+.guia-pri { background: var(--acento); color: var(--guia-sobre-acento); }
+.guia-pri:hover { filter: brightness(1.08); }
+.guia-sec { background: color-mix(in srgb, var(--texto) 9%, transparent); color: var(--texto); }
+.guia-tarjeta button:focus-visible, .guia-ayuda:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+.guia-tarjeta.guia-hoja { left: 14px !important; right: 14px; top: auto !important; bottom: 14px; width: auto; max-width: none; }
+.guia-ayuda { position: fixed; z-index: 60; display: none; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0;
+  border-radius: 6px; border: 1px solid var(--borde); background: var(--dialogo); color: var(--acento); font: 800 1rem/1 inherit; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+.guia-ayuda:hover { filter: brightness(1.12); }
+body.guia-abierta { overflow: hidden; }
+@keyframes guia-entra { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .guia-velo, .guia-aro, .guia-tarjeta { animation: none; } }
+
