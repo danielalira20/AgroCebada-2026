@@ -199,9 +199,9 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 }
 [class*="st-key-hero_"] [data-testid="stDeckGlJsonChart"] { border-radius: 22px; overflow: hidden;
   border: 1px solid var(--borde); box-shadow: 0 10px 26px rgba(0,0,0,.26); }
-.st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 16px; left: 16px; width: 350px; z-index: 5; }
+.st-key-glass_panel, .st-key-glass_kpis { position: absolute; top: 88px; left: 16px; width: 350px; z-index: 5; }
 /* si el contenido del panel «Tu parcela» pasa del alto del mapa, se desplaza dentro de la tarjeta */
-.st-key-glass_panel { max-height: 668px; overflow-y: auto; }
+.st-key-glass_panel { max-height: 596px; overflow-y: auto; }
 /* espacio inferior del resumen del analista */
 .st-key-glass_kpis {
     padding-bottom: 26px;
@@ -209,7 +209,11 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .st-key-glass_kpis .kpis {
     margin-bottom: 6px;
 }
-.st-key-glass_chips, .st-key-glass_filtros { position: absolute; top: 16px; right: 62px; width: 280px; z-index: 5; }
+.st-key-glass_chips, .st-key-glass_filtros { position: absolute; top: 16px; right: 16px; width: 300px; z-index: 5; }
+/* los botones + y − del zoom van arriba a la izquierda, para que las tarjetas de la derecha queden alineadas con la leyenda */
+@media (min-width: 901px) {
+  [class*="st-key-hero_"] div:has(> div > .mapboxgl-ctrl-group) { right: auto !important; left: 16px !important; top: 16px !important; }
+}
 /* Leyenda del mapa: espacio interno y mejor lectura */
 .st-key-glass_leyenda {
     position: absolute;
