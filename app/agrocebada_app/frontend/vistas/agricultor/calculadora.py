@@ -35,7 +35,7 @@ def calculadora_base(ctx, municipio, rendimiento, etiqueta, area_inicial, clave_
       "{display:none !important}</style>")
     with st.container(key="glass_calculadora"):
         titulo("¿Me alcanza?",
-               "Escribe tu precio por tonelada y tu costo por hectárea. Orientativo; no es un dictamen de crédito.")
+               "Escribe tu precio por tonelada y tu costo por hectárea. Orientativo; no es un dictamen de crédito.", nivel=2)
         campos = st.columns(3 if area_editable else 2)
         c1, c2 = campos[:2]
         precio = c1.number_input("Precio por tonelada ($)", min_value=0.0, value=None, step=100.0,

@@ -14,7 +14,7 @@ _ICONO = {"alta": "✔", "media": "▲", "baja": "⚠"}
 
 def consulta_rapida(ctx):
     with st.container(key="glass_consulta_rapida"):
-        titulo("Consulta rápida", "Compara tus cuentas con una referencia de tu municipio, sin elegir una parcela.")
+        titulo("Consulta rápida", "Compara tus cuentas con una referencia de tu municipio, sin elegir una parcela.", nivel=1)
         h("<p class='rapida-contexto'>La consulta cubre únicamente los municipios disponibles en este catálogo. "
           "Si tu municipio no aparece, aún no contamos con una referencia local.</p>")
         try:
@@ -44,6 +44,8 @@ def consulta_rapida(ctx):
             return
 
     rendimiento = referencia["rendimiento_t_ha"]
+    n = referencia["n_cosecha_municipio"]
+    muestra = "1 cosecha registrada" if n == 1 else f"{n} cosechas registradas"
     confianza = confianza_parcela(ctx.conf, municipio, referencia["fuente"])
     produccion = rendimiento * area if area is not None and isfinite(area) and area >= 0.01 else None
     if produccion is not None and not isfinite(produccion):
@@ -53,11 +55,11 @@ def consulta_rapida(ctx):
                 f"<strong>{produccion:,.2f} t</strong></div>" if produccion is not None else
                 "<p class='rapida-contexto'>Escribe una superficie válida para ver las toneladas en esa área.</p>")
     with st.container(key="glass_referencia_rapida"):
-        titulo(f"Referencia de {municipio}")
+        titulo(f"Referencia de {municipio}", nivel=2)
         h("<section class='rapida-resumen' aria-label='Referencia histórica municipal'>"
           f"<div><p class='rapida-contexto'>Parcelas con cosecha de {referencia['campania_base']}</p>"
           f"<p class='rapida-cifra'>{rendimiento:.2f}<span>t/ha</span></p>{con_area}</div>"
-          f"<div class='rapida-soporte'><p>Basada en {referencia['n_cosecha_municipio']} cosechas registradas "
+          f"<div class='rapida-soporte'><p>Basada en {muestra} "
           f"en {e(municipio)}.</p><p><b>{_ICONO[confianza['nivel']]} Confianza {e(confianza['nivel'])}</b></p>"
           f"<p>{e(confianza['motivo'])}</p></div></section>"
           "<p class='rapida-contexto'>Es una referencia histórica del municipio, no una predicción de tu parcela "

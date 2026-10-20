@@ -54,7 +54,8 @@ for municipio in opciones:
     at.selectbox(key="calc_municipio_rapido").set_value(municipio).run()
     ref = estimacion_municipio(d, municipio, MODELO_OFICIAL)
     assert f"{ref['rendimiento_t_ha']:.2f}<span>t/ha" in html(at)
-    assert f"Basada en {ref['n_cosecha_municipio']} cosechas registradas" in html(at)
+    n = ref['n_cosecha_municipio']
+    assert ("Basada en 1 cosecha registrada" if n == 1 else f"Basada en {n} cosechas registradas") in html(at)
     confianza = confianza_parcela(conf, municipio, ref["fuente"])
     assert escape(confianza["motivo"]) in html(at)
     assert f"Confianza {confianza['nivel']}" in html(at)

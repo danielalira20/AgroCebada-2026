@@ -17,5 +17,6 @@ def chips(items):
                                       for k, v in items) + "</div>")
 
 
-def titulo(t, sub=""):
-    h(f"<div class='tit'>{e(t)}</div>" + (f"<div class='sub'>{e(sub)}</div>" if sub else ""))
+def titulo(t, sub="", *, nivel=None):
+    etiqueta = f"h{nivel}" if nivel in (1, 2, 3, 4, 5, 6) else "div"
+    h(f"<{etiqueta} class='tit'>{e(t)}</{etiqueta}>" + (f"<div class='sub'>{e(sub)}</div>" if sub else ""))
