@@ -155,7 +155,10 @@ def bytes_csv(filas: pd.DataFrame) -> bytes:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--datos", type=Path, default=RAIZ / "data" / "DATASET_RETO_AGRO_2026")
+    ap.add_argument("--datos", type=Path, default=next(
+        (c for c in (RAIZ / "data" / "raw" / "DATASET_RETO_AGRO_2026",
+                     RAIZ / "data" / "DATASET_RETO_AGRO_2026") if c.exists()),
+        RAIZ / "data" / "raw" / "DATASET_RETO_AGRO_2026"))
     ap.add_argument("--t08", type=Path, default=RAIZ / "registro" / "t03" / "predicciones_59_referencias.csv")
     ap.add_argument("--salida", type=Path, default=RAIZ / "registro" / "t18")
     a = ap.parse_args()

@@ -22,7 +22,11 @@ from scripts import t18_comparar_entregas as entregas
 from scripts import t18_predicciones_finales as t18
 
 RAIZ = Path(__file__).resolve().parent.parent
-DATOS = RAIZ / "data" / "DATASET_RETO_AGRO_2026"
+# El dataset se movió a data/raw/ el 11 de octubre; esta ruta se quedó apuntando al sitio anterior y, como
+# el bloque de datos reales se omite cuando no lo encuentra, llevaba desde entonces saltándose en silencio.
+DATOS = next((c for c in (RAIZ / "data" / "raw" / "DATASET_RETO_AGRO_2026",
+                          RAIZ / "data" / "DATASET_RETO_AGRO_2026") if c.exists()),
+             RAIZ / "data" / "raw" / "DATASET_RETO_AGRO_2026")
 SALIDA = RAIZ / "registro" / "t18"
 T08 = RAIZ / "registro" / "t03" / "predicciones_59_referencias.csv"
 

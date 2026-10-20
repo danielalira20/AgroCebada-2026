@@ -27,3 +27,8 @@ tests/test_t05_relieve.py text eol=lf
 
 # T07: derivadas y manifiestos conservan sus huellas en macOS, Linux y Windows.
 registro/t07/* text eol=lf
+
+# T18: la plantilla del reto pide CRLF en el archivo que se entrega, y su huella está registrada en
+# registro/t18/trazabilidad.json. La regla general «eol=lf» se lo convertía a LF al descargarlo, lo que rompía
+# el formato pedido y dejaba la huella sin coincidir. El detalle no entra aquí: ese se escribe con LF a propósito.
+registro/t18/predicciones_finales.csv -text
