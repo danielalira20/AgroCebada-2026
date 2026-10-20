@@ -98,6 +98,21 @@ texto = conversacion(at)
 assert "No entendí" in texto and "inventar" in texto, texto[-300:]
 print("texto libre: enruta lo que sabe y admite lo que no, sin inventar")
 
+# --- la ✕ cierra sin borrar: Streamlit no deja cerrar un popover desde Python, así que se le cambia la llave y
+# vuelve a nacer cerrado; lo que se preguntó vive en la sesión, no en el popover, y sigue ahí al reabrir
+at = AppTest.from_string(PAGINA, default_timeout=30).run()
+assert at.button(key="cebi_cerrar_chat").label == "✕"
+at.button(key="cebi_P1_0").click().run()
+historial = list(at.session_state["cebi_P1"])
+at.button(key="cebi_cerrar_chat").click().run()
+assert not at.exception, at.exception
+assert at.session_state["cebi_vuelta"] == 1, "la llave del popover tiene que cambiar para que se cierre"
+assert at.session_state["cebi_P1"] == historial, "cerrar no borra la conversación"
+assert len(at.get("popover")) == 1, "el acceso a Cebi sigue ahí"
+at.button(key="cebi_cerrar_chat").click().run()
+assert at.session_state["cebi_vuelta"] == 2 and at.session_state["cebi_P1"] == historial
+print("la ✕ cierra la conversación y no se la lleva")
+
 # --- con conversación los botones pasan a la fila que se desliza
 at = AppTest.from_string(PAGINA, default_timeout=30).run()
 assert any("Explora tu parcela" in m.value for m in at.markdown)

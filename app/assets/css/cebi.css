@@ -31,7 +31,7 @@
 .st-key-cebi_launcher:has(button[aria-expanded="true"]) .cebi-acceso > span { visibility: hidden; }
 .st-key-cebi_launcher:has(button[aria-expanded="true"]) .cebi * { animation: none; }
 [data-testid="stPopoverBody"]:has(.st-key-cebi_chat) {
-  width: 430px; max-width: calc(100vw - 24px) !important; max-height: calc(100dvh - 112px) !important;
+  position: relative; width: 430px; max-width: calc(100vw - 24px) !important; max-height: calc(100dvh - 112px) !important;
   overflow-y: auto; background: radial-gradient(ellipse at top left, var(--cebi-burbuja), transparent 65%), var(--cebi-panel); color: var(--texto);
   border: 1px solid var(--cebi-borde); border-radius: 24px; padding: 18px;
   box-shadow: var(--cebi-sombra);
@@ -45,6 +45,13 @@
 .cebi-cabecera span { font-size: .75rem; color: var(--texto-suave); }
 .cebi-cabecera > div > span { display: block; }
 .cebi-cabecera .cebi-parcela { margin-left: auto; font-size: .67rem; text-align: right; padding: 5px 8px; border: 1px solid var(--cebi-borde); border-radius: 8px; }
+/* La ✕ del encabezado: la conversación también se cierra con Escape o pulsando fuera, pero eso no se ve. */
+.st-key-cebi_cerrar_chat { position: absolute; top: 14px; right: 14px; z-index: 2; }
+.st-key-cebi_cerrar_chat button[kind="tertiary"] { min-height: 30px; width: 30px; padding: 0;
+  border-radius: 100px; color: var(--texto-suave) !important;
+  border: 1px solid color-mix(in srgb, var(--cebi-borde) 60%, transparent) !important; }
+.st-key-cebi_cerrar_chat button p { font-size: .8rem; line-height: 1; }
+.cebi-cabecera { padding-right: 36px; }
 .cebi-conversacion { display: flex; flex-direction: column; gap: 12px; padding: 2px 4px 4px 0; }
 .cebi-respuesta, .cebi-pregunta { padding: 10px 12px; font-size: .87rem; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-line; }
 .cebi-respuesta { align-self: flex-start; max-width: 96%; background: color-mix(in srgb, var(--cebi-burbuja) 45%, transparent); color: var(--texto); border-radius: 3px 16px 16px 16px; }

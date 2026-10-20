@@ -54,6 +54,12 @@ def _reiniciar(clave):
     st.session_state[clave] = []
 
 
+def _cerrar():
+    """La ✕ del encabezado. Streamlit no deja cerrar un popover desde Python, así que se le cambia la llave y el
+    popover vuelve a nacer, cerrado. La conversación no se pierde: vive en la sesión, no en el popover."""
+    st.session_state["cebi_cerrar"] = True
+
+
 def _burbujas(turnos, lista):
     """Las burbujas de los últimos turnos. Un turno es el índice de un botón o una pregunta escrita."""
     mensajes = []
@@ -98,6 +104,9 @@ def _escuchar(clave, pid, lista):
 
 @st.fragment
 def _platica(ctx, pid):
+    if st.session_state.pop("cebi_cerrar", False):
+        st.session_state["cebi_vuelta"] = st.session_state.get("cebi_vuelta", 0) + 1
+        st.rerun(scope="app")        # la llave vive fuera del fragmento, así que hay que rehacer la página entera
     lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
                        precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
                        area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
@@ -108,6 +117,8 @@ def _platica(ctx, pid):
         h(f"<div class='cebi-cabecera'><div class='cebi' aria-hidden='true'>{MASCOTA}</div>"
           f"<div><strong>Cebi<span class='cebi-hojita' aria-hidden='true'>✦</span></strong><span>Con los datos de tu parcela</span></div>"
           f"<span class='cebi-parcela'>Parcela {e(pid)}</span></div>")
+        st.button("✕", key="cebi_cerrar_chat", on_click=_cerrar, type="tertiary",
+                  help="Cerrar la conversación")
         with st.container(height=220 if hechas else 150, border=False, autoscroll=True, key="cebi_mensajes"):
             mensajes = [f"<div class='cebi-respuesta'>{e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid))}</div>"]
             mensajes.extend(_burbujas(hechas[-TURNOS:], lista))
@@ -139,5 +150,6 @@ def pregunta_cebi(ctx, pid):
     with st.container(key="cebi_launcher"):
         h(f"<div class='cebi-acceso' aria-hidden='true'><span>¿Te ayudo?</span>"
           f"<div class='cebi'>{MASCOTA}</div></div>")
-        with st.popover("Pregúntale a Cebi", key="cebi_popover", width=72):
+        # La llave lleva una vuelta: cambiarla es lo único que cierra un popover desde Python (lo rehace).
+        with st.popover("Pregúntale a Cebi", key=f"cebi_popover_{st.session_state.get('cebi_vuelta', 0)}", width=72):
             _platica(ctx, pid)
