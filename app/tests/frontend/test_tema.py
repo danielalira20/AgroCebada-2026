@@ -54,6 +54,18 @@ for hoja in sorted((APP / "assets" / "css").glob("*.css")):
     assert not malos, f"{hoja.name}: :has() anidado en {len(malos)} selector(es)\n" + "\n".join(malos[:3])
 print("CSS: sin :has() anidados, que el navegador descartaría en silencio")
 
+# --- el borde de los controles: lo que se puede tocar necesita 3:1 contra su fondo, o el botón deja de
+# leerse como botón. Es distinto de --borde, que dibuja superficies y debe seguir siendo discreto.
+CONTROL = {"claro": ("#fffef8", "#fafbf9", "#f1f4ee", "#f6faf0", "#eaf0e0"),
+           "oscuro": ("#0A110E", "#0c1310", "#15201B", "#14251e")}
+for hoja, fondos in (("claro.css", CONTROL["claro"]), ("tema.css", CONTROL["oscuro"])):
+    texto = (APP / "assets" / "css" / hoja).read_text(encoding="utf-8")
+    hallado = re.findall(r"--borde-control:\s*(#[\da-fA-F]{6})", texto)
+    assert hallado, f"{hoja} debe definir --borde-control"
+    for fondo in fondos:
+        assert contraste(hallado[-1], fondo) >= 3, (hoja, hallado[-1], fondo, contraste(hallado[-1], fondo))
+print("CSS: el borde de los controles llega a 3:1 en los dos temas")
+
 css = (APP / "assets/css/claro.css").read_text(encoding="utf-8")
 tokens = dict(re.findall(r"--([\w-]+):\s*(#[\da-fA-F]{6})", css))
 for token in ("texto-fuerte", "texto", "texto-suave", "tenue", "aviso-texto", "exito", "error",

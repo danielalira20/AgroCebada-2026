@@ -3,13 +3,34 @@
 :root { --cebi-panel: #14251e; --cebi-burbuja: #20362b; --cebi-borde: #405a46;
   --cebi-usuario: #b6df91; --cebi-sombra: 0 16px 48px rgba(0, 0, 0, .25);
   --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D;
-  --dialogo: rgba(6, 14, 11, 0.96); --bienvenida-acento: #A3E36B; --bienvenida-hover: #B8F18A; --bienvenida-texto: #DFF3CF; }
+  --dialogo: rgba(6, 14, 11, 0.96); --bienvenida-acento: #A3E36B; --bienvenida-hover: #B8F18A; --bienvenida-texto: #DFF3CF;
+  /* --borde dibuja superficies; --borde-control dibuja lo que se puede tocar y necesita 3:1 contra el
+     fondo. El borde nativo de Streamlit (#24312B) queda en 1.24-1.41: el botón pierde su orilla y la
+     etiqueta parece flotar sobre el fondo. Medido con este tono: 3.3-4.03 según la superficie. */
+  --borde-control: #5c7a66;
+  /* la línea de créditos del mapa lleva instrucciones y estaba en 4.12 a 10.5px */
+  --credito: #71857a; }
 .stApp { background:
   radial-gradient(1100px 520px at 0% -10%, rgba(155,225,93,.13), transparent 60%),
   radial-gradient(900px 480px at 100% 0%, rgba(47,224,160,.10), transparent 60%),
   radial-gradient(900px 600px at 50% 115%, rgba(47,224,160,.07), transparent 60%), #0A110E; }
 header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .block-container { padding-top: 1rem; padding-bottom: 2rem; max-width: 1500px; }
+
+/* ARMONÍA DE COLOR · controles del tema oscuro.
+   Streamlit dibuja la orilla de sus controles con el borderColor de config.toml, pensado para separar superficies,
+   no para marcar algo que se puede tocar. Aquí esos controles —y sólo ellos— pasan al borde fuerte; las tarjetas y
+   los paneles conservan el suyo, que debe seguir siendo discreto. */
+.stApp :is(button[kind="secondary"], button[kind="tertiary"],
+           [data-testid="stBaseButton-segmented_control"], button[role="radio"],
+           [data-testid="stNumberInputContainer"], [data-testid="stFileUploaderDropzone"]),
+.stApp [data-testid="stExpander"] details,
+.stApp [data-baseweb="select"] > div {
+  border-color: var(--borde-control); }
+/* El botón de enviar un formulario se queda con el texto blanco de Streamlit sobre el verde de la marca: 1.58
+   sobre 1. En oscuro el resto de los primarios ya usa tinta oscura sobre ese verde; éste no. */
+.stApp button[kind="primaryFormSubmit"],
+.stApp button[kind="primaryFormSubmit"] p { color: #0A110E !important; }
 
 /* vidrio */
 /* La separación la da el borde y la superficie, no una sombra marcada: la tarjeta se apoya en la página en vez de

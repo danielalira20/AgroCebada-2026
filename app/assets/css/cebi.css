@@ -49,7 +49,7 @@
 .st-key-cebi_cerrar_chat { position: absolute; top: 14px; right: 14px; z-index: 2; }
 .st-key-cebi_cerrar_chat button[kind="tertiary"] { min-height: 30px; width: 30px; padding: 0;
   border-radius: 100px; color: var(--texto-suave) !important;
-  border: 1px solid color-mix(in srgb, var(--cebi-borde) 60%, transparent) !important; }
+  border: 1px solid var(--borde-control) !important; }
 .st-key-cebi_cerrar_chat button p { font-size: .8rem; line-height: 1; }
 .cebi-cabecera { padding-right: 36px; }
 .cebi-conversacion { display: flex; flex-direction: column; gap: 12px; padding: 2px 4px 4px 0; }
@@ -78,7 +78,7 @@
 .st-key-cebi_chat:has(.cebi-sugerencias.cebi-fila) .st-key-cebi_preguntas button p { white-space: nowrap; }
 .st-key-cebi_preguntas button[kind="secondary"] {
   min-height: 44px; height: 100%; padding: 6px 8px;
-  border: 1px solid color-mix(in srgb, var(--cebi-borde) 65%, transparent) !important;
+  border: 1px solid var(--borde-control) !important;
   background: transparent !important; color: var(--texto) !important;
   border-radius: 100px;
   transition: background-color 160ms ease, border-color 160ms ease;
@@ -111,7 +111,7 @@
 /* los botones, redondos y del tamaño de un dedo */
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInputActionButton"] {
   width: 44px; height: 44px; min-height: 44px; border-radius: 100px;
-  border: 1px solid var(--cebi-borde) !important; background: var(--cebi-panel) !important;
+  border: 1px solid var(--borde-control) !important; background: var(--cebi-panel) !important;
   color: var(--texto) !important; }
 :is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInputActionButton"] svg {
   width: 20px; height: 20px; }
@@ -141,7 +141,7 @@
   display: block; font-size: .72rem; line-height: 1.45; color: var(--texto-suave); }
 
 /* campo real de escritura y grabadora de voz */
-.st-key-cebi_chat [data-testid="stChatInput"] { border-radius: 18px; border: 1px solid var(--cebi-borde);
+.st-key-cebi_chat [data-testid="stChatInput"] { border-radius: 18px; border: 1px solid var(--borde-control);
   background: var(--cebi-panel); }
 .st-key-cebi_chat [data-testid="stChatInput"] textarea { font-size: .83rem; }
 .st-key-cebi_chat [data-testid="stExpander"] summary { min-height: 40px; font-size: .72rem; }

@@ -9,6 +9,9 @@
   --dialogo: #fffef8; --bienvenida-acento: #397523; --bienvenida-hover: #28581b; --bienvenida-texto: #324f27;
   --cebi-panel: #f6f9f2; --cebi-burbuja: #e8efdf; --cebi-borde: #b7cbae;
   --cebi-usuario: #d6e9bf; --cebi-sombra: 0 16px 48px rgba(35, 59, 30, .18);
+  /* --borde dibuja superficies (tarjetas, paneles); --borde-control dibuja lo que se puede tocar, y por eso
+     necesita 3:1 contra el fondo: un botón sin orilla visible no se lee como botón. Medido: 3.05-3.52. */
+  --borde-control: #7b8d75;
 }
 .stApp { color: var(--texto); background:
   radial-gradient(1100px 520px at 0% -10%, rgba(137,176,89,.10), transparent 60%),
@@ -36,22 +39,27 @@
 /* el campo numérico no es un control de BaseWeb: sin esta línea su caja se quedaba con el fondo oscuro del
    tema y asomaba como un bloque gris detrás de los botones de − y +, que son semitransparentes */
 .stApp [data-testid="stNumberInputContainer"] {
-  background: #fffef8; color: var(--texto); border-color: var(--borde); }
+  background: #fffef8; color: var(--texto); border-color: var(--borde-control); }
 .stApp input::placeholder, .stApp textarea::placeholder { color: #66735e; opacity: 1; }
 .stApp [data-baseweb="select"] :is(span, input, svg) { color: var(--texto); fill: currentColor; }
 .stApp [data-baseweb="tag"] { background: #e4ecd9; color: var(--texto); }
 .stApp button[kind="secondary"], .stApp button[kind="tertiary"],
 .stApp [data-testid="stNumberInput"] button, .stApp [data-testid="stPopoverButton"] {
-  color: var(--texto); background: #fffef8; border-color: var(--borde); }
-.stApp button[kind="primary"], .stApp .stDownloadButton button[kind="primary"] {
+  color: var(--texto); background: #fffef8; border-color: var(--borde-control); }
+/* «primaryFormSubmit» es el botón de enviar un formulario. Streamlit lo deja blanco sobre el verde claro de la
+   marca: 1.58 sobre 1, ilegible en los dos temas. Se viste como el resto de los botones primarios. */
+.stApp :is(button[kind="primary"], button[kind="primaryFormSubmit"]),
+.stApp .stDownloadButton button[kind="primary"] {
   background: #397523; border-color: #397523; color: #fff; }
-.stApp button[kind="primary"] p { color: #fff; }
+.stApp :is(button[kind="primary"], button[kind="primaryFormSubmit"]),
+.stApp :is(button[kind="primary"], button[kind="primaryFormSubmit"]) p { color: #fff !important; }
 .stApp button:disabled { opacity: .55; }
-.stApp [data-testid="stBaseButton-segmented_control"] { background: #fffef8; color: var(--texto); border-color: var(--borde); }
+.stApp [data-testid="stBaseButton-segmented_control"] { background: #fffef8; color: var(--texto); border-color: var(--borde-control); }
 .stApp [data-testid="stBaseButton-segmented_controlActive"],
 .stApp [data-testid="stSegmentedControl"] button[aria-pressed="true"] { background: #e5efd9; color: #315f21; border-color: #397523; }
-.stApp button[role="radio"] { background: #fffef8 !important; color: var(--texto) !important; border-color: var(--borde); }
-.stApp button[role="radio"][aria-checked="true"] { background: #e5efd9 !important; color: #315f21 !important; border-color: #397523; }
+.stApp button[role="radio"] { background: #fffef8 !important; color: var(--texto) !important; border-color: var(--borde-control); }
+.stApp button[role="radio"][aria-checked="true"] { background: #e5efd9 !important; color: #315f21 !important;
+  border-color: #397523 !important; }
 .stApp button [data-testid="stMarkdownContainer"] { color: inherit; }
 .stApp [data-testid="stTooltipIcon"] { color: var(--tenue); }
 .stApp button[aria-label^="Help"] { color: var(--tenue); }
@@ -68,9 +76,9 @@
 .stTabs [role="tab"] { color: var(--tenue); }
 .stTabs [role="tab"][aria-selected="true"] { background: #dce8cd; color: #284e1b; }
 .stApp [data-testid="stExpander"] { border-color: var(--borde); background: transparent; border-radius: 14px; }
-.stApp [data-testid="stExpander"] details { border-color: var(--borde); border-radius: 14px;
+.stApp [data-testid="stExpander"] details { border-color: var(--borde-control); border-radius: 14px;
   background: rgba(255,255,255,.32); overflow: hidden; }
-.stApp [data-testid="stFileUploaderDropzone"] { background: #eaf0e0; color: var(--texto); }
+.stApp [data-testid="stFileUploaderDropzone"] { background: #eaf0e0; color: var(--texto); border-color: var(--borde-control); }
 .stApp [data-testid="stFileUploaderDropzone"] :is(span, small, svg) { color: var(--tenue); }
 .stApp [data-testid="stAlert"] { color: var(--texto); }
 .stApp [data-testid="stAlert"] :is(p, li) { color: inherit; }
@@ -98,6 +106,13 @@
 [data-testid="stDialog"] button[kind="secondary"] { background: #f1f4e9 !important; color: var(--texto) !important; }
 [data-testid="stDialog"] [data-testid="stInfo"] { color: var(--bienvenida-texto); }
 [data-testid="stToast"] { background: #fffef8; color: var(--texto); border: 1px solid var(--borde); }
+/* Rincones que Streamlit pinta con la tinta de SU tema: claro sobre claro, ~1.05 sobre 1. No se ven, y no hay
+   forma de notarlo salvo midiéndolos. */
+.stApp [data-testid="stNumberInput"] button svg { color: var(--texto) !important; }
+.stApp [data-testid="stNumberInput"] button:disabled svg { color: var(--tenue) !important; }
+.stApp [data-testid="InputInstructions"],
+.stApp [data-testid="InputInstructions"] span { color: var(--tenue) !important; }
+.stApp :is([data-testid="stTabsScrollLeft"], [data-testid="stTabsScrollRight"]) { color: var(--tenue) !important; }
 /* el reproductor de las notas de voz lo dibuja el navegador: sin esto se queda con los controles oscuros del tema */
 audio[data-testid="stAudio"] { color-scheme: light; }
 .st-key-selector_tema button::before { background: #dce8cd; border-color: #8ba777;
@@ -107,7 +122,7 @@ audio[data-testid="stAudio"] { color-scheme: light; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23397523' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E"); }
 @media (hover: hover) and (pointer: fine) {
   .stApp button[kind="secondary"]:hover { background: #e9f0dd; border-color: #397523; }
-  .stApp button[kind="primary"]:hover { background: #2c601c; border-color: #2c601c; }
+  .stApp :is(button[kind="primary"], button[kind="primaryFormSubmit"]):hover { background: #2c601c; border-color: #2c601c; }
   [data-baseweb="popover"] [role="option"]:hover { background: #eaf0e0; }
 }
 
