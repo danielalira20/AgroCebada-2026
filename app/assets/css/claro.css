@@ -7,6 +7,8 @@
   --conf-alta: #216341; --conf-baja: #70448e; --mejora: #397523; --sin-mejora: #42677b;
   --complementaria: #70448e; --no-disponible: #9a3535; --barra-fondo: #dae2d4; --ambar: #8d580c;
   --dialogo: #fffef8; --bienvenida-acento: #397523; --bienvenida-hover: #28581b; --bienvenida-texto: #324f27;
+  --cebi-panel: #f6f9f2; --cebi-burbuja: #e8efdf; --cebi-borde: #b7cbae;
+  --cebi-usuario: #d6e9bf; --cebi-sombra: 0 16px 48px rgba(35, 59, 30, .18);
 }
 .stApp { color: var(--texto); background:
   radial-gradient(1100px 520px at 0% -10%, rgba(137,176,89,.10), transparent 60%),
@@ -30,7 +32,10 @@
 .stApp a { color: #346c23; }
 .stApp [data-testid="stWidgetLabel"] p { color: var(--tenue); }
 .stApp :is(input, textarea), .stApp [data-baseweb="select"] > div,
-.stApp [data-baseweb="input"], .stApp [data-baseweb="base-input"] {
+.stApp [data-baseweb="input"], .stApp [data-baseweb="base-input"],
+/* el campo numérico no es un control de BaseWeb: sin esta línea su caja se quedaba con el fondo oscuro del
+   tema y asomaba como un bloque gris detrás de los botones de − y +, que son semitransparentes */
+.stApp [data-testid="stNumberInputContainer"] {
   background: #fffef8; color: var(--texto); border-color: var(--borde); }
 .stApp input::placeholder, .stApp textarea::placeholder { color: #66735e; opacity: 1; }
 .stApp [data-baseweb="select"] :is(span, input, svg) { color: var(--texto); fill: currentColor; }
@@ -41,7 +46,6 @@
 .stApp button[kind="primary"], .stApp .stDownloadButton button[kind="primary"] {
   background: #397523; border-color: #397523; color: #fff; }
 .stApp button[kind="primary"] p { color: #fff; }
-.st-key-glass_cebi button[kind="primary"], .st-key-glass_cebi button[kind="primary"] p { color: #fff !important; }
 .stApp button:disabled { opacity: .55; }
 .stApp [data-testid="stBaseButton-segmented_control"] { background: #fffef8; color: var(--texto); border-color: var(--borde); }
 .stApp [data-testid="stBaseButton-segmented_controlActive"],
@@ -94,6 +98,8 @@
 [data-testid="stDialog"] button[kind="secondary"] { background: #f1f4e9 !important; color: var(--texto) !important; }
 [data-testid="stDialog"] [data-testid="stInfo"] { color: var(--bienvenida-texto); }
 [data-testid="stToast"] { background: #fffef8; color: var(--texto); border: 1px solid var(--borde); }
+/* el reproductor de las notas de voz lo dibuja el navegador: sin esto se queda con los controles oscuros del tema */
+audio[data-testid="stAudio"] { color-scheme: light; }
 .st-key-selector_tema button::before { background: #dce8cd; border-color: #8ba777;
   box-shadow: inset 0 2px 4px rgba(57,87,36,.12); }
 .st-key-selector_tema button::after {
@@ -105,3 +111,12 @@
   [data-baseweb="popover"] [role="option"]:hover { background: #eaf0e0; }
 }
 :root { --guia-sobre-acento: #fff; --guia-velo: rgba(236, 242, 229, .52); }
+
+
+/* El campo de escritura y la grabadora de Cebi traen su propia barra oscura, que el resto del tema no alcanza:
+   en modo claro hay que vestirlas como el panel donde viven. */
+:is([data-testid="stAudioInput"], [data-testid="stChatInput"]) > div {
+  background: #f1f4e9 !important; border: 1px solid var(--borde); }
+:is([data-testid="stAudioInput"], [data-testid="stChatInput"]) :is(svg, span, p, textarea) { color: var(--texto) !important; }
+[data-testid="stChatInput"] textarea::placeholder { color: var(--tenue) !important; }
+[data-testid="stAudioInput"] svg { fill: currentColor; }

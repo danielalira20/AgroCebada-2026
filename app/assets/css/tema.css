@@ -1,6 +1,8 @@
 :root { color-scheme: dark; --texto-fuerte: #fff; --texto: #e7efe9; --texto-suave: #d8e3dc; --aviso-texto: #f5d08a; --exito: #7ef0c4; --error: #ff9c9c; --credito: #66796e; --conf-alta: #9ee6be; --conf-baja: #d3c2ec; --mejora: #c0e899; --sin-mejora: #b4cfde; --complementaria: #d5c2ee; --no-disponible: #e8b9b9; --barra-fondo: #41544a; --ambar: #f5b544; }
 
-:root { --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D;
+:root { --cebi-panel: #14251e; --cebi-burbuja: #20362b; --cebi-borde: #405a46;
+  --cebi-usuario: #b6df91; --cebi-sombra: 0 16px 48px rgba(0, 0, 0, .25);
+  --vidrio: rgba(13, 21, 17, 0.58); --borde: rgba(255,255,255,0.10); --tenue: #9DB0A5; --acento: #9BE15D;
   --dialogo: rgba(6, 14, 11, 0.96); --bienvenida-acento: #A3E36B; --bienvenida-hover: #B8F18A; --bienvenida-texto: #DFF3CF; }
 .stApp { background:
   radial-gradient(1100px 520px at 0% -10%, rgba(155,225,93,.13), transparent 60%),
@@ -515,7 +517,10 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .lib-vacia { font-size: .85rem; line-height: 1.55; color: var(--tenue); padding: 22px 0; border-top: 1px solid var(--borde);
   border-bottom: 1px solid var(--borde); margin: 14px 0; }
 
-.lib-hoja { margin: 14px 0 18px; border-top: 1px solid var(--borde); }
+/* La hoja ya no es un solo bloque: cada renglón es su propio contenedor, porque el que tiene nota de voz
+   lleva su reproductor debajo. La raya de arriba y los márgenes se mantienen igual. */
+.st-key-lib_hoja { margin: 14px 0 18px; border-top: 1px solid var(--borde); gap: 0; }
+.st-key-lib_hoja [data-testid="stVerticalBlock"] { gap: 0; }
 .lib-renglon { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; padding: 14px 0;
   border-bottom: 1px solid var(--borde); }
 /* el año vive en el margen, separado por una raya vertical como en una libreta */
@@ -531,8 +536,24 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
 .lib-dif.sin { color: var(--tenue); }
 .lib-nota { margin-top: 8px; font-size: .78rem; color: var(--tenue); font-style: italic; line-height: 1.45;
   overflow-wrap: break-word; }
+/* la nota de voz del renglón: su rótulo y, debajo, el reproductor de Streamlit en tamaño de renglón */
+.lib-voz { margin-top: 10px; font-size: .72rem; font-weight: 600; color: var(--tenue); }
+[class*="st-key-lib_renglon_"] { padding-bottom: 14px; border-bottom: 1px solid var(--borde); }
+[class*="st-key-lib_renglon_"] .lib-renglon { border-bottom: 0; padding-bottom: 0; }
+/* Streamlit le cuelga -16px de margen a cada bloque de markdown, para compensar el margen de sus párrafos. Aquí
+   el renglón termina en un div, no en un párrafo, así que ese -16 subía el reproductor encima de su etiqueta. */
+[class*="st-key-lib_renglon_"] [data-testid="stMarkdownContainer"] { margin-bottom: 0; }
+[class*="st-key-lib_renglon_"] [data-testid="stAudio"] { margin: 8px 0 0 88px; max-width: 420px; }
+[class*="st-key-lib_renglon_"] audio[data-testid="stAudio"] { height: 36px; }
+@media (max-width: 700px) {
+  [class*="st-key-lib_renglon_"] [data-testid="stAudio"] { margin-left: 68px; }
+}
 
 /* cuántos vecinos faltan para que el municipio suba de nivel */
+/* El renglón para dictar la nota: va pegado arriba del formulario, discreto, del lado del campo de la nota. */
+.st-key-lib_dictado { gap: 8px; margin-bottom: -6px; }
+.lib-dictar { font-size: .74rem; color: var(--tenue); }
+.st-key-lib_dictado > [data-testid="stElementContainer"] { flex: 0 0 auto !important; width: auto !important; }
 .lib-meta { display: grid; gap: 10px; margin: 16px 0 6px; padding: 14px 16px; border: 1px solid var(--borde);
   border-radius: 12px; background: rgba(155,225,93,.05); }
 .lib-puntos { display: flex; flex-wrap: wrap; gap: 6px; }
