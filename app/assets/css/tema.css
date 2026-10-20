@@ -757,3 +757,62 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
     overflow-wrap: anywhere;
   }
 }
+/* Planeador: escenarios económicos, con los mismos tokens en claro y oscuro. */
+.esc-resumen { margin: 18px 0 14px; color: var(--texto); }
+.esc-equilibrio { display: grid; grid-template-columns: minmax(120px, .7fr) minmax(0, 2fr);
+  align-items: center; gap: 20px; padding: 16px 18px; border: 1px solid var(--borde);
+  border-radius: 14px; background: var(--vidrio); }
+.esc-rotulo { font-size: .88rem; font-weight: 600; color: var(--texto-suave); }
+.esc-umbral, .esc-rendimiento { margin: 5px 0 0; font-size: 2rem; font-weight: 700;
+  line-height: 1.2; letter-spacing: -.035em; color: var(--texto-fuerte); overflow-wrap: anywhere; }
+.esc-umbral span, .esc-rendimiento span { font-size: .85rem; font-weight: 500;
+  letter-spacing: normal; color: var(--tenue); margin-left: 6px; }
+.esc-contexto, .esc-historia { font-size: .9rem; line-height: 1.6; color: var(--texto-suave); }
+.esc-equilibrio .esc-contexto { margin: 0; }
+.esc-historia { margin: 14px 0; }
+.esc-tarjetas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.esc-tarjeta { min-width: 0; border: 1px solid var(--borde); border-radius: 14px;
+  padding: 18px 16px; background: var(--vidrio); }
+.esc-tarjeta--referencia { border-color: var(--acento); }
+.esc-tarjeta h3 { margin: 0; padding: 0; min-height: 2.8em; font-size: .95rem;
+  font-weight: 600; line-height: 1.4; color: var(--texto-suave); overflow-wrap: anywhere; }
+.esc-tarjeta dl { margin: 20px 0 0; }
+.esc-tarjeta dl > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  margin-top: 8px; font-size: .9rem; line-height: 1.5; }
+.esc-tarjeta dt { color: var(--tenue); }
+.esc-tarjeta dd { margin: 0; min-width: 0; text-align: right; color: var(--texto);
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.esc-saldo { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--borde); }
+.esc-saldo span { display: block; font-size: .9rem; line-height: 1.5; }
+.esc-saldo strong { display: block; margin-top: 4px; font-size: 1.5rem; font-weight: 700;
+  line-height: 1.35; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.esc-saldo--falta { color: var(--aviso-texto); }
+.esc-saldo--cubre { color: var(--exito); }
+.esc-saldo--equilibrio { color: var(--texto-suave); }
+.esc-soporte { margin: 12px 0 0; }
+.esc-barra { margin: 22px 0; }
+.esc-pista { position: relative; height: 4px; margin: 28px 18px; border-radius: 4px;
+  background: var(--barra-fondo); }
+.esc-marca { position: absolute; top: 50%; transform: translate(-50%, -50%); display: grid;
+  place-items: center; width: 28px; height: 28px; border: 1px solid var(--borde); border-radius: 50%;
+  background: var(--texto-fuerte); color: var(--dialogo); font-size: .8rem; font-weight: 700; }
+.esc-marca--equilibrio { border: 2px dashed var(--acento); background: var(--dialogo); color: var(--texto); }
+.esc-marcas-lista { list-style: none; padding: 0; margin: 0; display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; }
+.esc-marcas-lista li { display: flex; align-items: baseline; gap: 8px; font-size: .86rem;
+  line-height: 1.5; color: var(--texto-suave); overflow-wrap: anywhere; }
+.esc-marcas-lista b { font-variant-numeric: tabular-nums; color: var(--texto-fuerte); }
+.esc-barra--compacta { padding: 10px 0; font-size: .88rem; line-height: 1.5; color: var(--tenue); }
+.esc-orientacion p, .esc-orientacion li { font-size: .95rem; line-height: 1.6; color: var(--texto); }
+.esc-orientacion ol { padding-left: 24px; }
+.esc-orientacion li + li { margin-top: 10px; }
+.esc-orientacion .esc-contexto { color: var(--tenue); font-size: .88rem; }
+.esc-respuesta { font-size: 1.15rem; font-weight: 600; margin: 10px 0 4px; color: var(--texto); }
+@media (max-width: 700px) {
+  .esc-tarjetas { grid-template-columns: minmax(0, 1fr); }
+  .esc-tarjeta h3 { min-height: 0; }
+}
+@media (max-width: 600px) {
+  .esc-equilibrio { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 14px; }
+  .esc-barra { display: none; }
+}

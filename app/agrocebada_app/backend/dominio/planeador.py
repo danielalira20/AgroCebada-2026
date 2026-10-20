@@ -3,7 +3,7 @@ from numbers import Real
 
 import numpy as np
 
-from agrocebada_app.backend.dominio.calculadora import columnas, cuentas, equilibrio, rango_municipio
+from agrocebada_app.backend.dominio.calculadora import _TOL, columnas, cuentas, equilibrio, rango_municipio
 from agrocebada_app.backend.modelo.estimador import estadistico
 from agrocebada_app.config import MODELOS_CANDIDATOS, TEMPORADA
 
@@ -68,3 +68,90 @@ def evaluar_cuenta(d, municipio, rendimiento, etiqueta, area, precio, costo):
         resultado.update(estado="invalida", errores={"cuenta": "Los valores son demasiado grandes para calcular la cuenta."})
         return resultado
     return {"estado": "calculada", "errores": {}, "tabla": tabla, "rango": rango, "umbral": umbral}
+
+
+def cobertura_saldo(saldo):
+    if not _finito(saldo):
+        raise ValueError("El saldo debe ser finito.")
+    return "equilibrio" if abs(saldo) <= _TOL else "falta" if saldo < 0 else "cubre"
+
+
+def importe(valor):
+    """Pesos con signo; conserva centavos y evita presentar un faltante pequeño como cero."""
+    if not _finito(valor):
+        raise ValueError("El importe debe ser finito.")
+    magnitud = abs(valor)
+    if magnitud <= _TOL:
+        return "$0"
+    if magnitud < 0.005:
+        return "entre -$0.01 y $0" if valor < 0 else "menos de $0.01"
+    return f"{'-' if valor < 0 else ''}${magnitud:,.2f}" if magnitud < 1 else f"{'-' if valor < 0 else ''}${magnitud:,.0f}"
+
+
+def escenarios_cuenta(resultado, etiqueta_referencia):
+    """Adapta la tabla existente a tarjetas; no recalcula ni redondea sus cantidades."""
+    if resultado["estado"] != "calculada":
+        return []
+    tabla, rango = resultado["tabla"], resultado["rango"]
+    etiquetas = {"referencia": etiqueta_referencia}
+    extremos = rango["tipo_rango"] == "mínimo–máximo"
+    etiquetas.update(bajo="Menor rendimiento registrado" if extremos else "Rendimiento bajo",
+                     alto="Mayor rendimiento registrado" if extremos else "Rendimiento alto")
+    indices = [("bajo", 1), ("referencia", 0), ("alto", 2)] if len(tabla.columns) == 3 else [("referencia", 0)]
+    escenarios = []
+    for sid, i in indices:
+        columna = tabla.columns[i]
+        fila = tabla[columna]
+        saldo = float(fila["Ingreso menos costo"])
+        escenarios.append({"id": sid, "etiqueta": etiquetas[sid], "columna": columna,
+                           "rendimiento_t_ha": float(fila["Rendimiento (t/ha)"]),
+                           "produccion_t": float(fila["Producción (t)"]), "ingreso": float(fila["Ingreso"]),
+                           "costo": float(fila["Costo"]), "saldo": saldo, "cobertura": cobertura_saldo(saldo)})
+    return escenarios
+
+
+def posiciones_barra(escenarios, umbral):
+    """Posiciones reales 0–100; detecta marcas juntas para usar su alternativa textual."""
+    if len(escenarios) < 3:
+        return None
+    if not _finito(umbral) or umbral < 0:
+        raise ValueError("El equilibrio debe ser finito y no negativo.")
+    marcas = [{"id": s["id"], "etiqueta": s["etiqueta"], "valor": s["rendimiento_t_ha"]} for s in escenarios]
+    marcas.append({"id": "equilibrio", "etiqueta": "Punto de equilibrio", "valor": umbral})
+    valores = [m["valor"] for m in marcas]
+    if any(not _finito(v) or v < 0 for v in valores) or max(valores) <= 0:
+        raise ValueError("Las marcas deben tener rendimientos finitos y no negativos.")
+    escala = max(valores)
+    minimo = min(v / escala for v in valores)
+    amplitud = 1 - minimo
+    for i, marca in enumerate(marcas, 1):
+        marca.update(numero=i, posicion=50.0 if amplitud == 0 else
+                     max(0.0, min(100.0, 100 * (marca["valor"] / escala - minimo) / amplitud)))
+    posiciones = sorted(m["posicion"] for m in marcas)
+    legible = all(b - a >= 6 for a, b in zip(posiciones, posiciones[1:]))
+    return {"minimo": min(valores), "maximo": max(valores), "marcas": marcas, "legible": legible}
+
+
+PASOS_FALTANTE = (
+    "Anota el faltante calculado y los números de precio, costo y superficie que usaste.",
+    "Revisa tus gastos y conserva tus registros de la campaña.",
+    "Comenta estas cuentas con tu asesor técnico y revisa qué opciones existen para tu caso.",
+)
+NOTA_ORIENTACION = "Orientación general basada en tus supuestos; no garantiza apoyos ni resultados de cosecha."
+
+
+def plan_si_sale_mal(escenarios):
+    """Usa el escenario bajo disponible, o la referencia identificada si no hay rango."""
+    if not escenarios:
+        return None
+    escenario = next((s for s in escenarios if s["id"] == "bajo"),
+                     next(s for s in escenarios if s["id"] == "referencia"))
+    saldo, estado = escenario["saldo"], escenario["cobertura"]
+    inicio = ("Con el escenario bajo basado en parcelas de 2025" if escenario["id"] == "bajo"
+              else "Con la única referencia disponible")
+    cierre = (f"te faltarían {importe(-saldo)}." if estado == "falta" else
+              "justo cubrirías tus costos." if estado == "equilibrio" else "cubrirías tus costos.")
+    return {"estado": estado, "escenario_id": escenario["id"], "saldo": saldo,
+            "faltante": max(0.0, -saldo) if estado == "falta" else 0.0, "abierto": estado == "falta",
+            "titulo": "Si este escenario no cubre tus costos", "apertura": f"{inicio} y tus números, {cierre}",
+            "pasos": list(PASOS_FALTANTE), "nota": NOTA_ORIENTACION}

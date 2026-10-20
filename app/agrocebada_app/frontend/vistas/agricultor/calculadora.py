@@ -5,25 +5,11 @@ import streamlit as st
 from agrocebada_app.frontend.tema.tablas import tabla as tabla_visual
 
 from agrocebada_app.backend.dominio.calculadora import AGROCOSTOS, frase_equilibrio
-from agrocebada_app.backend.dominio.planeador import evaluar_cuenta
-from agrocebada_app.backend.dominio.rangos import ANIO
+from agrocebada_app.backend.dominio.planeador import (cobertura_saldo, escenarios_cuenta, evaluar_cuenta,
+                                                     importe as _dinero, plan_si_sale_mal)
+from agrocebada_app.frontend.componentes.escenarios.vista import mostrar_escenarios, mostrar_orientacion
 from agrocebada_app.frontend.estado.planeador import (guardar_entrada, hidratar_compatibilidad, preparar_area)
 from agrocebada_app.frontend.tema.html import e, h, titulo
-
-# cómo se nombra cada columna de la tabla dentro de una frase
-_EN_FRASE = {"Año bajo en tu municipio": "en un año bajo de tu municipio",
-             "Año alto en tu municipio": "en un año alto",
-             "La más baja de tu municipio": "si te va como a la parcela más baja de tu municipio",
-             "La más alta de tu municipio": "como a la más alta"}
-
-
-def _dinero(x):
-    return f"-${abs(x):,.0f}" if x < 0 else f"${x:,.0f}"
-
-
-def _queda(dif):
-    return f"te quedarían {_dinero(dif)}" if dif >= 0 else f"te faltarían {_dinero(-dif)}"
-
 
 def calculadora(ctx, pid):
     d, pred = ctx.d, ctx.pred
@@ -33,11 +19,14 @@ def calculadora(ctx, pid):
     else:
         rend, etiqueta, que = float(r.real), "Con tu cosecha registrada", "tu cosecha registrada"
     return calculadora_base(ctx, r.municipio, rend, etiqueta, float(r.AREA_HA), f"calc_area_{pid}",
-                            parcela=pid, que=que)
+                            parcela=pid, que=que,
+                            etiqueta_escenario="Estimación de la parcela" if r.CONJUNTO == "PREDICCION" else
+                            "Cosecha registrada 2025")
 
 
 def calculadora_base(ctx, municipio, rendimiento, etiqueta, area_inicial, clave_area, *,
-                     parcela=None, que="la referencia de tu municipio", area_editable=True):
+                     parcela=None, que="la referencia de tu municipio", area_editable=True,
+                     etiqueta_escenario="Referencia del municipio"):
     """Dibuja la cuenta común; un flujo sin parcela puede aportar su única superficie ya capturada."""
     hidratar_compatibilidad(st.session_state)
     if area_editable:
@@ -74,19 +63,20 @@ def calculadora_base(ctx, municipio, rendimiento, etiqueta, area_inicial, clave_
 
         # 1) la respuesta en una frase, con palabra e ícono
         dif = t.loc["Ingreso menos costo", nombres[0]]
-        if t.loc["¿Cubre costos?", nombres[0]] == "Sí":
-            h(f"<div style='font-size:1.15rem;font-weight:600;margin:10px 0 4px'>✔ Con {que} ({rend:.2f} t/ha en "
+        estado = cobertura_saldo(dif)
+        if estado == "equilibrio":
+            h(f"<div class='esc-respuesta'>= Con {e(que)} ({rend:.2f} t/ha en {area:.2f} ha) "
+              "justo cubres tus costos.</div>")
+        elif estado == "cubre":
+            h(f"<div style='font-size:1.15rem;font-weight:600;margin:10px 0 4px'>✔ Con {e(que)} ({rend:.2f} t/ha en "
               f"{area:.2f} ha) sí cubres tus costos: te quedan {_dinero(dif)}.</div>")
         else:
-            h(f"<div class='aviso' style='font-size:1.05rem;font-weight:600'>⚠ Con {que} ({rend:.2f} t/ha en "
+            h(f"<div class='aviso' style='font-size:1.05rem;font-weight:600'>⚠ Con {e(que)} ({rend:.2f} t/ha en "
               f"{area:.2f} ha) no cubres tus costos: te faltarían {_dinero(-dif)}.</div>")
-        lineas = []
-        if len(nombres) == 3:
-            bajo, alto = nombres[1], nombres[2]
-            lineas.append(f"{_EN_FRASE[bajo].capitalize()} {_queda(t.loc['Ingreso menos costo', bajo])}; "
-                          f"{_EN_FRASE[alto]}, {_queda(t.loc['Ingreso menos costo', alto])[len('te quedarían '):] if t.loc['Ingreso menos costo', alto] >= 0 else _queda(t.loc['Ingreso menos costo', alto])}.")
-        lineas.append(frase_equilibrio(ctx.d, municipio, resultado["umbral"]))
-        h("<div class='nota'>" + "<br>".join(e(x) for x in lineas) + "</div>")
+        escenarios = escenarios_cuenta(resultado, etiqueta_escenario)
+        mostrar_escenarios(escenarios, resultado["umbral"],
+                           frase_equilibrio(ctx.d, municipio, resultado["umbral"]), rango)
+        mostrar_orientacion(plan_si_sale_mal(escenarios), clave_area)
 
         # 2) la cuenta completa, plegada
         with st.expander("Ver la cuenta completa"):
@@ -95,10 +85,7 @@ def calculadora_base(ctx, municipio, rendimiento, etiqueta, area_inicial, clave_
                 vista.loc[fila] = [f"{v:.2f}" for v in t.loc[fila]]
             for fila in ["Ingreso", "Costo", "Ingreso menos costo"]:
                 vista.loc[fila] = [_dinero(v) for v in t.loc[fila]]
-            tabla_visual(vista, width="stretch")
-            if rango["tipo_rango"] == "sin rango":
-                nota = f"{rango['texto']} Por eso sólo se muestra la cuenta con tu parcela."
-            else:
-                nota = (f"{rango['texto']} El año bajo y el alto suponen una temporada parecida a {ANIO}: "
-                        "la estimación no ve el clima.")
-            h(f"<div class='nota'>{e(nota)}</div>")
+            etiquetas = {s["columna"]: s["etiqueta"] for s in escenarios}
+            tabla_visual(vista.rename(columns=etiquetas), width="stretch")
+            h("<div class='nota'>La tabla y las tarjetas usan las mismas cuentas. "
+              "Los rendimientos son referencias históricas de 2025, no resultados prometidos.</div>")

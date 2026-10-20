@@ -51,7 +51,8 @@ def verdor_clima(ctx, pid):
     d, S, C = ctx.d, ctx.S, ctx.C
     t = comparar(C, clima_normal(), pid) if C is not None else None
     with st.container(key="glass_temporada"):
-        titulo("Cómo fue tu temporada", f"Verdor de tu parcela y clima de tu zona en 2025. {CONTEXTO}")
+        titulo("Verdor y clima de 2025", f"Verdor de tu parcela y clima de tu zona en 2025. {CONTEXTO} "
+               "Describe lo que pasó; no pronostica la cosecha.")
 
         # 1) dos tarjetas internas, siempre a la misma altura
         detalle_clima, lineas_clima = _lineas_clima(C, t)
