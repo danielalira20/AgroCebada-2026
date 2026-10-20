@@ -24,7 +24,7 @@
   backdrop-filter: blur(24px) saturate(115%); -webkit-backdrop-filter: blur(24px) saturate(115%); }
 :is(.st-key-glass_panel, .st-key-glass_kpis, .st-key-glass_chips, .st-key-glass_filtros, .st-key-glass_leyenda) .mini {
   background: rgba(255,255,255,.28); border-color: rgba(72,100,52,.16); }
-.st-key-hero [data-testid="stDeckGlJsonChart"] { box-shadow: 0 14px 36px rgba(43,67,34,.13); }
+[class*="st-key-hero_"] [data-testid="stDeckGlJsonChart"] { box-shadow: 0 14px 36px rgba(43,67,34,.13); }
 .mini, .paso, .etiqueta, .val-escenario, .evid-pregunta, .lib-meta { background: #f1f4e9; border-color: var(--borde); }
 .stApp :is(h1, h2, h3, h4, h5, h6), .stApp [data-testid="stMarkdownContainer"],
 .stApp [data-testid="stExpander"] summary { color: var(--texto); }

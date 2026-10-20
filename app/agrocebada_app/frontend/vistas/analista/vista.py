@@ -17,7 +17,10 @@ from agrocebada_app.frontend.vistas.analista.seleccion import clic_analista, ids
 from agrocebada_app.frontend.vistas.datos_propios.vista import datos_propios
 
 
-def mostrar(ctx):
+@st.fragment
+def _mapa_y_resumen(ctx):
+    """Mapa, filtros, leyenda y resumen. Es un fragmento: un clic en el mapa o un cambio de filtro vuelve a dibujar sólo
+    esta parte y no las siete pestañas (nada de lo de abajo lee estos controles)."""
     d = ctx.d
     modelo = ctx.modelo
     satelite = ctx.satelite
@@ -29,7 +32,7 @@ def mostrar(ctx):
     aviso = st.session_state.pop("aviso_filtros_an", None)
     if aviso:
         st.toast(aviso, icon=":material/info:", duration=5)
-    with st.container(key="hero"):
+    with st.container(key="hero_analista"):
         with st.container(key="glass_filtros"):
             capa = st.segmented_control("Mostrar", ["Todas", "Las 59", "Las 138"], key="capa",
                                         on_change=validar_filtros, args=(d,)) or "Todas"
@@ -81,6 +84,10 @@ def mostrar(ctx):
                 f"<div class='mini'><span>{k}</span><b class='kv'>{v}<small>{u}</small></b></div>" for k, v, u in kp)
               + "</div>")
             boton_cifras(ctx)
+
+
+def mostrar(ctx):
+    _mapa_y_resumen(ctx)
     h(f"<div class='creditos'>{AYUDA_MAPA} · {e(CREDITOS)}</div>")
 
     t0, t1, t2, t3, t6, t4, t5 = st.tabs(["Cartera", "Las 59 estimaciones", "Ficha técnica", "Validación",
