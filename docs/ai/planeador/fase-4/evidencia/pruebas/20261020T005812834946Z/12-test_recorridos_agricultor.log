@@ -1,0 +1,4 @@
+2026-10-19 19:01:58.496 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:01:58.496 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 19:01:58.497 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+OK: rutas de producción, tema, Analista, modo/municipio/parcela retenidos, áreas separadas y catálogo inmutable.

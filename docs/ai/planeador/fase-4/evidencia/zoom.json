@@ -1,0 +1,20 @@
+{
+  "intento": "ctrl+plus",
+  "antes": {
+    "ancho": 1400,
+    "dpr": 1.0000000149011612,
+    "escala": 1
+  },
+  "despues": {
+    "ancho": 1400,
+    "dpr": 1.0000000149011612,
+    "escala": 1
+  },
+  "resultado": "Sin cambio observable; no acredita zoom 200%. Reflow por viewport comprobado por separado.",
+  "validacion_manual_usuario": {
+    "resultado": "OK",
+    "respuesta_exacta": "Sí, funciona al 200%",
+    "fuente": "Respuesta del usuario en este chat a comprobación de campos, tarjetas y detalles al 200%",
+    "atribucion": "No ejecutado ni observado por el agente; sin navegador/OS/version comunicados por el usuario."
+  }
+}

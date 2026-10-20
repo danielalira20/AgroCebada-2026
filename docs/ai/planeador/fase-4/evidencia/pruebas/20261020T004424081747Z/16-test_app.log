@@ -1,0 +1,23 @@
+2026-10-19 18:48:54.143 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:02.209 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:02.210 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:02.210 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:04.368 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:04.369 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:04.369 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:32.710 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:32.711 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:32.711 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:33.716 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:33.716 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:33.716 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:35.490 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:49:35.491 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+agricultor: los 9 municipios sin errores
+analista (media_mun__resp_grupo): 4 verificaciones en verde · MAE 0.320 · R² 0.659
+analista (mediana_mun__resp_grupo): 4 verificaciones en verde · MAE 0.313 · R² 0.661
+buscador, filtro por municipio y simulación de información insuficiente sin errores
+mapa desde arriba sin errores en las dos vistas
+comparación de parcelas y pestaña «Analizar tus datos» presentes
+ficha PDF generada para 3 parcelas
+OK

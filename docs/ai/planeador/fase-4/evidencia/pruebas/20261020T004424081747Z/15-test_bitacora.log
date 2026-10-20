@@ -1,0 +1,7 @@
+2026-10-19 18:48:42.395 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:48:48.905 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-19 18:48:49.662 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+libreta vacía: invita a anotar y esconde tablero y progreso
+libreta con 3 cosechas: renglones, comparación con la app, progreso y tablero
+AGC_120 (Nanacamilpa): dice cuántos vecinos faltan para subir de confianza
+OK

@@ -6,7 +6,11 @@ Utiliza información de 138 parcelas con rendimiento registrado para estimar el 
 
 Las estimaciones se verifican contra el archivo de referencia `predicciones_59_referencias.csv`, para comprobar que los resultados coincidan con los del procedimiento evaluado.
 
+En **Agricultor** puedes elegir **Parcela del catálogo** o **Consulta rápida**. La consulta rápida permite elegir un municipio disponible y escribir tus hectáreas sin conocer un ID de parcela. Muestra su referencia histórica de 2025 y, al capturar precio y costo, compara tus cuentas en escenarios de rendimiento. El municipio y área de esta consulta se conservan separados de los de cada parcela; precio y costo se comparten entre ambos recorridos.
+
 ## Cómo correrla
+
+La [validación del planeador](../docs/ai/planeador/fase-4/README.md) incluye evidencia funcional, capturas y límites. Desde la raíz puedes repetir sus comprobaciones con `.venv/Scripts/python.exe -B -X utf8 app/herramientas/verificar_planeador.py`; el ejecutor usa `app/` como directorio de trabajo para cargar su configuración.
 
 La app lee el dataset del reto y las salidas de T03, T04 y T08 (no están en git; ver «Datos que usa»). Todos los comandos se dan desde la raíz del repo; en Windows (PowerShell) cambia `export X=...` por `$env:X = "..."` y `\` por `` ` ``.
 

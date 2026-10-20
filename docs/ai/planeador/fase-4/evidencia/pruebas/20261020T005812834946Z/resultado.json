@@ -1,0 +1,157 @@
+{
+  "inicio_utc": "2026-10-20T00:58:12.834946+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "plataforma": "Windows-11-10.0.26200-SP0",
+  "directorio_ejecucion": "C:\\Users\\Jasmin\\Documents\\git-prueba\\AgroCebada-2026\\app",
+  "fuentes_sha256": {
+    "app.py": "f71583a4e154aab99a07421698039b884e5ad171349e23900b5ed9865dc44af3",
+    "agrocebada_app/backend/dominio/planeador.py": "2d33753c5d2a93f0f8ad0f557d45055c7a231724978682cee161c69415bda502",
+    "agrocebada_app/frontend/estado/planeador.py": "d630313b665d9dd782779f8d0bab02b59782e9b5e77bcbfd0751f611830ced3e",
+    "agrocebada_app/frontend/estado/sesion.py": "9c770d7ad5a91dde98cfef88ebf57cf9061df056483b88ac4fe2764d83f2fcdc",
+    "agrocebada_app/frontend/tema/html.py": "23f5eb97ca9b8f2cd81049df98a1a157441835dec5101860b8b10fc6bb5b65d9",
+    "agrocebada_app/frontend/componentes/escenarios/vista.py": "ef9ca670adba190149b2fe4c9ce6e2fe0f2f5de10f5e215c980491ab6e53f1ca",
+    "agrocebada_app/frontend/componentes/descargas/boton_ficha.py": "ce1c90a4d4340eca84f3b13051347ff26187651deae842d98f5a1ebc4962fb7d",
+    "agrocebada_app/frontend/vistas/agricultor/calculadora.py": "c3a125d44e2712a8c10a85d707f20cd90b138e676487614610a7d2028d78b6ac",
+    "agrocebada_app/frontend/vistas/agricultor/consulta_rapida.py": "615a3d2209103a2277d423c5d0b0b7880c932c8b900a35fe7e0f393b1c364511",
+    "agrocebada_app/frontend/vistas/agricultor/vista.py": "2f2feb853ecaa57b6e30fbc3c66212fde3f5ac894e100ed3d969e70f78440bc1",
+    "agrocebada_app/frontend/vistas/agricultor/verdor_clima.py": "3b223a81660e4860e15ea892c9384f307ef94560f59ab9e0f1d97271dbb1bcc8",
+    "assets/css/tema.css": "9ced3cff01b72d6ad0828c63afa2fc00e938f50fe689388437f34555389bd9fe",
+    "assets/css/claro.css": "de93bcfdee81476dd8ace25f69620b463d1a202afa029a7630ae549e732f0ac4",
+    ".streamlit/config.toml": "8d0acce54a4c2c125f1b098ff4333a614827be19b6dfafbf8811c34ff8a281da",
+    "requirements.txt": "6eb93b490dff759fe3e20759912b2946ac4d4c657a8486e310b384e7de3ce653",
+    "agrocebada_app/config.py": "166f7804e6cb048a1b35b0cacb3648d027ff15fae882d8674ea1bb09405708b5",
+    "agrocebada_app/backend/dominio/calculadora.py": "cdfb4bb0c4e114bdd8afa7cfe9c9f1042fad4f900226a5f77693eeb02a307104",
+    "agrocebada_app/backend/dominio/rangos.py": "83d503f77b9c638d1258743684100d5dd36a2089efd17f7e6f423f49a72f2886",
+    "agrocebada_app/backend/dominio/confianza.py": "1d07d728d64077c44c008714e3e36f798bc2eb3924dd5da084f964c1ecb52b1d",
+    "agrocebada_app/backend/modelo/estimador.py": "71c8686645296e29cdad0e1b292beeb1aae59bd8f70d21a403ad7817f4dc5a94",
+    "agrocebada_app/backend/modelo/metricas.py": "3a0e7f5eb397b5565fe3cd34ad2827f03c427af254005f7bf92fbd001f47fee8",
+    "tests/backend/test_planeador.py": "a4fdf7258b5d145f81e064e28caf811735566574a8232b79e07d0208eaaeb852",
+    "tests/backend/test_municipios_planeador.py": "d59bc93be32e7f0966f2d335f443218f5520080aba43be7b1b51c9a5b6b7df9c",
+    "tests/backend/test_escenarios.py": "11daae1f467f6e001d34702ae1e2e668522c99ca4f8205e06cfc7fe14ae2e056",
+    "tests/backend/test_calculadora.py": "3972387c5d2c684da8f393d83d35607f5df3cb6043b766c5b64f2fff4e688c26",
+    "tests/backend/test_rangos.py": "ce8efa0f8c577fe83dfaed463aba893ece10f11b74f2367ad760141ad231461b",
+    "tests/backend/test_confianza.py": "68a4e368bbe46444c889edabde7394655eb76b68f82e9d27da1542ab95d3dddb",
+    "tests/frontend/test_estado_planeador.py": "75549188cf7a1937d28ca2f6822dfe695cc5e2615c3c1a3c4e8361158b7c2cf5",
+    "tests/frontend/test_estado_consulta.py": "4f7bc2cdccd3648288831d4e268b26f20c034e3e3eabe3c4641a377ee57b822f",
+    "tests/frontend/test_calculadora_base.py": "b9d633b46dc9d73098b6d4e839843b3e54ad7a2156892e245eaa7e980aeb4965",
+    "tests/frontend/test_calculadora_visual.py": "dd4952bcfc082fad1c9df257d00e80f09019424702ab32f14752b50a26033eac",
+    "tests/frontend/test_consulta_rapida.py": "88c53795f53c60e0554deb57a9ebaafc1e5e140126722285c35277f53e613675",
+    "tests/frontend/test_recorridos_agricultor.py": "134e26a7215d3bb070af880ea69b8ef02a7f1699d2ff09cd0d063a4888317ffd",
+    "tests/frontend/test_tema.py": "a03b9bd736ea70dcf638c279979bd2d902034d0bff02e833bad6bad5c1e64f07",
+    "tests/frontend/test_descargas_ficha.py": "bd386252f139fea5e2fc24829191d8bd468fc296fab32f3c2333d7e98608b511",
+    "tests/frontend/test_bitacora.py": "ccbbeab318701f3b24cbb7c683d022234cdba9f627928e58bbb26b22f71b13bf",
+    "tests/frontend/test_app.py": "fb6cd63087cbbc91f0ff7522e6079d643f45207427c7e61aba8aa35cf9781d40",
+    "herramientas/verificar_base_planeador.py": "e1af1d37ae88f47efcb6c7a1d19f1f1b1b00dd8a1be149c894d1ba5a368271e2",
+    "herramientas/verificar_planeador.py": "ace43f94011813c3fbe134f54dda67f6a1f5010749ea3a2a72791b7e97cde055"
+  },
+  "base_sha256": "04688c4bb1694fdad14f7c5534126d0232cdfb5ca9bd44241c0e80d8c663a2e3",
+  "completa": true,
+  "resultado": "OK",
+  "casos": [
+    {
+      "script": "tests/backend/test_planeador.py",
+      "codigo": 0,
+      "log": "01-test_planeador.log",
+      "segundos": 7.781
+    },
+    {
+      "script": "tests/backend/test_municipios_planeador.py",
+      "codigo": 0,
+      "log": "02-test_municipios_planeador.log",
+      "segundos": 5.438
+    },
+    {
+      "script": "tests/backend/test_escenarios.py",
+      "codigo": 0,
+      "log": "03-test_escenarios.log",
+      "segundos": 5.937
+    },
+    {
+      "script": "tests/backend/test_calculadora.py",
+      "codigo": 0,
+      "log": "04-test_calculadora.log",
+      "segundos": 9.391
+    },
+    {
+      "script": "tests/backend/test_rangos.py",
+      "codigo": 0,
+      "log": "05-test_rangos.log",
+      "segundos": 15.641
+    },
+    {
+      "script": "tests/backend/test_confianza.py",
+      "codigo": 0,
+      "log": "06-test_confianza.log",
+      "segundos": 5.859
+    },
+    {
+      "script": "tests/frontend/test_estado_planeador.py",
+      "codigo": 0,
+      "log": "07-test_estado_planeador.log",
+      "segundos": 1.062
+    },
+    {
+      "script": "tests/frontend/test_estado_consulta.py",
+      "codigo": 0,
+      "log": "08-test_estado_consulta.log",
+      "segundos": 1.453
+    },
+    {
+      "script": "tests/frontend/test_calculadora_base.py",
+      "codigo": 0,
+      "log": "09-test_calculadora_base.log",
+      "segundos": 24.219
+    },
+    {
+      "script": "tests/frontend/test_calculadora_visual.py",
+      "codigo": 0,
+      "log": "10-test_calculadora_visual.log",
+      "segundos": 36.797
+    },
+    {
+      "script": "tests/frontend/test_consulta_rapida.py",
+      "codigo": 0,
+      "log": "11-test_consulta_rapida.log",
+      "segundos": 35.656
+    },
+    {
+      "script": "tests/frontend/test_recorridos_agricultor.py",
+      "codigo": 0,
+      "log": "12-test_recorridos_agricultor.log",
+      "segundos": 113.829
+    },
+    {
+      "script": "tests/frontend/test_tema.py",
+      "codigo": 0,
+      "log": "13-test_tema.log",
+      "segundos": 13.015
+    },
+    {
+      "script": "tests/frontend/test_descargas_ficha.py",
+      "codigo": 0,
+      "log": "14-test_descargas_ficha.log",
+      "segundos": 114.86
+    },
+    {
+      "script": "tests/frontend/test_bitacora.py",
+      "codigo": 0,
+      "log": "15-test_bitacora.log",
+      "segundos": 21.031
+    },
+    {
+      "script": "tests/frontend/test_app.py",
+      "codigo": 0,
+      "log": "16-test_app.log",
+      "segundos": 116.937
+    },
+    {
+      "script": "herramientas/verificar_base_planeador.py",
+      "codigo": 0,
+      "log": "17-verificar_base_planeador.log",
+      "segundos": 2.531
+    }
+  ],
+  "fuentes_estables": true,
+  "base_estable": true,
+  "fin_utc": "2026-10-20T01:07:05.509878+00:00"
+}

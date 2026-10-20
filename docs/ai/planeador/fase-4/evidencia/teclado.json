@@ -1,0 +1,33 @@
+{
+  "configuracion": "app/.streamlit/config.toml",
+  "modo": "ArrowRight y Space activan Consulta rápida",
+  "municipio": "Escritura, ArrowDown y Enter seleccionan municipio",
+  "entradas": "Tab confirma área/precio/costo",
+  "detalle": "Enter abre, Space cierra",
+  "foco": {
+    "alto": 1000,
+    "outline": "rgb(57, 117, 35) solid 1.6px",
+    "rect": {
+      "bottom": 938.2374877929688,
+      "height": 38,
+      "left": 33.60000228881836,
+      "right": 276.0000114440918,
+      "top": 900.2374877929688,
+      "width": 242.40000915527344,
+      "x": 33.60000228881836,
+      "y": 900.2374877929688
+    },
+    "tag": "SUMMARY",
+    "texto": "keyboard_arrow_downVer la cuenta completa"
+  },
+  "estado_final": [
+    {
+      "abierto": true,
+      "texto": "keyboard_arrow_downSi este escenario no cubre tus costos"
+    },
+    {
+      "abierto": false,
+      "texto": "keyboard_arrow_rightVer la cuenta completa"
+    }
+  ]
+}
