@@ -15,14 +15,22 @@
     filtros: '<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
     resumen: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
     vista: '<path d="M3 12h13M12 6l6 6-6 6M21 4v16"/>',
+    cebi: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h7M8.5 14.5h4"/>',
     pestanas: '<path d="M3 8a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
   };
   const MAPA = '[class*="st-key-hero_"] [data-testid="stDeckGlJsonChart"]';
   const COLOR = ["Mira el mapa en 3D o desde arriba y coloréalo por rendimiento o por confianza de la estimación.",
                  "Colorear por confianza muestra con color y palabra qué tanto respaldo tiene cada estimación."];
 
+  const CUENTA = "Escribe tu precio por tonelada y tu costo por hectárea. Te dice si cubres tus costos, cuánto necesitas sacar " +
+                 "para no perder (el punto de equilibrio) y qué pasa con un rendimiento bajo, de referencia o alto, según lo que " +
+                 "dieron en 2025 las parcelas de tu municipio. Si alguno no alcanza, abajo hay pasos a seguir. Es una guía, no un dictamen de crédito.";
+  const FORMAS = "«Parcela del catálogo» es la pantalla del mapa: tu parcela y su estimación. «Consulta rápida» es para cuando no " +
+                 "buscas una parcela: eliges tu municipio, escribes tus hectáreas y ves una referencia de tu zona.";
+
   const PASOS = {
     agricultor: [
+      {sel: ".st-key-glass_recorrido_agricultor", icono: "vista", lado: ["bottom", "right"], titulo: "Dos formas de consultar", texto: FORMAS},
       {sel: ".st-key-glass_panel", icono: "parcela", lado: ["right"], titulo: "Elige tu parcela",
        texto: "Escoge tu municipio y tu parcela. Aquí ves cuántas toneladas por hectárea se estiman, qué tanta confianza tiene la cifra y cómo se calculó."},
       {sel: MAPA, icono: "mapa", lado: ["center"], titulo: "Explora el mapa",
@@ -32,8 +40,21 @@
        texto: "Área, altitud, lluvia de abril a octubre y el mes de más verdor, para darle contexto a la estimación."},
       {sel: ".st-key-ficha_agricultor", icono: "ficha", lado: ["right", "top"], titulo: "Llévate tu ficha",
        texto: "Descarga en PDF, en una página, la estimación de tu parcela con su rango, su mapa, su verdor y su clima."},
-      {sel: ".st-key-glass_calculadora", icono: "calculadora", lado: ["top", "bottom"], titulo: "¿Me alcanza?",
-       texto: "Escribe tu precio por tonelada y tu costo por hectárea para ver cuánto te dejaría la cosecha. Es una guía, no un dictamen de crédito."},
+      {sel: ".st-key-glass_calculadora", icono: "calculadora", lado: ["top", "bottom"], titulo: "¿Me alcanza?", texto: CUENTA},
+      {sel: ".st-key-cebi_launcher", icono: "cebi", lado: ["leftUp"], titulo: "Pregúntale a Cebi",
+       texto: "Toca a Cebi para conversar. Al empezar eliges «Mi parcela» (tu estimación, tus vecinos, el clima y el satélite) o " +
+              "«Mi cuenta» (cuánto necesitas sacar, qué pasa en un año bajo o alto y qué hacer si no alcanza). También puedes escribirle tu pregunta con tus palabras."},
+    ],
+    rapida: [
+      {sel: ".st-key-glass_recorrido_agricultor", icono: "vista", lado: ["bottom", "right"], titulo: "Estás en Consulta rápida",
+       texto: "Aquí no hace falta buscar una parcela. Para ver una parcela del catálogo con su mapa, cambia el «Tipo de consulta» en este selector."},
+      {sel: ".st-key-glass_consulta_rapida", icono: "parcela", lado: ["right", "left"], titulo: "Tu municipio y tus hectáreas",
+       texto: "Elige tu municipio y escribe cuántas hectáreas siembras. Sólo aparecen los municipios con cosechas registradas en este catálogo. " +
+              "Al elegirlo verás su referencia y la calculadora «¿Me alcanza?»."},
+      {sel: ".st-key-glass_referencia_rapida", icono: "datos", lado: ["right", "left"], titulo: "La referencia de tu municipio",
+       texto: "Es lo que dieron en 2025 las parcelas con cosecha de tu municipio, con cuántas se calculó y qué tanta confianza tiene. " +
+              "Es una referencia histórica, no una predicción de tu parcela ni una garantía de cosecha."},
+      {sel: ".st-key-glass_calculadora", icono: "calculadora", lado: ["top", "bottom"], titulo: "¿Me alcanza?", texto: CUENTA},
     ],
     analista: [
       {sel: ".st-key-glass_filtros", icono: "filtros", lado: ["left", "bottom"], titulo: "Filtra lo que ves",
@@ -51,10 +72,14 @@
   };
 
   const vistaActual = () => document.querySelector('[class*="st-key-hero_analista"]') ? "analista"
-    : document.querySelector('[class*="st-key-hero_agricultor"]') ? "agricultor" : null;
+    : document.querySelector('[class*="st-key-hero_agricultor"]') ? "agricultor"
+    : document.querySelector(".st-key-glass_consulta_rapida") ? "rapida" : null;
+  // dónde se ancla el botón «?» y desde cuándo se considera que la vista está lista: el mapa, o la consulta si no hay mapa
+  const anclaDe = (v) => document.querySelector(v === "rapida" ? ".st-key-glass_consulta_rapida" : MAPA);
   const hayDialogo = () => !!document.querySelector('[role="dialog"]:not(.guia-tarjeta)');
   const svg = (n) => `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONO[n] || ""}</svg>`;
-  const vistoKey = (v) => "agrocebada_guia_" + v;
+  const VERSION = {agricultor: "_2"};      // se sube cuando una vista cambia de contenido, para que se muestre otra vez
+  const vistoKey = (v) => "agrocebada_guia_" + v + (VERSION[v] || "");
   const marcarVisto = (v) => { try { localStorage.setItem(vistoKey(v), "1"); } catch (e) { /* sin almacenamiento */ } };
   const yaVisto = (v) => { try { return localStorage.getItem(vistoKey(v)) === "1"; } catch (e) { return true; } };
 
@@ -90,6 +115,7 @@
     const opciones = {
       right: [r.right + g, r.top], left: [r.left - g - w, r.top], bottom: [r.left, r.bottom + g], top: [r.left, r.top - g - h],
       center: [r.left + (r.width - w) / 2, r.top + (r.height - h) / 2],
+      leftUp: [r.left - g - w, r.bottom - h],
     };
     const cabe = ([x, y]) => x >= MARGEN && y >= MARGEN && x + w <= innerWidth - MARGEN && y + h <= innerHeight - MARGEN;
     let pos = null;
@@ -148,12 +174,14 @@
   function abrir(forzada) {
     const vista = vistaActual();
     if (!vista || activo) return;
+    const pasos = PASOS[vista].filter((p) => document.querySelector(p.sel));
+    if (!pasos.length) return;
     marcarVisto(vista);
     const velo = crear("div", "guia-velo"), aro = crear("div", "guia-aro");
     const tarjeta = crear("div", "guia-tarjeta", {role: "dialog", "aria-modal": "true", "aria-labelledby": "guia-titulo"});
     document.body.append(velo, aro, tarjeta);
     document.body.classList.add("guia-abierta");
-    activo = {vista, pasos: PASOS[vista], i: 0, velo, aro, tarjeta, previo: document.activeElement, raf: 0};
+    activo = {vista, pasos, i: 0, velo, aro, tarjeta, previo: document.activeElement, raf: 0};
     velo.addEventListener("click", cerrar);
     tarjeta.addEventListener("click", (ev) => {
       const b = ev.target.closest("button"); if (!b) return;
@@ -174,11 +202,13 @@
 
   let listoDesde = 0;
   function vigilar() {
-    const vista = vistaActual(), mapa = document.querySelector(MAPA);
-    const r = mapa && mapa.getBoundingClientRect();
+    const vista = vistaActual(), ancla = vista && anclaDe(vista);
+    const r = ancla && ancla.getBoundingClientRect();
     const visible = !!vista && !!r && r.width > 100 && r.bottom > 80 && r.top < innerHeight - 60 && !hayDialogo() && !activo;
     boton.style.display = visible && innerWidth >= 901 ? "flex" : "none";
-    if (visible) { boton.style.left = r.left + 16 + 40 + "px"; boton.style.top = r.top + 16 + "px"; }
+    if (visible) {      // junto a los botones de zoom del mapa; en la consulta rápida, en la esquina de su tarjeta
+      boton.style.left = (vista === "rapida" ? r.right - 46 : r.left + 16 + 40) + "px"; boton.style.top = r.top + 16 + "px";
+    }
     if (!vista || !r || hayDialogo()) { listoDesde = 0; return; }
     if (!activo && !yaVisto(vista)) {      // primera vez en esta vista: se abre sola cuando el mapa lleva un momento en pantalla
       listoDesde = listoDesde || Date.now();
