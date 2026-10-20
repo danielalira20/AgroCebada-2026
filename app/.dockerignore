@@ -1,9 +1,11 @@
-# Nada de datos del reto ni de tablas generadas dentro de la imagen
-datos_app
+# Los datos crudos del reto no van en la imagen; sí el paquete compacto datos_app/ y los CSV estáticos de la app
 **/*.zip
 **/*.csv
 !datos_estaticos/elevacion_parcelas.csv
+!datos_estaticos/experimentos.csv
+!datos_app/oficial_59.csv
 **/*.parquet
+!datos_app/*.parquet
 **/*.shp
 **/*.shx
 **/*.dbf
