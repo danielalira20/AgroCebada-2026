@@ -816,3 +816,21 @@ header[data-testid="stHeader"], [data-testid="stDecoration"] { display: none; }
   .esc-equilibrio { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 14px; }
   .esc-barra { display: none; }
 }
+/* Consulta municipal: jerarquía y superficies del recorrido existente. */
+.st-key-glass_recorrido_agricultor { padding: 16px 20px; margin-bottom: 16px; }
+.rapida-contexto { color: var(--texto-suave); font-size: .95rem; line-height: 1.6; }
+.rapida-resumen { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px; margin: 10px 0 18px; color: var(--texto); }
+.rapida-cifra { margin: 4px 0 16px; color: var(--texto-fuerte); font-size: 2.75rem;
+  font-weight: 700; line-height: 1.2; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.rapida-cifra span { font-size: 1rem; font-weight: 500; margin-left: 8px;
+  letter-spacing: normal; color: var(--tenue); }
+.rapida-produccion span { display: block; font-size: .95rem; color: var(--texto-suave); line-height: 1.5; }
+.rapida-produccion strong { display: block; margin-top: 4px; font-size: 1.4rem;
+  font-variant-numeric: tabular-nums; color: var(--texto-fuerte); overflow-wrap: anywhere; }
+.rapida-soporte { border-left: 1px solid var(--borde); padding-left: 24px; min-width: 0; }
+.rapida-soporte p { font-size: .95rem; line-height: 1.6; overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .rapida-resumen { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .rapida-soporte { border-left: 0; border-top: 1px solid var(--borde); padding: 8px 0 0; }
+}

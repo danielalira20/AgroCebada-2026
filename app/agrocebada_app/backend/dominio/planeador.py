@@ -24,6 +24,11 @@ def _entrenamiento(d):
     return tr
 
 
+def municipios_disponibles(d):
+    """Catálogo con cosechas locales válidas, independiente de las parcelas por estimar."""
+    return sorted(_entrenamiento(d).municipio.dropna().unique())
+
+
 def estimacion_municipio(d, municipio, modelo):
     """Referencia histórica local; sin cosechas devuelve sin_soporte, sin respaldo de otras zonas."""
     if modelo not in MODELOS_CANDIDATOS:
