@@ -40,10 +40,12 @@ assert np.isfinite(pre.estimacion).all() and np.isfinite(pre.produccion_t).all()
 # AGC_011 (Chignahuapan) con la media da 4.48 t/ha, igual que en la ficha de cada módulo
 f11 = cp.set_index("ID_POLIGONO").loc["AGC_011"]
 assert abs(f11.estimacion - 4.48) < 0.005 and f11.municipio == "Chignahuapan", dict(f11)
-assert abs(f11.produccion_t - f11.estimacion * f11.area_ha) < 1e-9
+# la producción es el producto, redondeado a dos decimales como todo lo que se lee en el CSV
+assert f11.produccion_t == round(f11.estimacion * f11.area_ha, 2)
 # producción con escenario: dentro de rango_bajo/alto × área, o la propia estimación si no hay rango
 con_rango = pre.rango_bajo.notna()
-assert (abs(pre[con_rango].produccion_baja_t - pre[con_rango].rango_bajo * pre[con_rango].area_ha) < 1e-6).all()
+assert (abs(pre[con_rango].produccion_baja_t - (pre[con_rango].rango_bajo * pre[con_rango].area_ha).round(2))
+        < 1e-9).all()
 sin_rango = pre[~con_rango]
 if len(sin_rango):
     assert (abs(sin_rango.produccion_baja_t - sin_rango.produccion_t) < 1e-9).all()

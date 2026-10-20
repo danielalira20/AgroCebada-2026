@@ -29,20 +29,22 @@ def cifras_parcelas(d, pred, conf, modelo):
     pre["conjunto"], pre["modelo"] = "PREDICCION", modelo
     c = confianza_de_parcelas(pred, conf).reset_index(drop=True)
     pre["confianza"], pre["motivo"], pre["motivo_detallado"] = c.nivel, c.motivo, c.motivo_detallado
-    pre["rango_bajo"] = pre.municipio.map(rangos.bajo)
-    pre["rango_alto"] = pre.municipio.map(rangos.alto)
-    pre["produccion_t"] = pre.estimacion * pre.area_ha
+    # El rango se redondea antes de derivar la producción: si no, el CSV publica un rango de dos decimales y una
+    # producción calculada con otro número, y quien multiplique las dos columnas no obtiene la tercera.
+    pre["rango_bajo"] = pre.municipio.map(rangos.bajo).round(2)
+    pre["rango_alto"] = pre.municipio.map(rangos.alto).round(2)
+    pre["produccion_t"] = (pre.estimacion * pre.area_ha).round(2)
     con_rango = pre.rango_bajo.notna() & pre.rango_alto.notna()
-    pre["produccion_baja_t"] = pre.rango_bajo.where(con_rango, pre.estimacion) * pre.area_ha
-    pre["produccion_alta_t"] = pre.rango_alto.where(con_rango, pre.estimacion) * pre.area_ha
+    pre["produccion_baja_t"] = (pre.rango_bajo.where(con_rango, pre.estimacion) * pre.area_ha).round(2)
+    pre["produccion_alta_t"] = (pre.rango_alto.where(con_rango, pre.estimacion) * pre.area_ha).round(2)
 
     tr = d[d.CONJUNTO == "ENTRENAMIENTO"].reset_index()[["ID_POLIGONO", "municipio", "AREA_HA", "real"]].rename(
         columns={"AREA_HA": "area_ha", "real": "estimacion"})
     tr["conjunto"], tr["modelo"], tr["fuente"] = "ENTRENAMIENTO", None, None
     tr["confianza"], tr["motivo"], tr["motivo_detallado"] = None, None, None
-    tr["rango_bajo"] = tr.municipio.map(rangos.bajo)
-    tr["rango_alto"] = tr.municipio.map(rangos.alto)
-    tr["produccion_t"] = tr.estimacion * tr.area_ha
+    tr["rango_bajo"] = tr.municipio.map(rangos.bajo).round(2)
+    tr["rango_alto"] = tr.municipio.map(rangos.alto).round(2)
+    tr["produccion_t"] = (tr.estimacion * tr.area_ha).round(2)
     tr["produccion_baja_t"], tr["produccion_alta_t"] = None, None
 
     t = pd.concat([pre, tr], ignore_index=True)
@@ -68,6 +70,23 @@ def tablas(d, pred, conf, modelo, O):
            NOMBRES[2]: cifras_validacion(O)}
 
 
+# Decimales al publicar. Las tablas en memoria son las mismas que usan las pantallas —cifras_municipios es, por
+# contrato, la tabla de la pestaña Cartera— así que el redondeo se aplica al escribir, no al calcular. Las cifras
+# de cosecha van a dos decimales, como se leen en la app. Los errores del método van a cuatro: la diferencia
+# entre modelos vive en el cuarto decimal (0.3205 contra 0.3192) y a dos decimales ambos darían 0.32.
+DECIMALES = {"MAE": 4, "RMSE": 4, "sesgo": 4, "R2": 4}
+DECIMALES_POR_OMISION = 2
+
+
+def redondear_para_publicar(tabla):
+    """Copia de la tabla con los números redondeados a como se leen: nada de arrastrar decimales del flotante."""
+    t = tabla.copy()
+    for col in t.columns:
+        if pd.api.types.is_float_dtype(t[col]):
+            t[col] = t[col].round(DECIMALES.get(col, DECIMALES_POR_OMISION))
+    return t
+
+
 def exportar_todo(d, pred, conf, modelo, O, carpeta):
     """Escribe las tres tablas como CSV en `carpeta` (se crea si no existe) y regresa {nombre: ruta}."""
     carpeta = Path(carpeta)
@@ -75,6 +94,6 @@ def exportar_todo(d, pred, conf, modelo, O, carpeta):
     rutas = {}
     for nombre, tabla in tablas(d, pred, conf, modelo, O).items():
         ruta = carpeta / nombre
-        tabla.to_csv(ruta, index=False)
+        redondear_para_publicar(tabla).to_csv(ruta, index=False)
         rutas[nombre] = ruta
     return rutas

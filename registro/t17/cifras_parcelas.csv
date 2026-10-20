@@ -1,198 +1,198 @@
 ID_POLIGONO,municipio,conjunto,area_ha,estimacion,modelo,fuente,confianza,motivo,motivo_detallado,rango_bajo,rango_alto,produccion_t,produccion_baja_t,produccion_alta_t
-AGC_001,Calpulalpan,ENTRENAMIENTO,7.61,3.5,,,,,,2.5,3.5,26.635,,
-AGC_002,Chignahuapan,ENTRENAMIENTO,2.31,4.63,,,,,,3.91,5.07,10.6953,,
-AGC_003,Singuilucan,PREDICCION,18.68,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,59.776,46.7,65.38
+AGC_001,Calpulalpan,ENTRENAMIENTO,7.61,3.5,,,,,,2.5,3.5,26.64,,
+AGC_002,Chignahuapan,ENTRENAMIENTO,2.31,4.63,,,,,,3.91,5.07,10.7,,
+AGC_003,Singuilucan,PREDICCION,18.68,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,59.78,46.7,65.38
 AGC_004,Calpulalpan,ENTRENAMIENTO,8.0,3.0,,,,,,2.5,3.5,24.0,,
-AGC_005,Chignahuapan,ENTRENAMIENTO,2.27,5.16,,,,,,3.91,5.07,11.7132,,
-AGC_006,Chignahuapan,ENTRENAMIENTO,3.84,4.49,,,,,,3.91,5.07,17.241600000000002,,
-AGC_007,Singuilucan,ENTRENAMIENTO,2.87,3.5,,,,,,2.5,3.5,10.045,,
-AGC_008,Chignahuapan,ENTRENAMIENTO,10.77,4.55,,,,,,3.91,5.07,49.003499999999995,,
-AGC_009,Cuautepec de Hinojosa,ENTRENAMIENTO,0.38,4.79,,,,,,4.4,4.79,1.8202,,
-AGC_010,Chignahuapan,ENTRENAMIENTO,7.27,4.1,,,,,,3.91,5.07,29.806999999999995,,
-AGC_011,Chignahuapan,PREDICCION,7.17,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,32.40839999999999,28.0347,36.3519
-AGC_012,Chignahuapan,ENTRENAMIENTO,4.08,4.69,,,,,,3.91,5.07,19.1352,,
-AGC_013,Chignahuapan,ENTRENAMIENTO,5.6,4.01,,,,,,3.91,5.07,22.455999999999996,,
-AGC_014,Chignahuapan,ENTRENAMIENTO,7.44,4.83,,,,,,3.91,5.07,35.9352,,
-AGC_015,Chignahuapan,ENTRENAMIENTO,1.97,2.64,,,,,,3.91,5.07,5.2008,,
-AGC_016,Chignahuapan,PREDICCION,7.47,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,33.764399999999995,29.2077,37.8729
-AGC_017,Chignahuapan,ENTRENAMIENTO,1.6,4.98,,,,,,3.91,5.07,7.968000000000001,,
-AGC_018,Chignahuapan,ENTRENAMIENTO,1.67,4.49,,,,,,3.91,5.07,7.4983,,
-AGC_019,Calpulalpan,ENTRENAMIENTO,5.65,3.0,,,,,,2.5,3.5,16.950000000000003,,
-AGC_020,Emiliano Zapata,ENTRENAMIENTO,8.34,3.5,,,,,,3.5,3.5,29.189999999999998,,
-AGC_021,Chignahuapan,ENTRENAMIENTO,2.86,4.94,,,,,,3.91,5.07,14.128400000000001,,
-AGC_022,Chignahuapan,ENTRENAMIENTO,11.99,4.55,,,,,,3.91,5.07,54.5545,,
+AGC_005,Chignahuapan,ENTRENAMIENTO,2.27,5.16,,,,,,3.91,5.07,11.71,,
+AGC_006,Chignahuapan,ENTRENAMIENTO,3.84,4.49,,,,,,3.91,5.07,17.24,,
+AGC_007,Singuilucan,ENTRENAMIENTO,2.87,3.5,,,,,,2.5,3.5,10.04,,
+AGC_008,Chignahuapan,ENTRENAMIENTO,10.77,4.55,,,,,,3.91,5.07,49.0,,
+AGC_009,Cuautepec de Hinojosa,ENTRENAMIENTO,0.38,4.79,,,,,,4.4,4.79,1.82,,
+AGC_010,Chignahuapan,ENTRENAMIENTO,7.27,4.1,,,,,,3.91,5.07,29.81,,
+AGC_011,Chignahuapan,PREDICCION,7.17,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,32.41,28.03,36.35
+AGC_012,Chignahuapan,ENTRENAMIENTO,4.08,4.69,,,,,,3.91,5.07,19.14,,
+AGC_013,Chignahuapan,ENTRENAMIENTO,5.6,4.01,,,,,,3.91,5.07,22.46,,
+AGC_014,Chignahuapan,ENTRENAMIENTO,7.44,4.83,,,,,,3.91,5.07,35.94,,
+AGC_015,Chignahuapan,ENTRENAMIENTO,1.97,2.64,,,,,,3.91,5.07,5.2,,
+AGC_016,Chignahuapan,PREDICCION,7.47,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,33.76,29.21,37.87
+AGC_017,Chignahuapan,ENTRENAMIENTO,1.6,4.98,,,,,,3.91,5.07,7.97,,
+AGC_018,Chignahuapan,ENTRENAMIENTO,1.67,4.49,,,,,,3.91,5.07,7.5,,
+AGC_019,Calpulalpan,ENTRENAMIENTO,5.65,3.0,,,,,,2.5,3.5,16.95,,
+AGC_020,Emiliano Zapata,ENTRENAMIENTO,8.34,3.5,,,,,,3.5,3.5,29.19,,
+AGC_021,Chignahuapan,ENTRENAMIENTO,2.86,4.94,,,,,,3.91,5.07,14.13,,
+AGC_022,Chignahuapan,ENTRENAMIENTO,11.99,4.55,,,,,,3.91,5.07,54.55,,
 AGC_023,Calpulalpan,ENTRENAMIENTO,7.72,3.0,,,,,,2.5,3.5,23.16,,
-AGC_024,Chignahuapan,ENTRENAMIENTO,11.53,3.03,,,,,,3.91,5.07,34.9359,,
+AGC_024,Chignahuapan,ENTRENAMIENTO,11.53,3.03,,,,,,3.91,5.07,34.94,,
 AGC_025,Calpulalpan,PREDICCION,2.0,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,6.0,5.0,7.0
-AGC_026,Chignahuapan,ENTRENAMIENTO,5.49,3.55,,,,,,3.91,5.07,19.4895,,
-AGC_027,Calpulalpan,PREDICCION,8.46,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,25.380000000000003,21.150000000000002,29.610000000000003
-AGC_028,Chignahuapan,PREDICCION,1.86,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,8.4072,7.272600000000001,9.430200000000001
-AGC_029,Calpulalpan,PREDICCION,5.9,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,17.700000000000003,14.75,20.650000000000002
-AGC_030,Singuilucan,PREDICCION,13.05,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,41.760000000000005,32.625,45.675000000000004
-AGC_031,Chignahuapan,PREDICCION,1.98,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,8.949599999999998,7.7418000000000005,10.0386
-AGC_032,Chignahuapan,ENTRENAMIENTO,1.44,4.03,,,,,,3.91,5.07,5.8032,,
-AGC_033,Chignahuapan,ENTRENAMIENTO,21.04,4.47,,,,,,3.91,5.07,94.04879999999999,,
+AGC_026,Chignahuapan,ENTRENAMIENTO,5.49,3.55,,,,,,3.91,5.07,19.49,,
+AGC_027,Calpulalpan,PREDICCION,8.46,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,25.38,21.15,29.61
+AGC_028,Chignahuapan,PREDICCION,1.86,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,8.41,7.27,9.43
+AGC_029,Calpulalpan,PREDICCION,5.9,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,17.7,14.75,20.65
+AGC_030,Singuilucan,PREDICCION,13.05,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,41.76,32.62,45.68
+AGC_031,Chignahuapan,PREDICCION,1.98,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,8.95,7.74,10.04
+AGC_032,Chignahuapan,ENTRENAMIENTO,1.44,4.03,,,,,,3.91,5.07,5.8,,
+AGC_033,Chignahuapan,ENTRENAMIENTO,21.04,4.47,,,,,,3.91,5.07,94.05,,
 AGC_034,Singuilucan,ENTRENAMIENTO,8.09,2.0,,,,,,2.5,3.5,16.18,,
-AGC_035,Cuautepec de Hinojosa,ENTRENAMIENTO,23.8,4.68,,,,,,4.4,4.79,111.384,,
-AGC_036,Chignahuapan,PREDICCION,5.0,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,22.599999999999998,19.55,25.35
+AGC_035,Cuautepec de Hinojosa,ENTRENAMIENTO,23.8,4.68,,,,,,4.4,4.79,111.38,,
+AGC_036,Chignahuapan,PREDICCION,5.0,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,22.6,19.55,25.35
 AGC_037,Calpulalpan,ENTRENAMIENTO,2.66,3.5,,,,,,2.5,3.5,9.31,,
-AGC_038,Singuilucan,ENTRENAMIENTO,3.28,3.3,,,,,,2.5,3.5,10.823999999999998,,
-AGC_039,Calpulalpan,PREDICCION,7.71,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,23.13,19.275,26.985
+AGC_038,Singuilucan,ENTRENAMIENTO,3.28,3.3,,,,,,2.5,3.5,10.82,,
+AGC_039,Calpulalpan,PREDICCION,7.71,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,23.13,19.27,26.98
 AGC_040,Calpulalpan,ENTRENAMIENTO,5.46,3.0,,,,,,2.5,3.5,16.38,,
-AGC_041,Singuilucan,ENTRENAMIENTO,25.13,2.5,,,,,,2.5,3.5,62.824999999999996,,
-AGC_042,Singuilucan,PREDICCION,3.81,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,12.192,9.525,13.335
-AGC_043,Chignahuapan,PREDICCION,7.15,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,32.318,27.956500000000002,36.2505
-AGC_044,Emiliano Zapata,ENTRENAMIENTO,0.68,3.5,,,,,,3.5,3.5,2.3800000000000003,,
-AGC_045,Chignahuapan,ENTRENAMIENTO,1.49,4.1,,,,,,3.91,5.07,6.108999999999999,,
-AGC_046,Calpulalpan,ENTRENAMIENTO,7.92,3.0,,,,,,2.5,3.5,23.759999999999998,,
-AGC_047,Tepeapulco,ENTRENAMIENTO,64.3,4.45,,,,,,,,286.135,,
-AGC_048,Nanacamilpa de Mariano Arista,ENTRENAMIENTO,8.29,2.5,,,,,,,,20.724999999999998,,
-AGC_049,Chignahuapan,ENTRENAMIENTO,0.87,5.53,,,,,,3.91,5.07,4.811100000000001,,
-AGC_050,Calpulalpan,PREDICCION,2.42,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,7.26,6.05,8.469999999999999
-AGC_051,Almoloya,ENTRENAMIENTO,11.12,4.45,,,,,,4.383,4.708,49.484,,
-AGC_052,Cuautepec de Hinojosa,PREDICCION,6.23,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,28.720300000000005,27.412000000000003,29.841700000000003
-AGC_053,Calpulalpan,ENTRENAMIENTO,8.54,3.5,,,,,,2.5,3.5,29.889999999999997,,
-AGC_054,Calpulalpan,ENTRENAMIENTO,2.01,2.5,,,,,,2.5,3.5,5.0249999999999995,,
-AGC_055,Chignahuapan,ENTRENAMIENTO,1.37,5.45,,,,,,3.91,5.07,7.466500000000001,,
-AGC_056,Chignahuapan,ENTRENAMIENTO,3.65,5.07,,,,,,3.91,5.07,18.5055,,
-AGC_057,Chignahuapan,ENTRENAMIENTO,0.63,4.55,,,,,,3.91,5.07,2.8665,,
+AGC_041,Singuilucan,ENTRENAMIENTO,25.13,2.5,,,,,,2.5,3.5,62.82,,
+AGC_042,Singuilucan,PREDICCION,3.81,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,12.19,9.52,13.34
+AGC_043,Chignahuapan,PREDICCION,7.15,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,32.32,27.96,36.25
+AGC_044,Emiliano Zapata,ENTRENAMIENTO,0.68,3.5,,,,,,3.5,3.5,2.38,,
+AGC_045,Chignahuapan,ENTRENAMIENTO,1.49,4.1,,,,,,3.91,5.07,6.11,,
+AGC_046,Calpulalpan,ENTRENAMIENTO,7.92,3.0,,,,,,2.5,3.5,23.76,,
+AGC_047,Tepeapulco,ENTRENAMIENTO,64.3,4.45,,,,,,,,286.14,,
+AGC_048,Nanacamilpa de Mariano Arista,ENTRENAMIENTO,8.29,2.5,,,,,,,,20.72,,
+AGC_049,Chignahuapan,ENTRENAMIENTO,0.87,5.53,,,,,,3.91,5.07,4.81,,
+AGC_050,Calpulalpan,PREDICCION,2.42,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,7.26,6.05,8.47
+AGC_051,Almoloya,ENTRENAMIENTO,11.12,4.45,,,,,,4.38,4.71,49.48,,
+AGC_052,Cuautepec de Hinojosa,PREDICCION,6.23,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,28.72,27.41,29.84
+AGC_053,Calpulalpan,ENTRENAMIENTO,8.54,3.5,,,,,,2.5,3.5,29.89,,
+AGC_054,Calpulalpan,ENTRENAMIENTO,2.01,2.5,,,,,,2.5,3.5,5.02,,
+AGC_055,Chignahuapan,ENTRENAMIENTO,1.37,5.45,,,,,,3.91,5.07,7.47,,
+AGC_056,Chignahuapan,ENTRENAMIENTO,3.65,5.07,,,,,,3.91,5.07,18.51,,
+AGC_057,Chignahuapan,ENTRENAMIENTO,0.63,4.55,,,,,,3.91,5.07,2.87,,
 AGC_058,Calpulalpan,ENTRENAMIENTO,7.7,2.5,,,,,,2.5,3.5,19.25,,
-AGC_059,Almoloya,ENTRENAMIENTO,19.53,4.41,,,,,,4.383,4.708,86.1273,,
-AGC_060,Chignahuapan,ENTRENAMIENTO,2.34,4.52,,,,,,3.91,5.07,10.576799999999999,,
-AGC_061,Calpulalpan,PREDICCION,7.23,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,21.69,18.075000000000003,25.305
+AGC_059,Almoloya,ENTRENAMIENTO,19.53,4.41,,,,,,4.38,4.71,86.13,,
+AGC_060,Chignahuapan,ENTRENAMIENTO,2.34,4.52,,,,,,3.91,5.07,10.58,,
+AGC_061,Calpulalpan,PREDICCION,7.23,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,21.69,18.08,25.3
 AGC_062,Chignahuapan,ENTRENAMIENTO,2.0,3.81,,,,,,3.91,5.07,7.62,,
-AGC_063,Chignahuapan,PREDICCION,12.54,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,56.68079999999999,49.0314,63.577799999999996
-AGC_064,Cuautepec de Hinojosa,ENTRENAMIENTO,2.45,4.51,,,,,,4.4,4.79,11.0495,,
-AGC_065,Almoloya,PREDICCION,60.88,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.383,4.708,275.7864,266.83704,286.62304
-AGC_066,Calpulalpan,ENTRENAMIENTO,7.15,3.0,,,,,,2.5,3.5,21.450000000000003,,
+AGC_063,Chignahuapan,PREDICCION,12.54,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,56.68,49.03,63.58
+AGC_064,Cuautepec de Hinojosa,ENTRENAMIENTO,2.45,4.51,,,,,,4.4,4.79,11.05,,
+AGC_065,Almoloya,PREDICCION,60.88,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.38,4.71,275.79,266.65,286.74
+AGC_066,Calpulalpan,ENTRENAMIENTO,7.15,3.0,,,,,,2.5,3.5,21.45,,
 AGC_067,Singuilucan,ENTRENAMIENTO,1.53,3.0,,,,,,2.5,3.5,4.59,,
 AGC_068,Calpulalpan,ENTRENAMIENTO,3.1,2.5,,,,,,2.5,3.5,7.75,,
-AGC_069,Chignahuapan,ENTRENAMIENTO,0.38,5.46,,,,,,3.91,5.07,2.0748,,
-AGC_070,Singuilucan,ENTRENAMIENTO,20.83,3.3,,,,,,2.5,3.5,68.73899999999999,,
-AGC_071,Calpulalpan,PREDICCION,5.21,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,15.629999999999999,13.025,18.235
-AGC_072,Chignahuapan,ENTRENAMIENTO,4.38,4.55,,,,,,3.91,5.07,19.929,,
-AGC_073,Chignahuapan,ENTRENAMIENTO,2.05,4.3,,,,,,3.91,5.07,8.815,,
-AGC_074,Calpulalpan,ENTRENAMIENTO,8.54,2.5,,,,,,2.5,3.5,21.349999999999998,,
+AGC_069,Chignahuapan,ENTRENAMIENTO,0.38,5.46,,,,,,3.91,5.07,2.07,,
+AGC_070,Singuilucan,ENTRENAMIENTO,20.83,3.3,,,,,,2.5,3.5,68.74,,
+AGC_071,Calpulalpan,PREDICCION,5.21,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,15.63,13.02,18.24
+AGC_072,Chignahuapan,ENTRENAMIENTO,4.38,4.55,,,,,,3.91,5.07,19.93,,
+AGC_073,Chignahuapan,ENTRENAMIENTO,2.05,4.3,,,,,,3.91,5.07,8.82,,
+AGC_074,Calpulalpan,ENTRENAMIENTO,8.54,2.5,,,,,,2.5,3.5,21.35,,
 AGC_075,Calpulalpan,PREDICCION,3.9,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,11.7,9.75,13.65
-AGC_076,Chignahuapan,PREDICCION,1.01,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,4.5652,3.9491,5.1207
-AGC_077,Chignahuapan,ENTRENAMIENTO,6.08,4.76,,,,,,3.91,5.07,28.9408,,
-AGC_078,Singuilucan,ENTRENAMIENTO,2.3,3.0,,,,,,2.5,3.5,6.8999999999999995,,
-AGC_079,Singuilucan,ENTRENAMIENTO,18.87,3.3,,,,,,2.5,3.5,62.271,,
-AGC_080,Singuilucan,ENTRENAMIENTO,18.99,3.5,,,,,,2.5,3.5,66.46499999999999,,
-AGC_081,Singuilucan,ENTRENAMIENTO,3.28,3.7,,,,,,2.5,3.5,12.136,,
-AGC_082,Almoloya,PREDICCION,2.77,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.383,4.708,12.548100000000002,12.14091,13.041160000000001
-AGC_083,Cuautepec de Hinojosa,ENTRENAMIENTO,2.87,4.61,,,,,,4.4,4.79,13.2307,,
-AGC_084,Almoloya,ENTRENAMIENTO,12.42,4.54,,,,,,4.383,4.708,56.3868,,
-AGC_085,Chignahuapan,PREDICCION,5.5,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,24.86,21.505000000000003,27.885
-AGC_086,Calpulalpan,PREDICCION,4.73,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,14.190000000000001,11.825000000000001,16.555
-AGC_087,Calpulalpan,PREDICCION,5.66,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,16.98,14.15,19.810000000000002
-AGC_088,Chignahuapan,PREDICCION,5.91,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,26.713199999999997,23.1081,29.963700000000003
+AGC_076,Chignahuapan,PREDICCION,1.01,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,4.57,3.95,5.12
+AGC_077,Chignahuapan,ENTRENAMIENTO,6.08,4.76,,,,,,3.91,5.07,28.94,,
+AGC_078,Singuilucan,ENTRENAMIENTO,2.3,3.0,,,,,,2.5,3.5,6.9,,
+AGC_079,Singuilucan,ENTRENAMIENTO,18.87,3.3,,,,,,2.5,3.5,62.27,,
+AGC_080,Singuilucan,ENTRENAMIENTO,18.99,3.5,,,,,,2.5,3.5,66.46,,
+AGC_081,Singuilucan,ENTRENAMIENTO,3.28,3.7,,,,,,2.5,3.5,12.14,,
+AGC_082,Almoloya,PREDICCION,2.77,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.38,4.71,12.55,12.13,13.05
+AGC_083,Cuautepec de Hinojosa,ENTRENAMIENTO,2.87,4.61,,,,,,4.4,4.79,13.23,,
+AGC_084,Almoloya,ENTRENAMIENTO,12.42,4.54,,,,,,4.38,4.71,56.39,,
+AGC_085,Chignahuapan,PREDICCION,5.5,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,24.86,21.51,27.88
+AGC_086,Calpulalpan,PREDICCION,4.73,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,14.19,11.82,16.56
+AGC_087,Calpulalpan,PREDICCION,5.66,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,16.98,14.15,19.81
+AGC_088,Chignahuapan,PREDICCION,5.91,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,26.71,23.11,29.96
 AGC_089,Singuilucan,ENTRENAMIENTO,1.72,3.0,,,,,,2.5,3.5,5.16,,
-AGC_090,Chignahuapan,ENTRENAMIENTO,10.98,4.68,,,,,,3.91,5.07,51.3864,,
-AGC_091,Chignahuapan,PREDICCION,0.35,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,1.5819999999999999,1.3685,1.7745
-AGC_092,Chignahuapan,ENTRENAMIENTO,0.5,4.57,,,,,,3.91,5.07,2.285,,
-AGC_093,Calpulalpan,PREDICCION,3.71,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,11.129999999999999,9.275,12.985
-AGC_094,Chignahuapan,PREDICCION,3.63,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,16.4076,14.1933,18.4041
-AGC_095,Chignahuapan,PREDICCION,1.33,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,6.0116,5.2003,6.743100000000001
-AGC_096,Chignahuapan,ENTRENAMIENTO,12.87,4.59,,,,,,3.91,5.07,59.073299999999996,,
-AGC_097,Chignahuapan,ENTRENAMIENTO,2.35,4.69,,,,,,3.91,5.07,11.021500000000001,,
-AGC_098,Calpulalpan,ENTRENAMIENTO,4.9,3.0,,,,,,2.5,3.5,14.700000000000001,,
-AGC_099,Calpulalpan,ENTRENAMIENTO,1.17,3.5,,,,,,2.5,3.5,4.095,,
+AGC_090,Chignahuapan,ENTRENAMIENTO,10.98,4.68,,,,,,3.91,5.07,51.39,,
+AGC_091,Chignahuapan,PREDICCION,0.35,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,1.58,1.37,1.77
+AGC_092,Chignahuapan,ENTRENAMIENTO,0.5,4.57,,,,,,3.91,5.07,2.28,,
+AGC_093,Calpulalpan,PREDICCION,3.71,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,11.13,9.28,12.98
+AGC_094,Chignahuapan,PREDICCION,3.63,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,16.41,14.19,18.4
+AGC_095,Chignahuapan,PREDICCION,1.33,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,6.01,5.2,6.74
+AGC_096,Chignahuapan,ENTRENAMIENTO,12.87,4.59,,,,,,3.91,5.07,59.07,,
+AGC_097,Chignahuapan,ENTRENAMIENTO,2.35,4.69,,,,,,3.91,5.07,11.02,,
+AGC_098,Calpulalpan,ENTRENAMIENTO,4.9,3.0,,,,,,2.5,3.5,14.7,,
+AGC_099,Calpulalpan,ENTRENAMIENTO,1.17,3.5,,,,,,2.5,3.5,4.1,,
 AGC_100,Chignahuapan,ENTRENAMIENTO,11.24,4.5,,,,,,3.91,5.07,50.58,,
-AGC_101,Chignahuapan,ENTRENAMIENTO,12.35,4.57,,,,,,3.91,5.07,56.4395,,
+AGC_101,Chignahuapan,ENTRENAMIENTO,12.35,4.57,,,,,,3.91,5.07,56.44,,
 AGC_102,Chignahuapan,ENTRENAMIENTO,12.75,4.4,,,,,,3.91,5.07,56.1,,
-AGC_103,Calpulalpan,ENTRENAMIENTO,2.48,3.0,,,,,,2.5,3.5,7.4399999999999995,,
-AGC_104,Chignahuapan,ENTRENAMIENTO,3.02,4.56,,,,,,3.91,5.07,13.771199999999999,,
-AGC_105,Chignahuapan,ENTRENAMIENTO,2.99,4.41,,,,,,3.91,5.07,13.185900000000002,,
-AGC_106,Chignahuapan,ENTRENAMIENTO,6.09,4.43,,,,,,3.91,5.07,26.978699999999996,,
-AGC_107,Almoloya,PREDICCION,2.63,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.383,4.708,11.9139,11.527289999999999,12.38204
-AGC_108,Chignahuapan,ENTRENAMIENTO,3.79,4.51,,,,,,3.91,5.07,17.0929,,
-AGC_109,Chignahuapan,ENTRENAMIENTO,3.14,4.54,,,,,,3.91,5.07,14.255600000000001,,
-AGC_110,Chignahuapan,ENTRENAMIENTO,6.19,4.18,,,,,,3.91,5.07,25.8742,,
-AGC_111,Chignahuapan,ENTRENAMIENTO,1.71,4.72,,,,,,3.91,5.07,8.0712,,
+AGC_103,Calpulalpan,ENTRENAMIENTO,2.48,3.0,,,,,,2.5,3.5,7.44,,
+AGC_104,Chignahuapan,ENTRENAMIENTO,3.02,4.56,,,,,,3.91,5.07,13.77,,
+AGC_105,Chignahuapan,ENTRENAMIENTO,2.99,4.41,,,,,,3.91,5.07,13.19,,
+AGC_106,Chignahuapan,ENTRENAMIENTO,6.09,4.43,,,,,,3.91,5.07,26.98,,
+AGC_107,Almoloya,PREDICCION,2.63,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.38,4.71,11.91,11.52,12.39
+AGC_108,Chignahuapan,ENTRENAMIENTO,3.79,4.51,,,,,,3.91,5.07,17.09,,
+AGC_109,Chignahuapan,ENTRENAMIENTO,3.14,4.54,,,,,,3.91,5.07,14.26,,
+AGC_110,Chignahuapan,ENTRENAMIENTO,6.19,4.18,,,,,,3.91,5.07,25.87,,
+AGC_111,Chignahuapan,ENTRENAMIENTO,1.71,4.72,,,,,,3.91,5.07,8.07,,
 AGC_112,Calpulalpan,ENTRENAMIENTO,7.96,3.0,,,,,,2.5,3.5,23.88,,
-AGC_113,Singuilucan,PREDICCION,10.58,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,33.856,26.45,37.03
+AGC_113,Singuilucan,PREDICCION,10.58,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,33.86,26.45,37.03
 AGC_114,Calpulalpan,ENTRENAMIENTO,6.95,3.0,,,,,,2.5,3.5,20.85,,
-AGC_115,Chignahuapan,ENTRENAMIENTO,1.93,4.6,,,,,,3.91,5.07,8.877999999999998,,
-AGC_116,Chignahuapan,PREDICCION,7.43,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,33.5836,29.0513,37.6701
+AGC_115,Chignahuapan,ENTRENAMIENTO,1.93,4.6,,,,,,3.91,5.07,8.88,,
+AGC_116,Chignahuapan,PREDICCION,7.43,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,33.58,29.05,37.67
 AGC_117,Calpulalpan,ENTRENAMIENTO,5.68,3.5,,,,,,2.5,3.5,19.88,,
-AGC_118,Singuilucan,PREDICCION,4.42,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,14.144,11.05,15.469999999999999
-AGC_119,Cuautepec de Hinojosa,ENTRENAMIENTO,0.64,4.4,,,,,,4.4,4.79,2.8160000000000003,,
-AGC_120,Nanacamilpa de Mariano Arista,PREDICCION,7.47,2.5,mediana_mun__resp_grupo,municipio,baja,Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.,Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.,,,18.675,18.675,18.675
-AGC_121,Singuilucan,ENTRENAMIENTO,5.92,3.3,,,,,,2.5,3.5,19.535999999999998,,
-AGC_122,Calpulalpan,ENTRENAMIENTO,7.45,3.5,,,,,,2.5,3.5,26.075,,
-AGC_123,Calpulalpan,ENTRENAMIENTO,8.01,2.5,,,,,,2.5,3.5,20.025,,
-AGC_124,Chignahuapan,ENTRENAMIENTO,1.96,5.05,,,,,,3.91,5.07,9.898,,
-AGC_125,Chignahuapan,ENTRENAMIENTO,10.14,4.06,,,,,,3.91,5.07,41.1684,,
-AGC_126,Chignahuapan,PREDICCION,5.75,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,25.99,22.4825,29.152500000000003
-AGC_127,Chignahuapan,ENTRENAMIENTO,0.91,5.57,,,,,,3.91,5.07,5.068700000000001,,
-AGC_128,Almoloya,PREDICCION,6.15,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.383,4.708,27.859500000000004,26.955450000000003,28.954200000000004
-AGC_129,Singuilucan,PREDICCION,8.16,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,26.112000000000002,20.4,28.560000000000002
-AGC_130,Cuautepec de Hinojosa,PREDICCION,12.1,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,55.781,53.24,57.958999999999996
-AGC_131,Chignahuapan,ENTRENAMIENTO,1.46,4.89,,,,,,3.91,5.07,7.139399999999999,,
-AGC_132,Chignahuapan,ENTRENAMIENTO,6.1,4.13,,,,,,3.91,5.07,25.192999999999998,,
-AGC_133,Chignahuapan,ENTRENAMIENTO,6.08,3.91,,,,,,3.91,5.07,23.7728,,
-AGC_134,Almoloya,ENTRENAMIENTO,2.25,4.52,,,,,,4.383,4.708,10.169999999999998,,
-AGC_135,Chignahuapan,ENTRENAMIENTO,1.62,4.49,,,,,,3.91,5.07,7.2738000000000005,,
-AGC_136,Chignahuapan,PREDICCION,1.69,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,7.638799999999999,6.6079,8.5683
-AGC_137,Almoloya,ENTRENAMIENTO,24.81,4.54,,,,,,4.383,4.708,112.6374,,
-AGC_138,Calpulalpan,ENTRENAMIENTO,7.86,2.5,,,,,,2.5,3.5,19.650000000000002,,
-AGC_139,Chignahuapan,ENTRENAMIENTO,1.92,4.67,,,,,,3.91,5.07,8.9664,,
-AGC_140,Singuilucan,ENTRENAMIENTO,4.13,3.2,,,,,,2.5,3.5,13.216000000000001,,
+AGC_118,Singuilucan,PREDICCION,4.42,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,14.14,11.05,15.47
+AGC_119,Cuautepec de Hinojosa,ENTRENAMIENTO,0.64,4.4,,,,,,4.4,4.79,2.82,,
+AGC_120,Nanacamilpa de Mariano Arista,PREDICCION,7.47,2.5,mediana_mun__resp_grupo,municipio,baja,Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.,Confianza baja: tu municipio tiene sólo 1 parcela con cosecha.,,,18.68,18.68,18.68
+AGC_121,Singuilucan,ENTRENAMIENTO,5.92,3.3,,,,,,2.5,3.5,19.54,,
+AGC_122,Calpulalpan,ENTRENAMIENTO,7.45,3.5,,,,,,2.5,3.5,26.08,,
+AGC_123,Calpulalpan,ENTRENAMIENTO,8.01,2.5,,,,,,2.5,3.5,20.02,,
+AGC_124,Chignahuapan,ENTRENAMIENTO,1.96,5.05,,,,,,3.91,5.07,9.9,,
+AGC_125,Chignahuapan,ENTRENAMIENTO,10.14,4.06,,,,,,3.91,5.07,41.17,,
+AGC_126,Chignahuapan,PREDICCION,5.75,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,25.99,22.48,29.15
+AGC_127,Chignahuapan,ENTRENAMIENTO,0.91,5.57,,,,,,3.91,5.07,5.07,,
+AGC_128,Almoloya,PREDICCION,6.15,4.53,mediana_mun__resp_grupo,municipio,alta,Confianza alta: tu municipio tiene 10 parcelas con cosecha y ahí el error fue igual o menor que el promedio.,"Confianza alta: tu municipio tiene 10 parcelas con cosecha; su error (0.14 t/ha) fue 56% menor que el promedio general, y el 70% de esas parcelas quedó dentro de ese margen.",4.38,4.71,27.86,26.94,28.97
+AGC_129,Singuilucan,PREDICCION,8.16,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,26.11,20.4,28.56
+AGC_130,Cuautepec de Hinojosa,PREDICCION,12.1,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,55.78,53.24,57.96
+AGC_131,Chignahuapan,ENTRENAMIENTO,1.46,4.89,,,,,,3.91,5.07,7.14,,
+AGC_132,Chignahuapan,ENTRENAMIENTO,6.1,4.13,,,,,,3.91,5.07,25.19,,
+AGC_133,Chignahuapan,ENTRENAMIENTO,6.08,3.91,,,,,,3.91,5.07,23.77,,
+AGC_134,Almoloya,ENTRENAMIENTO,2.25,4.52,,,,,,4.38,4.71,10.17,,
+AGC_135,Chignahuapan,ENTRENAMIENTO,1.62,4.49,,,,,,3.91,5.07,7.27,,
+AGC_136,Chignahuapan,PREDICCION,1.69,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,7.64,6.61,8.57
+AGC_137,Almoloya,ENTRENAMIENTO,24.81,4.54,,,,,,4.38,4.71,112.64,,
+AGC_138,Calpulalpan,ENTRENAMIENTO,7.86,2.5,,,,,,2.5,3.5,19.65,,
+AGC_139,Chignahuapan,ENTRENAMIENTO,1.92,4.67,,,,,,3.91,5.07,8.97,,
+AGC_140,Singuilucan,ENTRENAMIENTO,4.13,3.2,,,,,,2.5,3.5,13.22,,
 AGC_141,Calpulalpan,ENTRENAMIENTO,3.94,3.5,,,,,,2.5,3.5,13.79,,
-AGC_142,Chignahuapan,PREDICCION,1.29,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,5.8308,5.043900000000001,6.5403
-AGC_143,Chignahuapan,PREDICCION,11.48,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,51.889599999999994,44.8868,58.20360000000001
-AGC_144,Calpulalpan,ENTRENAMIENTO,7.48,2.5,,,,,,2.5,3.5,18.700000000000003,,
-AGC_145,Calpulalpan,ENTRENAMIENTO,8.33,3.5,,,,,,2.5,3.5,29.155,,
-AGC_146,Almoloya,ENTRENAMIENTO,1.33,4.58,,,,,,4.383,4.708,6.0914,,
+AGC_142,Chignahuapan,PREDICCION,1.29,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,5.83,5.04,6.54
+AGC_143,Chignahuapan,PREDICCION,11.48,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,51.89,44.89,58.2
+AGC_144,Calpulalpan,ENTRENAMIENTO,7.48,2.5,,,,,,2.5,3.5,18.7,,
+AGC_145,Calpulalpan,ENTRENAMIENTO,8.33,3.5,,,,,,2.5,3.5,29.16,,
+AGC_146,Almoloya,ENTRENAMIENTO,1.33,4.58,,,,,,4.38,4.71,6.09,,
 AGC_147,Calpulalpan,PREDICCION,6.8,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,20.4,17.0,23.8
 AGC_148,Singuilucan,ENTRENAMIENTO,2.46,3.0,,,,,,2.5,3.5,7.38,,
-AGC_149,Cuautepec de Hinojosa,PREDICCION,8.99,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,41.443900000000006,39.556000000000004,43.0621
-AGC_150,Chignahuapan,ENTRENAMIENTO,1.99,4.52,,,,,,3.91,5.07,8.9948,,
-AGC_151,Almoloya,ENTRENAMIENTO,9.32,4.69,,,,,,4.383,4.708,43.710800000000006,,
-AGC_152,Almoloya,ENTRENAMIENTO,2.63,4.87,,,,,,4.383,4.708,12.8081,,
-AGC_153,Chignahuapan,PREDICCION,1.99,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,8.9948,7.7809,10.0893
-AGC_154,Chignahuapan,PREDICCION,1.49,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,6.734799999999999,5.8259,7.5543000000000005
-AGC_155,Chignahuapan,ENTRENAMIENTO,2.24,4.52,,,,,,3.91,5.07,10.1248,,
-AGC_156,Singuilucan,PREDICCION,8.2,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,26.24,20.5,28.699999999999996
+AGC_149,Cuautepec de Hinojosa,PREDICCION,8.99,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,41.44,39.56,43.06
+AGC_150,Chignahuapan,ENTRENAMIENTO,1.99,4.52,,,,,,3.91,5.07,8.99,,
+AGC_151,Almoloya,ENTRENAMIENTO,9.32,4.69,,,,,,4.38,4.71,43.71,,
+AGC_152,Almoloya,ENTRENAMIENTO,2.63,4.87,,,,,,4.38,4.71,12.81,,
+AGC_153,Chignahuapan,PREDICCION,1.99,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,8.99,7.78,10.09
+AGC_154,Chignahuapan,PREDICCION,1.49,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,6.73,5.83,7.55
+AGC_155,Chignahuapan,ENTRENAMIENTO,2.24,4.52,,,,,,3.91,5.07,10.12,,
+AGC_156,Singuilucan,PREDICCION,8.2,3.2,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 16 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 16 parcelas con cosecha; su error (0.37 t/ha) fue 20% mayor que el promedio general, y el 69% de esas parcelas quedó dentro de ese margen.",2.5,3.5,26.24,20.5,28.7
 AGC_157,Calpulalpan,ENTRENAMIENTO,1.18,3.0,,,,,,2.5,3.5,3.54,,
-AGC_158,Chignahuapan,PREDICCION,11.22,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,50.7144,43.870200000000004,56.885400000000004
-AGC_159,Chignahuapan,ENTRENAMIENTO,2.14,4.77,,,,,,3.91,5.07,10.207799999999999,,
-AGC_160,Chignahuapan,ENTRENAMIENTO,7.61,3.62,,,,,,3.91,5.07,27.5482,,
-AGC_161,Chignahuapan,ENTRENAMIENTO,3.36,4.46,,,,,,3.91,5.07,14.9856,,
-AGC_162,Chignahuapan,ENTRENAMIENTO,4.93,5.59,,,,,,3.91,5.07,27.558699999999998,,
-AGC_163,Calpulalpan,ENTRENAMIENTO,2.57,3.0,,,,,,2.5,3.5,7.709999999999999,,
-AGC_164,Apan,ENTRENAMIENTO,11.84,3.0,,,,,,,,35.519999999999996,,
-AGC_165,Chignahuapan,ENTRENAMIENTO,6.21,4.44,,,,,,3.91,5.07,27.572400000000002,,
+AGC_158,Chignahuapan,PREDICCION,11.22,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,50.71,43.87,56.89
+AGC_159,Chignahuapan,ENTRENAMIENTO,2.14,4.77,,,,,,3.91,5.07,10.21,,
+AGC_160,Chignahuapan,ENTRENAMIENTO,7.61,3.62,,,,,,3.91,5.07,27.55,,
+AGC_161,Chignahuapan,ENTRENAMIENTO,3.36,4.46,,,,,,3.91,5.07,14.99,,
+AGC_162,Chignahuapan,ENTRENAMIENTO,4.93,5.59,,,,,,3.91,5.07,27.56,,
+AGC_163,Calpulalpan,ENTRENAMIENTO,2.57,3.0,,,,,,2.5,3.5,7.71,,
+AGC_164,Apan,ENTRENAMIENTO,11.84,3.0,,,,,,,,35.52,,
+AGC_165,Chignahuapan,ENTRENAMIENTO,6.21,4.44,,,,,,3.91,5.07,27.57,,
 AGC_166,Singuilucan,ENTRENAMIENTO,6.76,2.5,,,,,,2.5,3.5,16.9,,
-AGC_167,Chignahuapan,ENTRENAMIENTO,2.46,4.54,,,,,,3.91,5.07,11.1684,,
-AGC_168,Chignahuapan,ENTRENAMIENTO,1.53,4.49,,,,,,3.91,5.07,6.869700000000001,,
-AGC_169,Calpulalpan,ENTRENAMIENTO,2.51,2.5,,,,,,2.5,3.5,6.2749999999999995,,
+AGC_167,Chignahuapan,ENTRENAMIENTO,2.46,4.54,,,,,,3.91,5.07,11.17,,
+AGC_168,Chignahuapan,ENTRENAMIENTO,1.53,4.49,,,,,,3.91,5.07,6.87,,
+AGC_169,Calpulalpan,ENTRENAMIENTO,2.51,2.5,,,,,,2.5,3.5,6.28,,
 AGC_170,Calpulalpan,ENTRENAMIENTO,8.13,3.0,,,,,,2.5,3.5,24.39,,
-AGC_171,Chignahuapan,ENTRENAMIENTO,11.63,2.15,,,,,,3.91,5.07,25.0045,,
-AGC_172,Chignahuapan,ENTRENAMIENTO,2.33,5.19,,,,,,3.91,5.07,12.0927,,
+AGC_171,Chignahuapan,ENTRENAMIENTO,11.63,2.15,,,,,,3.91,5.07,25.0,,
+AGC_172,Chignahuapan,ENTRENAMIENTO,2.33,5.19,,,,,,3.91,5.07,12.09,,
 AGC_173,Calpulalpan,PREDICCION,3.6,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,10.8,9.0,12.6
-AGC_174,Cuautepec de Hinojosa,PREDICCION,6.89,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,31.762900000000002,30.316000000000003,33.003099999999996
-AGC_175,Chignahuapan,PREDICCION,1.41,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,6.373199999999999,5.5131,7.1487
-AGC_176,Chignahuapan,ENTRENAMIENTO,7.15,4.38,,,,,,3.91,5.07,31.317,,
-AGC_177,Chignahuapan,PREDICCION,5.66,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,25.583199999999998,22.1306,28.6962
-AGC_178,Chignahuapan,ENTRENAMIENTO,9.82,4.39,,,,,,3.91,5.07,43.1098,,
-AGC_179,Chignahuapan,ENTRENAMIENTO,6.35,4.55,,,,,,3.91,5.07,28.8925,,
-AGC_180,Almoloya,ENTRENAMIENTO,10.9,4.14,,,,,,4.383,4.708,45.126,,
-AGC_181,Chignahuapan,ENTRENAMIENTO,1.49,4.51,,,,,,3.91,5.07,6.7199,,
-AGC_182,Chignahuapan,PREDICCION,4.13,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,18.667599999999997,16.1483,20.9391
-AGC_183,Calpulalpan,PREDICCION,7.85,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,23.549999999999997,19.625,27.474999999999998
-AGC_184,Almoloya,ENTRENAMIENTO,9.96,4.47,,,,,,4.383,4.708,44.5212,,
-AGC_185,Chignahuapan,ENTRENAMIENTO,11.88,5.01,,,,,,3.91,5.07,59.5188,,
-AGC_186,Chignahuapan,PREDICCION,11.7,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,52.88399999999999,45.747,59.319
-AGC_187,Calpulalpan,ENTRENAMIENTO,8.04,3.0,,,,,,2.5,3.5,24.119999999999997,,
-AGC_188,Chignahuapan,PREDICCION,2.34,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,10.576799999999999,9.1494,11.8638
-AGC_189,Chignahuapan,ENTRENAMIENTO,4.6,4.03,,,,,,3.91,5.07,18.538,,
-AGC_190,Chignahuapan,PREDICCION,5.01,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,22.645199999999996,19.5891,25.4007
-AGC_191,Chignahuapan,PREDICCION,1.75,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,7.909999999999999,6.8425,8.8725
-AGC_192,Chignahuapan,PREDICCION,2.14,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,9.6728,8.3674,10.849800000000002
-AGC_193,Chignahuapan,ENTRENAMIENTO,12.41,4.57,,,,,,3.91,5.07,56.7137,,
-AGC_194,Singuilucan,ENTRENAMIENTO,4.12,3.2,,,,,,2.5,3.5,13.184000000000001,,
-AGC_195,Chignahuapan,ENTRENAMIENTO,1.92,3.68,,,,,,3.91,5.07,7.0656,,
-AGC_196,Emiliano Zapata,ENTRENAMIENTO,8.57,3.5,,,,,,3.5,3.5,29.995,,
-AGC_197,Chignahuapan,ENTRENAMIENTO,11.52,4.52,,,,,,3.91,5.07,52.07039999999999,,
+AGC_174,Cuautepec de Hinojosa,PREDICCION,6.89,4.61,mediana_mun__resp_grupo,municipio,media,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,Confianza media: tu municipio tiene sólo 5 parcelas con cosecha; con pocas parcelas la estimación es menos firme.,4.4,4.79,31.76,30.32,33.0
+AGC_175,Chignahuapan,PREDICCION,1.41,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,6.37,5.51,7.15
+AGC_176,Chignahuapan,ENTRENAMIENTO,7.15,4.38,,,,,,3.91,5.07,31.32,,
+AGC_177,Chignahuapan,PREDICCION,5.66,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,25.58,22.13,28.7
+AGC_178,Chignahuapan,ENTRENAMIENTO,9.82,4.39,,,,,,3.91,5.07,43.11,,
+AGC_179,Chignahuapan,ENTRENAMIENTO,6.35,4.55,,,,,,3.91,5.07,28.89,,
+AGC_180,Almoloya,ENTRENAMIENTO,10.9,4.14,,,,,,4.38,4.71,45.13,,
+AGC_181,Chignahuapan,ENTRENAMIENTO,1.49,4.51,,,,,,3.91,5.07,6.72,,
+AGC_182,Chignahuapan,PREDICCION,4.13,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,18.67,16.15,20.94
+AGC_183,Calpulalpan,PREDICCION,7.85,3.0,mediana_mun__resp_grupo,municipio,alta,"Confianza alta: tu municipio tiene 30 parcelas con cosecha y ahí el error fue igual o menor que el promedio. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.","Confianza alta: tu municipio tiene 30 parcelas con cosecha; su error (0.27 t/ha) fue 15% menor que el promedio general, y el 47% de esas parcelas quedó dentro de ese margen. Sus cosechas vienen redondeadas a medias toneladas, así que el error medido se lee con cuidado.",2.5,3.5,23.55,19.62,27.48
+AGC_184,Almoloya,ENTRENAMIENTO,9.96,4.47,,,,,,4.38,4.71,44.52,,
+AGC_185,Chignahuapan,ENTRENAMIENTO,11.88,5.01,,,,,,3.91,5.07,59.52,,
+AGC_186,Chignahuapan,PREDICCION,11.7,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,52.88,45.75,59.32
+AGC_187,Calpulalpan,ENTRENAMIENTO,8.04,3.0,,,,,,2.5,3.5,24.12,,
+AGC_188,Chignahuapan,PREDICCION,2.34,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,10.58,9.15,11.86
+AGC_189,Chignahuapan,ENTRENAMIENTO,4.6,4.03,,,,,,3.91,5.07,18.54,,
+AGC_190,Chignahuapan,PREDICCION,5.01,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,22.65,19.59,25.4
+AGC_191,Chignahuapan,PREDICCION,1.75,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,7.91,6.84,8.87
+AGC_192,Chignahuapan,PREDICCION,2.14,4.52,mediana_mun__resp_grupo,municipio,media,"Confianza media: tu municipio tiene 71 parcelas con cosecha, pero ahí el error fue mayor que el promedio.","Confianza media: tu municipio tiene 71 parcelas con cosecha; su error (0.37 t/ha) fue 18% mayor que el promedio general, y el 61% de esas parcelas quedó dentro de ese margen.",3.91,5.07,9.67,8.37,10.85
+AGC_193,Chignahuapan,ENTRENAMIENTO,12.41,4.57,,,,,,3.91,5.07,56.71,,
+AGC_194,Singuilucan,ENTRENAMIENTO,4.12,3.2,,,,,,2.5,3.5,13.18,,
+AGC_195,Chignahuapan,ENTRENAMIENTO,1.92,3.68,,,,,,3.91,5.07,7.07,,
+AGC_196,Emiliano Zapata,ENTRENAMIENTO,8.57,3.5,,,,,,3.5,3.5,30.0,,
+AGC_197,Chignahuapan,ENTRENAMIENTO,11.52,4.52,,,,,,3.91,5.07,52.07,,
