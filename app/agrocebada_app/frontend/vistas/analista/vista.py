@@ -41,9 +41,19 @@ def mostrar(ctx):
             encuadre = st.session_state.get("encuadre_an", "(ninguna)")     # el mapa se acerca sólo con el buscador
             if buscado != "(ninguna)":
                 rb = d.loc[buscado]
-                valor = (f"estimación {pred.loc[buscado, 'prediccion']:.2f} t/ha" if rb.CONJUNTO == "PREDICCION"
-                         else f"registrado {rb.real:.2f} t/ha")
-                h(f"<div class='encontrada'><b>{e(buscado)}</b> · {e(rb.municipio)} · {valor}</div>")
+                valor = (
+                    f"estimación {pred.loc[buscado, 'prediccion']:.2f} t/ha"
+                    if rb.CONJUNTO == "PREDICCION"
+                    else f"registrado {rb.real:.2f} t/ha"
+                )
+
+                h(
+                    f"<div class='encontrada' "
+                    f"style='margin-top: 12px; margin-bottom: 14px; line-height: 1.6;'>"
+                    f"<b>{e(buscado)}</b> · {e(rb.municipio)} · {valor}"
+                    f"</div>"
+                )
+
         with st.container(key="glass_leyenda"):
             arriba, modo_color = leyenda()
         resaltar = buscado if buscado != "(ninguna)" else None

@@ -7,11 +7,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 
+from agrocebada_app.backend.dominio import bitacora as bit  # noqa: E402
 from agrocebada_app.backend.dominio.confianza import confianza_municipios  # noqa: E402
 from agrocebada_app.backend.dominio.desglose import desglose  # noqa: E402
 from agrocebada_app.backend.dominio.rangos import ANIO  # noqa: E402
-from agrocebada_app.backend.dominio.respuestas import (CONTEXTO, P_CLIMA, P_MARGEN, P_MEJORAR, P_SATELITE,  # noqa: E402
-                                                        respuestas, saludo)
+from agrocebada_app.backend.dominio.respuestas import (CONTEXTO, P_CLIMA, P_LIBRETA, P_MARGEN,  # noqa: E402
+                                                       P_MEJORAR, P_SATELITE, _cuanto_falta, respuestas, saludo)
 
 MOD = "mediana_mun__resp_grupo"
 # --- datos inventados: municipio M con 10 parcelas con cosecha (1 a 10 t/ha) y dos por estimar
@@ -32,14 +33,16 @@ res = dict(lista)
 assert [p for p, _ in lista] == ["¿Por qué mi parcela tiene 5.50?", "¿Cuántas toneladas me van a salir?",
                                  "¿Por qué mi vecino tiene el mismo número?", "¿Qué tanto puedo confiar?",
                                  P_MARGEN, "¿Me alcanza para mis costos?", P_SATELITE, P_CLIMA, P_MEJORAR]
-assert res["¿Por qué mi parcela tiene 5.50?"] == (f"Se tomó el valor típico (la mediana) de las 10 parcelas con cosecha registrada de M "
-                                                  f"en {ANIO}. {x['frase']}")
-assert res["¿Qué tanto puedo confiar?"] == f"{x['motivo']} {x['rango']}"         # lo mismo que M01 y M02
+assert res["¿Por qué mi parcela tiene 5.50?"] == (f"Se tomó el valor típico (la mediana) de las 10 parcelas con "
+                                                  f"cosecha registrada de M en {ANIO}. {x['frase']}")
+assert res["¿Qué tanto puedo confiar?"].startswith(f"{x['motivo']} {x['rango']}")   # lo mismo que M01 y M02
+assert "parcelas suficientes" in res["¿Qué tanto puedo confiar?"]                  # y lo que falta (M tiene 10)
 assert res["¿Por qué mi vecino tiene el mismo número?"].startswith(
     "Porque las 2 parcelas por estimar de M reciben el mismo número, 5.50 t/ha.")
 assert "Escribe tu precio" in res["¿Me alcanza para mis costos?"]               # sin datos no inventa nada
 assert res[P_CLIMA] == "No tengo el clima de tu zona para comparar."
-assert "hoy M tiene 10 parcelas con cosecha registrada" in res[P_MEJORAR]
+assert "Hoy M tiene 10 parcelas con cosecha registrada" in res[P_MEJORAR]
+assert "«Tu libreta»" in res[P_MEJORAR]
 
 # --- una sola parcela por estimar en el municipio
 assert dict(respuestas(d, pred.loc[["P1"]], MOD, conf, "P1"))["¿Por qué mi vecino tiene el mismo número?"].startswith(
@@ -95,4 +98,21 @@ assert reg[0] == ("¿Cómo le fue a mi parcela frente a las de mi municipio?",
 assert len(reg) == 7
 assert saludo(d, pred, MOD, conf, "M3") == (f"Hola, soy Cebi. Tu parcela M3 tiene su cosecha registrada: 3.00 t/ha "
                                             f"en {ANIO}. ¿Qué quieres saber?")
+
+# --- cuánto falta para subir de confianza (usa faltan_para_subir de «Tu libreta»)
+assert _cuanto_falta(1, "N") == "Con 2 parcelas más con cosecha registrada, N pasaría de confianza baja a media."
+assert _cuanto_falta(2, "N").startswith("Con 1 parcela más con cosecha registrada")
+assert _cuanto_falta(5, "C") == ("Con 5 parcelas más con cosecha registrada, C pasaría de confianza media a alta, "
+                                 "siempre que el error ahí quede igual o por debajo del promedio.")
+assert _cuanto_falta(71, "tu municipio").startswith("Tu municipio ya tiene parcelas suficientes")
+
+# --- lo que el agricultor anotó en «Tu libreta»: 2024 → 4.0 t/ha (la app dijo 3.5); 2025 → 4.5 t/ha (la app dijo 4.0)
+lib = bit.agregar(None, bit.nueva_entrada(2024, 20, 5, 3.5))
+lib = bit.agregar(lib, bit.nueva_entrada(2025, 22.5, 5, 4.0))
+assert P_LIBRETA not in dict(respuestas(d, pred, MOD, conf, "P1"))                 # sin anotaciones no aparece
+rl = dict(respuestas(d, pred, MOD, conf, "P1", libreta=lib))[P_LIBRETA]
+assert rl == ("Anotaste 2 años. Tu promedio fue 4.25 t/ha; tu mejor año fue 2025 con 4.50 t/ha y el más bajo, 2024 "
+              "con 4.00 t/ha. Lo que estimó la app quedó, en promedio, a 0.50 t/ha de lo que anotaste. Tu promedio "
+              f"está 1.25 t/ha abajo del valor típico de las parcelas con cosecha de M en {ANIO} (5.50 t/ha)."), rl
+assert P_LIBRETA in dict(respuestas(d, pred, MOD, conf, "M3", libreta=lib))         # también en parcelas registradas
 print("OK")

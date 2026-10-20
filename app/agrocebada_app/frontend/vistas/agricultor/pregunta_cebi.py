@@ -31,6 +31,7 @@ def _etiqueta(pregunta):
         "¿Cómo se vio mi parcela desde el satélite?": "El satélite",
         "¿Entre qué valores quedaron las de mi municipio?": "Mi municipio",
         "¿Qué no sabe la app de mi parcela?": "Qué falta saber",
+        "¿Cómo me fue en los años que anoté?": "Mi libreta",
     }
     if pregunta.startswith("¿Por qué mi parcela tiene "):
         return "Mi estimación"
@@ -110,7 +111,7 @@ def _platica(ctx, pid):
     lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
                        precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
                        area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
-                       series=ctx.S)
+                       series=ctx.S, libreta=st.session_state.get("bitacora", {}).get(pid))
     clave = f"cebi_{pid}"
     hechas = st.session_state.setdefault(clave, [])
     with st.container(key="cebi_chat"):

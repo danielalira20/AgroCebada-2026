@@ -31,6 +31,8 @@ def calculadora(ctx, pid):
         rend, etiqueta, que = float(pred.loc[pid, "prediccion"]), "Con la estimación", "tu estimación"
     else:
         rend, etiqueta, que = float(r.real), "Con tu cosecha registrada", "tu cosecha registrada"
+    h("<style>.st-key-glass_calculadora [data-testid='stNumberInput'] button:disabled"
+      "{display:none !important}</style>")
     with st.container(key="glass_calculadora"):
         titulo("¿Me alcanza?",
                "Escribe tu precio por tonelada y tu costo por hectárea. Orientativo; no es un dictamen de crédito.")
