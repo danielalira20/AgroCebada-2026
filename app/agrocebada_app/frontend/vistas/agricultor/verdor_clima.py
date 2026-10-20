@@ -3,7 +3,7 @@ Un solo recuadro con dos tarjetas internas (verdor y clima) y, plegadas abajo, s
 import streamlit as st
 
 from agrocebada_app.backend.dominio.clima_anomalia import comparar, frases
-from agrocebada_app.backend.dominio.franja_verdor import mes_mas_verde
+from agrocebada_app.backend.dominio.franja_verdor import frase_verdor
 from agrocebada_app.frontend.componentes.graficas.clima import curva_clima, curva_clima_normal
 from agrocebada_app.frontend.componentes.graficas.indices import curva_franja
 from agrocebada_app.frontend.estado.cache import clima_normal
@@ -26,18 +26,6 @@ def _tarjeta(nombre, detalle, lineas):
             f"color:var(--texto)'>{cuerpo}</div></div>")
 
 
-def _frase_verdor(d, S, pid):
-    meses = mes_mas_verde(d, S, pid)
-    if meses is None:
-        return "No hay imágenes de satélite suficientes de tu parcela."
-    parcela, municipio = meses
-    if municipio is None:
-        return f"Tu parcela llegó a su verdor más alto en {parcela}."
-    if municipio == parcela:
-        return f"Tu parcela y las de tu municipio llegaron a su verdor más alto en {parcela}."
-    return f"Tu parcela llegó a su verdor más alto en {parcela}; las de tu municipio, en {municipio}."
-
-
 def _lineas_clima(C, t):
     if C is None:
         return "En " + ZONA + ".", ["No hay información de lluvia y temperatura disponible para esta parcela."]
@@ -58,7 +46,7 @@ def verdor_clima(ctx, pid):
         detalle_clima, lineas_clima = _lineas_clima(C, t)
         h("<div style='display:flex;flex-wrap:wrap;gap:14px;align-items:stretch;margin:6px 0 12px'>"
           + _tarjeta("Verdor", "Sube cuando el cultivo crece y baja al madurar o cosechar.",
-                     [_frase_verdor(d, S, pid)])
+                     [frase_verdor(d, S, pid)])
           + _tarjeta("Lluvia y temperatura", detalle_clima, lineas_clima)
           + "</div>")
 

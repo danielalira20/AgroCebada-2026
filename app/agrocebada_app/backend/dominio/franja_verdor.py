@@ -39,18 +39,45 @@ NOMBRE_MES = {1: "enero", 2: "febrero", 3: "marzo", 4: "abril", 5: "mayo", 6: "j
               9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre"}
 
 
-def mes_mas_verde(d, s, pid, col="ndvi_promedio"):
-    """(mes de la parcela, mes de su municipio o None): en qué mes llegó el índice a su punto más alto, semana a
-    semana y con el mismo sensor de la franja. Para el municipio usa el centro de la franja. None si no hay datos."""
+def pico_verdor(s, pid, col="ndvi_promedio"):
+    """(valor, número de mes) del punto más verde de la parcela, o None si no tiene datos del índice.
+
+    Con un solo sensor y la mediana de cada semana, igual que la gráfica y la franja del municipio: mezclar sensores
+    o quedarse con la captura más alta hace que un solo día nublado o una calibración distinta mueva el mes."""
     sensor = sensor_para(s, pid, col)
     if sensor is None:
         return None
     x = s[(s.ID_POLIGONO == pid) & (s.sensor == sensor) & s[col].notna()]
     semanal = x.assign(semana=x.fecha.dt.to_period("W-SUN").dt.start_time).groupby("semana")[col].median()
-    mes_parcela = NOMBRE_MES[semanal.idxmax().month]
-    f = franja_municipio(d, s, pid, col, sensor)
+    cima = semanal.idxmax()
+    return float(semanal.loc[cima]), cima.month
+
+
+def mes_mas_verde(d, s, pid, col="ndvi_promedio"):
+    """(mes de la parcela, mes de su municipio o None): en qué mes llegó el índice a su punto más alto, semana a
+    semana y con el mismo sensor de la franja. Para el municipio usa el centro de la franja. None si no hay datos."""
+    pico = pico_verdor(s, pid, col)
+    if pico is None:
+        return None
+    mes_parcela = NOMBRE_MES[pico[1]]
+    f = franja_municipio(d, s, pid, col, sensor_para(s, pid, col))
     mes_municipio = None
     if f is not None:
         centro = (f.p25 + f.p75) / 2
         mes_municipio = NOMBRE_MES[f.loc[centro.idxmax(), "semana"].month]
     return mes_parcela, mes_municipio
+
+def frase_verdor(d, s, pid, col="ndvi_promedio"):
+    """En qué mes se puso más verde la parcela frente a su municipio, en una frase.
+
+    Vive aquí y no en la pantalla porque la dicen dos lugares —la tarjeta de verdor y Cebi— y tienen que decir lo
+    mismo."""
+    meses = mes_mas_verde(d, s, pid, col)
+    if meses is None:
+        return "No hay imágenes de satélite suficientes de tu parcela."
+    parcela, municipio = meses
+    if municipio is None:
+        return f"Tu parcela llegó a su verdor más alto en {parcela}."
+    if municipio == parcela:
+        return f"Tu parcela y las de tu municipio llegaron a su verdor más alto en {parcela}."
+    return f"Tu parcela llegó a su verdor más alto en {parcela}; las de tu municipio, en {municipio}."

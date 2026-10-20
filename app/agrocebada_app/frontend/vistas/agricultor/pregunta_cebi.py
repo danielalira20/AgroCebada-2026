@@ -1,56 +1,156 @@
-"""«Pregúntale a Cebi» en la vista del agricultor (M19): una tarjeta chica que abre una ventana con preguntas fijas
-y respuestas en burbujas. Sin campo de texto libre: Cebi sólo contesta lo que sabe. La plática se guarda mientras se
-use la página y empieza de nuevo al cambiar de parcela."""
+"""Cebi flotante: preguntas guiadas, texto libre y voz, con historial por parcela y sesión.
+
+Cebi elige, no redacta. Lo que se escribe o se dicta pasa por el enrutador, que lo empareja con una de las
+respuestas que `respuestas.py` arma del dato; si no reconoce la pregunta lo dice en vez de inventar. Por eso no hay
+modelo de lenguaje: uno que redacta podría afirmar lo que el método no hace, como que el clima mueve la estimación.
+"""
 import streamlit as st
 
+from agrocebada_app.backend.dominio import transcribir as voz
+from agrocebada_app.backend.dominio.enrutador import enrutar, no_entendi
 from agrocebada_app.backend.dominio.respuestas import respuestas, saludo
 from agrocebada_app.frontend.estado.cache import clima_normal
 from agrocebada_app.frontend.tema.estilos import MASCOTA
 from agrocebada_app.frontend.tema.html import e, h
 
-_TU = ("<div style='display:flex;justify-content:flex-end;margin:10px 0'>"
-       "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 4px 14px;font-size:.9rem;"
-       "background:var(--acento);color:var(--dialogo);font-weight:500'>{}</div></div>")
-_CEBI = ("<div class='mascota' style='margin:10px 0'><div class='cebi'>{}</div>"
-         "<div style='max-width:75%;padding:8px 12px;border-radius:14px 14px 14px 4px;font-size:.9rem;"
-         "background:var(--barra-fondo);border:1px solid var(--borde);color:var(--texto)'>{}</div></div>")
+TURNOS = 4          # cuántos intercambios se conservan a la vista
 
 
-@st.dialog("Pregúntale a Cebi", width="large")
+def _etiqueta(pregunta):
+    """Accesos breves; la pregunta original sigue en la ayuda y en la conversación."""
+    etiquetas = {
+        "¿Por qué mi vecino tiene el mismo número?": "Mis vecinos",
+        "¿Qué tanto puedo confiar?": "La confianza",
+        "¿Me alcanza para mis costos?": "Mis costos",
+        "¿Cómo estuvo el clima este año en mi zona?": "El clima",
+        "¿Qué haría más precisa mi cifra?": "Más precisión",
+        "¿Cómo le fue a mi parcela frente a las de mi municipio?": "Cómo me fue",
+        "¿Cuántas toneladas me van a salir?": "Mi total",
+        "¿Cuántas toneladas saqué en total?": "Mi total",
+        "¿De cuánto puede fallar mi número?": "El margen",
+        "¿Cómo se vio mi parcela desde el satélite?": "El satélite",
+        "¿Entre qué valores quedaron las de mi municipio?": "Mi municipio",
+        "¿Qué no sabe la app de mi parcela?": "Qué falta saber",
+        "¿Cómo me fue en los años que anoté?": "Mi libreta",
+    }
+    if pregunta.startswith("¿Por qué mi parcela tiene "):
+        return "Mi estimación"
+    return etiquetas.get(pregunta, pregunta)
+
+
+def _preguntar(clave, indice):
+    """Un botón: se guarda el índice, igual que antes, y si se repite se mueve al final."""
+    hechas = st.session_state.setdefault(clave, [])
+    if indice in hechas:
+        hechas.remove(indice)
+    hechas.append(indice)
+
+
+def _decir(clave, texto, preguntas):
+    """Texto escrito o dictado: se enruta a una respuesta conocida, o se admite que no se entendió."""
+    st.session_state.setdefault(clave, []).append(("libre", str(texto).strip(), enrutar(texto, preguntas)))
+
+
+def _reiniciar(clave):
+    st.session_state[clave] = []
+
+
+def _cerrar():
+    """La ✕ del encabezado. Streamlit no deja cerrar un popover desde Python, así que se le cambia la llave y el
+    popover vuelve a nacer, cerrado. La conversación no se pierde: vive en la sesión, no en el popover."""
+    st.session_state["cebi_cerrar"] = True
+
+
+def _burbujas(turnos, lista):
+    """Las burbujas de los últimos turnos. Un turno es el índice de un botón o una pregunta escrita."""
+    mensajes = []
+    for turno in turnos:
+        if isinstance(turno, tuple):
+            _, texto, indice = turno
+            respuesta = lista[indice][1] if indice is not None else no_entendi(lista)
+            pregunta = texto
+        else:
+            pregunta, respuesta = lista[turno]
+        mensajes.append(f"<div class='cebi-pregunta'>{e(pregunta)}</div>")
+        mensajes.append(f"<div class='cebi-respuesta'>{e(respuesta)}</div>")
+    return mensajes
+
+
+def _escuchar(clave, pid, lista):
+    """Nota de voz: se graba aquí y se transcribe en el equipo de la app, para que funcione igual en cualquier
+    teléfono. El micrófono va junto al campo de escribir, no escondido: es la otra forma de preguntar, no un extra.
+
+    Si este equipo no puede transcribir no se dibuja el micrófono, para no ofrecer un botón que no lleva a nada."""
+    if not voz.disponible():
+        return
+    audio = st.audio_input("Graba tu pregunta", key=f"{clave}_voz", label_visibility="collapsed")
+    if audio is None:
+        return
+    huella = (pid, audio.size)
+    if st.session_state.get(f"{clave}_voz_hecha") == huella:
+        return
+    st.session_state[f"{clave}_voz_hecha"] = huella
+    with st.spinner("Escuchando tu pregunta…"):
+        try:
+            texto = voz.transcribir(audio.getvalue())
+        except RuntimeError as ex:
+            st.warning(str(ex))
+            return
+    if not texto:
+        st.warning("No alcancé a entender la grabación. Intenta de nuevo, más cerca del micrófono.")
+        return
+    _decir(clave, texto, lista)
+    st.rerun()
+
+
+@st.fragment
 def _platica(ctx, pid):
+    if st.session_state.pop("cebi_cerrar", False):
+        st.session_state["cebi_vuelta"] = st.session_state.get("cebi_vuelta", 0) + 1
+        st.rerun(scope="app")        # la llave vive fuera del fragmento, así que hay que rehacer la página entera
     lista = respuestas(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid, oof=ctx.oof_parcela,
                        precio=st.session_state.get("calc_precio"), costo=st.session_state.get("calc_costo"),
-                        area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
-                       libreta=st.session_state.get("bitacora", {}).get(pid))
+                       area=st.session_state.get(f"calc_area_{pid}"), clima=ctx.C, normal=clima_normal(),
+                       series=ctx.S, libreta=st.session_state.get("bitacora", {}).get(pid))
     clave = f"cebi_{pid}"
     hechas = st.session_state.setdefault(clave, [])
-    h("<div class='nota'>Elige una pregunta y Cebi te contesta con los datos de tu parcela.</div>")
-    cols = st.columns(2)
-    for i, (pregunta, _) in enumerate(lista):
-        if cols[i % 2].button(pregunta, key=f"{clave}_{i}", width="stretch"):
-            if i in hechas:          # si ya la había preguntado, la mueve al final en vez de repetirla
-                hechas.remove(i)
-            hechas.append(i)
-    burbujas = [_CEBI.format(MASCOTA, e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid)))]
-    for i in hechas[-4:]:                         # las últimas cuatro preguntas
-        pregunta, respuesta = lista[i]
-        burbujas += [_TU.format(e(pregunta)), _CEBI.format(MASCOTA, e(respuesta))]
-    h("".join(burbujas))
-    if hechas and st.button("Empezar de nuevo", key=f"{clave}_borrar"):
-        hechas.clear()
-        st.rerun(scope="fragment")
+    with st.container(key="cebi_chat"):
+        h(f"<div class='cebi-cabecera'><div class='cebi' aria-hidden='true'>{MASCOTA}</div>"
+          f"<div><strong>Cebi<span class='cebi-hojita' aria-hidden='true'>✦</span></strong><span>Con los datos de tu parcela</span></div>"
+          f"<span class='cebi-parcela'>Parcela {e(pid)}</span></div>")
+        st.button("✕", key="cebi_cerrar_chat", on_click=_cerrar, type="tertiary",
+                  help="Cerrar la conversación")
+        with st.container(height=220 if hechas else 150, border=False, autoscroll=True, key="cebi_mensajes"):
+            mensajes = [f"<div class='cebi-respuesta'>{e(saludo(ctx.d, ctx.pred, ctx.modelo, ctx.conf, pid))}</div>"]
+            mensajes.extend(_burbujas(hechas[-TURNOS:], lista))
+            h("<div class='cebi-conversacion' role='log' aria-label='Conversación con Cebi' aria-live='polite'>"
+              + "".join(mensajes) + "</div>")
+        # Antes de la primera pregunta los botones invitan a explorar en rejilla; después se encogen a una fila que
+        # se desliza, para dejarle la pantalla a la conversación. El cambio es sólo de clase: si aquí cambiara la
+        # llave del contenedor o el número de columnas, Streamlit rehace el bloque y el popover se cierra solo.
+        h(f"<div class='cebi-sugerencias{' cebi-fila' if hechas else ''}'>"
+          f"<span>{'Más preguntas' if hechas else 'Explora tu parcela'}</span></div>")
+        with st.container(key="cebi_preguntas"):
+            columnas = st.columns(len(lista), gap="small")
+            for indice, (pregunta, _) in enumerate(lista):
+                columnas[indice].button(_etiqueta(pregunta), help=pregunta, key=f"{clave}_{indice}", width="stretch",
+                                        wrap=True, on_click=_preguntar, args=(clave, indice))
+        with st.container(horizontal=True, vertical_alignment="center", key="cebi_compositor"):
+            escrito = st.chat_input("Escribe tu pregunta…", key=f"{clave}_texto")
+            _escuchar(clave, pid, lista)
+        if escrito:
+            _decir(clave, escrito, lista)
+            st.rerun()
+        with st.container(horizontal=True, horizontal_alignment="right"):
+            st.button("Empezar de nuevo", key=f"{clave}_borrar", type="tertiary", disabled=not hechas,
+                      on_click=_reiniciar, args=(clave,), width="content", wrap=True)
 
 
 def pregunta_cebi(ctx, pid):
-    """Tarjeta chica en la página; el botón abre la ventana con la plática."""
-    h("<style>.st-key-glass_cebi button, .st-key-glass_cebi button p {color:var(--dialogo) !important;"
-      "font-weight:400 !important}</style>")
-    with st.container(key="glass_cebi"):
-        c1, c2 = st.columns([3, 1], vertical_alignment="center")
-        with c1:
-            h(f"<div class='mascota'><div class='cebi'>{MASCOTA}</div><div><div class='tit'>¿Tienes dudas sobre tu "
-              "parcela?</div><div class='nota' style='margin-top:4px'>Cebi te contesta con los datos de tu parcela: "
-              "por qué tiene ese número, qué tanto confiar, si te alcanza para tus costos y más.</div></div></div>")
-        with c2:
-            if st.button("Pregúntale a Cebi", key=f"abrir_cebi_{pid}", type="primary", width="stretch"):
-                _platica(ctx, pid)
+    """Acceso persistente abajo a la derecha y conversación en un popover nativo."""
+    with st.container(key="cebi_launcher"):
+        h(f"<div class='cebi-acceso' aria-hidden='true'><span>¿Te ayudo?</span>"
+          f"<div class='cebi'>{MASCOTA}</div></div>")
+        # La llave lleva una vuelta: cambiarla es lo único que cierra un popover desde Python (lo rehace).
+        with st.popover("Pregúntale a Cebi", key=f"cebi_popover_{st.session_state.get('cebi_vuelta', 0)}", width=72):
+            _platica(ctx, pid)

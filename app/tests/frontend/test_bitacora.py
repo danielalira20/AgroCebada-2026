@@ -8,6 +8,7 @@ sys.path.insert(0, str(APP))
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
 from agrocebada_app.backend.datos import paquete  # noqa: E402
+from agrocebada_app.backend.dominio import transcribir as voz  # noqa: E402
 from agrocebada_app.config import MODELO_OFICIAL  # noqa: E402
 
 paquete.exigir_datos()
@@ -26,12 +27,14 @@ def pantalla(pid, modelo, entradas):
     from agrocebada_app.frontend.vistas.agricultor.bitacora import bitacora
 
     ctx = calcular(pq.parcelas(), pq.soporte(), pq.series(), pq.clima(), modelo, False)
-    libreta = bit.vacia()
-    area = float(ctx.d.loc[pid, "AREA_HA"])
-    est = float(ctx.pred.loc[pid, "prediccion"]) if pid in ctx.pred.index else None
-    for anio, ton in entradas:
-        libreta = bit.agregar(libreta, bit.nueva_entrada(anio, ton, area, est))
-    st.session_state["bitacora"] = {pid: libreta}
+    if "bitacora" not in st.session_state:          # sembrar una sola vez: lo que se anote después debe sobrevivir
+        libreta = bit.vacia()
+        area = float(ctx.d.loc[pid, "AREA_HA"])
+        est = float(ctx.pred.loc[pid, "prediccion"]) if pid in ctx.pred.index else None
+        for entrada in entradas:                     # (año, toneladas) o (año, toneladas, nota de voz)
+            libreta = bit.agregar(libreta, bit.nueva_entrada(
+                entrada[0], entrada[1], area, est, audio=entrada[2] if len(entrada) > 2 else None))
+        st.session_state["bitacora"] = {pid: libreta}
     bitacora(ctx, pid)
 
 
@@ -76,4 +79,34 @@ if len(chico):
     assert "está a" in texto and "vecino" in texto, "con 1 parcela debe decir cuántos faltan"
     assert "confianza baja a media" in texto, texto[-400:]
     print(f"{pid_chico} (Nanacamilpa): dice cuántos vecinos faltan para subir de confianza")
+
+# --- dictar la nota: el micrófono vive fuera del formulario, porque dentro Streamlit no entrega el audio hasta
+# enviar y la transcripción se guardaría sin que nadie pudiera corregirla
+at = AppTest.from_function(pantalla, args=(PID, MODELO_OFICIAL, []), default_timeout=300).run()
+assert not at.exception, at.exception
+assert len(at.get("audio_input")) == (1 if voz.disponible() else 0)
+assert not [x for x in at.expander if "dicta" in x.label.lower()], "el micrófono no se esconde"
+assert f"lib_nota_{PID}" in at.session_state, "el campo de la nota tiene que ser escribible desde fuera"
+
+# lo que se transcribe cae en el campo, se puede corregir, y al anotar queda en la libreta
+at.session_state[f"lib_nota_{PID}"] = "granizo en julio"
+at.run()
+assert at.text_input(key=f"lib_nota_{PID}").value == "granizo en julio", "la nota dictada debe verse en el campo"
+at.number_input[1].set_value(30.0)
+at.button[0].click().run()
+assert not at.exception, at.exception
+guardada = at.session_state["bitacora"][PID]
+assert list(guardada.nota) == ["granizo en julio"], list(guardada.nota)
+print("la nota dictada llega al campo, se puede corregir y queda anotada en la libreta")
+
+# --- la grabación se queda en su renglón y se puede volver a oír: sólo el año que la trae lleva reproductor
+VOZ = b"RIFF....da igual el contenido, aqui solo importa que llegue hasta la pantalla"
+at = AppTest.from_function(pantalla, args=(PID, MODELO_OFICIAL, [(2024, 30.0), (2025, 32.0, VOZ)]),
+                           default_timeout=300).run()
+assert not at.exception, at.exception
+assert len(at.get("audio")) == 1, "sólo el renglón con grabación lleva reproductor"
+assert at.get("audio")[0].proto.url.endswith(".wav"), at.get("audio")[0].proto.url
+texto = " ".join(x.value for x in at.markdown)
+assert texto.count("Tu nota de voz") == 1, texto.count("Tu nota de voz")
+print("la grabación se queda con su año y se puede volver a oír desde el renglón")
 print("OK")

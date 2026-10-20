@@ -1,0 +1,171 @@
+/* El popover nativo conserva foco, Escape y cierre al pulsar fuera. */
+.st-key-cebi_launcher {
+  position: fixed; right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  width: 72px !important; height: 72px; z-index: 90; gap: 0;
+}
+.st-key-cebi_launcher [data-testid="stElementContainer"]:has(.cebi-acceso) {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2;
+}
+.cebi-acceso { position: relative; width: 72px; height: 72px; display: grid; place-items: center; }
+.cebi-acceso > .cebi { width: 72px; height: 72px; filter: drop-shadow(0 3px 3px #0003); }
+.cebi-acceso > span {
+  position: absolute; right: 84px; white-space: nowrap; padding: 8px 13px;
+  border-radius: 14px 14px 4px 14px; background: var(--cebi-panel); color: var(--texto);
+  border: 1px solid var(--cebi-borde); font-size: .82rem; box-shadow: 0 3px 14px #0001;
+}
+.st-key-cebi_launcher [data-testid="stPopover"] button {
+  width: 72px; height: 72px; min-height: 72px; padding: 0; border-radius: 50%;
+  background: transparent !important; border: 0 !important;
+  box-shadow: none !important;
+}
+.st-key-cebi_launcher [data-testid="stPopover"] button p {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.st-key-cebi_launcher [data-testid="stPopover"] button svg { display: none; }
+.st-key-cebi_launcher [data-testid="stPopover"] [data-testid="stIconMaterial"] { display: none; }
+.st-key-cebi_launcher [data-testid="stPopover"] button:focus-visible { outline: 3px solid var(--acento, #9be15d); outline-offset: 4px; }
+.cebi-acceso .cebi * { animation: none; }
+.cebi-acceso .cebi .cebi-todo { transition: transform 200ms var(--ease-out); }
+.cebi-acceso .cebi .cebi-ojos { transition: transform 160ms var(--ease-out); }
+.st-key-cebi_launcher:has(button[aria-expanded="true"]) .cebi-acceso > span { visibility: hidden; }
+.st-key-cebi_launcher:has(button[aria-expanded="true"]) .cebi * { animation: none; }
+[data-testid="stPopoverBody"]:has(.st-key-cebi_chat) {
+  position: relative; width: 430px; max-width: calc(100vw - 24px) !important; max-height: calc(100dvh - 112px) !important;
+  overflow-y: auto; background: radial-gradient(ellipse at top left, var(--cebi-burbuja), transparent 65%), var(--cebi-panel); color: var(--texto);
+  border: 1px solid var(--cebi-borde); border-radius: 24px; padding: 18px;
+  box-shadow: var(--cebi-sombra);
+}
+.st-key-cebi_chat { gap: 10px; }
+.cebi-cabecera { display: flex; align-items: center; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid color-mix(in srgb, var(--cebi-borde) 50%, transparent); }
+.cebi-cabecera > .cebi { width: 44px; height: 44px; flex-shrink: 0; }
+.cebi-cabecera .cebi * { animation: none; }
+.cebi-cabecera strong { display: flex; align-items: center; gap: 7px; font-size: 1.25rem; letter-spacing: -.035em; color: var(--texto-fuerte); }
+.cebi-cabecera strong .cebi-hojita { color: var(--acento); font-size: .85rem; }
+.cebi-cabecera span { font-size: .75rem; color: var(--texto-suave); }
+.cebi-cabecera > div > span { display: block; }
+.cebi-cabecera .cebi-parcela { margin-left: auto; font-size: .67rem; text-align: right; padding: 5px 8px; border: 1px solid var(--cebi-borde); border-radius: 8px; }
+/* La ✕ del encabezado: la conversación también se cierra con Escape o pulsando fuera, pero eso no se ve. */
+.st-key-cebi_cerrar_chat { position: absolute; top: 14px; right: 14px; z-index: 2; }
+.st-key-cebi_cerrar_chat button[kind="tertiary"] { min-height: 30px; width: 30px; padding: 0;
+  border-radius: 100px; color: var(--texto-suave) !important;
+  border: 1px solid color-mix(in srgb, var(--cebi-borde) 60%, transparent) !important; }
+.st-key-cebi_cerrar_chat button p { font-size: .8rem; line-height: 1; }
+.cebi-cabecera { padding-right: 36px; }
+.cebi-conversacion { display: flex; flex-direction: column; gap: 12px; padding: 2px 4px 4px 0; }
+.cebi-respuesta, .cebi-pregunta { padding: 10px 12px; font-size: .87rem; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-line; }
+.cebi-respuesta { align-self: flex-start; max-width: 96%; background: color-mix(in srgb, var(--cebi-burbuja) 45%, transparent); color: var(--texto); border-radius: 3px 16px 16px 16px; }
+.cebi-pregunta { align-self: flex-end; max-width: 88%; background: var(--cebi-usuario); color: #20351b; border-radius: 16px 16px 4px 16px; }
+/* El rótulo necesita aire: pegado a las pastillas no se leía ni se veía el borde de la primera fila. */
+.cebi-sugerencias { font-size: .72rem; font-weight: 600; color: var(--texto-suave);
+  margin: 6px 0 10px; padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--cebi-borde) 45%, transparent); }
+.st-key-cebi_preguntas [data-testid="stVerticalBlock"] { gap: 6px; }
+/* Sin conversación: una pastilla por pregunta, tres por renglón, para que se vean todas de un vistazo. */
+.st-key-cebi_preguntas [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: 6px; }
+.st-key-cebi_preguntas [data-testid="stColumn"] {
+  flex: 0 0 calc((100% - 12px) / 3) !important; width: auto !important; min-width: 0 !important; }
+/* Con conversación: el mismo bloque se encoge a un solo renglón que se desliza. Es la misma marca que cambia el
+   rótulo de arriba, así no hace falta mover nada del árbol de Streamlit. */
+.st-key-cebi_chat:has(.cebi-sugerencias.cebi-fila) .st-key-cebi_preguntas [data-testid="stHorizontalBlock"] {
+  flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin;
+  padding-bottom: 4px; scroll-snap-type: x proximity;
+  /* la última pastilla se desvanece en el borde para que se note que hay más */
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+}
+.st-key-cebi_chat:has(.cebi-sugerencias.cebi-fila) .st-key-cebi_preguntas [data-testid="stColumn"] {
+  flex: 0 0 auto !important; scroll-snap-align: start; }
+.st-key-cebi_chat:has(.cebi-sugerencias.cebi-fila) .st-key-cebi_preguntas button p { white-space: nowrap; }
+.st-key-cebi_preguntas button[kind="secondary"] {
+  min-height: 44px; height: 100%; padding: 6px 8px;
+  border: 1px solid color-mix(in srgb, var(--cebi-borde) 65%, transparent) !important;
+  background: transparent !important; color: var(--texto) !important;
+  border-radius: 100px;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.st-key-cebi_preguntas button p { font-size: .73rem; line-height: 1.3; font-weight: 400; color: inherit; }
+/* EL MICRÓFONO, el mismo en el chat de Cebi y en la libreta: hablar es la otra forma de escribir, no un extra
+   escondido. La grabadora de Streamlit viene como una tira con barra de herramientas, onda, cronómetro y
+   reproductor; aquí se queda en los botones y nada más, para que quepa siempre al lado del campo de escribir sin
+   salirse del panel ni empujar nada a otro renglón. El cronómetro vuelve mientras se graba, que es cuando dice algo.
+
+   Dos cosas que cuestan de encontrar si se tocan estas reglas:
+   · un :has() no puede ir dentro de otro :has(); escrito así el navegador descarta la regla sin avisar;
+   · Streamlit NO quita el botón «Record» al terminar de grabar, sólo le añade el de reproducir, así que «tiene
+     Record» no significa «está en reposo». */
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"] { flex: 0 0 auto; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"] > div {
+  background: transparent !important; border: 0 !important; box-shadow: none !important;
+  padding: 0 !important; gap: 4px; min-height: 0 !important; height: auto !important;
+  width: auto !important; max-width: 100% !important; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) > [data-testid="stElementContainer"]:has(
+    [data-testid="stAudioInput"]) { flex: 0 0 auto !important; width: auto !important; min-width: 0 !important; }
+/* la barra de herramientas y la onda nunca hacen falta aquí */
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"] > div > :is(
+    [data-testid="stElementToolbar"], div:has(> [data-testid="stAudioInputWaveSurfer"])) { display: none !important; }
+/* el cronómetro, sólo mientras se graba */
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]
+    [data-testid="stAudioInputWaveformTimeCode"] { display: none !important; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:has([aria-label="Stop recording"])
+    [data-testid="stAudioInputWaveformTimeCode"] { display: block !important; font-size: .72rem; }
+/* los botones, redondos y del tamaño de un dedo */
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInputActionButton"] {
+  width: 44px; height: 44px; min-height: 44px; border-radius: 100px;
+  border: 1px solid var(--cebi-borde) !important; background: var(--cebi-panel) !important;
+  color: var(--texto) !important; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInputActionButton"] svg {
+  width: 20px; height: 20px; }
+
+/* Cuando el navegador no da el micrófono —permiso denegado, sin micrófono, o una página servida por http que no
+   sea localhost—, Streamlit cambia la onda por un aviso suyo en inglés. Encogido al botón ese aviso se leía
+   «…again.», que no le dice nada a nadie. Aquí se le da su propio renglón y se cuenta en español; el botón de
+   reintentar se queda donde está. La seña es que desaparece la onda, o que aparece su enlace de permisos. */
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) { flex-wrap: wrap; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) > [data-testid="stElementContainer"]:has(
+    [data-testid="stAudioInput"]):is(:not(:has([data-testid="stAudioInputWaveSurfer"])),
+                                     :has(a[href*="enable-peripherals"])) {
+  flex: 1 1 100% !important; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"])) > div {
+  display: flex !important; align-items: center; gap: 10px; width: 100% !important; }
+/* el aviso: el texto de Streamlit se calla y en su lugar va el nuestro */
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
+    > div > :is(div, span):not([data-testid]):not(:has([data-testid="stAudioInputActionButton"])) {
+  display: block !important; width: auto !important; flex: 1 1 auto;
+  font-size: 0 !important; text-align: left; }
+:is(.st-key-cebi_compositor, .st-key-lib_dictado) [data-testid="stAudioInput"]:is(
+    :not(:has([data-testid="stAudioInputWaveSurfer"])), :has(a[href*="enable-peripherals"]))
+    > div > :is(div, span):not([data-testid]):not(:has([data-testid="stAudioInputActionButton"]))::after {
+  content: "No pude usar el micrófono. Dale permiso a tu navegador y vuelve a intentar; mientras tanto, escríbeme la pregunta.";
+  display: block; font-size: .72rem; line-height: 1.45; color: var(--texto-suave); }
+
+/* campo real de escritura y grabadora de voz */
+.st-key-cebi_chat [data-testid="stChatInput"] { border-radius: 18px; border: 1px solid var(--cebi-borde);
+  background: var(--cebi-panel); }
+.st-key-cebi_chat [data-testid="stChatInput"] textarea { font-size: .83rem; }
+.st-key-cebi_chat [data-testid="stExpander"] summary { min-height: 40px; font-size: .72rem; }
+.st-key-cebi_chat [data-testid="stExpander"] summary p { font-size: .72rem; }
+.st-key-cebi_chat button[kind="tertiary"] { min-height: 44px; color: var(--texto); }
+.st-key-cebi_chat button[kind="tertiary"] p { font-size: .67rem; }
+@keyframes cebi-guiña {
+  0%, 100% { transform: scaleY(1); }
+  45% { transform: scaleY(.1); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .st-key-cebi_launcher:has([data-testid="stPopoverButton"]:hover) .cebi-todo { transform: translateY(-7px) rotate(-5deg); }
+  .st-key-cebi_launcher:has([data-testid="stPopoverButton"]:hover) .cebi-ojos { animation: cebi-guiña 250ms var(--ease-out) 1; }
+  .st-key-cebi_preguntas button[kind="secondary"]:hover { background: var(--cebi-burbuja) !important; border-color: var(--cebi-borde) !important; }
+}
+@media (max-width: 640px) {
+  .st-key-cebi_launcher { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); }
+  .cebi-acceso > span { display: none; }
+  [data-testid="stPopoverBody"]:has(.st-key-cebi_chat) { padding: 14px; border-radius: 20px; }
+  .cebi-cabecera { gap: 8px; }
+  .cebi-cabecera .cebi-parcela { font-size: .62rem; padding: 4px 6px; }
+  .st-key-cebi_preguntas button p { font-size: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cebi-acceso .cebi, .cebi-acceso .cebi * { animation: none !important; transition: none !important; transform: none !important; }
+  .st-key-cebi_launcher [data-testid="stPopover"] button { transition: none; transform: none !important; }
+}

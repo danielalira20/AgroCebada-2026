@@ -4,10 +4,11 @@ from agrocebada_app.frontend.tema.paleta import es_oscuro
 
 ESTILO = (APP / "assets" / "css" / "tema.css").read_text(encoding="utf-8")
 CLARO = (APP / "assets" / "css" / "claro.css").read_text(encoding="utf-8")
+CEBI = (APP / "assets" / "css" / "cebi.css").read_text(encoding="utf-8")
 
 
 def estilo_actual():
-    return ESTILO + ("" if es_oscuro() else CLARO)
+    return ESTILO + ("" if es_oscuro() else CLARO) + CEBI
 
 
 MASCOTA = (APP / "assets" / "mascota" / "cebi.svg").read_text(encoding="utf-8") if (APP / "assets" / "mascota" / "cebi.svg").exists() else ""

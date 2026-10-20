@@ -15,6 +15,28 @@ from agrocebada_app.config import MODELO_OFICIAL
 from agrocebada_app.frontend.componentes.evidencia.comparacion import especificacion
 
 
+def has_anidado(css):
+    """Selectores con un :has() dentro de otro :has(). El navegador no los rechaza a gritos: tira esa parte y deja
+    una regla que no empareja con nada, así que el estilo simplemente no se aplica y nadie se entera. Pasó con la
+    grabadora de voz, que por eso se salía del panel."""
+    css = re.sub(r"/\*.*?\*/", " ", css, flags=re.S)      # los comentarios hablan de selectores, no son selectores
+    malos, i = [], css.find(":has(")
+    while i != -1:
+        hondo, j = 0, i + len(":has(")
+        while j < len(css):                       # hasta cerrar el paréntesis de este :has(
+            if css[j] == "(":
+                hondo += 1
+            elif css[j] == ")":
+                if hondo == 0:
+                    break
+                hondo -= 1
+            j += 1
+        if ":has(" in css[i + len(":has("):j]:
+            malos.append(css[max(0, i - 90):j + 1].replace("\n", " "))
+        i = css.find(":has(", i + 1)
+    return malos
+
+
 def luminancia(hexadecimal):
     rgb = [int(hexadecimal[i:i + 2], 16) / 255 for i in (1, 3, 5)]
     rgb = [v / 12.92 if v <= .04045 else ((v + .055) / 1.055) ** 2.4 for v in rgb]
@@ -25,6 +47,12 @@ def contraste(a, b):
     mayor, menor = sorted((luminancia(a), luminancia(b)), reverse=True)
     return (mayor + .05) / (menor + .05)
 
+
+# --- ningún selector con :has() dentro de otro :has(): esos el navegador los descarta sin avisar
+for hoja in sorted((APP / "assets" / "css").glob("*.css")):
+    malos = has_anidado(hoja.read_text(encoding="utf-8"))
+    assert not malos, f"{hoja.name}: :has() anidado en {len(malos)} selector(es)\n" + "\n".join(malos[:3])
+print("CSS: sin :has() anidados, que el navegador descartaría en silencio")
 
 css = (APP / "assets/css/claro.css").read_text(encoding="utf-8")
 tokens = dict(re.findall(r"--([\w-]+):\s*(#[\da-fA-F]{6})", css))
